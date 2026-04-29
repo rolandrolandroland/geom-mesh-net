@@ -172,8 +172,8 @@ def gen_back_guest(labels, back_conc, assign_val = 1):
     labels[vals < back_conc] = assign_val
     return labels
 
-def calc_weighted_dist(upp, center, x_weight = 1, y_weight = 1, z_weight = 1, x_exp = 2, y_exp = 2, z_exp = 2):
-    weighted_dist = (((x_weight*(upp.coords['x'] - center[0]))**x_exp) + ((y_weight*(upp.coords['y'] - center[1]))**y_exp) +  ((z_weight*(upp.coords['z'] - center[2]))**z_exp)) **(1/2)
+def calc_weighted_dist(x, y, z, center, x_weight = 1, y_weight = 1, z_weight = 1, x_exp = 2, y_exp = 2, z_exp = 2):
+    weighted_dist = (((x_weight*(x - center[0]))**x_exp) + ((y_weight*(y - center[1]))**y_exp) +  ((z_weight*(z - center[2]))**z_exp)) **(1/2)
     return weighted_dist
 
 def assign_clust_points(dist, weighted_dist,
@@ -239,6 +239,9 @@ def assign_clust_points(dist, weighted_dist,
             else:
                 raise ValueError(
                     "Probability function not recognized: must be either Gaussian_decay, inverse, growth, exponential, or constant. Gaussian_decay is standard")
+            # if there is only one element in probs and it is 0, then make that equal to 1
+            if sum(probs) == 0:
+                probs = probs + 1
             probs = probs / sum(probs)
             inds = rng.choice(inside_inds, size=n_points, replace=False, p=probs)
             clust_points = inds
@@ -420,7 +423,7 @@ def clustersim(opp, # overlying point pattern
         i = rad[0]
         r = rad[1]
         dists = ((((upp.coords['x'] - center_x)**2) +((upp.coords['y'] - center_y)**2) +((upp.coords['z'] - center_z)**2))**(1/2))
-        weighted_dists = calc_weighted_dist(upp,
+        weighted_dists = calc_weighted_dist(upp.coords['x'], upp.coords['y'], upp.coords['z'],
                                             center = np.array([center_x, center_y, center_z]),
                                             x_weight = x_weight,
                                             y_weight = y_weight,
@@ -431,7 +434,6 @@ def clustersim(opp, # overlying point pattern
         current_r_weighted_max = r_weighted_max  # Start with the user-provided global override
         if r_max_weighted_max_ratio and not r_weighted_max:
             current_r_weighted_max = r * r_max_weighted_max_ratio
-
         new_labels = assign_clust_points(dist = dists,
                                          weighted_dist=weighted_dists,
                                          rho_c = rho_c,
@@ -448,5 +450,26 @@ def clustersim(opp, # overlying point pattern
     upp.labels[background_inds] = background_labels
     # now we need to assign background points
 
-    return upp
+    return upp, cr_all, cluster_centers
+
+def thin_cluster(coords, probs, labels = None, marks = "all"):
+    if marks == "all":
+        rolls = rng.uniform(low = 0, high = 1, size = len(coords['x']))
+        mask = rolls <= probs
+        new_coords = {key:value[mask] for key, value in coords.items()}
+        new_labels = labels[mask]
+        return new_coords, new_labels
+    else:
+        # create a vector of length labels that has the right probability for each label
+        #point_probs =[probs[item] for item in labels]
+        # Faster mapping inside thin_cluster
+        v_lookup = np.vectorize(probs.get)
+        point_probs = v_lookup(labels)
+
+        rolls = rng.uniform(low = 0, high = 1, size = len(point_probs))
+        mask = point_probs >= rolls
+        new_coords = {key:value[mask] for key, value in coords.items()}
+        new_labels = labels[mask]
+        return new_coords, new_labels
+
 
