@@ -1,8 +1,11 @@
 import numpy as np
 from torch.utils.data import Dataset
 import torch.nn as nn
-from geom_mesh_net import clustersim as csim
-from geom_mesh_net import voxelize_clusters as vc
+import torch
+from geom_mesh_net.core_functions import clustersim as csim
+from geom_mesh_net.core_functions import voxelize_clusters as vc
+
+
 # class for loading data
 class LoadData(Dataset):
     """
@@ -77,6 +80,7 @@ class LoadData(Dataset):
         labels = data["labels"]
         radius = data["radii"]
         centers = data["centers"].item()
+
         # must thin data
         thinned_coords, thinned_labs = csim.thin_cluster(coords, self.probs, labels=labels,
                                                          marks=self.marks)
@@ -84,6 +88,7 @@ class LoadData(Dataset):
         rho_c = self.params[key, self.rho_c_ind]
         rho_b = self.params[key, self.rho_b_ind]
         #pcp = self.params[key, self.pcp_ind]
+        # generate a density grid based on the parameters for the clustered data
         xx, yy, zz, full_upp_probs = vc.generate_density_grid(grid_size = grid_size, cluster_centers=centers,
                                     radii=radius,
                                     rho_c=rho_c, rho_b=rho_b,
@@ -107,5 +112,43 @@ class LoadData(Dataset):
 class ContinuousNeuralField(nn.Module):
     def __init__(self):
         super().__init__()
+        # define model: we are using a sequential multi layer perceptron with 3 features, a 128 neurons hidden layer, and 1 output with a ReLU activation function
+        self.model = nn.Sequential(
+            nn.Linear(3, 128),
+            nn.ReLU(),
+            nn.Linear(128, 1),
+            nn.Sigmoid() # make sure answer is between 0 and 1
+        )
+class ContinuousNeuralField2(nn.Module):
+    def __init__(self):
+        super().__init__()
+    # need a more complex model
+        self.model = nn.Sequential(
+            nn.Linear(3, 128),
+            nn.ReLU(),
+            nn.Linear(128, 128),
+            nn.ReLU(),
+            nn.Linear(128, 128),
+            nn.ReLU(),
+            nn.Linear(128, 1),
+            nn.Sigmoid()
+        )
+
+    # forward pass input through model
     def forward(self, x):
-        return 5
+        return self.model(x)
+
+
+# custom collate function to handle variable-length point clouds
+def point_cloud_collate(batch):
+    # batch is a list of tuples, where each tuple is the 7 items returned by __getitem__
+    # unzip batch into separate lists
+    thinned_coords, domains, thinned_labs, xxs, yys, zzs, probs = zip(*batch)
+    # Convert grids to tensors and stack them cleanly
+    xx_batch = torch.tensor(np.array(xxs))
+    yy_batch = torch.tensor(np.array(yys))
+    zz_batch = torch.tensor(np.array(zzs))
+    probs_batch = torch.tensor(np.array(probs))
+
+    # We can just leave the variable-length items as standard Python lists
+    return thinned_coords, domains, thinned_labs, xx_batch, yy_batch, zz_batch, probs_batch

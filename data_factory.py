@@ -1,4 +1,4 @@
-import clustersim as csim
+import core_functions.clustersim as csim
 import numpy as np
 
 rng = np.random.default_rng(42)

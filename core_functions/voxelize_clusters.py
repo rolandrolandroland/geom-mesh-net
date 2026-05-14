@@ -1,5 +1,5 @@
 import numpy as np
-from geom_mesh_net import clustersim as csim
+from geom_mesh_net.core_functions import clustersim as csim
 
 
 # function to assign the probability distribution inside of clusters

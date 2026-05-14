@@ -11,3 +11,6 @@ similar to how dists are optimized in the generate_density_grid
 In generate_density_grid, optimize weighted dist calculations
 
 in clustersim, only pass the submatrix like i did in generate_density_grid
+
+add documentation to thin_cluster function and clearly explain how it handles cases where lables != "all"
+and make sure that LoadData is compatible with this
