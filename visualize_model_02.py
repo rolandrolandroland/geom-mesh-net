@@ -83,7 +83,7 @@ thinned_coords, domain, thinned_labs, xx, yy, zz, full_upp_probs = batch
 ## initialize network
 model = dl.ContinuousNeuralField2()
 # load in saved data
-model.load_state_dict(torch.load("phase2_model.pt"))
+model.load_state_dict(torch.load("phase2_model_250.pt"))
 # set model to evaluation mode
 model.eval()
 

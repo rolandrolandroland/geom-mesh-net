@@ -116,4 +116,4 @@ for epoch in range(epochs):
     print(f"Epoch [{epoch+1}/{epochs}] | Loss: {loss.item():.4f}")
     print("target min/max:", targets.min().item(), targets.max().item())
     print("pred min/max:", preds.min().item(), preds.max().item())
-torch.save(model.state_dict(), "phase2_model.pt")
+torch.save(model.state_dict(), "phase2_model_250.pt")

@@ -20,7 +20,24 @@ For patterns with uniform cluster concentration, this will be a number between t
 
 # Training the Network
 ## Overview
-Again, our goal here is to take a single point pattern and return an isosurface of the original point pattern. 
+The goal of this is to train a single neural field to overfit a single point pattern. A neural field takes an input of
+`(x, y, z)` and outputs a single value for a signal- in our case, a continuous density field.
+
+Once the point pattern has been generated, building this model consists of XX steps
+1. Load the data
+2. Thin the data (note: the thinned data is not yet used in this model)
+3. Voxelize the data
+
+### Loading the data
+We unpack our data as a `LoadData` class object. This looks to open a `.npy` file that was created using the `data_factory.py`
+script. The object should have been created using a call such as
+```
+   np.savez(name,
+             coords=clust_pattern.coords,
+             domain = clust_pattern.domain,
+             labels=clust_pattern.labels,
+             radii=rads, centers=centers)
+```
 ### Loss Function
 We are using binary cross entropy
 

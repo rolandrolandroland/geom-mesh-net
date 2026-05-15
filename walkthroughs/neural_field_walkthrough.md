@@ -6,4 +6,5 @@ For a walkthrough of the entire project, see the `README.md`.
 For the description of the `clustersim` algorithm, see `clustersim_introduction.md`. 
 
 The goal of this is to train a single neural field to overfit a single point pattern. A neural field takes an input of
-`(x, y, z)` and outputs a single value for a signal- in our case, probability of being inside a cluster.
+`(x, y, z)` and outputs a single value for a signal- in our case, a continuous density field.
+
