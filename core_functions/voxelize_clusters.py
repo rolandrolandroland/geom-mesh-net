@@ -1,4 +1,5 @@
 import numpy as np
+
 from geom_mesh_net.core_functions import clustersim as csim
 
 
@@ -8,11 +9,12 @@ def assign_clust_probs(dist, weighted_dist, density_grid,
                         n_points = None,
                         r_max = None, r_weighted_max = None,
                         prob_function = "Gaussian_decay",
-                        prob_exp = 3,
-                        selection = "sampled"):
+                        prob_exp = 2,
+                        selection = "sampled",
+                        clip_max_iter = 10):
     if n_points is None and rho_c is None:
         raise ValueError("Either n_points or rho_c must be provided")
-    if n_points and rho_c:
+    if n_points is not None and rho_c is not None:
         raise ValueError("Only n_points or rho_c can be provided")
     else:
         pass
@@ -26,7 +28,11 @@ def assign_clust_probs(dist, weighted_dist, density_grid,
 
     # assign all labels that fall within r_max & r_weighted_max
     labels[(dist <= r_max) & (weighted_dist <= r_weighted_max)] = 1
+
+
     candidate_weighted_distances = weighted_dist[labels == 1]
+    if candidate_weighted_distances.size == 0:
+        return density_grid
     if n_points == 0 or rho_c == 0:
         return density_grid
 
@@ -37,7 +43,7 @@ def assign_clust_probs(dist, weighted_dist, density_grid,
     # if npoints is greater than number of points inside radius
     if n_points >= np.sum(labels == 1):
         # mark all points as guest type (2)
-        density_grid[labels == 1] = 1
+        density_grid[labels == 1] = 1 if rho_c is None else rho_c
         return density_grid
     else:
         # assign probability based on weighted distance
@@ -72,7 +78,22 @@ def assign_clust_probs(dist, weighted_dist, density_grid,
             else:
                 raise ValueError(
                     "Probability function not recognized: must be either Gaussian_decay, inverse, growth, exponential, or constant. Gaussian_decay is standard")
-            #probs = probs / sum(probs)
+
+            # remove edge cases that may be negative
+            probs = np.clip(probs, 0, None)
+
+            if probs.mean() == 0:
+                probs = np.ones_like(probs) * rho_c
+            else:
+                for _ in range(clip_max_iter):
+                    probs = probs * rho_c / probs.mean()
+                    probs = np.clip(probs, 0, 1)
+
+                    if abs(probs.mean() - rho_c) < 1e-6:
+                        break
+
+
+
             density_grid[labels==1] = probs
 
 
@@ -99,9 +120,10 @@ def generate_density_grid(grid_size, cluster_centers, radii,
                           r_weighted_max=None,
                           r_max_weighted_max_ratio=None,
                           prob_function="Gaussian_decay",
-                          prob_exp=-3,
+                          prob_exp=2,
                           selection='sampled',
-                          overlap_prob = "highest"):
+                          overlap_prob = "highest",
+                          clip_max_iter = 10):
 
     # axes for each dimension
     x_grid = np.linspace(resolution / 2, grid_size[0] - (resolution / 2), int(grid_size[0] / resolution))
@@ -160,8 +182,8 @@ def generate_density_grid(grid_size, cluster_centers, radii,
                                            r_weighted_max=current_r_weighted_max,
                                            prob_function=prob_function,
                                            prob_exp=prob_exp,
-                                           selection=selection
-                                           )
+                                           selection=selection,
+                                           clip_max_iter = clip_max_iter)
         x_inds = np.where((x_grid >= center_x - r) & (x_grid <= center_x + r))[0]
         y_inds = np.where((y_grid >= center_y - r) & (y_grid <= center_y + r))[0]
         z_inds = np.where((z_grid >= center_z - r) & (z_grid <= center_z + r))[0]

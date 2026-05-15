@@ -6,7 +6,8 @@ We will use this class to create our models.  First, they must load in the point
 the cluster parameters. 
 
 ### Thinning data
-The data is thinned using the `thin_cluster` function
+The data may be thinned using the `thin_cluster` function. Our initial model is used on unthinned data, but more advanced
+models can characterize thinned data.
 
 ### Density Grid
 We create a voxelized density grid using `generate_density_grid`
@@ -19,7 +20,7 @@ For patterns with uniform cluster concentration, this will be a number between t
 
 # Training the Network
 ## Overview
-Again, our goal here is to take a single thinned point pattern and return an isosurface of the original point pattern. 
+Again, our goal here is to take a single point pattern and return an isosurface of the original point pattern. 
 ### Loss Function
 We are using binary cross entropy
 
@@ -27,5 +28,5 @@ We are using binary cross entropy
 We are using an adaptive moment estimation (Adam) optimizer
 
 include plots.  loss is low, but image doesn't match. is the problem that the model is training too much on the background
-and we need to weight the clusters more, or is it that it that our model is not complex enough (use ContinuousNeuralField2)
+and we need to weight the clusters more, or is it that our model is not complex enough (use ContinuousNeuralField2)
 This model does not work well at all. 
