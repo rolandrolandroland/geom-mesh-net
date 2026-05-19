@@ -81,9 +81,9 @@ batch = next(iter(dataloader))
 thinned_coords, domain, thinned_labs, xx, yy, zz, full_upp_probs = batch
 
 ## initialize network
-model = dl.ContinuousNeuralField()
+model = dl.ContinuousNeuralField2()
 # load in saved data
-model.load_state_dict(torch.load("phase1_model.pt"))
+model.load_state_dict(torch.load("../phase2_model_250.pt"))
 # set model to evaluation mode
 model.eval()
 
@@ -103,7 +103,7 @@ with torch.no_grad():
 # reshape predictions into 3d numpy cube
 grid_shape = xx.squeeze(0).shape
 predicted_volume = preds.reshape(grid_shape).numpy()
-predicted_volume = full_upp_probs.squeeze(0).numpy()
+#predicted_volume = full_upp_probs.squeeze(0).numpy()
 # need to transpose to match coordinates
 #predicted_volume = np.transpose(predicted_volume, (1, 0, 2))
 # --- RENDER 3D VOLUME ---
@@ -113,7 +113,7 @@ thinned_coords_dict = thinned_coords[0]
 thinned_labels_array = thinned_labs[0]
 
 # 2. Extract the original points AND original labels from the raw file
-raw_data = np.load("data/clust_pattern_0.npz", allow_pickle=True)
+raw_data = np.load("../data/clust_pattern_0.npz", allow_pickle=True)
 original_coords_dict = raw_data['coords'].item()
 original_labels_array = raw_data['labels']
 

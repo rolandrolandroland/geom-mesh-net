@@ -6,7 +6,7 @@ from geom_mesh_net.core_functions import cluster_visualizer as cv
 from geom_mesh_net.core_functions import clustersim as csim
 #with open("data/clust_01.pkl", 'rb') as f:
 #    clust_pattern_01 = pickle.load(f)
-data = np.load("data/clust_pattern_0.npz", allow_pickle=True)
+data = np.load("../data/clust_pattern_0.npz", allow_pickle=True)
 coords_dict = data["coords"].item()
 domain = data["domain"].item()
 labels = data["labels"]

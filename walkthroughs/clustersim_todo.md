@@ -14,3 +14,9 @@ in clustersim, only pass the submatrix like i did in generate_density_grid
 
 add documentation to thin_cluster function and clearly explain how it handles cases where lables != "all"
 and make sure that LoadData is compatible with this
+
+could i add features to neural field that are k function trained on point pattern or analog of k function on continuous pattern?
+
+ weight clustered regions greater because currently the majority of the training is done on low intensity space
+ 
+voxelization walkthrough 

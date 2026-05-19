@@ -1,0 +1,74 @@
+Metadata-Version: 2.4
+Name: geom-mesh-net
+Version: 0.1.0
+Summary: Neural fields for synthetic 3D clustered point patterns
+Requires-Python: >=3.10
+Description-Content-Type: text/markdown
+Requires-Dist: numpy
+Requires-Dist: matplotlib
+Requires-Dist: pandas
+Requires-Dist: pyvista
+Requires-Dist: plotly
+Requires-Dist: torch
+Requires-Dist: torchvision
+Requires-Dist: torchaudio
+Requires-Dist: torch-geometric
+Requires-Dist: jupyter
+
+# Goals
+Welcome to the Geom Mesh Net project! The goal of this project is two-fold
+1) Bring tools from the `rapt` and `rTEM` packages to python (from R)
+2) Use said tools to build neural field models
+
+What models are we building? Well, we are building three models, each more complex than the last.
+
+First, a neural field that trains a neural network on each point cloud to reconstruct it specifically. 
+Second, a continuous neural field to predict the continuous 3D probability density of sparse, 
+noisy data. This  will take an input of physical parameters and return a physically accurate density field. 
+Finally, we will build a a generative foundation model that will return a continuous physical structure. 
+
+# Environment
+Below is the code I used to setup my virtual environment 
+Make and activate virtual environment  
+
+```
+mamba create -n geom_mesh_net python=3.10
+conda activate geom_mesh_net
+```
+ 
+Install dependencies
+
+``` 
+mamba install numpy matplotlib pandas pyvista -c conda-forge  
+pip install torch torchvision torchaudio  
+pip install torch_geom
+pip install plotlyREa
+```
+
+
+# Project Overview
+This file will serve as a high level overview and roadmap, with the specifics of each part of the project
+described in further detail in separate files.  Let's get to the roadmap. 
+
+### The Data Factory
+First thing that needs to happen is to generate the data. This is done in the `data_factory.py` script.  For the intial
+neural field model, we only use one pattern at a time, but the model will be adapted in the future and trained on many 
+point patterns.  Adjust `n_sims` accordingly. Note that running this script as is will save 1,000 point patterns coming in at around 5 gigabytes onto your device! The easiest
+way to reduce this is to reduce the `n_sims` down from 1,000. For more information on this, see the `data_factory.md` file.
+
+### Clustersim
+Making this data uses a number of functions from the `clustersim.py` script.  These are explained
+in the `clustersim_introduction.md` file.  This is a pretty hefty part of the project, so there is a lot
+to read about here for those who are interested, but hopefully you can make your way through without getting
+bogged down with the details of the cluster simulation process. 
+
+If you should like to inspect your clusters, you can do this by calling the `cluster_visualizer.py` script,
+as is done in the `plot_clusters.py` script. 
+
+### Loading Data
+Now we turn to the `data_loader.py` script, which has its own more thorough explainer `data_loader.md`.
+In short, this loads in 3D point patterns and their parameters (like the ones you made in the previous step), creates a
+voxelized grid of each, then builds and trains a model on these. 
+
+
+

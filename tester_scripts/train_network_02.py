@@ -69,11 +69,11 @@ dataset = dl.LoadData(size = size,
 
 dataloader = DataLoader(dataset,
                         batch_size = 1,
-                        shuffle = True,
+                        shuffle = False,
                         collate_fn = dl.point_cloud_collate)
 
 # initialize model, loss function, and optimizer
-model = dl.ContinuousNeuralField()
+model = dl.ContinuousNeuralField2()
 loss_fn = nn.BCELoss()
 optimizer = torch.optim.Adam(model.parameters(), lr=0.001)
 
@@ -85,7 +85,7 @@ model.train()
 for epoch in range(epochs):
     for batch in dataloader:
         # unpack batch
-        thinned_coords, domain, thinned_labs, xx, yy, zz, full_upp_probs = batch
+        coords, domain, labs, xx, yy, zz, full_upp_probs = batch
 
 
         # flatten coords for use in  model
@@ -114,5 +114,6 @@ for epoch in range(epochs):
     # --- PRINT THE RESULTS OF THE EPOCH ---
     # This aligns with the outer 'for epoch in range(epochs):' loop
     print(f"Epoch [{epoch+1}/{epochs}] | Loss: {loss.item():.4f}")
-
-torch.save(model.state_dict(), "phase1_model.pt")
+    print("target min/max:", targets.min().item(), targets.max().item())
+    print("pred min/max:", preds.min().item(), preds.max().item())
+torch.save(model.state_dict(), "../phase2_model_250.pt")

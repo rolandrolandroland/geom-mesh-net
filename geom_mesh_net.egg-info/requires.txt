@@ -1,0 +1,10 @@
+numpy
+matplotlib
+pandas
+pyvista
+plotly
+torch
+torchvision
+torchaudio
+torch-geometric
+jupyter

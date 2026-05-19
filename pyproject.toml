@@ -1,0 +1,32 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "geom-mesh-net"
+version = "0.1.0"
+description = "Neural fields for synthetic 3D clustered point patterns"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "numpy",
+    "matplotlib",
+    "pandas",
+    "pyvista",
+    "plotly",
+    "torch",
+    "torchvision",
+    "torchaudio",
+    "torch-geometric",
+    "jupyter",
+]
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["geom_mesh_net*"]
+exclude = [
+    "data*",
+    "walkthroughs*",
+    "tester_scripts*",
+    "deprecated_code*",
+]

@@ -28,7 +28,7 @@ Once the point pattern has been generated, building this model consists of XX st
 2. Thin the data (note: the thinned data is not yet used in this model)
 3. Voxelize the data
 
-### Loading the data
+## Loading the data
 We unpack our data as a `LoadData` class object. This looks to open a `.npy` file that was created using the `data_factory.py`
 script. The object should have been created using a call such as
 ```
@@ -38,6 +38,31 @@ script. The object should have been created using a call such as
              labels=clust_pattern.labels,
              radii=rads, centers=centers)
 ```
+
+### Voxelize Data
+In order to obtain the data that we will use to train our neural field, we must convert our spatial point pattern into a 
+voxelized density field.  This is done using the functions in the `voxelize_clusters.py` script.  In our `LoadData` 
+class object, the domain, cluster centers, cluster radii, cluster concentration, and background concentration of the
+point pattern are fed into the `generate_density_grid` function.  This creates a voxelized grid where each voxel
+has a value for the average density of guest type molecules across that voxel by following these steps:
+
+1. The first step in `generate_density_grid` is initializing each voxel to be equal to the background density $rho_b$.  
+The voxelized data are then fed into our neural field to predict density as a function of x, y and z coordinates. 
+def assign_clust_probs(dist, weighted_dist, density_grid,
+2. The grid values inside each cluster domain are modified using `assign_clust_probs`, a continuous analog 
+of `assign_clust_points`. The distribution is determined by the `prob_function` and `selection` parameters.  The 
+values are clipped to be between 0 and 1 and then rescaled so that the average density inside the cluster domain is $rho_c$,
+the cluster concentration.  
+3. Any voxels that fall inside of overlapping clustering domains are handled by default by assigning
+the highest of the density values.
+
+## Network Architecture
+Initially, we use a two layer continuous neural field (`ContinuousNeuralField` class).  The first layer takes three spatial coordinates and maps them to 
+128 neurons. The second layer maps those 128 neurons to 1 output, the probability.  As you can see in the walkthrough, 
+this yields a rather poor fit. So then we expand it to a 4 layer network (`ContinuousNeuralField2`) with
+three hidden layers, each with 128 neurons, and an output layer. Each layer uses a ReLU activation function. 
+
+
 ### Loss Function
 We are using binary cross entropy
 

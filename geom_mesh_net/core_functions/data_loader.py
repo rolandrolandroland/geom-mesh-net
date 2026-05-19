@@ -119,6 +119,12 @@ class ContinuousNeuralField(nn.Module):
             nn.Linear(128, 1),
             nn.Sigmoid() # make sure answer is between 0 and 1
         )
+
+        # forward pass input through model
+    def forward(self, x):
+        return self.model(x)
+
+
 class ContinuousNeuralField2(nn.Module):
     def __init__(self):
         super().__init__()

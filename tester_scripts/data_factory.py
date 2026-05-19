@@ -8,7 +8,7 @@ dim1 = 60
 dim2 = 60
 dim3 = 60
 
-
+# create domain
 domain = {'x': np.array([0.0, dim1]),
              'y': np.array([0.0, dim2]),
              'z': np.array([0.0, dim3])}
