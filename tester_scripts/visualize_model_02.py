@@ -30,8 +30,8 @@ rho_c_ind = 4
 rho_b_ind = 7
 
 # path to data
-data_prefix = "data/"
-params_prefix = "data/"
+data_prefix = "../data/"
+params_prefix = "../data/"
 
 # which types of points will be thinned
 marks = "all"

@@ -26,6 +26,7 @@ mamba install numpy matplotlib pandas pyvista -c conda-forge
 pip install torch torchvision torchaudio  
 pip install torch_geom
 pip install plotlyREa
+pip install trame trame-vtk trame-vuetify
 ```
 
 
