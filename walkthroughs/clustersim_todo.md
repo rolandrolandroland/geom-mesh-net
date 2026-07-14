@@ -29,3 +29,12 @@ My isosurfaces seem to be normally distrubuted- makes sense, since i used gaussi
 However, I need to check that i am indeed plotting the percentile and actual value properly. should check this when
 1) clusters are uniform concentration
 2) background density is much higher
+
+
+Feature selection:
+which features capture the most information?
+
+we are training on the voxelized version of the point cloud, not the point cloud,
+so it might be more accurate if we create the voxelized version by calculating
+it from the point cloud (binning the points) rather than by generating it using 
+the parameters of the point cloud.

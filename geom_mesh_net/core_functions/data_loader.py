@@ -4,6 +4,7 @@ import torch.nn as nn
 import torch
 from geom_mesh_net.core_functions import clustersim as csim
 from geom_mesh_net.core_functions import voxelize_clusters as vc
+from geom_mesh_net.core_functions import spatial_stats_01 as spst
 
 
 # class for loading data
@@ -107,7 +108,10 @@ class LoadData(Dataset):
                                        selection=self.selection,
                                        overlap_prob=self.overlap_prob
                                        )
-        return thinned_coords, domain, thinned_labs, xx, yy, zz, full_upp_probs
+
+        # call to get spatial statistics features
+        barcode = spst.calculate_spatial_barcode(thinned_coords, bins = 5, r_max= 15)
+        return thinned_coords, domain, thinned_labs, xx, yy, zz, full_upp_probs, barcode
 
 class ContinuousNeuralField(nn.Module):
     def __init__(self):
@@ -144,17 +148,37 @@ class ContinuousNeuralField2(nn.Module):
     def forward(self, x):
         return self.model(x)
 
+class ContinuousNeuralFieldspatstat_01(nn.Module):
+    def __init__(self):
+        super().__init__()
+    # need a more complex model
+        self.model = nn.Sequential(
+            nn.Linear(8, 128),
+            nn.ReLU(),
+            nn.Linear(128, 128),
+            nn.ReLU(),
+            nn.Linear(128, 128),
+            nn.ReLU(),
+            nn.Linear(128, 1),
+            nn.Sigmoid()
+        )
+
+    # forward pass input through model
+    def forward(self, x):
+        return self.model(x)
 
 # custom collate function to handle variable-length point clouds
 def point_cloud_collate(batch):
     # batch is a list of tuples, where each tuple is the 7 items returned by __getitem__
     # unzip batch into separate lists
-    thinned_coords, domains, thinned_labs, xxs, yys, zzs, probs = zip(*batch)
-    # Convert grids to tensors and stack them cleanly
+    thinned_coords, domains, thinned_labs, xxs, yys, zzs, probs, barcodes = zip(*batch)    # Convert grids to tensors and stack them cleanly
     xx_batch = torch.tensor(np.array(xxs))
     yy_batch = torch.tensor(np.array(yys))
     zz_batch = torch.tensor(np.array(zzs))
     probs_batch = torch.tensor(np.array(probs))
 
+    # Convert barcodes to a tensor (Shape: Batch_Size x 5)
+    barcode_batch = torch.tensor(np.array(barcodes))
+
     # We can just leave the variable-length items as standard Python lists
-    return thinned_coords, domains, thinned_labs, xx_batch, yy_batch, zz_batch, probs_batch
+    return thinned_coords, domains, thinned_labs, xx_batch, yy_batch, zz_batch, probs_batch, barcode_batch
