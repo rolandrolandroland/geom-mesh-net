@@ -38,3 +38,6 @@ we are training on the voxelized version of the point cloud, not the point cloud
 so it might be more accurate if we create the voxelized version by calculating
 it from the point cloud (binning the points) rather than by generating it using 
 the parameters of the point cloud.
+
+add r_min to spatial barcode
+make model able to adjust barcode arguments

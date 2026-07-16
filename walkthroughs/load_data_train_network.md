@@ -72,3 +72,12 @@ We are using an adaptive moment estimation (Adam) optimizer
 include plots.  loss is low, but image doesn't match. is the problem that the model is training too much on the background
 and we need to weight the clusters more, or is it that our model is not complex enough (use ContinuousNeuralField2)
 This model does not work well at all. 
+
+## Spatial stats
+Once we have developed our base model, we are going to try and improve it by incorporating some spatial statistics summary
+functions.  We will start by using Ripley's K function. We define the `calculate_spatial_barcode` function
+to sample `sample_size` points from a dictionary of points `coords_dict` and find the distance between each pair of
+points.  Then a histogram of `bins` from 0 to `r_max`. The number of points in each bin is then fed into the neural network.
+
+
+# Model Benchmarking

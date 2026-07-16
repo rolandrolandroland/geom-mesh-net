@@ -1,7 +1,8 @@
 import os
 
 os.environ['KMP_DUPLICATE_LIB_OK'] = 'True'
-import time  # <-- NEW: Import the time module for speed benchmarking
+import time
+import csv
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
@@ -9,35 +10,36 @@ from geom_mesh_net.core_functions import data_loader as dl
 from torch.utils.data import DataLoader
 
 
+# ==========================================
+# BENCHMARKING HELPER FUNCTIONS
+# ==========================================
+def calculate_iou(preds, targets, threshold=0.5):
+    """
+    Calculates the Intersection over Union (IoU) for 3D volumetric boundaries.
+    """
+    pred_mask = (preds > threshold).float()
+    target_mask = (targets > threshold).float()
+
+    intersection = (pred_mask * target_mask).sum()
+    union = pred_mask.sum() + target_mask.sum() - intersection
+
+    return (intersection / (union + 1e-8)).item()
+
 
 # ==========================================
 # 1. SETUP AND HYPERPARAMETERS
 # ==========================================
-# number of training sets
 size = 1
-
-# names to look for
 data_file_name = "clust_pattern_"
 params_file_name = "pattern_stats"
-
-# thinning prob
 probs = 0.1
-
-# voxel size
 resolution = 0.5
-
-# indices of values within params_stats
 pcp_ind = 1
 rho_c_ind = 4
 rho_b_ind = 7
-
-# path to data
 data_prefix = "../data/"
 params_prefix = "../data/"
-
-# which types of points will be thinned
 marks = "all"
-
 n_points = None
 x_weight = 1
 y_weight = 1
@@ -52,12 +54,14 @@ prob_exp = -3
 selection = 'sampled'
 overlap_prob = "highest"
 
-# spatial parameters
+# ==========================================
+#SPATIAL BARCODE HYPERPARAMETERS
+# ==========================================
 barcode_bins = 5
 barcode_r_max = 15.0
 barcode_sample_size = 500
 
-# load in saved data
+# Load in saved data
 dataset = dl.LoadData(size=size,
                       data_file_name=data_file_name, params_file_name=params_file_name,
                       probs=probs, resolution=resolution,
@@ -87,29 +91,42 @@ dataloader = DataLoader(dataset,
                         shuffle=True,
                         collate_fn=dl.point_cloud_collate)
 
-# initialize model, loss function, and optimizer
+# Initialize model, loss function, and optimizer
 model = dl.ContinuousNeuralFieldspatstat_01(barcode_bins=barcode_bins)
 loss_fn = nn.BCELoss()
 optimizer = torch.optim.Adam(model.parameters(), lr=0.001)
 
-# --- NEW: Calculate Model Size ---
-total_params = sum(p.numel() for p in model.parameters() if p.requires_grad)
-print("=" * 50)
-print(f"MODEL INITIALIZED | Total Trainable Parameters: {total_params:,}")
-print("=" * 50)
+# ==========================================
+# 2. FILE SAVING & LOGGING SETUP
+# ==========================================
+log_file_path = "../walkthroughs/trained_models/training_benchmarks_log.csv"
+best_model_path = "../walkthroughs/trained_models/databest_spatial_model_weights.pth"
+final_model_path = "../walkthroughs/trained_models/final_spatial_model_weights.pth"
 
-# define number of epochs
-epochs = 1000
+# Initialize CSV and write the headers
+with open(log_file_path, mode='w', newline='') as f:
+    writer = csv.writer(f)
+    writer.writerow(["Epoch", "Time (s)", "Speed (pts/sec)", "Loss", "MAE", "PSNR (dB)", "IoU"])
+
+# Track the best Mean Absolute Error so we know when to save
+best_mae = float('inf')
+
+total_params = sum(p.numel() for p in model.parameters() if p.requires_grad)
+print("=" * 60)
+print(f"MODEL INITIALIZED | Total Trainable Parameters: {total_params:,}")
+print(f"Logging metrics to: {log_file_path}")
+print("=" * 60)
+
+epochs = 100
 
 # ==========================================
-# 2. THE TRAINING LOOP
+# 3. THE TRAINING LOOP
 # ==========================================
 model.train()
 for epoch in range(epochs):
 
-    # Trackers for the epoch's average performance
-    epoch_start_time = time.time()  # <-- NEW: Start the stopwatch
-    epoch_points_processed = 0  # <-- NEW: Track total points
+    epoch_start_time = time.time()
+    epoch_points_processed = 0
 
     epoch_loss = 0.0
     epoch_mae = 0.0
@@ -118,63 +135,68 @@ for epoch in range(epochs):
     num_batches = 0
 
     for batch in dataloader:
-        # 1. Unpack the NEW batch with the barcode included
         coords, domain, labs, xx, yy, zz, full_upp_probs, barcode = batch
 
-        # 2. Flatten coords for use in model
         x_flat = xx.flatten()
         y_flat = yy.flatten()
         z_flat = zz.flatten()
-
-        # Matrix of spatial inputs: Shape (N, 3)
         xyz_inputs = torch.stack([x_flat, y_flat, z_flat], dim=1).float()
 
-        # 3. --- THE CONDITIONAL MERGE ---
-        n_points = xyz_inputs.shape[0]
-        barcode_expanded = barcode.repeat(n_points, 1).float()
+        n_points_batch = xyz_inputs.shape[0]
+        barcode_expanded = barcode.repeat(n_points_batch, 1).float()
 
-        epoch_points_processed += n_points  # <-- NEW: add to total points processed
+        epoch_points_processed += n_points_batch
 
-        # Concatenate XYZ and Barcode horizontally into shape (N, 8)
         conditional_inputs = torch.cat([xyz_inputs, barcode_expanded], dim=1)
-
-        # 4. Flatten target probs
         targets = full_upp_probs.flatten().unsqueeze(1).float()
 
         optimizer.zero_grad()
-
-        # 5. Feed the 8-feature conditional inputs to the model!
         preds = model(conditional_inputs)
         loss = loss_fn(preds, targets)
 
         loss.backward()
         optimizer.step()
 
-        # 6. --- CALCULATE BENCHMARKS ---
-        # We turn off gradients here so PyTorch doesn't track this math for backprop
+        # Benchmarks
         with torch.no_grad():
             mse = F.mse_loss(preds, targets)
             mae = F.l1_loss(preds, targets)
-            # Add 1e-8 to MSE to prevent taking log10 of absolute zero
             psnr = -10.0 * torch.log10(mse + 1e-8)
             iou = calculate_iou(preds, targets, threshold=0.5)
 
-            # Accumulate totals
             epoch_loss += loss.item()
             epoch_mae += mae.item()
             epoch_psnr += psnr.item()
             epoch_iou += iou
             num_batches += 1
 
-    # --- CALCULATE COMPUTATIONAL COST ---
+    # Calculate Averages & Speed
     epoch_duration = time.time() - epoch_start_time
     throughput = epoch_points_processed / epoch_duration
-
-    # --- PRINT THE RESULTS OF THE EPOCH ---
     avg_loss = epoch_loss / num_batches
     avg_mae = epoch_mae / num_batches
     avg_psnr = epoch_psnr / num_batches
     avg_iou = epoch_iou / num_batches
 
+    # Print to Console
     print(
         f"Epoch [{epoch + 1}/{epochs}] | Time: {epoch_duration:.2f}s | Speed: {throughput:,.0f} pts/sec | MAE: {avg_mae:.4f} | PSNR: {avg_psnr:.2f} dB | IoU: {avg_iou:.4f}")
+
+    # --- SAVE LOGS TO CSV ---
+    with open(log_file_path, mode='a', newline='') as f:
+        writer = csv.writer(f)
+        writer.writerow(
+            [epoch + 1, round(epoch_duration, 2), round(throughput, 0), avg_loss, avg_mae, avg_psnr, avg_iou])
+
+    # --- SAVE THE BEST MODEL WEIGHTS ---
+    if avg_mae < best_mae:
+        best_mae = avg_mae
+        # It is best practice in PyTorch to save only the state_dict (the weights/biases)
+        torch.save(model.state_dict(), best_model_path)
+        print(f"   -> 💾 New best model saved! (MAE dropped to {best_mae:.4f})")
+
+# Final wrap-up save
+torch.save(model.state_dict(), final_model_path)
+print("=" * 60)
+print(f"Training Complete! Final model saved to {final_model_path}")
+print("=" * 60)

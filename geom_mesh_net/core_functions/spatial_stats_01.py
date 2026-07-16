@@ -43,3 +43,22 @@ def calculate_spatial_barcode(coords_dict, bins=5, r_max=15.0, sample_size=500):
         hist = hist / hist.max()
 
     return hist.astype(np.float32)
+
+
+def calculate_iou(preds, targets, threshold=0.5):
+    """
+
+    :param preds: predictions
+    :param targets: targets (ground truth)
+    :param threshold: threshold to determine intersection over union (cluster or not cluster)
+    :return: intersection over union value for benchmarking
+    """
+    # each voxel of predictions and targets is assigned to be clustered or not
+    # depending on if greater than threshold
+    pred_mask = (preds > threshold).float()
+    target_mask = (targets > threshold).float()
+
+    intersection = (pred_mask * target_mask).sum()
+    union = pred_mask.sum() + target_mask.sum() - intersection
+
+    return (intersection / (union + 1e-8)).item()

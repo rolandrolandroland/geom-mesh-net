@@ -38,7 +38,10 @@ class LoadData(Dataset):
                  prob_function="Gaussian_decay",
                  prob_exp=-3,
                  selection='sampled',
-                 overlap_prob="highest"
+                 overlap_prob="highest",
+                 barcode_bins = 5,
+                 barcode_r_max = 15.0,
+                 barcode_sample_size = 500
                  ):
         self.data_prefix = data_prefix
 
@@ -67,6 +70,9 @@ class LoadData(Dataset):
         self.prob_exp = prob_exp
         self.selection = selection
         self.overlap_prob = overlap_prob
+        self.barcode_bins = barcode_bins
+        self.barcode_r_max = barcode_r_max
+        self.barcode_sample_size = barcode_sample_size
 
     def __len__(self):
         return self.size
@@ -110,7 +116,12 @@ class LoadData(Dataset):
                                        )
 
         # call to get spatial statistics features
-        barcode = spst.calculate_spatial_barcode(thinned_coords, bins = 5, r_max= 15)
+        barcode = spst.calculate_spatial_barcode(
+            thinned_coords,
+            bins=self.barcode_bins,
+            r_max=self.barcode_r_max,
+            sample_size=self.barcode_sample_size
+        )
         return thinned_coords, domain, thinned_labs, xx, yy, zz, full_upp_probs, barcode
 
 class ContinuousNeuralField(nn.Module):
@@ -149,11 +160,12 @@ class ContinuousNeuralField2(nn.Module):
         return self.model(x)
 
 class ContinuousNeuralFieldspatstat_01(nn.Module):
-    def __init__(self):
+    def __init__(self, barcode_bins = 5):
         super().__init__()
+        input_features = 3 + barcode_bins
     # need a more complex model
         self.model = nn.Sequential(
-            nn.Linear(8, 128),
+            nn.Linear(input_features, 128),
             nn.ReLU(),
             nn.Linear(128, 128),
             nn.ReLU(),
