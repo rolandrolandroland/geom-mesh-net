@@ -41,3 +41,20 @@ the parameters of the point cloud.
 
 add r_min to spatial barcode
 make model able to adjust barcode arguments
+
+restructure project so that it makes sense. perhaps i will create an "examples" directory
+currently, "train_networks_for_compare_multi_pattern" creates the 3 models
+on 5 patterns, then "evaluate_and_plot_multi_pattern" makes the plots
+compare_benchmarks contains the functions for plotting benchmarks and speed
+run_benchmark_plotting runs compare_benchmarks
+
+update so that we can calculate the total number of points per epoch
+If an epoch processes $B$ batches,
+each containing $S$ point-cloud samples, 
+and each sample consists of $N$ points, 
+the total points processed in that epoch is:
+$$\text{Total Points per Epoch} = B \times S \times N$$
+Alternatively, if your point-cloud samples have varying point densities,
+it is simply the sum of all point counts across every sample in the dataset:
+$$\text{Total Points per Epoch} = \sum_{i=1}^{M} N_i$$
+where $M$ is the total number of training samples in the dataset and $N_i$ is the point count of sample $i$.

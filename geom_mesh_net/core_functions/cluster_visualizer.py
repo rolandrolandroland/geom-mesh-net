@@ -144,6 +144,7 @@ def plot_side_by_side_comparison(
     iso_colors=None,
     screenshot_path=None,
     show=True,
+    off_screen=False,
 ):
     """
     Dynamically renders selected point-pattern and voxel/neural-field plots.
@@ -235,7 +236,7 @@ def plot_side_by_side_comparison(
     print(f"Initializing PyVista viewer with {len(plots_to_make)} panel(s)...")
 
     n_plots = len(plots_to_make)
-    plotter = pv.Plotter(shape=(1, n_plots), window_size=(600 * n_plots, 600))
+    plotter = pv.Plotter(shape=(1, n_plots), window_size=(600 * n_plots, 600), off_screen=off_screen)
     plotter.enable_depth_peeling(number_of_peels=10, occlusion_ratio=0.1)
 
     def add_styled_points(coords_dict, labels_array, add_legend_labels=True):

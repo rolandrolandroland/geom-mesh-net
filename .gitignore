@@ -1,2 +1,5 @@
 data/
-walkthroughs/walkthrough_data/
+walkthroughs/walkthrough_data
+example_01/checkpoints
+deprecated_code/tester_scripts/checkpoints
+deprecated_code/tester_scripts/checkpoints_old
