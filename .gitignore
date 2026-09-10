@@ -25,3 +25,9 @@ deprecated_code/tester_scripts/checkpoints_old
 example_01/methodology_01_results/patterns/
 example_01/paper_feature_cache_02/
 example_01/paper_feature_experiments_02/
+
+# Stage 1 feature caches are regenerable in about 4 minutes:
+#   PYTHONPATH=. python inference/extract_features.py --workers 7
+# The .json metadata beside each cache IS tracked, since it records the config,
+# timings and gate result.
+inference/features/*.npz

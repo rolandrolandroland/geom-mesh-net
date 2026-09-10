@@ -13,7 +13,7 @@ from pathlib import Path
 import numpy as np
 import pytest
 
-from sbi.recover_ground_truth import (
+from inference.recover_ground_truth import (
     FACTORY_N_SIMS,
     FACTORY_PCP,
     FACTORY_SEED,
@@ -25,7 +25,7 @@ from sbi.recover_ground_truth import (
 
 
 DATA_DIR = Path("data")
-GROUND_TRUTH_DIR = Path("sbi/ground_truth")
+GROUND_TRUTH_DIR = Path("inference/ground_truth")
 
 
 # --------------------------------------------------------------------------
@@ -107,7 +107,7 @@ needs_data = pytest.mark.skipif(
 
 needs_ground_truth = pytest.mark.skipif(
     not (GROUND_TRUTH_DIR / "theta.npy").exists(),
-    reason="run sbi/recover_ground_truth.py first",
+    reason="run inference/recover_ground_truth.py first",
 )
 
 
@@ -175,7 +175,7 @@ def test_descriptors_are_consistent_with_theta():
 @needs_ground_truth
 def test_identifiability_predictions_hold():
     """Stage 3 predictions, asserted in advance so they cannot be
-    rationalized afterwards. See sbi/ROADMAP.md section 5.
+    rationalized afterwards. See inference/ROADMAP.md section 5.
     """
     descriptors = np.load(GROUND_TRUTH_DIR / "descriptors.npz")
     theta = replay_factory_draws()

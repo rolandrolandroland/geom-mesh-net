@@ -22,10 +22,10 @@ distribution of those four draws silently invalidates it, with no error.
 
 Usage
 -----
-    PYTHONPATH=. python sbi/recover_ground_truth.py
-    PYTHONPATH=. python sbi/recover_ground_truth.py --limit 50 --no-descriptors
+    PYTHONPATH=. python inference/recover_ground_truth.py
+    PYTHONPATH=. python inference/recover_ground_truth.py --limit 50 --no-descriptors
 
-See ``sbi/ROADMAP.md`` sections 2.2 and 6 (Stage 0).
+See ``inference/ROADMAP.md`` sections 2.2 and 6 (Stage 0).
 """
 
 import argparse
@@ -124,7 +124,7 @@ def pattern_descriptors(data_dir, index):
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--data-dir", type=Path, default=Path("data"))
-    parser.add_argument("--output-dir", type=Path, default=Path("sbi/ground_truth"))
+    parser.add_argument("--output-dir", type=Path, default=Path("inference/ground_truth"))
     parser.add_argument(
         "--limit",
         type=int,
@@ -219,7 +219,7 @@ def main():
         )
 
     provenance = {
-        "generated_by": "sbi/recover_ground_truth.py",
+        "generated_by": "inference/recover_ground_truth.py",
         "source": "deprecated_code/tester_scripts/data_factory.py",
         "method": "replay of np.random.default_rng(42) in the factory's draw order",
         "factory_seed": FACTORY_SEED,

@@ -49,7 +49,7 @@ def transform_k(values, kind):
     Note that the choice interacts with ``k_r_max``: because sqrt(K_csr) grows
     as r^1.5 rather than r, difference curves under ``sqrt`` peak at larger
     radii and need a larger ``k_r_max`` before an interior extremum exists at
-    all. See ``sbi/ROADMAP.md`` section 8.3.
+    all. See ``inference/ROADMAP.md`` section 8.3.
 
     ``none`` returns K unchanged, for callers that want to do their own
     scaling.
@@ -284,7 +284,7 @@ def _validate_k_radius(k_r_max, side_lengths, context):
     The conventional r <= L/4 guidance concerns variance and interpretability
     for clustered patterns rather than unbiasedness under CSR, so it is not
     enforced here; some datasets legitimately need r_max > L/4 to reach an
-    interior K extremum. See ``sbi/ROADMAP.md`` section 8.4.
+    interior K extremum. See ``inference/ROADMAP.md`` section 8.4.
     """
     shortest = float(np.min(side_lengths))
     if k_r_max > shortest:
@@ -880,7 +880,7 @@ def _extract_k_features(
     small ``k_r_max`` relative to the cluster scale this is the common case
     rather than the exception, so callers must check these flags before
     treating the radius-valued K features as measurements. See
-    ``sbi/ROADMAP.md`` section 8.3.
+    ``inference/ROADMAP.md`` section 8.3.
     """
     radius_scale = smoothing_reference_r_max / radii[-1]
     minimum_span = 3.0 / len(radii)

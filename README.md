@@ -21,7 +21,7 @@ The project has two purposes:
 | Posterior inference of cluster parameters | specified, not yet built |
 
 The active line of work is **amortized Bayesian inference of the physical
-cluster parameters**, specified in [`sbi/ROADMAP.md`](sbi/ROADMAP.md). Section 8
+cluster parameters**, specified in [`inference/ROADMAP.md`](inference/ROADMAP.md). Section 8
 of that document records corrections made to the feature library, some of which
 affect the earlier results.
 
@@ -40,7 +40,7 @@ geom_mesh_net/core_functions/   the library
   paper_feature_experiments.py  offline feature caching
 
 example_01/                     neural field experiments and their results
-sbi/                            posterior inference of cluster parameters
+inference/                      posterior inference of cluster parameters
 tests/                          regression tests for the library
 walkthroughs/                   explanatory documents
 deprecated_code/                superseded scripts, kept for reference
@@ -89,10 +89,10 @@ writes only two of them to `data/pattern_stats.npy`. The other two are
 recovered by replaying the seeded generator:
 
 ```bash
-PYTHONPATH=. python sbi/recover_ground_truth.py
+PYTHONPATH=. python inference/recover_ground_truth.py
 ```
 
-Run this before modifying `data_factory.py`. See `sbi/ROADMAP.md` section 2.2.
+Run this before modifying `data_factory.py`. See `inference/ROADMAP.md` section 2.2.
 
 ## Walkthroughs
 
@@ -109,7 +109,7 @@ Run this before modifying `data_factory.py`. See `sbi/ROADMAP.md` section 2.2.
   and its [report](example_01/methodology_01_results/report/REPORT.md) — whether
   spatially varying local features improve a per-pattern neural field. The
   prespecified interpolation gate failed for all three patterns and the work
-  correctly stopped. `sbi/ROADMAP.md` section 12 revisits the interpretation.
+  correctly stopped. `inference/ROADMAP.md` section 12 revisits the interpretation.
 - [`example_01/PAPER_FEATURE_EXPERIMENTS.md`](example_01/PAPER_FEATURE_EXPERIMENTS.md)
   — a six-stage staged comparison. Implemented; not yet run.
 
@@ -125,4 +125,4 @@ The setting that *does* need attention is `k_r_max`. Under `sqrt` the default of
 10.0 leaves roughly two thirds of patterns with no interior K extremum, so the
 radius-valued features silently return a grid endpoint. Set it from the physical
 cluster scale; for `data/` that is 40.0. `PaperFeatureResult.k_extrema_interior`
-reports whether each extremum was real. See `sbi/ROADMAP.md` section 8.3.
+reports whether each extremum was real. See `inference/ROADMAP.md` section 8.3.

@@ -122,7 +122,7 @@ def test_sqrt_transform_leaves_csr_growing_as_r_to_the_three_halves():
     sqrt linearizes K only in two dimensions. In 3D it leaves K_csr
     proportional to r**1.5, so difference curves grow at large radii and their
     extrema sit further out. That is why the default k_r_max must be set from
-    the cluster scale rather than left small; see sbi/ROADMAP.md section 8.3.
+    the cluster scale rather than left small; see inference/ROADMAP.md section 8.3.
     """
     radii = np.linspace(1.0, 12.0, 45)
     transformed = transform_k(ball_volume(radii), "sqrt")
@@ -337,7 +337,7 @@ def test_config_defaults_to_the_paper_transform():
     """sqrt is the Bennett et al. definition and the project default.
 
     cube_root is available for comparison but changes the feature semantics,
-    so it is opt-in rather than the default. See sbi/ROADMAP.md section 8.2.
+    so it is opt-in rather than the default. See inference/ROADMAP.md section 8.2.
     """
     assert PaperFeatureConfig().k_transform == "sqrt"
 

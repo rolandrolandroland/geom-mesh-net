@@ -43,7 +43,7 @@ rb_vec = rng.uniform(low = 0, high = 0.5, size = n_sims)
 # never wrote. Appending them keeps every existing column index valid.
 # NOTE: data/ was generated before columns 9-10 existed. For that dataset the
 # values are recovered by replaying the seeded generator; see
-# sbi/recover_ground_truth.py. Do not change the number, order or distribution
+# inference/recover_ground_truth.py. Do not change the number, order or distribution
 # of the four rng.uniform calls above without regenerating the dataset -- the
 # replay depends on them and fails silently.
 pattern_stats = np.zeros(shape = [n_sims, 11])
