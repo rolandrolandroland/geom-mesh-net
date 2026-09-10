@@ -1,0 +1,49 @@
+{
+  "generated_by": "sbi/recover_ground_truth.py",
+  "source": "deprecated_code/tester_scripts/data_factory.py",
+  "method": "replay of np.random.default_rng(42) in the factory's draw order",
+  "factory_seed": 42,
+  "factory_n_sims": 1000,
+  "factory_pcp_constant": 0.1,
+  "parameter_names": [
+    "rho_c",
+    "rho_b",
+    "cr",
+    "rb"
+  ],
+  "priors": {
+    "rho_c": [
+      0.2,
+      1.0
+    ],
+    "rho_b": [
+      0.0,
+      0.05
+    ],
+    "cr": [
+      3.0,
+      15.0
+    ],
+    "rb": [
+      0.0,
+      0.5
+    ]
+  },
+  "verification": {
+    "rho_c": {
+      "max_abs_diff": 0.0,
+      "exact": true
+    },
+    "rho_b": {
+      "max_abs_diff": 0.0,
+      "exact": true
+    },
+    "pcp": {
+      "constant": true,
+      "value": 0.1
+    }
+  },
+  "patterns_described": 1000,
+  "describe_seconds": 5.37,
+  "warning": "cr and rb are not stored in data/pattern_stats.npy. They exist only here. Any change to the RNG draws in data_factory.py invalidates the replay silently, so treat these files as the authoritative record."
+}
