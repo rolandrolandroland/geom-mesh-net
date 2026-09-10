@@ -289,8 +289,9 @@ Implemented by `sbi/recover_ground_truth.py`.
 
 ### Stage 1 — Feature extraction for all 1,000 patterns (~1 hour)
 
-Compute the 14 global features for every pattern using the `csr` null and the
-corrected K settings from Section 8. Cache to a single `.npz` with full config
+Compute the 14 global features for every pattern using the `csr` null, the
+`sqrt` transform, and `k_r_max = 40.0` with `k_num_radii = 801` per
+Section 8.3. Cache to a single `.npz` with full config
 metadata and a configuration signature, following the pattern already
 established in `paper_feature_experiments.py`.
 
@@ -334,8 +335,15 @@ parameter. Features that sharpen the posterior carry information about θ;
 features that do not, do not.
 
 Specifically test whether the five K-derived features (`Tm`, `Rm`, `Rdm`,
-`Rddm`, `Tdm`) contribute anything once corrected. Section 8 shows they were
-largely degenerate before correction.
+`Rddm`, `Tdm`) contribute anything once `k_r_max` is set properly. Section 8.3
+shows they were largely degenerate before. `Rddm` reaches an interior extremum
+in only 8 of 16 patterns even at `k_r_max = 40` and is the prime candidate for
+carrying no information.
+
+This is also the natural place to run `k_transform="cube_root"` as a controlled
+comparison against the `sqrt` default (Section 8.2), since posterior
+contraction gives an objective criterion for which transform carries more
+information about θ — something the choice has never been tested against.
 
 **Gate:** none. This is a descriptive study.
 
@@ -389,24 +397,30 @@ K(r) = (4/3)πr³ on homogeneous Poisson patterns. Mean ratio of estimate to
 truth over r ∈ [1, 10] was **1.0009** — unbiased. The estimator is not the
 problem. Encoded as a regression test.
 
-### 8.2 The variance-stabilizing transform was the 2D one
+### 8.2 The K transform is `sqrt`, by decision
 
-The code computed `sqrt(K_obs) − sqrt(K_exp)`. Under CSR in d dimensions, K(r)
+The code computes `sqrt(K_obs) - sqrt(K_exp)`. Under CSR in d dimensions K(r)
 is the volume of a radius-r ball, so the transform that linearizes K against r
-is the inverse of that volume:
+is the inverse of that volume: `sqrt` in 2D (K_csr = pi r^2), cube root in 3D
+(K_csr = (4/3) pi r^3). On that basis alone `cube_root` would be the
+variance-stabilizing choice for this data.
 
-- 2D: K_csr = πr², so L = sqrt(K/π) = r. **`sqrt` is the 2D transform.**
-- 3D: K_csr = (4/3)πr³, so L = (3K/4π)^(1/3) = r.
+**`sqrt` is nonetheless retained as the default**, because these five features
+are a port of the Bennett et al. definitions and matching the published feature
+semantics takes precedence over the textbook transform. Changing it would make
+`Tm`, `Rm`, `Rdm`, `Rddm` and `Tdm` quantities that no longer correspond to the
+paper's, and would silently break comparability with
+`example_01/methodology_01_results` and
+`example_01/global_paper_feature_validation`.
 
-Applied to 3D data, `sqrt` leaves the CSR reference proportional to r^1.5
-rather than r, so a difference curve is inflated at large radii and its extrema
-shift outward.
+The transform is now selectable via `PaperFeatureConfig.k_transform`, so
+`cube_root` is available for a controlled comparison — a reasonable Stage 4
+experiment — without being imposed.
 
-Now configurable via `PaperFeatureConfig.k_transform`, defaulting to
-`"cube_root"`. `"sqrt"` is retained to reproduce prior results, including
-`example_01/methodology_01_results`, **which were generated with the `sqrt`
-transform.** Any comparison against those results must set
-`k_transform="sqrt"` explicitly.
+The consequence that *does* need acting on is the interaction with `k_r_max`.
+Because sqrt(K_csr) grows as r^1.5 rather than r, difference curves under
+`sqrt` keep rising further out and their extrema sit at larger radii. A small
+`k_r_max` therefore produces no interior extremum at all, which is Section 8.3.
 
 ### 8.3 The dominant defect: extrema pinning to the grid boundary
 
@@ -416,31 +430,65 @@ is still rising at `k_r_max` — the peak finder falls back to `argmax`, which
 returns the first or last grid point. The function then silently returns 0.0 or
 `k_r_max` as though it were a measurement.
 
-At the default `k_r_max = 10.0`, this affected the majority of patterns.
-Fraction of 12 patterns with a genuinely interior extremum:
+With the `sqrt` transform this is governed almost entirely by `k_r_max`.
+Fraction of 16 patterns with a genuinely interior extremum:
 
-| `k_r_max` | transform | Rm | Rdm | Rddm |
-| ---: | --- | ---: | ---: | ---: |
-| 10 | `sqrt` (old default) | 4/12 | 4/12 | 4/12 |
-| 15 | `cube_root` | 7/12 | 4/12 | 7/12 |
-| 20 | `cube_root` | **11/12** | 6/12 | **11/12** |
-| 25 | `cube_root` | 11/12 | 8/12 | 11/12 |
+| `k_r_max` | r/L | Rm | Rdm | Rddm | median Rm |
+| ---: | ---: | ---: | ---: | ---: | ---: |
+| 10 (old default) | 0.17 | 5/16 | 4/16 | 3/16 | 4.8 |
+| 20 | 0.33 | 9/16 | 9/16 | 4/16 | 9.5 |
+| 25 | 0.42 | 11/16 | 11/16 | 4/16 | 11.5 |
+| 30 | 0.50 | 13/16 | 12/16 | 6/16 | 13.5 |
+| 40 | 0.67 | **16/16** | 12/16 | 8/16 | 15.9 |
+| 50 | 0.83 | 16/16 | 12/16 | 12/16 | 15.9 |
 
-So under the old settings roughly two thirds of K features were boundary
-artifacts rather than measurements. **This is the most likely explanation for
-why `Tm`, `Rm`, `Rdm`, `Rddm` and `Tdm` had the worst interpolation Spearman
-correlations (0.53 to 0.72) in methodology 01, while the G, F and cross-G
-features scored 0.90 to 0.98.** Interpolating a boundary artifact cannot
-succeed, because the quantity is not a smooth function of position.
+At the old default of `k_r_max = 10`, roughly two thirds of K features were
+boundary artifacts rather than measurements. **This is the most likely
+explanation for why `Tm`, `Rm`, `Rdm`, `Rddm` and `Tdm` had the worst
+interpolation Spearman correlations (0.53 to 0.72) in methodology 01, while the
+G, F and cross-G features scored 0.90 to 0.98.** Interpolating a boundary
+artifact cannot succeed, because the quantity is not a smooth function of
+position.
+
+#### Raising `k_r_max` costs nothing in feature quality
+
+A naive reading of the correlation between `Rm` and the true cluster radius
+suggests large `k_r_max` is harmful: over whichever patterns happen to be
+interior, corr(`Rm`, `cr`) falls from 0.954 at `k_r_max = 25` to 0.671 at 40.
+
+That is **selection bias, not degradation.** Restricting to the 13 of 24
+patterns that have an interior `Rm` at *every* setting, the correlation is
+identical to three decimal places at every setting:
+
+| `k_r_max` | n interior | corr over interior patterns | corr over the common subset |
+| ---: | ---: | ---: | ---: |
+| 15 | 13/24 | 0.864 | **0.863** |
+| 20 | 15/24 | 0.918 | **0.863** |
+| 25 | 17/24 | 0.954 | **0.863** |
+| 30 | 20/24 | 0.724 | **0.863** |
+| 40 | 24/24 | 0.671 | **0.863** |
+
+The common subset spans `cr` from 3.2 to 9.3 only. Small-cluster patterns reach
+an interior extremum at small `k_r_max`; large-cluster patterns need a large
+one. Raising `k_r_max` admits the harder large-`cr` patterns, which lowers the
+pooled correlation while leaving every individual feature exactly as good. The
+0.671 figure is the more honest number, measured over a wider and harder set,
+not a worse feature.
+
+**Conclusion: use the largest `k_r_max` the estimator supports.** For this
+dataset — a 60-unit domain, cluster radii to 15 — Stage 1 uses
+**`k_r_max = 40.0` with `k_num_radii = 801`**, giving 16/16 interior `Rm` at a
+measured 1.04 s per pattern (about 17 minutes for 1,000 patterns serially, a
+few minutes across 8 cores). `Rddm` remains the weakest channel at 8/16 and
+should be expected to carry the least information in Stage 4.
 
 Two changes follow:
 
-1. `PaperFeatureResult` now carries `k_extrema_interior`, a boolean triple for
-   Rm, Rdm, Rddm. The failure is now visible rather than silent, and Stage 1
-   gates on it.
-2. `k_r_max` should be set from the physical cluster scale, not left at the
-   default. For this dataset — a 60-unit domain with cluster radii up to 15 —
-   **`k_r_max = 20.0`** is the recommended setting, and is what Stage 1 uses.
+1. `PaperFeatureResult` and `LocalPaperFeatureResult` now carry
+   `k_extrema_interior`, a boolean triple for Rm, Rdm and Rddm. The failure is
+   visible rather than silent, and Stage 1 gates on it.
+2. `k_r_max` must be set from the physical cluster scale, not left at the
+   default of 10.
 
 ### 8.4 Known fragility: the extractor takes the *first* local maximum
 
@@ -650,8 +698,9 @@ Completed on this branch:
 Not started:
 
 5. **Stage 1** — `sbi/extract_features.py`: parallelized global features for
-   all 1,000 patterns, `null_model="csr"`, `k_transform="cube_root"`,
-   `k_r_max=20.0`. Roughly 30 minutes serial, a few minutes across 8 cores.
+   all 1,000 patterns, `null_model="csr"`, `k_transform="sqrt"`,
+   `k_r_max=40.0`, `k_num_radii=801`. About 17 minutes serial, a few minutes
+   across 8 cores.
 6. **Stage 2** — `sbi/fit_posterior.py`.
 7. **Stage 3** — `sbi/validate_posterior.py`: SBC and coverage. The decisive
    gate.

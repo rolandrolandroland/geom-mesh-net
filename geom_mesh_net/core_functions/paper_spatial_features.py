@@ -29,21 +29,27 @@ K_TRANSFORMS = ("cube_root", "sqrt", "none")
 
 
 def transform_k(values, kind):
-    """Apply a variance-stabilizing transform to Ripley's K.
+    """Apply a transform to Ripley's K before differencing against a null.
 
-    Under complete spatial randomness in d dimensions, K(r) is the volume of a
-    radius-r ball, so the transform that linearizes K against r is the inverse
-    of that volume. In three dimensions K_csr(r) = (4/3) pi r^3, and the
-    correct transform is therefore the cube root:
+    ``sqrt`` is the default and matches the Bennett et al. feature definition
+    that ``Tm``, ``Rm``, ``Rdm``, ``Rddm`` and ``Tdm`` are ported from. It is
+    what produced ``example_01/methodology_01_results`` and
+    ``example_01/global_paper_feature_validation``.
+
+    ``cube_root`` is the variance-stabilizing transform for a *three*
+    dimensional CSR process: K_csr(r) = (4/3) pi r^3, so
 
         L(r) = (3 K(r) / (4 pi))^(1/3) = r
 
-    ``sqrt`` is the *two*-dimensional transform (L = sqrt(K / pi) = r when
-    K_csr = pi r^2). Applied to 3D data it leaves K_csr proportional to r^1.5
-    rather than r, so an observed-minus-expected difference curve is inflated
-    at large radii and its extrema shift outward. It is retained here only to
-    reproduce results generated before this was configurable, including
-    ``example_01/methodology_01_results``.
+    which maps the CSR reference onto the identity line and makes a
+    difference curve zero under CSR at every radius. Available for comparison,
+    but it changes the feature semantics relative to the paper, so switching
+    is a deliberate choice rather than a correction.
+
+    Note that the choice interacts with ``k_r_max``: because sqrt(K_csr) grows
+    as r^1.5 rather than r, difference curves under ``sqrt`` peak at larger
+    radii and need a larger ``k_r_max`` before an interior extremum exists at
+    all. See ``sbi/ROADMAP.md`` section 8.3.
 
     ``none`` returns K unchanged, for callers that want to do their own
     scaling.
@@ -73,7 +79,7 @@ class PaperFeatureConfig:
     k_max_points: int | None = None
     k_smoothing_reference_r_max: float = 10.0
     null_model: str = "random_label"
-    k_transform: str = "cube_root"
+    k_transform: str = "sqrt"
 
     def __post_init__(self):
         positive_values = {
@@ -575,7 +581,7 @@ def extract_paper_features(
     expected,
     radii,
     k_smoothing_reference_r_max=10.0,
-    k_transform="cube_root",
+    k_transform="sqrt",
     return_diagnostics=False,
 ):
     """Extract the 14 named features from observed and expected curves.

@@ -113,12 +113,16 @@ Run this before modifying `data_factory.py`. See `sbi/ROADMAP.md` section 2.2.
 - [`example_01/PAPER_FEATURE_EXPERIMENTS.md`](example_01/PAPER_FEATURE_EXPERIMENTS.md)
   — a six-stage staged comparison. Implemented; not yet run.
 
-## Note on reproducing earlier results
+## Note on the K transform
 
-The K variance-stabilizing transform is now configurable and defaults to
-`"cube_root"`, the correct form in three dimensions. Everything under
-`example_01/methodology_01_results/` and
-`example_01/global_paper_feature_validation/` was produced with the previous
-`"sqrt"` behaviour, so reproducing those numbers requires
-`PaperFeatureConfig(k_transform="sqrt")`. `sbi/ROADMAP.md` section 8 explains
-why the default changed and what else it affects.
+The K transform is now selectable via `PaperFeatureConfig.k_transform` and
+defaults to `"sqrt"`, matching the Bennett et al. feature definitions the
+project ports. `"cube_root"` is available for comparison — it is the
+variance-stabilizing form for a 3D CSR process — but it changes the feature
+semantics, so it is opt-in.
+
+The setting that *does* need attention is `k_r_max`. Under `sqrt` the default of
+10.0 leaves roughly two thirds of patterns with no interior K extremum, so the
+radius-valued features silently return a grid endpoint. Set it from the physical
+cluster scale; for `data/` that is 40.0. `PaperFeatureResult.k_extrema_interior`
+reports whether each extremum was real. See `sbi/ROADMAP.md` section 8.3.

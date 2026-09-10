@@ -116,11 +116,13 @@ def test_cube_root_transform_linearizes_csr_in_three_dimensions():
     assert np.allclose(transform_k(ball_volume(radii), "cube_root"), radii)
 
 
-def test_sqrt_transform_does_not_linearize_csr_in_three_dimensions():
-    """sqrt is the 2D transform; in 3D it leaves K_csr proportional to r**1.5.
+def test_sqrt_transform_leaves_csr_growing_as_r_to_the_three_halves():
+    """Pins the consequence of the default transform.
 
-    This is why it was replaced as the default: a difference of two sqrt-K
-    curves is inflated at large radii and its extrema shift outward.
+    sqrt linearizes K only in two dimensions. In 3D it leaves K_csr
+    proportional to r**1.5, so difference curves grow at large radii and their
+    extrema sit further out. That is why the default k_r_max must be set from
+    the cluster scale rather than left small; see sbi/ROADMAP.md section 8.3.
     """
     radii = np.linspace(1.0, 12.0, 45)
     transformed = transform_k(ball_volume(radii), "sqrt")
@@ -331,8 +333,13 @@ def test_cube_root_transform_zeroes_the_csr_k_difference():
 # --------------------------------------------------------------------------
 
 
-def test_config_defaults_to_the_three_dimensional_transform():
-    assert PaperFeatureConfig().k_transform == "cube_root"
+def test_config_defaults_to_the_paper_transform():
+    """sqrt is the Bennett et al. definition and the project default.
+
+    cube_root is available for comparison but changes the feature semantics,
+    so it is opt-in rather than the default. See sbi/ROADMAP.md section 8.2.
+    """
+    assert PaperFeatureConfig().k_transform == "sqrt"
 
 
 def test_config_rejects_unknown_transform_and_null_model():
