@@ -5,6 +5,8 @@ import torch
 from geom_mesh_net.core_functions import clustersim as csim
 from geom_mesh_net.core_functions import voxelize_clusters as vc
 from geom_mesh_net.core_functions import spatial_stats_01 as spst
+from geom_mesh_net.core_functions import point_cloud_fields as pcf
+from geom_mesh_net.core_functions import paper_spatial_features as psf
 
 
 # class for loading data
@@ -17,6 +19,15 @@ class LoadData(Dataset):
         data_file_name (string): prefix of data
         params_file_name (string): name of params file
         probs (float): data will be thinned to
+        barcode_source (string): point source used for the spatial barcode
+        barcode_marks: point labels included in the spatial barcode
+        spatial_feature_kind (string): global barcode or paper feature vector
+        paper_feature_config: configuration for the paper feature extractor
+        paper_guest_marks: labels treated as guest points in paper features
+        target_source (string): simulator-generated or point-cloud-derived target
+        target_point_source (string): point source used for point-cloud targets
+        target_guest_marks: labels treated as guest points in point-cloud targets
+        target_bandwidth (float): Gaussian bandwidth in physical coordinate units
 
     """
     # initialize with size and prefix for unpacking
@@ -41,7 +52,16 @@ class LoadData(Dataset):
                  overlap_prob="highest",
                  barcode_bins = 5,
                  barcode_r_max = 15.0,
-                 barcode_sample_size = 500
+                 barcode_sample_size = 500,
+                 barcode_source = "thinned",
+                 barcode_marks = "all",
+                 spatial_feature_kind = "barcode",
+                 paper_feature_config = None,
+                 paper_guest_marks = (2, 3),
+                 target_source = "simulation",
+                 target_point_source = "original",
+                 target_guest_marks = (2, 3),
+                 target_bandwidth = 1.5
                  ):
         self.data_prefix = data_prefix
 
@@ -73,6 +93,31 @@ class LoadData(Dataset):
         self.barcode_bins = barcode_bins
         self.barcode_r_max = barcode_r_max
         self.barcode_sample_size = barcode_sample_size
+        if barcode_source not in {"thinned", "original"}:
+            raise ValueError("barcode_source must be either 'thinned' or 'original'")
+        self.barcode_source = barcode_source
+        self.barcode_marks = barcode_marks
+        if spatial_feature_kind not in {"barcode", "paper"}:
+            raise ValueError(
+                "spatial_feature_kind must be either 'barcode' or 'paper'"
+            )
+        self.spatial_feature_kind = spatial_feature_kind
+        self.paper_feature_config = (
+            paper_feature_config or psf.PaperFeatureConfig()
+        )
+        self.paper_guest_marks = paper_guest_marks
+        if target_source not in {"simulation", "point_cloud"}:
+            raise ValueError(
+                "target_source must be either 'simulation' or 'point_cloud'"
+            )
+        self.target_source = target_source
+        if target_point_source not in {"thinned", "original"}:
+            raise ValueError(
+                "target_point_source must be either 'thinned' or 'original'"
+            )
+        self.target_point_source = target_point_source
+        self.target_guest_marks = target_guest_marks
+        self.target_bandwidth = target_bandwidth
 
     def __len__(self):
         return self.size
@@ -91,38 +136,91 @@ class LoadData(Dataset):
         # must thin data
         thinned_coords, thinned_labs = csim.thin_cluster(coords, self.probs, labels=labels,
                                                          marks=self.marks)
-        grid_size = [domain['x'][1] - domain['x'][0], domain['y'][1] - domain['y'][0], domain['z'][1] - domain['z'][0]]
-        rho_c = self.params[key, self.rho_c_ind]
-        rho_b = self.params[key, self.rho_b_ind]
-        #pcp = self.params[key, self.pcp_ind]
-        # generate a density grid based on the parameters for the clustered data
-        xx, yy, zz, full_upp_probs = vc.generate_density_grid(grid_size = grid_size, cluster_centers=centers,
-                                    radii=radius,
-                                    rho_c=rho_c, rho_b=rho_b,
-                                       n_points=self.n_points,
-                                       resolution=self.resolution,
-                                       x_weight=self.x_weight,
-                                       y_weight=self.y_weight,
-                                       z_weight=self.z_weight,
-                                       x_exp=self.x_exp,
-                                       y_exp=self.y_exp,
-                                       z_exp=self.z_exp,
-                                       r_weighted_max=self.r_weighted_max,
-                                       r_max_weighted_max_ratio=self.r_max_weighted_max_ratio,
-                                       prob_function=self.prob_function,
-                                       prob_exp=self.prob_exp,
-                                       selection=self.selection,
-                                       overlap_prob=self.overlap_prob
-                                       )
+        if self.target_source == "simulation":
+            grid_size = [
+                domain['x'][1] - domain['x'][0],
+                domain['y'][1] - domain['y'][0],
+                domain['z'][1] - domain['z'][0],
+            ]
+            rho_c = self.params[key, self.rho_c_ind]
+            rho_b = self.params[key, self.rho_b_ind]
+            xx, yy, zz, full_upp_probs = vc.generate_density_grid(
+                grid_size=grid_size,
+                cluster_centers=centers,
+                radii=radius,
+                rho_c=rho_c,
+                rho_b=rho_b,
+                n_points=self.n_points,
+                resolution=self.resolution,
+                x_weight=self.x_weight,
+                y_weight=self.y_weight,
+                z_weight=self.z_weight,
+                x_exp=self.x_exp,
+                y_exp=self.y_exp,
+                z_exp=self.z_exp,
+                r_weighted_max=self.r_weighted_max,
+                r_max_weighted_max_ratio=self.r_max_weighted_max_ratio,
+                prob_function=self.prob_function,
+                prob_exp=self.prob_exp,
+                selection=self.selection,
+                overlap_prob=self.overlap_prob,
+            )
+        else:
+            target_coords, target_labels = pcf.choose_point_cloud(
+                self.target_point_source,
+                coords,
+                labels,
+                thinned_coords,
+                thinned_labs,
+            )
+            xx, yy, zz, full_upp_probs = (
+                pcf.estimate_guest_probability_grid(
+                    coords=target_coords,
+                    labels=target_labels,
+                    domain=domain,
+                    resolution=self.resolution,
+                    guest_marks=self.target_guest_marks,
+                    bandwidth=self.target_bandwidth,
+                )
+            )
 
-        # call to get spatial statistics features
-        barcode = spst.calculate_spatial_barcode(
+        feature_coords, feature_labels = pcf.choose_point_cloud(
+            self.barcode_source,
+            coords,
+            labels,
             thinned_coords,
-            bins=self.barcode_bins,
-            r_max=self.barcode_r_max,
-            sample_size=self.barcode_sample_size
+            thinned_labs,
         )
-        return thinned_coords, domain, thinned_labs, xx, yy, zz, full_upp_probs, barcode
+        if self.spatial_feature_kind == "paper":
+            spatial_features = psf.calculate_global_paper_features(
+                feature_coords,
+                feature_labels,
+                domain,
+                guest_marks=self.paper_guest_marks,
+                config=self.paper_feature_config,
+            ).values
+        else:
+            feature_coords, _ = pcf.filter_point_cloud(
+                feature_coords,
+                feature_labels,
+                marks=self.barcode_marks,
+            )
+            spatial_features = spst.calculate_spatial_barcode(
+                feature_coords,
+                bins=self.barcode_bins,
+                r_max=self.barcode_r_max,
+                sample_size=self.barcode_sample_size
+            )
+        return (
+            thinned_coords,
+            domain,
+            thinned_labs,
+            xx,
+            yy,
+            zz,
+            full_upp_probs,
+            spatial_features,
+        )
 
 class ContinuousNeuralField(nn.Module):
     def __init__(self):
@@ -176,6 +274,59 @@ class ContinuousNeuralFieldspatstat_01(nn.Module):
         )
 
     # forward pass input through model
+    def forward(self, x):
+        return self.model(x)
+
+
+class ContinuousNeuralFieldGlobalFeatures(nn.Module):
+    def __init__(self, feature_count):
+        super().__init__()
+        if feature_count <= 0:
+            raise ValueError("feature_count must be greater than zero")
+        input_features = 3 + feature_count
+        self.model = nn.Sequential(
+            nn.Linear(input_features, 128),
+            nn.ReLU(),
+            nn.Linear(128, 128),
+            nn.ReLU(),
+            nn.Linear(128, 128),
+            nn.ReLU(),
+            nn.Linear(128, 1),
+            nn.Sigmoid()
+        )
+
+    def forward(self, x):
+        return self.model(x)
+
+
+class ContinuousNeuralFieldFeatures(nn.Module):
+    def __init__(
+        self,
+        feature_count=0,
+        hidden_width=128,
+        hidden_layers=3,
+    ):
+        super().__init__()
+        if feature_count < 0:
+            raise ValueError("feature_count must be nonnegative")
+        if hidden_width <= 0:
+            raise ValueError("hidden_width must be greater than zero")
+        if hidden_layers <= 0:
+            raise ValueError("hidden_layers must be greater than zero")
+
+        layers = []
+        input_features = 3 + feature_count
+        for _ in range(hidden_layers):
+            layers.extend(
+                [
+                    nn.Linear(input_features, hidden_width),
+                    nn.ReLU(),
+                ]
+            )
+            input_features = hidden_width
+        layers.extend([nn.Linear(hidden_width, 1), nn.Sigmoid()])
+        self.model = nn.Sequential(*layers)
+
     def forward(self, x):
         return self.model(x)
 

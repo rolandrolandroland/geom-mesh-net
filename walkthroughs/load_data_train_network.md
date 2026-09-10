@@ -56,6 +56,30 @@ the cluster concentration.
 3. Any voxels that fall inside of overlapping clustering domains are handled by default by assigning
 the highest of the density values.
 
+### Point-cloud-derived targets
+`LoadData` uses the simulator-generated target by default so existing experiments retain their original behavior.
+Set `target_source="point_cloud"` to estimate guest probability from labeled points instead. The point-cloud target
+voxelizes guest and total point counts, applies Gaussian smoothing, and divides the smoothed guest density by the
+smoothed total density.
+
+The target and observation sources are configured independently:
+
+```
+dataset = LoadData(
+    ...,
+    barcode_source="thinned",
+    barcode_marks=(2, 3),
+    target_source="point_cloud",
+    target_point_source="original",
+    target_guest_marks=(2, 3),
+    target_bandwidth=1.5,
+)
+```
+
+This configuration uses thinned guest observations for the spatial barcode while estimating the training target from
+the complete original point cloud. Change `barcode_source` to `"original"` to use the complete point cloud as model
+context, or change `target_source` to `"simulation"` to restore the rule-generated target.
+
 ## Network Architecture
 Initially, we use a two layer continuous neural field (`ContinuousNeuralField` class).  The first layer takes three spatial coordinates and maps them to 
 128 neurons. The second layer maps those 128 neurons to 1 output, the probability.  As you can see in the walkthrough, 
@@ -78,6 +102,33 @@ Once we have developed our base model, we are going to try and improve it by inc
 functions.  We will start by using Ripley's K function. We define the `calculate_spatial_barcode` function
 to sample `sample_size` points from a dictionary of points `coords_dict` and find the distance between each pair of
 points.  Then a histogram of `bins` from 0 to `r_max`. The number of points in each bin is then fed into the neural network.
+
+`LoadData` also supports the 14 global features from Bennett et al. (2023). These combine guest nearest-neighbor
+$G_g$, guest empty-space $F_g$, transformed guest $K_g$, and guest-to-host $G_{gh}$ summaries. The observed curves
+are compared with pointwise medians from random relabelings that preserve the number of guest points.
+
+```
+from geom_mesh_net.core_functions import paper_spatial_features as psf
+
+paper_config = psf.PaperFeatureConfig(
+    n_relabelings=99,
+    random_seed=42,
+)
+
+dataset = LoadData(
+    ...,
+    barcode_source="thinned",
+    spatial_feature_kind="paper",
+    paper_feature_config=paper_config,
+    paper_guest_marks=(2, 3),
+)
+```
+
+Set `barcode_source="original"` to calculate the global features from the full point cloud. The paper feature vector
+contains 14 values, so use `ContinuousNeuralFieldGlobalFeatures(feature_count=14)` for the corresponding model.
+The staged experiment runner in `example_01/train_networks_for_compare_multi_pattern_02.py` supports analytical CSR
+and whole-pattern random-label null models, global features, sampled local voxel features, shared models, and offline
+feature caches. See `example_01/PAPER_FEATURE_EXPERIMENTS.md` for commands and interpretation guidance.
 
 
 # Model Benchmarking

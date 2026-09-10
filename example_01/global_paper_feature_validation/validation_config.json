@@ -1,0 +1,14 @@
+{
+  "g_r_max": 10.0,
+  "g_num_radii": 2001,
+  "k_r_max": 70.0,
+  "k_num_radii": 1401,
+  "cross_g_r_max": 8.0,
+  "cross_g_num_radii": 2665,
+  "f_grid_points_per_axis": 24,
+  "n_relabelings": 5,
+  "random_seed": 42,
+  "workers": -1,
+  "k_max_points": 3000,
+  "k_smoothing_reference_r_max": 10.0
+}

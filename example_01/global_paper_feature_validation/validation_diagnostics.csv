@@ -1,0 +1,11 @@
+pattern,calculation_seconds,cdf_finite,cdf_bounded,cdf_monotonic,k_finite,k_nonnegative,k_monotonic,features_finite,k_peak_at_boundary,k_derivative_at_boundary,guest_g_endpoint,guest_f_endpoint,cross_g_endpoint,cross_g_reaches_95,range_status,numerical_status
+0,5.958332000001974,True,True,True,True,True,True,True,False,False,1.0,1.0,1.0,True,PASS,PASS
+1,5.909364833998552,True,True,True,True,True,True,True,False,False,1.0,1.0,1.0,True,PASS,PASS
+2,6.144860459004121,True,True,True,True,True,True,True,False,False,1.0,1.0,0.9880251588832824,True,PASS,PASS
+3,5.836991541997122,True,True,True,True,True,True,True,False,False,1.0,1.0,1.0,True,PASS,PASS
+4,6.089477999994415,True,True,True,True,True,True,True,False,False,1.0,1.0,1.0,True,PASS,PASS
+5,5.716796833003173,True,True,True,True,True,True,True,False,False,1.0,1.0,0.9784142762235459,True,PASS,PASS
+6,6.055568167001184,True,True,True,True,True,True,True,False,False,1.0,1.0,1.0,True,PASS,PASS
+7,5.754763917000673,True,True,True,True,True,True,True,False,False,1.0,1.0,1.0,True,PASS,PASS
+8,5.720470624997688,True,True,True,True,True,True,True,False,False,1.0,1.0,1.0,True,PASS,PASS
+9,5.722393083000497,True,True,True,True,True,True,True,False,False,1.0,1.0,1.0,True,PASS,PASS

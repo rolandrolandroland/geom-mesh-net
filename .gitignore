@@ -3,3 +3,10 @@ walkthroughs/walkthrough_data
 example_01/checkpoints
 deprecated_code/tester_scripts/checkpoints
 deprecated_code/tester_scripts/checkpoints_old
+# Large experiment artifacts: per-pattern feature grids, targets, masks,
+# predictions and checkpoints. Regenerate with
+# example_01/execute_experimental_methodology_01.py. The report, figures,
+# metrics CSVs and configs under methodology_01_results/ ARE tracked.
+example_01/methodology_01_results/patterns/
+example_01/paper_feature_cache_02/
+example_01/paper_feature_experiments_02/
