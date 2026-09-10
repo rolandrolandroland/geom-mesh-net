@@ -1,8 +1,23 @@
+# Python
+__pycache__/
+*.py[cod]
+venv/
+.venv/
+*.egg-info/
+
+# macOS
+.DS_Store
+
+# Simulated point patterns (5 GB, 1000 patterns).
+# Regenerate with deprecated_code/tester_scripts/data_factory.py
 data/
 walkthroughs/walkthrough_data
+
+# Training checkpoints and figures
 example_01/checkpoints
 deprecated_code/tester_scripts/checkpoints
 deprecated_code/tester_scripts/checkpoints_old
+
 # Large experiment artifacts: per-pattern feature grids, targets, masks,
 # predictions and checkpoints. Regenerate with
 # example_01/execute_experimental_methodology_01.py. The report, figures,
