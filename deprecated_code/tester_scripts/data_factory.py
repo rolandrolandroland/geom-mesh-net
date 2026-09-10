@@ -1,4 +1,4 @@
-import core_functions.clustersim as csim
+from geom_mesh_net.core_functions import clustersim as csim
 import numpy as np
 
 rng = np.random.default_rng(42)
@@ -38,7 +38,15 @@ cr_vec = rng.uniform(low = 3, high = 15, size = n_sims)
 rb_vec = rng.uniform(low = 0, high = 0.5, size = n_sims)
 
 # initialize empty matrix to hold calculated rho_c, rho_b, pcp, and their errors
-pattern_stats = np.zeros(shape = [n_sims, 9])
+# Columns 0-8 hold measured/true/percent-error triples for pcp, rho_c and rho_b.
+# Columns 9-10 hold cr and rb, which earlier versions of this script varied but
+# never wrote. Appending them keeps every existing column index valid.
+# NOTE: data/ was generated before columns 9-10 existed. For that dataset the
+# values are recovered by replaying the seeded generator; see
+# sbi/recover_ground_truth.py. Do not change the number, order or distribution
+# of the four rng.uniform calls above without regenerating the dataset -- the
+# replay depends on them and fails silently.
+pattern_stats = np.zeros(shape = [n_sims, 11])
 save_prefix = "data/"
 # make the data
 for rho_c, rho_b, cr, rb, i in zip(rho_c_vec, rho_b_vec, cr_vec, rb_vec, range(n_sims)):
@@ -88,6 +96,8 @@ for rho_c, rho_b, cr, rb, i in zip(rho_c_vec, rho_b_vec, cr_vec, rb_vec, range(n
     pattern_stats[i, 6] = rho_b_clust
     pattern_stats[i, 7] = rho_b
     pattern_stats[i, 8] = rho_b_perc_error
+    pattern_stats[i, 9] = cr
+    pattern_stats[i, 10] = rb
 
     print(f"pcp is {pcp_clust}, expected pcp is {pcp}, pcp percent error is {pcp_perc_error}")
     print(

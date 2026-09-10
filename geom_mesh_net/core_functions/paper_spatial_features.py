@@ -25,6 +25,38 @@ PAPER_FEATURE_NAMES = (
 
 NULL_MODELS = ("csr", "random_label")
 
+K_TRANSFORMS = ("cube_root", "sqrt", "none")
+
+
+def transform_k(values, kind):
+    """Apply a variance-stabilizing transform to Ripley's K.
+
+    Under complete spatial randomness in d dimensions, K(r) is the volume of a
+    radius-r ball, so the transform that linearizes K against r is the inverse
+    of that volume. In three dimensions K_csr(r) = (4/3) pi r^3, and the
+    correct transform is therefore the cube root:
+
+        L(r) = (3 K(r) / (4 pi))^(1/3) = r
+
+    ``sqrt`` is the *two*-dimensional transform (L = sqrt(K / pi) = r when
+    K_csr = pi r^2). Applied to 3D data it leaves K_csr proportional to r^1.5
+    rather than r, so an observed-minus-expected difference curve is inflated
+    at large radii and its extrema shift outward. It is retained here only to
+    reproduce results generated before this was configurable, including
+    ``example_01/methodology_01_results``.
+
+    ``none`` returns K unchanged, for callers that want to do their own
+    scaling.
+    """
+    if kind not in K_TRANSFORMS:
+        raise ValueError(f"k_transform must be one of {K_TRANSFORMS}")
+    clipped = np.maximum(values, 0.0)
+    if kind == "cube_root":
+        return np.cbrt(3.0 * clipped / (4.0 * np.pi))
+    if kind == "sqrt":
+        return np.sqrt(clipped)
+    return clipped
+
 
 @dataclass(frozen=True)
 class PaperFeatureConfig:
@@ -41,6 +73,7 @@ class PaperFeatureConfig:
     k_max_points: int | None = None
     k_smoothing_reference_r_max: float = 10.0
     null_model: str = "random_label"
+    k_transform: str = "cube_root"
 
     def __post_init__(self):
         positive_values = {
@@ -64,6 +97,10 @@ class PaperFeatureConfig:
         if self.null_model not in NULL_MODELS:
             raise ValueError(
                 f"null_model must be one of {NULL_MODELS}"
+            )
+        if self.k_transform not in K_TRANSFORMS:
+            raise ValueError(
+                f"k_transform must be one of {K_TRANSFORMS}"
             )
 
 
@@ -105,6 +142,9 @@ class PaperFeatureResult:
     observed: PaperSummaryCurves
     expected: PaperSummaryCurves
     radii: dict[str, np.ndarray]
+    # Whether Rm, Rdm and Rddm came from real detected extrema rather than an
+    # argmax fallback onto a grid endpoint. See _extract_k_features.
+    k_extrema_interior: np.ndarray | None = None
 
 
 @dataclass(frozen=True)
@@ -114,6 +154,8 @@ class LocalPaperFeatureResult:
     point_counts: np.ndarray
     guest_counts: np.ndarray
     query_points: np.ndarray
+    # (n_queries, 3) booleans for Rm, Rdm, Rddm. See _extract_k_features.
+    k_extrema_interior: np.ndarray | None = None
 
 
 def calculate_global_paper_features(
@@ -132,6 +174,11 @@ def calculate_global_paper_features(
     _validate_mark_counts(guest_mask)
 
     bounds = _domain_bounds(domain)
+    _validate_k_radius(
+        config.k_r_max,
+        bounds[:, 1] - bounds[:, 0],
+        "domain",
+    )
     query_points = _regular_query_grid(
         bounds,
         config.f_grid_points_per_axis,
@@ -154,13 +201,15 @@ def calculate_global_paper_features(
         radii,
         config,
     )
-    values = extract_paper_features(
+    values, k_extrema_interior = extract_paper_features(
         observed,
         expected,
         radii,
         k_smoothing_reference_r_max=(
             config.k_smoothing_reference_r_max
         ),
+        k_transform=config.k_transform,
+        return_diagnostics=True,
     )
 
     return PaperFeatureResult(
@@ -169,6 +218,7 @@ def calculate_global_paper_features(
         observed=observed,
         expected=expected,
         radii=radii,
+        k_extrema_interior=k_extrema_interior,
     )
 
 
@@ -214,6 +264,29 @@ def calculate_expected_summary_curves(
         config,
         allow_sparse=allow_sparse,
     )
+
+
+def _validate_k_radius(k_r_max, side_lengths, context):
+    """Reject a K radius larger than the shortest side of the observation window.
+
+    The translation-corrected estimator stays unbiased for r all the way up to
+    r = L (measured ratio to analytic CSR: 1.000 at r/L = 1.0). Beyond L it
+    breaks: pairs separated by more than the shortest side can only exist along
+    diagonals, the positive-overlap filter discards them inconsistently, and the
+    estimate biases downward by roughly 9% at r/L = 1.17.
+
+    The conventional r <= L/4 guidance concerns variance and interpretability
+    for clustered patterns rather than unbiasedness under CSR, so it is not
+    enforced here; some datasets legitimately need r_max > L/4 to reach an
+    interior K extremum. See ``sbi/ROADMAP.md`` section 8.4.
+    """
+    shortest = float(np.min(side_lengths))
+    if k_r_max > shortest:
+        raise ValueError(
+            f"k_r_max ({k_r_max:g}) exceeds the shortest {context} side "
+            f"({shortest:g}). The translation-corrected K estimator is only "
+            f"valid for r <= the shortest side."
+        )
 
 
 def calculate_csr_baseline(radii, guest_intensity, host_intensity):
@@ -356,6 +429,15 @@ def calculate_local_paper_features(
 
     guest_mask = np.isin(labels_array, np.atleast_1d(guest_marks))
     _validate_mark_counts(guest_mask)
+    # Local K is estimated inside the local window, not the full domain, so the
+    # nominal window extent is the relevant bound. Windows clipped at a domain
+    # edge are smaller still; those raise inside _translation_corrected_k and
+    # are reported through the `valid` mask.
+    _validate_k_radius(
+        config.k_r_max,
+        np.full(3, 2.0 * local_config.neighborhood_radius),
+        "local window",
+    )
     radii = _radius_grids(config)
     point_tree = cKDTree(points)
     relabeling_masks = None
@@ -378,6 +460,7 @@ def calculate_local_paper_features(
         dtype=np.float32,
     )
     valid = np.zeros(len(queries), dtype=bool)
+    k_extrema_interior = np.zeros((len(queries), 3), dtype=bool)
     point_counts = np.zeros(len(queries), dtype=np.int32)
     guest_counts = np.zeros(len(queries), dtype=np.int32)
 
@@ -460,13 +543,18 @@ def calculate_local_paper_features(
                     query_config,
                     csr_intensities=csr_intensities,
                 )
-            values[query_index] = extract_paper_features(
+            (
+                values[query_index],
+                k_extrema_interior[query_index],
+            ) = extract_paper_features(
                 observed,
                 expected,
                 radii,
                 k_smoothing_reference_r_max=(
                     config.k_smoothing_reference_r_max
                 ),
+                k_transform=config.k_transform,
+                return_diagnostics=True,
             )
             valid[query_index] = True
         except ValueError:
@@ -478,6 +566,7 @@ def calculate_local_paper_features(
         point_counts=point_counts,
         guest_counts=guest_counts,
         query_points=queries.astype(np.float32),
+        k_extrema_interior=k_extrema_interior,
     )
 
 
@@ -486,7 +575,15 @@ def extract_paper_features(
     expected,
     radii,
     k_smoothing_reference_r_max=10.0,
+    k_transform="cube_root",
+    return_diagnostics=False,
 ):
+    """Extract the 14 named features from observed and expected curves.
+
+    With ``return_diagnostics=True`` returns ``(values, k_extrema_interior)``,
+    where the second element is a boolean triple for Rm, Rdm and Rddm. See
+    ``_extract_k_features`` for why those flags matter.
+    """
     g_features = _extract_g_features(
         radii["g"],
         observed.guest_g,
@@ -497,10 +594,10 @@ def extract_paper_features(
         expected.guest_f,
     )
     transformed_k = (
-        np.sqrt(np.maximum(observed.guest_k, 0.0))
-        - np.sqrt(np.maximum(expected.guest_k, 0.0))
+        transform_k(observed.guest_k, k_transform)
+        - transform_k(expected.guest_k, k_transform)
     )
-    k_features = _extract_k_features(
+    k_features, k_extrema_interior = _extract_k_features(
         radii["k"],
         transformed_k,
         smoothing_reference_r_max=k_smoothing_reference_r_max,
@@ -521,6 +618,8 @@ def extract_paper_features(
     )
     if not np.all(np.isfinite(features)):
         raise ValueError("paper spatial features contain non-finite values")
+    if return_diagnostics:
+        return features, k_extrema_interior
     return features
 
 
@@ -604,6 +703,11 @@ def _translation_corrected_k(points, bounds, radii):
     point_count = len(points)
     if point_count < 2:
         raise ValueError("at least two guest points are required for K")
+    _validate_k_radius(
+        float(radii[-1]),
+        bounds[:, 1] - bounds[:, 0],
+        "window",
+    )
 
     tree = cKDTree(points)
     pairs = tree.query_pairs(r=float(radii[-1]), output_type="ndarray")
@@ -758,6 +862,20 @@ def _extract_k_features(
     transformed_k,
     smoothing_reference_r_max,
 ):
+    """Extract Tm, Rm, Rdm, Rddm and Tdm from a transformed K difference curve.
+
+    Returns ``(values, interior)`` where ``interior`` is a boolean triple
+    reporting whether Rm, Rdm and Rddm came from a genuine detected local
+    extremum rather than an ``argmax`` fallback.
+
+    The fallback fires when the difference curve has no interior extremum
+    because it is still rising at ``radii[-1]``, and it returns a grid endpoint
+    (0.0 or ``k_r_max``) that is indistinguishable from a real measurement. At
+    small ``k_r_max`` relative to the cluster scale this is the common case
+    rather than the exception, so callers must check these flags before
+    treating the radius-valued K features as measurements. See
+    ``sbi/ROADMAP.md`` section 8.3.
+    """
     radius_scale = smoothing_reference_r_max / radii[-1]
     minimum_span = 3.0 / len(radii)
     initial_span = max(0.08 * radius_scale, minimum_span)
@@ -778,6 +896,7 @@ def _extract_k_features(
     )
     smoothed = _loess(radii, transformed_k, span=span)
     peaks = _local_maxima(smoothed, half_window=3)
+    rm_interior = bool(len(peaks))
     peak_index = (
         int(peaks[0])
         if len(peaks)
@@ -805,6 +924,7 @@ def _extract_k_features(
         negative_derivative_smoothed,
         half_window=3,
     )
+    rdm_interior = bool(len(derivative_peaks))
     derivative_peak_index = (
         int(derivative_peaks[0])
         if len(derivative_peaks)
@@ -842,6 +962,7 @@ def _extract_k_features(
         (third_derivative_peaks > peak_index)
         & (third_derivative_peaks < upper_bound)
     ]
+    rddm_interior = bool(len(candidates))
     if len(candidates):
         second_derivative_radius_index = int(candidates[0])
     else:
@@ -856,7 +977,7 @@ def _extract_k_features(
                 search_start + int(np.argmax(search))
             )
 
-    return np.array(
+    values = np.array(
         [
             smoothed[peak_index],
             radii[peak_index],
@@ -866,6 +987,11 @@ def _extract_k_features(
         ],
         dtype=float,
     )
+    interior = np.array(
+        [rm_interior, rdm_interior, rddm_interior],
+        dtype=bool,
+    )
+    return values, interior
 
 
 def _loess(x_values, y_values, span):
