@@ -364,6 +364,63 @@ that is, the flow learns something. A flow that cannot beat the prior means
 the features carry no information about θ, which would be a genuine and
 publishable negative result about the 14 features.
 
+**Result: PASSED.** Validation log-likelihood 6.939 nats against a uniform
+prior of 1.427, a gain of +5.512. Trained in 7.4 seconds over 75 epochs.
+
+Held-out test set, never used for stopping or selection:
+
+| Statistic | Value |
+| --- | ---: |
+| median log-likelihood | **7.400** nats |
+| mean log-likelihood | **−187.576** nats |
+| mean excluding one pattern | 6.581 nats |
+| patterns below the prior | 6/100 |
+
+Per-parameter contraction: `rho_c` 0.865, `rho_b` 0.901, `cr` 0.649,
+`rb` **0.039**.
+
+The `rb` result confirms the registered prediction almost exactly. Section 5
+predicted a posterior "about 95% as wide as its prior"; the fitted posterior is
+96% as wide. The flow honestly reports that the data do not constrain `rb`,
+which is the behaviour a calibrated posterior must have and the thing a point
+estimate cannot express at all.
+
+#### The mean and the median disagree, and the reason matters
+
+The entire gap between a median of 7.4 and a mean of −188 is **one pattern**:
+index 613, at −19,409 nats.
+
+Pattern 613 has **zero clusters**. It is one of only two such patterns in the
+1,000 (Section 5, Data hygiene), and it landed in the test set. Its true
+parameters say `cr = 12.27` and `rho_c = 0.988` — large, dense clusters — while
+the realized pattern contains none, so its features look like complete spatial
+randomness. Its feature vector is not an outlier in the ordinary sense: its most
+extreme channel is 3.9 training standard deviations, against a dataset 99th
+percentile of 4.2. It is a *structural* outlier, and the flow saw exactly one
+example of that structure during training.
+
+This is not a defect in the flow. It is a real property of the joint
+distribution, and it is informative: a pattern with no clusters carries no
+information about cluster radius, so an honest posterior should widen toward
+the prior there. Instead the flow is confidently wrong. That is precisely the
+overconfidence failure Stage 3 exists to detect, and it should appear in the
+coverage numbers.
+
+The mean was not quietly replaced with the median. A log-density of −19,409
+means the model assigned an essentially impossible density to something that
+actually happened, and averaging that away would be exactly the kind of
+threshold-shopping this document tries to avoid. Both statistics are reported,
+with the cause named.
+
+Two consequences for later stages:
+
+1. It is direct evidence for the sample-size limitation in Section 7. Rare
+   regions of the joint are unrepresented at n = 1,000, and no amount of
+   architecture tuning fixes an unseen structure.
+2. Stage 3 should report coverage both over all test patterns and excluding
+   degenerate ones, so a single structural outlier neither hides a real
+   calibration failure nor manufactures one.
+
 ### Stage 3 — Calibration and coverage (hours)
 
 Run SBC and coverage on the held-out test patterns per Section 4.
@@ -635,7 +692,9 @@ imports were written against it.
 | `inference/extract_features.py` | Stage 1 |
 | `inference/features/` | cached features (`.npz` gitignored, `.json` tracked) |
 | `inference/screen_features.py` | ridge screen of feature informativeness |
-| `inference/fit_posterior.py` | Stage 2 (to be written) |
+| `inference/flow.py` | conditional autoregressive flow, written here not imported |
+| `inference/fit_posterior.py` | Stage 2 |
+| `inference/posterior/` | fitted flow, test posterior samples, metadata |
 | `inference/validate_posterior.py` | Stage 3 (to be written) |
 | `tests/` | regression tests for the feature library |
 

@@ -31,3 +31,9 @@ example_01/paper_feature_experiments_02/
 # The .json metadata beside each cache IS tracked, since it records the config,
 # timings and gate result.
 inference/features/*.npz
+
+# Fitted flow and posterior samples, regenerable in seconds:
+#   PYTHONPATH=. python inference/fit_posterior.py
+# The .json metadata and training history ARE tracked.
+inference/posterior/*.pt
+inference/posterior/*.npz
