@@ -253,6 +253,42 @@ features. `rho_b` spans U(0, 0.05) against a realized guest fraction of
 0.0967 ± 0.0237, so it is a small perturbation on a noisy quantity; moderate
 contraction is the expectation.
 
+### Measured outcome (Stage 1 complete)
+
+`inference/screen_features.py` screens the extracted features with ridge
+regression over 25 random 800/200 splits. Ridge gives only a point estimate,
+with none of the posterior shape that motivates the flow, but it is a valid
+lower bound: a parameter ridge cannot predict will not be rescued by a more
+flexible model.
+
+| Parameter | best R² | contraction | carried by |
+| --- | ---: | ---: | --- |
+| `rho_c` | **0.964 ± 0.037** | 0.803 | cross-G: `GXGH_min_diff` −0.87, `GXGH_95diff_r` +0.81 |
+| `rho_b` | **0.925 ± 0.061** | 0.707 | F: `F_min_diff` +0.88, `F_min_diff_F` +0.81 |
+| `cr` | **0.843 ± 0.025** | 0.608 | K: `Rdm` +0.77, `Tm` +0.76 |
+| `rb` | 0.112 ± 0.045 | 0.047 | `Rdm` +0.18, and little else |
+
+Each parameter is carried by its own feature family, and the mapping is
+interpretable: guest-to-host cross-G for the in-cluster concentration, empty-space
+F for the matrix concentration, K for the cluster length scale. **The five
+K-derived features are the only ones carrying `cr` at all**, which is a concrete
+argument for keeping them despite Section 8.3.
+
+**The `rb` prediction was violated, narrowly.** It was registered as
+"uninformative", operationalized as R² ≤ 0.10. Measured R² is 0.112 ± 0.045, and
+positive on all 25 splits (range +0.01 to +0.18) — small, but not zero. The
+ceiling has deliberately not been moved.
+
+The substantive expectation survives: contraction is 0.047, so a calibrated
+`rb` posterior should be about 95% as wide as its prior. The strict claim that
+`rb` carries *no* information was too strong. It carries a little, apparently
+through `Rdm`, which is plausible since radius spread should affect the shape of
+the K derivative rather than its peak location.
+
+This does not weaken the Stage 3 gate, it sharpens it: `rb`'s posterior should
+be *slightly* narrower than the prior and no more. A markedly narrow one is
+overconfidence, and SBC remains the arbiter.
+
 ### Data hygiene
 
 - Realized guest fraction is 0.0967 ± 0.0237 against a target `pcp` of 0.1, so
@@ -302,6 +338,21 @@ serial; see Section 11.
 interior-diagnostic (Section 8.3) true for at least 80% of patterns. Failure
 here means the feature definitions are still degenerate and Stage 2 would
 train on noise.
+
+**Result: PASSED.** 1000/1000 patterns finite (100%), interior `Rm` 964/1000
+(96.4%), `Rdm` 713/1000 (71.3%), `Rddm` 366/1000 (36.6%). Wall clock 7.6 minutes
+across 7 workers, 6.9x speedup over 3.15 s of CPU work per pattern.
+
+`Rddm` reaching an interior extremum in only 37% of patterns confirms it as the
+weakest channel and the prime Stage 4 candidate for carrying no information.
+
+One correction to Section 8.3: the 36 patterns that fail the interior-`Rm` check
+at `k_r_max = 40` are the *small*-`cr` ones (mean `cr` 5.69 against 9.03 for the
+rest), not the large ones. Under `sqrt` the reference grows as r^1.5, so a small
+cluster's peak becomes a minor bump on a large rising curve. Raising `k_r_max`
+therefore does not strictly dominate — it trades small-`cr` coverage for
+large-`cr` coverage, and 40.0 happens to be a good compromise at 96.4%. A
+per-pattern adaptive `k_r_max` would fix the remainder and is a Stage 4 item.
 
 ### Stage 2 — Fit the posterior (minutes)
 
@@ -583,6 +634,7 @@ imports were written against it.
 | `inference/ground_truth/` | persisted θ and per-pattern descriptors |
 | `inference/extract_features.py` | Stage 1 |
 | `inference/features/` | cached features (`.npz` gitignored, `.json` tracked) |
+| `inference/screen_features.py` | ridge screen of feature informativeness |
 | `inference/fit_posterior.py` | Stage 2 (to be written) |
 | `inference/validate_posterior.py` | Stage 3 (to be written) |
 | `tests/` | regression tests for the feature library |
@@ -694,23 +746,28 @@ voxels and should not be a headline metric.
 
 Completed on this branch:
 
-1. **Stage 0** — θ recovered, verified and persisted.
-   `inference/recover_ground_truth.py`, output in `inference/ground_truth/`. Gate passed
-   with exact equality on all 1,000 patterns.
+1. **Stage 0** — θ recovered, verified and persisted. Gate passed with exact
+   equality on all 1,000 patterns.
 2. **Feature-library corrections** — Sections 8.1 through 8.6.
-3. **Regression tests** — `tests/`, 62 tests, ~2 s, no data required.
+3. **Regression tests** — `tests/`, no data required, run with `python -m pytest`.
 4. **Data generator repaired** — Section 8.5.
+5. **Stage 1** — features extracted for all 1,000 patterns. Gate passed
+   (100% finite, 96.4% interior `Rm`). Cached to `inference/features/`.
+6. **Feature screen** — Section 5, "Measured outcome". `rho_c`, `rho_b` and `cr`
+   are strongly recoverable; `rb` is nearly but not entirely uninformative.
 
 Not started:
 
-5. **Stage 1** — `inference/extract_features.py`: parallelized global features for
-   all 1,000 patterns, `null_model="csr"`, `k_transform="sqrt"`,
-   `k_r_max=40.0`, `k_num_radii=801`. About 17 minutes serial, a few minutes
-   across 8 cores.
-6. **Stage 2** — `inference/fit_posterior.py`.
-7. **Stage 3** — `inference/validate_posterior.py`: SBC and coverage. The decisive
-   gate.
+7. **Stage 2** — `inference/fit_posterior.py`. Needs `pip install sbi`, the first
+   genuinely new dependency; check it against torch 2.10 before adding it.
+   The screen says three of four parameters should fit comfortably.
+8. **Stage 3** — `inference/validate_posterior.py`: SBC rank ECDFs and coverage.
+   The decisive gate. `rb` is the interesting case: its posterior should come
+   back only about 5% narrower than its prior, and anything sharper is
+   overconfidence.
 
-Before Stage 1, decide whether to regenerate
-`example_01/global_paper_feature_validation/`, whose `k_r_max = 70.0` in a
-60-unit domain is now refused outright (Section 8.6).
+Open decisions:
+
+- Whether to regenerate `example_01/global_paper_feature_validation/`, whose
+  `k_r_max = 70.0` in a 60-unit domain is now refused outright (Section 8.6).
+  Its K features are affected; its G, F and cross-G features are not.

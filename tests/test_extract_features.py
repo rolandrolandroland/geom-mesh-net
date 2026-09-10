@@ -218,3 +218,74 @@ def test_discover_patterns_honours_limit(tmp_path):
 
 def test_discover_patterns_returns_empty_for_an_empty_directory(tmp_path):
     assert discover_patterns(tmp_path) == []
+
+
+# --------------------------------------------------------------------------
+# Feature screen
+# --------------------------------------------------------------------------
+
+
+def test_r_squared_is_zero_for_the_mean_predictor():
+    from inference.screen_features import r_squared
+
+    truth = np.array([1.0, 2.0, 3.0, 4.0])
+    mean = truth.mean()
+    assert r_squared(truth, np.full(4, mean), mean) == pytest.approx(0.0)
+
+
+def test_r_squared_is_one_for_a_perfect_predictor():
+    from inference.screen_features import r_squared
+
+    truth = np.array([1.0, 2.0, 3.0, 4.0])
+    assert r_squared(truth, truth, truth.mean()) == pytest.approx(1.0)
+
+
+def test_r_squared_goes_negative_for_a_predictor_worse_than_the_mean():
+    from inference.screen_features import r_squared
+
+    truth = np.array([1.0, 2.0, 3.0, 4.0])
+    assert r_squared(truth, np.full(4, 100.0), truth.mean()) < 0.0
+
+
+def test_screen_recovers_a_planted_linear_signal_and_rejects_noise():
+    """One target is a linear function of the features, one is pure noise.
+
+    The screen must separate them, which is the whole job it does before
+    Stage 2 commits to a flow.
+    """
+    from inference.recover_ground_truth import PARAMETER_NAMES
+    from inference.screen_features import screen
+
+    rng = np.random.default_rng(0)
+    n = 400
+    features = rng.normal(size=(n, N_FEATURES))
+    theta = np.empty((n, 4))
+    theta[:, 0] = features @ rng.normal(size=N_FEATURES)      # learnable
+    theta[:, 1] = features[:, 3] * 2.0                        # learnable
+    theta[:, 2] = features[:, 7] ** 2                         # learnable, quadratic
+    theta[:, 3] = rng.normal(size=n)                          # independent noise
+
+    summary, n_train, n_test, n_splits = screen(features, theta, n_splits=5)
+    assert n_train + n_test == n
+    assert n_splits == 5
+
+    learnable = [PARAMETER_NAMES[i] for i in (0, 1)]
+    for name in learnable:
+        assert summary[name]["best_r2_mean"] > 0.9, (name, summary[name])
+    # The noise target must not be predictable.
+    assert summary[PARAMETER_NAMES[3]]["best_r2_mean"] < 0.2
+
+
+def test_screen_reports_spread_across_splits():
+    """A single-split R^2 moves by more than the effect being tested for, so
+    the spread has to be reported alongside the mean."""
+    from inference.screen_features import screen
+
+    rng = np.random.default_rng(1)
+    features = rng.normal(size=(300, N_FEATURES))
+    theta = rng.normal(size=(300, 4))
+    summary, _, _, _ = screen(features, theta, n_splits=6)
+    for scores in summary.values():
+        assert scores["best_r2_sd"] >= 0.0
+        assert scores["best_r2_min"] <= scores["best_r2_mean"]
+        assert scores["best_r2_max"] >= scores["best_r2_mean"]
