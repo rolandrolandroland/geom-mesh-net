@@ -18,7 +18,9 @@ The project has two purposes:
 | Voxel target fields | working, tested |
 | Neural field (per-pattern) | working; see `example_01` |
 | Local-feature neural field experiment | run and **halted at its own interpolation gate** |
-| Posterior inference of cluster parameters | specified, not yet built |
+| Ground-truth parameter recovery | done (`inference/`, Stage 0) |
+| Global feature extraction for all patterns | done (Stage 1) |
+| Posterior fitting and calibration | specified, not yet built (Stages 2-3) |
 
 The active line of work is **amortized Bayesian inference of the physical
 cluster parameters**, specified in [`inference/ROADMAP.md`](inference/ROADMAP.md). Section 8
@@ -61,10 +63,10 @@ pip install -e .
 ## Tests
 
 ```bash
-PYTHONPATH=. python -m pytest tests/ -q
+python -m pytest -q
 ```
 
-62 tests, about 2 seconds. They need no data: the fixtures build synthetic
+79 tests, about 7 seconds. They need no data: the fixtures build synthetic
 patterns, and the tests that do want `data/` skip when it is absent.
 
 Where a closed form exists the tests compare against it rather than against a
@@ -92,7 +94,20 @@ recovered by replaying the seeded generator:
 PYTHONPATH=. python inference/recover_ground_truth.py
 ```
 
-Run this before modifying `data_factory.py`. See `inference/ROADMAP.md` section 2.2.
+Run this before modifying `data_factory.py`. See `inference/ROADMAP.md`
+section 2.2.
+
+## Inference pipeline
+
+```bash
+PYTHONPATH=. python inference/recover_ground_truth.py        # Stage 0
+PYTHONPATH=. python inference/extract_features.py --workers 7  # Stage 1
+```
+
+Stage 1 caches the 14 global features for every pattern to
+`inference/features/`, gated on the features being finite and the K extrema
+being real measurements rather than grid endpoints. Roughly four minutes across
+seven workers. See [`inference/ROADMAP.md`](inference/ROADMAP.md).
 
 ## Walkthroughs
 

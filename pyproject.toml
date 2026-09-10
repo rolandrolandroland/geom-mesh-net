@@ -5,7 +5,7 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "geom-mesh-net"
 version = "0.1.0"
-description = "Neural fields for synthetic 3D clustered point patterns"
+description = "Spatial statistics and inference for 3D clustered point patterns"
 readme = "README.md"
 requires-python = ">=3.10"
 dependencies = [
@@ -22,12 +22,29 @@ dependencies = [
     "jupyter",
 ]
 
+[project.optional-dependencies]
+dev = ["pytest"]
+# Neural posterior estimation, needed from Stage 2 of inference/ROADMAP.md.
+# NOTE: the local package is named `inference`, not `sbi`. A directory named
+# sbi/ shadows this distribution when PYTHONPATH includes the repository root.
+inference = ["sbi"]
+
 [tool.setuptools.packages.find]
 where = ["."]
+# `inference` is deliberately not installed: it is a collection of stage scripts
+# run from the repository root with PYTHONPATH=., not a library.
 include = ["geom_mesh_net*"]
 exclude = [
     "data*",
     "walkthroughs*",
     "tester_scripts*",
     "deprecated_code*",
+    "inference*",
+    "tests*",
+    "example_01*",
 ]
+
+[tool.pytest.ini_options]
+# So `pytest` works from the repository root without PYTHONPATH=. being set.
+pythonpath = ["."]
+testpaths = ["tests"]
