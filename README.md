@@ -18,9 +18,10 @@ The project has two purposes:
 | Voxel target fields | working, tested |
 | Neural field (per-pattern) | working; see `example_01` |
 | Local-feature neural field experiment | run and **halted at its own interpolation gate** |
-| Ground-truth parameter recovery | done (`inference/`, Stage 0) |
+| Ground-truth parameter recovery | done (Stage 0) |
 | Global feature extraction for all patterns | done (Stage 1) |
-| Posterior fitting and calibration | specified, not yet built (Stages 2-3) |
+| Amortized posterior over cluster parameters | done (Stage 2) |
+| Calibration and coverage | **done, gate passed** (Stage 3) |
 
 The active line of work is **amortized Bayesian inference of the physical
 cluster parameters**, specified in [`inference/ROADMAP.md`](inference/ROADMAP.md). Section 8
@@ -66,7 +67,7 @@ pip install -e .
 python -m pytest -q
 ```
 
-79 tests, about 7 seconds. They need no data: the fixtures build synthetic
+117 tests, about 25 seconds. They need no data: the fixtures build synthetic
 patterns, and the tests that do want `data/` skip when it is absent.
 
 Where a closed form exists the tests compare against it rather than against a
@@ -104,10 +105,24 @@ PYTHONPATH=. python inference/recover_ground_truth.py        # Stage 0
 PYTHONPATH=. python inference/extract_features.py --workers 7  # Stage 1
 ```
 
-Stage 1 caches the 14 global features for every pattern to
-`inference/features/`, gated on the features being finite and the K extrema
-being real measurements rather than grid endpoints. Roughly four minutes across
-seven workers. See [`inference/ROADMAP.md`](inference/ROADMAP.md).
+```bash
+PYTHONPATH=. python inference/screen_features.py                # informativeness
+PYTHONPATH=. python inference/fit_posterior.py                  # Stage 2
+PYTHONPATH=. python inference/validate_posterior.py             # Stage 3
+```
+
+Given a measured point pattern, this returns a calibrated posterior over the
+four physical cluster parameters. Cross-validated over all 1,000 patterns, the
+90% credible intervals cover 88.8% of the time for the in-cluster concentration
+and 86.7% for the mean cluster radius, with uniform simulation-based calibration
+ranks.
+
+The radius-spread parameter `rb` is barely identifiable from these features, and
+the posterior says so: it comes back 96% as wide as the prior, and is calibrated
+anyway. Reporting honest ignorance is the property a point estimate cannot have.
+
+See [`inference/ROADMAP.md`](inference/ROADMAP.md) for the staged protocol, the
+gates, and what each stage measured.
 
 ## Walkthroughs
 

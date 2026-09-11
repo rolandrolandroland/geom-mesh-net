@@ -1,0 +1,138 @@
+{
+  "stage": 3,
+  "folds": 10,
+  "posterior_samples": 999,
+  "seed": 0,
+  "coverage_levels": [
+    0.5,
+    0.8,
+    0.9,
+    0.95
+  ],
+  "gated_parameters": [
+    "rho_c",
+    "cr"
+  ],
+  "all_patterns": {
+    "n": 1000,
+    "kolmogorov_band": 0.04294694083467376,
+    "parameters": {
+      "rho_c": {
+        "max_ecdf_deviation": 0.030500000000000083,
+        "within_band": true,
+        "mean_normalized_rank": 0.489116
+      },
+      "rho_b": {
+        "max_ecdf_deviation": 0.04750000000000004,
+        "within_band": false,
+        "mean_normalized_rank": 0.47653199999999996
+      },
+      "cr": {
+        "max_ecdf_deviation": 0.03049999999999997,
+        "within_band": true,
+        "mean_normalized_rank": 0.49487700000000007
+      },
+      "rb": {
+        "max_ecdf_deviation": 0.02950000000000008,
+        "within_band": true,
+        "mean_normalized_rank": 0.49983500000000003
+      }
+    },
+    "coverage": {
+      "0.50": {
+        "rho_c": 0.509,
+        "rho_b": 0.475,
+        "cr": 0.494,
+        "rb": 0.538
+      },
+      "0.80": {
+        "rho_c": 0.792,
+        "rho_b": 0.756,
+        "cr": 0.793,
+        "rb": 0.798
+      },
+      "0.90": {
+        "rho_c": 0.888,
+        "rho_b": 0.847,
+        "cr": 0.867,
+        "rb": 0.876
+      },
+      "0.95": {
+        "rho_c": 0.919,
+        "rho_b": 0.911,
+        "cr": 0.918,
+        "rb": 0.916
+      }
+    }
+  },
+  "excluding_degenerate": {
+    "n": 998,
+    "kolmogorov_band": 0.042989952303475264,
+    "parameters": {
+      "rho_c": {
+        "max_ecdf_deviation": 0.03183667334669338,
+        "within_band": true,
+        "mean_normalized_rank": 0.4880981963927855
+      },
+      "rho_b": {
+        "max_ecdf_deviation": 0.04618737474949902,
+        "within_band": false,
+        "mean_normalized_rank": 0.47748597194388775
+      },
+      "cr": {
+        "max_ecdf_deviation": 0.03170040080160319,
+        "within_band": true,
+        "mean_normalized_rank": 0.4938877755511022
+      },
+      "rb": {
+        "max_ecdf_deviation": 0.030079158316633325,
+        "within_band": true,
+        "mean_normalized_rank": 0.49912124248497
+      }
+    },
+    "coverage": {
+      "0.50": {
+        "rho_c": 0.5100200400801603,
+        "rho_b": 0.4759519038076152,
+        "cr": 0.49498997995991983,
+        "rb": 0.5380761523046093
+      },
+      "0.80": {
+        "rho_c": 0.7935871743486974,
+        "rho_b": 0.7575150300601202,
+        "cr": 0.7945891783567134,
+        "rb": 0.7985971943887775
+      },
+      "0.90": {
+        "rho_c": 0.8897795591182365,
+        "rho_b": 0.8486973947895792,
+        "cr": 0.8687374749498998,
+        "rb": 0.8767535070140281
+      },
+      "0.95": {
+        "rho_c": 0.9208416833667334,
+        "rho_b": 0.9128256513026052,
+        "cr": 0.9198396793587175,
+        "rb": 0.9168336673346693
+      }
+    }
+  },
+  "gate": {
+    "parameters": {
+      "rho_c": {
+        "sbc_within_band": true,
+        "coverage_90": 0.888,
+        "coverage_within_tolerance": true,
+        "passed": true
+      },
+      "cr": {
+        "sbc_within_band": true,
+        "coverage_90": 0.867,
+        "coverage_within_tolerance": true,
+        "passed": true
+      }
+    },
+    "passed": true
+  },
+  "median_out_of_fold_log_prob": 7.713520050048828
+}

@@ -434,6 +434,59 @@ If this gate fails, the ordered remedies are: (a) more simulations, (b)
 observation augmentation per Section 7, (c) a larger flow, (d) reconsider the
 summary statistic. Do not proceed to Stage 4 with an uncalibrated posterior.
 
+**Result: PASSED.**
+
+Assessed by 10-fold cross-validation rather than on the 100-pattern Stage 2 test
+set. Only data a flow never trained on is admissible, and 100 ranks give a
+Kolmogorov band of ±0.136 — wide enough to accept badly miscalibrated
+posteriors. Refitting per fold gives an out-of-fold posterior for all 1,000
+patterns and narrows the band to ±0.043, for 66 seconds of compute. Each fold is
+a different flow, so this measures the calibration of the *procedure*, which is
+the right target for a method being proposed.
+
+| Parameter | max ECDF deviation | band ±0.0429 | 90% coverage | gated |
+| --- | ---: | --- | ---: | --- |
+| `rho_c` | 0.0305 | uniform | **0.888** | yes — pass |
+| `cr` | 0.0305 | uniform | **0.867** | yes — pass |
+| `rb` | 0.0295 | uniform | 0.876 | calibration only — pass |
+| `rho_b` | 0.0475 | **departs** | 0.847 | no |
+
+**The headline result is `rb`.** It is the parameter the data barely constrain —
+R² 0.11, contraction 0.039, a posterior 96% as wide as its prior. Its ranks are
+uniform and its 90% interval covers 87.6% of the time. The method reports honest
+ignorance and its error bars are trustworthy *while* being uninformative. That
+is the property no point estimate can have, and it is the reason this approach
+was worth the detour from the neural field.
+
+#### `rho_b` is mildly miscalibrated, and it is not the degenerate patterns
+
+`rho_b` breaches the band at 0.0475 against 0.0429 — 1.11× the band, so a real
+departure but a small one. Its 90% coverage is 0.847, just under the 0.85 floor
+the other parameters were gated on. Two diagnostics agree on the direction:
+
+- Its rank ECDF difference is a smooth *arch* peaking near rank 0.3, not noise.
+  Ranks pile at low values, so the truth sits below the posterior centre more
+  often than it should: the posterior is biased slightly high. Mean normalized
+  rank is 0.477 against 0.500.
+- Its coverage curve lies below the diagonal at every level, which is mild
+  overconfidence.
+
+It is tempting to attribute this to the zero-cluster patterns that dominated the
+Stage 2 mean. That is wrong: excluding both of them moves the deviation from
+0.0475 to 0.0462, still outside the band. Pattern 613 was a separate,
+single-pattern problem. `rho_b`'s miscalibration is systematic across the
+dataset.
+
+A plausible mechanism is that `rho_b` spans U(0, 0.05) against a realized guest
+fraction of 0.0967 ± 0.0237, so it is a small perturbation on a noisy quantity
+and the flow slightly over-trusts the F-feature signal that carries it. This is
+recorded rather than patched. The honest statement is that three of four
+parameters are calibrated, and `rho_b`'s intervals should be read as
+approximately 85% rather than 90% until it is fixed.
+
+`rho_b` was not in the pre-registered gate, and it has not been added to or
+removed from it after the fact.
+
 ### Stage 4 — Feature sufficiency (days)
 
 `walkthroughs/clustersim_todo.md` already asks "which features capture the
@@ -695,7 +748,7 @@ imports were written against it.
 | `inference/flow.py` | conditional autoregressive flow, written here not imported |
 | `inference/fit_posterior.py` | Stage 2 |
 | `inference/posterior/` | fitted flow, test posterior samples, metadata |
-| `inference/validate_posterior.py` | Stage 3 (to be written) |
+| `inference/validate_posterior.py` | Stage 3 |
 | `tests/` | regression tests for the feature library |
 
 Reproducibility follows the standard already set by
@@ -803,30 +856,45 @@ voxels and should not be a headline metric.
 
 ## 13. Immediate next actions
 
-Completed on this branch:
+**Stages 0 through 3 are complete and every gate passed.** The core claim of
+this roadmap is established: physical cluster parameters can be recovered from
+classical spatial-summary features with calibrated uncertainty.
 
-1. **Stage 0** — θ recovered, verified and persisted. Gate passed with exact
-   equality on all 1,000 patterns.
-2. **Feature-library corrections** — Sections 8.1 through 8.6.
-3. **Regression tests** — `tests/`, no data required, run with `python -m pytest`.
-4. **Data generator repaired** — Section 8.5.
-5. **Stage 1** — features extracted for all 1,000 patterns. Gate passed
-   (100% finite, 96.4% interior `Rm`). Cached to `inference/features/`.
-6. **Feature screen** — Section 5, "Measured outcome". `rho_c`, `rho_b` and `cr`
-   are strongly recoverable; `rb` is nearly but not entirely uninformative.
+| Stage | Outcome |
+| --- | --- |
+| 0 — ground truth | θ recovered and persisted, exact on all 1,000 patterns |
+| 1 — features | 100% finite, 96.4% interior `Rm`, 7.6 min on 7 workers |
+| 2 — fit | validation 6.939 nats against a 1.427 prior |
+| 3 — calibration | `rho_c` and `cr` uniform and covering; `rb` calibrated while uninformative |
 
-Not started:
+Supporting work: feature-library corrections (Section 8), a repaired data
+generator (8.5), and 117 regression tests including a flow checked against a
+closed-form posterior and calibration diagnostics checked against deliberately
+miscalibrated inputs.
 
-7. **Stage 2** — `inference/fit_posterior.py`. Needs `pip install sbi`, the first
-   genuinely new dependency; check it against torch 2.10 before adding it.
-   The screen says three of four parameters should fit comfortably.
-8. **Stage 3** — `inference/validate_posterior.py`: SBC rank ECDFs and coverage.
-   The decisive gate. `rb` is the interesting case: its posterior should come
-   back only about 5% narrower than its prior, and anything sharper is
-   overconfidence.
+Open, in rough priority order:
 
-Open decisions:
+1. **`rho_b` miscalibration** (Section 6, Stage 3). Small, systematic, and not
+   caused by the degenerate patterns. The cheapest probe is whether it survives
+   more simulations, since a mild bias can be a small-sample artifact.
+2. **Stage 4 — feature sufficiency.** Now well posed: posterior contraction
+   gives an objective ranking. Two specific questions are ready to settle —
+   whether `Rddm` contributes anything (interior in only 37% of patterns), and
+   whether `cube_root` beats `sqrt` (Section 8.2), which the project has argued
+   about but never measured.
+3. **Stage 5 — more simulations.** Motivated concretely rather than
+   speculatively: pattern 613 showed that rare structures are unlearnable at
+   n = 1,000, and item 1 may be a sample-size artifact too.
+4. **Observation augmentation** (Section 7). Free, and it would tell the flow
+   about observation noise rather than only parameter variation. Replicates must
+   stay on one side of the split.
+5. **Stage 6 — real data.** Still a separate research problem, not a next step.
+   See Section 10.
+
+Also open, unrelated to inference:
 
 - Whether to regenerate `example_01/global_paper_feature_validation/`, whose
   `k_r_max = 70.0` in a 60-unit domain is now refused outright (Section 8.6).
   Its K features are affected; its G, F and cross-G features are not.
+- The neural field thread in Section 12, whose feature comparison needs Fourier
+  features in the baseline before it can be rerun cleanly.
