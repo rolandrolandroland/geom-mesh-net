@@ -1,0 +1,68 @@
+{
+  "folds": 10,
+  "posterior_samples": 999,
+  "seed": 0,
+  "n_replicates": 4,
+  "control": {
+    "training_rows_per_fold": 810,
+    "median_log_prob": 6.126011848449707,
+    "kolmogorov_band": 0.04294694083467376,
+    "parameters": {
+      "rho_c": {
+        "max_ecdf_deviation": 0.03249999999999997,
+        "within_band": true,
+        "coverage_90": 0.878,
+        "contraction": 0.8136654828138956
+      },
+      "rho_b": {
+        "max_ecdf_deviation": 0.02850000000000008,
+        "within_band": true,
+        "coverage_90": 0.867,
+        "contraction": 0.808292769509069
+      },
+      "cr": {
+        "max_ecdf_deviation": 0.020500000000000074,
+        "within_band": true,
+        "coverage_90": 0.872,
+        "contraction": 0.6385344152885246
+      },
+      "rb": {
+        "max_ecdf_deviation": 0.0315,
+        "within_band": true,
+        "coverage_90": 0.867,
+        "contraction": 0.06455212269558752
+      }
+    }
+  },
+  "augmented": {
+    "training_rows_per_fold": 3240,
+    "median_log_prob": 6.431621074676514,
+    "kolmogorov_band": 0.04294694083467376,
+    "parameters": {
+      "rho_c": {
+        "max_ecdf_deviation": 0.01849999999999996,
+        "within_band": true,
+        "coverage_90": 0.888,
+        "contraction": 0.8283413517909554
+      },
+      "rho_b": {
+        "max_ecdf_deviation": 0.05349999999999999,
+        "within_band": false,
+        "coverage_90": 0.885,
+        "contraction": 0.8150488434117173
+      },
+      "cr": {
+        "max_ecdf_deviation": 0.035499999999999976,
+        "within_band": true,
+        "coverage_90": 0.869,
+        "contraction": 0.6672257423111025
+      },
+      "rb": {
+        "max_ecdf_deviation": 0.022500000000000075,
+        "within_band": true,
+        "coverage_90": 0.877,
+        "contraction": 0.08526409476335428
+      }
+    }
+  }
+}
