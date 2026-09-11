@@ -829,6 +829,66 @@ validation output are affected** and should be regenerated.
 
 ---
 
+## 8.7 The rho_b miscalibration, traced
+
+Stage 3 left `rho_b` outside the uniform band. Four candidate explanations were
+tested in order of cost, and the answer was none of the obvious ones.
+
+| hypothesis | verdict | evidence |
+| --- | --- | --- |
+| shrinkage toward the prior | ruled out | regression slope on truth 0.990, mean residual +0.00008 |
+| insufficient flow capacity | ruled out | larger flows are *worse*: width ratio 1.31 -> 1.47 -> 1.77 for 6x64 -> 10x128 -> 14x192 |
+| too few simulations | ruled out | ratio plateaus near 1.1 from n_train = 400 onward |
+| systematically overconfident width | **supported** | residual sd / posterior sd = 1.49 overall, 4.22 in the second quintile of `rho_b` against 0.83 in the fifth |
+
+The posterior *mean* is sound. The width is not, and it fails to adapt: the
+posterior stays narrow where the features stop being informative.
+
+**It is not specific to `rho_b`.** A learning curve over training-set size shows
+`cr` degrading from a ratio of 1.03 at n = 200 to 1.24 at n = 750 — worse than
+`rho_b` — while passing Stage 3 at coverage 0.867, the bottom edge of the gate.
+The flow is mildly overconfident across parameters and grows more so with data.
+Stage 3's gate was loose enough not to catch it.
+
+### Ensembling substantially fixes it
+
+Pooling five independently seeded flows recovers the between-model disagreement
+a single fit discards:
+
+| | `rho_c` | `rho_b` | `cr` | `rb` |
+| --- | ---: | ---: | ---: | ---: |
+| single, 90% coverage | 0.893 | 0.842 | 0.866 | 0.877 |
+| ensemble, 90% coverage | 0.915 | **0.906** | 0.892 | 0.889 |
+| single, width ratio | 1.32 | 1.29 | 1.05 | 1.00 |
+| ensemble, width ratio | 1.19 | 1.17 | 1.01 | 0.98 |
+
+Coverage improves for all four and `rho_b`'s gap closes against its 0.90 nominal.
+
+A caveat on that experiment: the single model contributed 200 draws per pattern
+and the ensemble 1,000, and SBC rank granularity depends on draw count, so the
+SBC deviation column of that run is not comparable between rows and is omitted
+here. Coverage and width ratio are unaffected. A clean SBC comparison needs
+equal draw counts and has not yet been run.
+
+### A reasoning error, recorded
+
+An earlier note concluded that more simulations would worsen `rho_b`, citing the
+augmentation result where quadrupling rows moved its SBC deviation from 0.0285 to
+0.0535. That inference was wrong. Augmentation adds near-duplicate rows, which
+increase overfitting without adding information; genuinely new draws do the
+opposite. The two mechanisms are opposite and were conflated. The conclusion
+survived only because the learning curve independently showed a plateau, which is
+the actual evidence for it.
+
+### Consequences
+
+1. `rho_b` should not be used to justify more simulations. The plateau settles it.
+2. Stage 3 should be re-run against an ensemble rather than a single flow, with
+   equal draw counts, and its gate tightened to catch the `cr` drift it missed.
+3. The width defect is a property of the estimator, so it will follow the method
+   to any new dataset. It matters more for Stage 6 than for anything on this
+   dataset.
+
 ## 9. Deliverables
 
 The package is `inference/`, not `sbi/`. A local `sbi/` directory shadows the
