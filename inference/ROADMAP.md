@@ -508,6 +508,105 @@ information about θ — something the choice has never been tested against.
 
 **Gate:** none. This is a descriptive study.
 
+**Result.** 23 configurations x 6 training seeds, held-out median
+log-likelihood and per-parameter contraction.
+
+#### Each parameter is carried by one summary function
+
+| family alone | log-lik | `rho_c` | `rho_b` | `cr` | `rb` |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| G | 5.464 | 0.680 | **0.850** | 0.113 | 0.045 |
+| F | 3.530 | 0.277 | 0.608 | −0.006 | −0.024 |
+| K | 3.496 | 0.190 | 0.170 | **0.525** | 0.026 |
+| cross-G | 4.458 | **0.741** | 0.333 | 0.050 | −0.004 |
+
+| family dropped | `rho_c` | `rho_b` | `cr` | `rb` |
+| --- | ---: | ---: | ---: | ---: |
+| G | −0.004 | **−0.169** | −0.036 | −0.001 |
+| F | −0.042 | −0.042 | −0.021 | −0.006 |
+| K | −0.003 | +0.008 | **−0.254** | −0.042 |
+| cross-G | **−0.120** | +0.016 | +0.008 | +0.011 |
+
+Dropping the K family costs `cr` 0.254 of contraction while leaving `rho_c` and
+`rho_b` untouched to within 0.01. The division of labour is clean and physically
+sensible: guest-to-host cross-G carries the in-cluster concentration, empty-space
+F and nearest-neighbour G carry the matrix concentration, second-order K carries
+the cluster length scale, and nothing carries the radius spread.
+
+This confirms the Section 5 correlation screen from an independent direction.
+Correlation asks whether a feature moves with a parameter; contraction asks
+whether it reduces the uncertainty remaining after every *other* feature is
+accounted for. They need not have agreed.
+
+**It also settles the status of the K features.** Everything Section 8.3 records
+about their boundary pinning is true, and they are still indispensable: without
+them the cluster radius is not recoverable at all. The `k_r_max` work was not
+housekeeping, it was what made `cr` inferable.
+
+#### `Rddm`: not resolved, and the noisiest feature measured
+
+Leave-one-out, paired by seed, 6 seeds:
+
+| dropped | Δ log-lik | ± se | verdict |
+| --- | ---: | ---: | --- |
+| `GXGH_min_diff` | −0.334 | 0.070 | carries information |
+| `F_min_diff` | −0.298 | 0.075 | carries information |
+| `G_zero_diff_r` | −0.208 | 0.056 | carries information |
+| `Rddm` | +0.149 | 0.144 | not resolved |
+
+Only 3 of 14 resolve at two standard errors. That is expected rather than a
+failure: the features are redundant, so removing any single one loses little.
+**Leave-one-out is the wrong instrument for correlated inputs**, and the family
+ablation is the one that answers the question.
+
+The three that do resolve are exactly the top correlates from Section 5, which is
+a consistency check rather than a new finding.
+
+`Rddm` remains unresolved at +0.149 ± 0.144. The point estimate says dropping it
+helps slightly, but it cannot be distinguished from zero. It is also the noisiest
+feature in the table — paired standard error 0.144 against a median of 0.086 —
+which is itself consistent with it reaching an interior extremum in only 37% of
+patterns. The honest summary is that `Rddm` shows no evidence of contributing and
+some evidence of being unstable, which is not the same as showing it is useless.
+
+#### `cube_root` versus `sqrt`, measured at last
+
+Identical `k_r_max = 40`, same split, 3 seeds, so the transform is the only
+difference:
+
+| | median log-lik | `rho_c` | `rho_b` | `cr` | `rb` |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| `sqrt` | 7.619 ± 0.277 | 0.867 | 0.900 | 0.649 | 0.058 |
+| `cube_root` | 7.573 ± 0.065 | 0.857 | 0.892 | **0.679** | 0.028 |
+
+The log-likelihood difference is 0.2x the seed noise: indistinguishable.
+`cube_root` is mechanically better at recovering K extrema — interior `Rm`
+1000/1000 against 964/1000, `Rddm` 466 against 366 — and buys +0.030 on `cr`
+contraction, but **that advantage does not reach the posterior**.
+
+So the Section 8.2 decision to keep `sqrt` and match the published definition
+costs nothing measurable. The argument is now closed on evidence.
+
+One unanticipated observation: `cube_root` trains four times more stably (seed sd
+0.065 against 0.277). A plausible reading is that `sqrt`'s boundary-pinned K
+features inject noise into training. That is a small practical argument for
+`cube_root` that has nothing to do with the variance-stabilization theory, and it
+was not predicted.
+
+#### A methodological note, recorded because the prediction was wrong
+
+The first ablation used 3 seeds and resolved nothing: all 14 leave-one-out deltas
+sat inside the seed-noise band. The stated fix was to compare configurations
+*paired* by seed, on the reasoning that they share training noise which would
+cancel.
+
+Measured, pairing shrinks the standard error by only about 1.2x, because
+different feature subsets do not in fact train alike and the noise is not
+common-mode. The resolution came from doubling the seed count, not from the
+pairing. Pairing also cannot move a point estimate at all — the mean of paired
+differences is identically the difference of means — which an earlier version of
+the output obscured by printing the two as separate columns.
+
 ### Stage 5 — Scale the simulation budget (days, mostly compute)
 
 If Stage 3 fails on sample size, or Stage 4 suggests the flow is
@@ -745,6 +844,7 @@ imports were written against it.
 | `inference/extract_features.py` | Stage 1 |
 | `inference/features/` | cached features (`.npz` gitignored, `.json` tracked) |
 | `inference/screen_features.py` | ridge screen of feature informativeness |
+| `inference/ablate_features.py` | Stage 4 |
 | `inference/flow.py` | conditional autoregressive flow, written here not imported |
 | `inference/fit_posterior.py` | Stage 2 |
 | `inference/posterior/` | fitted flow, test posterior samples, metadata |
@@ -856,7 +956,7 @@ voxels and should not be a headline metric.
 
 ## 13. Immediate next actions
 
-**Stages 0 through 3 are complete and every gate passed.** The core claim of
+**Stages 0 through 4 are complete and every gate passed.** The core claim of
 this roadmap is established: physical cluster parameters can be recovered from
 classical spatial-summary features with calibrated uncertainty.
 
@@ -866,6 +966,7 @@ classical spatial-summary features with calibrated uncertainty.
 | 1 — features | 100% finite, 96.4% interior `Rm`, 7.6 min on 7 workers |
 | 2 — fit | validation 6.939 nats against a 1.427 prior |
 | 3 — calibration | `rho_c` and `cr` uniform and covering; `rb` calibrated while uninformative |
+| 4 — sufficiency | each parameter carried by one summary family; K indispensable for `cr`; `sqrt` and `cube_root` indistinguishable |
 
 Supporting work: feature-library corrections (Section 8), a repaired data
 generator (8.5), and 117 regression tests including a flow checked against a
@@ -874,20 +975,20 @@ miscalibrated inputs.
 
 Open, in rough priority order:
 
-1. **`rho_b` miscalibration** (Section 6, Stage 3). Small, systematic, and not
-   caused by the degenerate patterns. The cheapest probe is whether it survives
-   more simulations, since a mild bias can be a small-sample artifact.
-2. **Stage 4 — feature sufficiency.** Now well posed: posterior contraction
-   gives an objective ranking. Two specific questions are ready to settle —
-   whether `Rddm` contributes anything (interior in only 37% of patterns), and
-   whether `cube_root` beats `sqrt` (Section 8.2), which the project has argued
-   about but never measured.
-3. **Stage 5 — more simulations.** Motivated concretely rather than
-   speculatively: pattern 613 showed that rare structures are unlearnable at
-   n = 1,000, and item 1 may be a sample-size artifact too.
-4. **Observation augmentation** (Section 7). Free, and it would tell the flow
-   about observation noise rather than only parameter variation. Replicates must
-   stay on one side of the split.
+1. **`rho_b` miscalibration** (Stage 3). Small, systematic, not caused by the
+   degenerate patterns. The cheapest probe is more simulations, since a mild bias
+   can be a small-sample artifact.
+2. **Stage 5 — more simulations.** Now motivated from three directions rather
+   than one: pattern 613 showed rare structures are unlearnable at n = 1,000;
+   item 1 may be a sample-size artifact; and Stage 4 left 11 of 14 features
+   unresolved for want of statistical power. `data_factory.py` runs again
+   (Section 8.5) and writes all four parameters, so this is unattended compute.
+3. **Observation augmentation** (Section 7). Free, and it teaches the flow about
+   observation noise rather than only parameter variation. Replicates must stay
+   on one side of the split.
+4. **`Rddm`** (Stage 4). No evidence it contributes, some evidence it is
+   unstable, not resolved either way. Worth revisiting once item 2 provides the
+   power to settle it, rather than dropping it on a point estimate.
 5. **Stage 6 — real data.** Still a separate research problem, not a next step.
    See Section 10.
 
