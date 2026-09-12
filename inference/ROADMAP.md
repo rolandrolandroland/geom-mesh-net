@@ -884,10 +884,76 @@ the actual evidence for it.
 
 1. `rho_b` should not be used to justify more simulations. The plateau settles it.
 2. Stage 3 should be re-run against an ensemble rather than a single flow, with
-   equal draw counts, and its gate tightened to catch the `cr` drift it missed.
+   equal draw counts. Done; see 8.8.
 3. The width defect is a property of the estimator, so it will follow the method
    to any new dataset. It matters more for Stage 6 than for anything on this
    dataset.
+
+## 8.8 Stage 3 re-run with an ensemble, and a correction to 8.7
+
+Re-run with five independently seeded flows per fold, pooling 200 draws from each
+so the total per pattern is unchanged at 1,000. Equal draw counts matter: SBC
+rank granularity depends on the number of draws, so an ensemble sampling more
+heavily than the single model it is compared against produces an incomparable
+deviation. An earlier quick comparison fell into exactly that trap and its SBC
+column should be disregarded.
+
+**The pre-registered gate passes.** Coverage improves for every parameter:
+
+| 90% coverage | single flow | ensemble |
+| --- | ---: | ---: |
+| `rho_c` | 0.888 | **0.919** |
+| `rho_b` | 0.847 | **0.902** |
+| `cr` | 0.867 | **0.885** |
+| `rb` | 0.876 | **0.882** |
+
+### The width ratio introduced in 8.7 was not robust
+
+| width ratio | `rho_c` | `rho_b` | `cr` | `rb` |
+| --- | ---: | ---: | ---: | ---: |
+| all 1,000 patterns | 1.38 | 1.34 | 1.04 | 0.99 |
+| excluding 2 zero-cluster patterns | **0.97** | **1.13** | 1.02 | 0.99 |
+
+Two rows in a thousand decide whether `rho_c` looks badly or perfectly
+calibrated. A ratio of standard deviations is dominated by its tails, which is
+the same defect that made the mean log-likelihood useless in Stage 2 — flagged
+there, then reproduced here in a diagnostic added to catch a different problem.
+Coverage, being a fraction, moved only from 0.919 to 0.921.
+
+`width_ratio` now uses a scaled median absolute deviation and reports both
+estimators. The gap between them is itself the diagnostic: a large gap means a
+few patterns carry enormous error, not that the posterior is uniformly narrow.
+
+### What that corrects
+
+Section 8.7 concluded that the flow is "mildly overconfident across parameters
+and becomes more so with data". That was computed with sd-based ratios on data
+containing structural outliers. The robust figures say something different and
+more accurate:
+
+> Posteriors are well calibrated for typical patterns, with robust width ratios
+> between 0.97 and 1.13. A small number of degenerate patterns carry enormous
+> errors.
+
+Those are two separate problems and 8.7 merged them into one wrong statement. The
+`cr` drift reported there, from 1.03 to 1.24 across the learning curve, was
+measured the same way and is unverified until rechecked robustly.
+
+### What actually remains
+
+`rho_b` still departs on SBC at 0.0521 while its coverage is now sound at 0.902.
+Width was the fixable half; what is left is *bias* — mean normalized rank 0.478
+against 0.500 — which ensembling cannot address and which correlates -0.137 with
+`rb`. That is the confounding hypothesis from 8.7, and it is now the only open
+calibration issue.
+
+### Recommended configuration
+
+Report posteriors from an ensemble rather than a single flow. It costs five
+training runs instead of one, a few seconds each, and it is what makes the
+coverage claim correct.
+
+
 
 ## 9. Deliverables
 

@@ -97,17 +97,32 @@ def central_interval_coverage(samples, truth, level):
     return ((truth >= lower) & (truth <= upper)).mean(axis=0)
 
 
-def cross_validated_posteriors(features, theta, folds, n_samples, seed, verbose=True):
+def cross_validated_posteriors(
+    features, theta, folds, n_samples, seed, verbose=True, ensemble=1
+):
     """Out-of-fold posterior samples for every pattern.
 
     Every pattern is scored by a flow that never saw it. Within each fold a
     slice of the training portion is held back for early stopping, so the
     out-of-fold data is untouched by model selection as well as by fitting.
+
+    With ``ensemble`` above one, each fold fits that many independently seeded
+    flows and pools their draws in equal share, so the total number of draws per
+    pattern is unchanged. That matters: SBC rank granularity depends on the draw
+    count, so an ensemble drawing more samples than the single model it is
+    compared against would produce an incomparable deviation. Section 8.7 records
+    an earlier comparison that fell into exactly that trap.
+
+    Ensembling widens the posterior by the disagreement between members, which is
+    variance a single fit discards. Section 8.7 found that recovering it closes
+    most of the overconfidence measured in Stage 3.
     """
     n = len(features)
     rng = np.random.default_rng(seed)
     assignment = rng.permutation(n) % folds
-    samples = np.zeros((n, n_samples, theta.shape[1]), dtype=np.float32)
+    per_member = n_samples // ensemble
+    total_draws = per_member * ensemble
+    samples = np.zeros((n, total_draws, theta.shape[1]), dtype=np.float32)
     fold_log_probs = np.zeros(n, dtype=np.float64)
 
     for fold in range(folds):
@@ -123,23 +138,40 @@ def cross_validated_posteriors(features, theta, folds, n_samples, seed, verbose=
         context = torch.tensor((features - mean) / sd, dtype=torch.float32)
         targets = torch.tensor(theta, dtype=torch.float32)
 
-        torch.manual_seed(seed + fold)
-        model = BoxFlow(PRIOR_LOW, PRIOR_HIGH, context_dim=features.shape[1])
-        fit(
-            model,
-            targets[training], context[training],
-            targets[stopping], context[stopping],
-            max_epochs=500, seed=seed + fold, verbose=False,
+        member_draws, member_log_probs = [], []
+        for member in range(ensemble):
+            member_seed = seed + fold + 1000 * member
+            torch.manual_seed(member_seed)
+            model = BoxFlow(PRIOR_LOW, PRIOR_HIGH, context_dim=features.shape[1])
+            fit(
+                model,
+                targets[training], context[training],
+                targets[stopping], context[stopping],
+                max_epochs=500, seed=member_seed, verbose=False,
+            )
+            model.eval()
+            with torch.no_grad():
+                member_draws.append(
+                    model.sample(
+                        context[held_out], n_samples=per_member,
+                        generator=torch.Generator().manual_seed(
+                            seed + 7000 + fold + 13 * member
+                        ),
+                    ).numpy()
+                )
+                member_log_probs.append(
+                    model.log_prob(
+                        targets[held_out], context[held_out]
+                    ).numpy()
+                )
+        drawn = np.concatenate(member_draws, axis=1)
+        # The pooled density is the mixture over members, so its log-density is
+        # the log mean of theirs, not the mean of their logs.
+        stacked = np.stack(member_log_probs)
+        fold_log_probs[held_out] = (
+            np.log(np.mean(np.exp(stacked - stacked.max(axis=0)), axis=0))
+            + stacked.max(axis=0)
         )
-        model.eval()
-        with torch.no_grad():
-            drawn = model.sample(
-                context[held_out], n_samples=n_samples,
-                generator=torch.Generator().manual_seed(seed + 1000 + fold),
-            ).numpy()
-            fold_log_probs[held_out] = model.log_prob(
-                targets[held_out], context[held_out]
-            ).numpy()
         samples[held_out] = drawn
         if verbose:
             print(
@@ -149,6 +181,51 @@ def cross_validated_posteriors(features, theta, folds, n_samples, seed, verbose=
                 flush=True,
             )
     return samples, fold_log_probs
+
+
+# Added after Stage 3, motivated by section 8.7. Stage 3's gate let `cr` through
+# at coverage 0.867 while its posterior was measurably too narrow, because
+# coverage tolerates a narrow interval if the errors happen to be small. The
+# width ratio measures over- and underconfidence directly. It is reported
+# alongside the pre-registered criteria, which are left exactly as registered.
+WIDTH_RATIO_TOLERANCE = (0.85, 1.15)
+
+
+def robust_sd(values, axis=0):
+    """Median absolute deviation, scaled to match a Gaussian standard deviation.
+
+    The 1.4826 factor makes this agree with the ordinary sd for Gaussian data
+    while ignoring a small fraction of extreme values.
+    """
+    median = np.median(values, axis=axis, keepdims=True)
+    return 1.4826 * np.median(np.abs(values - median), axis=axis)
+
+
+def width_ratio(samples, theta, robust=True):
+    """Residual spread over typical posterior spread, per parameter.
+
+    One means the posterior is as wide as its own errors. Above one is
+    overconfident, below one underconfident. Unlike coverage this cannot be
+    satisfied by a narrow interval that happens to sit in the right place.
+
+    ``robust=True`` uses a scaled median absolute deviation rather than a
+    standard deviation. This is not a cosmetic choice. Measured on the ensemble
+    run, the sd-based ratio for `rho_c` was 1.38 over all 1,000 patterns and 0.97
+    with two zero-cluster patterns removed -- two rows in a thousand deciding
+    whether the posterior looked badly or perfectly calibrated. A standard
+    deviation is dominated by its tails, which is the same defect that made the
+    mean log-likelihood useless in Stage 2. Coverage, being a fraction, was
+    untroubled by those rows and moved only 0.919 to 0.921.
+
+    The non-robust form is kept for comparison, since a large gap between the two
+    is itself a signal that a few patterns carry enormous error.
+    """
+    residual = samples.mean(axis=1) - theta
+    if robust:
+        return robust_sd(residual, axis=0) / np.median(
+            samples.std(axis=1), axis=0
+        )
+    return residual.std(axis=0) / samples.std(axis=1).mean(axis=0)
 
 
 def report(samples, theta, label, n_samples, indent="  "):
@@ -178,6 +255,14 @@ def report(samples, theta, label, n_samples, indent="  "):
             f"{normalized.mean():>11.3f}"
         )
 
+    ratios = width_ratio(samples, theta, robust=True)
+    fragile = width_ratio(samples, theta, robust=False)
+    for position, name in enumerate(PARAMETER_NAMES):
+        results["parameters"][name]["width_ratio"] = float(ratios[position])
+        results["parameters"][name]["width_ratio_sd_based"] = float(
+            fragile[position]
+        )
+
     print(f"\n{indent}Credible-interval coverage")
     header = f"{indent}{'nominal':>8}" + "".join(f"{n:>10}" for n in PARAMETER_NAMES)
     print(header)
@@ -192,6 +277,36 @@ def report(samples, theta, label, n_samples, indent="  "):
             + "".join(f"{value:>10.3f}" for value in empirical)
         )
     results["coverage"] = coverage_table
+
+    print(f"\n{indent}Width ratio (residual spread / posterior spread; 1.0 honest)")
+    print(f"{indent}{'':>14}" + "".join(f"{n:>10}" for n in PARAMETER_NAMES))
+    print(
+        f"{indent}{'robust':>14}"
+        + "".join(f"{ratios[i]:>10.2f}" for i in range(len(PARAMETER_NAMES)))
+    )
+    print(
+        f"{indent}{'sd-based':>14}"
+        + "".join(f"{fragile[i]:>10.2f}" for i in range(len(PARAMETER_NAMES)))
+    )
+    gaps = [
+        name for i, name in enumerate(PARAMETER_NAMES)
+        if fragile[i] > 1.4 * max(ratios[i], 1e-9)
+    ]
+    if gaps:
+        print(
+            f"{indent}  sd-based far above robust for {', '.join(gaps)}: a few\n"
+            f"{indent}  patterns carry very large errors. The robust row is the\n"
+            f"{indent}  one to read for typical behaviour."
+        )
+    outside = [
+        name for i, name in enumerate(PARAMETER_NAMES)
+        if not WIDTH_RATIO_TOLERANCE[0] <= ratios[i] <= WIDTH_RATIO_TOLERANCE[1]
+    ]
+    if outside:
+        print(
+            f"{indent}  outside [{WIDTH_RATIO_TOLERANCE[0]}, "
+            f"{WIDTH_RATIO_TOLERANCE[1]}]: {', '.join(outside)}"
+        )
     return results
 
 
@@ -212,16 +327,27 @@ def main():
     parser.add_argument("--folds", type=int, default=10)
     parser.add_argument("--samples", type=int, default=999)
     parser.add_argument("--seed", type=int, default=0)
+    parser.add_argument(
+        "--ensemble", type=int, default=1,
+        help="flows per fold; draws are split evenly so the total is unchanged",
+    )
     args = parser.parse_args()
 
     features, theta, _, _ = load_stage1(args.features, args.theta)
     print(
         f"Stage 3: {args.folds}-fold cross-validated calibration over "
-        f"{len(features)} patterns, {args.samples} posterior samples each\n"
+        f"{len(features)} patterns, {args.samples} posterior samples each"
     )
+    if args.ensemble > 1:
+        print(
+            f"  ensemble of {args.ensemble} flows per fold, "
+            f"{args.samples // args.ensemble} draws each"
+        )
+    print()
     started = time.perf_counter()
     samples, log_probs = cross_validated_posteriors(
-        features, theta, args.folds, args.samples, args.seed
+        features, theta, args.folds, args.samples, args.seed,
+        ensemble=args.ensemble,
     )
     print(f"\n  refitting took {time.perf_counter() - started:.1f} s")
 
@@ -312,6 +438,8 @@ def main():
                 "stage": 3,
                 "folds": args.folds,
                 "posterior_samples": args.samples,
+                "ensemble": args.ensemble,
+                "width_ratio_tolerance": list(WIDTH_RATIO_TOLERANCE),
                 "seed": args.seed,
                 "coverage_levels": list(COVERAGE_LEVELS),
                 "gated_parameters": list(GATED_PARAMETERS),

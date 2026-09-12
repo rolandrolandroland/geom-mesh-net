@@ -176,3 +176,108 @@ def test_parameter_names_match_the_posterior_dimension():
     from inference.fit_posterior import PRIOR_HIGH, PRIOR_LOW
 
     assert len(PARAMETER_NAMES) == len(PRIOR_LOW) == len(PRIOR_HIGH)
+
+
+# --------------------------------------------------------------------------
+# Width ratio — the diagnostic Stage 3's original gate lacked
+# --------------------------------------------------------------------------
+
+
+def test_width_ratio_is_one_for_a_calibrated_posterior():
+    from inference.validate_posterior import width_ratio
+
+    samples, truth = build(1.0, 1.0, seed=20)
+    assert width_ratio(samples, truth)[0] == pytest.approx(1.0, abs=0.08)
+
+
+def test_width_ratio_exceeds_one_when_overconfident():
+    from inference.validate_posterior import width_ratio
+
+    samples, truth = build(1.0, 0.5, seed=21)
+    assert width_ratio(samples, truth)[0] > 1.5
+
+
+def test_width_ratio_falls_below_one_when_underconfident():
+    from inference.validate_posterior import width_ratio
+
+    samples, truth = build(1.0, 2.0, seed=22)
+    assert width_ratio(samples, truth)[0] < 0.7
+
+
+def test_robust_and_sd_ratios_separate_typical_behaviour_from_outliers():
+    """The two estimators answer different questions, and both are reported.
+
+    Construct a posterior that is correctly wide for 95% of patterns and badly
+    wrong for the other 5%. The sd-based ratio is inflated by those few, while
+    the robust ratio reports that typical behaviour is fine. Neither is the
+    "right" number: the *gap* between them is the diagnostic, and it says a small
+    number of patterns carry enormous error rather than the posterior being
+    uniformly too narrow.
+
+    This is the distinction the ensemble run turned on. Over all 1,000 patterns
+    the sd-based ratio for `rho_c` was 1.38; excluding two zero-cluster patterns
+    it was 0.97.
+    """
+    from inference.validate_posterior import central_interval_coverage, width_ratio
+
+    rng = np.random.default_rng(23)
+    truth = rng.normal(0.0, 1.0, size=(N_PATTERNS, 1))
+    heavy = rng.random((N_PATTERNS, 1)) < 0.05
+    # Centre is correct for most patterns, wildly off for a few.
+    centre = truth + np.where(
+        heavy,
+        rng.normal(0.0, 6.0, size=(N_PATTERNS, 1)),
+        rng.normal(0.0, 0.05, size=(N_PATTERNS, 1)),
+    )
+    samples = centre[:, None, :] + rng.normal(
+        0.0, 1.0, size=(N_PATTERNS, N_SAMPLES, 1)
+    )
+
+    robust = width_ratio(samples, truth, robust=True)[0]
+    fragile = width_ratio(samples, truth, robust=False)[0]
+    coverage = central_interval_coverage(samples, truth, 0.9)[0]
+
+    assert robust < 0.5, robust              # typical patterns: posterior ample
+    assert fragile > 1.0, fragile            # tails inflate the sd-based figure
+    assert fragile > 3 * robust, (fragile, robust)   # the gap is the signal
+    assert coverage > 0.85, coverage
+
+
+def test_robust_sd_matches_ordinary_sd_for_clean_gaussian_data():
+    """The 1.4826 scaling has to make the two agree when there are no outliers,
+    or the robust ratio would not be comparable to 1.0."""
+    from inference.validate_posterior import robust_sd
+
+    rng = np.random.default_rng(30)
+    values = rng.normal(0.0, 2.0, size=(8000, 1))
+    assert robust_sd(values)[0] == pytest.approx(2.0, rel=0.06)
+
+
+def test_robust_sd_ignores_a_small_contaminated_fraction():
+    from inference.validate_posterior import robust_sd
+
+    rng = np.random.default_rng(31)
+    values = rng.normal(0.0, 1.0, size=(8000, 1))
+    values[:160] = rng.normal(0.0, 50.0, size=(160, 1))   # 2% contamination
+    assert robust_sd(values)[0] == pytest.approx(1.0, rel=0.10)
+    assert values.std() > 3.0        # the ordinary sd is wrecked by them
+
+
+def test_width_ratio_is_per_parameter():
+    """One well-calibrated parameter must not mask an overconfident one."""
+    from inference.validate_posterior import width_ratio
+
+    rng = np.random.default_rng(24)
+    truth = rng.normal(0.0, 1.0, size=(N_PATTERNS, 2))
+    # Posterior independent of the truth, as in `build`: the residual spread is
+    # then the truth's spread, and the ratio is truth_sd / posterior_sd.
+    samples = np.stack(
+        [
+            rng.normal(0.0, 1.0, size=(N_PATTERNS, N_SAMPLES)),   # ratio ~ 1.0
+            rng.normal(0.0, 0.3, size=(N_PATTERNS, N_SAMPLES)),   # ratio ~ 3.3
+        ],
+        axis=2,
+    )
+    ratios = width_ratio(samples, truth)
+    assert ratios[0] == pytest.approx(1.0, abs=0.15), ratios
+    assert ratios[1] > 2.5, ratios
