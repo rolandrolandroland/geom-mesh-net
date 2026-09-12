@@ -28,6 +28,11 @@ cluster parameters**, specified in [`inference/ROADMAP.md`](inference/ROADMAP.md
 of that document records corrections made to the feature library, some of which
 affect the earlier results.
 
+**For a full account of the package**, see
+[`README_detailed.md`](README_detailed.md) — a paper-format description with an
+abstract, background, methods, results and discussion, linking to a standalone
+walkthrough for each of the nine experiments.
+
 ## Layout
 
 ```
