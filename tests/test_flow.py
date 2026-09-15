@@ -17,7 +17,7 @@ import numpy as np
 import pytest
 import torch
 
-from inference.flow import (
+from geom_mesh_net.inference.flow import (
     AutoregressiveAffineLayer,
     BoxFlow,
     ConditionalFlow,
@@ -298,7 +298,7 @@ def test_fit_does_not_beat_the_prior_on_pure_noise():
 def test_split_is_disjoint_and_covers_everything():
     """Leakage between splits would invalidate every calibration number in
     Stage 3, silently and without any error."""
-    from inference.fit_posterior import split_indices
+    from experiments.inference.fit_posterior import split_indices
 
     train, validation, test = split_indices(1000)
     assert len(train) == 800 and len(validation) == 100 and len(test) == 100
@@ -310,7 +310,7 @@ def test_split_is_disjoint_and_covers_everything():
 def test_split_is_deterministic_across_calls():
     """Stage 2 and Stage 3 recompute the split independently; they must agree
     or Stage 3 would calibrate on patterns the flow trained on."""
-    from inference.fit_posterior import split_indices
+    from experiments.inference.fit_posterior import split_indices
 
     first = split_indices(1000)
     second = split_indices(1000)
@@ -319,7 +319,7 @@ def test_split_is_deterministic_across_calls():
 
 
 def test_split_changes_with_seed():
-    from inference.fit_posterior import split_indices
+    from experiments.inference.fit_posterior import split_indices
 
     _, _, test_a = split_indices(1000, seed=42)
     _, _, test_b = split_indices(1000, seed=43)

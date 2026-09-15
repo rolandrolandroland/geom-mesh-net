@@ -3,9 +3,9 @@
 import numpy as np
 import pytest
 
-from geom_mesh_net.core_functions.paper_spatial_features import PAPER_FEATURE_NAMES
-from inference.ablate_features import FEATURE_FAMILIES, evaluate
-from inference.recover_ground_truth import PARAMETER_NAMES
+from experiments.inference.ablate_features import FEATURE_FAMILIES, evaluate
+from geom_mesh_net.simulation.parameters import PARAMETER_NAMES
+from geom_mesh_net.statistics.paper_spatial_features import PAPER_FEATURE_NAMES
 
 
 def test_families_partition_the_feature_set_exactly():

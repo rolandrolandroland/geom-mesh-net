@@ -12,7 +12,7 @@ from pathlib import Path
 import numpy as np
 import pytest
 
-from reconstruction import benchmark as bm
+from experiments.reconstruction import benchmark as bm
 
 N_ATOMS = 216_000
 

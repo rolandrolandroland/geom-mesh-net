@@ -1,6 +1,6 @@
-"""Regression tests for voxelize_clusters.generate_density_grid.
+"""Regression tests for density_grid.generate_density_grid (formerly voxelize_clusters).
 
-The function is deprecated as a ground truth (``reconstruction/ROADMAP.md``
+The function is deprecated as a ground truth (``experiments/reconstruction/ROADMAP.md``
 section 3.2) but still used by ``LoadData``. Two properties are pinned: it no
 longer raises on the 53 to 60 stored patterns containing a zero or tiny radius,
 and it says, when called, that it is not the simulator's field.
@@ -9,7 +9,7 @@ and it says, when called, that it is not the simulator's field.
 import numpy as np
 import pytest
 
-from geom_mesh_net.core_functions import voxelize_clusters as vc
+from geom_mesh_net.fields import density_grid as vc
 
 
 def grid(centres, radii):
@@ -29,5 +29,5 @@ def test_zero_radius_cluster_no_longer_raises_and_changes_nothing():
 
 def test_warns_that_it_is_not_the_simulators_field():
     centres = {"x": np.array([5.0]), "y": np.array([5.0]), "z": np.array([5.0])}
-    with pytest.warns(DeprecationWarning, match="field_oracle.replay_oracle"):
+    with pytest.warns(DeprecationWarning, match="fields.oracle.replay_oracle"):
         grid(centres, [3.0])

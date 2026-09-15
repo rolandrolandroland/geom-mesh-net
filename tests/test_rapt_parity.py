@@ -27,7 +27,7 @@ from pathlib import Path
 import numpy as np
 import pytest
 
-from geom_mesh_net.core_functions import paper_spatial_features as psf
+from geom_mesh_net.statistics import paper_spatial_features as psf
 
 
 FIXTURE = Path(__file__).parent / "fixtures" / "rapt_parity.npz"

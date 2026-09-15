@@ -3,7 +3,7 @@
 import numpy as np
 import pytest
 
-from geom_mesh_net.core_functions.point_cloud_fields import (
+from geom_mesh_net.fields.point_cloud import (
     build_grid_axes,
     choose_point_cloud,
     estimate_guest_probability_grid,

@@ -9,16 +9,17 @@ regenerable -- the script says so and skips that panel rather than failing.
 """
 
 import json
-from pathlib import Path
 
 import matplotlib
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 import numpy as np
 
-from inference.recover_ground_truth import PARAMETER_NAMES
+from geom_mesh_net import paths
+from geom_mesh_net.simulation.parameters import PARAMETER_NAMES
 
-OUT = Path("docs/figures")
+OUT = paths.FIGURES_DIR
+INFERENCE = paths.INFERENCE_DIR
 OUT.mkdir(parents=True, exist_ok=True)
 
 INK = "#12161f"
@@ -110,14 +111,14 @@ def figure_k_radius_scan():
 # --------------------------------------------------------------------------
 
 def figure_feature_parameter_map():
-    path = Path("inference/features/global_features.npz")
+    path = INFERENCE / "features" / "global_features.npz"
     if not path.exists():
-        print("  skipping feature map: run inference/extract_features.py first")
+        print("  skipping feature map: run python -m experiments.inference.extract_features first")
         return
     with np.load(path, allow_pickle=False) as cached:
         values = cached["values"]
         names = [str(n) for n in cached["feature_names"]]
-    theta = np.load("inference/ground_truth/theta.npy")[: len(values)]
+    theta = np.load(paths.THETA_PATH)[: len(values)]
 
     matrix = np.array([
         [np.corrcoef(values[:, j], theta[:, k])[0, 1] for k in range(4)]
@@ -152,15 +153,15 @@ def figure_feature_parameter_map():
 # --------------------------------------------------------------------------
 
 def figure_training_history():
-    path = Path("inference/posterior/training_history.csv")
+    path = INFERENCE / "posterior" / "training_history.csv"
     if not path.exists():
-        print("  skipping training history: run inference/fit_posterior.py first")
+        print("  skipping training history: run python -m experiments.inference.fit_posterior first")
         return
     rows = [line.split(",") for line in path.read_text().splitlines()[1:]]
     epoch = [int(r[0]) for r in rows]
     train = [float(r[1]) for r in rows]
     validation = [float(r[2]) for r in rows]
-    metadata = json.load(open("inference/posterior/fit_metadata.json"))
+    metadata = json.load(open(INFERENCE / "posterior" / "fit_metadata.json"))
     prior = metadata["prior_log_prob"]
 
     fig, ax = plt.subplots(figsize=(6.4, 3.6))
@@ -186,9 +187,9 @@ def figure_training_history():
 # --------------------------------------------------------------------------
 
 def figure_ablation():
-    path = Path("inference/posterior/ablation_sqrt.json")
+    path = INFERENCE / "posterior" / "ablation_sqrt.json"
     if not path.exists():
-        print("  skipping ablation: run inference/ablate_features.py first")
+        print("  skipping ablation: run python -m experiments.inference.ablate_features first")
         return
     data = json.load(open(path))
     results, families = data["results"], data["families"]
@@ -233,15 +234,15 @@ def figure_ablation():
 # --------------------------------------------------------------------------
 
 def figure_augmentation():
-    path = Path("inference/features/augmented_features.json")
+    path = INFERENCE / "features" / "augmented_features.json"
     if not path.exists():
-        print("  skipping augmentation: run inference/augment_features.py first")
+        print("  skipping augmentation: run python -m experiments.inference.augment_features first")
         return
     data = json.load(open(path))
     ratios = data["within_over_between_sd"]
     order = sorted(ratios, key=ratios.get, reverse=True)
 
-    comparison = json.load(open("inference/posterior/augmentation_comparison.json"))
+    comparison = json.load(open(INFERENCE / "posterior" / "augmentation_comparison.json"))
     control = comparison["control"]["parameters"]
     augmented = comparison["augmented"]["parameters"]
 
@@ -280,14 +281,14 @@ def figure_augmentation():
 # --------------------------------------------------------------------------
 
 def figure_rho_b():
-    path = Path("inference/posterior/calibration.npz")
+    path = INFERENCE / "posterior" / "calibration.npz"
     if not path.exists():
-        print("  skipping rho_b: run inference/validate_posterior.py first")
+        print("  skipping rho_b: run python -m experiments.inference.validate_posterior first")
         return
     with np.load(path, allow_pickle=False) as cached:
         ranks = cached["ranks"]
         draws = int(cached["n_posterior_samples"])
-    theta = np.load("inference/ground_truth/theta.npy")[: len(ranks)]
+    theta = np.load(paths.THETA_PATH)[: len(ranks)]
     position = PARAMETER_NAMES.index("rho_b")
     normalized = (ranks[:, position] + 0.5) / (draws + 1)
 

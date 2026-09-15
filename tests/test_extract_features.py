@@ -9,16 +9,15 @@ a check.
 import numpy as np
 import pytest
 
-from geom_mesh_net.core_functions import paper_spatial_features as psf
-from inference.extract_features import (
+from experiments.inference.extract_features import (
     GATE_MINIMUM_FINITE_FRACTION,
     GATE_MINIMUM_INTERIOR_RM_FRACTION,
-    STAGE1_CONFIG,
-    build_config,
     discover_patterns,
     extract_one,
     report_gate,
 )
+from geom_mesh_net.statistics import paper_spatial_features as psf
+from geom_mesh_net.statistics.presets import STAGE1_CONFIG, build_config
 
 
 N_FEATURES = len(psf.PAPER_FEATURE_NAMES)
@@ -230,7 +229,7 @@ def test_discover_patterns_returns_empty_for_an_empty_directory(tmp_path):
 
 
 def test_r_squared_is_zero_for_the_mean_predictor():
-    from inference.screen_features import r_squared
+    from experiments.inference.screen_features import r_squared
 
     truth = np.array([1.0, 2.0, 3.0, 4.0])
     mean = truth.mean()
@@ -238,14 +237,14 @@ def test_r_squared_is_zero_for_the_mean_predictor():
 
 
 def test_r_squared_is_one_for_a_perfect_predictor():
-    from inference.screen_features import r_squared
+    from experiments.inference.screen_features import r_squared
 
     truth = np.array([1.0, 2.0, 3.0, 4.0])
     assert r_squared(truth, truth, truth.mean()) == pytest.approx(1.0)
 
 
 def test_r_squared_goes_negative_for_a_predictor_worse_than_the_mean():
-    from inference.screen_features import r_squared
+    from experiments.inference.screen_features import r_squared
 
     truth = np.array([1.0, 2.0, 3.0, 4.0])
     assert r_squared(truth, np.full(4, 100.0), truth.mean()) < 0.0
@@ -257,8 +256,8 @@ def test_screen_recovers_a_planted_linear_signal_and_rejects_noise():
     The screen must separate them, which is the whole job it does before
     Stage 2 commits to a flow.
     """
-    from inference.recover_ground_truth import PARAMETER_NAMES
-    from inference.screen_features import screen
+    from geom_mesh_net.simulation.parameters import PARAMETER_NAMES
+    from experiments.inference.screen_features import screen
 
     rng = np.random.default_rng(0)
     n = 400
@@ -283,7 +282,7 @@ def test_screen_recovers_a_planted_linear_signal_and_rejects_noise():
 def test_screen_reports_spread_across_splits():
     """A single-split R^2 moves by more than the effect being tested for, so
     the spread has to be reported alongside the mean."""
-    from inference.screen_features import screen
+    from experiments.inference.screen_features import screen
 
     rng = np.random.default_rng(1)
     features = rng.normal(size=(300, N_FEATURES))

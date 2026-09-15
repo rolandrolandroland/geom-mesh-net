@@ -16,13 +16,13 @@ is that it *rejects* the other three.
 import numpy as np
 import pytest
 
-from inference.recover_ground_truth import PARAMETER_NAMES
-from inference.validate_posterior import (
+from geom_mesh_net.inference.calibration import (
     central_interval_coverage,
     ecdf_deviation,
     kolmogorov_band,
     sbc_ranks,
 )
+from geom_mesh_net.simulation.parameters import PARAMETER_NAMES
 
 
 N_PATTERNS = 2000
@@ -173,7 +173,7 @@ def test_ecdf_deviation_is_zero_for_exactly_uniform_ranks():
 
 def test_parameter_names_match_the_posterior_dimension():
     """Guards the alignment every table in Stage 3 depends on."""
-    from inference.fit_posterior import PRIOR_HIGH, PRIOR_LOW
+    from geom_mesh_net.simulation.parameters import PRIOR_HIGH, PRIOR_LOW
 
     assert len(PARAMETER_NAMES) == len(PRIOR_LOW) == len(PRIOR_HIGH)
 
@@ -184,21 +184,21 @@ def test_parameter_names_match_the_posterior_dimension():
 
 
 def test_width_ratio_is_one_for_a_calibrated_posterior():
-    from inference.validate_posterior import width_ratio
+    from geom_mesh_net.inference.calibration import width_ratio
 
     samples, truth = build(1.0, 1.0, seed=20)
     assert width_ratio(samples, truth)[0] == pytest.approx(1.0, abs=0.08)
 
 
 def test_width_ratio_exceeds_one_when_overconfident():
-    from inference.validate_posterior import width_ratio
+    from geom_mesh_net.inference.calibration import width_ratio
 
     samples, truth = build(1.0, 0.5, seed=21)
     assert width_ratio(samples, truth)[0] > 1.5
 
 
 def test_width_ratio_falls_below_one_when_underconfident():
-    from inference.validate_posterior import width_ratio
+    from geom_mesh_net.inference.calibration import width_ratio
 
     samples, truth = build(1.0, 2.0, seed=22)
     assert width_ratio(samples, truth)[0] < 0.7
@@ -218,7 +218,7 @@ def test_robust_and_sd_ratios_separate_typical_behaviour_from_outliers():
     the sd-based ratio for `rho_c` was 1.38; excluding two zero-cluster patterns
     it was 0.97.
     """
-    from inference.validate_posterior import central_interval_coverage, width_ratio
+    from geom_mesh_net.inference.calibration import central_interval_coverage, width_ratio
 
     rng = np.random.default_rng(23)
     truth = rng.normal(0.0, 1.0, size=(N_PATTERNS, 1))
@@ -246,7 +246,7 @@ def test_robust_and_sd_ratios_separate_typical_behaviour_from_outliers():
 def test_robust_sd_matches_ordinary_sd_for_clean_gaussian_data():
     """The 1.4826 scaling has to make the two agree when there are no outliers,
     or the robust ratio would not be comparable to 1.0."""
-    from inference.validate_posterior import robust_sd
+    from geom_mesh_net.inference.calibration import robust_sd
 
     rng = np.random.default_rng(30)
     values = rng.normal(0.0, 2.0, size=(8000, 1))
@@ -254,7 +254,7 @@ def test_robust_sd_matches_ordinary_sd_for_clean_gaussian_data():
 
 
 def test_robust_sd_ignores_a_small_contaminated_fraction():
-    from inference.validate_posterior import robust_sd
+    from geom_mesh_net.inference.calibration import robust_sd
 
     rng = np.random.default_rng(31)
     values = rng.normal(0.0, 1.0, size=(8000, 1))
@@ -265,7 +265,7 @@ def test_robust_sd_ignores_a_small_contaminated_fraction():
 
 def test_width_ratio_is_per_parameter():
     """One well-calibrated parameter must not mask an overconfident one."""
-    from inference.validate_posterior import width_ratio
+    from geom_mesh_net.inference.calibration import width_ratio
 
     rng = np.random.default_rng(24)
     truth = rng.normal(0.0, 1.0, size=(N_PATTERNS, 2))

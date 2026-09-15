@@ -1,8 +1,8 @@
 """Tests for the replay oracle of clustersim's guest probabilities.
 
-Every reconstruction in ``reconstruction/`` is scored against this oracle. If it
-is wrong, every score is wrong in the same direction, and nothing downstream
-can detect it. The grid it replaces was measured wrong inside clusters, so here
+Every reconstruction in ``experiments/reconstruction/`` is scored against this
+oracle. If it is wrong, every score is wrong in the same direction, and nothing
+downstream can detect it. The grid it replaces was measured wrong inside clusters, so here
 the oracle is checked against things that cannot share its mistakes:
 
 - exact enumeration of successive sampling for a small population;
@@ -14,8 +14,8 @@ import itertools
 import numpy as np
 import pytest
 
-from geom_mesh_net.core_functions import clustersim as csim
-from geom_mesh_net.core_functions import field_oracle as fo
+from geom_mesh_net.fields import oracle as fo
+from geom_mesh_net.simulation import clustersim as csim
 
 
 def enumerate_successive_sampling(weights, n_selected):

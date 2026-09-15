@@ -10,8 +10,8 @@ error rather than merely detecting change.
 import numpy as np
 import pytest
 
-from geom_mesh_net.core_functions import paper_spatial_features as psf
-from geom_mesh_net.core_functions.paper_spatial_features import (
+from geom_mesh_net.statistics import paper_spatial_features as psf
+from geom_mesh_net.statistics.paper_spatial_features import (
     K_TRANSFORMS,
     LocalPaperFeatureConfig,
     PaperFeatureConfig,
@@ -113,7 +113,7 @@ def test_k_radius_beyond_shortest_side_is_rejected():
 
 
 def test_global_features_reject_k_r_max_larger_than_domain():
-    """example_01/global_paper_feature_validation used k_r_max=70 in a
+    """experiments/neural_field/global_paper_feature_validation used k_r_max=70 in a
     60-unit domain. That configuration is now refused."""
     coords, labels, domain = _synthetic_clustered_pattern()
     config = PaperFeatureConfig(
@@ -141,7 +141,8 @@ def test_sqrt_transform_leaves_csr_growing_as_r_to_the_three_halves():
     sqrt linearizes K only in two dimensions. In 3D it leaves K_csr
     proportional to r**1.5, so difference curves grow at large radii and their
     extrema sit further out. That is why the default k_r_max must be set from
-    the cluster scale rather than left small; see inference/ROADMAP.md section 8.3.
+    the cluster scale rather than left small; see
+    experiments/inference/ROADMAP.md section 8.3.
     """
     radii = np.linspace(1.0, 12.0, 45)
     transformed = transform_k(ball_volume(radii), "sqrt")
@@ -356,7 +357,8 @@ def test_config_defaults_to_the_paper_transform():
     """sqrt is the Bennett et al. definition and the project default.
 
     cube_root is available for comparison but changes the feature semantics,
-    so it is opt-in rather than the default. See inference/ROADMAP.md section 8.2.
+    so it is opt-in rather than the default. See
+    experiments/inference/ROADMAP.md section 8.2.
     """
     assert PaperFeatureConfig().k_transform == "sqrt"
 

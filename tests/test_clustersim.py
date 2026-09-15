@@ -8,7 +8,7 @@ for the existing datasets, which leave it at its default.
 import numpy as np
 import pytest
 
-from geom_mesh_net.core_functions import clustersim as csim
+from geom_mesh_net.simulation import clustersim as csim
 
 SIDE, OPP_SIDE = 24, 12
 PARAMS = dict(pcp=0.1, rho_c=0.5, rho_b=0.02, cr=3.0, rb=0.2)

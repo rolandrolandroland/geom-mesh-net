@@ -8,7 +8,7 @@ identity the whole track relies on is checked exactly.
 import numpy as np
 import pytest
 
-from geom_mesh_net.core_functions import field_baselines as fb
+from geom_mesh_net.fields import baselines as fb
 
 
 def brute_force_nadaraya_watson(coords, guest, points, h):

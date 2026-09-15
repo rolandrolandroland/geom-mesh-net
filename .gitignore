@@ -9,57 +9,58 @@ venv/
 .DS_Store
 
 # Simulated point patterns (5 GB, 1000 patterns).
-# Regenerate with deprecated_code/tester_scripts/data_factory.py
+# Regenerate with PYTHONPATH=. python scripts/generate_data.py
 data/
-walkthroughs/walkthrough_data
+
+# The guide notebook's five-pattern dataset and trained models. The notebook
+# regenerates both when it runs; its figures under walkthrough_figures/ ARE tracked.
+docs/guides/walkthrough_data/
+docs/guides/trained_models/
 
 # Training checkpoints and figures
-example_01/checkpoints
-/phase*.pt
-walkthroughs/trained_models/
+experiments/neural_field/checkpoints
+deprecated_code/checkpoints/
 deprecated_code/tester_scripts/checkpoints
 deprecated_code/tester_scripts/checkpoints_old
 
 # Large experiment artifacts: per-pattern feature grids, targets, masks,
 # predictions and checkpoints. Regenerate with
-# example_01/execute_experimental_methodology_01.py. The report, figures,
-# metrics CSVs and configs under methodology_01_results/ ARE tracked.
-example_01/methodology_01_results/patterns/
-example_01/paper_feature_cache_02/
-example_01/paper_feature_experiments_02/
+# experiments/neural_field/execute_experimental_methodology_01.py. The report,
+# figures, metrics CSVs and configs under methodology_01_results/ ARE tracked.
+experiments/neural_field/methodology_01_results/patterns/
+experiments/neural_field/paper_feature_cache_02/
+experiments/neural_field/paper_feature_experiments_02/
 
 # Stage 1 feature caches are regenerable in about 4 minutes:
-#   PYTHONPATH=. python inference/extract_features.py --workers 7
+#   python -m experiments.inference.extract_features --workers 7
 # The .json metadata beside each cache IS tracked, since it records the config,
 # timings and gate result.
-inference/features/*.npz
+experiments/inference/features/*.npz
 
 # Fitted flow and posterior samples, regenerable in seconds:
-#   PYTHONPATH=. python inference/fit_posterior.py
+#   python -m experiments.inference.fit_posterior
 # The .json metadata and training history ARE tracked.
-inference/posterior/*.pt
-inference/posterior/*.npz
-
-# Augmented (thinned-replicate) feature cache, ~11 min to regenerate:
-#   PYTHONPATH=. python inference/augment_features.py --workers 7
-inference/features/augmented_features.npz
+experiments/inference/posterior/*.pt
+experiments/inference/posterior/*.npz
 
 # Reference PDFs. Published papers are not redistributed from this repo.
 papers/
 
 # Shared-point-pattern dataset (~5 GB), regenerable:
-#   PYTHONPATH=. python inference/generate_shared_upp.py
+#   python -m experiments.inference.generate_shared_upp
 data_shared_upp/
 
 # Random-centre benchmark dataset (~5 GB), regenerable:
-#   PYTHONPATH=. python reconstruction/generate_random_centres.py
-# Its checksums and provenance are copied into reconstruction/benchmark/, which IS tracked.
+#   python -m experiments.reconstruction.generate_random_centres
+# Its checksums and provenance are copied into experiments/reconstruction/benchmark/,
+# which IS tracked.
 data_random_centres/
 
 # Personal teaching worksheets (exercise and solution notebooks), regenerable with
 #   python worksheets/_build/build_worksheets.py
 worksheets/
 
-# Per-atom oracle probabilities, regenerable by reconstruction/stage0_oracle.py.
+# Per-atom oracle probabilities, regenerable by
+#   python -m experiments.reconstruction.stage0_oracle
 # The gate report and metadata beside them ARE tracked.
-reconstruction/results/oracle/
+experiments/reconstruction/results/oracle/

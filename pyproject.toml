@@ -13,30 +13,30 @@ dependencies = [
     "scipy",
     "matplotlib",
     "torch",
-    # 3D plotting in core_functions/cluster_visualizer.py only.
+    # geom_mesh_net.viz.clusters only; importing geom_mesh_net.viz does not load them.
     "pyvista",
     "plotly",
 ]
 
 [project.optional-dependencies]
 dev = ["pytest"]
-# The guide notebook in walkthroughs/ and the teaching worksheets, which are built
+# The guide notebook in docs/guides/ and the teaching worksheets, which are built
 # and executed with nbformat and nbclient.
 notebooks = ["jupyter", "pandas", "nbformat", "nbclient"]
 
 [tool.setuptools.packages.find]
 where = ["."]
-# `inference` is deliberately not installed: it is a collection of stage scripts
-# run from the repository root with PYTHONPATH=., not a library.
+# Only the library is installed. experiments/, scripts/ and docs/ are run from the
+# repository root: experiment tracks as modules (python -m experiments.inference.fit_posterior),
+# the rest with PYTHONPATH=. set.
 include = ["geom_mesh_net*"]
 exclude = [
     "data*",
-    "walkthroughs*",
-    "tester_scripts*",
-    "deprecated_code*",
-    "inference*",
+    "docs*",
+    "experiments*",
+    "scripts*",
     "tests*",
-    "example_01*",
+    "deprecated_code*",
 ]
 
 [tool.pytest.ini_options]

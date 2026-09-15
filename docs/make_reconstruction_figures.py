@@ -1,24 +1,26 @@
 """Generate the figures used by the reconstruction walkthroughs (E10 onward) in ``docs/``.
 
-Every figure is drawn from a tracked results file under ``reconstruction/``, so
-the documentation can be rebuilt without rerunning any experiment. A figure whose
+Every figure is drawn from a tracked results file under
+``experiments/reconstruction/``, so the documentation can be rebuilt without
+rerunning any experiment. A figure whose
 results file is missing is skipped with a message.
 
     PYTHONPATH=. python docs/make_reconstruction_figures.py
 """
 
 import json
-from pathlib import Path
 
 import matplotlib
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 import numpy as np
 
-OUT = Path("docs/figures")
+from geom_mesh_net import paths
+
+OUT = paths.FIGURES_DIR
 OUT.mkdir(parents=True, exist_ok=True)
-PILOT = Path("reconstruction/pilot/results")
-RESULTS = Path("reconstruction/results")
+PILOT = paths.RECONSTRUCTION_DIR / "pilot" / "results"
+RESULTS = paths.RECONSTRUCTION_DIR / "results"
 
 INK = "#12161f"
 ACCENT = "#2d5d7c"
