@@ -15,6 +15,8 @@ walkthroughs/walkthrough_data
 
 # Training checkpoints and figures
 example_01/checkpoints
+/phase*.pt
+walkthroughs/trained_models/
 deprecated_code/tester_scripts/checkpoints
 deprecated_code/tester_scripts/checkpoints_old
 

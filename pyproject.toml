@@ -12,22 +12,17 @@ dependencies = [
     "numpy",
     "scipy",
     "matplotlib",
-    "pandas",
+    "torch",
+    # 3D plotting in core_functions/cluster_visualizer.py only.
     "pyvista",
     "plotly",
-    "torch",
-    "torchvision",
-    "torchaudio",
-    "torch-geometric",
-    "jupyter",
 ]
 
 [project.optional-dependencies]
 dev = ["pytest"]
-# Neural posterior estimation, needed from Stage 2 of inference/ROADMAP.md.
-# NOTE: the local package is named `inference`, not `sbi`. A directory named
-# sbi/ shadows this distribution when PYTHONPATH includes the repository root.
-inference = ["sbi"]
+# The guide notebook in walkthroughs/ and the teaching worksheets, which are built
+# and executed with nbformat and nbclient.
+notebooks = ["jupyter", "pandas", "nbformat", "nbclient"]
 
 [tool.setuptools.packages.find]
 where = ["."]
