@@ -194,7 +194,11 @@ def test_extract_one_returns_features_for_a_real_pattern(tmp_path):
                            "f_grid_points_per_axis": 8, "k_max_points": 600})
     result = extract_one((0, str(tmp_path), config))
     assert result["error"] == "", result["error"]
-    assert np.all(np.isfinite(result["values"]))
+    # The K features may legitimately be NaN under rapt semantics; the G, F and
+    # cross-G minimum and 95% radius never are.
+    defined = [i for i, n in enumerate(psf.PAPER_FEATURE_NAMES)
+               if n not in ("Tm", "Rm", "Rdm", "Rddm", "Tdm", "GXGH_FWHM")]
+    assert np.all(np.isfinite(result["values"][defined]))
     assert result["k_extrema_interior"].shape == (3,)
     assert result["seconds"] > 0.0
 

@@ -41,3 +41,6 @@ inference/posterior/*.npz
 # Augmented (thinned-replicate) feature cache, ~11 min to regenerate:
 #   PYTHONPATH=. python inference/augment_features.py --workers 7
 inference/features/augmented_features.npz
+
+# Reference PDFs. Published papers are not redistributed from this repo.
+papers/

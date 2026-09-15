@@ -26,6 +26,25 @@ from geom_mesh_net.core_functions.paper_spatial_features import (
 )
 
 
+# Under rapt semantics the K-derived features, and GXGH_FWHM at the edge of its
+# grid, are NaN wherever rapt returns NA. Everything else is always defined.
+ALWAYS_DEFINED = [
+    i for i, name in enumerate(psf.PAPER_FEATURE_NAMES)
+    if name not in ("Tm", "Rm", "Rdm", "Rddm", "Tdm", "GXGH_FWHM")
+]
+RADIUS_K_INDEX = {"Rm": 7, "Rdm": 8, "Rddm": 9}
+
+
+def assert_rapt_contract(values, interior):
+    """Defined features are finite; radius K features are NaN exactly where the
+    interior flag says no extremum was found."""
+    values = np.asarray(values, dtype=float)
+    assert np.all(np.isfinite(values[..., ALWAYS_DEFINED])), values
+    for position, name in enumerate(("Rm", "Rdm", "Rddm")):
+        column = values[..., RADIUS_K_INDEX[name]]
+        assert np.array_equal(np.isfinite(column), np.asarray(interior)[..., position]), name
+
+
 def ball_volume(radii):
     return (4.0 / 3.0) * np.pi * np.asarray(radii, dtype=float) ** 3
 
@@ -414,7 +433,7 @@ def test_global_features_end_to_end_are_finite_and_named():
     )
     assert result.values.shape == (14,)
     assert result.names == psf.PAPER_FEATURE_NAMES
-    assert np.all(np.isfinite(result.values))
+    assert_rapt_contract(result.values, result.k_extrema_interior)
     assert result.k_extrema_interior is not None
     assert result.k_extrema_interior.shape == (3,)
 
@@ -452,7 +471,7 @@ def test_random_label_null_is_reproducible_for_a_fixed_seed():
     config = _cheap_config(null_model="random_label", n_relabelings=3)
     first = calculate_global_paper_features(coords, labels, domain, config=config)
     second = calculate_global_paper_features(coords, labels, domain, config=config)
-    assert np.array_equal(first.values, second.values)
+    assert np.array_equal(first.values, second.values, equal_nan=True)
 
 
 def test_features_require_both_marks_present():
@@ -485,7 +504,7 @@ def test_local_features_return_per_query_values_and_diagnostics():
     assert result.values.shape == (3, 14)
     assert result.valid.shape == (3,)
     assert result.k_extrema_interior.shape == (3, 3)
-    assert np.all(np.isfinite(result.values[result.valid]))
+    assert_rapt_contract(result.values[result.valid], result.k_extrema_interior[result.valid])
     assert np.all(result.point_counts > 0)
 
 

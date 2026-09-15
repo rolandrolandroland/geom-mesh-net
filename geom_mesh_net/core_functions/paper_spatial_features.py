@@ -80,6 +80,10 @@ class PaperFeatureConfig:
     k_smoothing_reference_r_max: float = 10.0
     null_model: str = "random_label"
     k_transform: str = "sqrt"
+    # "rapt" reproduces the R package's feature extraction exactly (see the
+    # section on faithful ports near the end of this module). "legacy_port" is
+    # the earlier Python port, kept to reproduce results generated with it.
+    feature_method: str = "rapt"
 
     def __post_init__(self):
         positive_values = {
@@ -107,6 +111,10 @@ class PaperFeatureConfig:
         if self.k_transform not in K_TRANSFORMS:
             raise ValueError(
                 f"k_transform must be one of {K_TRANSFORMS}"
+            )
+        if self.feature_method not in ("rapt", "legacy_port"):
+            raise ValueError(
+                "feature_method must be one of ('rapt', 'legacy_port')"
             )
 
 
@@ -216,6 +224,7 @@ def calculate_global_paper_features(
         ),
         k_transform=config.k_transform,
         return_diagnostics=True,
+        feature_method=config.feature_method,
     )
 
     return PaperFeatureResult(
@@ -561,6 +570,7 @@ def calculate_local_paper_features(
                 ),
                 k_transform=config.k_transform,
                 return_diagnostics=True,
+                feature_method=config.feature_method,
             )
             valid[query_index] = True
         except ValueError:
@@ -583,46 +593,58 @@ def extract_paper_features(
     k_smoothing_reference_r_max=10.0,
     k_transform="sqrt",
     return_diagnostics=False,
+    feature_method="rapt",
 ):
     """Extract the 14 named features from observed and expected curves.
 
+    ``feature_method="rapt"`` (the default) reproduces the R package exactly,
+    including returning NaN for any K feature rapt reports as NA -- which happens
+    whenever the difference curve has no local maximum where one is needed.
+    Callers must decide what to do with those rows; rapt's own training script
+    drops them.
+
+    ``feature_method="legacy_port"`` is the earlier Python port, kept only to
+    reproduce results generated with it. It returns a grid endpoint where rapt
+    returns NA, and raises on non-finite values.
+
     With ``return_diagnostics=True`` returns ``(values, k_extrema_interior)``,
-    where the second element is a boolean triple for Rm, Rdm and Rddm. See
-    ``_extract_k_features`` for why those flags matter.
+    a boolean triple for whether Rm, Rdm and Rddm are defined.
     """
-    g_features = _extract_g_features(
-        radii["g"],
-        observed.guest_g,
-        expected.guest_g,
-    )
-    f_features = _extract_f_features(
-        observed.guest_f,
-        expected.guest_f,
-    )
+    if feature_method not in FEATURE_METHODS:
+        raise ValueError(f"feature_method must be one of {FEATURE_METHODS}")
+
     transformed_k = (
         transform_k(observed.guest_k, k_transform)
         - transform_k(expected.guest_k, k_transform)
     )
-    k_features, k_extrema_interior = _extract_k_features(
-        radii["k"],
-        transformed_k,
-        smoothing_reference_r_max=k_smoothing_reference_r_max,
-    )
-    cross_g_features = _extract_cross_g_features(
-        radii["cross_g"],
-        observed.guest_to_host_g,
-        expected.guest_to_host_g,
-    )
+    if feature_method == "rapt":
+        g_features = _extract_g_features_rapt(
+            radii["g"], observed.guest_g, expected.guest_g
+        )
+        k_features, k_extrema_interior = _extract_k_features_rapt(
+            radii["k"], transformed_k
+        )
+        cross_g_features = _extract_cross_g_features_rapt(
+            radii["cross_g"], observed.guest_to_host_g, expected.guest_to_host_g
+        )
+    else:
+        g_features = _extract_g_features(
+            radii["g"], observed.guest_g, expected.guest_g
+        )
+        k_features, k_extrema_interior = _extract_k_features(
+            radii["k"],
+            transformed_k,
+            smoothing_reference_r_max=k_smoothing_reference_r_max,
+        )
+        cross_g_features = _extract_cross_g_features(
+            radii["cross_g"], observed.guest_to_host_g, expected.guest_to_host_g
+        )
+    f_features = _extract_f_features(observed.guest_f, expected.guest_f)
 
     features = np.concatenate(
-        [
-            g_features,
-            f_features,
-            k_features,
-            cross_g_features,
-        ]
+        [g_features, f_features, k_features, cross_g_features]
     )
-    if not np.all(np.isfinite(features)):
+    if feature_method == "legacy_port" and not np.all(np.isfinite(features)):
         raise ValueError("paper spatial features contain non-finite values")
     if return_diagnostics:
         return features, k_extrema_interior
@@ -1144,3 +1166,279 @@ def _validate_mark_counts(guest_mask):
         raise ValueError("at least two guest points are required")
     if host_count < 1:
         raise ValueError("at least one host point is required")
+
+
+# ==========================================================================
+# Faithful ports of the rapt feature extractors
+# ==========================================================================
+#
+# The functions above (`_extract_g_features`, `_extract_cross_g_features`,
+# `_extract_k_features`, `_loess`) are the original Python port. Checked line by
+# line against the R package they were ported from -- rapt, the reference
+# implementation for Bennett, Proudian and Zimmerman (2023), Ultramicroscopy 247,
+# 113687 -- they diverge in several places:
+#
+#   * When the K difference curve has no local maximum, rapt's `k3features`
+#     returns NA and the training script drops the row with `complete.cases`.
+#     The port fell back to `np.argmax` and returned a grid endpoint as though it
+#     were a measurement. Under the Stage 1 settings this fabricated Rddm for
+#     about 63% of patterns and Rdm for about 29%.
+#   * rapt's smoothing span is `(Rm / 7) * 0.3` as a fraction of points. The port
+#     multiplied it by a radius scale and clamped it from below.
+#   * R's loess uses floor(span * n) neighbours; the port used ceil. For spans
+#     above one R widens the bandwidth by sqrt(span); the port clipped at n.
+#   * The Rddm window upper bound was clamped to at least Rm + 2 and truncated to
+#     an integer, where rapt compares against the unrounded value.
+#   * Every fallback (no negative peak, no derivative peak, no Rddm candidate)
+#     returned an argmax where rapt propagates NA.
+#
+# The functions below reproduce rapt, including two small quirks in the R code
+# that are kept deliberately so the features match the published ones:
+#
+#   * `g3features` looks up G_zero_diff_r with `which(diff == zero_diff)` over the
+#     whole curve rather than the window between the extrema, so an identical
+#     value earlier in the curve wins.
+#   * `g3Xfeatures` computes the right-hand half-maximum index as
+#     `ind + which(...)`, one step past `ind + which(...) - 1`, so GXGH_FWHM is one
+#     radius step wider.
+#
+# Parity against the installed R package is tested in tests/test_rapt_parity.py.
+
+FEATURE_METHODS = ("rapt", "legacy_port")
+
+
+def _loess_local_fit(x_values, y_values, centre, span):
+    """One degree-2 tricube local regression at `centre`: (value, slope).
+
+    Follows R's loess (netlib dloess): the neighbourhood holds
+    floor(n * span + 1e-5) points, and for spans above one the bandwidth is the
+    distance to the farthest point scaled by sqrt(span). The epsilon matters:
+    0.57 * 100 is 56.99999999999999 in floating point, and without it the
+    neighbourhood is one point short of R's.
+    """
+    count = len(x_values)
+    distances = np.abs(x_values - centre)
+    if span > 1.0:
+        bandwidth = distances.max() * np.sqrt(span)
+    else:
+        neighbors = max(min(count, int(np.floor(span * count + 1e-5))), 1)
+        bandwidth = np.partition(distances, neighbors - 1)[neighbors - 1]
+    if bandwidth <= 0.0:
+        weights = (distances == 0.0).astype(float)
+    else:
+        weights = (1.0 - np.clip(distances / bandwidth, 0.0, 1.0) ** 3) ** 3
+    offsets = x_values - centre
+    design = np.column_stack([np.ones(count), offsets, offsets**2])
+    root = np.sqrt(weights)
+    coefficients = np.linalg.lstsq(
+        design * root[:, None], y_values * root, rcond=None
+    )[0]
+    return coefficients[0], coefficients[1]
+
+
+def _loess_rapt(x_values, y_values, span, surface="interpolate", cell=0.2):
+    """R's `loess(y ~ x, span = span)` for one predictor, reproduced exactly.
+
+    rapt calls loess with R's defaults, and the default ``surface =
+    "interpolate"`` does not evaluate the local regression at every point. It
+    builds a kd-tree over x -- the data range padded by 0.5% each side, split at
+    the median point until a cell holds at most floor(n * span * cell) points --
+    fits the local regression only at the cell vertices, recording value and
+    slope, and blends between vertices with cubic Hermite interpolation.
+
+    The two surfaces differ by up to about 0.2% of the curve range, and that is
+    enough to move Rm by up to three grid steps and flip whether Rddm exists at
+    all, so the interpolated surface is reproduced rather than approximated.
+    ``surface="direct"`` evaluates the local fit at every point instead.
+
+    Both match R to machine precision on the curves in tests/test_rapt_parity.py.
+    """
+    x_values = np.asarray(x_values, dtype=float)
+    y_values = np.asarray(y_values, dtype=float)
+    count = len(x_values)
+    if surface == "direct":
+        return np.array([
+            _loess_local_fit(x_values, y_values, centre, span)[0]
+            for centre in x_values
+        ])
+    if surface != "interpolate":
+        raise ValueError("surface must be 'interpolate' or 'direct'")
+
+    order = np.argsort(x_values, kind="stable")
+    ordered = x_values[order]
+    cell_capacity = int(np.floor(count * span * cell))
+    padding = 0.005 * max(
+        ordered[-1] - ordered[0],
+        1e-10 * max(abs(ordered[0]), abs(ordered[-1])) + 1e-30,
+    )
+    lower_box, upper_box = ordered[0] - padding, ordered[-1] + padding
+
+    splits = []
+    queue = [(1, count, lower_box, upper_box)]      # 1-based, as in ehg124
+    while queue:
+        low, high, left_vertex, right_vertex = queue.pop(0)
+        leaf = (high - low + 1) <= cell_capacity
+        if not leaf:
+            middle = (low + high) // 2
+            split = ordered[middle - 1]
+            leaf = split == left_vertex or split == right_vertex
+        if leaf:
+            continue
+        splits.append(split)
+        queue.append((low, middle, left_vertex, split))
+        queue.append((middle + 1, high, split, right_vertex))
+
+    vertices = np.array(sorted({lower_box, upper_box, *splits}))
+    fits = np.array([
+        _loess_local_fit(ordered, y_values[order], vertex, span)
+        for vertex in vertices
+    ])
+
+    cells = np.clip(
+        np.searchsorted(vertices, x_values, side="left"), 1, len(vertices) - 1
+    )
+    left, right = vertices[cells - 1], vertices[cells]
+    width = right - left
+    t = (x_values - left) / width
+    return (
+        (1 - t) ** 2 * (1 + 2 * t) * fits[cells - 1, 0]
+        + t ** 2 * (3 - 2 * t) * fits[cells, 0]
+        + t * (1 - t) ** 2 * width * fits[cells - 1, 1]
+        - t ** 2 * (1 - t) * width * fits[cells, 1]
+    )
+
+
+def _argmax_rapt(x_values, y_values, half_window, span):
+    """rapt's `argmax`: all local maxima of a loess-smoothed curve.
+
+    Returns (indices, smoothed) with 0-based indices in [w, n - w - 1], the
+    Python equivalent of rapt's 1-based [w + 1, n - w]. Empty when there is no
+    local maximum, which is where rapt's `x[1]` becomes NA.
+    """
+    smoothed = _loess_rapt(x_values, y_values, span)
+    count = len(smoothed)
+    indices = [
+        index
+        for index in range(half_window, count - half_window)
+        if smoothed[index]
+        >= smoothed[index - half_window : index + half_window + 1].max()
+    ]
+    return np.asarray(indices, dtype=int), smoothed
+
+
+def _finite_deriv(x_values, y_values):
+    """rapt's `finite_deriv`: one-sided at the ends, central in between."""
+    x_values = np.asarray(x_values, dtype=float)
+    y_values = np.asarray(y_values, dtype=float)
+    derivative = np.empty_like(y_values)
+    derivative[0] = (y_values[1] - y_values[0]) / (x_values[1] - x_values[0])
+    derivative[-1] = (y_values[-1] - y_values[-2]) / (x_values[-1] - x_values[-2])
+    derivative[1:-1] = (y_values[2:] - y_values[:-2]) / (x_values[2:] - x_values[:-2])
+    return derivative
+
+
+def _extract_k_features_rapt(radii, transformed_k):
+    """A line-by-line port of rapt's `k3features`. NaN wherever rapt gives NA.
+
+    Returns (values, interior) where values are Tm, Rm, Rdm, Rddm, Tdm and
+    interior flags whether Rm, Rdm and Rddm are defined.
+    """
+    radii = np.asarray(radii, dtype=float)
+    curve = np.asarray(transformed_k, dtype=float)
+    missing = np.full(5, np.nan)
+    if np.any(np.isinf(curve)):
+        return missing, np.zeros(3, dtype=bool)
+
+    first, _ = _argmax_rapt(radii, curve, 3, 0.08)
+    if len(first) == 0:
+        return missing, np.zeros(3, dtype=bool)
+
+    span = (radii[first[0]] / 7.0) * 0.3
+    peaks, smoothed = _argmax_rapt(radii, curve, 3, span)
+    negative, _ = _argmax_rapt(radii, -curve, 3, span)
+    derivative = _finite_deriv(radii, smoothed)
+    derivative_peaks, derivative_smoothed = _argmax_rapt(
+        radii, -derivative, 3, span
+    )
+    second = _finite_deriv(radii, -derivative_smoothed)
+    _, second_smoothed = _argmax_rapt(radii, second, 3, span)
+    third = _finite_deriv(radii, second_smoothed)
+    third_peaks, _ = _argmax_rapt(radii, third, 3, span)
+
+    def first_or_nan(indices):
+        return int(indices[0]) if len(indices) else None
+
+    peak = first_or_nan(peaks)
+    derivative_peak = first_or_nan(derivative_peaks)
+    negative_peak = first_or_nan(negative)
+
+    tm = smoothed[peak] if peak is not None else np.nan
+    rm = radii[peak] if peak is not None else np.nan
+    rdm = radii[derivative_peak] if derivative_peak is not None else np.nan
+    tdm = (
+        -derivative_smoothed[derivative_peak]
+        if derivative_peak is not None
+        else np.nan
+    )
+
+    # rapt works in 1-based indices: lb = i[1], ub = (d + 2 * neg) / 3, and
+    # candidates must satisfy lb < i < ub. Translating to 0-based indices j = i - 1
+    # gives j + 1 > lb1 and j + 1 < ub1, evaluated without rounding ub.
+    rddm = np.nan
+    if peak is not None:
+        lower_1 = peak + 1
+        if derivative_peak is None or negative_peak is None:
+            upper_1 = float(len(radii))
+        else:
+            upper_1 = ((derivative_peak + 1) + 2 * (negative_peak + 1)) / 3.0
+        candidates = [
+            j for j in third_peaks if lower_1 < (j + 1) < upper_1
+        ]
+        if candidates:
+            rddm = radii[candidates[0]]
+
+    values = np.array([tm, rm, rdm, rddm, tdm], dtype=float)
+    interior = np.array(
+        [np.isfinite(rm), np.isfinite(rdm), np.isfinite(rddm)], dtype=bool
+    )
+    return values, interior
+
+
+def _extract_g_features_rapt(radii, observed, expected):
+    """A port of rapt's `g3features`, including its whole-curve zero lookup."""
+    difference = np.asarray(observed, dtype=float) - np.asarray(expected, dtype=float)
+    maximum_index = int(np.argmax(difference))
+    minimum_index = int(np.argmin(difference))
+    if radii[minimum_index] == radii[maximum_index]:
+        # rapt leaves zero_diff undefined here and errors; the row is lost.
+        return np.array(
+            [difference[maximum_index], radii[maximum_index],
+             difference[minimum_index], np.nan],
+            dtype=float,
+        )
+    lower = min(maximum_index, minimum_index)
+    upper = max(maximum_index, minimum_index) + 1
+    window = difference[lower:upper]
+    zero_value = window[int(np.argmin(np.abs(window)))]
+    zero_index = int(np.flatnonzero(difference == zero_value)[0])
+    return np.array(
+        [difference[maximum_index], radii[maximum_index],
+         difference[minimum_index], radii[zero_index]],
+        dtype=float,
+    )
+
+
+def _extract_cross_g_features_rapt(radii, observed, expected):
+    """A port of rapt's `g3Xfeatures` (min, 95% radius, FWHM), quirk included."""
+    observed = np.asarray(observed, dtype=float)
+    difference = observed - np.asarray(expected, dtype=float)
+    minimum_difference = float(np.min(difference))
+    percentile_radius = radii[int(np.argmin(np.abs(0.95 - observed)))]
+
+    peak = int(np.argmax(np.abs(difference)))
+    half = difference[peak] / 2.0
+    left = int(np.argmin(np.abs(difference[: peak + 1] - half)))
+    # rapt: second <- ind + which(...), one past the true index.
+    right = peak + int(np.argmin(np.abs(difference[peak:] - half))) + 1
+    width = radii[right] - radii[left] if right < len(radii) else np.nan
+    return np.array([minimum_difference, percentile_radius, width], dtype=float)
