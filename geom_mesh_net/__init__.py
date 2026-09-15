@@ -9,4 +9,6 @@ Subpackages:
     inference     the conditional normalizing flow and its calibration checks
     viz           plotting helpers (imports pyvista and plotly on use)
     paths         where data, experiments and figures live
+
+``core_functions`` holds deprecated aliases for the modules' old names.
 """
