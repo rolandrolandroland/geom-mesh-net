@@ -1,0 +1,31 @@
+{
+ "machine": "arm64",
+ "torch": "2.10.0",
+ "steps": [
+  {
+   "model": "Fourier-feature MLP, BCE, batch 32,768",
+   "device": "mps",
+   "ms_per_step": 51.0
+  },
+  {
+   "model": "SIREN, BCE 32,768 + Laplacian residual on 8,192 points",
+   "device": "mps",
+   "ms_per_step": 276.0
+  },
+  {
+   "model": "3D U-Net (416,449 params) + implicit decoder, 4 x 48^3 crops, 16,384 queries",
+   "device": "mps",
+   "ms_per_step": 1101.3
+  },
+  {
+   "model": "Fourier-feature MLP, BCE, batch 32,768",
+   "device": "cpu",
+   "ms_per_step": 140.1
+  },
+  {
+   "model": "SIREN, BCE 32,768 + Laplacian residual on 8,192 points",
+   "device": "cpu",
+   "ms_per_step": 576.7
+  }
+ ]
+}

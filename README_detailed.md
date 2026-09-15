@@ -76,6 +76,8 @@ covering one experiment with its own figures and tables.
 | E7 | [Diagnosing `rho_b`](docs/experiments/E7_rho_b_diagnosis.md) | Why is one parameter miscalibrated? | Width, then bias; fixed by ensembling |
 | E8 | [Global feature validation](docs/experiments/E8_global_feature_validation.md) | Are the ported summary functions numerically sound? | Passed, no failures |
 | E9 | [Local features in a neural field](docs/experiments/E9_local_feature_neural_field.md) | Do spatially varying features improve field reconstruction? | Halted at its own gate |
+| E10 | [The replay oracle](docs/experiments/E10_replay_oracle.md) | Can the true guest probability of every simulated atom be computed? | Passed, exact; lattice artefact found |
+| E11 | [Baselines and the headroom map](docs/experiments/E11_baselines_headroom.md) | How close does standard smoothing come to the truth, and where does it fall short? | Passed; 48% of cells have headroom |
 
 ---
 
@@ -631,6 +633,27 @@ discussion and conclusion, covering one experiment in detail.
 - **[E9 — Local features in a neural field](docs/experiments/E9_local_feature_neural_field.md)**
   The prespecified screening experiment that halted at its own interpolation gate,
   and the reinterpretation of its result.
+
+### Reconstruction track
+
+Specified in [`reconstruction/ROADMAP.md`](reconstruction/ROADMAP.md), with a proposal
+([`PROPOSAL.md`](reconstruction/PROPOSAL.md)) describing its background, questions and
+methods.
+
+- **[E10 — The replay oracle](docs/experiments/E10_replay_oracle.md)**
+  An exact guest probability for every simulated atom, by replaying the simulator's
+  labelling. It replaces a density grid that was wrong inside clusters. The stage
+  also found that cluster centres in `data/` lie on a lattice, and that 22 patterns
+  lost clusters to it.
+
+- **[E11 — Baselines and the headroom map](docs/experiments/E11_baselines_headroom.md)**
+  Kernel delocalisation, the estimator of standard practice, scored against the
+  oracle on 300 test cells.
+  - It comes within 10% of the truth for large clusters at realistic efficiency, but
+    leaves room in 92% of small-cluster cells.
+  - Its error sits at cluster rims and cores.
+  - Guest-adaptive smoothing closes 41% of the remaining gap and is the baseline later
+    stages must beat.
 
 ---
 

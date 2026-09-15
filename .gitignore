@@ -48,3 +48,16 @@ papers/
 # Shared-point-pattern dataset (~5 GB), regenerable:
 #   PYTHONPATH=. python inference/generate_shared_upp.py
 data_shared_upp/
+
+# Random-centre benchmark dataset (~5 GB), regenerable:
+#   PYTHONPATH=. python reconstruction/generate_random_centres.py
+# Its checksums and provenance are copied into reconstruction/benchmark/, which IS tracked.
+data_random_centres/
+
+# Personal teaching worksheets (exercise and solution notebooks), regenerable with
+#   python worksheets/_build/build_worksheets.py
+worksheets/
+
+# Per-atom oracle probabilities, regenerable by reconstruction/stage0_oracle.py.
+# The gate report and metadata beside them ARE tracked.
+reconstruction/results/oracle/

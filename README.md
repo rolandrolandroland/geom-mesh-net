@@ -15,18 +15,27 @@ The project has two purposes:
 | --- | --- |
 | Cluster simulator (`clustersim.py`) | working; 1,000 patterns generated |
 | Spatial summary functions and 14 features | working, tested |
-| Voxel target fields | working, tested |
+| Voxel target fields | working, tested; `generate_density_grid` deprecated as a ground truth |
 | Neural field (per-pattern) | working; see `example_01` |
 | Local-feature neural field experiment | run and **halted at its own interpolation gate** |
 | Ground-truth parameter recovery | done (Stage 0) |
 | Global feature extraction for all patterns | done (Stage 1) |
 | Amortized posterior over cluster parameters | done (Stage 2) |
 | Calibration and coverage | **done, gate passed** (Stage 3) |
+| Replay oracle for the guest-probability field | **done, gate passed** (reconstruction Stage 0) |
+| Random-centre benchmark dataset | generated; 1,000 patterns |
+| Classical baselines and headroom map | **done, gate passed** (reconstruction Stage 1): 48% of test cells have headroom |
 
-The active line of work is **amortized Bayesian inference of the physical
+The first line of work is **amortized Bayesian inference of the physical
 cluster parameters**, specified in [`inference/ROADMAP.md`](inference/ROADMAP.md). Section 8
 of that document records corrections made to the feature library, some of which
 affect the earlier results.
+
+The second is **implicit neural reconstruction of the solute field**: estimating
+where the solute sits from a thinned point cloud, scored against an exact
+oracle. It is specified in [`reconstruction/ROADMAP.md`](reconstruction/ROADMAP.md).
+Stages 0 and 1 are complete. Each stage has a walkthrough in `docs/experiments/`
+(E10 onward).
 
 **For a full account of the package**, see
 [`README_detailed.md`](README_detailed.md) — a paper-format description with an
@@ -40,7 +49,8 @@ geom_mesh_net/core_functions/   the library
   clustersim.py                 simulate clustered marked point patterns
   paper_spatial_features.py     G, F, K, cross-G and the 14 scalar features
   point_cloud_fields.py         voxel guest-probability fields
-  voxelize_clusters.py          density grids from simulation parameters
+  field_oracle.py               exact guest probabilities by replaying the simulator
+  voxelize_clusters.py          density grids from simulation parameters (deprecated as ground truth)
   spatial_stats_01.py           binned pair-correlation "spatial barcode"
   data_loader.py                torch Dataset and neural field models
   cluster_visualizer.py         3D plotting
@@ -49,10 +59,12 @@ geom_mesh_net/core_functions/   the library
 
 example_01/                     neural field experiments and their results
 inference/                      posterior inference of cluster parameters
+reconstruction/                 reconstruction of the solute field
 tests/                          regression tests for the library
 walkthroughs/                   explanatory documents
 deprecated_code/                superseded scripts, kept for reference
 data/                           1,000 simulated patterns (gitignored, ~5 GB)
+data_random_centres/            the same parameters with random cluster centres (gitignored, ~5 GB)
 ```
 
 ## Environment
@@ -72,7 +84,7 @@ pip install -e .
 python -m pytest -q
 ```
 
-117 tests, about 25 seconds. They need no data: the fixtures build synthetic
+186 tests, about 90 seconds. They need no data: the fixtures build synthetic
 patterns, and the tests that do want `data/` skip when it is absent.
 
 Where a closed form exists the tests compare against it rather than against a
@@ -128,6 +140,30 @@ anyway. Reporting honest ignorance is the property a point estimate cannot have.
 
 See [`inference/ROADMAP.md`](inference/ROADMAP.md) for the staged protocol, the
 gates, and what each stage measured.
+
+## Reconstruction pipeline
+
+```bash
+PYTHONPATH=. python reconstruction/generate_random_centres.py   # benchmark dataset, ~2 min, 5 GB
+PYTHONPATH=. python reconstruction/freeze_benchmark.py          # splits, strata, mask checksums
+PYTHONPATH=. python reconstruction/stage0_oracle.py             # Stage 0 oracle and Gate 0, ~2 min
+PYTHONPATH=. python reconstruction/stage1_baselines.py          # Stage 1 baselines and Gate 1, ~30 min
+PYTHONPATH=. python docs/make_reconstruction_figures.py         # E10+ figures
+```
+
+The oracle gives every atom of a simulated pattern its exact probability of
+being a solute atom, by replaying the simulator's labelling. Against the realised
+labels of 2.9 million in-sphere atoms, its logistic recalibration slope is 1.0007
+and no reliability bin misses by more than 0.0008. Every reconstruction is scored
+against it.
+
+Standard kernel delocalisation comes within 10% of that truth for large clusters at
+realistic detection efficiency. It leaves room in 92% of small-cluster cells, mostly
+at cluster rims and cores. Adapting the kernel width to guest density closes 41% of
+the gap it leaves.
+
+See [`reconstruction/ROADMAP.md`](reconstruction/ROADMAP.md) for the stages, the
+gates, and the pilot measurements that set them.
 
 ## Walkthroughs
 

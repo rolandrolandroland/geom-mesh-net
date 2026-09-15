@@ -1,3 +1,5 @@
+import warnings
+
 import numpy as np
 
 from geom_mesh_net.core_functions import clustersim as csim
@@ -124,6 +126,14 @@ def generate_density_grid(grid_size, cluster_centers, radii,
                           selection='sampled',
                           overlap_prob = "highest",
                           clip_max_iter = 10):
+    warnings.warn(
+        "generate_density_grid only approximates clustersim's guest probabilities and is wrong "
+        "inside clusters: its profile is too peaked, rims are floored at rho_b, and overlaps take "
+        "the maximum rather than the union. Use field_oracle.replay_oracle instead "
+        "(reconstruction/ROADMAP.md section 3.2).",
+        DeprecationWarning,
+        stacklevel=2,
+    )
 
     # axes for each dimension
     x_grid = np.linspace(resolution / 2, grid_size[0] - (resolution / 2), int(grid_size[0] / resolution))
@@ -140,6 +150,10 @@ def generate_density_grid(grid_size, cluster_centers, radii,
         x_sub = x_grid[(x_grid >= center_x - r) & (x_grid <= center_x + r)]
         y_sub = y_grid[(y_grid >= center_y - r) & (y_grid <= center_y + r)]
         z_sub = z_grid[(z_grid >= center_z - r) & (z_grid <= center_z + r)]
+        # A zero or tiny radius can leave no voxel centre inside the cluster's box.
+        # There is nothing to assign, and assign_clust_probs would raise on the empty array.
+        if x_sub.size == 0 or y_sub.size == 0 or z_sub.size == 0:
+            continue
         xxsub, yysub, zzsub = np.meshgrid(x_sub, y_sub, z_sub, indexing = 'ij')
 
         # do math efficiently

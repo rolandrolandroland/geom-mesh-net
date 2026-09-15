@@ -1,0 +1,2283 @@
+{
+ "replays": 1000,
+ "datasets": {
+  "benchmark": {
+   "in_sphere_atoms": 2879952,
+   "intercept": -2.7980838117319202e-05,
+   "slope": 1.0006951741163674,
+   "intercept_se": 0.0015209347613562639,
+   "slope_se": 0.001303353168495875,
+   "reliability": [
+    {
+     "lo": 0.0,
+     "hi": 0.05,
+     "atoms": 139938,
+     "oracle": 0.02435549534857273,
+     "observed": 0.02387485886606926,
+     "gap": -0.00048063648250347077,
+     "tolerance": 0.005,
+     "gated": true,
+     "within": true
+    },
+    {
+     "lo": 0.05,
+     "hi": 0.1,
+     "atoms": 138863,
+     "oracle": 0.0748593881726265,
+     "observed": 0.07488675889185745,
+     "gap": 2.7370719230951357e-05,
+     "tolerance": 0.005,
+     "gated": true,
+     "within": true
+    },
+    {
+     "lo": 0.1,
+     "hi": 0.2,
+     "atoms": 282058,
+     "oracle": 0.15002457797527313,
+     "observed": 0.15011097008416707,
+     "gap": 8.639210889394011e-05,
+     "tolerance": 0.005,
+     "gated": true,
+     "within": true
+    },
+    {
+     "lo": 0.2,
+     "hi": 0.4,
+     "atoms": 567088,
+     "oracle": 0.2995005249977112,
+     "observed": 0.2991264142425867,
+     "gap": -0.00037411075512450154,
+     "tolerance": 0.005,
+     "gated": true,
+     "within": true
+    },
+    {
+     "lo": 0.4,
+     "hi": 0.6,
+     "atoms": 526870,
+     "oracle": 0.49782276153564453,
+     "observed": 0.4975098221572684,
+     "gap": -0.0003129393783761203,
+     "tolerance": 0.005,
+     "gated": true,
+     "within": true
+    },
+    {
+     "lo": 0.6,
+     "hi": 0.8,
+     "atoms": 457332,
+     "oracle": 0.6977941393852234,
+     "observed": 0.6985909579911311,
+     "gap": 0.0007968186059077453,
+     "tolerance": 0.005,
+     "gated": true,
+     "within": true
+    },
+    {
+     "lo": 0.8,
+     "hi": 0.9,
+     "atoms": 228475,
+     "oracle": 0.8511176705360413,
+     "observed": 0.851738702265018,
+     "gap": 0.000621031728976762,
+     "tolerance": 0.005,
+     "gated": true,
+     "within": true
+    },
+    {
+     "lo": 0.9,
+     "hi": 0.95,
+     "atoms": 136813,
+     "oracle": 0.9259889125823975,
+     "observed": 0.9254018258498827,
+     "gap": -0.00058708673251473,
+     "tolerance": 0.005,
+     "gated": true,
+     "within": true
+    },
+    {
+     "lo": 0.95,
+     "hi": 0.99,
+     "atoms": 166094,
+     "oracle": 0.9724230766296387,
+     "observed": 0.9722867773670332,
+     "gap": -0.0001362992626054993,
+     "tolerance": 0.005,
+     "gated": true,
+     "within": true
+    },
+    {
+     "lo": 0.99,
+     "hi": 1.0,
+     "atoms": 236421,
+     "oracle": 0.9978584051132202,
+     "observed": 0.9977836148227104,
+     "gap": -7.479029050982966e-05,
+     "tolerance": 0.005,
+     "gated": true,
+     "within": true
+    }
+   ],
+   "matrix_within_3se": 99,
+   "patterns": 100,
+   "checks": {
+    "slope_in_[0.99,1.01]": true,
+    "abs_intercept_le_0.01": true,
+    "reliability_bins_within_tolerance": true,
+    "matrix_within_3se_in_at_least_95": true
+   },
+   "data_dir": "data_random_centres",
+   "gated": true,
+   "per_pattern": [
+    {
+     "index": 0,
+     "n_clusters": 2,
+     "seconds": 1.32,
+     "share_in_spheres": 0.16966203703703703,
+     "matrix_n": 179353,
+     "matrix_observed": 0.0032951776663897453,
+     "rho_b": 0.003103155327007762,
+     "matrix_within_3se": true
+    },
+    {
+     "index": 1,
+     "n_clusters": 10,
+     "seconds": 0.8,
+     "share_in_spheres": 0.10396296296296297,
+     "matrix_n": 193544,
+     "matrix_observed": 0.023095523498532635,
+     "rho_b": 0.0229131020768257,
+     "matrix_within_3se": true
+    },
+    {
+     "index": 2,
+     "n_clusters": 2,
+     "seconds": 0.42,
+     "share_in_spheres": 0.06201851851851852,
+     "matrix_n": 202604,
+     "matrix_observed": 0.0067224733963791436,
+     "rho_b": 0.006451502859102088,
+     "matrix_within_3se": true
+    },
+    {
+     "index": 3,
+     "n_clusters": 4,
+     "seconds": 0.98,
+     "share_in_spheres": 0.15078240740740742,
+     "matrix_n": 183431,
+     "matrix_observed": 0.00802481587081791,
+     "rho_b": 0.007616335507878786,
+     "matrix_within_3se": true
+    },
+    {
+     "index": 4,
+     "n_clusters": 172,
+     "seconds": 1.78,
+     "share_in_spheres": 0.23337037037037037,
+     "matrix_n": 165592,
+     "matrix_observed": 0.03227209043915165,
+     "rho_b": 0.03161414065151051,
+     "matrix_within_3se": true
+    },
+    {
+     "index": 5,
+     "n_clusters": 1,
+     "seconds": 0.14,
+     "share_in_spheres": 0.007060185185185185,
+     "matrix_n": 214475,
+     "matrix_observed": 0.019965030889381046,
+     "rho_b": 0.019646369578511666,
+     "matrix_within_3se": true
+    },
+    {
+     "index": 6,
+     "n_clusters": 4,
+     "seconds": 0.48,
+     "share_in_spheres": 0.057680555555555554,
+     "matrix_n": 203541,
+     "matrix_observed": 0.046693295208336406,
+     "rho_b": 0.04609262250774976,
+     "matrix_within_3se": true
+    },
+    {
+     "index": 7,
+     "n_clusters": 51,
+     "seconds": 0.69,
+     "share_in_spheres": 0.08749074074074074,
+     "matrix_n": 197102,
+     "matrix_observed": 0.015920690809834503,
+     "rho_b": 0.015957824730403504,
+     "matrix_within_3se": true
+    },
+    {
+     "index": 8,
+     "n_clusters": 108,
+     "seconds": 1.55,
+     "share_in_spheres": 0.1933101851851852,
+     "matrix_n": 174245,
+     "matrix_observed": 0.0353984332405521,
+     "rho_b": 0.03630900641919506,
+     "matrix_within_3se": true
+    },
+    {
+     "index": 9,
+     "n_clusters": 4,
+     "seconds": 1.1,
+     "share_in_spheres": 0.15134259259259258,
+     "matrix_n": 183310,
+     "matrix_observed": 0.023233866128416342,
+     "rho_b": 0.02305497150774538,
+     "matrix_within_3se": true
+    },
+    {
+     "index": 10,
+     "n_clusters": 154,
+     "seconds": 1.09,
+     "share_in_spheres": 0.13900925925925925,
+     "matrix_n": 185974,
+     "matrix_observed": 0.03340789572735974,
+     "rho_b": 0.032997565056463944,
+     "matrix_within_3se": true
+    },
+    {
+     "index": 11,
+     "n_clusters": 9,
+     "seconds": 0.38,
+     "share_in_spheres": 0.04899074074074074,
+     "matrix_n": 205418,
+     "matrix_observed": 0.02938398777127613,
+     "rho_b": 0.029984767835799522,
+     "matrix_within_3se": true
+    },
+    {
+     "index": 12,
+     "n_clusters": 39,
+     "seconds": 0.74,
+     "share_in_spheres": 0.0997175925925926,
+     "matrix_n": 194461,
+     "matrix_observed": 0.023907107337718104,
+     "rho_b": 0.023639198637949912,
+     "matrix_within_3se": true
+    },
+    {
+     "index": 13,
+     "n_clusters": 4,
+     "seconds": 0.44,
+     "share_in_spheres": 0.047810185185185185,
+     "matrix_n": 205673,
+     "matrix_observed": 0.04666631011362697,
+     "rho_b": 0.04750305473122186,
+     "matrix_within_3se": true
+    },
+    {
+     "index": 14,
+     "n_clusters": 15,
+     "seconds": 1.26,
+     "share_in_spheres": 0.1680462962962963,
+     "matrix_n": 179702,
+     "matrix_observed": 0.01688350713959778,
+     "rho_b": 0.017135682137747795,
+     "matrix_within_3se": true
+    },
+    {
+     "index": 15,
+     "n_clusters": 11,
+     "seconds": 1.52,
+     "share_in_spheres": 0.18545833333333334,
+     "matrix_n": 175941,
+     "matrix_observed": 0.008644943475369584,
+     "rho_b": 0.008861775062463629,
+     "matrix_within_3se": true
+    },
+    {
+     "index": 16,
+     "n_clusters": 13,
+     "seconds": 0.92,
+     "share_in_spheres": 0.12577777777777777,
+     "matrix_n": 188832,
+     "matrix_observed": 0.033368285036434506,
+     "rho_b": 0.033904703043991416,
+     "matrix_within_3se": true
+    },
+    {
+     "index": 17,
+     "n_clusters": 363,
+     "seconds": 1.75,
+     "share_in_spheres": 0.22875,
+     "matrix_n": 166590,
+     "matrix_observed": 0.04159313284110691,
+     "rho_b": 0.04230037806539544,
+     "matrix_within_3se": true
+    },
+    {
+     "index": 18,
+     "n_clusters": 5,
+     "seconds": 0.48,
+     "share_in_spheres": 0.06985185185185185,
+     "matrix_n": 200912,
+     "matrix_observed": 0.002239786573226089,
+     "rho_b": 0.002012686996996188,
+     "matrix_within_3se": true
+    },
+    {
+     "index": 19,
+     "n_clusters": 13,
+     "seconds": 0.76,
+     "share_in_spheres": 0.10334722222222222,
+     "matrix_n": 193677,
+     "matrix_observed": 0.021602978154349767,
+     "rho_b": 0.02248163442113403,
+     "matrix_within_3se": true
+    },
+    {
+     "index": 20,
+     "n_clusters": 3,
+     "seconds": 0.44,
+     "share_in_spheres": 0.04845833333333333,
+     "matrix_n": 205533,
+     "matrix_observed": 0.04391995445986776,
+     "rho_b": 0.044624384484366314,
+     "matrix_within_3se": true
+    },
+    {
+     "index": 21,
+     "n_clusters": 64,
+     "seconds": 1.14,
+     "share_in_spheres": 0.13723148148148148,
+     "matrix_n": 186358,
+     "matrix_observed": 0.03782504641603795,
+     "rho_b": 0.037480930946143375,
+     "matrix_within_3se": true
+    },
+    {
+     "index": 22,
+     "n_clusters": 76,
+     "seconds": 0.37,
+     "share_in_spheres": 0.05755092592592593,
+     "matrix_n": 203569,
+     "matrix_observed": 0.049020233925597706,
+     "rho_b": 0.049590385824881414,
+     "matrix_within_3se": true
+    },
+    {
+     "index": 23,
+     "n_clusters": 16,
+     "seconds": 0.57,
+     "share_in_spheres": 0.08279166666666667,
+     "matrix_n": 198117,
+     "matrix_observed": 0.02640358979794768,
+     "rho_b": 0.02657069057986219,
+     "matrix_within_3se": true
+    },
+    {
+     "index": 24,
+     "n_clusters": 7,
+     "seconds": 0.5,
+     "share_in_spheres": 0.058694444444444445,
+     "matrix_n": 203322,
+     "matrix_observed": 0.033228081565201996,
+     "rho_b": 0.03299978594005756,
+     "matrix_within_3se": true
+    },
+    {
+     "index": 25,
+     "n_clusters": 28,
+     "seconds": 1.75,
+     "share_in_spheres": 0.191875,
+     "matrix_n": 174555,
+     "matrix_observed": 0.015233021110824668,
+     "rho_b": 0.015124014056896408,
+     "matrix_within_3se": true
+    },
+    {
+     "index": 26,
+     "n_clusters": 2,
+     "seconds": 0.61,
+     "share_in_spheres": 0.06514351851851852,
+     "matrix_n": 201929,
+     "matrix_observed": 0.04748203576504613,
+     "rho_b": 0.047376779983299616,
+     "matrix_within_3se": true
+    },
+    {
+     "index": 27,
+     "n_clusters": 29,
+     "seconds": 2.85,
+     "share_in_spheres": 0.35144444444444445,
+     "matrix_n": 140088,
+     "matrix_observed": 0.01777454171663526,
+     "rho_b": 0.018316774427826817,
+     "matrix_within_3se": true
+    },
+    {
+     "index": 28,
+     "n_clusters": 11,
+     "seconds": 1.2,
+     "share_in_spheres": 0.15641666666666668,
+     "matrix_n": 182214,
+     "matrix_observed": 0.03694556949520893,
+     "rho_b": 0.03692553563433143,
+     "matrix_within_3se": true
+    },
+    {
+     "index": 29,
+     "n_clusters": 5,
+     "seconds": 0.91,
+     "share_in_spheres": 0.10953703703703704,
+     "matrix_n": 192340,
+     "matrix_observed": 0.02038577518976812,
+     "rho_b": 0.020157010205954097,
+     "matrix_within_3se": true
+    },
+    {
+     "index": 30,
+     "n_clusters": 95,
+     "seconds": 0.71,
+     "share_in_spheres": 0.101125,
+     "matrix_n": 194157,
+     "matrix_observed": 0.028260634435019083,
+     "rho_b": 0.028090946503149968,
+     "matrix_within_3se": true
+    },
+    {
+     "index": 31,
+     "n_clusters": 5,
+     "seconds": 0.42,
+     "share_in_spheres": 0.07118055555555555,
+     "matrix_n": 200625,
+     "matrix_observed": 0.03584797507788162,
+     "rho_b": 0.035989126751077315,
+     "matrix_within_3se": true
+    },
+    {
+     "index": 32,
+     "n_clusters": 23,
+     "seconds": 1.15,
+     "share_in_spheres": 0.15085648148148148,
+     "matrix_n": 183415,
+     "matrix_observed": 0.025216040127579532,
+     "rho_b": 0.025446707587567716,
+     "matrix_within_3se": true
+    },
+    {
+     "index": 33,
+     "n_clusters": 11,
+     "seconds": 0.8,
+     "share_in_spheres": 0.09083333333333334,
+     "matrix_n": 196380,
+     "matrix_observed": 0.045045320297382625,
+     "rho_b": 0.04535431634547543,
+     "matrix_within_3se": true
+    },
+    {
+     "index": 34,
+     "n_clusters": 57,
+     "seconds": 1.04,
+     "share_in_spheres": 0.11814814814814815,
+     "matrix_n": 190480,
+     "matrix_observed": 0.020978580428391434,
+     "rho_b": 0.020965049396390514,
+     "matrix_within_3se": true
+    },
+    {
+     "index": 35,
+     "n_clusters": 4,
+     "seconds": 2.27,
+     "share_in_spheres": 0.2980555555555556,
+     "matrix_n": 151620,
+     "matrix_observed": 0.03175042870333729,
+     "rho_b": 0.03235358990716626,
+     "matrix_within_3se": true
+    },
+    {
+     "index": 36,
+     "n_clusters": 4,
+     "seconds": 0.62,
+     "share_in_spheres": 0.07074074074074074,
+     "matrix_n": 200720,
+     "matrix_observed": 0.016789557592666402,
+     "rho_b": 0.017118121665002706,
+     "matrix_within_3se": true
+    },
+    {
+     "index": 37,
+     "n_clusters": 209,
+     "seconds": 1.2,
+     "share_in_spheres": 0.13111574074074073,
+     "matrix_n": 187679,
+     "matrix_observed": 0.020348573894788443,
+     "rho_b": 0.020407833411550655,
+     "matrix_within_3se": true
+    },
+    {
+     "index": 38,
+     "n_clusters": 10,
+     "seconds": 1.57,
+     "share_in_spheres": 0.18037037037037038,
+     "matrix_n": 177040,
+     "matrix_observed": 0.022311342069588794,
+     "rho_b": 0.02200250541167762,
+     "matrix_within_3se": true
+    },
+    {
+     "index": 39,
+     "n_clusters": 3,
+     "seconds": 1.06,
+     "share_in_spheres": 0.16234722222222223,
+     "matrix_n": 180933,
+     "matrix_observed": 0.006306201743186705,
+     "rho_b": 0.0062903509156142625,
+     "matrix_within_3se": true
+    },
+    {
+     "index": 40,
+     "n_clusters": 31,
+     "seconds": 1.16,
+     "share_in_spheres": 0.14504166666666668,
+     "matrix_n": 184671,
+     "matrix_observed": 0.004456574123711899,
+     "rho_b": 0.004586183952950335,
+     "matrix_within_3se": true
+    },
+    {
+     "index": 41,
+     "n_clusters": 1,
+     "seconds": 0.1,
+     "share_in_spheres": 0.0006527777777777777,
+     "matrix_n": 215859,
+     "matrix_observed": 0.03368402522016687,
+     "rho_b": 0.033374496157337896,
+     "matrix_within_3se": true
+    },
+    {
+     "index": 42,
+     "n_clusters": 3,
+     "seconds": 0.63,
+     "share_in_spheres": 0.0994537037037037,
+     "matrix_n": 194518,
+     "matrix_observed": 0.033287407849145065,
+     "rho_b": 0.032775886917152615,
+     "matrix_within_3se": true
+    },
+    {
+     "index": 43,
+     "n_clusters": 3,
+     "seconds": 1.82,
+     "share_in_spheres": 0.1966064814814815,
+     "matrix_n": 173533,
+     "matrix_observed": 0.03286982879337071,
+     "rho_b": 0.03314548571050476,
+     "matrix_within_3se": true
+    },
+    {
+     "index": 44,
+     "n_clusters": 1,
+     "seconds": 0.2,
+     "share_in_spheres": 0.016319444444444445,
+     "matrix_n": 212475,
+     "matrix_observed": 0.0010965995999529356,
+     "rho_b": 0.0009883222671345838,
+     "matrix_within_3se": true
+    },
+    {
+     "index": 45,
+     "n_clusters": 71,
+     "seconds": 0.59,
+     "share_in_spheres": 0.09401851851851852,
+     "matrix_n": 195692,
+     "matrix_observed": 0.016566849947877278,
+     "rho_b": 0.016327342133588996,
+     "matrix_within_3se": true
+    },
+    {
+     "index": 46,
+     "n_clusters": 14,
+     "seconds": 1.53,
+     "share_in_spheres": 0.17352314814814815,
+     "matrix_n": 178519,
+     "matrix_observed": 0.009825284703588974,
+     "rho_b": 0.009890492362959847,
+     "matrix_within_3se": true
+    },
+    {
+     "index": 47,
+     "n_clusters": 7,
+     "seconds": 0.9,
+     "share_in_spheres": 0.11862962962962963,
+     "matrix_n": 190376,
+     "matrix_observed": 0.04008383409673488,
+     "rho_b": 0.03890757112720062,
+     "matrix_within_3se": true
+    },
+    {
+     "index": 48,
+     "n_clusters": 24,
+     "seconds": 0.93,
+     "share_in_spheres": 0.10960185185185185,
+     "matrix_n": 192326,
+     "matrix_observed": 0.04342106631448686,
+     "rho_b": 0.04303152006980651,
+     "matrix_within_3se": true
+    },
+    {
+     "index": 49,
+     "n_clusters": 41,
+     "seconds": 1.87,
+     "share_in_spheres": 0.22378703703703703,
+     "matrix_n": 167662,
+     "matrix_observed": 0.012131550381123927,
+     "rho_b": 0.012334018861307368,
+     "matrix_within_3se": true
+    },
+    {
+     "index": 50,
+     "n_clusters": 2,
+     "seconds": 1.76,
+     "share_in_spheres": 0.25784259259259257,
+     "matrix_n": 160306,
+     "matrix_observed": 0.03432809751350542,
+     "rho_b": 0.03339245794239932,
+     "matrix_within_3se": true
+    },
+    {
+     "index": 51,
+     "n_clusters": 738,
+     "seconds": 3.09,
+     "share_in_spheres": 0.35053703703703704,
+     "matrix_n": 140284,
+     "matrix_observed": 0.006829004020415728,
+     "rho_b": 0.006468140172913722,
+     "matrix_within_3se": true
+    },
+    {
+     "index": 52,
+     "n_clusters": 7,
+     "seconds": 0.69,
+     "share_in_spheres": 0.08075925925925925,
+     "matrix_n": 198556,
+     "matrix_observed": 0.013613287938918995,
+     "rho_b": 0.013757626280085667,
+     "matrix_within_3se": true
+    },
+    {
+     "index": 53,
+     "n_clusters": 2,
+     "seconds": 0.52,
+     "share_in_spheres": 0.06401388888888888,
+     "matrix_n": 202173,
+     "matrix_observed": 0.006806052242386471,
+     "rho_b": 0.0069327248116709764,
+     "matrix_within_3se": true
+    },
+    {
+     "index": 54,
+     "n_clusters": 14,
+     "seconds": 1.05,
+     "share_in_spheres": 0.13762962962962963,
+     "matrix_n": 186272,
+     "matrix_observed": 0.013995662257344098,
+     "rho_b": 0.014176038329961461,
+     "matrix_within_3se": true
+    },
+    {
+     "index": 55,
+     "n_clusters": 5,
+     "seconds": 0.44,
+     "share_in_spheres": 0.038810185185185184,
+     "matrix_n": 207617,
+     "matrix_observed": 0.03381707663630627,
+     "rho_b": 0.0337368273674639,
+     "matrix_within_3se": true
+    },
+    {
+     "index": 56,
+     "n_clusters": 1,
+     "seconds": 1.57,
+     "share_in_spheres": 0.22725462962962964,
+     "matrix_n": 166913,
+     "matrix_observed": 0.04600001198229017,
+     "rho_b": 0.045516345509262625,
+     "matrix_within_3se": true
+    },
+    {
+     "index": 57,
+     "n_clusters": 11,
+     "seconds": 0.96,
+     "share_in_spheres": 0.12914814814814815,
+     "matrix_n": 188104,
+     "matrix_observed": 0.010377238123591205,
+     "rho_b": 0.010126120396209299,
+     "matrix_within_3se": true
+    },
+    {
+     "index": 58,
+     "n_clusters": 134,
+     "seconds": 1.64,
+     "share_in_spheres": 0.2101111111111111,
+     "matrix_n": 170616,
+     "matrix_observed": 0.026533267688845126,
+     "rho_b": 0.02710395174753596,
+     "matrix_within_3se": true
+    },
+    {
+     "index": 59,
+     "n_clusters": 262,
+     "seconds": 1.83,
+     "share_in_spheres": 0.2143935185185185,
+     "matrix_n": 169691,
+     "matrix_observed": 0.03525820461898392,
+     "rho_b": 0.03506955506217162,
+     "matrix_within_3se": true
+    },
+    {
+     "index": 60,
+     "n_clusters": 1,
+     "seconds": 0.37,
+     "share_in_spheres": 0.03690740740740741,
+     "matrix_n": 208028,
+     "matrix_observed": 0.047844520929874824,
+     "rho_b": 0.04764612342427829,
+     "matrix_within_3se": true
+    },
+    {
+     "index": 61,
+     "n_clusters": 24,
+     "seconds": 0.97,
+     "share_in_spheres": 0.13090277777777778,
+     "matrix_n": 187725,
+     "matrix_observed": 0.030528698894659742,
+     "rho_b": 0.030503024144358695,
+     "matrix_within_3se": true
+    },
+    {
+     "index": 62,
+     "n_clusters": 9,
+     "seconds": 0.93,
+     "share_in_spheres": 0.10606018518518519,
+     "matrix_n": 193091,
+     "matrix_observed": 0.012641707795806123,
+     "rho_b": 0.012755346551369035,
+     "matrix_within_3se": true
+    },
+    {
+     "index": 63,
+     "n_clusters": 42,
+     "seconds": 0.74,
+     "share_in_spheres": 0.10599537037037036,
+     "matrix_n": 193105,
+     "matrix_observed": 0.030957251236373995,
+     "rho_b": 0.031273907845696815,
+     "matrix_within_3se": true
+    },
+    {
+     "index": 64,
+     "n_clusters": 11,
+     "seconds": 1.06,
+     "share_in_spheres": 0.13407407407407407,
+     "matrix_n": 187040,
+     "matrix_observed": 0.016258554319931565,
+     "rho_b": 0.016024558083900808,
+     "matrix_within_3se": true
+    },
+    {
+     "index": 65,
+     "n_clusters": 1,
+     "seconds": 0.43,
+     "share_in_spheres": 0.05376388888888889,
+     "matrix_n": 204387,
+     "matrix_observed": 0.049416058751290445,
+     "rho_b": 0.048806419534585394,
+     "matrix_within_3se": true
+    },
+    {
+     "index": 66,
+     "n_clusters": 8,
+     "seconds": 0.76,
+     "share_in_spheres": 0.07848148148148149,
+     "matrix_n": 199048,
+     "matrix_observed": 0.019794220489530164,
+     "rho_b": 0.019983806758181843,
+     "matrix_within_3se": true
+    },
+    {
+     "index": 67,
+     "n_clusters": 3,
+     "seconds": 1.14,
+     "share_in_spheres": 0.16130092592592593,
+     "matrix_n": 181159,
+     "matrix_observed": 0.03335743738925474,
+     "rho_b": 0.03427138603805071,
+     "matrix_within_3se": true
+    },
+    {
+     "index": 68,
+     "n_clusters": 72,
+     "seconds": 2.67,
+     "share_in_spheres": 0.28499074074074077,
+     "matrix_n": 154442,
+     "matrix_observed": 0.0011395863819427358,
+     "rho_b": 0.001161379117337924,
+     "matrix_within_3se": true
+    },
+    {
+     "index": 69,
+     "n_clusters": 9,
+     "seconds": 0.74,
+     "share_in_spheres": 0.07919907407407407,
+     "matrix_n": 198893,
+     "matrix_observed": 0.0199353421186266,
+     "rho_b": 0.02000307230673777,
+     "matrix_within_3se": true
+    },
+    {
+     "index": 70,
+     "n_clusters": 4,
+     "seconds": 1.2,
+     "share_in_spheres": 0.14466203703703703,
+     "matrix_n": 184753,
+     "matrix_observed": 0.043441784436517944,
+     "rho_b": 0.04375538066612558,
+     "matrix_within_3se": true
+    },
+    {
+     "index": 71,
+     "n_clusters": 7,
+     "seconds": 0.73,
+     "share_in_spheres": 0.08802777777777777,
+     "matrix_n": 196986,
+     "matrix_observed": 0.030433634877605514,
+     "rho_b": 0.030511372221662295,
+     "matrix_within_3se": true
+    },
+    {
+     "index": 72,
+     "n_clusters": 12,
+     "seconds": 0.67,
+     "share_in_spheres": 0.09402314814814815,
+     "matrix_n": 195691,
+     "matrix_observed": 0.022320903873964567,
+     "rho_b": 0.022197144319798818,
+     "matrix_within_3se": true
+    },
+    {
+     "index": 73,
+     "n_clusters": 2,
+     "seconds": 0.62,
+     "share_in_spheres": 0.07497222222222222,
+     "matrix_n": 199806,
+     "matrix_observed": 0.04619981381940482,
+     "rho_b": 0.0467968749717863,
+     "matrix_within_3se": true
+    },
+    {
+     "index": 74,
+     "n_clusters": 21,
+     "seconds": 1.93,
+     "share_in_spheres": 0.22023148148148147,
+     "matrix_n": 168430,
+     "matrix_observed": 0.04259336222763166,
+     "rho_b": 0.04269921880736146,
+     "matrix_within_3se": true
+    },
+    {
+     "index": 75,
+     "n_clusters": 8,
+     "seconds": 0.81,
+     "share_in_spheres": 0.09387037037037037,
+     "matrix_n": 195724,
+     "matrix_observed": 0.016507939751895528,
+     "rho_b": 0.016110783691146914,
+     "matrix_within_3se": true
+    },
+    {
+     "index": 76,
+     "n_clusters": 3,
+     "seconds": 1.48,
+     "share_in_spheres": 0.14543055555555556,
+     "matrix_n": 184587,
+     "matrix_observed": 0.026843710553830984,
+     "rho_b": 0.027227420102066982,
+     "matrix_within_3se": true
+    },
+    {
+     "index": 77,
+     "n_clusters": 30,
+     "seconds": 0.87,
+     "share_in_spheres": 0.1045,
+     "matrix_n": 193428,
+     "matrix_observed": 0.02446388320201832,
+     "rho_b": 0.024491212804623137,
+     "matrix_within_3se": true
+    },
+    {
+     "index": 78,
+     "n_clusters": 16,
+     "seconds": 0.9,
+     "share_in_spheres": 0.1021712962962963,
+     "matrix_n": 193931,
+     "matrix_observed": 0.03163496295074021,
+     "rho_b": 0.03161012500574312,
+     "matrix_within_3se": true
+    },
+    {
+     "index": 79,
+     "n_clusters": 130,
+     "seconds": 0.78,
+     "share_in_spheres": 0.09776851851851852,
+     "matrix_n": 194882,
+     "matrix_observed": 0.016763990517338696,
+     "rho_b": 0.01670556334793778,
+     "matrix_within_3se": true
+    },
+    {
+     "index": 80,
+     "n_clusters": 13,
+     "seconds": 0.78,
+     "share_in_spheres": 0.09640277777777778,
+     "matrix_n": 195177,
+     "matrix_observed": 0.01191738780696496,
+     "rho_b": 0.012210250038294413,
+     "matrix_within_3se": true
+    },
+    {
+     "index": 81,
+     "n_clusters": 37,
+     "seconds": 0.87,
+     "share_in_spheres": 0.10276851851851852,
+     "matrix_n": 193802,
+     "matrix_observed": 0.04579416105096955,
+     "rho_b": 0.04563359176277681,
+     "matrix_within_3se": true
+    },
+    {
+     "index": 82,
+     "n_clusters": 2,
+     "seconds": 0.71,
+     "share_in_spheres": 0.0934537037037037,
+     "matrix_n": 195814,
+     "matrix_observed": 0.046069228962178396,
+     "rho_b": 0.04619372497492532,
+     "matrix_within_3se": true
+    },
+    {
+     "index": 83,
+     "n_clusters": 50,
+     "seconds": 1.38,
+     "share_in_spheres": 0.16918055555555556,
+     "matrix_n": 179457,
+     "matrix_observed": 0.042912786907169966,
+     "rho_b": 0.04216614428809895,
+     "matrix_within_3se": true
+    },
+    {
+     "index": 84,
+     "n_clusters": 8,
+     "seconds": 2.85,
+     "share_in_spheres": 0.28402777777777777,
+     "matrix_n": 154650,
+     "matrix_observed": 0.049938570966699,
+     "rho_b": 0.04891022153822807,
+     "matrix_within_3se": true
+    },
+    {
+     "index": 85,
+     "n_clusters": 55,
+     "seconds": 1.88,
+     "share_in_spheres": 0.22756944444444444,
+     "matrix_n": 166845,
+     "matrix_observed": 0.03689052713596452,
+     "rho_b": 0.037249576288984426,
+     "matrix_within_3se": true
+    },
+    {
+     "index": 86,
+     "n_clusters": 11,
+     "seconds": 0.67,
+     "share_in_spheres": 0.07316203703703704,
+     "matrix_n": 200197,
+     "matrix_observed": 0.03921137679385805,
+     "rho_b": 0.038233361428099986,
+     "matrix_within_3se": true
+    },
+    {
+     "index": 87,
+     "n_clusters": 14,
+     "seconds": 0.83,
+     "share_in_spheres": 0.08813425925925926,
+     "matrix_n": 196963,
+     "matrix_observed": 0.03815945126749694,
+     "rho_b": 0.03812950459813204,
+     "matrix_within_3se": true
+    },
+    {
+     "index": 88,
+     "n_clusters": 7,
+     "seconds": 3.02,
+     "share_in_spheres": 0.3452037037037037,
+     "matrix_n": 141436,
+     "matrix_observed": 0.02454113521309992,
+     "rho_b": 0.02403038154711533,
+     "matrix_within_3se": true
+    },
+    {
+     "index": 89,
+     "n_clusters": 7,
+     "seconds": 0.91,
+     "share_in_spheres": 0.16575925925925927,
+     "matrix_n": 180196,
+     "matrix_observed": 0.022930586694488223,
+     "rho_b": 0.022822609725713584,
+     "matrix_within_3se": true
+    },
+    {
+     "index": 90,
+     "n_clusters": 24,
+     "seconds": 1.82,
+     "share_in_spheres": 0.2054212962962963,
+     "matrix_n": 171629,
+     "matrix_observed": 0.012084204883790035,
+     "rho_b": 0.012011313807450158,
+     "matrix_within_3se": true
+    },
+    {
+     "index": 91,
+     "n_clusters": 1,
+     "seconds": 0.77,
+     "share_in_spheres": 0.1156712962962963,
+     "matrix_n": 191015,
+     "matrix_observed": 0.03231159856555768,
+     "rho_b": 0.03224095971796453,
+     "matrix_within_3se": true
+    },
+    {
+     "index": 92,
+     "n_clusters": 5,
+     "seconds": 1.07,
+     "share_in_spheres": 0.09202314814814815,
+     "matrix_n": 196123,
+     "matrix_observed": 0.01359860903616608,
+     "rho_b": 0.014466006805116727,
+     "matrix_within_3se": false
+    },
+    {
+     "index": 93,
+     "n_clusters": 31,
+     "seconds": 0.93,
+     "share_in_spheres": 0.12154629629629629,
+     "matrix_n": 189746,
+     "matrix_observed": 0.01251673289555511,
+     "rho_b": 0.012890420485117722,
+     "matrix_within_3se": true
+    },
+    {
+     "index": 94,
+     "n_clusters": 3,
+     "seconds": 0.61,
+     "share_in_spheres": 0.096,
+     "matrix_n": 195264,
+     "matrix_observed": 0.02904785316289741,
+     "rho_b": 0.02929806870480274,
+     "matrix_within_3se": true
+    },
+    {
+     "index": 95,
+     "n_clusters": 17,
+     "seconds": 0.94,
+     "share_in_spheres": 0.10155555555555555,
+     "matrix_n": 194064,
+     "matrix_observed": 0.020663286338527497,
+     "rho_b": 0.02049911941125216,
+     "matrix_within_3se": true
+    },
+    {
+     "index": 96,
+     "n_clusters": 230,
+     "seconds": 1.35,
+     "share_in_spheres": 0.16628703703703704,
+     "matrix_n": 180082,
+     "matrix_observed": 0.01090058973134461,
+     "rho_b": 0.010942830439731611,
+     "matrix_within_3se": true
+    },
+    {
+     "index": 97,
+     "n_clusters": 17,
+     "seconds": 2.07,
+     "share_in_spheres": 0.20581944444444444,
+     "matrix_n": 171543,
+     "matrix_observed": 0.040572917577517006,
+     "rho_b": 0.04080280083764156,
+     "matrix_within_3se": true
+    },
+    {
+     "index": 98,
+     "n_clusters": 123,
+     "seconds": 1.15,
+     "share_in_spheres": 0.2002962962962963,
+     "matrix_n": 172736,
+     "matrix_observed": 0.04361569099666543,
+     "rho_b": 0.043028495964718805,
+     "matrix_within_3se": true
+    },
+    {
+     "index": 99,
+     "n_clusters": 24,
+     "seconds": 0.46,
+     "share_in_spheres": 0.09000462962962963,
+     "matrix_n": 196559,
+     "matrix_observed": 0.008358813384276477,
+     "rho_b": 0.008384975983889048,
+     "matrix_within_3se": true
+    }
+   ]
+  },
+  "lattice": {
+   "in_sphere_atoms": 3138751,
+   "intercept": 4.258891888712674e-05,
+   "slope": 0.9984439650807295,
+   "intercept_se": 0.0014551622097173896,
+   "slope_se": 0.0012493204101526273,
+   "reliability": [
+    {
+     "lo": 0.0,
+     "hi": 0.05,
+     "atoms": 158275,
+     "oracle": 0.02441292628645897,
+     "observed": 0.02468488390459643,
+     "gap": 0.0002719576181374611,
+     "tolerance": 0.005,
+     "gated": true,
+     "within": true
+    },
+    {
+     "lo": 0.05,
+     "hi": 0.1,
+     "atoms": 158566,
+     "oracle": 0.07496130466461182,
+     "observed": 0.07417731417832323,
+     "gap": -0.000783990486288591,
+     "tolerance": 0.005,
+     "gated": true,
+     "within": true
+    },
+    {
+     "lo": 0.1,
+     "hi": 0.2,
+     "atoms": 325854,
+     "oracle": 0.15010522305965424,
+     "observed": 0.15121496130168727,
+     "gap": 0.0011097382420330315,
+     "tolerance": 0.005,
+     "gated": true,
+     "within": true
+    },
+    {
+     "lo": 0.2,
+     "hi": 0.4,
+     "atoms": 654767,
+     "oracle": 0.29910808801651,
+     "observed": 0.29960275945489007,
+     "gap": 0.0004946714383800566,
+     "tolerance": 0.005,
+     "gated": true,
+     "within": true
+    },
+    {
+     "lo": 0.4,
+     "hi": 0.6,
+     "atoms": 583851,
+     "oracle": 0.4965314269065857,
+     "observed": 0.4967328993184905,
+     "gap": 0.0002014724119048239,
+     "tolerance": 0.005,
+     "gated": true,
+     "within": true
+    },
+    {
+     "lo": 0.6,
+     "hi": 0.8,
+     "atoms": 465824,
+     "oracle": 0.6968755125999451,
+     "observed": 0.6953420175860411,
+     "gap": -0.001533495013903985,
+     "tolerance": 0.005,
+     "gated": true,
+     "within": true
+    },
+    {
+     "lo": 0.8,
+     "hi": 0.9,
+     "atoms": 233742,
+     "oracle": 0.8513199687004089,
+     "observed": 0.8516826244320661,
+     "gap": 0.0003626557316571688,
+     "tolerance": 0.005,
+     "gated": true,
+     "within": true
+    },
+    {
+     "lo": 0.9,
+     "hi": 0.95,
+     "atoms": 142935,
+     "oracle": 0.9259150624275208,
+     "observed": 0.9264490852485395,
+     "gap": 0.0005340228210187759,
+     "tolerance": 0.005,
+     "gated": true,
+     "within": true
+    },
+    {
+     "lo": 0.95,
+     "hi": 0.99,
+     "atoms": 172044,
+     "oracle": 0.972641110420227,
+     "observed": 0.9723210341540536,
+     "gap": -0.0003200762661734746,
+     "tolerance": 0.005,
+     "gated": true,
+     "within": true
+    },
+    {
+     "lo": 0.99,
+     "hi": 1.0,
+     "atoms": 242893,
+     "oracle": 0.9977390170097351,
+     "observed": 0.9976944580535462,
+     "gap": -4.4558956188933685e-05,
+     "tolerance": 0.005,
+     "gated": true,
+     "within": true
+    }
+   ],
+   "matrix_within_3se": 99,
+   "patterns": 100,
+   "checks": {
+    "slope_in_[0.99,1.01]": true,
+    "abs_intercept_le_0.01": true,
+    "reliability_bins_within_tolerance": true,
+    "matrix_within_3se_in_at_least_95": true
+   },
+   "data_dir": "data",
+   "gated": false,
+   "per_pattern": [
+    {
+     "index": 0,
+     "n_clusters": 2,
+     "seconds": 0.7,
+     "share_in_spheres": 0.05460648148148148,
+     "matrix_n": 204205,
+     "matrix_observed": 0.003344678142063123,
+     "rho_b": 0.003103155327007762,
+     "matrix_within_3se": true
+    },
+    {
+     "index": 1,
+     "n_clusters": 10,
+     "seconds": 1.1,
+     "share_in_spheres": 0.1280601851851852,
+     "matrix_n": 188339,
+     "matrix_observed": 0.023149745936847918,
+     "rho_b": 0.0229131020768257,
+     "matrix_within_3se": true
+    },
+    {
+     "index": 2,
+     "n_clusters": 2,
+     "seconds": 0.67,
+     "share_in_spheres": 0.09174074074074073,
+     "matrix_n": 196184,
+     "matrix_observed": 0.006733474697223015,
+     "rho_b": 0.006451502859102088,
+     "matrix_within_3se": true
+    },
+    {
+     "index": 3,
+     "n_clusters": 4,
+     "seconds": 1.65,
+     "share_in_spheres": 0.2181898148148148,
+     "matrix_n": 168871,
+     "matrix_observed": 0.008059406292377022,
+     "rho_b": 0.007616335507878786,
+     "matrix_within_3se": true
+    },
+    {
+     "index": 4,
+     "n_clusters": 170,
+     "seconds": 1.9,
+     "share_in_spheres": 0.2816990740740741,
+     "matrix_n": 155153,
+     "matrix_observed": 0.03234871385019948,
+     "rho_b": 0.03161414065151051,
+     "matrix_within_3se": true
+    },
+    {
+     "index": 5,
+     "n_clusters": 1,
+     "seconds": 0.46,
+     "share_in_spheres": 0.03202314814814815,
+     "matrix_n": 209083,
+     "matrix_observed": 0.02003510567573643,
+     "rho_b": 0.019646369578511666,
+     "matrix_within_3se": true
+    },
+    {
+     "index": 6,
+     "n_clusters": 4,
+     "seconds": 0.61,
+     "share_in_spheres": 0.07006481481481482,
+     "matrix_n": 200866,
+     "matrix_observed": 0.04676251829577928,
+     "rho_b": 0.04609262250774976,
+     "matrix_within_3se": true
+    },
+    {
+     "index": 7,
+     "n_clusters": 51,
+     "seconds": 0.77,
+     "share_in_spheres": 0.10233796296296296,
+     "matrix_n": 193895,
+     "matrix_observed": 0.016029294205626758,
+     "rho_b": 0.015957824730403504,
+     "matrix_within_3se": true
+    },
+    {
+     "index": 8,
+     "n_clusters": 109,
+     "seconds": 1.55,
+     "share_in_spheres": 0.23606018518518518,
+     "matrix_n": 165011,
+     "matrix_observed": 0.03559762682487834,
+     "rho_b": 0.03630900641919506,
+     "matrix_within_3se": true
+    },
+    {
+     "index": 9,
+     "n_clusters": 4,
+     "seconds": 0.76,
+     "share_in_spheres": 0.09693981481481481,
+     "matrix_n": 195061,
+     "matrix_observed": 0.02324401084788861,
+     "rho_b": 0.02305497150774538,
+     "matrix_within_3se": true
+    },
+    {
+     "index": 10,
+     "n_clusters": 155,
+     "seconds": 1.48,
+     "share_in_spheres": 0.14894444444444443,
+     "matrix_n": 183828,
+     "matrix_observed": 0.03336270861892639,
+     "rho_b": 0.032997565056463944,
+     "matrix_within_3se": true
+    },
+    {
+     "index": 11,
+     "n_clusters": 9,
+     "seconds": 0.45,
+     "share_in_spheres": 0.0600462962962963,
+     "matrix_n": 203030,
+     "matrix_observed": 0.029276461606659115,
+     "rho_b": 0.029984767835799522,
+     "matrix_within_3se": true
+    },
+    {
+     "index": 12,
+     "n_clusters": 39,
+     "seconds": 0.58,
+     "share_in_spheres": 0.0810462962962963,
+     "matrix_n": 198494,
+     "matrix_observed": 0.023819359779136903,
+     "rho_b": 0.023639198637949912,
+     "matrix_within_3se": true
+    },
+    {
+     "index": 13,
+     "n_clusters": 4,
+     "seconds": 0.5,
+     "share_in_spheres": 0.07230092592592592,
+     "matrix_n": 200383,
+     "matrix_observed": 0.04664068309187905,
+     "rho_b": 0.04750305473122186,
+     "matrix_within_3se": true
+    },
+    {
+     "index": 14,
+     "n_clusters": 15,
+     "seconds": 1.4,
+     "share_in_spheres": 0.1894675925925926,
+     "matrix_n": 175075,
+     "matrix_observed": 0.01698700556904184,
+     "rho_b": 0.017135682137747795,
+     "matrix_within_3se": true
+    },
+    {
+     "index": 15,
+     "n_clusters": 11,
+     "seconds": 1.78,
+     "share_in_spheres": 0.19675925925925927,
+     "matrix_n": 173500,
+     "matrix_observed": 0.008639769452449568,
+     "rho_b": 0.008861775062463629,
+     "matrix_within_3se": true
+    },
+    {
+     "index": 16,
+     "n_clusters": 13,
+     "seconds": 0.59,
+     "share_in_spheres": 0.06769907407407408,
+     "matrix_n": 201377,
+     "matrix_observed": 0.033340450994900114,
+     "rho_b": 0.033904703043991416,
+     "matrix_within_3se": true
+    },
+    {
+     "index": 17,
+     "n_clusters": 364,
+     "seconds": 1.81,
+     "share_in_spheres": 0.27344444444444443,
+     "matrix_n": 156936,
+     "matrix_observed": 0.041405413671815265,
+     "rho_b": 0.04230037806539544,
+     "matrix_within_3se": true
+    },
+    {
+     "index": 18,
+     "n_clusters": 5,
+     "seconds": 0.94,
+     "share_in_spheres": 0.12718055555555555,
+     "matrix_n": 188529,
+     "matrix_observed": 0.002174731738883673,
+     "rho_b": 0.002012686996996188,
+     "matrix_within_3se": true
+    },
+    {
+     "index": 19,
+     "n_clusters": 13,
+     "seconds": 0.83,
+     "share_in_spheres": 0.10823611111111112,
+     "matrix_n": 192621,
+     "matrix_observed": 0.021596814469865694,
+     "rho_b": 0.02248163442113403,
+     "matrix_within_3se": true
+    },
+    {
+     "index": 20,
+     "n_clusters": 3,
+     "seconds": 0.91,
+     "share_in_spheres": 0.08298148148148148,
+     "matrix_n": 198076,
+     "matrix_observed": 0.044033603263393846,
+     "rho_b": 0.044624384484366314,
+     "matrix_within_3se": true
+    },
+    {
+     "index": 21,
+     "n_clusters": 65,
+     "seconds": 1.09,
+     "share_in_spheres": 0.12574537037037037,
+     "matrix_n": 188839,
+     "matrix_observed": 0.037937078675485465,
+     "rho_b": 0.037480930946143375,
+     "matrix_within_3se": true
+    },
+    {
+     "index": 22,
+     "n_clusters": 76,
+     "seconds": 0.33,
+     "share_in_spheres": 0.051527777777777777,
+     "matrix_n": 204870,
+     "matrix_observed": 0.0492068140772197,
+     "rho_b": 0.049590385824881414,
+     "matrix_within_3se": true
+    },
+    {
+     "index": 23,
+     "n_clusters": 16,
+     "seconds": 0.6,
+     "share_in_spheres": 0.08887962962962963,
+     "matrix_n": 196802,
+     "matrix_observed": 0.026407251958821557,
+     "rho_b": 0.02657069057986219,
+     "matrix_within_3se": true
+    },
+    {
+     "index": 24,
+     "n_clusters": 7,
+     "seconds": 0.7,
+     "share_in_spheres": 0.09177777777777778,
+     "matrix_n": 196176,
+     "matrix_observed": 0.03312841530054645,
+     "rho_b": 0.03299978594005756,
+     "matrix_within_3se": true
+    },
+    {
+     "index": 25,
+     "n_clusters": 28,
+     "seconds": 2.2,
+     "share_in_spheres": 0.2233564814814815,
+     "matrix_n": 167755,
+     "matrix_observed": 0.015272272063425829,
+     "rho_b": 0.015124014056896408,
+     "matrix_within_3se": true
+    },
+    {
+     "index": 26,
+     "n_clusters": 2,
+     "seconds": 0.56,
+     "share_in_spheres": 0.07390277777777778,
+     "matrix_n": 200037,
+     "matrix_observed": 0.04750121227572899,
+     "rho_b": 0.047376779983299616,
+     "matrix_within_3se": true
+    },
+    {
+     "index": 27,
+     "n_clusters": 29,
+     "seconds": 2.89,
+     "share_in_spheres": 0.3398611111111111,
+     "matrix_n": 142590,
+     "matrix_observed": 0.017729153517076934,
+     "rho_b": 0.018316774427826817,
+     "matrix_within_3se": true
+    },
+    {
+     "index": 28,
+     "n_clusters": 11,
+     "seconds": 1.71,
+     "share_in_spheres": 0.18144907407407407,
+     "matrix_n": 176807,
+     "matrix_observed": 0.03688767978643379,
+     "rho_b": 0.03692553563433143,
+     "matrix_within_3se": true
+    },
+    {
+     "index": 29,
+     "n_clusters": 5,
+     "seconds": 0.84,
+     "share_in_spheres": 0.10773148148148148,
+     "matrix_n": 192730,
+     "matrix_observed": 0.02037565506148498,
+     "rho_b": 0.020157010205954097,
+     "matrix_within_3se": true
+    },
+    {
+     "index": 30,
+     "n_clusters": 94,
+     "seconds": 0.66,
+     "share_in_spheres": 0.0915787037037037,
+     "matrix_n": 196219,
+     "matrix_observed": 0.02816750671443642,
+     "rho_b": 0.028090946503149968,
+     "matrix_within_3se": true
+    },
+    {
+     "index": 31,
+     "n_clusters": 5,
+     "seconds": 0.52,
+     "share_in_spheres": 0.07313888888888889,
+     "matrix_n": 200202,
+     "matrix_observed": 0.035798843168399916,
+     "rho_b": 0.035989126751077315,
+     "matrix_within_3se": true
+    },
+    {
+     "index": 32,
+     "n_clusters": 23,
+     "seconds": 1.57,
+     "share_in_spheres": 0.17719444444444443,
+     "matrix_n": 177726,
+     "matrix_observed": 0.025196088360735065,
+     "rho_b": 0.025446707587567716,
+     "matrix_within_3se": true
+    },
+    {
+     "index": 33,
+     "n_clusters": 12,
+     "seconds": 0.96,
+     "share_in_spheres": 0.11172685185185185,
+     "matrix_n": 191867,
+     "matrix_observed": 0.0451510681878593,
+     "rho_b": 0.04535431634547543,
+     "matrix_within_3se": true
+    },
+    {
+     "index": 34,
+     "n_clusters": 58,
+     "seconds": 1.95,
+     "share_in_spheres": 0.17129166666666668,
+     "matrix_n": 179001,
+     "matrix_observed": 0.020849045536058458,
+     "rho_b": 0.020965049396390514,
+     "matrix_within_3se": true
+    },
+    {
+     "index": 35,
+     "n_clusters": 4,
+     "seconds": 1.73,
+     "share_in_spheres": 0.22062962962962962,
+     "matrix_n": 168344,
+     "matrix_observed": 0.031875207907617734,
+     "rho_b": 0.03235358990716626,
+     "matrix_within_3se": true
+    },
+    {
+     "index": 36,
+     "n_clusters": 4,
+     "seconds": 1.23,
+     "share_in_spheres": 0.12058333333333333,
+     "matrix_n": 189954,
+     "matrix_observed": 0.01674089516409236,
+     "rho_b": 0.017118121665002706,
+     "matrix_within_3se": true
+    },
+    {
+     "index": 37,
+     "n_clusters": 210,
+     "seconds": 1.14,
+     "share_in_spheres": 0.14221296296296296,
+     "matrix_n": 185282,
+     "matrix_observed": 0.020271801901965654,
+     "rho_b": 0.020407833411550655,
+     "matrix_within_3se": true
+    },
+    {
+     "index": 38,
+     "n_clusters": 10,
+     "seconds": 1.99,
+     "share_in_spheres": 0.18299074074074073,
+     "matrix_n": 176474,
+     "matrix_observed": 0.022337568140349286,
+     "rho_b": 0.02200250541167762,
+     "matrix_within_3se": true
+    },
+    {
+     "index": 39,
+     "n_clusters": 3,
+     "seconds": 2.3,
+     "share_in_spheres": 0.2722685185185185,
+     "matrix_n": 157190,
+     "matrix_observed": 0.006247216744067688,
+     "rho_b": 0.0062903509156142625,
+     "matrix_within_3se": true
+    },
+    {
+     "index": 40,
+     "n_clusters": 31,
+     "seconds": 1.17,
+     "share_in_spheres": 0.14706944444444445,
+     "matrix_n": 184233,
+     "matrix_observed": 0.004450885563389838,
+     "rho_b": 0.004586183952950335,
+     "matrix_within_3se": true
+    },
+    {
+     "index": 41,
+     "n_clusters": 1,
+     "seconds": 0.97,
+     "share_in_spheres": 0.10133796296296296,
+     "matrix_n": 194111,
+     "matrix_observed": 0.033676607714142937,
+     "rho_b": 0.033374496157337896,
+     "matrix_within_3se": true
+    },
+    {
+     "index": 42,
+     "n_clusters": 3,
+     "seconds": 0.5,
+     "share_in_spheres": 0.04756481481481482,
+     "matrix_n": 205726,
+     "matrix_observed": 0.033228663367780444,
+     "rho_b": 0.032775886917152615,
+     "matrix_within_3se": true
+    },
+    {
+     "index": 43,
+     "n_clusters": 3,
+     "seconds": 1.92,
+     "share_in_spheres": 0.1831435185185185,
+     "matrix_n": 176441,
+     "matrix_observed": 0.03309321529576459,
+     "rho_b": 0.03314548571050476,
+     "matrix_within_3se": true
+    },
+    {
+     "index": 44,
+     "n_clusters": 1,
+     "seconds": 0.97,
+     "share_in_spheres": 0.10037037037037037,
+     "matrix_n": 194320,
+     "matrix_observed": 0.001018937834499794,
+     "rho_b": 0.0009883222671345838,
+     "matrix_within_3se": true
+    },
+    {
+     "index": 45,
+     "n_clusters": 71,
+     "seconds": 1.09,
+     "share_in_spheres": 0.11078703703703703,
+     "matrix_n": 192070,
+     "matrix_observed": 0.0163898578643203,
+     "rho_b": 0.016327342133588996,
+     "matrix_within_3se": true
+    },
+    {
+     "index": 46,
+     "n_clusters": 14,
+     "seconds": 1.76,
+     "share_in_spheres": 0.1793287037037037,
+     "matrix_n": 177265,
+     "matrix_observed": 0.009838377570304346,
+     "rho_b": 0.009890492362959847,
+     "matrix_within_3se": true
+    },
+    {
+     "index": 47,
+     "n_clusters": 7,
+     "seconds": 0.97,
+     "share_in_spheres": 0.08394444444444445,
+     "matrix_n": 197868,
+     "matrix_observed": 0.0402894859199062,
+     "rho_b": 0.03890757112720062,
+     "matrix_within_3se": false
+    },
+    {
+     "index": 48,
+     "n_clusters": 24,
+     "seconds": 0.86,
+     "share_in_spheres": 0.09172685185185185,
+     "matrix_n": 196187,
+     "matrix_observed": 0.04353499467344931,
+     "rho_b": 0.04303152006980651,
+     "matrix_within_3se": true
+    },
+    {
+     "index": 49,
+     "n_clusters": 42,
+     "seconds": 2.21,
+     "share_in_spheres": 0.25597685185185187,
+     "matrix_n": 160709,
+     "matrix_observed": 0.012139954825180916,
+     "rho_b": 0.012334018861307368,
+     "matrix_within_3se": true
+    },
+    {
+     "index": 50,
+     "n_clusters": 2,
+     "seconds": 0.54,
+     "share_in_spheres": 0.030337962962962962,
+     "matrix_n": 209447,
+     "matrix_observed": 0.03379852659622721,
+     "rho_b": 0.03339245794239932,
+     "matrix_within_3se": true
+    },
+    {
+     "index": 51,
+     "n_clusters": 735,
+     "seconds": 4.17,
+     "share_in_spheres": 0.43150462962962965,
+     "matrix_n": 122795,
+     "matrix_observed": 0.006702227289384747,
+     "rho_b": 0.006468140172913722,
+     "matrix_within_3se": true
+    },
+    {
+     "index": 52,
+     "n_clusters": 7,
+     "seconds": 1.4,
+     "share_in_spheres": 0.18416666666666667,
+     "matrix_n": 176220,
+     "matrix_observed": 0.013676086709794574,
+     "rho_b": 0.013757626280085667,
+     "matrix_within_3se": true
+    },
+    {
+     "index": 53,
+     "n_clusters": 2,
+     "seconds": 0.52,
+     "share_in_spheres": 0.058694444444444445,
+     "matrix_n": 203322,
+     "matrix_observed": 0.006757753710862573,
+     "rho_b": 0.0069327248116709764,
+     "matrix_within_3se": true
+    },
+    {
+     "index": 54,
+     "n_clusters": 14,
+     "seconds": 0.86,
+     "share_in_spheres": 0.11623148148148148,
+     "matrix_n": 190894,
+     "matrix_observed": 0.014028727985164541,
+     "rho_b": 0.014176038329961461,
+     "matrix_within_3se": true
+    },
+    {
+     "index": 55,
+     "n_clusters": 5,
+     "seconds": 0.95,
+     "share_in_spheres": 0.054953703703703706,
+     "matrix_n": 204130,
+     "matrix_observed": 0.03386077499632587,
+     "rho_b": 0.0337368273674639,
+     "matrix_within_3se": true
+    },
+    {
+     "index": 56,
+     "n_clusters": 1,
+     "seconds": 1.48,
+     "share_in_spheres": 0.1507777777777778,
+     "matrix_n": 183432,
+     "matrix_observed": 0.04581534301539535,
+     "rho_b": 0.045516345509262625,
+     "matrix_within_3se": true
+    },
+    {
+     "index": 57,
+     "n_clusters": 11,
+     "seconds": 1.08,
+     "share_in_spheres": 0.1361388888888889,
+     "matrix_n": 186594,
+     "matrix_observed": 0.010546962924852889,
+     "rho_b": 0.010126120396209299,
+     "matrix_within_3se": true
+    },
+    {
+     "index": 58,
+     "n_clusters": 133,
+     "seconds": 2.01,
+     "share_in_spheres": 0.25393055555555555,
+     "matrix_n": 161151,
+     "matrix_observed": 0.02636657544787187,
+     "rho_b": 0.02710395174753596,
+     "matrix_within_3se": true
+    },
+    {
+     "index": 59,
+     "n_clusters": 262,
+     "seconds": 2.1,
+     "share_in_spheres": 0.2544814814814815,
+     "matrix_n": 161032,
+     "matrix_observed": 0.0356450891748224,
+     "rho_b": 0.03506955506217162,
+     "matrix_within_3se": true
+    },
+    {
+     "index": 60,
+     "n_clusters": 1,
+     "seconds": 0.92,
+     "share_in_spheres": 0.0865,
+     "matrix_n": 197316,
+     "matrix_observed": 0.047355510957043524,
+     "rho_b": 0.04764612342427829,
+     "matrix_within_3se": true
+    },
+    {
+     "index": 61,
+     "n_clusters": 24,
+     "seconds": 1.01,
+     "share_in_spheres": 0.12615277777777778,
+     "matrix_n": 188751,
+     "matrix_observed": 0.03057467245206648,
+     "rho_b": 0.030503024144358695,
+     "matrix_within_3se": true
+    },
+    {
+     "index": 62,
+     "n_clusters": 9,
+     "seconds": 1.18,
+     "share_in_spheres": 0.12106018518518519,
+     "matrix_n": 189851,
+     "matrix_observed": 0.012846916792642651,
+     "rho_b": 0.012755346551369035,
+     "matrix_within_3se": true
+    },
+    {
+     "index": 63,
+     "n_clusters": 42,
+     "seconds": 0.67,
+     "share_in_spheres": 0.09428703703703703,
+     "matrix_n": 195634,
+     "matrix_observed": 0.030684850281648385,
+     "rho_b": 0.031273907845696815,
+     "matrix_within_3se": true
+    },
+    {
+     "index": 64,
+     "n_clusters": 11,
+     "seconds": 1.01,
+     "share_in_spheres": 0.1317222222222222,
+     "matrix_n": 187548,
+     "matrix_observed": 0.016203851813935632,
+     "rho_b": 0.016024558083900808,
+     "matrix_within_3se": true
+    },
+    {
+     "index": 65,
+     "n_clusters": 1,
+     "seconds": 0.56,
+     "share_in_spheres": 0.054106481481481485,
+     "matrix_n": 204313,
+     "matrix_observed": 0.04938990666281637,
+     "rho_b": 0.048806419534585394,
+     "matrix_within_3se": true
+    },
+    {
+     "index": 66,
+     "n_clusters": 8,
+     "seconds": 1.15,
+     "share_in_spheres": 0.1534212962962963,
+     "matrix_n": 182861,
+     "matrix_observed": 0.02003160870825381,
+     "rho_b": 0.019983806758181843,
+     "matrix_within_3se": true
+    },
+    {
+     "index": 67,
+     "n_clusters": 3,
+     "seconds": 1.44,
+     "share_in_spheres": 0.1435648148148148,
+     "matrix_n": 184990,
+     "matrix_observed": 0.03360181631439537,
+     "rho_b": 0.03427138603805071,
+     "matrix_within_3se": true
+    },
+    {
+     "index": 68,
+     "n_clusters": 72,
+     "seconds": 3.51,
+     "share_in_spheres": 0.35091203703703705,
+     "matrix_n": 140203,
+     "matrix_observed": 0.0010627447344208041,
+     "rho_b": 0.001161379117337924,
+     "matrix_within_3se": true
+    },
+    {
+     "index": 69,
+     "n_clusters": 9,
+     "seconds": 1.17,
+     "share_in_spheres": 0.12917592592592592,
+     "matrix_n": 188098,
+     "matrix_observed": 0.020095907452498167,
+     "rho_b": 0.02000307230673777,
+     "matrix_within_3se": true
+    },
+    {
+     "index": 70,
+     "n_clusters": 4,
+     "seconds": 1.24,
+     "share_in_spheres": 0.1547175925925926,
+     "matrix_n": 182581,
+     "matrix_observed": 0.04362995054249894,
+     "rho_b": 0.04375538066612558,
+     "matrix_within_3se": true
+    },
+    {
+     "index": 71,
+     "n_clusters": 7,
+     "seconds": 2.27,
+     "share_in_spheres": 0.2378287037037037,
+     "matrix_n": 164629,
+     "matrix_observed": 0.030249834476307334,
+     "rho_b": 0.030511372221662295,
+     "matrix_within_3se": true
+    },
+    {
+     "index": 72,
+     "n_clusters": 12,
+     "seconds": 0.57,
+     "share_in_spheres": 0.06267592592592593,
+     "matrix_n": 202462,
+     "matrix_observed": 0.022093034742322017,
+     "rho_b": 0.022197144319798818,
+     "matrix_within_3se": true
+    },
+    {
+     "index": 73,
+     "n_clusters": 2,
+     "seconds": 0.41,
+     "share_in_spheres": 0.03826388888888889,
+     "matrix_n": 207735,
+     "matrix_observed": 0.04635713769947289,
+     "rho_b": 0.0467968749717863,
+     "matrix_within_3se": true
+    },
+    {
+     "index": 74,
+     "n_clusters": 20,
+     "seconds": 2.82,
+     "share_in_spheres": 0.310375,
+     "matrix_n": 148959,
+     "matrix_observed": 0.04265603286810465,
+     "rho_b": 0.04269921880736146,
+     "matrix_within_3se": true
+    },
+    {
+     "index": 75,
+     "n_clusters": 8,
+     "seconds": 1.11,
+     "share_in_spheres": 0.14460648148148147,
+     "matrix_n": 184765,
+     "matrix_observed": 0.01654534137959029,
+     "rho_b": 0.016110783691146914,
+     "matrix_within_3se": true
+    },
+    {
+     "index": 76,
+     "n_clusters": 3,
+     "seconds": 1.68,
+     "share_in_spheres": 0.1715,
+     "matrix_n": 178956,
+     "matrix_observed": 0.026933994948478954,
+     "rho_b": 0.027227420102066982,
+     "matrix_within_3se": true
+    },
+    {
+     "index": 77,
+     "n_clusters": 30,
+     "seconds": 1.27,
+     "share_in_spheres": 0.12031481481481482,
+     "matrix_n": 190012,
+     "matrix_observed": 0.024472138601772518,
+     "rho_b": 0.024491212804623137,
+     "matrix_within_3se": true
+    },
+    {
+     "index": 78,
+     "n_clusters": 15,
+     "seconds": 1.15,
+     "share_in_spheres": 0.13552777777777777,
+     "matrix_n": 186726,
+     "matrix_observed": 0.03170956374580937,
+     "rho_b": 0.03161012500574312,
+     "matrix_within_3se": true
+    },
+    {
+     "index": 79,
+     "n_clusters": 130,
+     "seconds": 0.91,
+     "share_in_spheres": 0.10647222222222222,
+     "matrix_n": 193002,
+     "matrix_observed": 0.016709671402368887,
+     "rho_b": 0.01670556334793778,
+     "matrix_within_3se": true
+    },
+    {
+     "index": 80,
+     "n_clusters": 8,
+     "seconds": 0.55,
+     "share_in_spheres": 0.07429166666666667,
+     "matrix_n": 199953,
+     "matrix_observed": 0.011882792456227214,
+     "rho_b": 0.012210250038294413,
+     "matrix_within_3se": true
+    },
+    {
+     "index": 81,
+     "n_clusters": 37,
+     "seconds": 1.02,
+     "share_in_spheres": 0.11830555555555555,
+     "matrix_n": 190446,
+     "matrix_observed": 0.045860768931875705,
+     "rho_b": 0.04563359176277681,
+     "matrix_within_3se": true
+    },
+    {
+     "index": 82,
+     "n_clusters": 2,
+     "seconds": 0.27,
+     "share_in_spheres": 0.01648611111111111,
+     "matrix_n": 212439,
+     "matrix_observed": 0.04601791573110399,
+     "rho_b": 0.04619372497492532,
+     "matrix_within_3se": true
+    },
+    {
+     "index": 83,
+     "n_clusters": 50,
+     "seconds": 1.93,
+     "share_in_spheres": 0.19717592592592592,
+     "matrix_n": 173410,
+     "matrix_observed": 0.04289833342944467,
+     "rho_b": 0.04216614428809895,
+     "matrix_within_3se": true
+    },
+    {
+     "index": 84,
+     "n_clusters": 8,
+     "seconds": 2.57,
+     "share_in_spheres": 0.2962916666666667,
+     "matrix_n": 152001,
+     "matrix_observed": 0.04994703982210643,
+     "rho_b": 0.04891022153822807,
+     "matrix_within_3se": true
+    },
+    {
+     "index": 85,
+     "n_clusters": 55,
+     "seconds": 2.69,
+     "share_in_spheres": 0.2766898148148148,
+     "matrix_n": 156235,
+     "matrix_observed": 0.03679713252472237,
+     "rho_b": 0.037249576288984426,
+     "matrix_within_3se": true
+    },
+    {
+     "index": 86,
+     "n_clusters": 11,
+     "seconds": 0.66,
+     "share_in_spheres": 0.06395370370370371,
+     "matrix_n": 202186,
+     "matrix_observed": 0.039018527494485276,
+     "rho_b": 0.038233361428099986,
+     "matrix_within_3se": true
+    },
+    {
+     "index": 87,
+     "n_clusters": 14,
+     "seconds": 0.96,
+     "share_in_spheres": 0.11912962962962963,
+     "matrix_n": 190268,
+     "matrix_observed": 0.038256564424916435,
+     "rho_b": 0.03812950459813204,
+     "matrix_within_3se": true
+    },
+    {
+     "index": 88,
+     "n_clusters": 7,
+     "seconds": 2.12,
+     "share_in_spheres": 0.25905555555555554,
+     "matrix_n": 160044,
+     "matrix_observed": 0.024924395791157433,
+     "rho_b": 0.02403038154711533,
+     "matrix_within_3se": true
+    },
+    {
+     "index": 89,
+     "n_clusters": 7,
+     "seconds": 0.82,
+     "share_in_spheres": 0.12502314814814816,
+     "matrix_n": 188995,
+     "matrix_observed": 0.02303764649858462,
+     "rho_b": 0.022822609725713584,
+     "matrix_within_3se": true
+    },
+    {
+     "index": 90,
+     "n_clusters": 23,
+     "seconds": 2.37,
+     "share_in_spheres": 0.2687083333333333,
+     "matrix_n": 157959,
+     "matrix_observed": 0.01193980716515045,
+     "rho_b": 0.012011313807450158,
+     "matrix_within_3se": true
+    },
+    {
+     "index": 91,
+     "n_clusters": 1,
+     "seconds": 1.05,
+     "share_in_spheres": 0.11695833333333333,
+     "matrix_n": 190737,
+     "matrix_observed": 0.0323639356810687,
+     "rho_b": 0.03224095971796453,
+     "matrix_within_3se": true
+    },
+    {
+     "index": 92,
+     "n_clusters": 5,
+     "seconds": 0.95,
+     "share_in_spheres": 0.10812962962962963,
+     "matrix_n": 192644,
+     "matrix_observed": 0.01372479807312971,
+     "rho_b": 0.014466006805116727,
+     "matrix_within_3se": true
+    },
+    {
+     "index": 93,
+     "n_clusters": 31,
+     "seconds": 0.96,
+     "share_in_spheres": 0.16457407407407407,
+     "matrix_n": 180452,
+     "matrix_observed": 0.0125074812138408,
+     "rho_b": 0.012890420485117722,
+     "matrix_within_3se": true
+    },
+    {
+     "index": 94,
+     "n_clusters": 3,
+     "seconds": 0.93,
+     "share_in_spheres": 0.13306944444444443,
+     "matrix_n": 187257,
+     "matrix_observed": 0.029285954597157916,
+     "rho_b": 0.02929806870480274,
+     "matrix_within_3se": true
+    },
+    {
+     "index": 95,
+     "n_clusters": 17,
+     "seconds": 1.17,
+     "share_in_spheres": 0.121125,
+     "matrix_n": 189837,
+     "matrix_observed": 0.02097062216533131,
+     "rho_b": 0.02049911941125216,
+     "matrix_within_3se": true
+    },
+    {
+     "index": 96,
+     "n_clusters": 228,
+     "seconds": 1.45,
+     "share_in_spheres": 0.1855138888888889,
+     "matrix_n": 175929,
+     "matrix_observed": 0.010617919728981578,
+     "rho_b": 0.010942830439731611,
+     "matrix_within_3se": true
+    },
+    {
+     "index": 97,
+     "n_clusters": 17,
+     "seconds": 1.38,
+     "share_in_spheres": 0.2191759259259259,
+     "matrix_n": 168658,
+     "matrix_observed": 0.04054358524351054,
+     "rho_b": 0.04080280083764156,
+     "matrix_within_3se": true
+    },
+    {
+     "index": 98,
+     "n_clusters": 124,
+     "seconds": 1.09,
+     "share_in_spheres": 0.22300925925925927,
+     "matrix_n": 167830,
+     "matrix_observed": 0.04326401716022165,
+     "rho_b": 0.043028495964718805,
+     "matrix_within_3se": true
+    },
+    {
+     "index": 99,
+     "n_clusters": 8,
+     "seconds": 0.17,
+     "share_in_spheres": 0.03125925925925926,
+     "matrix_n": 209248,
+     "matrix_observed": 0.008411072029362287,
+     "rho_b": 0.008384975983889048,
+     "matrix_within_3se": true
+    }
+   ]
+  }
+ },
+ "cached_validation_and_test": 200,
+ "masks": {
+  "checked": 900,
+  "mismatches": []
+ },
+ "gate0": {
+  "checks": {
+   "slope_in_[0.99,1.01]": true,
+   "abs_intercept_le_0.01": true,
+   "reliability_bins_within_tolerance": true,
+   "matrix_within_3se_in_at_least_95": true,
+   "masks_match_frozen_checksums": true
+  },
+  "passed_excluding_tests": true
+ },
+ "seconds": 106.5
+}

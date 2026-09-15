@@ -320,7 +320,11 @@ def clustersim(opp, # overlying point pattern
                r_max_weighted_max_ratio = None,
                prob_function="Gaussian_decay",
                prob_exp = -3,
-               selection='sampled'):
+               selection='sampled',
+               opp_oversample = 1):
+    # opp_oversample scales the density the overlying pattern is shrunk to before
+    # the random subset of n_clusts centres is kept. A lattice needs 1. A random
+    # overlying pattern needs more, or the window is often short of centres.
     # Prepare dictionaries for the helper function
     weights_dict = {'x': x_weight, 'y': y_weight, 'z': z_weight}
     exps_dict = {'x': x_exp, 'y': y_exp, 'z': z_exp}
@@ -372,7 +376,7 @@ def clustersim(opp, # overlying point pattern
     }
 
     buffed_volume = (buffed_window['x'][1] - buffed_window['x'][0]) *(buffed_window['y'][1] - buffed_window['y'][0]) * (buffed_window['z'][1] - buffed_window['z'][0])
-    needed_opp_concentration = n_grid_target /buffed_volume
+    needed_opp_concentration = opp_oversample * n_grid_target /buffed_volume
 
     old_opp_concentration = opp.n_points / opp.volume
     # now we know the number of points needed in opp and its domain
