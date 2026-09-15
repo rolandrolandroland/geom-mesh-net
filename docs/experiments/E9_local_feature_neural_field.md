@@ -4,9 +4,9 @@
 and the reinterpretation of its result.*
 
 [← back to README_detailed](../../README_detailed.md#7-experiment-walkthroughs) ·
-Implemented by [`example_01/execute_experimental_methodology_01.py`](../../example_01/execute_experimental_methodology_01.py) ·
-Protocol: [`EXPERIMENTAL_METHODOLOGY_01.md`](../../example_01/EXPERIMENTAL_METHODOLOGY_01.md) ·
-Report: [`REPORT.md`](../../example_01/methodology_01_results/report/REPORT.md) ·
+Implemented by [`experiments/neural_field/execute_experimental_methodology_01.py`](../../experiments/neural_field/execute_experimental_methodology_01.py) ·
+Protocol: [`EXPERIMENTAL_METHODOLOGY_01.md`](../../experiments/neural_field/EXPERIMENTAL_METHODOLOGY_01.md) ·
+Report: [`REPORT.md`](../../experiments/neural_field/methodology_01_results/report/REPORT.md) ·
 Runtime 34 min preprocessing + 51 s training
 
 ---
@@ -120,7 +120,7 @@ voxel indices in the same order.
 
 All three patterns failed, on all three criteria.
 
-![Interpolation quality](../../example_01/methodology_01_results/report/figures/interpolation_quality.png)
+![Interpolation quality](../../experiments/neural_field/methodology_01_results/report/figures/interpolation_quality.png)
 
 **Figure 1.** Per-feature interpolation quality.
 
@@ -178,7 +178,7 @@ stopping rule.
 | 4 | coordinate | 0.008408 | 0.2146 | 0.2014 | 0.02856 | 0.5381 | 0.6466 |
 | 4 | **local** | **0.006968** | **0.4021** | **0.3583** | **0.02242** | 0.5979 | 0.6417 |
 
-![Metric comparison](../../example_01/methodology_01_results/report/figures/model_metric_comparison.png)
+![Metric comparison](../../experiments/neural_field/methodology_01_results/report/figures/model_metric_comparison.png)
 
 **Figure 2.** Model metric comparison across patterns.
 
@@ -286,7 +286,7 @@ Until both, the question remains open rather than answered.
 
 | File | Contents |
 | --- | --- |
-| `example_01/methodology_01_results/report/REPORT.md` | full auto-generated report |
+| `experiments/neural_field/methodology_01_results/report/REPORT.md` | full auto-generated report |
 | `.../report/interpolation_metrics.csv` | per-feature interpolation statistics |
 | `.../report/model_metrics.csv` | complete model metrics |
 | `.../report/figures/` | eight figures |
@@ -295,7 +295,7 @@ Until both, the question remains open rather than answered.
 ## Reproduce
 
 ```bash
-PYTHONPATH=. python example_01/execute_experimental_methodology_01.py
+python -m experiments.neural_field.execute_experimental_methodology_01
 ```
 
 Approximately 34 minutes of preprocessing plus a minute of training. Per-pattern

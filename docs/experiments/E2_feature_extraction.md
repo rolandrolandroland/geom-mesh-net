@@ -5,8 +5,8 @@ in the Python port that made two thirds of the K features artefacts, and a scree
 establishing which parameters are recoverable at all.*
 
 [← back to README_detailed](../../README_detailed.md#7-experiment-walkthroughs) ·
-Implemented by [`inference/extract_features.py`](../../inference/extract_features.py),
-[`inference/screen_features.py`](../../inference/screen_features.py) ·
+Implemented by [`experiments/inference/extract_features.py`](../../experiments/inference/extract_features.py),
+[`experiments/inference/screen_features.py`](../../experiments/inference/screen_features.py) ·
 Runtime 7.6 min + 20 s
 
 > **Correction (ROADMAP §8.9).** The defect described here was introduced by the
@@ -303,15 +303,15 @@ rather than accommodated.
 
 | File | Contents |
 | --- | --- |
-| `inference/features/global_features.npz` | (1000, 14) features, validity flags, config signature |
-| `inference/features/global_features.json` | configuration, timings, gate result |
-| `inference/features/screen.json` | ridge screen scores over 25 splits |
+| `experiments/inference/features/global_features.npz` | (1000, 14) features, validity flags, config signature |
+| `experiments/inference/features/global_features.json` | configuration, timings, gate result |
+| `experiments/inference/features/screen.json` | ridge screen scores over 25 splits |
 
 ## Reproduce
 
 ```bash
-PYTHONPATH=. python inference/extract_features.py --workers 7
-PYTHONPATH=. python inference/screen_features.py --output-json inference/features/screen.json
+python -m experiments.inference.extract_features --workers 7
+python -m experiments.inference.screen_features --output-json experiments/inference/features/screen.json
 ```
 
 Tests: `tests/test_extract_features.py` — 23 tests, weighted toward the gate.

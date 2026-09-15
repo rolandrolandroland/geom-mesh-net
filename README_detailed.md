@@ -333,7 +333,7 @@ identifiability of `rb` — the failure is recorded and the threshold left alone
 Ninety-percent credible intervals contain the truth 88–92% of the time across all
 four parameters, measured out-of-fold on every pattern.
 
-![Stage 3 calibration](inference/posterior/calibration.png)
+![Stage 3 calibration](experiments/inference/posterior/calibration.png)
 
 **Figure 1.** Simulation-based calibration rank ECDF differences (top) and
 coverage curves (bottom), cross-validated over all 1,000 patterns. Three
@@ -389,7 +389,8 @@ accounted for*. They need not have agreed.
 
 Six defects were found and fixed. The consequential one was silent.
 
-**Table 2.** Corrections, with the section of `inference/ROADMAP.md` recording each.
+**Table 2.** Corrections, with the section of `experiments/inference/ROADMAP.md`
+recording each.
 
 | § | Defect | Consequence |
 | --- | --- | --- |
@@ -527,7 +528,7 @@ honest prerequisite for anything on real data.
 ### 5.5 On the corrections
 
 Eight stated conclusions were later overturned by measurement. They are recorded
-in `inference/ROADMAP.md` rather than overwritten, for three reasons.
+in `experiments/inference/ROADMAP.md` rather than overwritten, for three reasons.
 
 First, two of them **reversed a planned course of work**: a conclusion that more
 simulations would worsen calibration was reached by faulty reasoning about
@@ -636,9 +637,9 @@ discussion and conclusion, covering one experiment in detail.
 
 ### Reconstruction track
 
-Specified in [`reconstruction/ROADMAP.md`](reconstruction/ROADMAP.md), with a proposal
-([`PROPOSAL.md`](reconstruction/PROPOSAL.md)) describing its background, questions and
-methods.
+Specified in [`experiments/reconstruction/ROADMAP.md`](experiments/reconstruction/ROADMAP.md),
+with a proposal ([`PROPOSAL.md`](experiments/reconstruction/PROPOSAL.md)) describing its
+background, questions and methods.
 
 - **[E10 — The replay oracle](docs/experiments/E10_replay_oracle.md)**
   An exact guest probability for every simulated atom, by replaying the simulator's
@@ -660,36 +661,51 @@ methods.
 ## 8. Package reference
 
 ```
-geom_mesh_net/core_functions/     the library
-  clustersim.py                   simulate clustered marked point patterns
-  paper_spatial_features.py       G, F, K, cross-G and the 14 scalar features
-  point_cloud_fields.py           voxel guest-probability fields
-  voxelize_clusters.py            density grids from simulation parameters
-  spatial_stats_01.py             binned pair-correlation "spatial barcode"
-  data_loader.py                  torch Dataset and neural field models
-  cluster_visualizer.py           3D plotting
-  compare_benchmarks.py           benchmark figures
-  paper_feature_experiments.py    offline feature caching
+geom_mesh_net/                      the library (installed with pip install -e .)
+  simulation/clustersim.py          simulate clustered marked point patterns
+  simulation/parameters.py          parameter names, the prior, the data factory's draws
+  statistics/paper_spatial_features.py  G, F, K, cross-G and the 14 scalar features
+  statistics/presets.py             the stage1 and paper feature configurations
+  statistics/feature_cache.py       offline feature caching
+  statistics/barcode.py             binned pair-correlation "spatial barcode"
+  fields/oracle.py                  exact guest probabilities by replaying the simulator
+  fields/baselines.py               kernel-smoothing baselines B0, B1, B2
+  fields/point_cloud.py             voxel guest-probability fields
+  fields/density_grid.py            density grids from simulation parameters (deprecated)
+  neural/datasets.py                torch Dataset and collate function
+  neural/models.py                  neural field models
+  inference/flow.py                 conditional autoregressive normalising flow
+  inference/calibration.py          SBC ranks, ECDF bands, coverage, width ratio
+  viz/                              3D plotting and benchmark figures
+  paths.py                          data, experiment and figure locations
+  core_functions/                   deprecated aliases for the old module names
 
-inference/                        posterior inference of cluster parameters
-  ROADMAP.md                      the authoritative record: gates, corrections
-  flow.py                         conditional autoregressive normalising flow
-  recover_ground_truth.py         E1
-  extract_features.py             E2
-  screen_features.py              E2, ridge screen
-  fit_posterior.py                E3
-  validate_posterior.py           E4
-  ablate_features.py              E5
-  augment_features.py             E6
-  compare_augmentation.py         E6
-  diagnose_rho_b.py               E7
+experiments/inference/              posterior inference of cluster parameters
+  ROADMAP.md                        the authoritative record: gates, corrections
+  recover_ground_truth.py           E1
+  extract_features.py               E2
+  screen_features.py                E2, ridge screen
+  fit_posterior.py                  E3
+  validate_posterior.py             E4
+  ablate_features.py                E5
+  augment_features.py               E6
+  compare_augmentation.py           E6
+  diagnose_rho_b.py                 E7
 
-example_01/                       neural field experiments (E8, E9)
-docs/                             this documentation and its figures
-tests/                            130 regression tests
-walkthroughs/                     introductory explanatory documents
-data/                             1,000 simulated patterns (gitignored, ~5 GB)
+experiments/neural_field/           neural field experiments (E8, E9)
+experiments/reconstruction/         solute-field reconstruction (E10 onward)
+scripts/generate_data.py            the data factory that wrote data/
+docs/experiments/                   one walkthrough per experiment
+docs/guides/                        introductory explanatory documents
+tests/                              198 regression tests
+data/                               1,000 simulated patterns (gitignored, ~5 GB)
 ```
+
+Experiment scripts are run from the repository root as modules, for example
+`python -m experiments.inference.fit_posterior`. Results files written before the
+repository was reorganised record the scripts' old locations: `inference/`,
+`reconstruction/` and `example_01/` are now under `experiments/`, and
+`deprecated_code/tester_scripts/data_factory.py` is `scripts/generate_data.py`.
 
 ### Testing philosophy
 
@@ -716,28 +732,27 @@ diagnostic that only passed the calibrated case would certify anything.
 mamba create -n geom_mesh_net python=3.10
 mamba activate geom_mesh_net
 mamba install numpy scipy matplotlib pandas pyvista -c conda-forge
-pip install torch torchvision torchaudio plotly trame trame-vtk trame-vuetify
-pip install pytest
-pip install -e .
+pip install torch plotly trame trame-vtk trame-vuetify
+pip install -e ".[dev,notebooks]"
 ```
 
 ### Pipeline
 
 ```bash
-python -m pytest                                              # 130 tests, 36 s
+python -m pytest                                                    # 198 tests, ~90 s
 
-PYTHONPATH=. python deprecated_code/tester_scripts/data_factory.py   # ~8 min, 5 GB
-PYTHONPATH=. python inference/recover_ground_truth.py                # E1, 6 s
-PYTHONPATH=. python inference/extract_features.py --workers 7        # E2, 7.6 min
-PYTHONPATH=. python inference/screen_features.py                     # E2, 20 s
-PYTHONPATH=. python inference/fit_posterior.py                       # E3, 7 s
-PYTHONPATH=. python inference/validate_posterior.py --ensemble 5     # E4, 11 min
-PYTHONPATH=. python inference/ablate_features.py --seeds 6           # E5, 15 min
-PYTHONPATH=. python inference/augment_features.py --workers 7        # E6, 11 min
-PYTHONPATH=. python inference/compare_augmentation.py                # E6, 12 min
-PYTHONPATH=. python inference/diagnose_rho_b.py                      # E7, 2 min
+PYTHONPATH=. python scripts/generate_data.py                        # ~8 min, 5 GB
+python -m experiments.inference.recover_ground_truth                # E1, 6 s
+python -m experiments.inference.extract_features --workers 7        # E2, 7.6 min
+python -m experiments.inference.screen_features                     # E2, 20 s
+python -m experiments.inference.fit_posterior                       # E3, 7 s
+python -m experiments.inference.validate_posterior --ensemble 5     # E4, 11 min
+python -m experiments.inference.ablate_features --seeds 6           # E5, 15 min
+python -m experiments.inference.augment_features --workers 7        # E6, 11 min
+python -m experiments.inference.compare_augmentation                # E6, 12 min
+python -m experiments.inference.diagnose_rho_b                      # E7, 2 min
 
-PYTHONPATH=. python docs/make_figures.py                             # rebuild figures
+PYTHONPATH=. python docs/make_figures.py                            # rebuild figures
 ```
 
 Run from the repository root. `data/` is gitignored; the generator writes 1,000
@@ -747,7 +762,7 @@ tracked.
 
 ### A note on the data generator
 
-`data_factory.py` seeds `np.random.default_rng(42)` and draws parameters in a
+`scripts/generate_data.py` seeds `np.random.default_rng(42)` and draws parameters in a
 fixed order. **Rerunning it unchanged reproduces the identical 1,000 patterns**,
 so extending the dataset requires a different seed and an index offset, or the
 new batch will overwrite the existing one. The generator now writes all four
@@ -777,11 +792,11 @@ parameters directly, so future datasets need no recovery step.
 
 ### Authoritative records
 
-`inference/ROADMAP.md` is the authoritative record of this work. It contains every
+`experiments/inference/ROADMAP.md` is the authoritative record of this work. It contains every
 gate definition, the measured result against each, the full correction history
 with the reasoning that produced each error, and the risks and limitations in
 their original form. This document summarises it; where the two differ, the
 roadmap governs.
 
-`example_01/EXPERIMENTAL_METHODOLOGY_01.md` and its report play the same role for
+`experiments/neural_field/EXPERIMENTAL_METHODOLOGY_01.md` and its report play the same role for
 the neural field track.

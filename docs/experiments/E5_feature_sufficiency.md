@@ -4,14 +4,14 @@
 contraction rather than correlation.*
 
 [← back to README_detailed](../../README_detailed.md#7-experiment-walkthroughs) ·
-Implemented by [`inference/ablate_features.py`](../../inference/ablate_features.py) ·
+Implemented by [`experiments/inference/ablate_features.py`](../../experiments/inference/ablate_features.py) ·
 Runtime 15 min
 
 ---
 
 ## Abstract
 
-`walkthroughs/clustersim_todo.md` has carried the question "which features
+`docs/guides/clustersim_todo.md` has carried the question "which features
 capture the most information?" since before any of this work existed. Stages 2
 and 3 make it answerable rather than a matter of intuition: refit the posterior on
 a subset of features and measure how much the posterior contracts.
@@ -302,16 +302,16 @@ make it valid more often.
 
 | File | Contents |
 | --- | --- |
-| `inference/posterior/ablation_sqrt.json` | all 23 configurations, per-seed values |
-| `inference/features/global_features_cube_root.json` | transform comparison extraction |
+| `experiments/inference/posterior/ablation_sqrt.json` | all 23 configurations, per-seed values |
+| `experiments/inference/features/global_features_cube_root.json` | transform comparison extraction |
 
 ## Reproduce
 
 ```bash
-PYTHONPATH=. python inference/ablate_features.py --label sqrt --seeds 6
-PYTHONPATH=. python inference/extract_features.py --workers 7 \
+python -m experiments.inference.ablate_features --label sqrt --seeds 6
+python -m experiments.inference.extract_features --workers 7 \
     --k-transform cube_root \
-    --output inference/features/global_features_cube_root.npz
+    --output experiments/inference/features/global_features_cube_root.npz
 ```
 
 Tests: `tests/test_ablation.py` — 6 tests, the important one checking the

@@ -760,5 +760,5 @@ making decisions. Three things pass between them.
   Review E* 57, 495.
 
 *The authoritative, continuously updated record of criteria, results and
-corrections is `reconstruction/ROADMAP.md`. Where this proposal and the roadmap
+corrections is `experiments/reconstruction/ROADMAP.md`. Where this proposal and the roadmap
 differ, the roadmap governs.*

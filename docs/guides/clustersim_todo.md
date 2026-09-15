@@ -45,8 +45,8 @@ make model able to adjust barcode arguments
 restructure project so that it makes sense. perhaps i will create an "examples" directory
 currently, "train_networks_for_compare_multi_pattern" creates the 3 models
 on 5 patterns, then "evaluate_and_plot_multi_pattern" makes the plots
-compare_benchmarks contains the functions for plotting benchmarks and speed
-run_benchmark_plotting runs compare_benchmarks
+viz.benchmarks contains the functions for plotting benchmarks and speed
+run_benchmark_plotting runs viz.benchmarks
 
 update so that we can calculate the total number of points per epoch
 If an epoch processes $B$ batches,

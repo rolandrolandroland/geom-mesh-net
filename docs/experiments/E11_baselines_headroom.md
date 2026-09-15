@@ -4,9 +4,9 @@
 where does it fall short?*
 
 [← back to README_detailed](../../README_detailed.md#7-experiment-walkthroughs) ·
-Protocol: [`reconstruction/ROADMAP.md`](../../reconstruction/ROADMAP.md), Stage 1 ·
-Implemented by [`field_baselines.py`](../../geom_mesh_net/core_functions/field_baselines.py)
-and [`stage1_baselines.py`](../../reconstruction/stage1_baselines.py) ·
+Protocol: [`experiments/reconstruction/ROADMAP.md`](../../experiments/reconstruction/ROADMAP.md), Stage 1 ·
+Implemented by [`fields/baselines.py`](../../geom_mesh_net/fields/baselines.py)
+and [`stage1_baselines.py`](../../experiments/reconstruction/stage1_baselines.py) ·
 Runtime 30 min on six workers
 
 ---
@@ -413,16 +413,16 @@ kernel of standard practice, the baseline a neural reconstruction has to beat.
 
 | File | Contents |
 | --- | --- |
-| `geom_mesh_net/core_functions/field_baselines.py` | B0, B1 and B2, binned kernel sums, cross-validation |
-| `reconstruction/stage1_baselines.py` | this stage: fits, scoring, regions, calibration, predictive check, Gate 1 |
-| `reconstruction/results/stage1_headroom.json` | every cell's losses, hyperparameters, region excesses and relabelled features, plus summaries and the gate |
+| `geom_mesh_net/fields/baselines.py` | B0, B1 and B2, binned kernel sums, cross-validation |
+| `experiments/reconstruction/stage1_baselines.py` | this stage: fits, scoring, regions, calibration, predictive check, Gate 1 |
+| `experiments/reconstruction/results/stage1_headroom.json` | every cell's losses, hyperparameters, region excesses and relabelled features, plus summaries and the gate |
 | `docs/figures/e11_*.png` | Figures 1–5 |
 | `tests/test_field_baselines.py` | 8 tests: brute-force kernel sum, limits, adaptive interpolation, the log-loss identity |
 
 ## Reproduce
 
 ```bash
-PYTHONPATH=. python reconstruction/stage1_baselines.py                  # 30 min, six workers
+python -m experiments.reconstruction.stage1_baselines                  # 30 min, six workers
 PYTHONPATH=. python docs/make_reconstruction_figures.py
 python -m pytest -q tests/test_field_baselines.py
 ```

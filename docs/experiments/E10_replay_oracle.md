@@ -4,11 +4,11 @@
 be computed, and is the benchmark free of simulator artefacts?*
 
 [← back to README_detailed](../../README_detailed.md#7-experiment-walkthroughs) ·
-Protocol: [`reconstruction/ROADMAP.md`](../../reconstruction/ROADMAP.md), Stage 0 ·
-Implemented by [`field_oracle.py`](../../geom_mesh_net/core_functions/field_oracle.py),
-[`generate_random_centres.py`](../../reconstruction/generate_random_centres.py),
-[`freeze_benchmark.py`](../../reconstruction/freeze_benchmark.py) and
-[`stage0_oracle.py`](../../reconstruction/stage0_oracle.py) ·
+Protocol: [`experiments/reconstruction/ROADMAP.md`](../../experiments/reconstruction/ROADMAP.md), Stage 0 ·
+Implemented by [`fields/oracle.py`](../../geom_mesh_net/fields/oracle.py),
+[`generate_random_centres.py`](../../experiments/reconstruction/generate_random_centres.py),
+[`freeze_benchmark.py`](../../experiments/reconstruction/freeze_benchmark.py) and
+[`stage0_oracle.py`](../../experiments/reconstruction/stage0_oracle.py) ·
 Runtime: 95 s to generate the dataset, 107 s for the gate
 
 ---
@@ -69,7 +69,7 @@ the labels themselves.
 
 ### 1.3 The inherited reference had never been checked
 
-`voxelize_clusters.generate_density_grid` computes a guest-probability grid from
+`fields.density_grid.generate_density_grid` computes a guest-probability grid from
 the cluster geometry, and `LoadData` used it as the simulation target. It
 approximates the simulator's labelling rather than reproducing it, and nobody had
 compared it with the labels the simulator actually produces. Before building
@@ -156,7 +156,7 @@ deterministic.
 | Stage 2 subset | 36 test patterns, six per (cluster-radius band × concentration band) |
 
 SHA-256 checksums of the 900 evaluation masks and of the 1,000 dataset files are
-tracked in `reconstruction/benchmark/`.
+tracked in `experiments/reconstruction/benchmark/`.
 
 ### 2.7 Checks, and the gate
 
@@ -265,7 +265,7 @@ squared error by more than a factor of five.
 ### 3.5 Cluster centres lie on a lattice, and 22 patterns lost clusters to it
 
 **Table 3.** Placement of cluster centres, from
-`reconstruction/pilot/check_lattice.py`.
+`experiments/reconstruction/pilot/check_lattice.py`.
 
 | Dataset | On an exact lattice | Too few centres to test | Not a lattice |
 | --- | ---: | ---: | ---: |
@@ -342,7 +342,7 @@ measure how much a learned prior exploits it.
 The finding reaches beyond this track. The inference track's flow was trained on
 lattice-placed clusters, including the 22 lost-shell patterns, and `data_shared_upp/`
 keeps the lattice as well. rapt's published design used Poisson centres. None of
-this is yet recorded in `inference/ROADMAP.md`.
+this is yet recorded in `experiments/inference/ROADMAP.md`.
 
 ### 4.3 Deprecating rather than repairing the grid
 
@@ -391,23 +391,23 @@ in the benchmark every later stage uses.
 
 | File | Contents |
 | --- | --- |
-| `geom_mesh_net/core_functions/field_oracle.py` | replay oracle, exponential clocks, isotonic smoothing, continuous field |
-| `reconstruction/results/stage0_gate.json` | Gate 0 report for both datasets, per-pattern diagnostics |
-| `reconstruction/results/oracle/` | cached p* for development, validation and test patterns (gitignored) |
-| `reconstruction/benchmark/` | frozen splits, strata, Stage 2 subset, mask and dataset checksums |
-| `reconstruction/pilot/results/density_grid.json` | Section 3.1 |
-| `reconstruction/pilot/results/lattice.json` | Section 3.5 |
+| `geom_mesh_net/fields/oracle.py` | replay oracle, exponential clocks, isotonic smoothing, continuous field |
+| `experiments/reconstruction/results/stage0_gate.json` | Gate 0 report for both datasets, per-pattern diagnostics |
+| `experiments/reconstruction/results/oracle/` | cached p* for development, validation and test patterns (gitignored) |
+| `experiments/reconstruction/benchmark/` | frozen splits, strata, Stage 2 subset, mask and dataset checksums |
+| `experiments/reconstruction/pilot/results/density_grid.json` | Section 3.1 |
+| `experiments/reconstruction/pilot/results/lattice.json` | Section 3.5 |
 | `data_random_centres/` | benchmark dataset (gitignored, 5 GB) |
 | `tests/test_field_oracle.py`, `test_clustersim.py`, `test_voxelize_clusters.py`, `test_reconstruction_benchmark.py` | 32 tests |
 
 ## Reproduce
 
 ```bash
-PYTHONPATH=. python reconstruction/pilot/check_density_grid.py
-PYTHONPATH=. python reconstruction/generate_random_centres.py
-PYTHONPATH=. python reconstruction/freeze_benchmark.py
-PYTHONPATH=. python reconstruction/stage0_oracle.py
-PYTHONPATH=. python reconstruction/pilot/check_lattice.py
+python -m experiments.reconstruction.pilot.check_density_grid
+python -m experiments.reconstruction.generate_random_centres
+python -m experiments.reconstruction.freeze_benchmark
+python -m experiments.reconstruction.stage0_oracle
+python -m experiments.reconstruction.pilot.check_lattice
 PYTHONPATH=. python docs/make_reconstruction_figures.py
 python -m pytest -q tests/test_field_oracle.py tests/test_clustersim.py tests/test_voxelize_clusters.py tests/test_reconstruction_benchmark.py
 ```

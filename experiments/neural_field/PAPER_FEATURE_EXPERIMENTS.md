@@ -38,20 +38,17 @@ intensities instead.
 Feature calculation and neural-field training are separate commands:
 
 ```bash
-PYTHONPATH=geom_mesh_net python \
-  geom_mesh_net/example_01/train_networks_for_compare_multi_pattern_02.py \
+python -m experiments.neural_field.train_networks_for_compare_multi_pattern_02 \
   cache --patterns 0-4
 
-PYTHONPATH=geom_mesh_net python \
-  geom_mesh_net/example_01/train_networks_for_compare_multi_pattern_02.py \
+python -m experiments.neural_field.train_networks_for_compare_multi_pattern_02 \
   train --patterns 0-4
 ```
 
 The `all` command builds every requested cache before starting any model:
 
 ```bash
-PYTHONPATH=geom_mesh_net python \
-  geom_mesh_net/example_01/train_networks_for_compare_multi_pattern_02.py \
+python -m experiments.neural_field.train_networks_for_compare_multi_pattern_02 \
   all --patterns 0-4
 ```
 
@@ -63,8 +60,7 @@ The defaults use 512 sampled voxels and 19 global relabelings for development.
 A larger experiment can use, for example:
 
 ```bash
-PYTHONPATH=geom_mesh_net python \
-  geom_mesh_net/example_01/train_networks_for_compare_multi_pattern_02.py \
+python -m experiments.neural_field.train_networks_for_compare_multi_pattern_02 \
   all --patterns 0-9 --voxel-samples 4096 --relabelings 99
 ```
 

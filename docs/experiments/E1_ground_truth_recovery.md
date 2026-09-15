@@ -3,7 +3,7 @@
 *Recovering two simulator parameters that were varied but never written to disk.*
 
 [← back to README_detailed](../../README_detailed.md#7-experiment-walkthroughs) ·
-Implemented by [`inference/recover_ground_truth.py`](../../inference/recover_ground_truth.py) ·
+Implemented by [`experiments/inference/recover_ground_truth.py`](../../experiments/inference/recover_ground_truth.py) ·
 Runtime 6 s
 
 ---
@@ -30,7 +30,7 @@ the generator were edited.
 
 ## 1. Introduction
 
-`data_factory.py` draws four parameters per simulation and passes them to
+`scripts/generate_data.py` draws four parameters per simulation and passes them to
 `clustersim`. It then records a nine-column statistics table containing measured
 and true values for the overall solute fraction `pcp`, the in-cluster
 concentration `rho_c`, and the matrix concentration `rho_b`.
@@ -170,13 +170,13 @@ posterior was predicted to stay close to its prior.
 
 ### 4.1 The guarantee is fragile, so it was retired
 
-The replay depends on `data_factory.py` keeping the number, order and
+The replay depends on `scripts/generate_data.py` keeping the number, order and
 distributions of its four `rng.uniform` calls unchanged. Any edit — inserting a
 draw, reordering two, changing a bound — silently produces different values with
 no error raised.
 
 That is why Stage 0 persists θ to disk with provenance rather than recomputing it
-on demand. Everything downstream reads `inference/ground_truth/theta.npy`. The
+on demand. Everything downstream reads `experiments/inference/ground_truth/theta.npy`. The
 replay is performed once, verified, and never relied upon again.
 
 A warning to that effect is recorded in the provenance file, and the generator
@@ -222,14 +222,14 @@ later.
 
 | File | Contents |
 | --- | --- |
-| `inference/ground_truth/theta.npy` | (1000, 4) parameter matrix |
-| `inference/ground_truth/descriptors.npz` | per-pattern realised quantities |
-| `inference/ground_truth/provenance.json` | priors, verification, fragility warning |
+| `experiments/inference/ground_truth/theta.npy` | (1000, 4) parameter matrix |
+| `experiments/inference/ground_truth/descriptors.npz` | per-pattern realised quantities |
+| `experiments/inference/ground_truth/provenance.json` | priors, verification, fragility warning |
 
 ## Reproduce
 
 ```bash
-PYTHONPATH=. python inference/recover_ground_truth.py
+python -m experiments.inference.recover_ground_truth
 ```
 
 Tests: `tests/test_ground_truth.py` — 13 tests covering replay determinism, prior

@@ -3,7 +3,7 @@
 *Four hypotheses tested in order of cost; three ruled out by measurement.*
 
 [← back to README_detailed](../../README_detailed.md#7-experiment-walkthroughs) ·
-Implemented by [`inference/diagnose_rho_b.py`](../../inference/diagnose_rho_b.py) ·
+Implemented by [`experiments/inference/diagnose_rho_b.py`](../../experiments/inference/diagnose_rho_b.py) ·
 Runtime 2 min
 
 ---
@@ -279,8 +279,8 @@ have achieved nothing — the strongest argument for diagnosing before scaling.
 ## Reproduce
 
 ```bash
-PYTHONPATH=. python inference/diagnose_rho_b.py
-PYTHONPATH=. python inference/diagnose_rho_b.py --parameter cr
+python -m experiments.inference.diagnose_rho_b
+python -m experiments.inference.diagnose_rho_b --parameter cr
 ```
 
 The script takes any parameter, so the `cr` recheck flagged in §4.3 is a one-line

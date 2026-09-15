@@ -1,5 +1,5 @@
 # Data Factory Guide
-Welcome to the walkthrough for the data_factory.py script!
+Welcome to the walkthrough for the scripts/generate_data.py script!
 
 **Note:** Please see the `clustersim_introduction.md` file for background information, including parameter definitions.
 

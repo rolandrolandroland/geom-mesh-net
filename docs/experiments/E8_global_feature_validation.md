@@ -3,7 +3,7 @@
 *Numerical validation of the ported summary functions on ten patterns.*
 
 [← back to README_detailed](../../README_detailed.md#7-experiment-walkthroughs) ·
-Implemented by [`example_01/validate_global_paper_features.py`](../../example_01/validate_global_paper_features.py) ·
+Implemented by [`experiments/neural_field/validate_global_paper_features.py`](../../experiments/neural_field/validate_global_paper_features.py) ·
 Runtime ~1 min
 
 ---
@@ -117,13 +117,13 @@ radius.
 
 ### 3.3 Figures
 
-![Summary function anomalies](../../example_01/global_paper_feature_validation/summary_function_anomalies_10_patterns.png)
+![Summary function anomalies](../../experiments/neural_field/global_paper_feature_validation/summary_function_anomalies_10_patterns.png)
 
 **Figure 1.** Observed-minus-expected summary curves for all ten patterns
 overlaid. The systematic spread between patterns is the signal every downstream
 stage consumes.
 
-![Feature heatmap](../../example_01/global_paper_feature_validation/global_paper_feature_heatmap.png)
+![Feature heatmap](../../experiments/neural_field/global_paper_feature_validation/global_paper_feature_heatmap.png)
 
 **Figure 2.** The fourteen features across ten patterns, standardised.
 Per-pattern curve plots are in the same directory.
@@ -202,7 +202,7 @@ trusted.
 
 | File | Contents |
 | --- | --- |
-| `example_01/global_paper_feature_validation/global_paper_features_10_patterns.csv` | features and cluster statistics |
+| `experiments/neural_field/global_paper_feature_validation/global_paper_features_10_patterns.csv` | features and cluster statistics |
 | `.../validation_diagnostics.csv` | all twelve checks per pattern |
 | `.../summary_function_anomalies_10_patterns.png` | Figure 1 |
 | `.../global_paper_feature_heatmap.png` | Figure 2 |
@@ -211,7 +211,7 @@ trusted.
 ## Reproduce
 
 ```bash
-PYTHONPATH=. python example_01/validate_global_paper_features.py
+python -m experiments.neural_field.validate_global_paper_features
 ```
 
 Note that the stored configuration sets `k_r_max` = 70.0, which the library now

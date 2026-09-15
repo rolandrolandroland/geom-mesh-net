@@ -2,7 +2,7 @@
 We must now take our simulated point patterns and load them into our neural network. For this, we use the DataLoader class. 
 
 ## LoadData class
-We will use this class to create our models.  First, they must load in the point patterns that we made and saved in the `data_factory.py` script as well as the file that contains
+We will use this class to create our models.  First, they must load in the point patterns that we made and saved in the `scripts/generate_data.py` script as well as the file that contains
 the cluster parameters. 
 
 ### Thinning data
@@ -29,7 +29,7 @@ Once the point pattern has been generated, building this model consists of XX st
 3. Voxelize the data
 
 ## Loading the data
-We unpack our data as a `LoadData` class object. This looks to open a `.npy` file that was created using the `data_factory.py`
+We unpack our data as a `LoadData` class object. This looks to open a `.npy` file that was created using the `scripts/generate_data.py`
 script. The object should have been created using a call such as
 ```
    np.savez(name,
@@ -41,7 +41,7 @@ script. The object should have been created using a call such as
 
 ### Voxelize Data
 In order to obtain the data that we will use to train our neural field, we must convert our spatial point pattern into a 
-voxelized density field.  This is done using the functions in the `voxelize_clusters.py` script.  In our `LoadData` 
+voxelized density field.  This is done using the functions in the `fields/density_grid.py` script.  In our `LoadData` 
 class object, the domain, cluster centers, cluster radii, cluster concentration, and background concentration of the
 point pattern are fed into the `generate_density_grid` function.  This creates a voxelized grid where each voxel
 has a value for the average density of guest type molecules across that voxel by following these steps:
@@ -108,7 +108,7 @@ $G_g$, guest empty-space $F_g$, transformed guest $K_g$, and guest-to-host $G_{g
 are compared with pointwise medians from random relabelings that preserve the number of guest points.
 
 ```
-from geom_mesh_net.core_functions import paper_spatial_features as psf
+from geom_mesh_net.statistics import paper_spatial_features as psf
 
 paper_config = psf.PaperFeatureConfig(
     n_relabelings=99,
@@ -126,9 +126,9 @@ dataset = LoadData(
 
 Set `barcode_source="original"` to calculate the global features from the full point cloud. The paper feature vector
 contains 14 values, so use `ContinuousNeuralFieldGlobalFeatures(feature_count=14)` for the corresponding model.
-The staged experiment runner in `example_01/train_networks_for_compare_multi_pattern_02.py` supports analytical CSR
+The staged experiment runner in `experiments/neural_field/train_networks_for_compare_multi_pattern_02.py` supports analytical CSR
 and whole-pattern random-label null models, global features, sampled local voxel features, shared models, and offline
-feature caches. See `example_01/PAPER_FEATURE_EXPERIMENTS.md` for commands and interpretation guidance.
+feature caches. See `experiments/neural_field/PAPER_FEATURE_EXPERIMENTS.md` for commands and interpretation guidance.
 
 
 # Model Benchmarking

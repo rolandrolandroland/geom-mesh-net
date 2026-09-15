@@ -4,8 +4,8 @@
 robustness finding that came out of it.*
 
 [← back to README_detailed](../../README_detailed.md#7-experiment-walkthroughs) ·
-Implemented by [`inference/augment_features.py`](../../inference/augment_features.py),
-[`inference/compare_augmentation.py`](../../inference/compare_augmentation.py) ·
+Implemented by [`experiments/inference/augment_features.py`](../../experiments/inference/augment_features.py),
+[`experiments/inference/compare_augmentation.py`](../../experiments/inference/compare_augmentation.py) ·
 Runtime 11 min + 12 min
 
 ---
@@ -243,13 +243,13 @@ turned out to be the actual cause.
 
 | File | Contents |
 | --- | --- |
-| `inference/features/augmented_features.npz` | (4000, 14) features with `pattern_index` (gitignored) |
-| `inference/features/augmented_features.json` | config, gate, within/between spread per feature |
-| `inference/posterior/augmentation_comparison.json` | control against augmented |
+| `experiments/inference/features/augmented_features.npz` | (4000, 14) features with `pattern_index` (gitignored) |
+| `experiments/inference/features/augmented_features.json` | config, gate, within/between spread per feature |
+| `experiments/inference/posterior/augmentation_comparison.json` | control against augmented |
 
 ## Reproduce
 
 ```bash
-PYTHONPATH=. python inference/augment_features.py --replicates 4 --retention 0.10 --workers 7
-PYTHONPATH=. python inference/compare_augmentation.py --folds 10
+python -m experiments.inference.augment_features --replicates 4 --retention 0.10 --workers 7
+python -m experiments.inference.compare_augmentation --folds 10
 ```

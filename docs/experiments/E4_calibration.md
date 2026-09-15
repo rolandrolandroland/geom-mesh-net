@@ -3,7 +3,7 @@
 *The decisive gate: are the credible intervals honest?*
 
 [← back to README_detailed](../../README_detailed.md#7-experiment-walkthroughs) ·
-Implemented by [`inference/validate_posterior.py`](../../inference/validate_posterior.py) ·
+Implemented by [`experiments/inference/validate_posterior.py`](../../experiments/inference/validate_posterior.py) ·
 Runtime 11 min
 
 ---
@@ -130,7 +130,7 @@ A diagnostic that only passed the calibrated case would certify anything.
 
 ### 3.1 The gate
 
-![Calibration](../../inference/posterior/calibration.png)
+![Calibration](../../experiments/inference/posterior/calibration.png)
 
 **Figure 1.** SBC rank ECDF differences (top) and coverage curves (bottom),
 cross-validated over all 1,000 patterns. Three parameters oscillate inside the
@@ -289,14 +289,14 @@ open calibration issue, and E7 diagnoses it.
 
 | File | Contents |
 | --- | --- |
-| `inference/posterior/calibration.json` | SBC, coverage, width ratios, gate verdict |
-| `inference/posterior/calibration.npz` | per-pattern ranks and out-of-fold log-densities |
-| `inference/posterior/calibration.png` | Figure 1 |
+| `experiments/inference/posterior/calibration.json` | SBC, coverage, width ratios, gate verdict |
+| `experiments/inference/posterior/calibration.npz` | per-pattern ranks and out-of-fold log-densities |
+| `experiments/inference/posterior/calibration.png` | Figure 1 |
 
 ## Reproduce
 
 ```bash
-PYTHONPATH=. python inference/validate_posterior.py --ensemble 5 --samples 1000
+python -m experiments.inference.validate_posterior --ensemble 5 --samples 1000
 ```
 
 Tests: `tests/test_calibration.py` — 24 tests. The diagnostic is validated against

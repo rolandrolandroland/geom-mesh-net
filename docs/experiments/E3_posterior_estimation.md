@@ -4,8 +4,8 @@
 to 1,000 simulated parameter–observation pairs.*
 
 [← back to README_detailed](../../README_detailed.md#7-experiment-walkthroughs) ·
-Implemented by [`inference/flow.py`](../../inference/flow.py),
-[`inference/fit_posterior.py`](../../inference/fit_posterior.py) ·
+Implemented by [`geom_mesh_net/inference/flow.py`](../../geom_mesh_net/inference/flow.py),
+[`experiments/inference/fit_posterior.py`](../../experiments/inference/fit_posterior.py) ·
 Runtime 7 s
 
 ---
@@ -292,15 +292,15 @@ is E4, and it is the gate that matters.
 
 | File | Contents |
 | --- | --- |
-| `inference/posterior/flow.pt` | fitted flow, scaler, architecture |
-| `inference/posterior/test_posterior.npz` | test-set posterior samples and split indices |
-| `inference/posterior/fit_metadata.json` | gate, marginals, timings |
-| `inference/posterior/training_history.csv` | per-epoch log-density |
+| `experiments/inference/posterior/flow.pt` | fitted flow, scaler, architecture |
+| `experiments/inference/posterior/test_posterior.npz` | test-set posterior samples and split indices |
+| `experiments/inference/posterior/fit_metadata.json` | gate, marginals, timings |
+| `experiments/inference/posterior/training_history.csv` | per-epoch log-density |
 
 ## Reproduce
 
 ```bash
-PYTHONPATH=. python inference/fit_posterior.py
+python -m experiments.inference.fit_posterior
 ```
 
 Tests: `tests/test_flow.py` — 16 tests covering invertibility, log-Jacobian
