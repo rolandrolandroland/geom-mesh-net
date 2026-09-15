@@ -133,8 +133,8 @@ Dropping *K* costs `cr` a quarter of its contraction while leaving `rho_c`
 
 ### 3.2 The K features earn their place
 
-This settles the status of the *K* features. Everything E2 records about their
-boundary-pinning defect is true, **and they remain indispensable**: without them
+This settles the status of the *K* features. Everything E2 records about the
+port's boundary-pinning defect is true, **and they remain indispensable**: without them
 cluster radius is not recoverable at all, at 0.113 from *G* and 0.050 from
 cross-*G* against 0.525 from *K* alone.
 
@@ -226,8 +226,9 @@ So retaining `sqrt` to match the published definition costs nothing measurable.
 The argument is closed on evidence.
 
 One unanticipated observation: `cube_root` trains four times more stably (seed sd
-0.065 against 0.277). A plausible reading is that `sqrt`'s boundary-pinned *K*
-features inject noise into training — a small practical argument for `cube_root`
+0.065 against 0.277). A plausible reading is that the port's boundary-pinned
+*K* features under `sqrt` inject noise into training (the pinning was a porting
+defect, not a property of `sqrt` or of rapt; ROADMAP §8.9) — a small practical argument for `cube_root`
 that has nothing to do with variance-stabilisation theory, and was not predicted.
 
 ---

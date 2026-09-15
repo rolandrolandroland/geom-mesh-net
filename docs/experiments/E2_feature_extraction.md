@@ -1,13 +1,21 @@
 # E2 — Feature extraction and screening
 
-*Computing the 14 spatial-summary features for every pattern, the boundary defect
-that made two thirds of the K features artefacts, and a screen establishing which
-parameters are recoverable at all.*
+*Computing the 14 spatial-summary features for every pattern, a boundary defect
+in the Python port that made two thirds of the K features artefacts, and a screen
+establishing which parameters are recoverable at all.*
 
 [← back to README_detailed](../../README_detailed.md#7-experiment-walkthroughs) ·
 Implemented by [`inference/extract_features.py`](../../inference/extract_features.py),
 [`inference/screen_features.py`](../../inference/screen_features.py) ·
 Runtime 7.6 min + 20 s
+
+> **Correction (ROADMAP §8.9).** The defect described here was introduced by the
+> Python port. It is not a property of the published method. rapt, the reference
+> implementation for Bennett, Proudian & Zimmerman (2023), returns `NA` when a
+> *K* difference curve has no peak and drops that pattern from training. The port
+> replaced the `NA` with a grid endpoint. The measurements below describe the port
+> and stand. `feature_method="rapt"`, now the default, reproduces rapt exactly,
+> and `--preset stage1` reproduces the pipeline used here.
 
 ---
 
@@ -21,8 +29,9 @@ rather than grid endpoints.
 
 That second gate exists because of a defect found while preparing this stage. The
 feature extractor returns a radius drawn from a grid; when the difference curve
-has no interior extremum, the peak finder falls back to `argmax` and returns the
-first or last grid point *as though it were a measurement*. At the library's
+has no interior extremum, the port's peak finder falls back to `argmax` and
+returns the first or last grid point *as though it were a measurement*. (rapt
+returns `NA` here instead.) At the library's
 original radius setting only 4 of 12 patterns produced a genuine interior
 extremum, so roughly two thirds of the *K* features were artefacts.
 
@@ -67,6 +76,11 @@ the **last grid point**.
 The function then returns `radii[index]`, which is the grid maximum. Nothing in
 the return value distinguishes "the peak is at r = 40" from "there is no peak and
 40 is where the grid stopped".
+
+This fallback is not in rapt. rapt's `k3features` returns `NA` when no maximum
+exists, and its training script discards incomplete rows with `complete.cases`.
+Against rapt on 60 patterns, the legacy port invented a value in every one of the
+17 cases where rapt reports no `Rm`, and in all 40 where it reports no `Rdm`.
 
 Under the `sqrt` transform this interacts badly with the radius setting. Because
 `sqrt(K_csr)` grows as r^1.5 rather than r, difference curves keep rising further
@@ -272,10 +286,12 @@ splits.
 
 ## 6. Conclusion
 
-The features are computed, cached and gated. A defect that made two thirds of the
-*K*-derived features artefacts was found and corrected by setting the *K* radius
-from the physical cluster scale rather than accepting a default, and the failure
-mode is now reported rather than silent.
+The features are computed, cached and gated. A defect in the Python port that made
+two thirds of the *K*-derived features artefacts was found and worked around by
+setting the *K* radius from the physical cluster scale rather than accepting a
+default, and the failure mode is now reported rather than silent. A later
+comparison with rapt showed that the defect was introduced in porting, and the
+extraction now reproduces rapt instead (ROADMAP §8.9).
 
 Three of four parameters are strongly recoverable. The fourth is not, narrowly
 violating a prediction registered in advance, and that violation is recorded

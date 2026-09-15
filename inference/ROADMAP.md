@@ -684,6 +684,12 @@ Because sqrt(K_csr) grows as r^1.5 rather than r, difference curves under
 
 ### 8.3 The dominant defect: extrema pinning to the grid boundary
 
+> **Correction (section 8.9).** The measurements below are of the Python port, and
+> they stand. The attribution does not: rapt, the reference implementation, returns
+> NA where no extremum exists and drops the row. The fabricated endpoints were
+> introduced by the port and were never a property of the published method.
+
+
 `_extract_k_features` returns `radii[index]` for its three radius-valued
 features. When the transformed difference curve has no interior extremum — it
 is still rising at `k_r_max` — the peak finder falls back to `argmax`, which
@@ -954,6 +960,269 @@ training runs instead of one, a few seconds each, and it is what makes the
 coverage claim correct.
 
 
+
+## 8.9 The port versus rapt: most of section 8.3 was a porting bug
+
+The feature library is a port of **rapt**
+(<https://github.com/rolandrolandroland/rapt>), the R reference implementation for
+
+> Bennett, R. A., Proudian, A. P., & Zimmerman, J. D. (2023). Cluster
+> characterization in atom probe tomography: Machine learning using multiple
+> summary functions. *Ultramicroscopy* **247**, 113687.
+> <https://doi.org/10.1016/j.ultramic.2023.113687>
+
+Once rapt was available it was compared line by line, and then numerically, using
+the installed package as the reference.
+
+### The central finding
+
+When the K difference curve has no local maximum, rapt's `k3features` returns
+`NA` and the training script drops the row with `complete.cases`. The Python port
+instead fell back to `np.argmax` and returned a grid endpoint *as though it were a
+measurement*.
+
+**So the boundary-pinning defect described in section 8.3 was introduced by the
+port. It was never a property of the published method.** Section 8.3's
+measurements of the port stand; its attribution does not.
+
+### Every divergence found
+
+| Where | rapt | Legacy port |
+| --- | --- | --- |
+| No K peak | NA, row dropped | grid endpoint |
+| No derivative / negative / Rddm peak | NA propagates | `argmax` fallback |
+| Smoothing span | `(Rm / 7) * 0.3`, a fraction of points | same, times a radius scale, clamped |
+| loess neighbours | floor(n * span + 1e-5) | ceil(n * span) |
+| loess, span > 1 | bandwidth x sqrt(span) | clipped at n |
+| loess surface | R default: kd-tree + cubic Hermite interpolation | exact fit at every point |
+| Rddm window upper bound | unrounded `(d + 2 neg) / 3` | truncated, clamped to Rm + 2 |
+| `G_zero_diff_r` lookup | whole curve | window between extrema |
+| `GXGH_FWHM` right index | one past the true index | true index |
+
+The last two are quirks in rapt itself, reproduced deliberately so the features
+match the published ones.
+
+R's interpolated loess surface differs from an exact fit by at most 0.5% of the
+curve range at the spans tested, but it moves Rm by up to three grid steps and
+flips whether Rddm exists in 3 of 60 patterns, so it is reproduced rather than
+approximated.
+
+### Extraction parity
+
+`feature_method="rapt"`, now the default, was checked against the installed rapt
+package on identical curves from 60 simulated patterns at the paper's grids.
+
+| K feature | rapt reports NA | Faithful port agrees | Legacy port agrees (within 1e-6) | Legacy invents a value |
+| --- | ---: | ---: | ---: | ---: |
+| Tm | 17 | 60 | 0 | 17 |
+| Rm | 17 | 60 | 14 | 17 |
+| Rdm | 40 | 60 | 10 | 40 |
+| Rddm | 38 | 60 | 3 | 38 |
+| Tdm | 40 | 60 | 0 | 40 |
+
+The faithful port's worst absolute difference from rapt across all 14 features is
+**6.8e-13**. The G, F and guest-to-host G features were checked the same way on 12 patterns.
+The legacy port invented a value in every single case where rapt reports NA.
+
+`tests/test_rapt_parity.py` pins this against a committed fixture of rapt's own
+output, and regenerates the references from R whenever R is installed.
+
+### Estimator parity
+
+On identical point patterns, the Python summary-function estimators against
+spatstat and rapt:
+
+| Curve | Max difference | Verdict |
+| --- | ---: | --- |
+| G (Kaplan-Meier) | 2.4e-5 | matches |
+| guest-to-host G | 7.7e-6 | matches |
+| K (translation) | 1e-13 after a constant | spatstat normalises by n², the port by n(n-1): a fixed factor of n/(n-1), 1.00033 at n = 3000 |
+| **F** | **0.09 - 0.105** | **differs** |
+
+spatstat's `F3est` computes distances with a **26-neighbour chamfer transform**
+(step costs 1, sqrt 2, sqrt 3) on a grid of about 4.2 million voxels, side 0.37.
+The port uses exact
+Euclidean distances on a much coarser grid. Reproducing the chamfer metric cuts the
+F discrepancy to 0.014 - 0.028. The remainder is not explained by grid alignment,
+binning convention or censoring definition, and settling it needs spatstat's C
+source.
+
+This matters because `F_min_diff` is the leading carrier of `rho_b`, the one
+parameter with an open calibration issue.
+
+### Differences in the paper's data-generating design
+
+| | Paper (rapt walkthrough) | `data/` |
+| --- | --- | --- |
+| Underlying points | **one pattern shared by every training and test pattern** | independent per pattern |
+| Null model | 10,000 relabelings of that shared pattern | analytic CSR |
+| Guest fraction | 0.051 | 0.1 |
+| Mean radius range | [2, 6.5] | [3, 15] |
+| Background range | [0, 0.035] | [0, 0.05] |
+| Position blur | U(0, 0.2) | none |
+| Training patterns | 100,000 | 800 |
+
+The shared point pattern is the most consequential. Only labels vary, so
+point-position noise never enters the features, and the paper's test error does not
+include pattern-to-pattern positional variability. The paper's R² ≈ 0.71 for radius
+dispersity is therefore not the right target for independently simulated patterns.
+Section 8.10 measures how much of the gap this design accounts for: a good
+deal, but not all of it.
+
+### What this changes
+
+- Section 8.3 and walkthroughs E2, E8 and E9 attribute the boundary defect to the
+  features. It belongs to the port.
+- The Stage 1 through 4 results were computed with the legacy port. They remain
+  correct measurements *of that pipeline*, and are reproducible with
+  `extract_features.py --preset stage1`.
+- New work should use `--preset paper`, which matches rapt's walkthrough grids and
+  extraction.
+
+### Also noted in rapt, for its author
+
+- `rapt`'s feature functions call `first()` from dplyr without importing it, so they
+  fail unless dplyr is attached.
+- The walkthrough's trainer passes `methods = c("scale", "center", "pca", "BoxCox")`
+  to caret's `preProcess`, whose argument is `method`. R does not partially match
+  `methods` to it, so the argument is likely swallowed silently and only the default
+  centring and scaling run — no PCA or Box-Cox, contrary to section 2.3 of the paper.
+  Unverified without running it.
+- `create_training_data` accepts `vside` but never passes it to `F3est`, so F used
+  spatstat's default voxel size rather than the walkthrough's 0.3.
+- In this repository, `clustersim.py` estimates cluster volume with numpy's unseeded
+  global generator, so simulations are not fully reproducible even with fixed seeds.
+
+## 8.10 Re-measuring with rapt's features, and the shared point pattern
+
+Three measurements, none needing a large simulation. All use ridge regression over
+repeated random splits (`inference/compare_feature_sets.py`), with the two
+zero-cluster patterns (278, 613) excluded. Ridge is a cheap lower bound on
+recoverability, not a posterior.
+
+### How often rapt's features are missing
+
+`extract_features.py --preset paper` on all 1,000 patterns in `data/`, at the
+walkthrough's grids (K to 30, G and F to 4, guest-to-host G to 3):
+
+| Feature | Missing |
+| --- | ---: |
+| `Tm`, `Rm` | 401 |
+| `Rdm`, `Tdm` | 609 |
+| `Rddm` | 625 |
+| `GXGH_FWHM` | 36 |
+| **any (rapt drops the row)** | **647** |
+
+rapt's drop rule would keep 353 of 1,000 patterns. The loss depends strongly on
+cluster radius, so the rows it keeps are a biased sample:
+
+| True `cr` | Patterns | `Rm` defined | Complete row |
+| --- | ---: | ---: | ---: |
+| [3, 5) | 179 | 83% | 80% |
+| [5, 6.5) | 126 | 60% | 56% |
+| [6.5, 9) | 201 | 52% | 37% |
+| [9, 12) | 249 | 43% | 18% |
+| [12, 15] | 243 | 66% | 8% |
+
+Even inside the paper's radius range, one pattern in five to one in two is
+discarded in these simulations. The paper's guest fraction and position blur
+differ, so its own rate is unknown, but its reported accuracies are over complete
+rows only.
+
+### Did the fabricated values cost anything?
+
+This compares the legacy port with rapt's features on the same patterns
+(`inference/posterior/feature_set_comparison.json`, 25 splits; ± is the sd across
+splits):
+
+| Features | Rows | `rho_c` | `rho_b` | `cr` | `rb` |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| legacy, 14 | 998 | 0.981 | 0.960 | **0.858** | 0.122 |
+| rapt, 8 always defined | 998 | 0.977 | 0.964 | 0.523 | 0.065 |
+| rapt, 14, missing values imputed and flagged | 998 | 0.982 | 0.960 | 0.715 | 0.076 |
+| rapt, 14, incomplete rows dropped | 351 | 0.973 | 0.947 | 0.858 | 0.275 ± 0.115 |
+| *on the 351 rows complete in both sets:* | | | | | |
+| legacy, 14 | 351 | 0.967 | 0.952 | 0.881 | 0.245 ± 0.254 |
+| rapt, 14 | 351 | 0.973 | 0.947 | 0.858 | 0.275 ± 0.115 |
+
+- **Where rapt defines the features, the legacy port is as good.** On identical
+  rows the two sets are within noise for every parameter. The fabrication did not
+  corrupt measurable features. It only filled in unmeasurable ones.
+- **The fabricated values carry information.** An endpoint at `k_r_max` effectively
+  encodes "the peak is beyond the grid", a censored observation that points to large
+  clusters. The legacy set recovers `cr` at 0.858 across all rows, against 0.715
+  for rapt's features with missing values flagged. Section 8.3 was right that the
+  values are not measurements, and wrong to conclude they were useless.
+- **The higher `rb` score under the drop rule is a subset effect.** The legacy
+  features reach the same 0.245 on those rows. The retained patterns have small
+  clusters, and `rb` is easier to recover for small clusters. With the legacy set
+  on all rows, `rb` scores 0.281 ± 0.128 for `cr` < 6.5 against 0.151 ± 0.056 for
+  `cr` ≥ 6.5.
+
+**Decision: mask, don't drop, for this dataset.** Dropping keeps 35% of an
+already small dataset, and the kept rows are concentrated at small radii, so a
+posterior trained on them would be silently wrong for large clusters. The
+existing flow and its Stage 1 - 4 results keep the legacy features. They are no
+worse where the features are defined, and better where they are not. A
+rapt-faithful posterior should use imputed values with missingness flags. A
+better long-term fix is to encode censoring explicitly ("peak beyond r") rather
+than rely on an endpoint.
+
+### The shared point pattern
+
+`inference/generate_shared_upp.py` re-simulated all 1,000 parameter vectors from
+`data/` on **one shared underlying point pattern**, as rapt's walkthrough does. The
+two datasets differ only in whether the points are shared. Both were extracted with
+`--preset paper`: 334 complete rows shared, 353 independent.
+
+Paired comparison, both sets trained and tested on identical rows over 200 splits
+(`inference/posterior/shared_upp_comparison.json`):
+
+| Features, rows | `cr`: independent -> shared | `rb`: independent -> shared | Shared better, `rb` |
+| --- | --- | --- | ---: |
+| 8 always defined, 998 rows | 0.510 -> 0.503 | 0.068 -> 0.075 | 74% of splits |
+| 14, complete in both, 257 rows | 0.821 -> 0.847 | **0.255 -> 0.396** | 89% |
+| 14, complete, `cr` < 6.5, 190 rows | **0.537 -> 0.696** | **0.243 -> 0.442** | 92% |
+
+`rho_c` and `rho_b` change by less than 0.01 in every row.
+
+**Sharing the point pattern improves `rb` recovery substantially, and only through
+the K features.** On the always-defined G, F and guest-to-host G features it barely
+matters. With the K features, restricted to patterns where they exist, `rb`'s R²
+rises by 0.14. Inside the paper's radius range it nearly doubles.
+
+The interpretation: point-position noise swamps the part of the K curve that
+records the spread of cluster sizes. A shared pattern removes that noise. That
+helps the paper's reported numbers, but those numbers then describe a test in
+which every pattern shares the same atoms. A real measurement is never drawn from
+the training pattern.
+
+### Where the rb gap now stands
+
+The paper reports R² ≈ 0.71 for radius dispersity; this dataset gave about 0.1.
+Accounted for so far, all with ridge and a few hundred rows:
+
+| Change toward the paper's design | `rb` R² |
+| --- | ---: |
+| none: independent points, every pattern, 8 always-defined features | 0.07 |
+| legacy K features included (Stage 2) | 0.12 |
+| only rows with complete features (rapt's rule) | 0.26 - 0.28 |
+| plus the paper's radius range | 0.24 |
+| **plus a shared point pattern** | **0.44** |
+
+The rest of the distance to 0.71 has candidates that were not tested: 100,000
+training patterns and a Bayesian-regularised network rather than about 200 rows
+and ridge; the paper's guest fraction (0.051) and position blur; and relabeling
+rather than CSR as the null. A ridge learning curve on this dataset's legacy
+features rose only from 0.055 to 0.075 between 400 and 800 rows, so more data
+alone is unlikely to close the gap with ridge. A flexible model at 100,000 patterns
+has not been tested.
+
+**What this means for the claim that `rb` is nearly unidentifiable.** It holds for
+this simulator, these priors, and independently drawn points, which is the
+situation a real measurement is in. It does not hold in general. `rb` is partly
+recoverable for small clusters when the K features are defined, and more so when
+positional noise is removed.
 
 ## 9. Deliverables
 

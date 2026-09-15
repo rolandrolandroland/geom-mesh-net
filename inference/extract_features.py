@@ -66,14 +66,49 @@ STAGE1_CONFIG = dict(
     # Each pattern is a separate process, so let each use one thread rather
     # than have every worker try to claim every core.
     workers=1,
+    # The committed Stage 1 results predate the faithful rapt extraction, so this
+    # preset pins the legacy port to keep them reproducible. Do not use it for
+    # new work: the legacy port returns grid endpoints where rapt returns NA.
+    feature_method="legacy_port",
 )
+
+# The configuration of rapt's walkthrough.Rmd, which produced Bennett, Proudian
+# and Zimmerman (2023): G and F to 4 over 2000 radii, K to 30 over 100,
+# guest-to-host G to 3 over 2000, and rapt's feature extraction. The null model
+# stays csr because rapt computes its expectation once, by relabeling a single
+# point pattern shared by every training pattern; for independently simulated
+# patterns the analytic CSR expectation is the equivalent. spatstat's F3est uses
+# a chamfer distance on ~4.2 million voxels, which the Euclidean grid here does
+# not reproduce -- see ROADMAP section 8.9.
+PAPER_CONFIG = dict(
+    g_r_max=4.0,
+    g_num_radii=2000,
+    k_r_max=30.0,
+    k_num_radii=100,
+    cross_g_r_max=3.0,
+    cross_g_num_radii=2000,
+    f_grid_points_per_axis=60,
+    null_model="csr",
+    k_transform="sqrt",
+    k_max_points=3000,
+    workers=1,
+    feature_method="rapt",
+)
+
+PRESETS = {"stage1": STAGE1_CONFIG, "paper": PAPER_CONFIG}
 
 GATE_MINIMUM_FINITE_FRACTION = 0.95
 GATE_MINIMUM_INTERIOR_RM_FRACTION = 0.80
 
+# Under rapt semantics these are NaN wherever rapt returns NA. The rest are
+# always defined, and those are what the finiteness gate applies to.
+MAY_BE_MISSING = ("Tm", "Rm", "Rdm", "Rddm", "Tdm", "GXGH_FWHM")
 
-def build_config(overrides=None):
-    values = dict(STAGE1_CONFIG)
+
+def build_config(overrides=None, preset="stage1"):
+    if preset not in PRESETS:
+        raise ValueError(f"preset must be one of {tuple(PRESETS)}")
+    values = dict(PRESETS[preset])
     values.update(overrides or {})
     return psf.PaperFeatureConfig(**values)
 
@@ -144,6 +179,10 @@ def main():
         default=max(1, (os.cpu_count() or 2) - 1),
         help="parallel processes; the loop is embarrassingly parallel",
     )
+    parser.add_argument(
+        "--preset", choices=tuple(PRESETS), default="stage1",
+        help="stage1 reproduces the committed results; paper matches rapt's walkthrough",
+    )
     parser.add_argument("--k-transform", choices=psf.K_TRANSFORMS, default=None)
     parser.add_argument("--k-r-max", type=float, default=None)
     parser.add_argument("--null-model", choices=psf.NULL_MODELS, default=None)
@@ -159,7 +198,7 @@ def main():
         overrides["k_r_max"] = args.k_r_max
     if args.null_model:
         overrides["null_model"] = args.null_model
-    config = build_config(overrides)
+    config = build_config(overrides, preset=args.preset)
 
     indices = discover_patterns(args.data_dir, args.limit)
     if not indices:
@@ -178,6 +217,7 @@ def main():
                 report_gate(
                     cached["values"], cached["k_extrema_interior"],
                     cached["index"], [str(e) for e in cached["errors"]],
+                    config.feature_method,
                 )
                 return
 
@@ -235,7 +275,7 @@ def main():
         "workers": args.workers,
         "wall_clock_seconds": round(elapsed, 2),
         "cpu_seconds": round(float(seconds.sum()), 2),
-        "gate": report_gate(values, interior, index_array, errors),
+        "gate": report_gate(values, interior, index_array, errors, config.feature_method),
     }
     metadata_path = args.output.with_suffix(".json")
     metadata_path.write_text(json.dumps(metadata, indent=2) + "\n")
@@ -254,57 +294,88 @@ def _progress(done, total, started):
     )
 
 
-def report_gate(values, interior, index_array, errors):
-    """Evaluate and print the Stage 1 gate. Returns a dict for the metadata."""
-    values = np.asarray(values)
+def report_gate(values, interior, index_array, errors, feature_method="legacy_port"):
+    """Evaluate and print the Stage 1 gate. Returns a dict for the metadata.
+
+    Under the legacy port every feature is expected to be finite, and Rm must be
+    a genuine interior extremum in at least 80% of patterns.
+
+    Under rapt semantics a missing K feature is an honest NA rather than a
+    failure, so the finiteness gate applies only to the features that are always
+    defined. What matters instead is how many patterns survive rapt's own rule --
+    drop any row with a missing feature -- and that is reported rather than
+    gated, because whether to drop or mask those rows is a downstream decision.
+    """
+    values = np.asarray(values, dtype=float)
     interior = np.asarray(interior)
     total = len(values)
+    names = psf.PAPER_FEATURE_NAMES
+    defined = [i for i, n in enumerate(names) if n not in MAY_BE_MISSING]
 
-    finite_rows = np.all(np.isfinite(values), axis=1)
+    if feature_method == "rapt":
+        finite_rows = np.all(np.isfinite(values[:, defined]), axis=1)
+    else:
+        finite_rows = np.all(np.isfinite(values), axis=1)
     finite_fraction = float(finite_rows.mean())
+    complete_rows = np.all(np.isfinite(values), axis=1)
+    complete_fraction = float(complete_rows.mean())
     interior_rm_fraction = float(interior[:, 0].mean())
     failures = [
         (int(index_array[i]), errors[i]) for i in range(total) if errors[i]
     ]
 
-    print("\nStage 1 gate")
+    label = "always-defined features finite" if feature_method == "rapt" else "all 14 features finite"
+    print(f"\nStage 1 gate [{feature_method}]")
     print(
-        f"  all 14 features finite : {finite_rows.sum()}/{total} "
+        f"  {label:<31}: {finite_rows.sum()}/{total} "
         f"({finite_fraction:.1%})  need >= {GATE_MINIMUM_FINITE_FRACTION:.0%}"
     )
     for position, name in enumerate(("Rm", "Rdm", "Rddm")):
         fraction = float(interior[:, position].mean())
         note = (
             f"  need >= {GATE_MINIMUM_INTERIOR_RM_FRACTION:.0%}"
-            if name == "Rm"
+            if name == "Rm" and feature_method != "rapt"
             else ""
         )
         print(
-            f"  {name:>4} interior         : "
+            f"  {name + ' defined':<31}: "
             f"{interior[:, position].sum()}/{total} ({fraction:.1%}){note}"
         )
+    if feature_method == "rapt":
+        print(
+            f"  {'complete rows (rapt keeps)':<31}: {complete_rows.sum()}/{total} "
+            f"({complete_fraction:.1%})"
+        )
+        for position, name in enumerate(names):
+            missing = int(np.isnan(values[:, position]).sum())
+            if missing:
+                print(f"    {name:<14} missing in {missing}")
     if failures:
-        print(f"  patterns that errored  : {len(failures)}")
+        print(f"  patterns that errored: {len(failures)}")
         for index, message in failures[:5]:
             print(f"    pattern {index}: {message}")
         if len(failures) > 5:
             print(f"    ... and {len(failures) - 5} more")
 
     finite_pass = finite_fraction >= GATE_MINIMUM_FINITE_FRACTION
-    interior_pass = interior_rm_fraction >= GATE_MINIMUM_INTERIOR_RM_FRACTION
-    passed = finite_pass and interior_pass
+    if feature_method == "rapt":
+        passed = finite_pass
+    else:
+        interior_pass = interior_rm_fraction >= GATE_MINIMUM_INTERIOR_RM_FRACTION
+        passed = finite_pass and interior_pass
     print(f"\n  GATE {'PASSED' if passed else 'FAILED'}")
-    if not passed:
-        if not finite_pass:
-            print("    too many patterns produced non-finite features")
-        if not interior_pass:
-            print(
-                "    too many Rm values are grid endpoints rather than "
-                "measurements; raise k_r_max (ROADMAP section 8.3)"
-            )
+    if not finite_pass:
+        print("    too many patterns produced non-finite features")
+    if feature_method != "rapt" and not passed and finite_pass:
+        print(
+            "    too many Rm values are grid endpoints rather than "
+            "measurements; raise k_r_max (ROADMAP section 8.3)"
+        )
 
     return {
+        "feature_method": feature_method,
         "finite_fraction": finite_fraction,
+        "complete_row_fraction": complete_fraction,
         "interior_rm_fraction": interior_rm_fraction,
         "interior_rdm_fraction": float(interior[:, 1].mean()),
         "interior_rddm_fraction": float(interior[:, 2].mean()),

@@ -1,0 +1,38 @@
+{
+  "stage": 1,
+  "config": {
+    "g_r_max": 4.0,
+    "g_num_radii": 2000,
+    "k_r_max": 30.0,
+    "k_num_radii": 100,
+    "cross_g_r_max": 3.0,
+    "cross_g_num_radii": 2000,
+    "f_grid_points_per_axis": 60,
+    "n_relabelings": 99,
+    "random_seed": 42,
+    "workers": 1,
+    "k_max_points": 3000,
+    "k_smoothing_reference_r_max": 10.0,
+    "null_model": "csr",
+    "k_transform": "sqrt",
+    "feature_method": "rapt"
+  },
+  "guest_marks": [
+    2,
+    3
+  ],
+  "n_patterns": 1000,
+  "workers": 7,
+  "wall_clock_seconds": 358.4,
+  "cpu_seconds": 2477.73,
+  "gate": {
+    "feature_method": "rapt",
+    "finite_fraction": 1.0,
+    "complete_row_fraction": 0.353,
+    "interior_rm_fraction": 0.599,
+    "interior_rdm_fraction": 0.391,
+    "interior_rddm_fraction": 0.375,
+    "n_errored": 0,
+    "passed": true
+  }
+}

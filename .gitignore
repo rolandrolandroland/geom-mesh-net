@@ -44,3 +44,7 @@ inference/features/augmented_features.npz
 
 # Reference PDFs. Published papers are not redistributed from this repo.
 papers/
+
+# Shared-point-pattern dataset (~5 GB), regenerable:
+#   PYTHONPATH=. python inference/generate_shared_upp.py
+data_shared_upp/

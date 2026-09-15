@@ -141,9 +141,12 @@ estimator with a wrong normalising constant passes all twelve checks.
 The defect that mattered — the boundary-pinning of the *K* radius features, which
 made roughly two thirds of them grid endpoints rather than measurements (E2 §2) —
 passed every check in this experiment. It had to, because a grid endpoint *is* a
-finite number lying in a plausible range. It was found only by comparing the
-estimator against closed forms and by examining the fraction of patterns with a
-genuine interior extremum.
+finite number lying in a plausible range. It was found by examining the fraction
+of patterns with a genuine interior extremum. It would also have been found by
+comparing against rapt, which returns `NA` in exactly these cases: the defect was
+introduced by the port (ROADMAP §8.9). The checks here validate the port's
+estimators, not its fidelity to the reference implementation, and rapt-parity
+tests now cover that separately (`tests/test_rapt_parity.py`).
 
 Notably, `k_peak_at_boundary` was checked and reported `False` for every pattern —
 because at `k_r_max` = 70 the peak genuinely was interior. The check was sound;

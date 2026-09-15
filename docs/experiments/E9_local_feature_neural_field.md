@@ -34,7 +34,8 @@ unsolved problem and two solved ones.
 
 Two confounds must be removed before the comparison is rerun: the codebase
 contains no positional encoding anywhere, and the *K* features it used were
-largely the boundary artefacts documented in E2.
+largely the boundary artefacts documented in E2 — artefacts of the Python port,
+not of the published method (ROADMAP §8.9).
 
 ---
 
@@ -154,6 +155,13 @@ wherever the curve happens to be monotone is piecewise constant with arbitrary
 jumps — not a smooth function of position, and therefore not interpolable in
 principle.
 
+A later comparison with rapt (ROADMAP §8.9) sharpens this. The endpoints were
+introduced by the Python port: rapt reports `NA` in these cases. The explanation
+therefore concerns the port's local features. A rapt-faithful version would not
+remove the difficulty, though. It would replace arbitrary jumps with missing values
+over much of the volume, and a field cannot be trained on a target that is
+undefined there either.
+
 ### 3.3 Model metrics (exploratory)
 
 Because the gate failed, these are labelled exploratory and do not override the
@@ -246,7 +254,8 @@ identical batch indices.
 This experiment produced the observation that the *K*-derived features behave
 differently from the rest. That observation went unexplained for months and was
 the thread that led, in E2, to the boundary-pinning defect — which turned out to
-affect the global features the entire inference pipeline depends on.
+affect the global features the entire inference pipeline depends on, and which a
+comparison against rapt later traced to the Python port.
 
 A failed experiment that surfaces a real defect in shared machinery has earned its
 runtime.

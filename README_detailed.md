@@ -34,9 +34,11 @@ for three of the four. The fourth, the matrix concentration, covers correctly bu
 retains a small rank bias traced to a confounding with the radius-spread
 parameter. An ablation shows each parameter is carried by exactly one summary
 function, with the second-order *K* statistics the sole carrier of cluster length
-scale. The radius-spread parameter is shown to be nearly unidentifiable, and the
-posterior reports that honestly: it returns 96% of its prior width and remains
-calibrated.
+scale. With independently simulated point patterns, the radius-spread parameter is
+nearly unidentifiable from these features, and the posterior reports that
+honestly: it returns 96% of its prior width and remains calibrated. It becomes
+partly recoverable for small clusters, and more so when every pattern shares one
+underlying point pattern, as in the published design.
 
 The work is presented with its corrections intact. Eight stated conclusions were
 subsequently overturned by measurement, two of which reversed a planned course of
@@ -134,10 +136,15 @@ problem into a supervised one.
    recorded output (E8, and `tests/`).
 2. Six corrections to that machinery, of which one — a silent boundary-pinning
    defect corrupting roughly two thirds of the *K*-derived features — materially
-   changed what those features could support (E2).
-3. A conditional normalising flow written directly rather than imported, verified
+   changed what those features could support (E2). A later comparison against
+   rapt showed that this defect was introduced by the port. The published method
+   never had it.
+3. An exact reproduction of rapt's feature extraction, agreeing with the R package
+   to 6.8e-13 on every feature and every missing-value case, with parity tests
+   that regenerate their references from R when R is installed (ROADMAP §8.9).
+4. A conditional normalising flow written directly rather than imported, verified
    against a problem with a closed-form posterior (E3).
-4. A calibrated posterior over four physical parameters, validated by
+5. A calibrated posterior over four physical parameters, validated by
    simulation-based calibration and interval coverage (E4).
 5. A measurement of which summary function carries which parameter, by posterior
    contraction rather than correlation (E5).
@@ -261,6 +268,11 @@ The *K* radius is set to 40 domain units with 801 radii. This is not a default: 
 the original setting of 10, roughly two thirds of the *K*-derived features were
 grid endpoints rather than measurements. E2 covers this at length.
 
+This workaround belongs to the port. rapt, the reference implementation, never
+produces those endpoints: it reports `NA` and drops the pattern (§4.5). All results
+in §4 use the port's `stage1` configuration. `extract_features.py --preset paper`
+reproduces rapt's extraction and the grids of its published walkthrough instead.
+
 ### 3.3 The posterior estimator
 
 A conditional autoregressive flow over a uniform box prior. Each layer applies an
@@ -381,12 +393,15 @@ Six defects were found and fixed. The consequential one was silent.
 | --- | --- | --- |
 | 8.1 | none — *K* estimator validated | ratio to analytic CSR 1.0009 |
 | 8.2 | transform is the 2D form in 3D | measured indistinguishable; `sqrt` retained |
-| 8.3 | **extrema pinned to the grid boundary** | ~2/3 of *K* features were artefacts |
+| 8.3 | **extrema pinned to the grid boundary** | ~2/3 of *K* features were artefacts; introduced by the port (8.9) |
 | 8.4 | extractor takes the first local maximum | fragile for narrow peaks; recorded, not changed |
 | 8.5 | **data generator could not run at all** | broken import since the package restructure |
 | 8.6 | `k_r_max` unbounded | radius exceeding the window now refused |
+| 8.9 | **port had diverged from rapt** | `NA` replaced by endpoints, plus loess and window differences; now reproduced exactly |
+| 8.10 | drop rule and shared point pattern measured | rapt keeps 35% of rows; sharing points raises `rb` R² from 0.24 to 0.44 inside the paper's radius range |
 
-§8.3 is the one that mattered. `_extract_k_features` returns a radius from a grid;
+§8.3 is the one that mattered, and §8.9 later traced it to the port.
+`_extract_k_features` returns a radius from a grid;
 when the difference curve has no interior extremum, the peak finder falls back to
 `argmax` and returns a grid endpoint *as though it were a measurement*. At the
 original radius setting only 4 of 12 patterns had a genuine interior extremum.
@@ -394,6 +409,17 @@ This is the most likely explanation for the *K*-derived features scoring 0.53–
 on an earlier interpolation test while the *G*, *F* and cross-*G* features scored
 0.90–0.98: interpolating a boundary artefact cannot succeed, because the quantity
 is not a smooth function of position.
+
+rapt reports `NA` where the port returned an endpoint, and drops the pattern.
+Checked against the installed R package on 60 patterns, the legacy port invented
+a value in every such case: 17 of 17 for `Rm`, 40 of 40 for `Rdm`. The faithful
+port now agrees with rapt on all 14 features to 6.8e-13, including every `NA`.
+
+The summary-function estimators were checked against spatstat on identical
+patterns too. *G* and cross-*G* agree to 2e-5. *K* agrees to 1e-13 after a constant
+n/(n−1) normalisation factor. *F* does not: spatstat's `F3est` measures distance
+with a 26-neighbour chamfer transform on a fine voxel grid, and the port's exact
+Euclidean distances differ from it by up to 0.1.
 
 ### 4.6 Negative results
 
@@ -446,7 +472,38 @@ contain zero clusters despite parameters specifying large ones. One landed in a
 test set and was assigned a log-density of −19,409 nats, dominating a mean by
 itself. The flow had a single training example of that structure.
 
-### 5.3 The simulator defines what is being inferred
+### 5.3 Where this work departs from the published design
+
+The paper reports R² ≈ 0.71 for radius dispersity. The posterior here recovers
+almost nothing for it. The two pipelines differ in more than the port:
+
+| | Bennett et al. (2023), rapt walkthrough | This work |
+| --- | --- | --- |
+| Underlying points | one pattern shared by every training and test pattern | independent per pattern |
+| Null model | 10,000 relabelings of the shared pattern | analytic CSR |
+| Guest fraction | 0.051 | 0.1 |
+| Mean radius | [2, 6.5] | [3, 15] |
+| Background concentration | [0, 0.035] | [0, 0.05] |
+| Position blur | U(0, 0.2) | none |
+| Patterns | 100,000 | 1,000 |
+| Missing *K* features | row dropped | endpoint (legacy port) |
+| *F* distances | 26-neighbour chamfer (spatstat) | exact Euclidean |
+| Model | Bayesian-regularised network per parameter | conditional normalising flow |
+
+ROADMAP §8.10 measures three of these with a ridge screen. Keeping only complete
+rows, restricting to the paper's radius range, and sharing the point pattern
+raises `rb`'s R² from 0.07 to 0.44. Sharing the point pattern accounts for most of
+that rise. It helps only through the *K* features, and only where they exist.
+
+That gain comes from removing positional noise that a real measurement always
+contains. The independent-points design is the harder test, and the one that
+matches applying the method to data.
+
+Applying rapt's drop rule would discard 65% of this dataset, concentrated at large
+radii. The existing results therefore keep the legacy features, which match rapt's
+wherever rapt defines them and carry a usable censoring signal where it does not.
+
+### 5.4 The simulator defines what is being inferred
 
 A flow trained on `clustersim` output infers `clustersim`'s parameters. Applying
 it to a real measurement would meet detector efficiency, trajectory aberration,
@@ -465,7 +522,7 @@ step.
 The simulation-to-simulation result stands on its own regardless, and is the
 honest prerequisite for anything on real data.
 
-### 5.4 On the corrections
+### 5.5 On the corrections
 
 Eight stated conclusions were later overturned by measurement. They are recorded
 in `inference/ROADMAP.md` rather than overwritten, for three reasons.
@@ -485,7 +542,7 @@ operationalised as R² ≤ 0.10; it measured 0.112 on all 25 splits. The ceiling
 not moved. The substantive expectation survived — contraction is 0.039, so the
 posterior is 96% as wide as the prior — but the strict claim was too strong.
 
-### 5.5 Relationship to the neural field work
+### 5.6 Relationship to the neural field work
 
 The package originally aimed at neural field reconstruction of continuous density
 fields, and that line is retained (E9). Its screening experiment concluded that
@@ -503,7 +560,8 @@ having been taken over one unsolved problem and two solved ones.
 Two confounds must be removed before that comparison is rerun: no positional
 encoding exists anywhere in the codebase, so the field is a plain ReLU MLP on raw
 coordinates and subject to spectral bias exactly where the one informative pattern
-sits; and the *K* features it used were largely the boundary artefacts of §8.3.
+sits; and the *K* features it used were largely the port's boundary artefacts
+(§4.5).
 
 ---
 
@@ -541,8 +599,8 @@ discussion and conclusion, covering one experiment in detail.
   patterns from scratch.
 
 - **[E2 — Feature extraction and screening](docs/experiments/E2_feature_extraction.md)**
-  Computing the 14 features for every pattern, the boundary-pinning defect that
-  made two thirds of the *K* features artefacts, and a ridge screen establishing
+  Computing the 14 features for every pattern, the porting defect that made two
+  thirds of the *K* features artefacts, and a ridge screen establishing
   which parameters are recoverable at all.
 
 - **[E3 — Posterior estimation](docs/experiments/E3_posterior_estimation.md)**
@@ -678,8 +736,16 @@ parameters directly, so future datasets need no recovery step.
 
 ### Method sources
 
-- Spatial summary functions and the fourteen-feature extraction follow Bennett
-  et al. (2023), ported from the R packages `rapt` and `rTEM`.
+- Spatial summary functions and the fourteen-feature extraction follow
+
+  > Bennett, R. A., Proudian, A. P., & Zimmerman, J. D. (2023). Cluster
+  > characterization in atom probe tomography: Machine learning using multiple
+  > summary functions. *Ultramicroscopy* **247**, 113687.
+  > https://doi.org/10.1016/j.ultramic.2023.113687
+
+  ported from the R packages `rapt` (<https://github.com/rolandrolandroland/rapt>)
+  and `rTEM`. `feature_method="rapt"` reproduces rapt's extraction exactly;
+  `feature_method="legacy_port"` preserves the earlier port used for §4.
 - Neural posterior estimation follows the standard formulation in which a
   conditional density estimator fitted by maximum likelihood on joint samples
   recovers the posterior.
