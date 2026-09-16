@@ -46,6 +46,9 @@ experiments/inference/posterior/*.npz
 # Reference PDFs. Published papers are not redistributed from this repo.
 papers/
 
+# Local notes that are not published.
+private/
+
 # Shared-point-pattern dataset (~5 GB), regenerable:
 #   python -m experiments.inference.generate_shared_upp
 data_shared_upp/
