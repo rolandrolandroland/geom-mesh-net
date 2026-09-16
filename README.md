@@ -39,6 +39,9 @@ oracle. It is specified in
 Stages 0 and 1 are complete. Each stage has a walkthrough in `docs/experiments/`
 (E10 onward).
 
+**For where both tracks stand and what comes next**, see
+[`project_roadmap.md`](project_roadmap.md).
+
 **For a full account of the package**, see
 [`README_detailed.md`](README_detailed.md) — a paper-format description with an
 abstract, background, methods, results and discussion, linking to a standalone
