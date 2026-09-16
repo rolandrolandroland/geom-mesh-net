@@ -1,0 +1,5852 @@
+[
+ {
+  "pattern": 0,
+  "parameters": {
+   "cr": 3.1482039021004757,
+   "rb": 0.2663979139515553,
+   "volume_fraction": 0.1001061513584923,
+   "rho_c": 0.5637348604404984,
+   "matrix_mean": 0.06687239241716425,
+   "ell": 3.9986692560448165,
+   "critical_radius_fraction": 0.6339120690790132,
+   "pcp": 0.11661138184546217,
+   "supersaturation": 7.416135295717599
+  },
+  "precipitates": 138,
+  "radius_min": 2.012868839066679,
+  "radius_mean": 3.3253224588935666,
+  "radius_max": 4.892591742412819,
+  "smallest_gap": 1.0001486955610766,
+  "realised_volume_fraction": 0.11306944444444444,
+  "matrix_atoms": 191577,
+  "matrix_guest_fraction": 0.0666311718003727,
+  "xi": 6.120198633843721,
+  "c_eq": 0.013552198197891639,
+  "c_inf": 0.10050493538994462,
+  "critical_radius": 1.9956844494631358,
+  "depleting_precipitates": 138,
+  "surface_value_range": [
+   0.03068700778792402,
+   0.09880034333364983
+  ],
+  "field_sd": 0.014384956108388438,
+  "field_range": [
+   0.01617910440273411,
+   0.10364590731055165
+  ],
+  "clipped_fraction": 0.0,
+  "split": "development",
+  "seconds": 0.8
+ },
+ {
+  "pattern": 1,
+  "parameters": {
+   "cr": 3.445980617211334,
+   "rb": 0.21720183717450312,
+   "volume_fraction": 0.09181272284646846,
+   "rho_c": 0.4470076949081892,
+   "matrix_mean": 0.14007965894046134,
+   "ell": 2.9816380051457214,
+   "critical_radius_fraction": 0.6248596537937878,
+   "pcp": 0.16825955764057726,
+   "supersaturation": 3.9936774126815955
+  },
+  "precipitates": 102,
+  "radius_min": 2.034543013892323,
+  "radius_mean": 3.4961859587321387,
+  "radius_max": 5.845260620422715,
+  "smallest_gap": 1.004538159913384,
+  "realised_volume_fraction": 0.09937499999999999,
+  "matrix_atoms": 194535,
+  "matrix_guest_fraction": 0.139820597835865,
+  "xi": 6.942639190812165,
+  "c_eq": 0.046492191696893885,
+  "c_inf": 0.18567481584594792,
+  "critical_radius": 2.1532542554507774,
+  "depleting_precipitates": 99,
+  "surface_value_range": [
+   0.07743039020908103,
+   0.20129909924563627
+  ],
+  "field_sd": 0.020317901502541126,
+  "field_range": [
+   0.06115153639051079,
+   0.2062178284212286
+  ],
+  "clipped_fraction": 0.0,
+  "split": "development",
+  "seconds": 0.6
+ },
+ {
+  "pattern": 2,
+  "parameters": {
+   "cr": 3.0393309412582994,
+   "rb": 0.2878657642737534,
+   "volume_fraction": 0.1032277553973537,
+   "rho_c": 0.8163946120284225,
+   "matrix_mean": 0.08747586635402553,
+   "ell": 2.688770849280578,
+   "critical_radius_fraction": 0.6361033817923462,
+   "pcp": 0.16272051233704804,
+   "supersaturation": 4.0178497956725785
+  },
+  "precipitates": 152,
+  "radius_min": 2.001407570382541,
+  "radius_mean": 3.2293856843376276,
+  "radius_max": 5.5434571194338345,
+  "smallest_gap": 1.0023981856919995,
+  "realised_volume_fraction": 0.11561111111111111,
+  "matrix_atoms": 191028,
+  "matrix_guest_fraction": 0.08916493917122097,
+  "xi": 5.917526230856969,
+  "c_eq": 0.029784445906646962,
+  "c_inf": 0.11966942990024246,
+  "critical_radius": 1.933328690120519,
+  "depleting_precipitates": 152,
+  "surface_value_range": [
+   0.048376846947784484,
+   0.11414005412628779
+  ],
+  "field_sd": 0.013451852241975306,
+  "field_range": [
+   0.03287146972484089,
+   0.12044559869758877
+  ],
+  "clipped_fraction": 0.0,
+  "split": "development",
+  "seconds": 1.1
+ },
+ {
+  "pattern": 3,
+  "parameters": {
+   "cr": 3.597555535609897,
+   "rb": 0.3913650846905234,
+   "volume_fraction": 0.11244411869698218,
+   "rho_c": 0.5470993396521322,
+   "matrix_mean": 0.095279576185193,
+   "ell": 3.8285977995607414,
+   "critical_radius_fraction": 0.6634301554820204,
+   "pcp": 0.14608405129811192,
+   "supersaturation": 4.973484263218335
+  },
+  "precipitates": 86,
+  "radius_min": 2.0093104881054455,
+  "radius_mean": 3.799703594245658,
+  "radius_max": 6.281654423854239,
+  "smallest_gap": 1.0134534792913312,
+  "realised_volume_fraction": 0.11430555555555555,
+  "matrix_atoms": 191310,
+  "matrix_guest_fraction": 0.09506037321624589,
+  "xi": 7.252669011476582,
+  "c_eq": 0.026191782284117414,
+  "c_inf": 0.13026441701569874,
+  "critical_radius": 2.3867268283448775,
+  "depleting_precipitates": 80,
+  "surface_value_range": [
+   0.04817954116083315,
+   0.17606871986556094
+  ],
+  "field_sd": 0.016671699325092562,
+  "field_range": [
+   0.023021988068524304,
+   0.17625149766606057
+  ],
+  "clipped_fraction": 0.0,
+  "split": "development",
+  "seconds": 0.5
+ },
+ {
+  "pattern": 4,
+  "parameters": {
+   "cr": 3.466321590169006,
+   "rb": 0.3429228030022731,
+   "volume_fraction": 0.10143284470968561,
+   "rho_c": 0.7457665086840883,
+   "matrix_mean": 0.09373939653523082,
+   "ell": 3.2665344176023074,
+   "critical_radius_fraction": 0.7169860256861117,
+   "pcp": 0.15987636134833066,
+   "supersaturation": 3.7222931211908485
+  },
+  "precipitates": 94,
+  "radius_min": 2.023245342778464,
+  "radius_mean": 3.669385345591727,
+  "radius_max": 6.127543796983899,
+  "smallest_gap": 1.0009379950970523,
+  "realised_volume_fraction": 0.11151851851851857,
+  "matrix_atoms": 191912,
+  "matrix_guest_fraction": 0.09272479052899245,
+  "xi": 7.059295401773186,
+  "c_eq": 0.03152912853181341,
+  "c_inf": 0.11736065825111117,
+  "critical_radius": 2.4853041406852383,
+  "depleting_precipitates": 82,
+  "surface_value_range": [
+   0.053731647976921884,
+   0.1584460587489344
+  ],
+  "field_sd": 0.014326013929538304,
+  "field_range": [
+   0.036836302079102136,
+   0.16112184998736268
+  ],
+  "clipped_fraction": 0.0,
+  "split": "development",
+  "seconds": 0.6
+ },
+ {
+  "pattern": 5,
+  "parameters": {
+   "cr": 3.605737527671872,
+   "rb": 0.35904947179194197,
+   "volume_fraction": 0.0927861049517534,
+   "rho_c": 0.4289105157507805,
+   "matrix_mean": 0.06582730602361757,
+   "ell": 4.392288586226439,
+   "critical_radius_fraction": 0.6419773673879862,
+   "pcp": 0.0995163828275816,
+   "supersaturation": 6.669062314734712
+  },
+  "precipitates": 73,
+  "radius_min": 2.002350944502776,
+  "radius_mean": 3.918693630237516,
+  "radius_max": 6.3482979909333395,
+  "smallest_gap": 1.0007432313292375,
+  "realised_volume_fraction": 0.10473148148148148,
+  "matrix_atoms": 193378,
+  "matrix_guest_fraction": 0.06621228888498175,
+  "xi": 7.751573297882568,
+  "c_eq": 0.014109599393383649,
+  "c_inf": 0.09409779759041866,
+  "critical_radius": 2.314801885506854,
+  "depleting_precipitates": 69,
+  "surface_value_range": [
+   0.028183587685404424,
+   0.12652263072060405
+  ],
+  "field_sd": 0.014827918102229056,
+  "field_range": [
+   0.009005010501283306,
+   0.1345136000468584
+  ],
+  "clipped_fraction": 0.0,
+  "split": "development",
+  "seconds": 0.4
+ },
+ {
+  "pattern": 6,
+  "parameters": {
+   "cr": 3.776536338367912,
+   "rb": 0.2588406819167298,
+   "volume_fraction": 0.08795354594014923,
+   "rho_c": 0.645651707728961,
+   "matrix_mean": 0.12180787069631391,
+   "ell": 4.69769048852136,
+   "critical_radius_fraction": 0.7000675006413043,
+   "pcp": 0.16788179368222889,
+   "supersaturation": 5.911207925239843
+  },
+  "precipitates": 70,
+  "radius_min": 2.1727006306514025,
+  "radius_mean": 3.8095840784176103,
+  "radius_max": 6.875099496532251,
+  "smallest_gap": 1.0157865440295648,
+  "realised_volume_fraction": 0.08813425925925922,
+  "matrix_atoms": 196963,
+  "matrix_guest_fraction": 0.1207485669897392,
+  "xi": 8.02849501519626,
+  "c_eq": 0.026619923364587433,
+  "c_inf": 0.1573559019620265,
+  "critical_radius": 2.643830355482287,
+  "depleting_precipitates": 62,
+  "surface_value_range": [
+   0.05271765874959336,
+   0.23132031791435725
+  ],
+  "field_sd": 0.020390570156134165,
+  "field_range": [
+   0.04471644553619042,
+   0.23849292675872763
+  ],
+  "clipped_fraction": 0.0,
+  "split": "development",
+  "seconds": 0.4
+ },
+ {
+  "pattern": 7,
+  "parameters": {
+   "cr": 3.991455422060539,
+   "rb": 0.36540920352171524,
+   "volume_fraction": 0.10897466814333313,
+   "rho_c": 0.8927501049029086,
+   "matrix_mean": 0.10032854258842437,
+   "ell": 4.296067604770507,
+   "critical_radius_fraction": 0.7949951267481922,
+   "pcp": 0.18668241937126687,
+   "supersaturation": 3.8723632830425894
+  },
+  "precipitates": 63,
+  "radius_min": 2.1630727961419116,
+  "radius_mean": 4.147654349209624,
+  "radius_max": 6.809577920729131,
+  "smallest_gap": 1.0015970644449528,
+  "realised_volume_fraction": 0.11253703703703699,
+  "matrix_atoms": 191692,
+  "matrix_guest_fraction": 0.1001658911170002,
+  "xi": 8.11055157848366,
+  "c_eq": 0.030792231836449566,
+  "c_inf": 0.11923870796640237,
+  "critical_radius": 3.1731876091707774,
+  "depleting_precipitates": 44,
+  "surface_value_range": [
+   0.05786706971456351,
+   0.22438363255269853
+  ],
+  "field_sd": 0.01632006307554676,
+  "field_range": [
+   0.04403016438569961,
+   0.2252621803236377
+  ],
+  "clipped_fraction": 0.0,
+  "split": "development",
+  "seconds": 0.3
+ },
+ {
+  "pattern": 8,
+  "parameters": {
+   "cr": 3.857219734204399,
+   "rb": 0.3864941717109708,
+   "volume_fraction": 0.10666474167819655,
+   "rho_c": 0.7084092934819554,
+   "matrix_mean": 0.05487662191756441,
+   "ell": 3.0716825375534755,
+   "critical_radius_fraction": 0.6243906503813227,
+   "pcp": 0.12458551550824185,
+   "supersaturation": 3.580124185376839
+  },
+  "precipitates": 66,
+  "radius_min": 2.036879439543057,
+  "radius_mean": 4.446614375929932,
+  "radius_max": 7.720578626669123,
+  "smallest_gap": 1.011625675277665,
+  "realised_volume_fraction": 0.14031944444444444,
+  "matrix_atoms": 185691,
+  "matrix_guest_fraction": 0.05536617283551707,
+  "xi": 7.65306218011533,
+  "c_eq": 0.020938731048118508,
+  "c_inf": 0.07496325743646999,
+  "critical_radius": 2.4084119385035576,
+  "depleting_precipitates": 63,
+  "surface_value_range": [
+   0.031170032088532983,
+   0.09459779402814229
+  ],
+  "field_sd": 0.009331206426628288,
+  "field_range": [
+   0.020942258709854503,
+   0.09914950028940352
+  ],
+  "clipped_fraction": 0.0,
+  "split": "development",
+  "seconds": 0.4
+ },
+ {
+  "pattern": 9,
+  "parameters": {
+   "cr": 3.82015696586837,
+   "rb": 0.20276924209132985,
+   "volume_fraction": 0.11180337345230801,
+   "rho_c": 0.7926238982509275,
+   "matrix_mean": 0.06925396028903287,
+   "ell": 4.836201224008375,
+   "critical_radius_fraction": 0.6131097440066485,
+   "pcp": 0.15012915960715945,
+   "supersaturation": 7.883981309722371
+  },
+  "precipitates": 92,
+  "radius_min": 2.1366383186653954,
+  "radius_mean": 3.717881490345274,
+  "radius_max": 5.751110116297152,
+  "smallest_gap": 1.0046921644949771,
+  "realised_volume_fraction": 0.10048611111111116,
+  "matrix_atoms": 194295,
+  "matrix_guest_fraction": 0.06884891530919478,
+  "xi": 7.088922995028217,
+  "c_eq": 0.012743565352523457,
+  "c_inf": 0.10047003105852051,
+  "critical_radius": 2.3421754594087716,
+  "depleting_precipitates": 89,
+  "surface_value_range": [
+   0.029545829178457734,
+   0.12254633536900089
+  ],
+  "field_sd": 0.014216224068029094,
+  "field_range": [
+   0.018431862036697656,
+   0.1320293462051657
+  ],
+  "clipped_fraction": 0.0,
+  "split": "development",
+  "seconds": 0.6
+ },
+ {
+  "pattern": 10,
+  "parameters": {
+   "cr": 3.7571391941482366,
+   "rb": 0.2768081158903298,
+   "volume_fraction": 0.10388319502044616,
+   "rho_c": 0.6844973849602747,
+   "matrix_mean": 0.06421330433619647,
+   "ell": 2.4005146431962836,
+   "critical_radius_fraction": 0.7890634373426479,
+   "pcp": 0.12865039645174575,
+   "supersaturation": 2.247279867159205
+  },
+  "precipitates": 82,
+  "radius_min": 2.036626246762923,
+  "radius_mean": 3.693178392799827,
+  "radius_max": 5.599321504444583,
+  "smallest_gap": 1.0094706376299012,
+  "realised_volume_fraction": 0.0932546296296296,
+  "matrix_atoms": 195857,
+  "matrix_guest_fraction": 0.06456751609592713,
+  "xi": 7.53381366211191,
+  "c_eq": 0.03124773196809735,
+  "c_inf": 0.07022239894629226,
+  "critical_radius": 2.964621167109394,
+  "depleting_precipitates": 62,
+  "surface_value_range": [
+   0.04797413774753098,
+   0.10155687126130031
+  ],
+  "field_sd": 0.004754623775285361,
+  "field_range": [
+   0.042018924042114776,
+   0.10186470459189652
+  ],
+  "clipped_fraction": 0.0,
+  "split": "development",
+  "seconds": 0.5
+ },
+ {
+  "pattern": 11,
+  "parameters": {
+   "cr": 3.7832423234984516,
+   "rb": 0.2579497699773896,
+   "volume_fraction": 0.10343462115608905,
+   "rho_c": 0.6435869456575608,
+   "matrix_mean": 0.14022288770688657,
+   "ell": 4.662143914474857,
+   "critical_radius_fraction": 0.6651987563443572,
+   "pcp": 0.19228815834460622,
+   "supersaturation": 6.376061811207422
+  },
+  "precipitates": 82,
+  "radius_min": 2.0410878774846437,
+  "radius_mean": 3.9561197445107985,
+  "radius_max": 6.050405250404178,
+  "smallest_gap": 1.000058259135054,
+  "realised_volume_fraction": 0.11127777777777781,
+  "matrix_atoms": 191964,
+  "matrix_guest_fraction": 0.14064095351211686,
+  "xi": 7.279143870021468,
+  "c_eq": 0.03074279486761307,
+  "c_inf": 0.19601796032517121,
+  "critical_radius": 2.516608088540506,
+  "depleting_precipitates": 78,
+  "surface_value_range": [
+   0.06643382498832587,
+   0.3018113771197073
+  ],
+  "field_sd": 0.027105774653591135,
+  "field_range": [
+   0.04940675660989677,
+   0.29651939341286127
+  ],
+  "clipped_fraction": 0.0,
+  "split": "development",
+  "seconds": 0.5
+ },
+ {
+  "pattern": 12,
+  "parameters": {
+   "cr": 3.160544248939803,
+   "rb": 0.3919378961414378,
+   "volume_fraction": 0.09478985985476157,
+   "rho_c": 0.40221728310124255,
+   "matrix_mean": 0.13878913752656413,
+   "ell": 3.4615352564829105,
+   "critical_radius_fraction": 0.6975297420984773,
+   "pcp": 0.16375945452738763,
+   "supersaturation": 4.807421569953046
+  },
+  "precipitates": 106,
+  "radius_min": 2.0339942631663446,
+  "radius_mean": 3.5744343114724355,
+  "radius_max": 6.324146989343841,
+  "smallest_gap": 1.0003952881305551,
+  "realised_volume_fraction": 0.11931481481481476,
+  "matrix_atoms": 190228,
+  "matrix_guest_fraction": 0.13813949576297915,
+  "xi": 6.735430369433035,
+  "c_eq": 0.03988623460462804,
+  "c_inf": 0.19174994458249647,
+  "critical_radius": 2.2045736148538064,
+  "depleting_precipitates": 100,
+  "surface_value_range": [
+   0.06895012286289354,
+   0.21873752089351964
+  ],
+  "field_sd": 0.02598887914737534,
+  "field_range": [
+   0.03997523584146058,
+   0.23030752571494834
+  ],
+  "clipped_fraction": 0.0,
+  "split": "development",
+  "seconds": 0.7
+ },
+ {
+  "pattern": 13,
+  "parameters": {
+   "cr": 3.9377985590111177,
+   "rb": 0.27537586673704373,
+   "volume_fraction": 0.11320318639657301,
+   "rho_c": 0.6058985408932148,
+   "matrix_mean": 0.07863807779581332,
+   "ell": 3.482433355458065,
+   "critical_radius_fraction": 0.7716532713159143,
+   "pcp": 0.13832564227937186,
+   "supersaturation": 3.145772131596068
+  },
+  "precipitates": 78,
+  "radius_min": 2.051913939621082,
+  "radius_mean": 3.9702976716662923,
+  "radius_max": 6.695666495668504,
+  "smallest_gap": 1.0003020048028914,
+  "realised_volume_fraction": 0.1141064814814815,
+  "matrix_atoms": 191353,
+  "matrix_guest_fraction": 0.07876542306627018,
+  "xi": 7.450117249274729,
+  "c_eq": 0.029001565872440124,
+  "c_inf": 0.09123231769416974,
+  "critical_radius": 3.0386151398440227,
+  "depleting_precipitates": 65,
+  "surface_value_range": [
+   0.04878643947378105,
+   0.1583033740979549
+  ],
+  "field_sd": 0.008877871234464737,
+  "field_range": [
+   0.03674528299783695,
+   0.1599593163190926
+  ],
+  "clipped_fraction": 0.0,
+  "split": "development",
+  "seconds": 0.5
+ },
+ {
+  "pattern": 14,
+  "parameters": {
+   "cr": 3.4529667059779476,
+   "rb": 0.35023086591817604,
+   "volume_fraction": 0.08565806718406897,
+   "rho_c": 0.5246375122141114,
+   "matrix_mean": 0.14305776999399009,
+   "ell": 4.9009519193951,
+   "critical_radius_fraction": 0.6385222005983209,
+   "pcp": 0.17574315318916095,
+   "supersaturation": 9.233698616918236
+  },
+  "precipitates": 78,
+  "radius_min": 2.063473001277017,
+  "radius_mean": 3.7072060478095668,
+  "radius_max": 5.840121545503987,
+  "smallest_gap": 1.0037683238783899,
+  "realised_volume_fraction": 0.0951157407407407,
+  "matrix_atoms": 195455,
+  "matrix_guest_fraction": 0.14328617840423627,
+  "xi": 7.709944996261024,
+  "c_eq": 0.02325142066457779,
+  "c_inf": 0.21469661083189603,
+  "critical_radius": 2.2047958996937744,
+  "depleting_precipitates": 74,
+  "surface_value_range": [
+   0.05381503365837727,
+   0.25000098908793295
+  ],
+  "field_sd": 0.03341345475479153,
+  "field_range": [
+   0.020861580348070778,
+   0.2719454767004832
+  ],
+  "clipped_fraction": 0.0,
+  "split": "development",
+  "seconds": 0.4
+ },
+ {
+  "pattern": 15,
+  "parameters": {
+   "cr": 3.2737194006018573,
+   "rb": 0.3258730304710313,
+   "volume_fraction": 0.09111727526542021,
+   "rho_c": 0.46527345609326703,
+   "matrix_mean": 0.1370564349941479,
+   "ell": 3.7776025900281462,
+   "critical_radius_fraction": 0.743414223228902,
+   "pcp": 0.16696267565243259,
+   "supersaturation": 4.721783886160558
+  },
+  "precipitates": 101,
+  "radius_min": 2.0875402709668087,
+  "radius_mean": 3.48232821533933,
+  "radius_max": 5.835178369214789,
+  "smallest_gap": 1.0008726008977922,
+  "realised_volume_fraction": 0.09637499999999999,
+  "matrix_atoms": 195183,
+  "matrix_guest_fraction": 0.13718920192844664,
+  "xi": 6.990792406429147,
+  "c_eq": 0.03695030387333606,
+  "c_inf": 0.17447134941785425,
+  "critical_radius": 2.4337295652678166,
+  "depleting_precipitates": 93,
+  "surface_value_range": [
+   0.07059491555893758,
+   0.225691482450594
+  ],
+  "field_sd": 0.020727170542761842,
+  "field_range": [
+   0.05717368349841431,
+   0.23430768167602786
+  ],
+  "clipped_fraction": 0.0,
+  "split": "development",
+  "seconds": 0.7
+ },
+ {
+  "pattern": 16,
+  "parameters": {
+   "cr": 3.628074769058672,
+   "rb": 0.24326002690544363,
+   "volume_fraction": 0.10311154571771648,
+   "rho_c": 0.8631743385149425,
+   "matrix_mean": 0.10237482950941562,
+   "ell": 3.9792457497739098,
+   "critical_radius_fraction": 0.6691257277461222,
+   "pcp": 0.18082204286425524,
+   "supersaturation": 5.150752653532369
+  },
+  "precipitates": 93,
+  "radius_min": 2.000320630198316,
+  "radius_mean": 3.6823585836830683,
+  "radius_max": 5.522105333631993,
+  "smallest_gap": 1.0065182111445594,
+  "realised_volume_fraction": 0.10482870370370367,
+  "matrix_atoms": 193357,
+  "matrix_guest_fraction": 0.10195131285652963,
+  "xi": 7.084634189283753,
+  "c_eq": 0.02625418036906501,
+  "c_inf": 0.13522878920227904,
+  "critical_radius": 2.4276381701637284,
+  "depleting_precipitates": 87,
+  "surface_value_range": [
+   0.05396999494720041,
+   0.19192970552603233
+  ],
+  "field_sd": 0.018280641686326288,
+  "field_range": [
+   0.034344071225551095,
+   0.2008833993940022
+  ],
+  "clipped_fraction": 0.0,
+  "split": "development",
+  "seconds": 0.6
+ },
+ {
+  "pattern": 17,
+  "parameters": {
+   "cr": 3.1237083365554397,
+   "rb": 0.24847499879206836,
+   "volume_fraction": 0.10173447491004627,
+   "rho_c": 0.6300101536010504,
+   "matrix_mean": 0.14414556689163832,
+   "ell": 3.9511961114201397,
+   "critical_radius_fraction": 0.7618903552994107,
+   "pcp": 0.19357474549790699,
+   "supersaturation": 5.260467856588533
+  },
+  "precipitates": 144,
+  "radius_min": 2.0210718276567645,
+  "radius_mean": 3.2924627985520676,
+  "radius_max": 4.929417998045165,
+  "smallest_gap": 1.0023493373568089,
+  "realised_volume_fraction": 0.1118055555555556,
+  "matrix_atoms": 191850,
+  "matrix_guest_fraction": 0.14388324211623665,
+  "xi": 6.021161266908139,
+  "c_eq": 0.03546661518279938,
+  "c_inf": 0.18657098915111098,
+  "critical_radius": 2.379923254389955,
+  "depleting_precipitates": 133,
+  "surface_value_range": [
+   0.07905518240762767,
+   0.2505333830245119
+  ],
+  "field_sd": 0.020234841073132868,
+  "field_range": [
+   0.06493108094476338,
+   0.2509608727746083
+  ],
+  "clipped_fraction": 0.0,
+  "split": "development",
+  "seconds": 1.0
+ },
+ {
+  "pattern": 18,
+  "parameters": {
+   "cr": 3.3558907086563146,
+   "rb": 0.2741839245208177,
+   "volume_fraction": 0.10381657355115892,
+   "rho_c": 0.6808551210725434,
+   "matrix_mean": 0.1002629117768004,
+   "ell": 3.7806438432544955,
+   "critical_radius_fraction": 0.621999176211053,
+   "pcp": 0.16053800557638176,
+   "supersaturation": 6.1178287321088725
+  },
+  "precipitates": 115,
+  "radius_min": 2.0681533800754393,
+  "radius_mean": 3.242508796635129,
+  "radius_max": 5.233283906151686,
+  "smallest_gap": 1.004748669326987,
+  "realised_volume_fraction": 0.08907407407407408,
+  "matrix_atoms": 196760,
+  "matrix_guest_fraction": 0.10052856271599919,
+  "xi": 6.789416350134337,
+  "c_eq": 0.02258124793023695,
+  "c_inf": 0.1381482073944776,
+  "critical_radius": 2.087361256238555,
+  "depleting_precipitates": 114,
+  "surface_value_range": [
+   0.04650420173088705,
+   0.14049172309818275
+  ],
+  "field_sd": 0.01728599369089903,
+  "field_range": [
+   0.032877961365170724,
+   0.1441461350846147
+  ],
+  "clipped_fraction": 0.0,
+  "split": "development",
+  "seconds": 0.8
+ },
+ {
+  "pattern": 19,
+  "parameters": {
+   "cr": 3.9889073102529995,
+   "rb": 0.21308540427163197,
+   "volume_fraction": 0.09409677265646582,
+   "rho_c": 0.516064094396794,
+   "matrix_mean": 0.12100382386753383,
+   "ell": 3.734997798713184,
+   "critical_radius_fraction": 0.7429669815729969,
+   "pcp": 0.15817772032912752,
+   "supersaturation": 3.5264071836162185
+  },
+  "precipitates": 67,
+  "radius_min": 2.4600406569409197,
+  "radius_mean": 3.951670011438962,
+  "radius_max": 5.4378200141556725,
+  "smallest_gap": 1.0044534095987103,
+  "realised_volume_fraction": 0.08632407407407405,
+  "matrix_atoms": 197354,
+  "matrix_guest_fraction": 0.12202438258155396,
+  "xi": 8.0573866866497,
+  "c_eq": 0.04056586901052581,
+  "c_inf": 0.14305177188835275,
+  "critical_radius": 2.963626424073133,
+  "depleting_precipitates": 61,
+  "surface_value_range": [
+   0.0806229034883947,
+   0.18515507990165328
+  ],
+  "field_sd": 0.011685304391754964,
+  "field_range": [
+   0.06995750945645329,
+   0.19091442867936195
+  ],
+  "clipped_fraction": 0.0,
+  "split": "development",
+  "seconds": 0.4
+ },
+ {
+  "pattern": 20,
+  "parameters": {
+   "cr": 3.7674650299186894,
+   "rb": 0.29740451258293493,
+   "volume_fraction": 0.10208602929734117,
+   "rho_c": 0.8680557294622817,
+   "matrix_mean": 0.07352020030458406,
+   "ell": 4.34917565459086,
+   "critical_radius_fraction": 0.6437255731465715,
+   "pcp": 0.15463117761195527,
+   "supersaturation": 6.009349747242988
+  },
+  "precipitates": 78,
+  "radius_min": 2.1623512238857856,
+  "radius_mean": 3.9609185894756265,
+  "radius_max": 6.463444460239283,
+  "smallest_gap": 1.0009926737624681,
+  "realised_volume_fraction": 0.11467129629629624,
+  "matrix_atoms": 191231,
+  "matrix_guest_fraction": 0.07495646626331505,
+  "xi": 7.4589326218738945,
+  "c_eq": 0.017367338024667812,
+  "c_inf": 0.10436640836882105,
+  "critical_radius": 2.4252135856940735,
+  "depleting_precipitates": 74,
+  "surface_value_range": [
+   0.03403806781061372,
+   0.12978888718561557
+  ],
+  "field_sd": 0.015385488430580543,
+  "field_range": [
+   0.022915935144035143,
+   0.13020660262352418
+  ],
+  "clipped_fraction": 0.0,
+  "split": "development",
+  "seconds": 0.5
+ },
+ {
+  "pattern": 21,
+  "parameters": {
+   "cr": 3.8959642700131356,
+   "rb": 0.31360105270526273,
+   "volume_fraction": 0.09558820579993949,
+   "rho_c": 0.828359776150011,
+   "matrix_mean": 0.11422018001358497,
+   "ell": 3.3264856086867765,
+   "critical_radius_fraction": 0.6451509403181911,
+   "pcp": 0.18248350269895935,
+   "supersaturation": 3.756379212066184
+  },
+  "precipitates": 65,
+  "radius_min": 2.030239077495161,
+  "radius_mean": 4.005361923572664,
+  "radius_max": 6.611506446026392,
+  "smallest_gap": 1.004314846031333,
+  "realised_volume_fraction": 0.10435648148148147,
+  "matrix_atoms": 193459,
+  "matrix_guest_fraction": 0.11454106554877261,
+  "xi": 8.125393133569697,
+  "c_eq": 0.03923187623457239,
+  "c_inf": 0.1473698043379011,
+  "critical_radius": 2.513485012245049,
+  "depleting_precipitates": 58,
+  "surface_value_range": [
+   0.06488557858259725,
+   0.20193774985601787
+  ],
+  "field_sd": 0.017000283356249358,
+  "field_range": [
+   0.0468573986836774,
+   0.20498211515338965
+  ],
+  "clipped_fraction": 0.0,
+  "split": "development",
+  "seconds": 0.3
+ },
+ {
+  "pattern": 22,
+  "parameters": {
+   "cr": 3.4534173661376424,
+   "rb": 0.29323101167609805,
+   "volume_fraction": 0.10235324870941936,
+   "rho_c": 0.4017680209404736,
+   "matrix_mean": 0.12859469407234575,
+   "ell": 4.34081376794963,
+   "critical_radius_fraction": 0.7563187741600136,
+   "pcp": 0.15655487153805875,
+   "supersaturation": 5.2695613902151175
+  },
+  "precipitates": 103,
+  "radius_min": 2.00182319062358,
+  "radius_mean": 3.6189644784904496,
+  "radius_max": 6.748983127458104,
+  "smallest_gap": 1.0004842953976865,
+  "realised_volume_fraction": 0.11469907407407409,
+  "matrix_atoms": 191225,
+  "matrix_guest_fraction": 0.1287070205255589,
+  "xi": 6.790647250509776,
+  "c_eq": 0.031248802706640193,
+  "c_inf": 0.16466748423336083,
+  "critical_radius": 2.6118843890201244,
+  "depleting_precipitates": 87,
+  "surface_value_range": [
+   0.05945153702863899,
+   0.27325658218470106
+  ],
+  "field_sd": 0.021729408269034543,
+  "field_range": [
+   0.03993405764105903,
+   0.27328993784272754
+  ],
+  "clipped_fraction": 0.0,
+  "split": "development",
+  "seconds": 0.7
+ },
+ {
+  "pattern": 23,
+  "parameters": {
+   "cr": 3.4693907114741886,
+   "rb": 0.24112309965319034,
+   "volume_fraction": 0.11210959387889408,
+   "rho_c": 0.815470029658371,
+   "matrix_mean": 0.14985237715451322,
+   "ell": 3.5324738967135803,
+   "critical_radius_fraction": 0.7982801132281897,
+   "pcp": 0.22447450185534357,
+   "supersaturation": 3.5803858086365277
+  },
+  "precipitates": 117,
+  "radius_min": 2.042781208241336,
+  "radius_mean": 3.449037819130352,
+  "radius_max": 6.492625744749731,
+  "smallest_gap": 1.0001098593069733,
+  "realised_volume_fraction": 0.10829166666666667,
+  "matrix_atoms": 192609,
+  "matrix_guest_fraction": 0.14911556573161172,
+  "xi": 6.526495372929016,
+  "c_eq": 0.04842071144741825,
+  "c_inf": 0.1733648281104206,
+  "critical_radius": 2.769545609988445,
+  "depleting_precipitates": 94,
+  "surface_value_range": [
+   0.08342953809835851,
+   0.2729189728847903
+  ],
+  "field_sd": 0.016066886515328182,
+  "field_range": [
+   0.0748369130830291,
+   0.2779653016084973
+  ],
+  "clipped_fraction": 0.0,
+  "split": "development",
+  "seconds": 0.8
+ },
+ {
+  "pattern": 24,
+  "parameters": {
+   "cr": 3.9639802829259425,
+   "rb": 0.26158073123233205,
+   "volume_fraction": 0.11620292496569042,
+   "rho_c": 0.6863717475501463,
+   "matrix_mean": 0.09970383578172853,
+   "ell": 3.4717788682066133,
+   "critical_radius_fraction": 0.7668434664741021,
+   "pcp": 0.16787636311273224,
+   "supersaturation": 3.133421544220836
+  },
+  "precipitates": 80,
+  "radius_min": 2.00145737572858,
+  "radius_mean": 3.989466133417193,
+  "radius_max": 6.0713342800240255,
+  "smallest_gap": 1.0014160371755154,
+  "realised_volume_fraction": 0.11664351851851851,
+  "matrix_atoms": 190805,
+  "matrix_guest_fraction": 0.09983490998663556,
+  "xi": 7.3387071690869226,
+  "c_eq": 0.03708425181806485,
+  "c_inf": 0.11620059359803511,
+  "critical_radius": 3.0397523811939213,
+  "depleting_precipitates": 64,
+  "surface_value_range": [
+   0.06569505673862576,
+   0.21014921663554642
+  ],
+  "field_sd": 0.011383938965261166,
+  "field_range": [
+   0.0499045181422324,
+   0.21082614734440036
+  ],
+  "clipped_fraction": 0.0,
+  "split": "development",
+  "seconds": 0.5
+ },
+ {
+  "pattern": 25,
+  "parameters": {
+   "cr": 3.4482044352319985,
+   "rb": 0.3843488257352011,
+   "volume_fraction": 0.11730014102236638,
+   "rho_c": 0.5830643767230097,
+   "matrix_mean": 0.10143316219935615,
+   "ell": 3.7021404787910006,
+   "critical_radius_fraction": 0.716975737786728,
+   "pcp": 0.1579285715837543,
+   "supersaturation": 4.4703230784796055
+  },
+  "precipitates": 103,
+  "radius_min": 2.0040434738844985,
+  "radius_mean": 3.8283093173229865,
+  "radius_max": 6.598430561315174,
+  "smallest_gap": 1.0001068714421097,
+  "realised_volume_fraction": 0.13721759259259259,
+  "matrix_atoms": 186361,
+  "matrix_guest_fraction": 0.102446327289508,
+  "xi": 6.602369426502416,
+  "c_eq": 0.03054961359242075,
+  "c_inf": 0.13656664268083274,
+  "critical_radius": 2.4722789189899297,
+  "depleting_precipitates": 91,
+  "surface_value_range": [
+   0.053539292854328326,
+   0.19377301539570305
+  ],
+  "field_sd": 0.0183046386446609,
+  "field_range": [
+   0.029826823137997085,
+   0.20069984454131068
+  ],
+  "clipped_fraction": 0.0,
+  "split": "development",
+  "seconds": 0.6
+ },
+ {
+  "pattern": 26,
+  "parameters": {
+   "cr": 3.3335598553136028,
+   "rb": 0.3220481043748232,
+   "volume_fraction": 0.08607856190280506,
+   "rho_c": 0.47261225088311687,
+   "matrix_mean": 0.14064512551154204,
+   "ell": 3.164229461919325,
+   "critical_radius_fraction": 0.6652326979377899,
+   "pcp": 0.1692203782625354,
+   "supersaturation": 4.165663819712262
+  },
+  "precipitates": 92,
+  "radius_min": 2.0465423284710638,
+  "radius_mean": 3.476896851234554,
+  "radius_max": 6.582742810726517,
+  "smallest_gap": 1.004455620297818,
+  "realised_volume_fraction": 0.08973148148148147,
+  "matrix_atoms": 196618,
+  "matrix_guest_fraction": 0.14230640124505387,
+  "xi": 7.3304751617201465,
+  "c_eq": 0.04376497791123047,
+  "c_inf": 0.1823101850553191,
+  "critical_radius": 2.2175930162873767,
+  "depleting_precipitates": 86,
+  "surface_value_range": [
+   0.07077596556907757,
+   0.20540184712143786
+  ],
+  "field_sd": 0.020719770302356628,
+  "field_range": [
+   0.046458964309735666,
+   0.21030553596410465
+  ],
+  "clipped_fraction": 0.0,
+  "split": "development",
+  "seconds": 0.5
+ },
+ {
+  "pattern": 27,
+  "parameters": {
+   "cr": 3.0274590438058193,
+   "rb": 0.3123225790546347,
+   "volume_fraction": 0.10454008806498491,
+   "rho_c": 0.47213226850408296,
+   "matrix_mean": 0.11379392501146443,
+   "ell": 2.155738198044103,
+   "critical_radius_fraction": 0.6522593449678314,
+   "pcp": 0.15125464699724359,
+   "supersaturation": 2.9792906044860956
+  },
+  "precipitates": 151,
+  "radius_min": 2.028482506152227,
+  "radius_mean": 3.2553056579563213,
+  "radius_max": 5.874127914539753,
+  "smallest_gap": 1.0002591823792457,
+  "realised_volume_fraction": 0.11787499999999995,
+  "matrix_atoms": 190539,
+  "matrix_guest_fraction": 0.11371950099454704,
+  "xi": 5.913404444756626,
+  "c_eq": 0.04917596768124712,
+  "c_inf": 0.14650949847925143,
+  "critical_radius": 1.9746884528297208,
+  "depleting_precipitates": 151,
+  "surface_value_range": [
+   0.07097968288844426,
+   0.14232874271658744
+  ],
+  "field_sd": 0.01322370698560558,
+  "field_range": [
+   0.062320541617415376,
+   0.1504585856994324
+  ],
+  "clipped_fraction": 0.0,
+  "split": "development",
+  "seconds": 1.1
+ },
+ {
+  "pattern": 28,
+  "parameters": {
+   "cr": 3.288183151742544,
+   "rb": 0.34813025105713147,
+   "volume_fraction": 0.11102944896418834,
+   "rho_c": 0.48822381134116877,
+   "matrix_mean": 0.09672776830815982,
+   "ell": 2.5130666782244298,
+   "critical_radius_fraction": 0.6912020073555091,
+   "pcp": 0.14019535823777496,
+   "supersaturation": 3.021382601794874
+  },
+  "precipitates": 119,
+  "radius_min": 2.0758494061189543,
+  "radius_mean": 3.562871318364566,
+  "radius_max": 6.134490538140122,
+  "smallest_gap": 1.0007240855652317,
+  "realised_volume_fraction": 0.1263981481481481,
+  "matrix_atoms": 188698,
+  "matrix_guest_fraction": 0.09675778227644172,
+  "xi": 6.367198572750504,
+  "c_eq": 0.04024201543493367,
+  "c_inf": 0.12158652529626937,
+  "critical_radius": 2.2727987950370103,
+  "depleting_precipitates": 110,
+  "surface_value_range": [
+   0.06061688286423769,
+   0.13503479835637902
+  ],
+  "field_sd": 0.0122134294404386,
+  "field_range": [
+   0.04488336397784929,
+   0.13766157932000783
+  ],
+  "clipped_fraction": 0.0,
+  "split": "development",
+  "seconds": 0.7
+ },
+ {
+  "pattern": 29,
+  "parameters": {
+   "cr": 3.8233359583673487,
+   "rb": 0.30017984559887034,
+   "volume_fraction": 0.11017952468404794,
+   "rho_c": 0.6741397636817521,
+   "matrix_mean": 0.14079848497507202,
+   "ell": 3.7874515235239743,
+   "critical_radius_fraction": 0.6491846547749576,
+   "pcp": 0.19956177355735638,
+   "supersaturation": 4.5994475573916045
+  },
+  "precipitates": 80,
+  "radius_min": 2.0070251468647613,
+  "radius_mean": 4.015433182388935,
+  "radius_max": 7.651132998041187,
+  "smallest_gap": 1.0026585921719438,
+  "realised_volume_fraction": 0.12504629629629627,
+  "matrix_atoms": 188990,
+  "matrix_guest_fraction": 0.14162654108682998,
+  "xi": 7.314939664278445,
+  "c_eq": 0.04171306216457767,
+  "c_inf": 0.19185704188419092,
+  "critical_radius": 2.482051034221389,
+  "depleting_precipitates": 72,
+  "surface_value_range": [
+   0.06843146333695993,
+   0.2753137937719676
+  ],
+  "field_sd": 0.02535613225712444,
+  "field_range": [
+   0.04237678738968876,
+   0.27750682952362055
+  ],
+  "clipped_fraction": 0.0,
+  "split": "development",
+  "seconds": 0.5
+ },
+ {
+  "pattern": 30,
+  "parameters": {
+   "cr": 3.111042683544043,
+   "rb": 0.3777424520621565,
+   "volume_fraction": 0.10990351731214985,
+   "rho_c": 0.6652507312961199,
+   "matrix_mean": 0.07172531549038852,
+   "ell": 2.133211487938497,
+   "critical_radius_fraction": 0.7136076262280594,
+   "pcp": 0.13695584630159466,
+   "supersaturation": 2.6139917730240145
+  },
+  "precipitates": 132,
+  "radius_min": 2.0610717029639973,
+  "radius_mean": 3.5911168123794566,
+  "radius_max": 5.435133466236838,
+  "smallest_gap": 1.000368336497842,
+  "realised_volume_fraction": 0.13735185185185184,
+  "matrix_atoms": 186332,
+  "matrix_guest_fraction": 0.07108279844578494,
+  "xi": 6.021715205489715,
+  "c_eq": 0.03424401856861366,
+  "c_inf": 0.0895135828136377,
+  "critical_radius": 2.2200637844980364,
+  "depleting_precipitates": 129,
+  "surface_value_range": [
+   0.05070362894725865,
+   0.09640065662914583
+  ],
+  "field_sd": 0.007876594205260557,
+  "field_range": [
+   0.042539309793538385,
+   0.09977029172383255
+  ],
+  "clipped_fraction": 0.0,
+  "split": "development",
+  "seconds": 0.9
+ },
+ {
+  "pattern": 31,
+  "parameters": {
+   "cr": 3.7051779600435593,
+   "rb": 0.3139289244834476,
+   "volume_fraction": 0.10163951422558126,
+   "rho_c": 0.8966272243065148,
+   "matrix_mean": 0.11122916008067395,
+   "ell": 2.417405325243709,
+   "critical_radius_fraction": 0.7134384601839526,
+   "pcp": 0.19105663780230028,
+   "supersaturation": 2.495528095762722
+  },
+  "precipitates": 79,
+  "radius_min": 2.0851945164134618,
+  "radius_mean": 3.9160532617234423,
+  "radius_max": 6.6644118566842465,
+  "smallest_gap": 1.0002231367510355,
+  "realised_volume_fraction": 0.11046759259259264,
+  "matrix_atoms": 192139,
+  "matrix_guest_fraction": 0.11135688225711594,
+  "xi": 7.453909283460493,
+  "c_eq": 0.05289296746994952,
+  "c_inf": 0.13199588638952273,
+  "critical_radius": 2.643416458520996,
+  "depleting_precipitates": 74,
+  "surface_value_range": [
+   0.07602056326753338,
+   0.16861015040843694
+  ],
+  "field_sd": 0.011066180106059436,
+  "field_range": [
+   0.06861072986575605,
+   0.17067912855338047
+  ],
+  "clipped_fraction": 0.0,
+  "split": "development",
+  "seconds": 0.5
+ },
+ {
+  "pattern": 32,
+  "parameters": {
+   "cr": 3.4508309563928927,
+   "rb": 0.20754445955947254,
+   "volume_fraction": 0.10375889292933363,
+   "rho_c": 0.583089024234344,
+   "matrix_mean": 0.0891381331375454,
+   "ell": 4.908975229177453,
+   "critical_radius_fraction": 0.7693612723950092,
+   "pcp": 0.14038993075920708,
+   "supersaturation": 6.3534607959485
+  },
+  "precipitates": 114,
+  "radius_min": 2.0466641273403265,
+  "radius_mean": 3.552199447059517,
+  "radius_max": 5.251104239119295,
+  "smallest_gap": 1.0029097763817059,
+  "realised_volume_fraction": 0.11106944444444444,
+  "matrix_atoms": 192009,
+  "matrix_guest_fraction": 0.08926144086995923,
+  "xi": 6.51509640955055,
+  "c_eq": 0.017967069630133444,
+  "c_inf": 0.11415307251312976,
+  "critical_radius": 2.6549356954305225,
+  "depleting_precipitates": 105,
+  "surface_value_range": [
+   0.04575892665309956,
+   0.19776227780245068
+  ],
+  "field_sd": 0.01430529295856844,
+  "field_range": [
+   0.03244421090769084,
+   0.20355251293308146
+  ],
+  "clipped_fraction": 0.0,
+  "split": "development",
+  "seconds": 0.8
+ },
+ {
+  "pattern": 33,
+  "parameters": {
+   "cr": 3.529278258761758,
+   "rb": 0.22022974497951464,
+   "volume_fraction": 0.08604208471311957,
+   "rho_c": 0.7357188859612991,
+   "matrix_mean": 0.14330867742876988,
+   "ell": 2.342506800483947,
+   "critical_radius_fraction": 0.7731802969527246,
+   "pcp": 0.19428088677624258,
+   "supersaturation": 2.359496790231298
+  },
+  "precipitates": 88,
+  "radius_min": 2.085314221983275,
+  "radius_mean": 3.5433798487753765,
+  "radius_max": 5.361286038283112,
+  "smallest_gap": 1.0048966573979157,
+  "realised_volume_fraction": 0.0834166666666667,
+  "matrix_atoms": 197982,
+  "matrix_guest_fraction": 0.14254326150862198,
+  "xi": 7.424577621018103,
+  "c_eq": 0.06788517758598807,
+  "c_inf": 0.1601748586184205,
+  "critical_radius": 2.7287684121382103,
+  "depleting_precipitates": 80,
+  "surface_value_range": [
+   0.1050827074560361,
+   0.20875323912143992
+  ],
+  "field_sd": 0.008985690757145504,
+  "field_range": [
+   0.09546949872121854,
+   0.21491769822821508
+  ],
+  "clipped_fraction": 0.0,
+  "split": "development",
+  "seconds": 0.5
+ },
+ {
+  "pattern": 34,
+  "parameters": {
+   "cr": 3.570917089049636,
+   "rb": 0.26321947344444757,
+   "volume_fraction": 0.11731733311604746,
+   "rho_c": 0.647622357232736,
+   "matrix_mean": 0.07364937673408942,
+   "ell": 2.7908404176162107,
+   "critical_radius_fraction": 0.7627058470979324,
+   "pcp": 0.14098635608685975,
+   "supersaturation": 2.7862688267080533
+  },
+  "precipitates": 110,
+  "radius_min": 2.0241186973835155,
+  "radius_mean": 3.666799354622102,
+  "radius_max": 6.827947827757897,
+  "smallest_gap": 1.000014586936496,
+  "realised_volume_fraction": 0.12393055555555554,
+  "matrix_atoms": 189231,
+  "matrix_guest_fraction": 0.07404706417024695,
+  "xi": 6.528028290720164,
+  "c_eq": 0.030840599854397712,
+  "c_inf": 0.08593020197128527,
+  "critical_radius": 2.723559343320085,
+  "depleting_precipitates": 98,
+  "surface_value_range": [
+   0.046412545761642256,
+   0.12244045913094088
+  ],
+  "field_sd": 0.0077945696704034215,
+  "field_range": [
+   0.043435007973228246,
+   0.1218750452474957
+  ],
+  "clipped_fraction": 0.0,
+  "split": "development",
+  "seconds": 0.7
+ },
+ {
+  "pattern": 35,
+  "parameters": {
+   "cr": 3.250439156375011,
+   "rb": 0.3678582749110736,
+   "volume_fraction": 0.08367369301639557,
+   "rho_c": 0.793296831703073,
+   "matrix_mean": 0.14371669309550675,
+   "ell": 2.951170711750157,
+   "critical_radius_fraction": 0.6813366941334513,
+   "pcp": 0.19806946220290395,
+   "supersaturation": 3.7907787532309256
+  },
+  "precipitates": 88,
+  "radius_min": 2.1027751499443728,
+  "radius_mean": 3.6150207755028663,
+  "radius_max": 6.161930882179379,
+  "smallest_gap": 1.0035841932517933,
+  "realised_volume_fraction": 0.09695833333333337,
+  "matrix_atoms": 195057,
+  "matrix_guest_fraction": 0.14387589268777845,
+  "xi": 7.350640933787693,
+  "c_eq": 0.04969705711444315,
+  "c_inf": 0.18839054820753492,
+  "critical_radius": 2.2146434692864743,
+  "depleting_precipitates": 87,
+  "surface_value_range": [
+   0.08022873544514524,
+   0.2022309631833741
+  ],
+  "field_sd": 0.021646017747698646,
+  "field_range": [
+   0.06605414607496227,
+   0.21750171655117417
+  ],
+  "clipped_fraction": 0.0,
+  "split": "development",
+  "seconds": 0.5
+ },
+ {
+  "pattern": 36,
+  "parameters": {
+   "cr": 3.1611525340860855,
+   "rb": 0.23081645292210728,
+   "volume_fraction": 0.09171600770961591,
+   "rho_c": 0.6599191029267751,
+   "matrix_mean": 0.09273667763324751,
+   "ell": 4.445780367721626,
+   "critical_radius_fraction": 0.6157226674414789,
+   "pcp": 0.14475638532422735,
+   "supersaturation": 9.816965603224732
+  },
+  "precipitates": 128,
+  "radius_min": 2.0401497647696947,
+  "radius_mean": 3.246549702076486,
+  "radius_max": 4.831381327903523,
+  "smallest_gap": 1.0012309450599632,
+  "realised_volume_fraction": 0.09316666666666662,
+  "matrix_atoms": 195876,
+  "matrix_guest_fraction": 0.0915426085891074,
+  "xi": 6.431406063551542,
+  "c_eq": 0.014575993770571623,
+  "c_inf": 0.1430920294785196,
+  "critical_radius": 1.9463932704768752,
+  "depleting_precipitates": 128,
+  "surface_value_range": [
+   0.036582287351274896,
+   0.12883339204220648
+  ],
+  "field_sd": 0.020692149241090516,
+  "field_range": [
+   0.022210544149324312,
+   0.14091586949360174
+  ],
+  "clipped_fraction": 0.0,
+  "split": "development",
+  "seconds": 0.9
+ },
+ {
+  "pattern": 37,
+  "parameters": {
+   "cr": 3.881142700436258,
+   "rb": 0.35998455732925727,
+   "volume_fraction": 0.11581958442544761,
+   "rho_c": 0.469109663397515,
+   "matrix_mean": 0.05920107689164542,
+   "ell": 3.241897624936718,
+   "critical_radius_fraction": 0.7117701007755265,
+   "pcp": 0.10667651903317787,
+   "supersaturation": 3.233436593976125
+  },
+  "precipitates": 73,
+  "radius_min": 2.011850681742446,
+  "radius_mean": 3.995956998177393,
+  "radius_max": 7.740061282464858,
+  "smallest_gap": 1.0021670034090282,
+  "realised_volume_fraction": 0.11388888888888893,
+  "matrix_atoms": 191400,
+  "matrix_guest_fraction": 0.059096133751306165,
+  "xi": 7.676267677326939,
+  "c_eq": 0.022415360276926654,
+  "c_inf": 0.07247864618657344,
+  "critical_radius": 2.7624813310137144,
+  "depleting_precipitates": 64,
+  "surface_value_range": [
+   0.03407598747356022,
+   0.11229700193548091
+  ],
+  "field_sd": 0.00752140109151805,
+  "field_range": [
+   0.028756532562409086,
+   0.11748809672174594
+  ],
+  "clipped_fraction": 0.0,
+  "split": "development",
+  "seconds": 0.4
+ },
+ {
+  "pattern": 38,
+  "parameters": {
+   "cr": 3.8408171435006744,
+   "rb": 0.39505994625901125,
+   "volume_fraction": 0.1199894898600595,
+   "rho_c": 0.6501678666685725,
+   "matrix_mean": 0.11164057390347516,
+   "ell": 4.547021915987644,
+   "critical_radius_fraction": 0.6712046807138009,
+   "pcp": 0.1762581890380781,
+   "supersaturation": 5.83454538031498
+  },
+  "precipitates": 74,
+  "radius_min": 2.0653762295915756,
+  "radius_mean": 4.125014737961029,
+  "radius_max": 7.1975524835330065,
+  "smallest_gap": 1.000606632610456,
+  "realised_volume_fraction": 0.13418055555555553,
+  "matrix_atoms": 187017,
+  "matrix_guest_fraction": 0.11295229845415122,
+  "xi": 7.504008743912383,
+  "c_eq": 0.026850431170536426,
+  "c_inf": 0.15666005914551864,
+  "critical_radius": 2.577974444483463,
+  "depleting_precipitates": 64,
+  "surface_value_range": [
+   0.050502732920377526,
+   0.24270056262139095
+  ],
+  "field_sd": 0.02433815870650558,
+  "field_range": [
+   0.027177992785308483,
+   0.24932324907468456
+  ],
+  "clipped_fraction": 0.0,
+  "split": "development",
+  "seconds": 0.5
+ },
+ {
+  "pattern": 39,
+  "parameters": {
+   "cr": 3.2773960040152916,
+   "rb": 0.2447270940953166,
+   "volume_fraction": 0.11405471043628139,
+   "rho_c": 0.698584620978539,
+   "matrix_mean": 0.06611583547809362,
+   "ell": 3.0452982039321306,
+   "critical_radius_fraction": 0.7295024556451076,
+   "pcp": 0.13825187966833347,
+   "supersaturation": 3.574125491363569
+  },
+  "precipitates": 143,
+  "radius_min": 2.010162597311828,
+  "radius_mean": 3.329666377090929,
+  "radius_max": 5.481667668949607,
+  "smallest_gap": 1.0005944320758626,
+  "realised_volume_fraction": 0.11827777777777781,
+  "matrix_atoms": 190452,
+  "matrix_guest_fraction": 0.06704576481213113,
+  "xi": 6.008327050175465,
+  "c_eq": 0.022757773148931005,
+  "c_inf": 0.08133913713826367,
+  "critical_radius": 2.3908684330506182,
+  "depleting_precipitates": 130,
+  "surface_value_range": [
+   0.03966420139631733,
+   0.10352963978819357
+  ],
+  "field_sd": 0.008206280009353008,
+  "field_range": [
+   0.031894815446439136,
+   0.10428308565493177
+  ],
+  "clipped_fraction": 0.0,
+  "split": "development",
+  "seconds": 1.0
+ },
+ {
+  "pattern": 40,
+  "parameters": {
+   "cr": 3.689315347537896,
+   "rb": 0.28756997387417027,
+   "volume_fraction": 0.10354013050781176,
+   "rho_c": 0.8347933475139095,
+   "matrix_mean": 0.12988421809760584,
+   "ell": 2.048599845784953,
+   "critical_radius_fraction": 0.6532471802426624,
+   "pcp": 0.2028706013535179,
+   "supersaturation": 2.339715027059017
+  },
+  "precipitates": 85,
+  "radius_min": 2.010884231450845,
+  "radius_mean": 3.6821964598592825,
+  "radius_max": 5.79926736714145,
+  "smallest_gap": 1.0008097394813085,
+  "realised_volume_fraction": 0.09797222222222224,
+  "matrix_atoms": 194838,
+  "matrix_guest_fraction": 0.12903027130231268,
+  "xi": 7.410696077593453,
+  "c_eq": 0.06520254015443042,
+  "c_inf": 0.1525553630017398,
+  "critical_radius": 2.4100348478051083,
+  "depleting_precipitates": 77,
+  "surface_value_range": [
+   0.09282814856751186,
+   0.18059449591858656
+  ],
+  "field_sd": 0.011666114355047986,
+  "field_range": [
+   0.08382751912541449,
+   0.18410145934649103
+  ],
+  "clipped_fraction": 0.0,
+  "split": "development",
+  "seconds": 0.5
+ },
+ {
+  "pattern": 41,
+  "parameters": {
+   "cr": 3.3150258692458405,
+   "rb": 0.2843708590600131,
+   "volume_fraction": 0.09897882737188049,
+   "rho_c": 0.6378402539784633,
+   "matrix_mean": 0.08979792576322607,
+   "ell": 3.277991309581293,
+   "critical_radius_fraction": 0.679998766039195,
+   "pcp": 0.1440425127601255,
+   "supersaturation": 4.280893997574001
+  },
+  "precipitates": 112,
+  "radius_min": 2.0478970322339847,
+  "radius_mean": 3.368397278751683,
+  "radius_max": 5.239464980175192,
+  "smallest_gap": 1.0015770383228784,
+  "realised_volume_fraction": 0.09368981481481486,
+  "matrix_atoms": 195763,
+  "matrix_guest_fraction": 0.08931207633720366,
+  "xi": 6.749961229243016,
+  "c_eq": 0.02709227855779914,
+  "c_inf": 0.11597917265868515,
+  "critical_radius": 2.2542135004751813,
+  "depleting_precipitates": 107,
+  "surface_value_range": [
+   0.05064717747213158,
+   0.13427781959243804
+  ],
+  "field_sd": 0.011861022057217252,
+  "field_range": [
+   0.03967548293202838,
+   0.13598027775324256
+  ],
+  "clipped_fraction": 0.0,
+  "split": "development",
+  "seconds": 0.7
+ },
+ {
+  "pattern": 42,
+  "parameters": {
+   "cr": 3.84822787635835,
+   "rb": 0.3178105574008321,
+   "volume_fraction": 0.11141414924279011,
+   "rho_c": 0.7149203839895318,
+   "matrix_mean": 0.07763135923020469,
+   "ell": 2.555592798525794,
+   "critical_radius_fraction": 0.7787277713865643,
+   "pcp": 0.1486343737455325,
+   "supersaturation": 2.346197919615483
+  },
+  "precipitates": 77,
+  "radius_min": 2.0474111500051437,
+  "radius_mean": 4.170940703754724,
+  "radius_max": 6.396147338216315,
+  "smallest_gap": 1.0014504892778442,
+  "realised_volume_fraction": 0.1276018518518518,
+  "matrix_atoms": 188438,
+  "matrix_guest_fraction": 0.07821670788269881,
+  "xi": 7.315762080182358,
+  "c_eq": 0.03814981216034389,
+  "c_inf": 0.08950700992432029,
+  "critical_radius": 2.9967219179441895,
+  "depleting_precipitates": 66,
+  "surface_value_range": [
+   0.05688733485838054,
+   0.13291738504255055
+  ],
+  "field_sd": 0.006828520024890389,
+  "field_range": [
+   0.048121479359517355,
+   0.13116028386088438
+  ],
+  "clipped_fraction": 0.0,
+  "split": "development",
+  "seconds": 0.4
+ },
+ {
+  "pattern": 43,
+  "parameters": {
+   "cr": 3.7698194128846567,
+   "rb": 0.32865376342112823,
+   "volume_fraction": 0.1190904798250113,
+   "rho_c": 0.82129409988956,
+   "matrix_mean": 0.14041348642548646,
+   "ell": 4.080508718199551,
+   "critical_radius_fraction": 0.7707945555619425,
+   "pcp": 0.22149988538647103,
+   "supersaturation": 4.072612046126631
+  },
+  "precipitates": 86,
+  "radius_min": 2.028827040583244,
+  "radius_mean": 3.9494322041354666,
+  "radius_max": 6.477844990400299,
+  "smallest_gap": 1.0020023700815655,
+  "realised_volume_fraction": 0.12612500000000004,
+  "matrix_atoms": 188757,
+  "matrix_guest_fraction": 0.1402914858786694,
+  "xi": 7.113861184445487,
+  "c_eq": 0.04236309676383973,
+  "c_inf": 0.17252845819164178,
+  "critical_radius": 2.9057562789032123,
+  "depleting_precipitates": 72,
+  "surface_value_range": [
+   0.07953484653838482,
+   0.316569426585721
+  ],
+  "field_sd": 0.021649749643730492,
+  "field_range": [
+   0.04878597091214514,
+   0.32602323762332047
+  ],
+  "clipped_fraction": 0.0,
+  "split": "development",
+  "seconds": 0.6
+ },
+ {
+  "pattern": 44,
+  "parameters": {
+   "cr": 3.487582799927527,
+   "rb": 0.37917770958905705,
+   "volume_fraction": 0.10496763640078899,
+   "rho_c": 0.8029406330360618,
+   "matrix_mean": 0.06800110540192364,
+   "ell": 3.505399792450009,
+   "critical_radius_fraction": 0.6986933209988317,
+   "pcp": 0.14514597051519146,
+   "supersaturation": 4.2146008537009685
+  },
+  "precipitates": 90,
+  "radius_min": 2.151805482457991,
+  "radius_mean": 3.7687736723688356,
+  "radius_max": 6.5648059607668925,
+  "smallest_gap": 1.0012604483296368,
+  "realised_volume_fraction": 0.11558796296296292,
+  "matrix_atoms": 191033,
+  "matrix_guest_fraction": 0.0691137133374862,
+  "xi": 7.118699493505168,
+  "c_eq": 0.021156377497232884,
+  "c_inf": 0.08916568666105767,
+  "critical_radius": 2.436750808739768,
+  "depleting_precipitates": 80,
+  "surface_value_range": [
+   0.036086178577459466,
+   0.10787702213436957
+  ],
+  "field_sd": 0.010892169708111585,
+  "field_range": [
+   0.022657265633237552,
+   0.11294583534958891
+  ],
+  "clipped_fraction": 0.0,
+  "split": "development",
+  "seconds": 0.6
+ },
+ {
+  "pattern": 45,
+  "parameters": {
+   "cr": 3.1638004834064657,
+   "rb": 0.2270312885116867,
+   "volume_fraction": 0.11250156399755397,
+   "rho_c": 0.5282072224437474,
+   "matrix_mean": 0.1130907884140266,
+   "ell": 3.996892698376481,
+   "critical_radius_fraction": 0.6190331988940813,
+   "pcp": 0.15979203648345763,
+   "supersaturation": 7.696728508123125
+  },
+  "precipitates": 160,
+  "radius_min": 2.064650159493088,
+  "radius_mean": 3.2666065203282058,
+  "radius_max": 5.229876919741441,
+  "smallest_gap": 1.001419485270199,
+  "realised_volume_fraction": 0.1212361111111111,
+  "matrix_atoms": 189813,
+  "matrix_guest_fraction": 0.11228419549767403,
+  "xi": 5.7347374537126194,
+  "c_eq": 0.022422549908670188,
+  "c_inf": 0.1725802791068754,
+  "critical_radius": 1.958497533905745,
+  "depleting_precipitates": 160,
+  "surface_value_range": [
+   0.04814943266181886,
+   0.15538973292218441
+  ],
+  "field_sd": 0.02587549078000699,
+  "field_range": [
+   0.03247654087000211,
+   0.17113439270500588
+  ],
+  "clipped_fraction": 0.0,
+  "split": "development",
+  "seconds": 1.3
+ },
+ {
+  "pattern": 46,
+  "parameters": {
+   "cr": 3.624077772895693,
+   "rb": 0.23838124360782056,
+   "volume_fraction": 0.09190993541611989,
+   "rho_c": 0.44013499111169047,
+   "matrix_mean": 0.05762032577531974,
+   "ell": 3.426126814801075,
+   "critical_radius_fraction": 0.7802541807863924,
+   "pcp": 0.09277722396210428,
+   "supersaturation": 3.3589534390849716
+  },
+  "precipitates": 85,
+  "radius_min": 2.2041392331930494,
+  "radius_mean": 3.786537116038772,
+  "radius_max": 5.300371040307323,
+  "smallest_gap": 1.0047106891249147,
+  "realised_volume_fraction": 0.09876851851851853,
+  "matrix_atoms": 194666,
+  "matrix_guest_fraction": 0.057334100459248145,
+  "xi": 7.307879398712646,
+  "c_eq": 0.020255426498635085,
+  "c_inf": 0.06803703449772318,
+  "critical_radius": 2.8277018337969024,
+  "depleting_precipitates": 76,
+  "surface_value_range": [
+   0.03866042635625359,
+   0.0958542238624117
+  ],
+  "field_sd": 0.005915168435007816,
+  "field_range": [
+   0.030533122590514734,
+   0.09906788062832748
+  ],
+  "clipped_fraction": 0.0,
+  "split": "development",
+  "seconds": 0.5
+ },
+ {
+  "pattern": 47,
+  "parameters": {
+   "cr": 3.9134423948860486,
+   "rb": 0.35951264925540793,
+   "volume_fraction": 0.10077698487691211,
+   "rho_c": 0.41213387956377484,
+   "matrix_mean": 0.07106550385095331,
+   "ell": 2.4172291303645217,
+   "critical_radius_fraction": 0.7421094173627358,
+   "pcp": 0.10543734639215731,
+   "supersaturation": 2.298648061898793
+  },
+  "precipitates": 62,
+  "radius_min": 2.0798736005160277,
+  "radius_mean": 4.242758585676854,
+  "radius_max": 6.72978146057174,
+  "smallest_gap": 1.0021416205498346,
+  "realised_volume_fraction": 0.11272222222222217,
+  "matrix_atoms": 191652,
+  "matrix_guest_fraction": 0.07123327698119508,
+  "xi": 8.083546452024335,
+  "c_eq": 0.03569783096830403,
+  "c_inf": 0.08205674996928276,
+  "critical_radius": 2.904202455551515,
+  "depleting_precipitates": 54,
+  "surface_value_range": [
+   0.0511250108536863,
+   0.11412449855242629
+  ],
+  "field_sd": 0.006960646666841212,
+  "field_range": [
+   0.0431820982784386,
+   0.11489084184478177
+  ],
+  "clipped_fraction": 0.0,
+  "split": "development",
+  "seconds": 0.4
+ },
+ {
+  "pattern": 48,
+  "parameters": {
+   "cr": 3.197504126871938,
+   "rb": 0.31154229164947955,
+   "volume_fraction": 0.0951182293003324,
+   "rho_c": 0.45540381978831496,
+   "matrix_mean": 0.10974642859132436,
+   "ell": 3.1967705377594395,
+   "critical_radius_fraction": 0.6505139413165036,
+   "pcp": 0.1426247475865544,
+   "supersaturation": 4.650121679282578
+  },
+  "precipitates": 116,
+  "radius_min": 2.0313882800827523,
+  "radius_mean": 3.347835649100018,
+  "radius_max": 6.461720445618913,
+  "smallest_gap": 1.00387802877716,
+  "realised_volume_fraction": 0.10317592592592595,
+  "matrix_atoms": 193714,
+  "matrix_guest_fraction": 0.11035340760089617,
+  "xi": 6.652898292793801,
+  "c_eq": 0.03198792782040906,
+  "c_inf": 0.14874775663301049,
+  "critical_radius": 2.08002101194725,
+  "depleting_precipitates": 114,
+  "surface_value_range": [
+   0.0524616769402365,
+   0.15432274735065915
+  ],
+  "field_sd": 0.01856930737083076,
+  "field_range": [
+   0.03312454963553819,
+   0.15918458416901832
+  ],
+  "clipped_fraction": 0.0,
+  "split": "development",
+  "seconds": 0.9
+ },
+ {
+  "pattern": 49,
+  "parameters": {
+   "cr": 3.512842972635863,
+   "rb": 0.38515782245415775,
+   "volume_fraction": 0.09082817767345903,
+   "rho_c": 0.5466298736750336,
+   "matrix_mean": 0.12587585269667187,
+   "ell": 2.2798116985257497,
+   "critical_radius_fraction": 0.694107326100467,
+   "pcp": 0.16409217367091683,
+   "supersaturation": 2.5472244357586753
+  },
+  "precipitates": 75,
+  "radius_min": 2.0872287118542037,
+  "radius_mean": 3.965849997369575,
+  "radius_max": 7.280104077659908,
+  "smallest_gap": 1.004451610911023,
+  "realised_volume_fraction": 0.11328240740740736,
+  "matrix_atoms": 191531,
+  "matrix_guest_fraction": 0.1257864262182101,
+  "xi": 7.601917814424445,
+  "c_eq": 0.060083790732527585,
+  "c_inf": 0.1530468999469049,
+  "critical_radius": 2.438290042747094,
+  "depleting_precipitates": 68,
+  "surface_value_range": [
+   0.08217873504213329,
+   0.17911130246502505
+  ],
+  "field_sd": 0.014383379948082711,
+  "field_range": [
+   0.06309198304160825,
+   0.18415305360940917
+  ],
+  "clipped_fraction": 0.0,
+  "split": "development",
+  "seconds": 0.6
+ },
+ {
+  "pattern": 50,
+  "parameters": {
+   "cr": 3.206681165362809,
+   "rb": 0.21101318358178434,
+   "volume_fraction": 0.11815069109730238,
+   "rho_c": 0.6053413219376009,
+   "matrix_mean": 0.08065647087624,
+   "ell": 2.273768305444477,
+   "critical_radius_fraction": 0.6913517004049399,
+   "pcp": 0.14264834863742495,
+   "supersaturation": 2.7888563398922153
+  },
+  "precipitates": 163,
+  "radius_min": 2.0575104096428607,
+  "radius_mean": 3.3276918489131013,
+  "radius_max": 4.911211587656702,
+  "smallest_gap": 1.0004394113767976,
+  "realised_volume_fraction": 0.1275925925925926,
+  "matrix_atoms": 188440,
+  "matrix_guest_fraction": 0.08190936106983655,
+  "xi": 5.629328463787986,
+  "c_eq": 0.035610255528434276,
+  "c_inf": 0.09931188689565573,
+  "critical_radius": 2.216944476330072,
+  "depleting_precipitates": 158,
+  "surface_value_range": [
+   0.05657734825406323,
+   0.1075268151257086
+  ],
+  "field_sd": 0.008210446589347907,
+  "field_range": [
+   0.04988989857858362,
+   0.11142732705615806
+  ],
+  "clipped_fraction": 0.0,
+  "split": "test",
+  "seconds": 1.1
+ },
+ {
+  "pattern": 51,
+  "parameters": {
+   "cr": 3.655396669440184,
+   "rb": 0.3623036139876398,
+   "volume_fraction": 0.08703085740982681,
+   "rho_c": 0.5293532695555294,
+   "matrix_mean": 0.07395288742602621,
+   "ell": 3.7382951871888737,
+   "critical_radius_fraction": 0.6915249969367638,
+   "pcp": 0.11358677314751964,
+   "supersaturation": 4.388002347062355
+  },
+  "precipitates": 66,
+  "radius_min": 2.042890699752082,
+  "radius_mean": 4.015486761421398,
+  "radius_max": 6.288328367923634,
+  "smallest_gap": 1.0059285941343719,
+  "realised_volume_fraction": 0.09882870370370367,
+  "matrix_atoms": 194653,
+  "matrix_guest_fraction": 0.07317637025887092,
+  "xi": 8.053429785067951,
+  "c_eq": 0.022221276404134172,
+  "c_inf": 0.09750701301606207,
+  "critical_radius": 2.5277981706372796,
+  "depleting_precipitates": 58,
+  "surface_value_range": [
+   0.04026697987835933,
+   0.13851171053698264
+  ],
+  "field_sd": 0.01208280692792565,
+  "field_range": [
+   0.027152230783772307,
+   0.13880037786852237
+  ],
+  "clipped_fraction": 0.0,
+  "split": "test",
+  "seconds": 0.3
+ },
+ {
+  "pattern": 52,
+  "parameters": {
+   "cr": 3.4196327474262675,
+   "rb": 0.3334903390541666,
+   "volume_fraction": 0.09173256873465502,
+   "rho_c": 0.6748917223086828,
+   "matrix_mean": 0.13466816652686087,
+   "ell": 4.276001293146491,
+   "critical_radius_fraction": 0.7503591376614234,
+   "pcp": 0.18422426098969658,
+   "supersaturation": 5.293280014425803
+  },
+  "precipitates": 89,
+  "radius_min": 2.0801093405503597,
+  "radius_mean": 3.741117430746849,
+  "radius_max": 7.457711840678078,
+  "smallest_gap": 1.0007364468299658,
+  "realised_volume_fraction": 0.11576851851851855,
+  "matrix_atoms": 190994,
+  "matrix_guest_fraction": 0.1347372168759228,
+  "xi": 7.1849916863391545,
+  "c_eq": 0.033637977959442435,
+  "c_inf": 0.17805523645841229,
+  "critical_radius": 2.565952679477538,
+  "depleting_precipitates": 78,
+  "surface_value_range": [
+   0.059681501337958104,
+   0.2627800883434621
+  ],
+  "field_sd": 0.023750102080543702,
+  "field_range": [
+   0.03463148704737275,
+   0.27420216364310884
+  ],
+  "clipped_fraction": 0.0,
+  "split": "test",
+  "seconds": 0.5
+ },
+ {
+  "pattern": 53,
+  "parameters": {
+   "cr": 3.1754246919587032,
+   "rb": 0.22081994318324036,
+   "volume_fraction": 0.09318051072957347,
+   "rho_c": 0.7315024290363579,
+   "matrix_mean": 0.06481187091743816,
+   "ell": 3.057896314149872,
+   "critical_radius_fraction": 0.7471232195411405,
+   "pcp": 0.1269344376215435,
+   "supersaturation": 3.6288947892967265
+  },
+  "precipitates": 130,
+  "radius_min": 2.084621654887003,
+  "radius_mean": 3.3360112309975305,
+  "radius_max": 5.224471607403603,
+  "smallest_gap": 1.002674237613212,
+  "realised_volume_fraction": 0.10612962962962968,
+  "matrix_atoms": 193076,
+  "matrix_guest_fraction": 0.06539393813834966,
+  "xi": 6.295591138174889,
+  "c_eq": 0.022072131863560846,
+  "c_inf": 0.0800974443083462,
+  "critical_radius": 2.3724335192666204,
+  "depleting_precipitates": 118,
+  "surface_value_range": [
+   0.03963126453384309,
+   0.09569814642856592
+  ],
+  "field_sd": 0.007580466330695522,
+  "field_range": [
+   0.03565315660649925,
+   0.09901917573804378
+  ],
+  "clipped_fraction": 0.0,
+  "split": "test",
+  "seconds": 0.9
+ },
+ {
+  "pattern": 54,
+  "parameters": {
+   "cr": 3.303533826550373,
+   "rb": 0.3452384934533656,
+   "volume_fraction": 0.08600785097411967,
+   "rho_c": 0.8380527948547905,
+   "matrix_mean": 0.08726515695295672,
+   "ell": 2.560650091508608,
+   "critical_radius_fraction": 0.7718717845706041,
+   "pcp": 0.15183878822682895,
+   "supersaturation": 2.7297610982003135
+  },
+  "precipitates": 90,
+  "radius_min": 2.0170530297356586,
+  "radius_mean": 3.4182334027611487,
+  "radius_max": 5.428697597773148,
+  "smallest_gap": 1.001286987523652,
+  "realised_volume_fraction": 0.08025925925925925,
+  "matrix_atoms": 198664,
+  "matrix_guest_fraction": 0.08714714291466999,
+  "xi": 7.474804389644482,
+  "c_eq": 0.03660663198958681,
+  "c_inf": 0.09992735994130922,
+  "critical_radius": 2.549904550088793,
+  "depleting_precipitates": 78,
+  "surface_value_range": [
+   0.05866933358302123,
+   0.13028574224951825
+  ],
+  "field_sd": 0.008038478087652123,
+  "field_range": [
+   0.050477418072228906,
+   0.133016792352385
+  ],
+  "clipped_fraction": 0.0,
+  "split": "test",
+  "seconds": 0.6
+ },
+ {
+  "pattern": 55,
+  "parameters": {
+   "cr": 3.5336398644047833,
+   "rb": 0.355367556937352,
+   "volume_fraction": 0.0852258620811652,
+   "rho_c": 0.5482274618384064,
+   "matrix_mean": 0.1279380145086536,
+   "ell": 4.7902462499773915,
+   "critical_radius_fraction": 0.7329532970317789,
+   "pcp": 0.16375754498094827,
+   "supersaturation": 6.356773473227423
+  },
+  "precipitates": 72,
+  "radius_min": 2.120517745392566,
+  "radius_mean": 3.650324312259152,
+  "radius_max": 6.434003133307918,
+  "smallest_gap": 1.0061582886103313,
+  "realised_volume_fraction": 0.08043055555555556,
+  "matrix_atoms": 198627,
+  "matrix_guest_fraction": 0.12819505908058823,
+  "xi": 8.087047050839082,
+  "c_eq": 0.026090870412419837,
+  "c_inf": 0.16585375293108465,
+  "critical_radius": 2.589992989138414,
+  "depleting_precipitates": 65,
+  "surface_value_range": [
+   0.054932535674826186,
+   0.24978083837950002
+  ],
+  "field_sd": 0.022225852797008387,
+  "field_range": [
+   0.03947096345489009,
+   0.25561847655060993
+  ],
+  "clipped_fraction": 0.0,
+  "split": "test",
+  "seconds": 0.4
+ },
+ {
+  "pattern": 56,
+  "parameters": {
+   "cr": 3.904108797282281,
+   "rb": 0.2898885055126736,
+   "volume_fraction": 0.10269890739440327,
+   "rho_c": 0.5060158544845672,
+   "matrix_mean": 0.06831298154687296,
+   "ell": 4.150490072777426,
+   "critical_radius_fraction": 0.6680429767249839,
+   "pcp": 0.11326458836096548,
+   "supersaturation": 4.9105058285040615
+  },
+  "precipitates": 72,
+  "radius_min": 2.152302491112103,
+  "radius_mean": 3.8829842440101237,
+  "radius_max": 6.516369227714279,
+  "smallest_gap": 1.008445063393673,
+  "realised_volume_fraction": 0.10036111111111112,
+  "matrix_atoms": 194322,
+  "matrix_guest_fraction": 0.06776381469931352,
+  "xi": 7.84102576998611,
+  "c_eq": 0.01800482675150227,
+  "c_inf": 0.08841280670445775,
+  "critical_radius": 2.6081124623946517,
+  "depleting_precipitates": 63,
+  "surface_value_range": [
+   0.03404124214213852,
+   0.12384554754301641
+  ],
+  "field_sd": 0.011504482459061716,
+  "field_range": [
+   0.02567157633484761,
+   0.129427330889052
+  ],
+  "clipped_fraction": 0.0,
+  "split": "test",
+  "seconds": 0.4
+ },
+ {
+  "pattern": 57,
+  "parameters": {
+   "cr": 3.7748807454456865,
+   "rb": 0.351986194110644,
+   "volume_fraction": 0.10139492795934525,
+   "rho_c": 0.5480725513334763,
+   "matrix_mean": 0.13519121804397047,
+   "ell": 3.0005725086339257,
+   "critical_radius_fraction": 0.6113474606533372,
+   "pcp": 0.17705529108861834,
+   "supersaturation": 3.670059337901734
+  },
+  "precipitates": 71,
+  "radius_min": 2.086361448871691,
+  "radius_mean": 3.8761148354011032,
+  "radius_max": 6.421525618674059,
+  "smallest_gap": 1.0038369327915975,
+  "realised_volume_fraction": 0.09914351851851855,
+  "matrix_atoms": 194585,
+  "matrix_guest_fraction": 0.13590461751933602,
+  "xi": 7.903044941817226,
+  "c_eq": 0.04806856887939196,
+  "c_inf": 0.17641450007538514,
+  "critical_radius": 2.3077637579973973,
+  "depleting_precipitates": 66,
+  "surface_value_range": [
+   0.0766995902373966,
+   0.2025147897138248
+  ],
+  "field_sd": 0.020855481760543224,
+  "field_range": [
+   0.053040449335130885,
+   0.21014509841098775
+  ],
+  "clipped_fraction": 0.0,
+  "split": "test",
+  "seconds": 0.4
+ },
+ {
+  "pattern": 58,
+  "parameters": {
+   "cr": 3.4214724731560837,
+   "rb": 0.3495271305378827,
+   "volume_fraction": 0.09521337438070387,
+   "rho_c": 0.8339546970812093,
+   "matrix_mean": 0.09235189233448696,
+   "ell": 4.218648396084433,
+   "critical_radius_fraction": 0.7044919461260531,
+   "pcp": 0.1629623978246167,
+   "supersaturation": 5.755674109640062
+  },
+  "precipitates": 90,
+  "radius_min": 2.0143067796672027,
+  "radius_mean": 3.5838780640052854,
+  "radius_max": 6.390679333641791,
+  "smallest_gap": 1.0013297716550467,
+  "realised_volume_fraction": 0.09868055555555555,
+  "matrix_atoms": 194685,
+  "matrix_guest_fraction": 0.09229781441816268,
+  "xi": 7.30002044310958,
+  "c_eq": 0.021348343978738443,
+  "c_inf": 0.12287411072211517,
+  "critical_radius": 2.4103998012304495,
+  "depleting_precipitates": 78,
+  "surface_value_range": [
+   0.04130978344459465,
+   0.1733507018051268
+  ],
+  "field_sd": 0.016554409918765493,
+  "field_range": [
+   0.01876607209724223,
+   0.19230200042104786
+  ],
+  "clipped_fraction": 0.0,
+  "split": "test",
+  "seconds": 0.6
+ },
+ {
+  "pattern": 59,
+  "parameters": {
+   "cr": 3.842333946367467,
+   "rb": 0.31342802334763203,
+   "volume_fraction": 0.11216190920927223,
+   "rho_c": 0.46538217151466094,
+   "matrix_mean": 0.10851866893065783,
+   "ell": 3.095341876671316,
+   "critical_radius_fraction": 0.6512041055614963,
+   "pcp": 0.14854516070758766,
+   "supersaturation": 3.4455240503707625
+  },
+  "precipitates": 79,
+  "radius_min": 2.0581523231222203,
+  "radius_mean": 4.017429245456501,
+  "radius_max": 6.519929543410781,
+  "smallest_gap": 1.000628608718177,
+  "realised_volume_fraction": 0.11956018518518519,
+  "matrix_atoms": 190175,
+  "matrix_guest_fraction": 0.10836334954647035,
+  "xi": 7.3592622516592385,
+  "c_eq": 0.04024310909749386,
+  "c_inf": 0.13865860025710952,
+  "critical_radius": 2.502143640812801,
+  "depleting_precipitates": 71,
+  "surface_value_range": [
+   0.06469536777681538,
+   0.1810694867390446
+  ],
+  "field_sd": 0.016685254275430477,
+  "field_range": [
+   0.045127177667271444,
+   0.19036820628289816
+  ],
+  "clipped_fraction": 0.0,
+  "split": "test",
+  "seconds": 0.5
+ },
+ {
+  "pattern": 60,
+  "parameters": {
+   "cr": 3.2745614697047563,
+   "rb": 0.3800542884007876,
+   "volume_fraction": 0.10937696768245629,
+   "rho_c": 0.41450458500037585,
+   "matrix_mean": 0.13545922059818172,
+   "ell": 3.808545220784083,
+   "critical_radius_fraction": 0.7921520344003768,
+   "pcp": 0.16598035640233974,
+   "supersaturation": 4.341592733691199
+  },
+  "precipitates": 112,
+  "radius_min": 2.0427378766086433,
+  "radius_mean": 3.676777302126372,
+  "radius_max": 6.394953010059814,
+  "smallest_gap": 1.0004899739022632,
+  "realised_volume_fraction": 0.12815277777777778,
+  "matrix_atoms": 188319,
+  "matrix_guest_fraction": 0.13482442026561314,
+  "xi": 6.46069544812431,
+  "c_eq": 0.04010437360264746,
+  "c_inf": 0.17411685702249133,
+  "critical_radius": 2.593950529995711,
+  "depleting_precipitates": 99,
+  "surface_value_range": [
+   0.07275082428746478,
+   0.2587641633098307
+  ],
+  "field_sd": 0.020411151727699015,
+  "field_range": [
+   0.05164510396338573,
+   0.261101500746317
+  ],
+  "clipped_fraction": 0.0,
+  "split": "test",
+  "seconds": 0.8
+ },
+ {
+  "pattern": 61,
+  "parameters": {
+   "cr": 3.4661161460157395,
+   "rb": 0.3567407112794667,
+   "volume_fraction": 0.1058905175020361,
+   "rho_c": 0.5252609694643258,
+   "matrix_mean": 0.11216636976877173,
+   "ell": 4.690863491327552,
+   "critical_radius_fraction": 0.7009296434188372,
+   "pcp": 0.1559091707078304,
+   "supersaturation": 6.894961699991918
+  },
+  "precipitates": 95,
+  "radius_min": 2.0219998029767914,
+  "radius_mean": 3.6833486603205277,
+  "radius_max": 6.365303193766474,
+  "smallest_gap": 1.0015354867069721,
+  "realised_volume_fraction": 0.10993981481481485,
+  "matrix_atoms": 192253,
+  "matrix_guest_fraction": 0.11146770141428222,
+  "xi": 7.008720250460031,
+  "c_eq": 0.022625322431486013,
+  "c_inf": 0.1560007316150641,
+  "critical_radius": 2.4295035542750867,
+  "depleting_precipitates": 84,
+  "surface_value_range": [
+   0.047276455611472486,
+   0.2302078675101205
+  ],
+  "field_sd": 0.022153415698469205,
+  "field_range": [
+   0.025107133180114028,
+   0.23714066932361735
+  ],
+  "clipped_fraction": 0.0,
+  "split": "test",
+  "seconds": 0.6
+ },
+ {
+  "pattern": 62,
+  "parameters": {
+   "cr": 3.2390180486285143,
+   "rb": 0.24196129921973278,
+   "volume_fraction": 0.11570191429456661,
+   "rho_c": 0.5730005091381039,
+   "matrix_mean": 0.12249396502514143,
+   "ell": 2.9187885490849044,
+   "critical_radius_fraction": 0.7283740556548133,
+   "pcp": 0.1746184345812408,
+   "supersaturation": 3.4459010824427527
+  },
+  "precipitates": 150,
+  "radius_min": 2.008818623680866,
+  "radius_mean": 3.347151088310059,
+  "radius_max": 5.29348295665549,
+  "smallest_gap": 1.0003611046027698,
+  "realised_volume_fraction": 0.12336111111111114,
+  "matrix_atoms": 189354,
+  "matrix_guest_fraction": 0.12181944928546531,
+  "xi": 5.851115293233175,
+  "c_eq": 0.04425634579976267,
+  "c_inf": 0.15250298989636296,
+  "critical_radius": 2.3592167124186902,
+  "depleting_precipitates": 139,
+  "surface_value_range": [
+   0.07681435980291162,
+   0.18923438295399989
+  ],
+  "field_sd": 0.014187555495299993,
+  "field_range": [
+   0.061231106029383885,
+   0.1936845223135941
+  ],
+  "clipped_fraction": 0.0,
+  "split": "test",
+  "seconds": 1.1
+ },
+ {
+  "pattern": 63,
+  "parameters": {
+   "cr": 3.4710653314154545,
+   "rb": 0.28487192795600486,
+   "volume_fraction": 0.09722267289797618,
+   "rho_c": 0.5792849821865167,
+   "matrix_mean": 0.10958912545340731,
+   "ell": 4.833927509118196,
+   "critical_radius_fraction": 0.6643838078518407,
+   "pcp": 0.1552542120941051,
+   "supersaturation": 8.134631532153316
+  },
+  "precipitates": 97,
+  "radius_min": 2.0379457572625017,
+  "radius_mean": 3.563313827679822,
+  "radius_max": 5.894462022941308,
+  "smallest_gap": 1.0004376486472375,
+  "realised_volume_fraction": 0.09862962962962962,
+  "matrix_atoms": 194696,
+  "matrix_guest_fraction": 0.11062887784032543,
+  "xi": 7.051947003570128,
+  "c_eq": 0.019258811884489645,
+  "c_inf": 0.15666333842737848,
+  "critical_radius": 2.306119602188311,
+  "depleting_precipitates": 90,
+  "surface_value_range": [
+   0.04373060600079033,
+   0.20642343025611834
+  ],
+  "field_sd": 0.02289371663680052,
+  "field_range": [
+   0.0321116320689369,
+   0.20672616575883415
+  ],
+  "clipped_fraction": 0.0,
+  "split": "test",
+  "seconds": 0.6
+ },
+ {
+  "pattern": 64,
+  "parameters": {
+   "cr": 3.1021555868735717,
+   "rb": 0.2432176539677813,
+   "volume_fraction": 0.08574572133704284,
+   "rho_c": 0.7284527359319224,
+   "matrix_mean": 0.12881368181058186,
+   "ell": 4.109228882899224,
+   "critical_radius_fraction": 0.6271143842417096,
+   "pcp": 0.1802301650480783,
+   "supersaturation": 8.267008692637818
+  },
+  "precipitates": 126,
+  "radius_min": 2.0116155666491573,
+  "radius_mean": 3.1352774275367876,
+  "radius_max": 4.495958796459775,
+  "smallest_gap": 1.0002465002203045,
+  "realised_volume_fraction": 0.08331018518518518,
+  "matrix_atoms": 198005,
+  "matrix_guest_fraction": 0.1283300926744274,
+  "xi": 6.596273936081229,
+  "c_eq": 0.02283898936080811,
+  "c_inf": 0.18881012357686328,
+  "critical_radius": 1.9454063906841994,
+  "depleting_precipitates": 126,
+  "surface_value_range": [
+   0.05696584666881689,
+   0.176129535908291
+  ],
+  "field_sd": 0.026728324985523928,
+  "field_range": [
+   0.03662596609814294,
+   0.18720068193837938
+  ],
+  "clipped_fraction": 0.0,
+  "split": "test",
+  "seconds": 0.9
+ },
+ {
+  "pattern": 65,
+  "parameters": {
+   "cr": 3.1312550188810304,
+   "rb": 0.2476231342850264,
+   "volume_fraction": 0.08792665088170586,
+   "rho_c": 0.8123785107393631,
+   "matrix_mean": 0.07080432309507087,
+   "ell": 3.7410699013302837,
+   "critical_radius_fraction": 0.7760674888310212,
+   "pcp": 0.13600845779495518,
+   "supersaturation": 4.662228813506518
+  },
+  "precipitates": 124,
+  "radius_min": 2.0223902258352706,
+  "radius_mean": 3.2768658114345732,
+  "radius_max": 5.313407893220382,
+  "smallest_gap": 1.0018095869744883,
+  "realised_volume_fraction": 0.09596296296296292,
+  "matrix_atoms": 195272,
+  "matrix_guest_fraction": 0.07163853496661067,
+  "xi": 6.504018566747106,
+  "c_eq": 0.018904020201425953,
+  "c_inf": 0.08813486767419737,
+  "critical_radius": 2.430065219392533,
+  "depleting_precipitates": 111,
+  "surface_value_range": [
+   0.03822369747340978,
+   0.12020523203520739
+  ],
+  "field_sd": 0.009197493202703258,
+  "field_range": [
+   0.03274902975969235,
+   0.12058873430478208
+  ],
+  "clipped_fraction": 0.0,
+  "split": "test",
+  "seconds": 0.9
+ },
+ {
+  "pattern": 66,
+  "parameters": {
+   "cr": 3.8472303970552186,
+   "rb": 0.24471136660737403,
+   "volume_fraction": 0.0873024929520378,
+   "rho_c": 0.5969531362566081,
+   "matrix_mean": 0.06402838178525642,
+   "ell": 3.475242922250222,
+   "critical_radius_fraction": 0.6492752627957811,
+   "pcp": 0.11055404140645808,
+   "supersaturation": 4.019909588441214
+  },
+  "precipitates": 67,
+  "radius_min": 2.0169883744902353,
+  "radius_mean": 3.8583766000717823,
+  "radius_max": 6.091285937119357,
+  "smallest_gap": 1.0080938521736065,
+  "realised_volume_fraction": 0.08779629629629626,
+  "matrix_atoms": 197036,
+  "matrix_guest_fraction": 0.06476988976633712,
+  "xi": 8.154216436243924,
+  "c_eq": 0.020288173126943664,
+  "c_inf": 0.0815566216849562,
+  "critical_radius": 2.4979115270839443,
+  "depleting_precipitates": 62,
+  "surface_value_range": [
+   0.0358938181339654,
+   0.11363871011540946
+  ],
+  "field_sd": 0.009495581862856973,
+  "field_range": [
+   0.02940046036715036,
+   0.11574706164145887
+  ],
+  "clipped_fraction": 0.0,
+  "split": "test",
+  "seconds": 0.4
+ },
+ {
+  "pattern": 67,
+  "parameters": {
+   "cr": 3.4013528045731447,
+   "rb": 0.3031366228514577,
+   "volume_fraction": 0.08947627632323074,
+   "rho_c": 0.5139022696104221,
+   "matrix_mean": 0.06198127513863568,
+   "ell": 2.418887331492121,
+   "critical_radius_fraction": 0.6876355181362643,
+   "pcp": 0.10241748291626247,
+   "supersaturation": 2.812862581261754
+  },
+  "precipitates": 91,
+  "radius_min": 2.0636786871711963,
+  "radius_mean": 3.625685153047036,
+  "radius_max": 6.285887958518736,
+  "smallest_gap": 1.0007838441167136,
+  "realised_volume_fraction": 0.10334722222222226,
+  "matrix_atoms": 193677,
+  "matrix_guest_fraction": 0.061994971008431564,
+  "xi": 7.217822592960963,
+  "c_eq": 0.026890826079314534,
+  "c_inf": 0.07564019845772156,
+  "critical_radius": 2.33889099813689,
+  "depleting_precipitates": 84,
+  "surface_value_range": [
+   0.039511728140202186,
+   0.0868262675359
+  ],
+  "field_sd": 0.00759174570897128,
+  "field_range": [
+   0.03265578221432236,
+   0.08901635246409004
+  ],
+  "clipped_fraction": 0.0,
+  "split": "test",
+  "seconds": 0.5
+ },
+ {
+  "pattern": 68,
+  "parameters": {
+   "cr": 3.2046459264844733,
+   "rb": 0.3000057930224544,
+   "volume_fraction": 0.11215868806321302,
+   "rho_c": 0.7969434298377656,
+   "matrix_mean": 0.054929620693481944,
+   "ell": 3.899269906469323,
+   "critical_radius_fraction": 0.6876201846671341,
+   "pcp": 0.13815291605189214,
+   "supersaturation": 5.868015785387621
+  },
+  "precipitates": 139,
+  "radius_min": 2.0880261153995145,
+  "radius_mean": 3.3393344075601274,
+  "radius_max": 5.9181367914421275,
+  "smallest_gap": 1.0002350187464213,
+  "realised_volume_fraction": 0.12098611111111113,
+  "matrix_atoms": 189867,
+  "matrix_guest_fraction": 0.05475411735583329,
+  "xi": 6.085336344682083,
+  "c_eq": 0.012953651857928277,
+  "c_inf": 0.07601223358073882,
+  "critical_radius": 2.203579223762033,
+  "depleting_precipitates": 132,
+  "surface_value_range": [
+   0.025034267055515654,
+   0.08383250487644088
+  ],
+  "field_sd": 0.010717722181883226,
+  "field_range": [
+   0.017227279241211046,
+   0.08783200776018482
+  ],
+  "clipped_fraction": 0.0,
+  "split": "test",
+  "seconds": 0.9
+ },
+ {
+  "pattern": 69,
+  "parameters": {
+   "cr": 3.7899145371280216,
+   "rb": 0.3502924837197614,
+   "volume_fraction": 0.09320385931865034,
+   "rho_c": 0.5485718008138848,
+   "matrix_mean": 0.09589358516240945,
+   "ell": 2.83989934674114,
+   "critical_radius_fraction": 0.6791720240704312,
+   "pcp": 0.13808494189060722,
+   "supersaturation": 3.014097100484381
+  },
+  "precipitates": 65,
+  "radius_min": 2.0368437000172963,
+  "radius_mean": 3.9889508559889655,
+  "radius_max": 6.78769964167599,
+  "smallest_gap": 1.0074648139345648,
+  "realised_volume_fraction": 0.10005555555555556,
+  "matrix_atoms": 194388,
+  "matrix_guest_fraction": 0.09631767393048954,
+  "xi": 8.142090444585682,
+  "c_eq": 0.038947538706660505,
+  "c_inf": 0.11739166348674862,
+  "critical_radius": 2.57400392723519,
+  "depleting_precipitates": 58,
+  "surface_value_range": [
+   0.05918124298034032,
+   0.15703682260350324
+  ],
+  "field_sd": 0.011979274288578501,
+  "field_range": [
+   0.04643821109323993,
+   0.16043120420605056
+  ],
+  "clipped_fraction": 0.0,
+  "split": "test",
+  "seconds": 0.4
+ },
+ {
+  "pattern": 70,
+  "parameters": {
+   "cr": 3.5399028528946994,
+   "rb": 0.23147263192271295,
+   "volume_fraction": 0.08195985101400138,
+   "rho_c": 0.6603055750248618,
+   "matrix_mean": 0.07720636255171645,
+   "ell": 2.810654402062605,
+   "critical_radius_fraction": 0.7813815610081539,
+   "pcp": 0.12499708713239699,
+   "supersaturation": 2.7625069762048535
+  },
+  "precipitates": 82,
+  "radius_min": 2.2987957207586716,
+  "radius_mean": 3.7344805899970135,
+  "radius_max": 5.687327506007764,
+  "smallest_gap": 1.0016353826412967,
+  "realised_volume_fraction": 0.09226851851851847,
+  "matrix_atoms": 196070,
+  "matrix_guest_fraction": 0.07641658591319427,
+  "xi": 7.492037010389081,
+  "c_eq": 0.03221875460491847,
+  "c_inf": 0.08900453436071953,
+  "critical_radius": 2.7660148170120777,
+  "depleting_precipitates": 73,
+  "surface_value_range": [
+   0.052812331057040154,
+   0.10942206531782671
+  ],
+  "field_sd": 0.006760240507902267,
+  "field_range": [
+   0.046205048998188274,
+   0.11340211313430394
+  ],
+  "clipped_fraction": 0.0,
+  "split": "test",
+  "seconds": 0.5
+ },
+ {
+  "pattern": 71,
+  "parameters": {
+   "cr": 3.6409208103761657,
+   "rb": 0.2656137687127591,
+   "volume_fraction": 0.08648745739994118,
+   "rho_c": 0.6581302242445364,
+   "matrix_mean": 0.1434852045683293,
+   "ell": 2.6053561393109272,
+   "critical_radius_fraction": 0.7916837960467683,
+   "pcp": 0.18799554378366717,
+   "supersaturation": 2.4691306401919655
+  },
+  "precipitates": 77,
+  "radius_min": 2.022904031683749,
+  "radius_mean": 3.810696892181606,
+  "radius_max": 5.990932146283102,
+  "smallest_gap": 1.000855343711308,
+  "realised_volume_fraction": 0.09502777777777782,
+  "matrix_atoms": 195474,
+  "matrix_guest_fraction": 0.14521624359249824,
+  "xi": 7.653751861687459,
+  "c_eq": 0.0658936706226189,
+  "c_inf": 0.1627000811290255,
+  "critical_radius": 2.882458008264279,
+  "depleting_precipitates": 65,
+  "surface_value_range": [
+   0.10179140373891313,
+   0.23888232857064642
+  ],
+  "field_sd": 0.011466780341454525,
+  "field_range": [
+   0.08852829692507366,
+   0.24110124085369813
+  ],
+  "clipped_fraction": 0.0,
+  "split": "test",
+  "seconds": 0.4
+ },
+ {
+  "pattern": 72,
+  "parameters": {
+   "cr": 3.8989306947302795,
+   "rb": 0.2803805103788668,
+   "volume_fraction": 0.11134928967654592,
+   "rho_c": 0.5170740640745274,
+   "matrix_mean": 0.05325918021584797,
+   "ell": 4.293219375911695,
+   "critical_radius_fraction": 0.7681456297248694,
+   "pcp": 0.10490463807492156,
+   "supersaturation": 4.193299106043414
+  },
+  "precipitates": 78,
+  "radius_min": 2.249037723413424,
+  "radius_mean": 4.0011418312402105,
+  "radius_max": 6.333016252035001,
+  "smallest_gap": 1.001680330990789,
+  "realised_volume_fraction": 0.11281018518518515,
+  "matrix_atoms": 191633,
+  "matrix_guest_fraction": 0.05316933931003533,
+  "xi": 7.421345814920143,
+  "c_eq": 0.015507932138233793,
+  "c_inf": 0.06502939797183768,
+  "critical_radius": 2.9949465737572134,
+  "depleting_precipitates": 67,
+  "surface_value_range": [
+   0.030546873115261858,
+   0.1046127613565538
+  ],
+  "field_sd": 0.0071525068828856885,
+  "field_range": [
+   0.024003454413993482,
+   0.10869795509693046
+  ],
+  "clipped_fraction": 0.0,
+  "split": "test",
+  "seconds": 0.5
+ },
+ {
+  "pattern": 73,
+  "parameters": {
+   "cr": 3.7376061192110903,
+   "rb": 0.24375834371422755,
+   "volume_fraction": 0.09385081980378408,
+   "rho_c": 0.5303513893459713,
+   "matrix_mean": 0.10233324880878657,
+   "ell": 4.794171977331068,
+   "critical_radius_fraction": 0.6447520115978593,
+   "pcp": 0.14250310218909262,
+   "supersaturation": 7.311321840039513
+  },
+  "precipitates": 79,
+  "radius_min": 2.1539619396849754,
+  "radius_mean": 3.764034230111297,
+  "radius_max": 5.385433662660126,
+  "smallest_gap": 1.0042101998526478,
+  "realised_volume_fraction": 0.09314351851851854,
+  "matrix_atoms": 195881,
+  "matrix_guest_fraction": 0.10224575124693054,
+  "xi": 7.602940921031194,
+  "c_eq": 0.019587959875981095,
+  "c_inf": 0.14321387884307826,
+  "critical_radius": 2.4098290639218187,
+  "depleting_precipitates": 75,
+  "surface_value_range": [
+   0.04770928476310507,
+   0.1813921015910446
+  ],
+  "field_sd": 0.020864847091439553,
+  "field_range": [
+   0.030689464670340193,
+   0.18516689599104605
+  ],
+  "clipped_fraction": 0.0,
+  "split": "test",
+  "seconds": 0.5
+ },
+ {
+  "pattern": 74,
+  "parameters": {
+   "cr": 3.43029143504974,
+   "rb": 0.2077217935927188,
+   "volume_fraction": 0.10673553198817186,
+   "rho_c": 0.6028515282099145,
+   "matrix_mean": 0.06766472391969729,
+   "ell": 2.6104505468114256,
+   "critical_radius_fraction": 0.7267653187924377,
+   "pcp": 0.12478817218866324,
+   "supersaturation": 2.8493903413646415
+  },
+  "precipitates": 122,
+  "radius_min": 2.2362842517685673,
+  "radius_mean": 3.4017672118599354,
+  "radius_max": 5.194740958610999,
+  "smallest_gap": 1.0005168955407484,
+  "realised_volume_fraction": 0.10285185185185186,
+  "matrix_atoms": 193784,
+  "matrix_guest_fraction": 0.06806547496181316,
+  "xi": 6.435610221641847,
+  "c_eq": 0.027856553577887654,
+  "c_inf": 0.07937419470853972,
+  "critical_radius": 2.493016848344893,
+  "depleting_precipitates": 116,
+  "surface_value_range": [
+   0.04604348148983404,
+   0.08951304124032947
+  ],
+  "field_sd": 0.006322944025064067,
+  "field_range": [
+   0.04192037723659675,
+   0.09095011109126959
+  ],
+  "clipped_fraction": 0.0,
+  "split": "test",
+  "seconds": 0.8
+ },
+ {
+  "pattern": 75,
+  "parameters": {
+   "cr": 3.2118093784413393,
+   "rb": 0.2470555501666288,
+   "volume_fraction": 0.08156053309794961,
+   "rho_c": 0.5131304435222106,
+   "matrix_mean": 0.13931675594243412,
+   "ell": 3.7679776670010128,
+   "critical_radius_fraction": 0.7158218116260087,
+   "pcp": 0.16980519958075108,
+   "supersaturation": 5.149524784248
+  },
+  "precipitates": 108,
+  "radius_min": 2.0090842338531,
+  "radius_mean": 3.308027479698624,
+  "radius_max": 5.614425273119874,
+  "smallest_gap": 1.0010600388848077,
+  "realised_volume_fraction": 0.08493055555555551,
+  "matrix_atoms": 197655,
+  "matrix_guest_fraction": 0.14003693303989273,
+  "xi": 6.936262357241371,
+  "c_eq": 0.03506215890173219,
+  "c_inf": 0.18055345625371158,
+  "critical_radius": 2.2990832078732844,
+  "depleting_precipitates": 105,
+  "surface_value_range": [
+   0.06859686490142958,
+   0.2287415316528324
+  ],
+  "field_sd": 0.01969507761924272,
+  "field_range": [
+   0.04955471367586255,
+   0.23862175335743804
+  ],
+  "clipped_fraction": 0.0,
+  "split": "test",
+  "seconds": 0.6
+ },
+ {
+  "pattern": 76,
+  "parameters": {
+   "cr": 3.916628572332793,
+   "rb": 0.2814332722366342,
+   "volume_fraction": 0.08000354217775993,
+   "rho_c": 0.8139500502916435,
+   "matrix_mean": 0.1328855806712877,
+   "ell": 4.326809555963042,
+   "critical_radius_fraction": 0.6997610506118027,
+   "pcp": 0.1873731506923335,
+   "supersaturation": 4.848754537349679
+  },
+  "precipitates": 56,
+  "radius_min": 2.2522292502678205,
+  "radius_mean": 4.167071630352777,
+  "radius_max": 6.350550843960629,
+  "smallest_gap": 1.003362522264779,
+  "realised_volume_fraction": 0.08839814814814817,
+  "matrix_atoms": 196906,
+  "matrix_guest_fraction": 0.13286034960844262,
+  "xi": 8.582473025504067,
+  "c_eq": 0.03576604692626939,
+  "c_inf": 0.17342078231681024,
+  "critical_radius": 2.7407041246318,
+  "depleting_precipitates": 54,
+  "surface_value_range": [
+   0.07069163590788902,
+   0.24423285562607108
+  ],
+  "field_sd": 0.01880478645367188,
+  "field_range": [
+   0.05796417761888138,
+   0.2556427878065703
+  ],
+  "clipped_fraction": 0.0,
+  "split": "test",
+  "seconds": 0.3
+ },
+ {
+  "pattern": 77,
+  "parameters": {
+   "cr": 3.3855646428494004,
+   "rb": 0.32260605777574014,
+   "volume_fraction": 0.09219932581994147,
+   "rho_c": 0.57097345783181,
+   "matrix_mean": 0.13245995708218886,
+   "ell": 2.2536175085595866,
+   "critical_radius_fraction": 0.6966982254123966,
+   "pcp": 0.17289060621424632,
+   "supersaturation": 2.59981982014734
+  },
+  "precipitates": 93,
+  "radius_min": 2.035370828224912,
+  "radius_mean": 3.593183868584906,
+  "radius_max": 6.863601224814697,
+  "smallest_gap": 1.0039943494745103,
+  "realised_volume_fraction": 0.10319444444444448,
+  "matrix_atoms": 193710,
+  "matrix_guest_fraction": 0.13421093387021837,
+  "xi": 7.172007724692159,
+  "c_eq": 0.06155331039492579,
+  "c_inf": 0.16002751636040938,
+  "critical_radius": 2.3587168786921318,
+  "depleting_precipitates": 82,
+  "surface_value_range": [
+   0.08547696630916696,
+   0.1862575924990138
+  ],
+  "field_sd": 0.014251078996719279,
+  "field_range": [
+   0.07739216153404267,
+   0.18846198838163508
+  ],
+  "clipped_fraction": 0.0,
+  "split": "test",
+  "seconds": 0.6
+ },
+ {
+  "pattern": 78,
+  "parameters": {
+   "cr": 3.362890272429577,
+   "rb": 0.2724506043627487,
+   "volume_fraction": 0.09224796202609777,
+   "rho_c": 0.6136021862077736,
+   "matrix_mean": 0.08262720947910193,
+   "ell": 3.822293208338253,
+   "critical_radius_fraction": 0.6345866539106609,
+   "pcp": 0.13160856896917658,
+   "supersaturation": 5.9960576878568075
+  },
+  "precipitates": 102,
+  "radius_min": 2.0329795780122715,
+  "radius_mean": 3.4943294179779336,
+  "radius_max": 5.547855644512988,
+  "smallest_gap": 1.0005717797009046,
+  "realised_volume_fraction": 0.09930555555555554,
+  "matrix_atoms": 194550,
+  "matrix_guest_fraction": 0.0826574145463891,
+  "xi": 6.944483261517731,
+  "c_eq": 0.01934996569279853,
+  "c_inf": 0.11602351055207011,
+  "critical_radius": 2.134045285449796,
+  "depleting_precipitates": 98,
+  "surface_value_range": [
+   0.038538522372869276,
+   0.12682828463933338
+  ],
+  "field_sd": 0.015794189904802525,
+  "field_range": [
+   0.021062516670563865,
+   0.1323825846626505
+  ],
+  "clipped_fraction": 0.0,
+  "split": "test",
+  "seconds": 0.7
+ },
+ {
+  "pattern": 79,
+  "parameters": {
+   "cr": 3.2417427702754256,
+   "rb": 0.29111088312034483,
+   "volume_fraction": 0.0860158274970008,
+   "rho_c": 0.7049159195411931,
+   "matrix_mean": 0.06785365057670979,
+   "ell": 3.78444173847034,
+   "critical_radius_fraction": 0.7815139141085232,
+   "pcp": 0.12265108880880672,
+   "supersaturation": 4.453898217838205
+  },
+  "precipitates": 103,
+  "radius_min": 2.017305658847901,
+  "radius_mean": 3.3500253322306186,
+  "radius_max": 5.847681177360812,
+  "smallest_gap": 1.0012868459257747,
+  "realised_volume_fraction": 0.08608333333333329,
+  "matrix_atoms": 197406,
+  "matrix_guest_fraction": 0.06823500805446643,
+  "xi": 7.057961510335764,
+  "c_eq": 0.01834122090240235,
+  "c_inf": 0.08168993109018666,
+  "critical_radius": 2.533467080930955,
+  "depleting_precipitates": 87,
+  "surface_value_range": [
+   0.03503405813205243,
+   0.11971803839106274
+  ],
+  "field_sd": 0.008827719249878982,
+  "field_range": [
+   0.023582774962677584,
+   0.11997331567510855
+  ],
+  "clipped_fraction": 0.0,
+  "split": "test",
+  "seconds": 0.7
+ },
+ {
+  "pattern": 80,
+  "parameters": {
+   "cr": 3.1563965488235297,
+   "rb": 0.2376045504055091,
+   "volume_fraction": 0.09661762060319083,
+   "rho_c": 0.7330966521549165,
+   "matrix_mean": 0.14429414463120976,
+   "ell": 3.2766314358902164,
+   "critical_radius_fraction": 0.6836725542534086,
+   "pcp": 0.20118284191334268,
+   "supersaturation": 4.564942503479792
+  },
+  "precipitates": 134,
+  "radius_min": 2.0108336152376767,
+  "radius_mean": 3.109479837823309,
+  "radius_max": 4.782255583563154,
+  "smallest_gap": 1.0000653662036108,
+  "realised_volume_fraction": 0.08791666666666664,
+  "matrix_atoms": 197010,
+  "matrix_guest_fraction": 0.1455459113750571,
+  "xi": 6.422818828067569,
+  "c_eq": 0.0403865799445426,
+  "c_inf": 0.1843624153590271,
+  "critical_radius": 2.157941690770826,
+  "depleting_precipitates": 126,
+  "surface_value_range": [
+   0.0801309349230993,
+   0.20602275816683563
+  ],
+  "field_sd": 0.018516550833372378,
+  "field_range": [
+   0.07006616485202985,
+   0.21599506968179602
+  ],
+  "clipped_fraction": 0.0,
+  "split": "test",
+  "seconds": 0.9
+ },
+ {
+  "pattern": 81,
+  "parameters": {
+   "cr": 3.520270872036509,
+   "rb": 0.38778213151720353,
+   "volume_fraction": 0.0843284013730276,
+   "rho_c": 0.8182152188159898,
+   "matrix_mean": 0.07665392358781939,
+   "ell": 4.120221462099932,
+   "critical_radius_fraction": 0.7435134641570621,
+   "pcp": 0.13918860213452278,
+   "supersaturation": 4.82680390316795
+  },
+  "precipitates": 69,
+  "radius_min": 2.0521233637784135,
+  "radius_mean": 4.008114269813225,
+  "radius_max": 7.516321767182274,
+  "smallest_gap": 1.0056265998100238,
+  "realised_volume_fraction": 0.10850925925925925,
+  "matrix_atoms": 192562,
+  "matrix_guest_fraction": 0.07681162430801508,
+  "xi": 7.88365028420018,
+  "c_eq": 0.021033237851077195,
+  "c_inf": 0.10152331455583927,
+  "critical_radius": 2.6173687908390666,
+  "depleting_precipitates": 59,
+  "surface_value_range": [
+   0.0363892665448527,
+   0.15663032822945155
+  ],
+  "field_sd": 0.013693604429490771,
+  "field_range": [
+   0.027931244737717922,
+   0.16051806842334915
+  ],
+  "clipped_fraction": 0.0,
+  "split": "test",
+  "seconds": 0.4
+ },
+ {
+  "pattern": 82,
+  "parameters": {
+   "cr": 3.5505259343402193,
+   "rb": 0.3868390382269385,
+   "volume_fraction": 0.11456741361125355,
+   "rho_c": 0.6508110707123808,
+   "matrix_mean": 0.10431499615128806,
+   "ell": 4.695281366304787,
+   "critical_radius_fraction": 0.6087175029071041,
+   "pcp": 0.16692563796245524,
+   "supersaturation": 8.779915454050327
+  },
+  "precipitates": 91,
+  "radius_min": 2.0250164884064223,
+  "radius_mean": 3.8963806440449402,
+  "radius_max": 6.898621684180778,
+  "smallest_gap": 1.0007515759040118,
+  "realised_volume_fraction": 0.1287638888888889,
+  "matrix_atoms": 188187,
+  "matrix_guest_fraction": 0.10360970736554598,
+  "xi": 6.962585779997346,
+  "c_eq": 0.01902741912984714,
+  "c_inf": 0.16705913126883773,
+  "critical_radius": 2.161267280758491,
+  "depleting_precipitates": 89,
+  "surface_value_range": [
+   0.037580773160219336,
+   0.1933534065535847
+  ],
+  "field_sd": 0.0286592143290119,
+  "field_range": [
+   0.007632580496332155,
+   0.2142482165946436
+  ],
+  "clipped_fraction": 0.0,
+  "split": "test",
+  "seconds": 0.6
+ },
+ {
+  "pattern": 83,
+  "parameters": {
+   "cr": 3.5585313263057636,
+   "rb": 0.2632879472754002,
+   "volume_fraction": 0.11818309992713831,
+   "rho_c": 0.7227176129762598,
+   "matrix_mean": 0.07046685678803358,
+   "ell": 4.636260601997674,
+   "critical_radius_fraction": 0.6036549268749529,
+   "pcp": 0.14755187308417825,
+   "supersaturation": 8.656258070351406
+  },
+  "precipitates": 111,
+  "radius_min": 2.0593994657505363,
+  "radius_mean": 3.477255087097526,
+  "radius_max": 6.09246574133681,
+  "smallest_gap": 1.0002226733253687,
+  "realised_volume_fraction": 0.10912962962962958,
+  "matrix_atoms": 192428,
+  "matrix_guest_fraction": 0.07179828299415886,
+  "xi": 6.6733235017755055,
+  "c_eq": 0.012071949668312537,
+  "c_inf": 0.10449791174120637,
+  "critical_radius": 2.148124967563335,
+  "depleting_precipitates": 110,
+  "surface_value_range": [
+   0.025838540160874942,
+   0.11468081961127385
+  ],
+  "field_sd": 0.01602876910637377,
+  "field_range": [
+   0.011614344854597856,
+   0.12221040582675231
+  ],
+  "clipped_fraction": 0.0,
+  "split": "test",
+  "seconds": 0.7
+ },
+ {
+  "pattern": 84,
+  "parameters": {
+   "cr": 3.73868801268954,
+   "rb": 0.23594749533587375,
+   "volume_fraction": 0.09523794866270884,
+   "rho_c": 0.6502672690592297,
+   "matrix_mean": 0.10239349691408267,
+   "ell": 4.152400272195047,
+   "critical_radius_fraction": 0.6032080697330757,
+   "pcp": 0.15457187109928683,
+   "supersaturation": 6.304416062111076
+  },
+  "precipitates": 80,
+  "radius_min": 2.376087127819812,
+  "radius_mean": 4.048671377790309,
+  "radius_max": 6.018909747951195,
+  "smallest_gap": 1.0033012971878064,
+  "realised_volume_fraction": 0.1156666666666667,
+  "matrix_atoms": 191016,
+  "matrix_guest_fraction": 0.10325836579134733,
+  "xi": 7.284851217409858,
+  "c_eq": 0.024248604780805965,
+  "c_inf": 0.15287329346389655,
+  "critical_radius": 2.2552067794686463,
+  "depleting_precipitates": 80,
+  "surface_value_range": [
+   0.04833961984022272,
+   0.13920368349875112
+  ],
+  "field_sd": 0.02209411381707895,
+  "field_range": [
+   0.029691575593233974,
+   0.1514634714521005
+  ],
+  "clipped_fraction": 0.0,
+  "split": "test",
+  "seconds": 0.5
+ },
+ {
+  "pattern": 85,
+  "parameters": {
+   "cr": 3.3909858063140947,
+   "rb": 0.24570945608454392,
+   "volume_fraction": 0.0825552939715211,
+   "rho_c": 0.6211162270959956,
+   "matrix_mean": 0.1386967991214241,
+   "ell": 2.8025207344916936,
+   "critical_radius_fraction": 0.6227452283815201,
+   "pcp": 0.1785230768154379,
+   "supersaturation": 3.7701956830423287
+  },
+  "precipitates": 93,
+  "radius_min": 2.1475694435056507,
+  "radius_mean": 3.4764441436464484,
+  "radius_max": 5.10547737602288,
+  "smallest_gap": 1.0100044734616347,
+  "realised_volume_fraction": 0.08397685185185189,
+  "matrix_atoms": 197861,
+  "matrix_guest_fraction": 0.13807673063413203,
+  "xi": 7.2914321915834055,
+  "c_eq": 0.04783694763367737,
+  "c_inf": 0.18035465345841237,
+  "critical_radius": 2.111720230391564,
+  "depleting_precipitates": 93,
+  "surface_value_range": [
+   0.08282439398314759,
+   0.1764030760001287
+  ],
+  "field_sd": 0.01870530808251241,
+  "field_range": [
+   0.06651143173992075,
+   0.1861242884876527
+  ],
+  "clipped_fraction": 0.0,
+  "split": "test",
+  "seconds": 0.6
+ },
+ {
+  "pattern": 86,
+  "parameters": {
+   "cr": 3.6708295463397467,
+   "rb": 0.38986386821462526,
+   "volume_fraction": 0.08568745639914621,
+   "rho_c": 0.40091415511070094,
+   "matrix_mean": 0.06891089594169739,
+   "ell": 3.3916465970630596,
+   "critical_radius_fraction": 0.7802327469149581,
+   "pcp": 0.09735941073611581,
+   "supersaturation": 3.268045867451443
+  },
+  "precipitates": 61,
+  "radius_min": 2.066202641999128,
+  "radius_mean": 3.9072795507033113,
+  "radius_max": 6.985653253378926,
+  "smallest_gap": 1.0063428242398444,
+  "realised_volume_fraction": 0.08703240740740736,
+  "matrix_atoms": 197201,
+  "matrix_guest_fraction": 0.06912743850183316,
+  "xi": 8.492191594785359,
+  "c_eq": 0.024869197135105485,
+  "c_inf": 0.08127367692421675,
+  "critical_radius": 2.86410142039725,
+  "depleting_precipitates": 50,
+  "surface_value_range": [
+   0.04041277708576627,
+   0.12839582255224605
+  ],
+  "field_sd": 0.0077838510452467105,
+  "field_range": [
+   0.029806004548197394,
+   0.1318340329903193
+  ],
+  "clipped_fraction": 0.0,
+  "split": "test",
+  "seconds": 0.4
+ },
+ {
+  "pattern": 87,
+  "parameters": {
+   "cr": 3.616595183729915,
+   "rb": 0.3924410873969363,
+   "volume_fraction": 0.09117982747418105,
+   "rho_c": 0.6615019507158926,
+   "matrix_mean": 0.11418479357120215,
+   "ell": 4.050873374038827,
+   "critical_radius_fraction": 0.6307238151557804,
+   "pcp": 0.16408907753331425,
+   "supersaturation": 5.905377203402808
+  },
+  "precipitates": 68,
+  "radius_min": 2.4427066381098363,
+  "radius_mean": 4.247692091699271,
+  "radius_max": 7.356530244900677,
+  "smallest_gap": 1.0034657496990511,
+  "realised_volume_fraction": 0.12409259259259264,
+  "matrix_atoms": 189196,
+  "matrix_guest_fraction": 0.11354891223915939,
+  "xi": 7.7142014026642185,
+  "c_eq": 0.02928855511873438,
+  "c_inf": 0.17295996571878064,
+  "critical_radius": 2.2810727121561523,
+  "depleting_precipitates": 68,
+  "surface_value_range": [
+   0.050797484147892445,
+   0.15378434429101348
+  ],
+  "field_sd": 0.024498256425153284,
+  "field_range": [
+   0.021233409482252507,
+   0.17209874797510857
+  ],
+  "clipped_fraction": 0.0,
+  "split": "test",
+  "seconds": 0.4
+ },
+ {
+  "pattern": 88,
+  "parameters": {
+   "cr": 3.7981501886957907,
+   "rb": 0.2845004681700694,
+   "volume_fraction": 0.11733021728533874,
+   "rho_c": 0.433363838725077,
+   "matrix_mean": 0.10979444384146714,
+   "ell": 4.836556477937448,
+   "critical_radius_fraction": 0.6016427744997389,
+   "pcp": 0.14775891125004664,
+   "supersaturation": 8.302318826858444
+  },
+  "precipitates": 89,
+  "radius_min": 2.216460631121218,
+  "radius_mean": 3.849468732398934,
+  "radius_max": 6.81632893769482,
+  "smallest_gap": 1.0001351648164865,
+  "realised_volume_fraction": 0.11639351851851854,
+  "matrix_atoms": 190859,
+  "matrix_guest_fraction": 0.10998171424978649,
+  "xi": 7.083151681337232,
+  "c_eq": 0.020269814140794012,
+  "c_inf": 0.16828645955803564,
+  "critical_radius": 2.2851296174936424,
+  "depleting_precipitates": 87,
+  "surface_value_range": [
+   0.041210259137428595,
+   0.17969137439979127
+  ],
+  "field_sd": 0.02510058148110314,
+  "field_range": [
+   0.01909381269619144,
+   0.19425095084044108
+  ],
+  "clipped_fraction": 0.0,
+  "split": "test",
+  "seconds": 0.6
+ },
+ {
+  "pattern": 89,
+  "parameters": {
+   "cr": 3.0071871789415283,
+   "rb": 0.26434736562224787,
+   "volume_fraction": 0.10960262762995303,
+   "rho_c": 0.6000821154617518,
+   "matrix_mean": 0.06464909697008543,
+   "ell": 3.7243400138884186,
+   "critical_radius_fraction": 0.7237185334689054,
+   "pcp": 0.12333396271660929,
+   "supersaturation": 5.536001475509539
+  },
+  "precipitates": 173,
+  "radius_min": 2.1016998949304138,
+  "radius_mean": 3.2927794514761892,
+  "radius_max": 5.710501261241204,
+  "smallest_gap": 1.0000976025284949,
+  "realised_volume_fraction": 0.13359722222222226,
+  "matrix_atoms": 187143,
+  "matrix_guest_fraction": 0.0648541489662985,
+  "xi": 5.493100825712232,
+  "c_eq": 0.016301052141904457,
+  "c_inf": 0.090242648709941,
+  "critical_radius": 2.1763570950100575,
+  "depleting_precipitates": 169,
+  "surface_value_range": [
+   0.03129383425925549,
+   0.09589851167978176
+  ],
+  "field_sd": 0.01070284499390623,
+  "field_range": [
+   0.02077662190177628,
+   0.1033562667960152
+  ],
+  "clipped_fraction": 0.0,
+  "split": "test",
+  "seconds": 1.3
+ },
+ {
+  "pattern": 90,
+  "parameters": {
+   "cr": 3.277836502309994,
+   "rb": 0.23181574715321432,
+   "volume_fraction": 0.08047138412019177,
+   "rho_c": 0.4332329671534487,
+   "matrix_mean": 0.08754195072938317,
+   "ell": 2.2681255850239657,
+   "critical_radius_fraction": 0.7337149241686778,
+   "pcp": 0.11536018529894367,
+   "supersaturation": 2.5679001890183746
+  },
+  "precipitates": 102,
+  "radius_min": 2.144511321948382,
+  "radius_mean": 3.347548721550941,
+  "radius_max": 5.077008569533161,
+  "smallest_gap": 1.000608206238918,
+  "realised_volume_fraction": 0.08390740740740743,
+  "matrix_atoms": 197876,
+  "matrix_guest_fraction": 0.08790858921748974,
+  "xi": 7.095098096514448,
+  "c_eq": 0.03955642148536639,
+  "c_inf": 0.10157694220916284,
+  "critical_radius": 2.404997560729701,
+  "depleting_precipitates": 95,
+  "surface_value_range": [
+   0.061835184503829084,
+   0.11390561922769515
+  ],
+  "field_sd": 0.007051685556129115,
+  "field_range": [
+   0.05944644340237759,
+   0.11820856100470375
+  ],
+  "clipped_fraction": 0.0,
+  "split": "test",
+  "seconds": 0.7
+ },
+ {
+  "pattern": 91,
+  "parameters": {
+   "cr": 3.27682763751685,
+   "rb": 0.3561720977400484,
+   "volume_fraction": 0.08094265607534175,
+   "rho_c": 0.8209810707433062,
+   "matrix_mean": 0.10449011877458954,
+   "ell": 3.240949586768529,
+   "critical_radius_fraction": 0.6984450438509165,
+   "pcp": 0.16248479948088757,
+   "supersaturation": 4.120916515172058
+  },
+  "precipitates": 86,
+  "radius_min": 2.040738362499123,
+  "radius_mean": 3.4834738372213696,
+  "radius_max": 6.086284410198406,
+  "smallest_gap": 1.0014643386460818,
+  "realised_volume_fraction": 0.08350925925925923,
+  "matrix_atoms": 197962,
+  "matrix_guest_fraction": 0.10581323688384639,
+  "xi": 7.574717517151411,
+  "c_eq": 0.03224930182304391,
+  "c_inf": 0.13289668048535003,
+  "critical_radius": 2.2886840229773515,
+  "depleting_precipitates": 83,
+  "surface_value_range": [
+   0.054926553931516006,
+   0.15784639266464215
+  ],
+  "field_sd": 0.014696624683594313,
+  "field_range": [
+   0.04225251235367516,
+   0.16324587509237198
+  ],
+  "clipped_fraction": 0.0,
+  "split": "test",
+  "seconds": 0.5
+ },
+ {
+  "pattern": 92,
+  "parameters": {
+   "cr": 3.7617347397990386,
+   "rb": 0.2545900911739963,
+   "volume_fraction": 0.09620265696349468,
+   "rho_c": 0.5967464264176348,
+   "matrix_mean": 0.14975076642370397,
+   "ell": 4.162831694746011,
+   "critical_radius_fraction": 0.6621459826485264,
+   "pcp": 0.192752936566271,
+   "supersaturation": 5.318925059917763
+  },
+  "precipitates": 78,
+  "radius_min": 2.093796457588379,
+  "radius_mean": 3.8764436987471234,
+  "radius_max": 6.268306174016671,
+  "smallest_gap": 1.001035761478147,
+  "realised_volume_fraction": 0.09912037037037036,
+  "matrix_atoms": 194590,
+  "matrix_guest_fraction": 0.15025952001644483,
+  "xi": 7.53976659586189,
+  "c_eq": 0.03779797183397594,
+  "c_inf": 0.2010445796018004,
+  "critical_radius": 2.4908175457473334,
+  "depleting_precipitates": 77,
+  "surface_value_range": [
+   0.07343226033573473,
+   0.27600789044284013
+  ],
+  "field_sd": 0.025991177288723685,
+  "field_range": [
+   0.05461783058860169,
+   0.28469600800238776
+  ],
+  "clipped_fraction": 0.0,
+  "split": "test",
+  "seconds": 0.5
+ },
+ {
+  "pattern": 93,
+  "parameters": {
+   "cr": 3.669478178888761,
+   "rb": 0.35869329543668765,
+   "volume_fraction": 0.11831525142339241,
+   "rho_c": 0.4236774135348089,
+   "matrix_mean": 0.08648282043780063,
+   "ell": 4.777731910065568,
+   "critical_radius_fraction": 0.7457735091263721,
+   "pcp": 0.12637808349868168,
+   "supersaturation": 5.730853209484749
+  },
+  "precipitates": 89,
+  "radius_min": 2.2729494338626215,
+  "radius_mean": 4.064613854067164,
+  "radius_max": 7.04437368133279,
+  "smallest_gap": 1.0005225951320273,
+  "realised_volume_fraction": 0.14531018518518524,
+  "matrix_atoms": 184613,
+  "matrix_guest_fraction": 0.08632111498106851,
+  "xi": 6.89314308816986,
+  "c_eq": 0.020477634022443708,
+  "c_inf": 0.11735431466017562,
+  "critical_radius": 2.7365996181325207,
+  "depleting_precipitates": 77,
+  "surface_value_range": [
+   0.04034901599044068,
+   0.1675580461854457
+  ],
+  "field_sd": 0.01731192599519083,
+  "field_range": [
+   0.023089846695597934,
+   0.1772568348584759
+  ],
+  "clipped_fraction": 0.0,
+  "split": "test",
+  "seconds": 0.6
+ },
+ {
+  "pattern": 94,
+  "parameters": {
+   "cr": 3.0388336795410353,
+   "rb": 0.21795602096367483,
+   "volume_fraction": 0.081655554634647,
+   "rho_c": 0.41296180284255873,
+   "matrix_mean": 0.05695603622302589,
+   "ell": 2.4256809780775836,
+   "critical_radius_fraction": 0.779389656743482,
+   "pcp": 0.08602588454947654,
+   "supersaturation": 2.7847835458036547
+  },
+  "precipitates": 130,
+  "radius_min": 2.0044101579193674,
+  "radius_mean": 3.1141595401501303,
+  "radius_max": 4.492735878315988,
+  "smallest_gap": 1.0000794304192233,
+  "realised_volume_fraction": 0.08356944444444447,
+  "matrix_atoms": 197949,
+  "matrix_guest_fraction": 0.056767147093443264,
+  "xi": 6.515981437485212,
+  "c_eq": 0.023491574326837513,
+  "c_inf": 0.06541894965040067,
+  "critical_radius": 2.36843553839802,
+  "depleting_precipitates": 119,
+  "surface_value_range": [
+   0.04030814618466592,
+   0.07879218224699983
+  ],
+  "field_sd": 0.004413830471579689,
+  "field_range": [
+   0.03676213796040779,
+   0.0794192825026818
+  ],
+  "clipped_fraction": 0.0,
+  "split": "test",
+  "seconds": 0.9
+ },
+ {
+  "pattern": 95,
+  "parameters": {
+   "cr": 3.424534158866188,
+   "rb": 0.3470823895934199,
+   "volume_fraction": 0.10165388989694857,
+   "rho_c": 0.723419977379608,
+   "matrix_mean": 0.1311727638630254,
+   "ell": 3.346688276832077,
+   "critical_radius_fraction": 0.731838311804582,
+   "pcp": 0.19137699689761467,
+   "supersaturation": 3.801367180360648
+  },
+  "precipitates": 96,
+  "radius_min": 2.0152743298306195,
+  "radius_mean": 3.928718213711658,
+  "radius_max": 7.152994697867266,
+  "smallest_gap": 1.0010145038201852,
+  "realised_volume_fraction": 0.1386481481481482,
+  "matrix_atoms": 186052,
+  "matrix_guest_fraction": 0.1311730053963408,
+  "xi": 6.750887751044399,
+  "c_eq": 0.04565272183443188,
+  "c_inf": 0.1735427584755433,
+  "critical_radius": 2.5062052975417557,
+  "depleting_precipitates": 86,
+  "surface_value_range": [
+   0.07288884114542105,
+   0.2402607093519325
+  ],
+  "field_sd": 0.020777809766985667,
+  "field_range": [
+   0.05431955939071694,
+   0.24848213362449206
+  ],
+  "clipped_fraction": 0.0,
+  "split": "test",
+  "seconds": 0.6
+ },
+ {
+  "pattern": 96,
+  "parameters": {
+   "cr": 3.2824769618013088,
+   "rb": 0.21003729941684288,
+   "volume_fraction": 0.098744590380324,
+   "rho_c": 0.5944824589217865,
+   "matrix_mean": 0.14480308430933064,
+   "ell": 2.171839874927485,
+   "critical_radius_fraction": 0.7419000652096148,
+   "pcp": 0.18920648995791786,
+   "supersaturation": 2.439583151365203
+  },
+  "precipitates": 128,
+  "radius_min": 2.080815222386489,
+  "radius_mean": 3.296496646964889,
+  "radius_max": 5.0976258544632,
+  "smallest_gap": 1.0001841091972095,
+  "realised_volume_fraction": 0.09997222222222224,
+  "matrix_atoms": 194406,
+  "matrix_guest_fraction": 0.14515498492844872,
+  "xi": 6.382497297298178,
+  "c_eq": 0.06778271548261819,
+  "c_inf": 0.16536157064517662,
+  "critical_radius": 2.4352698720094494,
+  "depleting_precipitates": 117,
+  "surface_value_range": [
+   0.10378863946492453,
+   0.19249148822026027
+  ],
+  "field_sd": 0.011688869882090402,
+  "field_range": [
+   0.0974679512915331,
+   0.19501042073188
+  ],
+  "clipped_fraction": 0.0,
+  "split": "test",
+  "seconds": 0.9
+ },
+ {
+  "pattern": 97,
+  "parameters": {
+   "cr": 3.5845606407558908,
+   "rb": 0.26210786978928363,
+   "volume_fraction": 0.11967560388247475,
+   "rho_c": 0.42909482541164956,
+   "matrix_mean": 0.12221002256975162,
+   "ell": 3.7700327469227513,
+   "critical_radius_fraction": 0.6508301368670276,
+   "pcp": 0.15893664667220997,
+   "supersaturation": 5.032921686330691
+  },
+  "precipitates": 111,
+  "radius_min": 2.143185016813778,
+  "radius_mean": 3.635023328514084,
+  "radius_max": 6.056614740741011,
+  "smallest_gap": 1.0029482477860663,
+  "realised_volume_fraction": 0.11739351851851854,
+  "matrix_atoms": 190643,
+  "matrix_guest_fraction": 0.1225903914646748,
+  "xi": 6.526898409228755,
+  "c_eq": 0.03314159997155318,
+  "c_inf": 0.1667990772165266,
+  "critical_radius": 2.3329400924313166,
+  "depleting_precipitates": 108,
+  "surface_value_range": [
+   0.0617599211411417,
+   0.19245623019605326
+  ],
+  "field_sd": 0.02128218789138012,
+  "field_range": [
+   0.04085520366127276,
+   0.20159739852529465
+  ],
+  "clipped_fraction": 0.0,
+  "split": "test",
+  "seconds": 0.8
+ },
+ {
+  "pattern": 98,
+  "parameters": {
+   "cr": 3.3801915529073225,
+   "rb": 0.2492711850719711,
+   "volume_fraction": 0.10055852809343196,
+   "rho_c": 0.8221952764795641,
+   "matrix_mean": 0.08049328647988445,
+   "ell": 2.783769235983528,
+   "critical_radius_fraction": 0.6930173356797062,
+   "pcp": 0.15507774687822162,
+   "supersaturation": 3.2816929741509204
+  },
+  "precipitates": 113,
+  "radius_min": 2.022418596322425,
+  "radius_mean": 3.413267200283712,
+  "radius_max": 5.541553522667944,
+  "smallest_gap": 1.0003744459468678,
+  "realised_volume_fraction": 0.10063425925925928,
+  "matrix_atoms": 194263,
+  "matrix_guest_fraction": 0.08024688180456392,
+  "xi": 6.675711781760981,
+  "c_eq": 0.030034898429304565,
+  "c_inf": 0.09856531515478531,
+  "critical_radius": 2.3425313440828814,
+  "depleting_precipitates": 106,
+  "surface_value_range": [
+   0.04963541252229928,
+   0.11896335496774169
+  ],
+  "field_sd": 0.00955846320929628,
+  "field_range": [
+   0.04025774602172861,
+   0.12380050721572046
+  ],
+  "clipped_fraction": 0.0,
+  "split": "test",
+  "seconds": 0.7
+ },
+ {
+  "pattern": 99,
+  "parameters": {
+   "cr": 3.3234078061402252,
+   "rb": 0.3305731205340964,
+   "volume_fraction": 0.09302098371473311,
+   "rho_c": 0.617707578865588,
+   "matrix_mean": 0.13892174197753832,
+   "ell": 2.1181818706963447,
+   "critical_radius_fraction": 0.7460925751922655,
+   "pcp": 0.18345887151354645,
+   "supersaturation": 2.349620317327269
+  },
+  "precipitates": 98,
+  "radius_min": 2.106475586919242,
+  "radius_mean": 3.7150873084470146,
+  "radius_max": 7.260138719670141,
+  "smallest_gap": 1.0036524050138844,
+  "realised_volume_fraction": 0.1209675925925926,
+  "matrix_atoms": 189871,
+  "matrix_guest_fraction": 0.13739328280780108,
+  "xi": 6.871070323101014,
+  "c_eq": 0.06994634905888324,
+  "c_inf": 0.16434736287161716,
+  "critical_radius": 2.479569888497238,
+  "depleting_precipitates": 91,
+  "surface_value_range": [
+   0.09364242316453672,
+   0.19119345913737654
+  ],
+  "field_sd": 0.013234401408307964,
+  "field_range": [
+   0.07400602255394664,
+   0.20020539824211298
+  ],
+  "clipped_fraction": 0.0,
+  "split": "test",
+  "seconds": 0.6
+ },
+ {
+  "pattern": 100,
+  "parameters": {
+   "cr": 3.1953980573300065,
+   "rb": 0.3811805072716255,
+   "volume_fraction": 0.1024448211099847,
+   "rho_c": 0.6736255003336,
+   "matrix_mean": 0.05486734246501036,
+   "ell": 2.588304207611266,
+   "critical_radius_fraction": 0.6666426798134447,
+   "pcp": 0.1182559112582017,
+   "supersaturation": 3.370491694149973
+  },
+  "precipitates": 113,
+  "radius_min": 2.0746295208439514,
+  "radius_mean": 3.612499633343284,
+  "radius_max": 6.053660026196987,
+  "smallest_gap": 1.0017800434154331,
+  "realised_volume_fraction": 0.12440277777777775,
+  "matrix_atoms": 189129,
+  "matrix_guest_fraction": 0.05503122207593759,
+  "xi": 6.489015566366342,
+  "c_eq": 0.021639076944300454,
+  "c_inf": 0.07293432910983685,
+  "critical_radius": 2.130188724009151,
+  "depleting_precipitates": 112,
+  "surface_value_range": [
+   0.033183773856026284,
+   0.07534662033196368
+  ],
+  "field_sd": 0.007844574635745562,
+  "field_range": [
+   0.02366693092759896,
+   0.0784224433250721
+  ],
+  "clipped_fraction": 0.0,
+  "split": "test",
+  "seconds": 0.8
+ },
+ {
+  "pattern": 101,
+  "parameters": {
+   "cr": 3.088877396466151,
+   "rb": 0.32555927848639643,
+   "volume_fraction": 0.09228295878641372,
+   "rho_c": 0.517980425546881,
+   "matrix_mean": 0.11630507844310307,
+   "ell": 2.706129614041948,
+   "critical_radius_fraction": 0.7846560244278621,
+   "pcp": 0.15337286794539945,
+   "supersaturation": 3.054223559134806
+  },
+  "precipitates": 122,
+  "radius_min": 2.0083905822761388,
+  "radius_mean": 3.318739445403482,
+  "radius_max": 5.305220763084756,
+  "smallest_gap": 1.0003035046675302,
+  "realised_volume_fraction": 0.09810185185185183,
+  "matrix_atoms": 194810,
+  "matrix_guest_fraction": 0.1168112519891176,
+  "xi": 6.515615527510391,
+  "c_eq": 0.04489726162274327,
+  "c_inf": 0.13712627418882148,
+  "critical_radius": 2.423706257856215,
+  "depleting_precipitates": 107,
+  "surface_value_range": [
+   0.07477359657610493,
+   0.17274021626841163
+  ],
+  "field_sd": 0.012373981454596982,
+  "field_range": [
+   0.05802471791120847,
+   0.17329450103697805
+  ],
+  "clipped_fraction": 0.0,
+  "split": "test",
+  "seconds": 0.9
+ },
+ {
+  "pattern": 102,
+  "parameters": {
+   "cr": 3.364574360861332,
+   "rb": 0.2540828155209348,
+   "volume_fraction": 0.09327082450006807,
+   "rho_c": 0.8259632819397326,
+   "matrix_mean": 0.14736098599468345,
+   "ell": 3.278057744465158,
+   "critical_radius_fraction": 0.7644564785108936,
+   "pcp": 0.21065478164511736,
+   "supersaturation": 3.5768480892869015
+  },
+  "precipitates": 107,
+  "radius_min": 2.1088846391867127,
+  "radius_mean": 3.530997260122883,
+  "radius_max": 5.687430243842332,
+  "smallest_gap": 1.000428558632986,
+  "realised_volume_fraction": 0.10559722222222223,
+  "matrix_atoms": 193191,
+  "matrix_guest_fraction": 0.14757933858202504,
+  "xi": 6.744990843395737,
+  "c_eq": 0.05011071043174633,
+  "c_inf": 0.17923839886060106,
+  "critical_radius": 2.5720706675920946,
+  "depleting_precipitates": 93,
+  "surface_value_range": [
+   0.0891752590854265,
+   0.2371370643016735
+  ],
+  "field_sd": 0.017304138969158344,
+  "field_range": [
+   0.07411144027708058,
+   0.24085877793854782
+  ],
+  "clipped_fraction": 0.0,
+  "split": "test",
+  "seconds": 0.7
+ },
+ {
+  "pattern": 103,
+  "parameters": {
+   "cr": 3.691684631685206,
+   "rb": 0.21688317158273904,
+   "volume_fraction": 0.11651170221450892,
+   "rho_c": 0.46137422063441336,
+   "matrix_mean": 0.050988485034148136,
+   "ell": 3.0774775801744516,
+   "critical_radius_fraction": 0.681698573831672,
+   "pcp": 0.09880322565348842,
+   "supersaturation": 3.3969002366710166
+  },
+  "precipitates": 105,
+  "radius_min": 2.2783699671517463,
+  "radius_mean": 3.838976151543221,
+  "radius_max": 5.778220456559488,
+  "smallest_gap": 1.002274810142326,
+  "realised_volume_fraction": 0.12675462962962958,
+  "matrix_atoms": 188621,
+  "matrix_guest_fraction": 0.05092752132583329,
+  "xi": 6.53009631532669,
+  "c_eq": 0.01915242969424139,
+  "c_inf": 0.06505889296119358,
+  "critical_radius": 2.516616148456106,
+  "depleting_precipitates": 103,
+  "surface_value_range": [
+   0.03262337736741988,
+   0.07393350666408394
+  ],
+  "field_sd": 0.006187039891623148,
+  "field_range": [
+   0.024937859899744196,
+   0.07781212403682676
+  ],
+  "clipped_fraction": 0.0,
+  "split": "test",
+  "seconds": 0.7
+ },
+ {
+  "pattern": 104,
+  "parameters": {
+   "cr": 3.617998519232623,
+   "rb": 0.24139969358465121,
+   "volume_fraction": 0.09468366032938015,
+   "rho_c": 0.42609865126699503,
+   "matrix_mean": 0.061131426664435655,
+   "ell": 2.888248595417013,
+   "critical_radius_fraction": 0.7394989580395815,
+   "pcp": 0.09568785939006098,
+   "supersaturation": 2.943251276638777
+  },
+  "precipitates": 88,
+  "radius_min": 2.1777529455989395,
+  "radius_mean": 3.7083569997227115,
+  "radius_max": 6.7428188605723065,
+  "smallest_gap": 1.005373278923023,
+  "realised_volume_fraction": 0.1005787037037037,
+  "matrix_atoms": 194275,
+  "matrix_guest_fraction": 0.060929095354523226,
+  "xi": 7.2575467024312275,
+  "c_eq": 0.024679727579392154,
+  "c_inf": 0.07263863970514318,
+  "critical_radius": 2.6755061351612737,
+  "depleting_precipitates": 82,
+  "surface_value_range": [
+   0.03787633631613445,
+   0.09296600451037888
+  ],
+  "field_sd": 0.0057647940443777655,
+  "field_range": [
+   0.034436845187936764,
+   0.0938277916831961
+  ],
+  "clipped_fraction": 0.0,
+  "split": "test",
+  "seconds": 0.6
+ },
+ {
+  "pattern": 105,
+  "parameters": {
+   "cr": 3.6154947904510597,
+   "rb": 0.36479859792862207,
+   "volume_fraction": 0.10520751919091478,
+   "rho_c": 0.5613673078304174,
+   "matrix_mean": 0.08757646381935529,
+   "ell": 3.554402084036178,
+   "critical_radius_fraction": 0.7474002869419885,
+   "pcp": 0.1374228231331288,
+   "supersaturation": 3.7261025608705
+  },
+  "precipitates": 82,
+  "radius_min": 2.0402766289030514,
+  "radius_mean": 3.8491859439961664,
+  "radius_max": 6.6146727938918914,
+  "smallest_gap": 1.0048345848146898,
+  "realised_volume_fraction": 0.11435648148148148,
+  "matrix_atoms": 191299,
+  "matrix_guest_fraction": 0.08803496097731824,
+  "xi": 7.379561760507149,
+  "c_eq": 0.028864090738456256,
+  "c_inf": 0.10755056241776033,
+  "critical_radius": 2.7022218438203867,
+  "depleting_precipitates": 68,
+  "surface_value_range": [
+   0.049399951642442604,
+   0.16479726392523072
+  ],
+  "field_sd": 0.01342069612209089,
+  "field_range": [
+   0.026472262438049846,
+   0.1718258135958972
+  ],
+  "clipped_fraction": 0.0,
+  "split": "test",
+  "seconds": 0.5
+ },
+ {
+  "pattern": 106,
+  "parameters": {
+   "cr": 3.177729417805407,
+   "rb": 0.3362969794973898,
+   "volume_fraction": 0.08631897616435498,
+   "rho_c": 0.8183059355098632,
+   "matrix_mean": 0.1451379056899896,
+   "ell": 4.438810838460738,
+   "critical_radius_fraction": 0.6279511714883758,
+   "pcp": 0.20324508081061707,
+   "supersaturation": 9.248451631851587
+  },
+  "precipitates": 104,
+  "radius_min": 2.019177005754343,
+  "radius_mean": 3.2491777846577454,
+  "radius_max": 5.1642146632085035,
+  "smallest_gap": 1.0003177538005419,
+  "realised_volume_fraction": 0.08314351851851853,
+  "matrix_atoms": 198041,
+  "matrix_guest_fraction": 0.1446417660989391,
+  "xi": 7.132118269351469,
+  "c_eq": 0.023309547679244143,
+  "c_inf": 0.21557722427182788,
+  "critical_radius": 1.9954589105839795,
+  "depleting_precipitates": 104,
+  "surface_value_range": [
+   0.05505846632981501,
+   0.21001727832636033
+  ],
+  "field_sd": 0.03187987086542437,
+  "field_range": [
+   0.02317901642873302,
+   0.21950756740984637
+  ],
+  "clipped_fraction": 0.0,
+  "split": "test",
+  "seconds": 0.6
+ },
+ {
+  "pattern": 107,
+  "parameters": {
+   "cr": 3.795616538978857,
+   "rb": 0.27499825996066146,
+   "volume_fraction": 0.11626823985959853,
+   "rho_c": 0.748596174264526,
+   "matrix_mean": 0.09207328174137928,
+   "ell": 4.539049790815024,
+   "critical_radius_fraction": 0.7444236167294875,
+   "pcp": 0.16840604288257793,
+   "supersaturation": 4.984995347757742
+  },
+  "precipitates": 89,
+  "radius_min": 2.1308257912779958,
+  "radius_mean": 3.8925942025882674,
+  "radius_max": 5.981130305946387,
+  "smallest_gap": 1.000241909819838,
+  "realised_volume_fraction": 0.11692592592592588,
+  "matrix_atoms": 190744,
+  "matrix_guest_fraction": 0.09297278027093905,
+  "xi": 7.04380581091464,
+  "c_eq": 0.023389843246120666,
+  "c_inf": 0.11659825976669437,
+  "critical_radius": 2.8255465916649007,
+  "depleting_precipitates": 79,
+  "surface_value_range": [
+   0.049958709952887266,
+   0.19685852192056402
+  ],
+  "field_sd": 0.013830899033894454,
+  "field_range": [
+   0.035145276606637584,
+   0.1968216620402872
+  ],
+  "clipped_fraction": 0.0,
+  "split": "test",
+  "seconds": 0.6
+ },
+ {
+  "pattern": 108,
+  "parameters": {
+   "cr": 3.5848355455913623,
+   "rb": 0.2490047168198546,
+   "volume_fraction": 0.08142367493468382,
+   "rho_c": 0.7406336057930509,
+   "matrix_mean": 0.07717216228050683,
+   "ell": 4.46262862811738,
+   "critical_radius_fraction": 0.7867179974344963,
+   "pcp": 0.1311936311887683,
+   "supersaturation": 4.8663761236615235
+  },
+  "precipitates": 77,
+  "radius_min": 2.228330189691742,
+  "radius_mean": 3.5476811113007187,
+  "radius_max": 5.683779393622422,
+  "smallest_gap": 1.0004961284909273,
+  "realised_volume_fraction": 0.07808333333333328,
+  "matrix_atoms": 199134,
+  "matrix_guest_fraction": 0.077570881918708,
+  "xi": 7.932394287938652,
+  "c_eq": 0.018718811132292422,
+  "c_inf": 0.09109277555751737,
+  "critical_radius": 2.820254641559637,
+  "depleting_precipitates": 60,
+  "surface_value_range": [
+   0.0410454745047362,
+   0.13868529637097712
+  ],
+  "field_sd": 0.009746575587590428,
+  "field_range": [
+   0.03322762534338841,
+   0.14402438696342054
+  ],
+  "clipped_fraction": 0.0,
+  "split": "test",
+  "seconds": 0.5
+ },
+ {
+  "pattern": 109,
+  "parameters": {
+   "cr": 3.0505948412504575,
+   "rb": 0.26978293136396087,
+   "volume_fraction": 0.11755859085195412,
+   "rho_c": 0.6461751396631625,
+   "matrix_mean": 0.0889485821929085,
+   "ell": 3.733033770271322,
+   "critical_radius_fraction": 0.6423614823491296,
+   "pcp": 0.154455351074397,
+   "supersaturation": 6.719493562362585
+  },
+  "precipitates": 173,
+  "radius_min": 2.02445431399362,
+  "radius_mean": 3.183733732750074,
+  "radius_max": 4.787916165033958,
+  "smallest_gap": 1.0001052551820475,
+  "realised_volume_fraction": 0.12341666666666662,
+  "matrix_atoms": 189342,
+  "matrix_guest_fraction": 0.08937266956090038,
+  "xi": 5.58638062154793,
+  "c_eq": 0.019662685722394543,
+  "c_inf": 0.13212329013038884,
+  "critical_radius": 1.9595846242722517,
+  "depleting_precipitates": 173,
+  "surface_value_range": [
+   0.0428798018482175,
+   0.12429938909944326
+  ],
+  "field_sd": 0.017904931217601065,
+  "field_range": [
+   0.030695140863759966,
+   0.1319354024473649
+  ],
+  "clipped_fraction": 0.0,
+  "split": "test",
+  "seconds": 1.3
+ },
+ {
+  "pattern": 110,
+  "parameters": {
+   "cr": 3.755236605558463,
+   "rb": 0.3259266613339553,
+   "volume_fraction": 0.08746258465231536,
+   "rho_c": 0.8659442776650967,
+   "matrix_mean": 0.11644535061669041,
+   "ell": 3.9540096486289027,
+   "critical_radius_fraction": 0.7457218715428628,
+   "pcp": 0.1819984639704812,
+   "supersaturation": 4.104006621341731
+  },
+  "precipitates": 65,
+  "radius_min": 2.007262993493403,
+  "radius_mean": 4.13790101470799,
+  "radius_max": 7.075566913898599,
+  "smallest_gap": 1.0000015244434426,
+  "realised_volume_fraction": 0.10895370370370372,
+  "matrix_atoms": 192466,
+  "matrix_guest_fraction": 0.11664917439963422,
+  "xi": 7.994203814555508,
+  "c_eq": 0.03600492576591956,
+  "c_inf": 0.14776445374425135,
+  "critical_radius": 2.8003620695833242,
+  "depleting_precipitates": 57,
+  "surface_value_range": [
+   0.06295886643302093,
+   0.2581412902360787
+  ],
+  "field_sd": 0.01679684871383464,
+  "field_range": [
+   0.039404290587168614,
+   0.26716651562381305
+  ],
+  "clipped_fraction": 0.0,
+  "split": "test",
+  "seconds": 0.4
+ },
+ {
+  "pattern": 111,
+  "parameters": {
+   "cr": 3.7651483207365986,
+   "rb": 0.33140115634155914,
+   "volume_fraction": 0.0895100212759755,
+   "rho_c": 0.8433564063790961,
+   "matrix_mean": 0.12127679404701651,
+   "ell": 4.864840604260036,
+   "critical_radius_fraction": 0.6008369273032234,
+   "pcp": 0.1859101555098091,
+   "supersaturation": 8.58874628863639
+  },
+  "precipitates": 66,
+  "radius_min": 2.2338942079805886,
+  "radius_mean": 4.086617436400081,
+  "radius_max": 6.796382376151309,
+  "smallest_gap": 1.008956094228794,
+  "realised_volume_fraction": 0.10818518518518516,
+  "matrix_atoms": 192632,
+  "matrix_guest_fraction": 0.12216557996594543,
+  "xi": 7.983034092008196,
+  "c_eq": 0.022106209733124844,
+  "c_inf": 0.18986462680119365,
+  "critical_radius": 2.2622401478722693,
+  "depleting_precipitates": 64,
+  "surface_value_range": [
+   0.04522531948994117,
+   0.19511682410444148
+  ],
+  "field_sd": 0.02914075958845418,
+  "field_range": [
+   0.012184115221163064,
+   0.21402479976685035
+  ],
+  "clipped_fraction": 0.0,
+  "split": "test",
+  "seconds": 0.4
+ },
+ {
+  "pattern": 112,
+  "parameters": {
+   "cr": 3.9446655158948465,
+   "rb": 0.21962804748494258,
+   "volume_fraction": 0.09945754128759388,
+   "rho_c": 0.4026742216301179,
+   "matrix_mean": 0.07975093099634585,
+   "ell": 4.441703662342161,
+   "critical_radius_fraction": 0.7061776682618391,
+   "pcp": 0.11186808750727992,
+   "supersaturation": 4.925881684894084
+  },
+  "precipitates": 73,
+  "radius_min": 2.425867430479905,
+  "radius_mean": 3.8749299457021027,
+  "radius_max": 5.9228813964088705,
+  "smallest_gap": 1.0035810213140839,
+  "realised_volume_fraction": 0.09085648148148151,
+  "matrix_atoms": 196375,
+  "matrix_guest_fraction": 0.07876257161043922,
+  "xi": 7.795223756409257,
+  "c_eq": 0.02031377103834819,
+  "c_inf": 0.10006323270893124,
+  "critical_radius": 2.7856346960875076,
+  "depleting_precipitates": 69,
+  "surface_value_range": [
+   0.04300093281973598,
+   0.12675732891507657
+  ],
+  "field_sd": 0.011182691473278343,
+  "field_range": [
+   0.03487785802403339,
+   0.13238752903722356
+  ],
+  "clipped_fraction": 0.0,
+  "split": "test",
+  "seconds": 0.5
+ },
+ {
+  "pattern": 113,
+  "parameters": {
+   "cr": 3.174498914448982,
+   "rb": 0.27616460291905837,
+   "volume_fraction": 0.11292275658654116,
+   "rho_c": 0.8764331048478188,
+   "matrix_mean": 0.09125734035385888,
+   "ell": 4.254155960582816,
+   "critical_radius_fraction": 0.6722548436841596,
+   "pcp": 0.17992155208546168,
+   "supersaturation": 7.340780135321197
+  },
+  "precipitates": 149,
+  "radius_min": 2.014922044269437,
+  "radius_mean": 3.414404326814909,
+  "radius_max": 5.74810157043908,
+  "smallest_gap": 1.0001535628637725,
+  "realised_volume_fraction": 0.13421759259259258,
+  "matrix_atoms": 187009,
+  "matrix_guest_fraction": 0.09150361747295585,
+  "xi": 5.812612015436656,
+  "c_eq": 0.018580438554414835,
+  "c_inf": 0.13639491424580452,
+  "critical_radius": 2.1340722715084346,
+  "depleting_precipitates": 143,
+  "surface_value_range": [
+   0.03894720063723513,
+   0.1534591905257716
+  ],
+  "field_sd": 0.019338616370053196,
+  "field_range": [
+   0.02491711518149418,
+   0.15990478893524737
+  ],
+  "clipped_fraction": 0.0,
+  "split": "test",
+  "seconds": 1.1
+ },
+ {
+  "pattern": 114,
+  "parameters": {
+   "cr": 3.522338634572111,
+   "rb": 0.23941973807313582,
+   "volume_fraction": 0.0909991297688454,
+   "rho_c": 0.4571362357642546,
+   "matrix_mean": 0.08403830972750345,
+   "ell": 2.9071606600009905,
+   "critical_radius_fraction": 0.6930229781378152,
+   "pcp": 0.11798989631540885,
+   "supersaturation": 3.290176216974284
+  },
+  "precipitates": 91,
+  "radius_min": 2.2337179571876282,
+  "radius_mean": 3.6130143089092805,
+  "radius_max": 5.889281405284682,
+  "smallest_gap": 1.0010075506273424,
+  "realised_volume_fraction": 0.09623611111111108,
+  "matrix_atoms": 195213,
+  "matrix_guest_fraction": 0.0827864947518864,
+  "xi": 7.230467970696637,
+  "c_eq": 0.03141804154600595,
+  "c_inf": 0.10337089307857875,
+  "critical_radius": 2.4410616105410496,
+  "depleting_precipitates": 85,
+  "surface_value_range": [
+   0.051470981769979475,
+   0.11545396576811318
+  ],
+  "field_sd": 0.009607538060362662,
+  "field_range": [
+   0.0468332394421248,
+   0.12023479724847116
+  ],
+  "clipped_fraction": 0.0,
+  "split": "test",
+  "seconds": 0.6
+ },
+ {
+  "pattern": 115,
+  "parameters": {
+   "cr": 3.3822740109503195,
+   "rb": 0.37929545413107707,
+   "volume_fraction": 0.09367595539829887,
+   "rho_c": 0.8804485657688704,
+   "matrix_mean": 0.10233367330145646,
+   "ell": 2.009999479272905,
+   "critical_radius_fraction": 0.6995745814561617,
+   "pcp": 0.17522432926298603,
+   "supersaturation": 2.3384304451438602
+  },
+  "precipitates": 87,
+  "radius_min": 2.0095931772906015,
+  "radius_mean": 3.743730198658847,
+  "radius_max": 7.600157563024844,
+  "smallest_gap": 1.001647095167867,
+  "realised_volume_fraction": 0.11439351851851853,
+  "matrix_atoms": 191291,
+  "matrix_guest_fraction": 0.10275966982241716,
+  "xi": 7.264572225068515,
+  "c_eq": 0.05233083832913311,
+  "c_inf": 0.12237202556874612,
+  "critical_radius": 2.3661529255806233,
+  "depleting_precipitates": 79,
+  "surface_value_range": [
+   0.0681733668410179,
+   0.14227873007627914
+  ],
+  "field_sd": 0.01095137265277638,
+  "field_range": [
+   0.057516839193067194,
+   0.1425592118609763
+  ],
+  "clipped_fraction": 0.0,
+  "split": "test",
+  "seconds": 0.5
+ },
+ {
+  "pattern": 116,
+  "parameters": {
+   "cr": 3.8822330902731204,
+   "rb": 0.3110482795366667,
+   "volume_fraction": 0.10720952645214742,
+   "rho_c": 0.757532577870798,
+   "matrix_mean": 0.05403003814833838,
+   "ell": 3.203812309615705,
+   "critical_radius_fraction": 0.736496154021464,
+   "pcp": 0.1294522122898663,
+   "supersaturation": 3.0664116540925255
+  },
+  "precipitates": 74,
+  "radius_min": 2.003445087774668,
+  "radius_mean": 3.8596920694631742,
+  "radius_max": 6.541932718064348,
+  "smallest_gap": 1.0015054911921792,
+  "realised_volume_fraction": 0.10346759259259264,
+  "matrix_atoms": 193651,
+  "matrix_guest_fraction": 0.05458272872332185,
+  "xi": 7.757642375743341,
+  "c_eq": 0.020604095771212118,
+  "c_inf": 0.06318063939488336,
+  "critical_radius": 2.859249740001016,
+  "depleting_precipitates": 63,
+  "surface_value_range": [
+   0.03362348261436058,
+   0.10196620409352755
+  ],
+  "field_sd": 0.006599090588197398,
+  "field_range": [
+   0.02585673538953265,
+   0.10225620449367613
+  ],
+  "clipped_fraction": 0.0,
+  "split": "test",
+  "seconds": 0.4
+ },
+ {
+  "pattern": 117,
+  "parameters": {
+   "cr": 3.612996776466673,
+   "rb": 0.2057890823268399,
+   "volume_fraction": 0.11963912528731764,
+   "rho_c": 0.4043661526674584,
+   "matrix_mean": 0.13128419342433906,
+   "ell": 4.94291609894982,
+   "critical_radius_fraction": 0.7402373214699441,
+   "pcp": 0.16395548015993278,
+   "supersaturation": 6.3482665461956485
+  },
+  "precipitates": 116,
+  "radius_min": 2.225521599278548,
+  "radius_mean": 3.657437243444377,
+  "radius_max": 5.100321612665796,
+  "smallest_gap": 1.0042185049034265,
+  "realised_volume_fraction": 0.12018981481481483,
+  "matrix_atoms": 190039,
+  "matrix_guest_fraction": 0.13100468851130556,
+  "xi": 6.365089394274528,
+  "c_eq": 0.027246809173495506,
+  "c_inf": 0.17297000716667824,
+  "critical_radius": 2.6744750562912327,
+  "depleting_precipitates": 107,
+  "surface_value_range": [
+   0.07181364786485776,
+   0.2511250645213976
+  ],
+  "field_sd": 0.020500519645116767,
+  "field_range": [
+   0.058428538717680056,
+   0.2627353363658346
+  ],
+  "clipped_fraction": 0.0,
+  "split": "test",
+  "seconds": 0.8
+ },
+ {
+  "pattern": 118,
+  "parameters": {
+   "cr": 3.158000166483827,
+   "rb": 0.214578213961566,
+   "volume_fraction": 0.11576592191754626,
+   "rho_c": 0.4571027609583474,
+   "matrix_mean": 0.1071596917899279,
+   "ell": 3.3728691939663085,
+   "critical_radius_fraction": 0.6971745704248696,
+   "pcp": 0.14767117381086564,
+   "supersaturation": 4.627210990681856
+  },
+  "precipitates": 167,
+  "radius_min": 2.0496411594213413,
+  "radius_mean": 3.2508485396026026,
+  "radius_max": 4.6900093980178115,
+  "smallest_gap": 1.0000319511044449,
+  "realised_volume_fraction": 0.12399074074074079,
+  "matrix_atoms": 189218,
+  "matrix_guest_fraction": 0.10626367470325233,
+  "xi": 5.626850028397,
+  "c_eq": 0.030842692820061718,
+  "c_inf": 0.14271564719921395,
+  "critical_radius": 2.201677409470029,
+  "depleting_precipitates": 158,
+  "surface_value_range": [
+   0.06331107628644898,
+   0.15989062017065359
+  ],
+  "field_sd": 0.0156862961229155,
+  "field_range": [
+   0.04388276027987035,
+   0.16584844273860555
+  ],
+  "clipped_fraction": 0.0,
+  "split": "test",
+  "seconds": 1.2
+ },
+ {
+  "pattern": 119,
+  "parameters": {
+   "cr": 3.0876371805312064,
+   "rb": 0.25765690298436444,
+   "volume_fraction": 0.11427813426425422,
+   "rho_c": 0.6923411390264858,
+   "matrix_mean": 0.12724409010616597,
+   "ell": 2.4282120010066297,
+   "critical_radius_fraction": 0.7257817450363809,
+   "pcp": 0.1918223265350161,
+   "supersaturation": 2.955191129282338
+  },
+  "precipitates": 167,
+  "radius_min": 2.02708770511934,
+  "radius_mean": 3.255569364485649,
+  "radius_max": 5.389603683889439,
+  "smallest_gap": 1.0000676709385563,
+  "realised_volume_fraction": 0.12482870370370369,
+  "matrix_atoms": 189037,
+  "matrix_guest_fraction": 0.12644614546358648,
+  "xi": 5.6227688666443365,
+  "c_eq": 0.05268599918730077,
+  "c_inf": 0.1556971974356877,
+  "critical_radius": 2.24095070092515,
+  "depleting_precipitates": 159,
+  "surface_value_range": [
+   0.08267241830972075,
+   0.17455359211798338
+  ],
+  "field_sd": 0.013340356170154399,
+  "field_range": [
+   0.06437163966122933,
+   0.1774402557384249
+  ],
+  "clipped_fraction": 0.0,
+  "split": "test",
+  "seconds": 1.3
+ },
+ {
+  "pattern": 120,
+  "parameters": {
+   "cr": 3.0071032487703415,
+   "rb": 0.3572741372540216,
+   "volume_fraction": 0.09428632828085258,
+   "rho_c": 0.6817700595163447,
+   "matrix_mean": 0.0873540452568505,
+   "ell": 2.030210731646859,
+   "critical_radius_fraction": 0.7260638291895726,
+   "pcp": 0.14339934871271712,
+   "supersaturation": 2.5341566041808914
+  },
+  "precipitates": 129,
+  "radius_min": 2.016273848330283,
+  "radius_mean": 3.395276197355039,
+  "radius_max": 5.695428463878645,
+  "smallest_gap": 1.0002106218246771,
+  "realised_volume_fraction": 0.11397222222222225,
+  "matrix_atoms": 191382,
+  "matrix_guest_fraction": 0.08700400246627164,
+  "xi": 6.264545010820219,
+  "c_eq": 0.04178918664977557,
+  "c_inf": 0.1059003433318767,
+  "critical_radius": 2.183348899570598,
+  "depleting_precipitates": 125,
+  "surface_value_range": [
+   0.05968619933910671,
+   0.11438269626783665
+  ],
+  "field_sd": 0.008754944542224348,
+  "field_range": [
+   0.05007919291568214,
+   0.11875496535784094
+  ],
+  "clipped_fraction": 0.0,
+  "split": "test",
+  "seconds": 0.9
+ },
+ {
+  "pattern": 121,
+  "parameters": {
+   "cr": 3.501744037066059,
+   "rb": 0.2835003227699228,
+   "volume_fraction": 0.09057054471316824,
+   "rho_c": 0.630867801086648,
+   "matrix_mean": 0.1207722964004518,
+   "ell": 4.311822311646676,
+   "critical_radius_fraction": 0.6980985266221861,
+   "pcp": 0.16697192411561904,
+   "supersaturation": 5.834813073891818
+  },
+  "precipitates": 87,
+  "radius_min": 2.126737504897258,
+  "radius_mean": 3.6547035380360073,
+  "radius_max": 5.494890652886369,
+  "smallest_gap": 1.0035782038553487,
+  "realised_volume_fraction": 0.09358796296296301,
+  "matrix_atoms": 195785,
+  "matrix_guest_fraction": 0.12200628240161401,
+  "xi": 7.35252043844475,
+  "c_eq": 0.02793672264790597,
+  "c_inf": 0.1630055545476914,
+  "critical_radius": 2.4445623528838416,
+  "depleting_precipitates": 82,
+  "surface_value_range": [
+   0.061230087939773636,
+   0.21216773587840096
+  ],
+  "field_sd": 0.018973220652997426,
+  "field_range": [
+   0.04595464906036121,
+   0.22375896483222465
+  ],
+  "clipped_fraction": 0.0,
+  "split": "test",
+  "seconds": 0.6
+ },
+ {
+  "pattern": 122,
+  "parameters": {
+   "cr": 3.2739631408780006,
+   "rb": 0.2412636113639104,
+   "volume_fraction": 0.11679624443104922,
+   "rho_c": 0.6326110746752788,
+   "matrix_mean": 0.08079666850509656,
+   "ell": 4.895565068640481,
+   "critical_radius_fraction": 0.7923742231624596,
+   "pcp": 0.14524651876872344,
+   "supersaturation": 6.600308956712319
+  },
+  "precipitates": 145,
+  "radius_min": 2.056952093275539,
+  "radius_mean": 3.459915629048675,
+  "radius_max": 5.833605088222762,
+  "smallest_gap": 1.0019333022933692,
+  "realised_volume_fraction": 0.13160648148148146,
+  "matrix_atoms": 187573,
+  "matrix_guest_fraction": 0.080779216624994,
+  "xi": 5.85335936344084,
+  "c_eq": 0.016068581357580238,
+  "c_inf": 0.10605760145609744,
+  "critical_radius": 2.5942040004157323,
+  "depleting_precipitates": 127,
+  "surface_value_range": [
+   0.037190989995102286,
+   0.1736210717680002
+  ],
+  "field_sd": 0.012942431210283586,
+  "field_range": [
+   0.024739338682760934,
+   0.18280290457271353
+  ],
+  "clipped_fraction": 0.0,
+  "split": "test",
+  "seconds": 1.0
+ },
+ {
+  "pattern": 123,
+  "parameters": {
+   "cr": 3.225576409729443,
+   "rb": 0.2624345822710824,
+   "volume_fraction": 0.0849604613452477,
+   "rho_c": 0.5383761636779579,
+   "matrix_mean": 0.1243015427695492,
+   "ell": 2.3666130082842383,
+   "critical_radius_fraction": 0.7096363738472412,
+   "pcp": 0.15948151359328616,
+   "supersaturation": 2.8120482060852012
+  },
+  "precipitates": 108,
+  "radius_min": 2.0134638421087674,
+  "radius_mean": 3.267968396315385,
+  "radius_max": 5.53462845979291,
+  "smallest_gap": 1.0004263637815445,
+  "realised_volume_fraction": 0.0851574074074074,
+  "matrix_atoms": 197606,
+  "matrix_guest_fraction": 0.12427760290679433,
+  "xi": 6.9786455672318555,
+  "c_eq": 0.052265437485495364,
+  "c_inf": 0.14697292972134546,
+  "critical_radius": 2.2889863469676053,
+  "depleting_precipitates": 97,
+  "surface_value_range": [
+   0.08015292429549356,
+   0.16930962631640914
+  ],
+  "field_sd": 0.011894640863127325,
+  "field_range": [
+   0.07173431034740431,
+   0.17168117052448673
+  ],
+  "clipped_fraction": 0.0,
+  "split": "test",
+  "seconds": 0.7
+ },
+ {
+  "pattern": 124,
+  "parameters": {
+   "cr": 3.68532637425987,
+   "rb": 0.3268720964717864,
+   "volume_fraction": 0.08371913408939198,
+   "rho_c": 0.5936265027808558,
+   "matrix_mean": 0.09042252779838852,
+   "ell": 4.37351368826482,
+   "critical_radius_fraction": 0.7543766943856326,
+   "pcp": 0.13255032885426074,
+   "supersaturation": 4.821745543470073
+  },
+  "precipitates": 66,
+  "radius_min": 2.061415012426847,
+  "radius_mean": 3.9098894386402026,
+  "radius_max": 6.627885047007752,
+  "smallest_gap": 1.0020508494215492,
+  "realised_volume_fraction": 0.09191203703703699,
+  "matrix_atoms": 196147,
+  "matrix_guest_fraction": 0.09148240860171199,
+  "xi": 8.161457761946513,
+  "c_eq": 0.023555322511931813,
+  "c_inf": 0.11357777134690751,
+  "critical_radius": 2.7801243279463494,
+  "depleting_precipitates": 56,
+  "surface_value_range": [
+   0.045568534979993254,
+   0.19655835721955064
+  ],
+  "field_sd": 0.01461900481778616,
+  "field_range": [
+   0.02879121825183432,
+   0.20114019293681915
+  ],
+  "clipped_fraction": 0.0,
+  "split": "test",
+  "seconds": 0.4
+ },
+ {
+  "pattern": 125,
+  "parameters": {
+   "cr": 3.02882258346012,
+   "rb": 0.3143795921910486,
+   "volume_fraction": 0.11842695612155296,
+   "rho_c": 0.5139372521136729,
+   "matrix_mean": 0.07286438206489049,
+   "ell": 2.5491717071031976,
+   "critical_radius_fraction": 0.7718566349755611,
+   "pcp": 0.12509929949256507,
+   "supersaturation": 2.9754847158732076
+  },
+  "precipitates": 170,
+  "radius_min": 2.009482197359688,
+  "radius_mean": 3.331710540509217,
+  "radius_max": 5.4190625659309495,
+  "smallest_gap": 1.0002190931936341,
+  "realised_volume_fraction": 0.14057870370370373,
+  "matrix_atoms": 185635,
+  "matrix_guest_fraction": 0.07183990088076063,
+  "xi": 5.508886840052013,
+  "c_eq": 0.030023296062662748,
+  "c_inf": 0.08933385855458927,
+  "critical_radius": 2.337816807207514,
+  "depleting_precipitates": 156,
+  "surface_value_range": [
+   0.04805671423451097,
+   0.10675591356313616
+  ],
+  "field_sd": 0.008032447085938988,
+  "field_range": [
+   0.03881686423335289,
+   0.10955942003905804
+  ],
+  "clipped_fraction": 0.0,
+  "split": "test",
+  "seconds": 1.2
+ },
+ {
+  "pattern": 126,
+  "parameters": {
+   "cr": 3.4291970138213315,
+   "rb": 0.38978769214536435,
+   "volume_fraction": 0.11746252166372732,
+   "rho_c": 0.8860263421393471,
+   "matrix_mean": 0.10632185037797101,
+   "ell": 2.96538482405649,
+   "critical_radius_fraction": 0.6191099496324423,
+   "pcp": 0.19790790613279713,
+   "supersaturation": 4.042070042339035
+  },
+  "precipitates": 104,
+  "radius_min": 2.0421398833021125,
+  "radius_mean": 3.893365378930343,
+  "radius_max": 6.919080835951093,
+  "smallest_gap": 1.000195738935549,
+  "realised_volume_fraction": 0.15369444444444447,
+  "matrix_atoms": 182802,
+  "matrix_guest_fraction": 0.10602728635354099,
+  "xi": 6.515424139700599,
+  "c_eq": 0.037904068961817895,
+  "c_inf": 0.15321090163331696,
+  "critical_radius": 2.123049990506646,
+  "depleting_precipitates": 100,
+  "surface_value_range": [
+   0.05818567628298331,
+   0.16192856539342124
+  ],
+  "field_sd": 0.01983361738891187,
+  "field_range": [
+   0.0399285225848544,
+   0.1681575148381018
+  ],
+  "clipped_fraction": 0.0,
+  "split": "test",
+  "seconds": 0.7
+ },
+ {
+  "pattern": 127,
+  "parameters": {
+   "cr": 3.6892591330117965,
+   "rb": 0.3573283217017399,
+   "volume_fraction": 0.10773487487962181,
+   "rho_c": 0.7302548737411191,
+   "matrix_mean": 0.14452806516841785,
+   "ell": 3.7455460705128676,
+   "critical_radius_fraction": 0.6960920862648506,
+   "pcp": 0.207631269603638,
+   "supersaturation": 4.299546617032138
+  },
+  "precipitates": 80,
+  "radius_min": 2.018956367619091,
+  "radius_mean": 3.77364905304563,
+  "radius_max": 6.6316550005273625,
+  "smallest_gap": 1.001030658949004,
+  "realised_volume_fraction": 0.10074537037037035,
+  "matrix_atoms": 194239,
+  "matrix_guest_fraction": 0.14432734929648525,
+  "xi": 7.545641988637566,
+  "c_eq": 0.04290448352104036,
+  "c_inf": 0.18446982697840017,
+  "critical_radius": 2.5680640866698354,
+  "depleting_precipitates": 70,
+  "surface_value_range": [
+   0.07547295803306317,
+   0.2742844049586725
+  ],
+  "field_sd": 0.02246496170126822,
+  "field_range": [
+   0.053246870685585264,
+   0.2772410427324127
+  ],
+  "clipped_fraction": 0.0,
+  "split": "test",
+  "seconds": 0.5
+ },
+ {
+  "pattern": 128,
+  "parameters": {
+   "cr": 3.0771603889674584,
+   "rb": 0.32510008768582166,
+   "volume_fraction": 0.10272123930274185,
+   "rho_c": 0.552422684967682,
+   "matrix_mean": 0.09202865676610038,
+   "ell": 4.287091816555597,
+   "critical_radius_fraction": 0.6792959297810124,
+   "pcp": 0.13932090191054833,
+   "supersaturation": 7.7752314769247075
+  },
+  "precipitates": 136,
+  "radius_min": 2.0685885807872464,
+  "radius_mean": 3.458536837127763,
+  "radius_max": 6.091370896772795,
+  "smallest_gap": 1.0001602786096955,
+  "realised_volume_fraction": 0.1267083333333333,
+  "matrix_atoms": 188631,
+  "matrix_guest_fraction": 0.09304939272972099,
+  "xi": 6.045138932741566,
+  "c_eq": 0.018144690511294054,
+  "c_inf": 0.1410791688024706,
+  "critical_radius": 2.0903025275089515,
+  "depleting_precipitates": 132,
+  "surface_value_range": [
+   0.036677941239921144,
+   0.14414935324313874
+  ],
+  "field_sd": 0.02124849753199529,
+  "field_range": [
+   0.019787075849616507,
+   0.15490384555684905
+  ],
+  "clipped_fraction": 0.0,
+  "split": "test",
+  "seconds": 0.9
+ },
+ {
+  "pattern": 129,
+  "parameters": {
+   "cr": 3.6896162925464044,
+   "rb": 0.301850588225216,
+   "volume_fraction": 0.11031918117931928,
+   "rho_c": 0.4103141235701639,
+   "matrix_mean": 0.13378212585149551,
+   "ell": 2.308857497845321,
+   "critical_radius_fraction": 0.7963829145362237,
+   "pcp": 0.1642889094097004,
+   "supersaturation": 2.1940899793978796
+  },
+  "precipitates": 89,
+  "radius_min": 2.1508165268274353,
+  "radius_mean": 3.8514675383110792,
+  "radius_max": 6.67571714952721,
+  "smallest_gap": 1.0005062832693827,
+  "realised_volume_fraction": 0.112375,
+  "matrix_atoms": 191727,
+  "matrix_guest_fraction": 0.13341887162475813,
+  "xi": 7.081313462180962,
+  "c_eq": 0.06804306470607885,
+  "c_inf": 0.14929260643912914,
+  "critical_radius": 2.938347376578441,
+  "depleting_precipitates": 76,
+  "surface_value_range": [
+   0.09615869553513168,
+   0.19906279576557695
+  ],
+  "field_sd": 0.00955945152172599,
+  "field_range": [
+   0.09031775654189543,
+   0.20504140194239676
+  ],
+  "clipped_fraction": 0.0,
+  "split": "test",
+  "seconds": 0.5
+ },
+ {
+  "pattern": 130,
+  "parameters": {
+   "cr": 3.7332662502075245,
+   "rb": 0.3253241782658127,
+   "volume_fraction": 0.11793663274014549,
+   "rho_c": 0.7411352779052337,
+   "matrix_mean": 0.12894253869879485,
+   "ell": 4.148101781782782,
+   "critical_radius_fraction": 0.7827141922583835,
+   "pcp": 0.2011424889487683,
+   "supersaturation": 4.1353475193210985
+  },
+  "precipitates": 90,
+  "radius_min": 2.0296220661841953,
+  "radius_mean": 4.020264722683919,
+  "radius_max": 6.166822961423049,
+  "smallest_gap": 1.0013272826144624,
+  "realised_volume_fraction": 0.13628240740740738,
+  "matrix_atoms": 186563,
+  "matrix_guest_fraction": 0.12910384159774446,
+  "xi": 6.892445858447859,
+  "c_eq": 0.038950810930074485,
+  "c_inf": 0.16107513935522866,
+  "critical_radius": 2.9220804775166664,
+  "depleting_precipitates": 74,
+  "surface_value_range": [
+   0.0763209669960113,
+   0.30069004511563646
+  ],
+  "field_sd": 0.020043695780192623,
+  "field_range": [
+   0.05522252310515571,
+   0.30751630511401495
+  ],
+  "clipped_fraction": 0.0,
+  "split": "test",
+  "seconds": 0.6
+ },
+ {
+  "pattern": 131,
+  "parameters": {
+   "cr": 3.6609769684158406,
+   "rb": 0.3462362173808566,
+   "volume_fraction": 0.0823078511005134,
+   "rho_c": 0.8022244270640839,
+   "matrix_mean": 0.06517213416435895,
+   "ell": 2.216506823933285,
+   "critical_radius_fraction": 0.6346336607472262,
+   "pcp": 0.1258373245416415,
+   "supersaturation": 2.596076621971041
+  },
+  "precipitates": 64,
+  "radius_min": 2.0211061429267088,
+  "radius_mean": 3.9544724264575297,
+  "radius_max": 6.498978819875191,
+  "smallest_gap": 1.0030428870633115,
+  "realised_volume_fraction": 0.09288888888888891,
+  "matrix_atoms": 195936,
+  "matrix_guest_fraction": 0.0654754613751429,
+  "xi": 8.241147377271286,
+  "c_eq": 0.03079316291963217,
+  "c_inf": 0.0799414103722026,
+  "critical_radius": 2.3233792153770274,
+  "depleting_precipitates": 60,
+  "surface_value_range": [
+   0.04330843039094622,
+   0.09220116361505647
+  ],
+  "field_sd": 0.007306577836155851,
+  "field_range": [
+   0.037833769142290925,
+   0.09344455333541812
+  ],
+  "clipped_fraction": 0.0,
+  "split": "test",
+  "seconds": 0.4
+ },
+ {
+  "pattern": 132,
+  "parameters": {
+   "cr": 3.3882133640072607,
+   "rb": 0.2258578603625287,
+   "volume_fraction": 0.08987173463575024,
+   "rho_c": 0.6284693746368184,
+   "matrix_mean": 0.06930232443787561,
+   "ell": 2.027807225917768,
+   "critical_radius_fraction": 0.7308984775854903,
+   "pcp": 0.11955563719041022,
+   "supersaturation": 2.2678667650340114
+  },
+  "precipitates": 103,
+  "radius_min": 2.0239246408165763,
+  "radius_mean": 3.455602283299309,
+  "radius_max": 5.7001933252744035,
+  "smallest_gap": 1.0013008179944403,
+  "realised_volume_fraction": 0.09256944444444448,
+  "matrix_atoms": 196005,
+  "matrix_guest_fraction": 0.06962577485268233,
+  "xi": 6.949306313623452,
+  "c_eq": 0.03477844186126135,
+  "c_inf": 0.07887287243682221,
+  "critical_radius": 2.4764399894877194,
+  "depleting_precipitates": 96,
+  "surface_value_range": [
+   0.04963723690370366,
+   0.09471913631239108
+  ],
+  "field_sd": 0.005143947419358215,
+  "field_range": [
+   0.047460656965581334,
+   0.09580433851732945
+  ],
+  "clipped_fraction": 0.0,
+  "split": "test",
+  "seconds": 0.6
+ },
+ {
+  "pattern": 133,
+  "parameters": {
+   "cr": 3.5103288909045007,
+   "rb": 0.3652091632933878,
+   "volume_fraction": 0.10096548003019414,
+   "rho_c": 0.895017699330152,
+   "matrix_mean": 0.1279204214406805,
+   "ell": 2.8507084928609783,
+   "critical_radius_fraction": 0.6882817461171366,
+   "pcp": 0.20537076633264623,
+   "supersaturation": 3.2539917446084092
+  },
+  "precipitates": 86,
+  "radius_min": 2.0406352606828673,
+  "radius_mean": 3.71262999440515,
+  "radius_max": 5.681593810237064,
+  "smallest_gap": 1.0014807654799265,
+  "realised_volume_fraction": 0.10131481481481486,
+  "matrix_atoms": 194116,
+  "matrix_guest_fraction": 0.12783593315337222,
+  "xi": 7.337225781805366,
+  "c_eq": 0.04876641654853255,
+  "c_inf": 0.15868551686305984,
+  "critical_radius": 2.416095298477181,
+  "depleting_precipitates": 75,
+  "surface_value_range": [
+   0.08054261303211874,
+   0.19715948986406948
+  ],
+  "field_sd": 0.016547972268598443,
+  "field_range": [
+   0.06939976890802282,
+   0.20361000832444828
+  ],
+  "clipped_fraction": 0.0,
+  "split": "test",
+  "seconds": 0.6
+ },
+ {
+  "pattern": 134,
+  "parameters": {
+   "cr": 3.374137644971505,
+   "rb": 0.2599628098187537,
+   "volume_fraction": 0.10041213121147258,
+   "rho_c": 0.6975849733778966,
+   "matrix_mean": 0.09514314027036327,
+   "ell": 4.348870174643837,
+   "critical_radius_fraction": 0.683186485976307,
+   "pcp": 0.15563560866363696,
+   "supersaturation": 6.596744881565256
+  },
+  "precipitates": 111,
+  "radius_min": 2.0007970608759837,
+  "radius_mean": 3.4518295081484416,
+  "radius_max": 5.865807155459356,
+  "smallest_gap": 1.0009814143087765,
+  "realised_volume_fraction": 0.10273148148148148,
+  "matrix_atoms": 193810,
+  "matrix_guest_fraction": 0.09455136473866158,
+  "xi": 6.6978556828823415,
+  "c_eq": 0.01995341405623704,
+  "c_inf": 0.13162758204523392,
+  "critical_radius": 2.3051652408684546,
+  "depleting_precipitates": 103,
+  "surface_value_range": [
+   0.041879379424204714,
+   0.17538246672941327
+  ],
+  "field_sd": 0.01717165906765867,
+  "field_range": [
+   0.023544395801214795,
+   0.17926960790912883
+  ],
+  "clipped_fraction": 0.0,
+  "split": "test",
+  "seconds": 0.8
+ },
+ {
+  "pattern": 135,
+  "parameters": {
+   "cr": 3.265601562769908,
+   "rb": 0.3919352589104782,
+   "volume_fraction": 0.107340941216441,
+   "rho_c": 0.491036990407177,
+   "matrix_mean": 0.12881049975200118,
+   "ell": 3.789405693902147,
+   "critical_radius_fraction": 0.7579408918438991,
+   "pcp": 0.16769223219245613,
+   "supersaturation": 4.622754596405832
+  },
+  "precipitates": 110,
+  "radius_min": 2.029290546261205,
+  "radius_mean": 3.545600686859952,
+  "radius_max": 5.692276141829149,
+  "smallest_gap": 1.0002496532711938,
+  "realised_volume_fraction": 0.1126018518518519,
+  "matrix_atoms": 191678,
+  "matrix_guest_fraction": 0.12903410928745082,
+  "xi": 6.638664017269615,
+  "c_eq": 0.035699933436159625,
+  "c_inf": 0.16503203138338915,
+  "critical_radius": 2.475132960892655,
+  "depleting_precipitates": 99,
+  "surface_value_range": [
+   0.06946749322238954,
+   0.23101987558339646
+  ],
+  "field_sd": 0.020662778573340337,
+  "field_range": [
+   0.04250048465693755,
+   0.23965074142976472
+  ],
+  "clipped_fraction": 0.0,
+  "split": "test",
+  "seconds": 0.7
+ },
+ {
+  "pattern": 136,
+  "parameters": {
+   "cr": 3.008351907464508,
+   "rb": 0.3981347226935259,
+   "volume_fraction": 0.11323245811845663,
+   "rho_c": 0.8876014760580511,
+   "matrix_mean": 0.09988259444393043,
+   "ell": 2.579686801182084,
+   "critical_radius_fraction": 0.7520203980837427,
+   "pcp": 0.18907793971541884,
+   "supersaturation": 3.1276211257922117
+  },
+  "precipitates": 145,
+  "radius_min": 2.0025941386000854,
+  "radius_mean": 3.4945938833340144,
+  "radius_max": 5.92821970608967,
+  "smallest_gap": 1.0000584749470174,
+  "realised_volume_fraction": 0.1444120370370371,
+  "matrix_atoms": 184807,
+  "matrix_guest_fraction": 0.09963908293517021,
+  "xi": 5.824244339064622,
+  "c_eq": 0.04086804708379017,
+  "c_inf": 0.12781976742913292,
+  "critical_radius": 2.262341999027446,
+  "depleting_precipitates": 132,
+  "surface_value_range": [
+   0.06314932899870176,
+   0.14819382781818527
+  ],
+  "field_sd": 0.013034619060942717,
+  "field_range": [
+   0.046710899311181525,
+   0.1517973279083406
+  ],
+  "clipped_fraction": 0.0,
+  "split": "test",
+  "seconds": 1.0
+ },
+ {
+  "pattern": 137,
+  "parameters": {
+   "cr": 3.096574461756136,
+   "rb": 0.32021136511188475,
+   "volume_fraction": 0.08630040355801308,
+   "rho_c": 0.6605630063359371,
+   "matrix_mean": 0.12763725993524255,
+   "ell": 2.3809417887283493,
+   "critical_radius_fraction": 0.7470483802244103,
+   "pcp": 0.17362896691607782,
+   "supersaturation": 2.7989502060923304
+  },
+  "precipitates": 115,
+  "radius_min": 2.0350179106308364,
+  "radius_mean": 3.3231219896152444,
+  "radius_max": 5.887702292786262,
+  "smallest_gap": 1.0007081327809946,
+  "realised_volume_fraction": 0.09480092592592593,
+  "matrix_atoms": 195523,
+  "matrix_guest_fraction": 0.12791845460636345,
+  "xi": 6.706561033543513,
+  "c_eq": 0.05431155523876216,
+  "c_inf": 0.15201533872872833,
+  "critical_radius": 2.3132909358991967,
+  "depleting_precipitates": 107,
+  "surface_value_range": [
+   0.08137998528649877,
+   0.1749889231354746
+  ],
+  "field_sd": 0.012297307696444326,
+  "field_range": [
+   0.07074111105172025,
+   0.1799011311320867
+  ],
+  "clipped_fraction": 0.0,
+  "split": "test",
+  "seconds": 0.7
+ },
+ {
+  "pattern": 138,
+  "parameters": {
+   "cr": 3.06049716185935,
+   "rb": 0.2724201517782597,
+   "volume_fraction": 0.09860917507501248,
+   "rho_c": 0.8904970255112579,
+   "matrix_mean": 0.0970347423251949,
+   "ell": 3.7024627015337783,
+   "critical_radius_fraction": 0.7143307114504117,
+   "pcp": 0.1752774035233085,
+   "supersaturation": 5.4387830138561135
+  },
+  "precipitates": 144,
+  "radius_min": 2.050707262283251,
+  "radius_mean": 3.2130194921424193,
+  "radius_max": 5.532525643487168,
+  "smallest_gap": 1.0009562781584282,
+  "realised_volume_fraction": 0.1045138888888889,
+  "matrix_atoms": 193425,
+  "matrix_guest_fraction": 0.09587695489207704,
+  "xi": 6.095144658893868,
+  "c_eq": 0.02387777076204248,
+  "c_inf": 0.1298660140293468,
+  "critical_radius": 2.186207115022955,
+  "depleting_precipitates": 137,
+  "surface_value_range": [
+   0.046626329028642735,
+   0.14524244865782526
+  ],
+  "field_sd": 0.01538871869606364,
+  "field_range": [
+   0.03979101683331036,
+   0.14893511518862018
+  ],
+  "clipped_fraction": 0.0,
+  "split": "test",
+  "seconds": 1.1
+ },
+ {
+  "pattern": 139,
+  "parameters": {
+   "cr": 3.2078219256141436,
+   "rb": 0.22352610102174367,
+   "volume_fraction": 0.08510841564437632,
+   "rho_c": 0.7020410588409294,
+   "matrix_mean": 0.11557617189452163,
+   "ell": 3.8485811201013433,
+   "critical_radius_fraction": 0.6274539453712175,
+   "pcp": 0.16548926925358867,
+   "supersaturation": 6.767223737353682
+  },
+  "precipitates": 116,
+  "radius_min": 2.025737694175922,
+  "radius_mean": 3.259786484182831,
+  "radius_max": 5.088441757221733,
+  "smallest_gap": 1.0003430870040093,
+  "realised_volume_fraction": 0.08910648148148148,
+  "matrix_atoms": 196753,
+  "matrix_guest_fraction": 0.11706555935614704,
+  "xi": 6.74214939555216,
+  "c_eq": 0.024231145925513852,
+  "c_inf": 0.16397758589041828,
+  "critical_radius": 2.0127605232748906,
+  "depleting_precipitates": 116,
+  "surface_value_range": [
+   0.051623483813470476,
+   0.16198125424227414
+  ],
+  "field_sd": 0.022737347134826225,
+  "field_range": [
+   0.032877167155443976,
+   0.1625193264256693
+  ],
+  "clipped_fraction": 0.0,
+  "split": "test",
+  "seconds": 0.8
+ },
+ {
+  "pattern": 140,
+  "parameters": {
+   "cr": 3.060116105927421,
+   "rb": 0.3981834737917981,
+   "volume_fraction": 0.10167512606547617,
+   "rho_c": 0.824943540784856,
+   "matrix_mean": 0.06028702516017442,
+   "ell": 4.805889371329691,
+   "critical_radius_fraction": 0.7667670391634201,
+   "pcp": 0.1380335727831017,
+   "supersaturation": 7.7539339195663555
+  },
+  "precipitates": 124,
+  "radius_min": 2.04218550892694,
+  "radius_mean": 3.49173253956461,
+  "radius_max": 5.796238396935906,
+  "smallest_gap": 1.0022775111760853,
+  "realised_volume_fraction": 0.1216666666666667,
+  "matrix_atoms": 189720,
+  "matrix_guest_fraction": 0.061021505376344085,
+  "xi": 6.300726320318708,
+  "c_eq": 0.01108381053465069,
+  "c_inf": 0.08594313446267489,
+  "critical_radius": 2.3463961660382635,
+  "depleting_precipitates": 115,
+  "surface_value_range": [
+   0.025396843361831668,
+   0.11660503945985103
+  ],
+  "field_sd": 0.012741482801774853,
+  "field_range": [
+   0.011130120741199201,
+   0.11928970115639878
+  ],
+  "clipped_fraction": 0.0,
+  "split": "test",
+  "seconds": 0.9
+ },
+ {
+  "pattern": 141,
+  "parameters": {
+   "cr": 3.9884952042194453,
+   "rb": 0.30702987728130643,
+   "volume_fraction": 0.08229979818734005,
+   "rho_c": 0.8217471400827161,
+   "matrix_mean": 0.09391055761443363,
+   "ell": 4.522948391619649,
+   "critical_radius_fraction": 0.752652691219376,
+   "pcp": 0.15381136146493657,
+   "supersaturation": 4.511678695135078
+  },
+  "precipitates": 52,
+  "radius_min": 2.0306002995454566,
+  "radius_mean": 4.05230234786306,
+  "radius_max": 6.230174549927771,
+  "smallest_gap": 1.007523339634277,
+  "realised_volume_fraction": 0.07999537037037041,
+  "matrix_atoms": 198721,
+  "matrix_guest_fraction": 0.09374952823305036,
+  "xi": 9.031696831885105,
+  "c_eq": 0.024872129870129225,
+  "c_inf": 0.11221505843769483,
+  "critical_radius": 3.00195164937134,
+  "depleting_precipitates": 40,
+  "surface_value_range": [
+   0.0514043336214166,
+   0.23070564115651912
+  ],
+  "field_sd": 0.014436225677156203,
+  "field_range": [
+   0.036346782974603295,
+   0.2370830891651244
+  ],
+  "clipped_fraction": 0.0,
+  "split": "test",
+  "seconds": 0.3
+ },
+ {
+  "pattern": 142,
+  "parameters": {
+   "cr": 3.844207045941863,
+   "rb": 0.2060507691829104,
+   "volume_fraction": 0.11294229742145305,
+   "rho_c": 0.40761977189949516,
+   "matrix_mean": 0.14417379293790408,
+   "ell": 4.716251394690942,
+   "critical_radius_fraction": 0.7729783344352367,
+   "pcp": 0.17392798704826995,
+   "supersaturation": 4.8898803726072275
+  },
+  "precipitates": 91,
+  "radius_min": 2.085787790226341,
+  "radius_mean": 3.937944180118779,
+  "radius_max": 5.739869990587789,
+  "smallest_gap": 1.000158103236533,
+  "realised_volume_fraction": 0.12194444444444441,
+  "matrix_atoms": 189660,
+  "matrix_guest_fraction": 0.14578192555098599,
+  "xi": 6.925744559220369,
+  "c_eq": 0.036448347586291396,
+  "c_inf": 0.17822805947617232,
+  "critical_radius": 2.9714887595963426,
+  "depleting_precipitates": 81,
+  "surface_value_range": [
+   0.0828938868898089,
+   0.34968503841598436
+  ],
+  "field_sd": 0.021891880996295597,
+  "field_range": [
+   0.05983054186454838,
+   0.364223501679082
+  ],
+  "clipped_fraction": 0.0,
+  "split": "test",
+  "seconds": 0.6
+ },
+ {
+  "pattern": 143,
+  "parameters": {
+   "cr": 3.524383698510884,
+   "rb": 0.3303061230675092,
+   "volume_fraction": 0.10858535625769299,
+   "rho_c": 0.6490637181478107,
+   "matrix_mean": 0.1147403884443995,
+   "ell": 3.337685133020843,
+   "critical_radius_fraction": 0.6544925866370386,
+   "pcp": 0.17276007755704115,
+   "supersaturation": 4.250187398621666
+  },
+  "precipitates": 97,
+  "radius_min": 2.0804696574015846,
+  "radius_mean": 3.6271438621276917,
+  "radius_max": 6.558144228443039,
+  "smallest_gap": 1.0027186683922462,
+  "realised_volume_fraction": 0.1121805555555555,
+  "matrix_atoms": 191769,
+  "matrix_guest_fraction": 0.11520110132503168,
+  "xi": 6.989621938485873,
+  "c_eq": 0.03597473142140247,
+  "c_inf": 0.15289935015604367,
+  "critical_radius": 2.3066830031398013,
+  "depleting_precipitates": 91,
+  "surface_value_range": [
+   0.059844780994732935,
+   0.17895079083068485
+  ],
+  "field_sd": 0.017053012239214443,
+  "field_range": [
+   0.04367431114887795,
+   0.1844015769974982
+  ],
+  "clipped_fraction": 0.0,
+  "split": "test",
+  "seconds": 0.6
+ },
+ {
+  "pattern": 144,
+  "parameters": {
+   "cr": 3.4948444342618252,
+   "rb": 0.21012690928481678,
+   "volume_fraction": 0.11093545943098304,
+   "rho_c": 0.6169818291435715,
+   "matrix_mean": 0.09714164027783809,
+   "ell": 4.219135028675829,
+   "critical_radius_fraction": 0.642057865364904,
+   "pcp": 0.15481035046034722,
+   "supersaturation": 6.55530827815359
+  },
+  "precipitates": 118,
+  "radius_min": 2.021175814138313,
+  "radius_mean": 3.5516353551079405,
+  "radius_max": 5.224994946888096,
+  "smallest_gap": 1.0000331585555706,
+  "realised_volume_fraction": 0.1169768518518518,
+  "matrix_atoms": 190733,
+  "matrix_guest_fraction": 0.09744511961747573,
+  "xi": 6.404227551410017,
+  "c_eq": 0.021378035680683454,
+  "c_inf": 0.14013961426824706,
+  "critical_radius": 2.243892357244563,
+  "depleting_precipitates": 115,
+  "surface_value_range": [
+   0.047935423599953855,
+   0.1724021186326532
+  ],
+  "field_sd": 0.018200581209444247,
+  "field_range": [
+   0.028443460567503034,
+   0.18328862647671984
+  ],
+  "clipped_fraction": 0.0,
+  "split": "test",
+  "seconds": 0.8
+ },
+ {
+  "pattern": 145,
+  "parameters": {
+   "cr": 3.475229907311504,
+   "rb": 0.3235993137950716,
+   "volume_fraction": 0.1131442275542811,
+   "rho_c": 0.6596674422111186,
+   "matrix_mean": 0.0739576564663211,
+   "ell": 4.077029826265739,
+   "critical_radius_fraction": 0.7377847213710038,
+   "pcp": 0.1402273377453997,
+   "supersaturation": 4.904351604100484
+  },
+  "precipitates": 105,
+  "radius_min": 2.0505110259548793,
+  "radius_mean": 3.614933948612444,
+  "radius_max": 6.2380355430156085,
+  "smallest_gap": 1.000509672267035,
+  "realised_volume_fraction": 0.119,
+  "matrix_atoms": 190296,
+  "matrix_guest_fraction": 0.07373250094589481,
+  "xi": 6.729411885139558,
+  "c_eq": 0.019522635608456185,
+  "c_inf": 0.09574586926260133,
+  "critical_radius": 2.563971528865997,
+  "depleting_precipitates": 91,
+  "surface_value_range": [
+   0.03753037157924641,
+   0.14257582804765892
+  ],
+  "field_sd": 0.012034639529914688,
+  "field_range": [
+   0.02485342789167183,
+   0.14388007139212747
+  ],
+  "clipped_fraction": 0.0,
+  "split": "test",
+  "seconds": 0.7
+ },
+ {
+  "pattern": 146,
+  "parameters": {
+   "cr": 3.2704679312544935,
+   "rb": 0.3767385793902486,
+   "volume_fraction": 0.0807686801833446,
+   "rho_c": 0.7404025755707273,
+   "matrix_mean": 0.05405438144560901,
+   "ell": 2.402245222747939,
+   "critical_radius_fraction": 0.6713077370742314,
+   "pcp": 0.1094898192313168,
+   "supersaturation": 2.986710123169799
+  },
+  "precipitates": 83,
+  "radius_min": 2.0277290641567696,
+  "radius_mean": 3.688877695291203,
+  "radius_max": 6.598312914315518,
+  "smallest_gap": 1.0030744615506428,
+  "realised_volume_fraction": 0.10081018518518514,
+  "matrix_atoms": 194225,
+  "matrix_guest_fraction": 0.05331960355258077,
+  "xi": 7.4926555733018745,
+  "c_eq": 0.022858136292664904,
+  "c_inf": 0.06827062706209724,
+  "critical_radius": 2.195490426104297,
+  "depleting_precipitates": 79,
+  "surface_value_range": [
+   0.03289684445880618,
+   0.07473918093785659
+  ],
+  "field_sd": 0.007018371745003344,
+  "field_range": [
+   0.027337924761326106,
+   0.07602553578065252
+  ],
+  "clipped_fraction": 0.0,
+  "split": "test",
+  "seconds": 0.5
+ },
+ {
+  "pattern": 147,
+  "parameters": {
+   "cr": 3.0246166685993545,
+   "rb": 0.3526082318987918,
+   "volume_fraction": 0.11586653613972807,
+   "rho_c": 0.5174461275823143,
+   "matrix_mean": 0.14679699883875524,
+   "ell": 3.1843724915915534,
+   "critical_radius_fraction": 0.7637886686271937,
+   "pcp": 0.18974282950947957,
+   "supersaturation": 3.9686104404758074
+  },
+  "precipitates": 159,
+  "radius_min": 2.0055340209478447,
+  "radius_mean": 3.3405333516021405,
+  "radius_max": 5.81071188766336,
+  "smallest_gap": 1.0001012340805602,
+  "realised_volume_fraction": 0.13841666666666663,
+  "matrix_atoms": 186102,
+  "matrix_guest_fraction": 0.14752125178665462,
+  "xi": 5.688732013426251,
+  "c_eq": 0.04747927213165787,
+  "c_inf": 0.18842673508788946,
+  "critical_radius": 2.310167938417119,
+  "depleting_precipitates": 138,
+  "surface_value_range": [
+   0.0821306160238472,
+   0.23231310355738602
+  ],
+  "field_sd": 0.02234316424044272,
+  "field_range": [
+   0.06987594693662098,
+   0.24051378873499307
+  ],
+  "clipped_fraction": 0.0,
+  "split": "test",
+  "seconds": 1.2
+ },
+ {
+  "pattern": 148,
+  "parameters": {
+   "cr": 3.0402813226985868,
+   "rb": 0.24991441189954935,
+   "volume_fraction": 0.08329174817182389,
+   "rho_c": 0.853760469134937,
+   "matrix_mean": 0.09576846093033138,
+   "ell": 3.041158596691421,
+   "critical_radius_fraction": 0.7149580620517395,
+   "pcp": 0.15890294039396446,
+   "supersaturation": 4.051499372846823
+  },
+  "precipitates": 128,
+  "radius_min": 2.072195172126264,
+  "radius_mean": 3.269546074877951,
+  "radius_max": 4.931500437428834,
+  "smallest_gap": 1.0010943774303533,
+  "realised_volume_fraction": 0.09870833333333329,
+  "matrix_atoms": 194679,
+  "matrix_guest_fraction": 0.09662059081873238,
+  "xi": 6.408748485274223,
+  "c_eq": 0.030432243466896724,
+  "c_inf": 0.12329621532045391,
+  "critical_radius": 2.173673642568681,
+  "depleting_precipitates": 121,
+  "surface_value_range": [
+   0.05638385567306773,
+   0.13204002301513187
+  ],
+  "field_sd": 0.013275005893199587,
+  "field_range": [
+   0.043056751870247184,
+   0.13668980822370871
+  ],
+  "clipped_fraction": 0.0,
+  "split": "test",
+  "seconds": 0.9
+ },
+ {
+  "pattern": 149,
+  "parameters": {
+   "cr": 3.897807329769606,
+   "rb": 0.2803910276455714,
+   "volume_fraction": 0.08473087892323451,
+   "rho_c": 0.7196296232457313,
+   "matrix_mean": 0.08559741341028798,
+   "ell": 3.039815467084752,
+   "critical_radius_fraction": 0.6239375392110315,
+   "pcp": 0.13931951981528576,
+   "supersaturation": 3.4900990929050004
+  },
+  "precipitates": 60,
+  "radius_min": 2.0283934809028077,
+  "radius_mean": 3.904165374250712,
+  "radius_max": 6.268078943144318,
+  "smallest_gap": 1.0019540947103422,
+  "realised_volume_fraction": 0.08559722222222221,
+  "matrix_atoms": 197511,
+  "matrix_guest_fraction": 0.08590407622866575,
+  "xi": 8.566081768116414,
+  "c_eq": 0.030732221657389376,
+  "c_inf": 0.10725849892941007,
+  "critical_radius": 2.4319883136551694,
+  "depleting_precipitates": 53,
+  "surface_value_range": [
+   0.04991289129191247,
+   0.13754397896188092
+  ],
+  "field_sd": 0.011678328541532498,
+  "field_range": [
+   0.03657421437883747,
+   0.1390681894942036
+  ],
+  "clipped_fraction": 0.0,
+  "split": "test",
+  "seconds": 0.3
+ }
+]

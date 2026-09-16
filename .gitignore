@@ -59,6 +59,11 @@ data_shared_upp/
 # which IS tracked.
 data_random_centres/
 
+# Stage 5 diffusion-field patterns (~0.8 GB), regenerable:
+#   python -m experiments.reconstruction.generate_diffusion_patterns --split development
+#   python -m experiments.reconstruction.generate_diffusion_patterns --split test
+data_diffusion/
+
 # Personal teaching worksheets (exercise and solution notebooks), regenerable with
 #   python worksheets/_build/build_worksheets.py
 worksheets/

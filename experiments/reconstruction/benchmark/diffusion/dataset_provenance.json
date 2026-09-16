@@ -1,0 +1,138 @@
+{
+ "generated_by": "experiments/reconstruction/generate_diffusion_patterns.py",
+ "design": "clustersim with min_gap and r_min; matrix relabelled from geom_mesh_net.fields.physics",
+ "box_side": 60,
+ "prior": {
+  "cr": [
+   3.0,
+   4.0
+  ],
+  "rb": [
+   0.2,
+   0.4
+  ],
+  "volume_fraction": [
+   0.08,
+   0.12
+  ],
+  "rho_c": [
+   0.4,
+   0.9
+  ],
+  "matrix_mean": [
+   0.05,
+   0.15
+  ],
+  "ell": [
+   2.0,
+   5.0
+  ],
+  "critical_radius_fraction": [
+   0.6,
+   0.8
+  ]
+ },
+ "r_min": 2.0,
+ "min_gap": 1.0,
+ "opp_oversample": 64,
+ "entropy": {
+  "parameters": 20260916,
+  "geometry": 20260917,
+  "labels": 20260918
+ },
+ "splits": {
+  "development": [
+   0,
+   50
+  ],
+  "test": [
+   50,
+   150
+  ]
+ },
+ "checksum": "sha256 of coords, labels, radii and centres arrays",
+ "runs": [
+  {
+   "split": "development",
+   "patterns": 50,
+   "failed": 0,
+   "failures": [],
+   "seconds": 36.6,
+   "superseded": "first prior (candidate A of pilot/compare_diffusion_priors.py); its files were overwritten by the next development run. See ROADMAP Stage 5, correction of 2026-09-16."
+  },
+  {
+   "split": "development",
+   "patterns": 50,
+   "prior": {
+    "cr": [
+     3.0,
+     4.0
+    ],
+    "rb": [
+     0.2,
+     0.4
+    ],
+    "volume_fraction": [
+     0.08,
+     0.12
+    ],
+    "rho_c": [
+     0.4,
+     0.9
+    ],
+    "matrix_mean": [
+     0.05,
+     0.15
+    ],
+    "ell": [
+     2.0,
+     5.0
+    ],
+    "critical_radius_fraction": [
+     0.6,
+     0.8
+    ]
+   },
+   "failed": 0,
+   "failures": [],
+   "seconds": 45.1
+  },
+  {
+   "split": "test",
+   "patterns": 100,
+   "prior": {
+    "cr": [
+     3.0,
+     4.0
+    ],
+    "rb": [
+     0.2,
+     0.4
+    ],
+    "volume_fraction": [
+     0.08,
+     0.12
+    ],
+    "rho_c": [
+     0.4,
+     0.9
+    ],
+    "matrix_mean": [
+     0.05,
+     0.15
+    ],
+    "ell": [
+     2.0,
+     5.0
+    ],
+    "critical_radius_fraction": [
+     0.6,
+     0.8
+    ]
+   },
+   "failed": 0,
+   "failures": [],
+   "seconds": 68.1
+  }
+ ]
+}
