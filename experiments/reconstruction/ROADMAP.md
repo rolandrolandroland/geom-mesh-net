@@ -925,6 +925,126 @@ into this document before the test run. The PINN must meet all three conditions:
 **If (iii) fails,** the method cannot detect its own misspecification, and no
 physics-informed claim is made, whatever (i) and (ii) show.
 
+**A correction to Stage 5, recorded 2026-09-16, before any Stage 5 network was
+fitted or test pattern generated.** Three measurements on development data changed
+the design of 5.1. Each gate's purpose is unchanged; where a condition changed, the
+reason is given.
+
+*1. The field as first written does not satisfy its own boundary condition.* Adding
+single-precipitate profiles, (c_k − c∞)(R_k/r)·exp(−(r − R_k)/ξ), leaves every surface
+carrying its neighbours' tails, so the surface value is not c_k. This was measured on the
+benchmark geometry of development patterns 0–49 (`pilot/check_diffusion_field.py`), with
+c_eq at half the matrix concentration:
+
+- the mean over each precipitate's exposed surface missed c_k by a median 1.25–1.30
+  times the depletion amplitude, and single points at isolated precipitates missed it by
+  0.62–0.65 times;
+- more than 0.1% of matrix atoms fell outside [0, 1] in 22–45 of 47 patterns, which
+  fails Gate 5.1.
+
+The field now solves for the amplitudes so that every precipitate's mean surface value
+equals c_k exactly (`geom_mesh_net/fields/physics.py`). The mean-value property of the
+equation turns those K conditions into a K × K linear system. The equation still holds
+exactly throughout the matrix. Single surface points depart from their mean by the
+multipoles the solution leaves out. On the same geometry the solve cut the
+exposed-surface error to 0.06–0.10, and the error at single points of isolated
+precipitates to 0.07–0.08, times the amplitude.
+
+The boundary term of 5.2 changes to match. It penalises each precipitate's surface
+mean, λ_bc · mean_k[(mean of c over surface k − c_eq·exp(ℓ/R_k))²], with the mean
+estimated from points on each segmented interface.
+
+*2. The benchmark geometry cannot carry a boundary condition.* In the same patterns a
+median 77% of spheres overlap another, and 39 of 47 patterns have a centre inside
+another sphere. There the mean-value step fails: even the solved field put more than
+0.1% of matrix atoms outside [0, 1] in 18–22 of those 39 patterns, and in none of the
+other 8.
+
+Stage 5 therefore generates its own patterns, 50 development and 100 test, in
+`data_diffusion/` (`generate_diffusion_patterns.py`). clustersim gained two options, both
+off by default:
+
+- `min_gap` places precipitates so that no two come closer than the gap, surface to
+  surface, rejecting positions rather than radii;
+- `r_min` redraws radii below a floor, which also keeps exp(ℓ/R) finite.
+
+With both off, clustersim reproduces benchmark pattern 0 exactly
+(`tests/test_clustersim.py`). Stage 5 uses a gap of 1 and a floor of 2. Precipitates
+keep clustersim's in-sphere labelling, so the replay oracle still holds inside them.
+
+*3. Under the first prior, no method could recover the capillary length.* The
+Cramér–Rao bound is the smallest relative error that any unbiased fit to the observed
+matrix labels can reach when it knows the true precipitate geometry. The network, which
+must segment the geometry, can only do worse.
+
+- On the benchmark geometry at η = 0.37, the bound on ℓ was below 25% in at most 13 of
+  47 patterns at the patterns' own matrix concentrations.
+- A first Stage 5 prior, with about 100 small precipitates per pattern, still gave a
+  median bound of 45% on ℓ (`pilot/compare_diffusion_priors.py`, prior A).
+
+The information about ℓ comes from how the surface values change with radius. It
+scales with c_eq and needs a spread of radii. The screening length is read from the
+depletion and enrichment zones, which partly cancel where growing and dissolving
+precipitates mix.
+
+Nine priors were compared on 12 patterns each. Two, F and I, identified both constants
+best, but by making every precipitate dissolve. That contradicts the physical picture of
+5.1, in which large precipitates grow in depletion zones while small ones dissolve. The
+prior chosen keeps that picture. Its median bounds at η = 0.37 were 15% on ℓ and 32% on
+ξ over the 12 comparison patterns, and 13% and 20% over the 50 development patterns.
+
+**Open definition O8, fixed.** All parameters are uniform:
+
+- cr ∈ [3, 4] and rb ∈ [0.2, 0.4];
+- precipitate volume fraction ∈ [0.08, 0.12], with pcp following from it;
+- rho_c ∈ [0.4, 0.9];
+- matrix concentration ∈ [0.05, 0.15];
+- ℓ ∈ [2, 5];
+- critical radius R* ∈ [0.6, 0.8] × cr, which sets the supersaturation
+  c∞/c_eq = exp(ℓ/R*).
+
+Measured on the 50 development patterns (`pilot/check_diffusion_prior.py`):
+
+| Quantity | Median | Range, or count of 50 |
+| --- | --- | --- |
+| precipitates per pattern | 89 | 62–160 |
+| share of precipitates in depletion zones | 0.92 | 0.70–1.00 |
+| expected signal over a constant matrix, η = 0.37 | 105 nats | 14–345 |
+| expected signal over a constant matrix, η = 0.1 | 28 nats | 3.7–93 |
+| bound on ℓ, η = 0.37 | 13% | below 25% in 49 |
+| bound on ℓ, η = 0.1 | 25% | below 25% in 24 |
+| bound on ξ, η = 0.37 | 20% | below 25% in 32 |
+| bound on ξ, η = 0.1 | 38% | below 25% in 4 |
+| PDE residual, by autograd in float64 | 6 × 10⁻¹⁵ | at most 2 × 10⁻¹⁴ |
+| surface mean against c_k, relative to the amplitude | 4 × 10⁻¹⁵ | at most 6 × 10⁻¹⁵ |
+| single surface points against c_k, relative to the amplitude | 0.07 | 90th percentile 0.18 |
+| matrix atoms outside [0, 1] | none | none |
+
+**Gate 5.1, amended.** Every condition applies to each of the 50 development patterns:
+
+- the PDE residual is below 10⁻⁸;
+- fewer than 0.1% of matrix atoms need clipping;
+- every precipitate's surface mean, by direct integration, is within 10⁻⁶ of c_k
+  relative to the depletion amplitude. This condition is new: the boundary condition is
+  now exact by construction and must be verified as exact;
+- inside precipitates, the replay oracle passes Gate 0's slope, intercept and
+  reliability conditions;
+- in the matrix, in at least 48 of 50 patterns, the realised guest fraction lies within
+  three standard errors of the mean of c(x), and the log-likelihood gain of c(x) over
+  that constant lies within three standard errors of its expectation. This replaces
+  Gate 0's matrix check, which compared against a uniform rho_b.
+
+**Also recorded.**
+
+- *O6 is constrained.* The threshold for Gate 5.2(ii) is set on development patterns
+  relative to these bounds, pattern by pattern. A threshold that even a fit with the
+  true geometry cannot meet would fail the gate for a reason unrelated to the network.
+- *ξ is a constant of the model.* It is still set from the precipitates' sink strength.
+  Because every neighbour is explicit in the field, recovering ξ tests the network, not
+  a mean-field theory.
+- *The test scope is fixed.* The lowest-index test patterns are used: 50–73 at η = 0.37
+  and 50–61 at η = 0.1.
+
 ### Stage 6 — Measurement physics in the loss: position blur (1 week, optional)
 
 *Question: when positions are blurred the way a real instrument blurs them, does
@@ -1147,6 +1267,7 @@ experiments/reconstruction/
   benchmark.py                  shared access to splits, patterns, masks and cached oracles
   freeze_benchmark.py           writes benchmark/
   generate_random_centres.py    Stage 0 benchmark dataset
+  generate_diffusion_patterns.py  Stage 5 dataset, separated precipitates in a diffusion field
   stage0_oracle.py … stage6_blur.py, render.py
   results/                      metrics and metadata (tracked); fields and checkpoints (gitignored)
 

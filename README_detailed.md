@@ -672,6 +672,7 @@ geom_mesh_net/                      the library (installed with pip install -e .
   fields/baselines.py               kernel-smoothing baselines B0, B1, B2
   fields/point_cloud.py             voxel guest-probability fields
   fields/density_grid.py            density grids from simulation parameters (deprecated)
+  fields/physics.py                 screened diffusion field around precipitates (Stage 5)
   neural/datasets.py                torch Dataset and collate function
   neural/models.py                  neural field models
   inference/flow.py                 conditional autoregressive normalising flow
@@ -697,7 +698,7 @@ experiments/reconstruction/         solute-field reconstruction (E10 onward)
 scripts/generate_data.py            the data factory that wrote data/
 docs/experiments/                   one walkthrough per experiment
 docs/guides/                        introductory explanatory documents
-tests/                              198 regression tests
+tests/                              215 regression tests
 data/                               1,000 simulated patterns (gitignored, ~5 GB)
 ```
 
@@ -739,7 +740,7 @@ pip install -e ".[dev,notebooks]"
 ### Pipeline
 
 ```bash
-python -m pytest                                                    # 198 tests, ~90 s
+python -m pytest                                                    # 215 tests, ~90 s
 
 PYTHONPATH=. python scripts/generate_data.py                        # ~8 min, 5 GB
 python -m experiments.inference.recover_ground_truth                # E1, 6 s

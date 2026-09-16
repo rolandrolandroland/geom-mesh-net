@@ -25,6 +25,7 @@ The project has two purposes:
 | Replay oracle for the guest-probability field | **done, gate passed** (reconstruction Stage 0) |
 | Random-centre benchmark dataset | generated; 1,000 patterns |
 | Classical baselines and headroom map | **done, gate passed** (reconstruction Stage 1): 48% of test cells have headroom |
+| Diffusion-field simulator for a physics-informed network | in progress (reconstruction Stage 5.1): physics module and 150 patterns generated; Gate 5.1 not yet run |
 
 The first line of work is **amortized Bayesian inference of the physical
 cluster parameters**, specified in
@@ -64,6 +65,7 @@ geom_mesh_net/                    the library (installed with pip install -e .)
     baselines.py                  kernel-smoothing baselines B0, B1, B2
     point_cloud.py                voxel guest-probability fields
     density_grid.py               density grids from simulation parameters (deprecated as ground truth)
+    physics.py                    screened diffusion field around precipitates (Stage 5)
   neural/
     datasets.py                   torch Dataset and collate function
     models.py                     neural field models
@@ -87,6 +89,7 @@ docs/
 deprecated_code/                  superseded scripts, kept for reference
 data/                             1,000 simulated patterns (gitignored, ~5 GB)
 data_random_centres/              the same parameters with random cluster centres (gitignored, ~5 GB)
+data_diffusion/                   Stage 5 patterns: separated precipitates in a diffusion field (gitignored, ~0.8 GB)
 ```
 
 The old imports, such as `from geom_mesh_net.core_functions import clustersim`,
@@ -111,7 +114,7 @@ pip install -e ".[dev,notebooks]"
 python -m pytest -q
 ```
 
-198 tests, about 90 seconds. They need no data: the fixtures build synthetic
+215 tests, about 90 seconds. They need no data: the fixtures build synthetic
 patterns, and the tests that do want `data/` skip when it is absent.
 
 Where a closed form exists the tests compare against it rather than against a
