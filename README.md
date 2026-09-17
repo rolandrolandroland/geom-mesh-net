@@ -25,7 +25,7 @@ The project has two purposes:
 | Replay oracle for the guest-probability field | **done, gate passed** (reconstruction Stage 0) |
 | Random-centre benchmark dataset | generated; 1,000 patterns |
 | Classical baselines and headroom map | **done, gate passed** (reconstruction Stage 1): 48% of test cells have headroom |
-| Diffusion-field simulator for a physics-informed network | in progress (reconstruction Stage 5.1): physics module and 150 patterns generated; Gate 5.1 not yet run |
+| Diffusion-field simulator for a physics-informed network | **done, gate passed** (reconstruction Stage 5.1); the network, Stage 5.2, is next |
 
 The first line of work is **amortized Bayesian inference of the physical
 cluster parameters**, specified in
@@ -37,7 +37,8 @@ The second is **implicit neural reconstruction of the solute field**: estimating
 where the solute sits from a thinned point cloud, scored against an exact
 oracle. It is specified in
 [`experiments/reconstruction/ROADMAP.md`](experiments/reconstruction/ROADMAP.md).
-Stages 0 and 1 are complete. Each stage has a walkthrough in `docs/experiments/`
+Stages 0 and 1 are complete, and so is the first half of Stage 5, the simulator a
+physics-informed network needs. Each stage has a walkthrough in `docs/experiments/`
 (E10 onward).
 
 **For where both tracks stand and what comes next**, see
@@ -114,7 +115,7 @@ pip install -e ".[dev,notebooks]"
 python -m pytest -q
 ```
 
-215 tests, about 90 seconds. They need no data: the fixtures build synthetic
+217 tests, about 90 seconds. They need no data: the fixtures build synthetic
 patterns, and the tests that do want `data/` skip when it is absent.
 
 Where a closed form exists the tests compare against it rather than against a

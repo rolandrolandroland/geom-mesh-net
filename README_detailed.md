@@ -656,6 +656,16 @@ background, questions and methods.
   - Guest-adaptive smoothing closes 41% of the remaining gap and is the baseline later
     stages must beat.
 
+- **[E15 — A simulator with a physical law](docs/experiments/E15_diffusion_simulator.md)**
+  Stage 5.1 gives the simulator's matrix a screened diffusion field with Gibbs–Thomson
+  interfaces, so that a physics-informed network has a law to enforce.
+  - The design as first written missed its own boundary condition, and the benchmark
+    geometry overlapped too much to hold one; both were fixed before any network was
+    trained.
+  - A prior was chosen by the Cramér–Rao bound, so that the capillary and screening
+    lengths can be recovered at all.
+  - Gate 5.1 passed. Stages 2–4 will be E12–E14.
+
 ---
 
 ## 8. Package reference
@@ -698,7 +708,7 @@ experiments/reconstruction/         solute-field reconstruction (E10 onward)
 scripts/generate_data.py            the data factory that wrote data/
 docs/experiments/                   one walkthrough per experiment
 docs/guides/                        introductory explanatory documents
-tests/                              215 regression tests
+tests/                              217 regression tests
 data/                               1,000 simulated patterns (gitignored, ~5 GB)
 ```
 
@@ -740,7 +750,7 @@ pip install -e ".[dev,notebooks]"
 ### Pipeline
 
 ```bash
-python -m pytest                                                    # 215 tests, ~90 s
+python -m pytest                                                    # 217 tests, ~100 s
 
 PYTHONPATH=. python scripts/generate_data.py                        # ~8 min, 5 GB
 python -m experiments.inference.recover_ground_truth                # E1, 6 s

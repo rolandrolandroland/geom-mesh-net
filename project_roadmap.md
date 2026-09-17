@@ -40,7 +40,7 @@ Where this page and a track roadmap disagree, the track roadmap governs.
 | Track | Status | Headline | Next |
 | --- | --- | --- | --- |
 | Inference | Stages 0–4 **passed** | 90% credible intervals cover the truth 88–92% of the time for all four parameters | Check whether the result survives random cluster centres |
-| Reconstruction | Stages 0–1 **passed** | Standard smoothing leaves room for a better estimator in 48% of test cells | Widen the B2 baseline's grid, then Stage 2 |
+| Reconstruction | Stages 0–1 and 5.1 **passed** | Standard smoothing leaves room for a better estimator in 48% of test cells | Stage 5.2, the physics-informed network; separately, widen the B2 grid, then Stage 2 |
 
 ---
 
@@ -168,7 +168,7 @@ exact oracle.* Roadmap:
 | 2 — A field fitted to one pattern | does a Fourier-feature network beat B1 and B2? | beat both in ⅔ of headroom cells; close ≥ 20% of B1's gap | **next**, blocked by the B2 grid |
 | 3 — A field trained across simulations | does a learned prior beat any per-pattern estimator? | on test headroom cells | planned (extension) |
 | 4 — Fields to precipitates | do fields find precipitates better than current practice? | beat maximum separation and DBSCAN on F1 and radius error | planned (extension) |
-| 5 — Physics-informed field | does a governing equation help? | Gates 5.1 and 5.2 | planned (core) |
+| 5 — Physics-informed field | does a governing equation help? | Gates 5.1 and 5.2 | 5.1 passed (2026-09-16, after a design correction); 5.2 next |
 | 6 — Position blur in the loss | does modelling the blur recover the sharp field? | Gate 6 | optional |
 | 7 — Rendering and write-up | — | — | planned (core) |
 
@@ -253,7 +253,9 @@ by how much it changes what the project can claim.
 7. **Recheck the `cr` learning-curve drift** with the robust width ratio. The
    reported drift from 1.03 to 1.24 used the estimator later shown to be dominated
    by two patterns. About 10 minutes.
-8. **Reconstruction Stage 5**, the physics-informed field, then Stage 7.
+8. **Reconstruction Stage 5.** Stage 5.1, the diffusion-field simulator, passed on
+   2026-09-16 (walkthrough E15). Stage 5.2, the physics-informed network, is next;
+   then Stage 7.
 
 ### Later, or separate
 
