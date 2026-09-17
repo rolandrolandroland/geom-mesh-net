@@ -1045,6 +1045,32 @@ Measured on the 50 development patterns (`pilot/check_diffusion_prior.py`):
 - *The test scope is fixed.* The lowest-index test patterns are used: 50–73 at η = 0.37
   and 50–61 at η = 0.1.
 
+**Result of Gate 5.1: PASSED** (2026-09-16). Measured by `stage5_simulator.py` on the 50
+development patterns of `data_diffusion/`. The full report is
+`results/stage5_simulator.json`.
+
+| Condition | Required | Measured |
+| --- | --- | --- |
+| PDE residual, worst pattern | below 10⁻⁸ | 2.1 × 10⁻¹⁴ |
+| matrix atoms outside [0, 1], worst pattern | below 0.1% | none |
+| surface mean against c_k, worst precipitate | within 10⁻⁶ | 5.5 × 10⁻¹⁵ |
+| recalibration slope inside precipitates, 1,190,023 atoms | 0.99–1.01 | 0.9982 ± 0.0020 |
+| recalibration intercept inside precipitates | at most 0.01 in size | +0.0005 ± 0.0025 |
+| reliability bins within tolerance | all 10 gated bins | all 10; largest gap 0.0018 |
+| matrix fraction and log-likelihood gain both within 3 s.e. | at least 48 of 50 | 50 of 50 |
+
+In the matrix, the fraction scores ran from −1.8 to 2.6 and the log-likelihood gain
+scores from −2.2 to 2.1. The median gain over a constant matrix was 289 nats, against an
+expected 283. The check can also reject: labels drawn from a uniform matrix with the same
+mean would have scored between −46 and −9 in every pattern.
+`tests/test_stage5_simulator.py` confirms that both scores behave as standard normal
+draws for labels drawn from a field.
+
+Every atom's precipitate membership matched its label in all 150 patterns. The oracles of
+all 150 are cached in `results/oracle_diffusion/` (gitignored) for Stage 5.2, but nothing
+about the test patterns' labels entered the gate. Walkthrough:
+[E15](../../docs/experiments/E15_diffusion_simulator.md).
+
 ### Stage 6 — Measurement physics in the loss: position blur (1 week, optional)
 
 *Question: when positions are blurred the way a real instrument blurs them, does

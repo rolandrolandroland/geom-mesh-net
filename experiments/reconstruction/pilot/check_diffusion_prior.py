@@ -46,20 +46,6 @@ def fibonacci_sphere(n):
     return np.column_stack([np.cos(azimuth) * np.sin(polar), np.sin(azimuth) * np.sin(polar), np.cos(polar)])
 
 
-def surface_means(field):
-    """Mean of c over each surface. Source j depends only on the angle to j: a 1-D integral."""
-    mu, weights = np.polynomial.legendre.leggauss(QUADRATURE_NODES)
-    centres, radii = field.centres, field.radii
-    d = np.sqrt(((centres[:, None, :] - centres[None, :, :]) ** 2).sum(axis=-1))
-    means = field.c_inf + field.amplitudes.copy()
-    for k in range(len(radii)):
-        others = np.flatnonzero(np.arange(len(radii)) != k)
-        r = np.sqrt(radii[k] ** 2 + d[k, others][:, None] ** 2 - 2 * radii[k] * d[k, others][:, None] * mu[None, :])
-        averaged = 0.5 * (physics.source_kernel(r, radii[others][:, None], field.xi) * weights[None, :]).sum(axis=1)
-        means[k] += averaged @ field.amplitudes[others]
-    return means
-
-
 def analyse(path):
     with np.load(path, allow_pickle=True) as d:
         coords, labels = d["coords"].item(), d["labels"]
@@ -111,7 +97,7 @@ def analyse_pattern(index, coords, labels, physics_values, parameters):
     rng = np.random.default_rng(index)
     row["pde_residual"] = field.pde_residual(x[rng.choice(len(x), size=PDE_POINTS, replace=False)])
     amplitude = float(np.median(np.abs(field.surface_values - field.c_inf)))
-    row["surface_mean_error_rel"] = float(np.max(np.abs(surface_means(field) - field.surface_values)) / amplitude)
+    row["surface_mean_error_rel"] = float(np.max(np.abs(physics.surface_means(field, QUADRATURE_NODES) - field.surface_values)) / amplitude)
     points = (field.centres[:, None, :] + field.radii[:, None, None] * fibonacci_sphere(SURFACE_POINTS)[None]).reshape(-1, 3)
     owner = np.repeat(np.arange(len(field.radii)), SURFACE_POINTS)
     pointwise = np.abs(field(points) - field.surface_values[owner]) / amplitude

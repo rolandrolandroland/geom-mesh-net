@@ -72,3 +72,7 @@ worksheets/
 #   python -m experiments.reconstruction.stage0_oracle
 # The gate report and metadata beside them ARE tracked.
 experiments/reconstruction/results/oracle/
+
+# Stage 5 oracles (replay inside precipitates, the diffusion field in the matrix), regenerable by
+#   python -m experiments.reconstruction.stage5_simulator
+experiments/reconstruction/results/oracle_diffusion/

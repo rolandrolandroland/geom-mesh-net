@@ -83,10 +83,12 @@ def logistic_recalibration(p, y):
     return float(beta[0]), float(beta[1]), float(np.sqrt(cov[0, 0])), float(np.sqrt(cov[1, 1]))
 
 
-def assess(results):
-    p = np.concatenate([r.pop("in_p") for r in results])
-    y = np.concatenate([r.pop("in_y") for r in results]).astype(np.float64)
-    intercept, slope, se_intercept, se_slope = logistic_recalibration(p, y)
+def reliability_table(p, y):
+    """Observed guest fraction against the oracle in fixed bins of p*, with Gate 0's tolerances.
+
+    A bin is gated when it holds at least 10,000 atoms, and passes when its observed
+    fraction lies within max(0.005, three standard errors) of its mean oracle value.
+    """
     bins = []
     b = np.digitize(p, RELIABILITY_BINS) - 1
     for i in range(len(RELIABILITY_BINS) - 1):
@@ -100,6 +102,14 @@ def assess(results):
         bins.append(dict(lo=float(RELIABILITY_BINS[i]), hi=float(min(RELIABILITY_BINS[i + 1], 1.0)), atoms=n,
                          oracle=pred, observed=obs, gap=obs - pred, tolerance=tolerance,
                          gated=n >= 10_000, within=abs(obs - pred) <= tolerance))
+    return bins
+
+
+def assess(results):
+    p = np.concatenate([r.pop("in_p") for r in results])
+    y = np.concatenate([r.pop("in_y") for r in results]).astype(np.float64)
+    intercept, slope, se_intercept, se_slope = logistic_recalibration(p, y)
+    bins = reliability_table(p, y)
     matrix_ok = sum(r["matrix_within_3se"] for r in results)
     return dict(
         in_sphere_atoms=int(len(p)), intercept=intercept, slope=slope,

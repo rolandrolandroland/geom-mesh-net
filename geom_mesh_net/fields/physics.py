@@ -177,6 +177,27 @@ class DiffusionField:
                    np.asarray(values["amplitudes"], dtype=float))
 
 
+def surface_means(field, nodes=200):
+    """Mean of c over each precipitate's surface, by direct integration.
+
+    Precipitate j's source depends only on the angle between a surface point of k and
+    the direction from k to j, so each term is a one-dimensional Gauss-Legendre integral
+    in the cosine of that angle. The mean-value identity the solve relies on is not
+    used, so this verifies the solve rather than restating it.
+    """
+    mu, weights = np.polynomial.legendre.leggauss(nodes)
+    centres, radii = field.centres, field.radii
+    distance = np.sqrt(((centres[:, None, :] - centres[None, :, :]) ** 2).sum(axis=-1))
+    means = field.c_inf + field.amplitudes.astype(float)  # each source is exactly 1 on its own surface
+    for k in range(len(radii)):
+        others = np.flatnonzero(np.arange(len(radii)) != k)
+        d = distance[k, others][:, None]
+        r = np.sqrt(radii[k] ** 2 + d ** 2 - 2 * radii[k] * d * mu[None, :])
+        averaged = 0.5 * (source_kernel(r, radii[others][:, None], field.xi) * weights[None, :]).sum(axis=1)
+        means[k] += averaged @ field.amplitudes[others]
+    return means
+
+
 def solve_field(centres, radii, xi, c_eq, ell, c_inf):
     """The field whose surface means equal the Gibbs-Thomson values, for given constants."""
     centres, radii = _points(centres), np.asarray(radii, dtype=float)
