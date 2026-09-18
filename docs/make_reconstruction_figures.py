@@ -724,6 +724,131 @@ def figure_e17_field(split="test"):
     save(fig, f"e17_field{'' if split == 'test' else '_' + split}.png")
 
 
+
+# --------------------------------------------------------------------------
+# E18 — fitting the precipitates with the law
+# --------------------------------------------------------------------------
+
+E18_METHODS = (("detect_then_fit", "detect then fit", ACCENT, "o"),
+               ("joint_fit_w0.3", "joint, centres fixed", OPEN, "s"),
+               ("joint_free_w0.3", "joint, geometry free", PASS, "D"),
+               ("true_geometry", "the true geometry", FAINT, "^"))
+
+
+def figure_e18_interior():
+    """The oracle's interior profile against the power law fitted to it."""
+    data = load(PILOT / "geometry_bound_knots.json")
+    if data is None:
+        return
+    fig, ax = plt.subplots(figsize=(6.0, 3.6))
+    for row in data["per_pattern"]:
+        shape = row["interior_shape"]
+        levels = np.asarray(shape["levels"], dtype=float)
+        u = np.linspace(0, 1, len(levels))
+        ax.plot(u, levels, color=ACCENT, lw=1.2, alpha=0.55)
+        ax.plot(u, 1 - (1 - shape["rho_edge"]) * u ** shape["exponent"], color=OPEN, lw=1.0,
+                ls="--", alpha=0.55)
+    ax.plot([], [], color=ACCENT, lw=1.6, label="the oracle, at 12 knots")
+    ax.plot([], [], color=OPEN, lw=1.4, ls="--", label=r"$1-(1-\rho_{edge})u^m$ fitted to it")
+    ax.set_xlabel("fractional radius $u = r / R$")
+    ax.set_ylabel("guest probability inside")
+    ax.set_title("E18 Figure 1: the interior is flat, then falls at the rim", fontsize=10)
+    ax.set_ylim(0, 1.05)
+    ax.legend(frameon=False, fontsize=8, loc="lower left")
+    save(fig, "e18_interior.png")
+
+
+def figure_e18_bound():
+    """What freeing the geometry costs, per pattern and interface width."""
+    data = load(PILOT / "geometry_bound.json")
+    if data is None:
+        return
+    rows = sorted(data["per_pattern"], key=lambda r: r["pattern"])
+    widths = [w for w in ("0.3", "0.5", "1.0") if all(w in r["widths"] for r in rows)]
+    fig, ax = plt.subplots(figsize=(6.4, 3.6))
+    offsets = np.linspace(-0.22, 0.22, len(widths))
+    for width, offset, colour in zip(widths, offsets, (ACCENT, PASS, OPEN)):
+        x = np.arange(len(rows)) + offset
+        known = [r["widths"][width]["0.37"]["geometry_known"]["ell"] for r in rows]
+        unknown = [r["widths"][width]["0.37"]["radii_unknown"]["ell"] for r in rows]
+        ax.vlines(x, known, unknown, color=colour, lw=2.2, alpha=0.75)
+        ax.plot(x, known, "_", color=colour, ms=9, mew=1.6)
+        ax.plot(x, unknown, "o", color=colour, ms=4.5, label=f"w = {width} nm")
+    ax.set_xticks(np.arange(len(rows)))
+    ax.set_xticklabels([r["pattern"] for r in rows])
+    ax.set_xlabel("development pattern")
+    ax.set_ylabel(r"relative bound on $\ell$")
+    ax.set_title(r"E18 Figure 2: the bound with the geometry known ($-$) and unknown ($\bullet$)",
+                 fontsize=10)
+    ax.set_ylim(0, None)
+    ax.legend(frameon=False, fontsize=8, ncol=3, loc="upper left")
+    save(fig, "e18_bound.png")
+
+
+def figure_e18_identifiability():
+    """The bound on ell against radius spread, with the 0.03 / spread rule."""
+    data = load(PILOT / "identifiability_map.json")
+    if data is None:
+        return
+    fig, ax = plt.subplots(figsize=(6.0, 3.8))
+    series = (("0.3", "0.37", ACCENT, "o", "w = 0.3 nm, $\\eta$ = 0.37"),
+              ("1.0", "0.37", PASS, "s", "w = 1.0 nm, $\\eta$ = 0.37"),
+              ("0.3", "0.1", OPEN, "D", "w = 0.3 nm, $\\eta$ = 0.1"))
+    for width, eta, colour, marker, label in series:
+        spread = [g["realised_spread"] for g in data["per_geometry"]]
+        bound = [g["widths"][width][eta]["radii_unknown"]["ell"] for g in data["per_geometry"]]
+        ax.plot(spread, bound, marker, color=colour, ms=5, label=label, ls="none")
+    grid = np.linspace(0.04, 0.5, 100)
+    ax.plot(grid, 0.03 / grid, color=FAINT, lw=1.2, ls="--", label="0.03 / spread")
+    ax.set_xscale("log")
+    ax.set_yscale("log")
+    ax.set_xlabel("radius spread (standard deviation over mean)")
+    ax.set_ylabel(r"relative bound on $\ell$, radii unknown")
+    ax.set_title(r"E18 Figure 3: $\ell$ is only visible through the spread of radii", fontsize=10)
+    for axis in (ax.xaxis, ax.yaxis):
+        axis.set_major_formatter(matplotlib.ticker.ScalarFormatter())
+        axis.set_minor_formatter(matplotlib.ticker.NullFormatter())
+    ax.set_xticks([0.05, 0.1, 0.2, 0.4])
+    ax.set_yticks([0.1, 0.2, 0.5, 1.0])
+    ax.legend(frameon=False, fontsize=8, loc="upper right")
+    save(fig, "e18_identifiability.png")
+
+
+def figure_e18_methods():
+    """Each method's error in ell and xi, in units of the geometry-unknown bound."""
+    data = load(PILOT / "joint_fit.json")
+    if data is None:
+        return
+    cells = [c for c in data["per_cell"] if c["efficiency"] == 0.37
+             and "joint_free_w0.3" in c["fits"] and c["bounds"]["geometry_unknown"]]
+    if not cells:
+        print("  skipped e18_methods: no cells with the geometry-unknown bound")
+        return
+    patterns = [c["pattern"] for c in cells]
+    fig, axes = plt.subplots(1, 2, figsize=(7.6, 3.6), sharex=True)
+    for ax, name, symbol in zip(axes, ("ell", "xi"), (r"$\ell$", r"$\xi$")):
+        for key, label, colour, marker in E18_METHODS:
+            values = [abs(c["fits"][key]["relative_error"][name]) / c["bounds"]["geometry_unknown"][name]
+                      for c in cells]
+            ax.plot(np.arange(len(cells)), values, marker, color=colour, ms=5, ls="none",
+                    label=label if name == "ell" else None)
+            ax.hlines(np.median(values), -0.4, len(cells) - 0.6, color=colour, lw=1.0, alpha=0.5)
+        ax.axhline(1.0, color=FAINT, lw=1.2, ls="--")
+        ax.set_yscale("log")
+        ax.set_xticks(np.arange(len(cells)))
+        ax.set_xticklabels(patterns)
+        ax.set_xlabel("development pattern")
+        ax.set_title(f"{symbol} against its bound", fontsize=10)
+        ax.yaxis.set_major_formatter(matplotlib.ticker.ScalarFormatter())
+        ax.yaxis.set_minor_formatter(matplotlib.ticker.NullFormatter())
+        ax.set_yticks([0.1, 1, 10])
+    axes[0].set_ylabel("|relative error| / bound")
+    axes[0].legend(frameon=False, fontsize=8, loc="upper left", ncol=2)
+    fig.suptitle("E18 Figure 4: of the methods that must find the precipitates, only the free\n"
+                 "geometry is inside both bounds", fontsize=10)
+    save(fig, "e18_methods.png")
+
+
 if __name__ == "__main__":
     print("E10")
     figure_e10_grid_profile()
@@ -752,3 +877,8 @@ if __name__ == "__main__":
     figure_e17_constants()
     figure_e17_acceptance()
     figure_e17_field()
+    print("E18")
+    figure_e18_interior()
+    figure_e18_bound()
+    figure_e18_identifiability()
+    figure_e18_methods()
