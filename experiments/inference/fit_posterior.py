@@ -14,6 +14,14 @@ What this stage does *not* establish is whether the posterior is calibrated. A
 model can beat the prior handsomely and still be systematically overconfident.
 That is Stage 3, and it is the gate that matters.
 
+Stage 3 found that an ensemble of five independently seeded flows is what makes
+the coverage claim correct (ROADMAP section 8.8), so that is what this stage now
+fits and saves: ``flow.pt`` holds every member, and the posterior is their equal
+mixture. Sampling splits the draws evenly between members, because rank
+granularity depends on the number of draws and an ensemble drawing more than the
+model it is compared against is not comparable. ``--ensemble 1`` reproduces the
+single flow the first Stage 2 run reported.
+
 Splitting is by pattern index. If observation augmentation is added later
 (ROADMAP section 7), replicates of one pattern must stay on the same side of the
 split or the held-out set leaks and every calibration number becomes invalid.
@@ -40,6 +48,26 @@ from geom_mesh_net.simulation.parameters import PARAMETER_NAMES, PRIOR_HIGH, PRI
 N_VALIDATION = 100
 N_TEST = 100
 SPLIT_SEED = 42
+
+
+ENSEMBLE = 5          # the configuration Stage 3 validated; see ROADMAP section 8.8
+
+
+def mixture_log_prob(models, targets, context):
+    """Log density of the equal mixture of the members, which is the ensemble's posterior."""
+    with torch.no_grad():
+        stacked = torch.stack([model.log_prob(targets, context) for model in models])
+    return (torch.logsumexp(stacked, dim=0) - np.log(len(models))).numpy()
+
+
+def mixture_sample(models, context, n_samples, seed):
+    """Equal draws from each member, so the total does not depend on the ensemble size."""
+    per_member = max(1, n_samples // len(models))
+    with torch.no_grad():
+        draws = [model.sample(context, n_samples=per_member,
+                              generator=torch.Generator().manual_seed(seed + position))
+                 for position, model in enumerate(models)]
+    return torch.cat(draws, dim=1).numpy()
 
 
 def split_indices(n, n_val=N_VALIDATION, n_test=N_TEST, seed=SPLIT_SEED):
@@ -78,6 +106,8 @@ def main():
     )
     parser.add_argument("--output-dir", type=Path, default=paths.INFERENCE_DIR / "posterior")
     parser.add_argument("--seed", type=int, default=0)
+    parser.add_argument("--ensemble", type=int, default=ENSEMBLE,
+                        help="independently seeded flows to fit and save; 1 is the original single flow")
     parser.add_argument("--n-layers", type=int, default=6)
     parser.add_argument("--hidden", type=int, default=64)
     parser.add_argument("--max-epochs", type=int, default=500)
@@ -97,30 +127,41 @@ def main():
 
     print(f"Stage 2: fitting q(theta | features) on {len(features)} patterns")
     print(f"  train {len(train)}  validation {len(validation)}  test {len(test)}")
-    print(f"  flow: {args.n_layers} layers, {args.hidden} hidden, seed {args.seed}\n")
+    print(f"  flow: {args.n_layers} layers, {args.hidden} hidden, seed {args.seed}, "
+          f"{args.ensemble} member{'s' if args.ensemble > 1 else ''}\n")
 
-    torch.manual_seed(args.seed)
-    model = BoxFlow(
-        PRIOR_LOW, PRIOR_HIGH, context_dim=features.shape[1],
-        n_layers=args.n_layers, hidden=args.hidden,
-    )
+    models, histories, member_validation = [], [], []
     started = time.perf_counter()
-    history, best_val = fit(
-        model,
-        targets[train], context[train],
-        targets[validation], context[validation],
-        max_epochs=args.max_epochs, seed=args.seed,
-    )
+    for member in range(args.ensemble):
+        seed = args.seed + member
+        torch.manual_seed(seed)
+        model = BoxFlow(
+            PRIOR_LOW, PRIOR_HIGH, context_dim=features.shape[1],
+            n_layers=args.n_layers, hidden=args.hidden,
+        )
+        history, member_best = fit(
+            model,
+            targets[train], context[train],
+            targets[validation], context[validation],
+            max_epochs=args.max_epochs, seed=seed,
+        )
+        model.eval()
+        models.append(model)
+        histories.append(history)
+        member_validation.append(member_best)
+        if args.ensemble > 1:
+            print(f"  member {member + 1}/{args.ensemble} (seed {seed}): "
+                  f"validation log-likelihood {member_best:8.3f} nats over {len(history)} epochs")
     elapsed = time.perf_counter() - started
 
-    prior_log_prob = model.log_prior().item()
-    model.eval()
-    with torch.no_grad():
-        test_log_probs = model.log_prob(targets[test], context[test]).numpy()
+    prior_log_prob = models[0].log_prior().item()
+    # The gate is on the mixture, because the mixture is what is saved and reported.
+    best_val = float(mixture_log_prob(models, targets[validation], context[validation]).mean())
+    test_log_probs = mixture_log_prob(models, targets[test], context[test])
     test_mean = float(test_log_probs.mean())
     test_median = float(np.median(test_log_probs))
 
-    print(f"\n  trained in {elapsed:.1f} s over {len(history)} epochs")
+    print(f"\n  trained in {elapsed:.1f} s over {sum(len(h) for h in histories)} epochs")
     print("\nStage 2 gate (pre-registered, ROADMAP section 6):")
     print("  validation log-likelihood must beat the uniform prior.")
     print(f"    uniform prior log density : {prior_log_prob:8.3f} nats")
@@ -180,11 +221,7 @@ def main():
     test_log_prob = test_mean
 
     # Posterior samples on the test set, for Stage 3 to calibrate.
-    with torch.no_grad():
-        samples = model.sample(
-            context[test], n_samples=args.posterior_samples,
-            generator=torch.Generator().manual_seed(args.seed + 1),
-        ).numpy()
+    samples = mixture_sample(models, context[test], args.posterior_samples, args.seed + 1000)
 
     print("\nPer-parameter marginals on the test set:")
     print(
@@ -222,7 +259,9 @@ def main():
     args.output_dir.mkdir(parents=True, exist_ok=True)
     torch.save(
         {
-            "state_dict": model.state_dict(),
+            "members": [member.state_dict() for member in models],
+            "seeds": [args.seed + position for position in range(len(models))],
+            "state_dict": models[0].state_dict(),   # the first member, for readers that expect one flow
             "prior_low": PRIOR_LOW, "prior_high": PRIOR_HIGH,
             "context_mean": mean, "context_sd": sd,
             "n_layers": args.n_layers, "hidden": args.hidden,
@@ -242,13 +281,15 @@ def main():
     metadata = {
         "stage": 2,
         "seed": args.seed,
+        "ensemble": args.ensemble,
+        "member_validation_log_prob": [float(v) for v in member_validation],
         "n_patterns": int(len(features)),
         "n_train": int(len(train)),
         "n_validation": int(len(validation)),
         "n_test": int(len(test)),
         "n_layers": args.n_layers,
         "hidden": args.hidden,
-        "epochs_run": len(history),
+        "epochs_run": [len(h) for h in histories],
         "train_seconds": round(elapsed, 2),
         "prior_log_prob": prior_log_prob,
         "validation_log_prob": best_val,
@@ -265,12 +306,13 @@ def main():
         json.dumps(metadata, indent=2) + "\n"
     )
     with open(args.output_dir / "training_history.csv", "w") as handle:
-        handle.write("epoch,train_log_prob,val_log_prob\n")
-        for row in history:
-            handle.write(
-                f"{row['epoch']},{row['train_log_prob']:.6f},"
-                f"{row['val_log_prob']:.6f}\n"
-            )
+        handle.write("member,epoch,train_log_prob,val_log_prob\n")
+        for member, rows in enumerate(histories):
+            for row in rows:
+                handle.write(
+                    f"{member},{row['epoch']},{row['train_log_prob']:.6f},"
+                    f"{row['val_log_prob']:.6f}\n"
+                )
     print(f"\nwrote {args.output_dir}/")
 
 
