@@ -1,0 +1,2689 @@
+{
+ "cells": [
+  {
+   "pattern": 0,
+   "efficiency": 0.37,
+   "kind": "diffusion",
+   "bandwidth": 1.5,
+   "detection": {
+    "found": 133,
+    "true": 138,
+    "recall": 0.9420289855072463,
+    "precision": 0.9774436090225563,
+    "radius_ratio_median": 1.001840521914026
+   },
+   "admission": {
+    "atoms": 57047,
+    "share_of_observed_matrix": 0.801457758766252,
+    "precipitate_atoms": 89,
+    "bias_z": 0.42242946081668653,
+    "held_back_atoms": 11314,
+    "detection_atoms": 64046
+   },
+   "atoms": {
+    "train": 40000,
+    "early_stopping": 5733,
+    "acceptance": 11314,
+    "scored": 120509
+   },
+   "matrix_excess": {
+    "physics": 0.0002150092185980168,
+    "network": 0.0010659818270938592,
+    "b1": 0.02345509213591998,
+    "constant": 0.0017157487423223317
+   },
+   "acceptance": {
+    "physics_loss": 0.2402190046318245,
+    "network_loss": 0.24097225168186392,
+    "constant_loss": 0.24179198181127157,
+    "smoother_loss": 0.24074353862161307,
+    "smoother_bandwidth": 6.0,
+    "difference_nats": 8.522237124146105,
+    "beats_network": true,
+    "beats_constant": true,
+    "at_bound": [],
+    "accepted": true
+   },
+   "physics": {
+    "constants": {
+     "c_eq": 0.01679963045333353,
+     "ell": 3.702352061020087,
+     "xi": 10.947229867510632,
+     "c_inf": 0.1253250762379708
+    },
+    "seconds": 14.1,
+    "relative_error": {
+     "c_eq": 0.23962402320437626,
+     "ell": -0.07410395210276133,
+     "xi": 0.7887049951245373,
+     "c_inf": 0.2469544480748891
+    },
+    "normalised_error": {
+     "ell": 0.5076145510831694,
+     "xi": 4.960427358867938
+    }
+   },
+   "network": {
+    "best_step": 100,
+    "seconds": 20.6
+   },
+   "bound": {
+    "ell": 0.1459846884700905,
+    "xi": 0.15899940429820839
+   },
+   "true_geometry": {
+    "constants": {
+     "c_eq": 0.013805549034531715,
+     "ell": 3.9407149330464857,
+     "xi": 7.392653861733797,
+     "c_inf": 0.11204269077148227
+    },
+    "relative_error": {
+     "c_eq": 0.0186944459445324,
+     "ell": -0.014493402501524977,
+     "xi": 0.20791077283890802,
+     "c_inf": 0.11479789859844014
+    },
+    "matrix_excess": 3.981830167798517e-05
+   },
+   "seconds": 73.2
+  },
+  {
+   "pattern": 1,
+   "efficiency": 0.37,
+   "kind": "diffusion",
+   "bandwidth": 2.0,
+   "detection": {
+    "found": 67,
+    "true": 102,
+    "recall": 0.6372549019607843,
+    "precision": 0.9701492537313433,
+    "radius_ratio_median": 0.8974155324558177
+   },
+   "admission": {
+    "atoms": 62223,
+    "share_of_observed_matrix": 0.8543605939716312,
+    "precipitate_atoms": 545,
+    "bias_z": -1.0150944005470537,
+    "held_back_atoms": 12326,
+    "detection_atoms": 64228
+   },
+   "atoms": {
+    "train": 43663,
+    "early_stopping": 6234,
+    "acceptance": 12326,
+    "scored": 122343
+   },
+   "matrix_excess": {
+    "physics": 0.000557320101184311,
+    "network": 0.0016284742215716408,
+    "b1": 0.010196454623402573,
+    "constant": 0.0018143263650926555
+   },
+   "acceptance": {
+    "physics_loss": 0.4053401393225087,
+    "network_loss": 0.40586330364128953,
+    "constant_loss": 0.4060463686997345,
+    "smoother_loss": 0.40574890568381,
+    "smoother_bandwidth": 6.0,
+    "difference_nats": 6.448523393292824,
+    "beats_network": true,
+    "beats_constant": true,
+    "at_bound": [
+     "ell"
+    ],
+    "accepted": false
+   },
+   "physics": {
+    "constants": {
+     "c_eq": 0.10514184730233318,
+     "ell": 0.0010000000000000002,
+     "xi": 7.615637407243958,
+     "c_inf": 0.1761493185251387
+    },
+    "seconds": 14.8,
+    "relative_error": {
+     "c_eq": 1.2614947470707785,
+     "ell": -0.9996646138806005,
+     "xi": 0.09693694255672014,
+     "c_inf": -0.051302042645957946
+    },
+    "normalised_error": {
+     "ell": 7.55070809558468,
+     "xi": 0.584725418755723
+    }
+   },
+   "network": {
+    "best_step": 10,
+    "seconds": 18.4
+   },
+   "bound": {
+    "ell": 0.13239349226930916,
+    "xi": 0.16578198834420238
+   },
+   "true_geometry": {
+    "constants": {
+     "c_eq": 0.03621788389161324,
+     "ell": 3.8215080685062355,
+     "xi": 6.860235630264654,
+     "c_inf": 0.18725447205482898
+    },
+    "relative_error": {
+     "c_eq": -0.22098996477223642,
+     "ell": 0.28168076135032605,
+     "xi": -0.011869198194335517,
+     "c_inf": 0.008507649255953487
+    },
+    "matrix_excess": 2.6345092686452798e-05
+   },
+   "seconds": 69.5
+  },
+  {
+   "pattern": 2,
+   "efficiency": 0.37,
+   "kind": "diffusion",
+   "bandwidth": 1.5,
+   "detection": {
+    "found": 147,
+    "true": 152,
+    "recall": 0.9605263157894737,
+    "precision": 0.9931972789115646,
+    "radius_ratio_median": 1.0544092786199504
+   },
+   "admission": {
+    "atoms": 55232,
+    "share_of_observed_matrix": 0.7808054526428915,
+    "precipitate_atoms": 15,
+    "bias_z": 1.9099564944717173,
+    "held_back_atoms": 11022,
+    "detection_atoms": 63994
+   },
+   "atoms": {
+    "train": 38718,
+    "early_stopping": 5492,
+    "acceptance": 11022,
+    "scored": 120310
+   },
+   "matrix_excess": {
+    "physics": 0.0003162804515349782,
+    "network": 0.0011183499961918142,
+    "b1": 0.032334051142474673,
+    "constant": 0.0012165598847320158
+   },
+   "acceptance": {
+    "physics_loss": 0.2956939244750043,
+    "network_loss": 0.29592693938257475,
+    "constant_loss": 0.29600802311324137,
+    "smoother_loss": 0.29598141117061777,
+    "smoother_bandwidth": 9.0,
+    "difference_nats": 2.5682903112413795,
+    "beats_network": true,
+    "beats_constant": true,
+    "at_bound": [],
+    "accepted": true
+   },
+   "physics": {
+    "constants": {
+     "c_eq": 0.05875154134779211,
+     "ell": 1.248560281090043,
+     "xi": 23.563528785453414,
+     "c_inf": 0.14980109011415252
+    },
+    "seconds": 14.1,
+    "relative_error": {
+     "c_eq": 0.9725578085936659,
+     "ell": -0.5356390145987657,
+     "xi": 2.981989748111513,
+     "c_inf": 0.2517907893354894
+    },
+    "normalised_error": {
+     "ell": 3.229592041069781,
+     "xi": 15.713723336180456
+    }
+   },
+   "network": {
+    "best_step": 50,
+    "seconds": 18.2
+   },
+   "bound": {
+    "ell": 0.16585346006158067,
+    "xi": 0.18976977539406947
+   },
+   "true_geometry": {
+    "constants": {
+     "c_eq": 0.035888051828983546,
+     "ell": 2.131649897053508,
+     "xi": 5.28300070886471,
+     "c_inf": 0.11976627315727048
+    },
+    "relative_error": {
+     "c_eq": 0.20492595166843275,
+     "ell": -0.2072028385669744,
+     "xi": -0.10722817225270953,
+     "c_inf": 0.0008092564417558901
+    },
+    "matrix_excess": -1.9572622788566196e-05
+   },
+   "seconds": 70.9
+  },
+  {
+   "pattern": 3,
+   "efficiency": 0.37,
+   "kind": "diffusion",
+   "bandwidth": 1.5,
+   "detection": {
+    "found": 85,
+    "true": 86,
+    "recall": 0.9651162790697675,
+    "precision": 0.9764705882352941,
+    "radius_ratio_median": 0.9739363873614436
+   },
+   "admission": {
+    "atoms": 58811,
+    "share_of_observed_matrix": 0.8326359832635983,
+    "precipitate_atoms": 106,
+    "bias_z": 0.05306449586869543,
+    "held_back_atoms": 11699,
+    "detection_atoms": 63731
+   },
+   "atoms": {
+    "train": 41359,
+    "early_stopping": 5753,
+    "acceptance": 11699,
+    "scored": 120805
+   },
+   "matrix_excess": {
+    "physics": 0.0003869530126801579,
+    "network": 0.0012760955666796248,
+    "b1": 0.020471941295837737,
+    "constant": 0.0016405800465748022
+   },
+   "acceptance": {
+    "physics_loss": 0.3157141481445701,
+    "network_loss": 0.31600414580922215,
+    "constant_loss": 0.3165774170260142,
+    "smoother_loss": 0.31685747255510915,
+    "smoother_bandwidth": 6.0,
+    "difference_nats": 3.3926826787642383,
+    "beats_network": true,
+    "beats_constant": true,
+    "at_bound": [],
+    "accepted": true
+   },
+   "physics": {
+    "constants": {
+     "c_eq": 0.027982129180256943,
+     "ell": 3.9620299494486924,
+     "xi": 11.997571155811398,
+     "c_inf": 0.1375319081292005
+    },
+    "seconds": 8.0,
+    "relative_error": {
+     "c_eq": 0.0683552908587357,
+     "ell": 0.034851440886075835,
+     "xi": 0.6542284139571941,
+     "c_inf": 0.05579030160343712
+    },
+    "normalised_error": {
+     "ell": 0.3241955564198549,
+     "xi": 3.6251479167018226
+    }
+   },
+   "network": {
+    "best_step": 70,
+    "seconds": 19.5
+   },
+   "bound": {
+    "ell": 0.10750129110634968,
+    "xi": 0.18046943986561914
+   },
+   "true_geometry": {
+    "constants": {
+     "c_eq": 0.025617324221390302,
+     "ell": 4.051783146007746,
+     "xi": 9.317396611213917,
+     "c_inf": 0.13930325628814164
+    },
+    "relative_error": {
+     "c_eq": -0.02193275953868401,
+     "ell": 0.058294278514345654,
+     "xi": 0.2846852098820616,
+     "c_inf": 0.06938839845537847
+    },
+    "matrix_excess": 4.750324374197534e-05
+   },
+   "seconds": 61.9
+  },
+  {
+   "pattern": 4,
+   "efficiency": 0.37,
+   "kind": "diffusion",
+   "bandwidth": 1.5,
+   "detection": {
+    "found": 94,
+    "true": 94,
+    "recall": 0.9787234042553191,
+    "precision": 0.9787234042553191,
+    "radius_ratio_median": 1.0611186549393714
+   },
+   "admission": {
+    "atoms": 57174,
+    "share_of_observed_matrix": 0.8022567154124681,
+    "precipitate_atoms": 10,
+    "bias_z": -0.24436920807090523,
+    "held_back_atoms": 11327,
+    "detection_atoms": 64163
+   },
+   "atoms": {
+    "train": 40147,
+    "early_stopping": 5700,
+    "acceptance": 11327,
+    "scored": 120658
+   },
+   "matrix_excess": {
+    "physics": 0.0002289451818990873,
+    "network": 0.0009850960040689305,
+    "b1": 0.024756962672814742,
+    "constant": 0.0011944819383787886
+   },
+   "acceptance": {
+    "physics_loss": 0.31110986713600147,
+    "network_loss": 0.31173901831559764,
+    "constant_loss": 0.31176716070349236,
+    "smoother_loss": 0.31148453001011644,
+    "smoother_bandwidth": 12.0,
+    "difference_nats": 7.1263954112857695,
+    "beats_network": true,
+    "beats_constant": true,
+    "at_bound": [],
+    "accepted": true
+   },
+   "physics": {
+    "constants": {
+     "c_eq": 0.0386995268979755,
+     "ell": 2.9251103016982007,
+     "xi": 8.256442962118593,
+     "c_inf": 0.11700478216355627
+    },
+    "seconds": 6.7,
+    "relative_error": {
+     "c_eq": 0.22742139412216988,
+     "ell": -0.10452181800512539,
+     "xi": 0.16958456789394338,
+     "c_inf": -0.0030323286598601396
+    },
+    "normalised_error": {
+     "ell": 0.8839598357647639,
+     "xi": 0.8171200445784093
+    }
+   },
+   "network": {
+    "best_step": 100,
+    "seconds": 20.0
+   },
+   "bound": {
+    "ell": 0.11824272300188574,
+    "xi": 0.20753935608254484
+   },
+   "true_geometry": {
+    "constants": {
+     "c_eq": 0.029102869106643826,
+     "ell": 3.4185812848327806,
+     "xi": 6.209713597999433,
+     "c_inf": 0.11753745894800263
+    },
+    "relative_error": {
+     "c_eq": -0.07695294916640172,
+     "ell": 0.04654684377765661,
+     "xi": -0.12034937701577852,
+     "c_inf": 0.0015064732894831678
+    },
+    "matrix_excess": 1.7097083289618897e-05
+   },
+   "seconds": 58.3
+  },
+  {
+   "pattern": 5,
+   "efficiency": 0.37,
+   "kind": "diffusion",
+   "bandwidth": 2.0,
+   "detection": {
+    "found": 69,
+    "true": 73,
+    "recall": 0.9315068493150684,
+    "precision": 0.9855072463768116,
+    "radius_ratio_median": 1.02198075442241
+   },
+   "admission": {
+    "atoms": 58552,
+    "share_of_observed_matrix": 0.8124062864441606,
+    "precipitate_atoms": 36,
+    "bias_z": -0.2654711665918886,
+    "held_back_atoms": 11640,
+    "detection_atoms": 64425
+   },
+   "atoms": {
+    "train": 41103,
+    "early_stopping": 5809,
+    "acceptance": 11640,
+    "scored": 121350
+   },
+   "matrix_excess": {
+    "physics": 0.0002945906692331246,
+    "network": 0.002557404679315478,
+    "b1": 0.013029012871055623,
+    "constant": 0.0023068333465176005
+   },
+   "acceptance": {
+    "physics_loss": 0.25665862266859696,
+    "network_loss": 0.2586575786088634,
+    "constant_loss": 0.25776476334732845,
+    "smoother_loss": 0.25718434365466897,
+    "smoother_bandwidth": 6.0,
+    "difference_nats": 23.267847144701417,
+    "beats_network": true,
+    "beats_constant": true,
+    "at_bound": [],
+    "accepted": true
+   },
+   "physics": {
+    "constants": {
+     "c_eq": 0.02375501378379075,
+     "ell": 2.582388317918541,
+     "xi": 9.459489631772659,
+     "c_inf": 0.0997867866347988
+    },
+    "seconds": 6.4,
+    "relative_error": {
+     "c_eq": 0.6836065377540117,
+     "ell": -0.4120631494896475,
+     "xi": 0.22033157247659996,
+     "c_inf": 0.06045825927980508
+    },
+    "normalised_error": {
+     "ell": 3.1999713091831627,
+     "xi": 1.2673596834569318
+    }
+   },
+   "network": {
+    "best_step": 300,
+    "seconds": 25.0
+   },
+   "bound": {
+    "ell": 0.12877088875988466,
+    "xi": 0.1738508612453328
+   },
+   "true_geometry": {
+    "constants": {
+     "c_eq": 0.014705397181116483,
+     "ell": 4.236308675908201,
+     "xi": 8.38050390094602,
+     "c_inf": 0.0961939134488163
+    },
+    "relative_error": {
+     "c_eq": 0.0422264141682307,
+     "ell": -0.03551221811958527,
+     "xi": 0.08113586479731172,
+     "c_inf": 0.022275929002307127
+    },
+    "matrix_excess": -6.46435499573883e-08
+   },
+   "seconds": 62.5
+  },
+  {
+   "pattern": 6,
+   "efficiency": 0.37,
+   "kind": "diffusion",
+   "bandwidth": 1.5,
+   "detection": {
+    "found": 70,
+    "true": 70,
+    "recall": 1.0,
+    "precision": 1.0,
+    "radius_ratio_median": 1.0144434625195835
+   },
+   "admission": {
+    "atoms": 60844,
+    "share_of_observed_matrix": 0.8319061038001696,
+    "precipitate_atoms": 30,
+    "bias_z": -0.7338992141945148,
+    "held_back_atoms": 12083,
+    "detection_atoms": 64124
+   },
+   "atoms": {
+    "train": 42590,
+    "early_stopping": 6171,
+    "acceptance": 12083,
+    "scored": 123861
+   },
+   "matrix_excess": {
+    "physics": 0.00012507036032177732,
+    "network": 0.0018047609799691222,
+    "b1": 0.019317602120743516,
+    "constant": 0.001720048781722383
+   },
+   "acceptance": {
+    "physics_loss": 0.36536415715704573,
+    "network_loss": 0.3667269295752194,
+    "constant_loss": 0.3666178823418445,
+    "smoother_loss": 0.3662318262958318,
+    "smoother_bandwidth": 6.0,
+    "difference_nats": 16.466379128792507,
+    "beats_network": true,
+    "beats_constant": true,
+    "at_bound": [],
+    "accepted": true
+   },
+   "physics": {
+    "constants": {
+     "c_eq": 0.029915435756587016,
+     "ell": 4.461908938031717,
+     "xi": 12.714482216514625,
+     "c_inf": 0.17258210587097003
+    },
+    "seconds": 6.2,
+    "relative_error": {
+     "c_eq": 0.1237987182331115,
+     "ell": -0.050190950439533255,
+     "xi": 0.5836694414642811,
+     "c_inf": 0.09676283964625587
+    },
+    "normalised_error": {
+     "ell": 0.5130342644532994,
+     "xi": 3.223586665121871
+    }
+   },
+   "network": {
+    "best_step": 0,
+    "seconds": 12.4
+   },
+   "bound": {
+    "ell": 0.09783157562198665,
+    "xi": 0.18106212182206521
+   },
+   "true_geometry": {
+    "constants": {
+     "c_eq": 0.02159942588496592,
+     "ell": 5.339820659189308,
+     "xi": 7.9448252778745845,
+     "c_inf": 0.1562595383151179
+    },
+    "relative_error": {
+     "c_eq": -0.18859924616839052,
+     "ell": 0.13669060833977253,
+     "xi": -0.010421596720594062,
+     "c_inf": -0.006967413571644543
+    },
+    "matrix_excess": 5.0517654919146615e-05
+   },
+   "seconds": 48.9
+  },
+  {
+   "pattern": 7,
+   "efficiency": 0.37,
+   "kind": "diffusion",
+   "bandwidth": 1.5,
+   "detection": {
+    "found": 63,
+    "true": 63,
+    "recall": 0.9841269841269841,
+    "precision": 0.9841269841269841,
+    "radius_ratio_median": 1.0889201964565336
+   },
+   "admission": {
+    "atoms": 55766,
+    "share_of_observed_matrix": 0.7866463526457601,
+    "precipitate_atoms": 3,
+    "bias_z": -0.7118074272253504,
+    "held_back_atoms": 11181,
+    "detection_atoms": 63769
+   },
+   "atoms": {
+    "train": 38984,
+    "early_stopping": 5601,
+    "acceptance": 11181,
+    "scored": 120805
+   },
+   "matrix_excess": {
+    "physics": 0.0008059422677767492,
+    "network": 0.0015922082609479693,
+    "b1": 0.030329182549207245,
+    "constant": 0.001781813273119992
+   },
+   "acceptance": {
+    "physics_loss": 0.3219338222522945,
+    "network_loss": 0.32237881366259186,
+    "constant_loss": 0.3223561907722632,
+    "smoother_loss": 0.3221469824872726,
+    "smoother_bandwidth": 9.0,
+    "difference_nats": 4.975448958534752,
+    "beats_network": true,
+    "beats_constant": true,
+    "at_bound": [],
+    "accepted": true
+   },
+   "physics": {
+    "constants": {
+     "c_eq": 0.04668456495504497,
+     "ell": 3.062676442596766,
+     "xi": 5.279300827616077,
+     "c_inf": 0.10906775863891477
+    },
+    "seconds": 6.4,
+    "relative_error": {
+     "c_eq": 0.5161150124812726,
+     "ell": -0.2870977078675716,
+     "xi": -0.3490823926671718,
+     "c_inf": -0.08529905683273131
+    },
+    "normalised_error": {
+     "ell": 3.195658823757788,
+     "xi": 1.4880573302727966
+    }
+   },
+   "network": {
+    "best_step": 70,
+    "seconds": 12.2
+   },
+   "bound": {
+    "ell": 0.08983991211238634,
+    "xi": 0.23458934381458046
+   },
+   "true_geometry": {
+    "constants": {
+     "c_eq": 0.029445048803576162,
+     "ell": 4.419441964357295,
+     "xi": 4.890378830229377,
+     "c_inf": 0.11168441347826516
+    },
+    "relative_error": {
+     "c_eq": -0.043750743370238876,
+     "ell": 0.028717974421489156,
+     "xi": -0.39703498795285674,
+     "c_inf": -0.06335438061158605
+    },
+    "matrix_excess": 9.92158372738472e-05
+   },
+   "seconds": 49.6
+  },
+  {
+   "pattern": 0,
+   "efficiency": 0.1,
+   "kind": "diffusion",
+   "bandwidth": 2.0,
+   "detection": {
+    "found": 77,
+    "true": 138,
+    "recall": 0.5434782608695652,
+    "precision": 0.974025974025974,
+    "radius_ratio_median": 0.981112204304258
+   },
+   "admission": {
+    "atoms": 15908,
+    "share_of_observed_matrix": 0.8314749920356802,
+    "precipitate_atoms": 248,
+    "bias_z": -1.1193435895337154,
+    "held_back_atoms": 3224,
+    "detection_atoms": 16966
+   },
+   "atoms": {
+    "train": 11096,
+    "early_stopping": 1588,
+    "acceptance": 3224,
+    "scored": 172743
+   },
+   "matrix_excess": {
+    "physics": 0.0007795733752755662,
+    "network": 0.001869096537814835,
+    "b1": 0.03627536706336479,
+    "constant": 0.0020995852304452056
+   },
+   "acceptance": {
+    "physics_loss": 0.25717810246130446,
+    "network_loss": 0.2579864116490663,
+    "constant_loss": 0.25790192410781154,
+    "smoother_loss": 0.25794231005169727,
+    "smoother_bandwidth": 18.0,
+    "difference_nats": 2.6059888213442646,
+    "beats_network": true,
+    "beats_constant": true,
+    "at_bound": [],
+    "accepted": true
+   },
+   "physics": {
+    "constants": {
+     "c_eq": 0.03232433276871948,
+     "ell": 2.167810132214949,
+     "xi": 12.630436119178503,
+     "c_inf": 0.10388303767055088
+    },
+    "seconds": 3.5,
+    "relative_error": {
+     "c_eq": 1.3851726706408622,
+     "ell": -0.4578671069286725,
+     "xi": 1.063729770032987,
+     "c_inf": 0.0336113074198765
+    },
+    "normalised_error": {
+     "ell": 1.6305393178241518,
+     "xi": 3.4780430603174706
+    }
+   },
+   "network": {
+    "best_step": 10,
+    "seconds": 3.2
+   },
+   "bound": {
+    "ell": 0.2808071549845644,
+    "xi": 0.3058414607252998
+   },
+   "true_geometry": {
+    "constants": {
+     "c_eq": 0.011683693357867477,
+     "ell": 4.439737445003604,
+     "xi": 6.316764784738838,
+     "c_inf": 0.0995386802402463
+    },
+    "relative_error": {
+     "c_eq": -0.13787466894594647,
+     "ell": 0.11030374374975405,
+     "xi": 0.03211760968151234,
+     "c_inf": -0.009614006973382883
+    },
+    "matrix_excess": 1.773893207296373e-05
+   },
+   "seconds": 30.6
+  },
+  {
+   "pattern": 1,
+   "efficiency": 0.1,
+   "kind": "diffusion",
+   "bandwidth": 3.0,
+   "detection": {
+    "found": 7,
+    "true": 102,
+    "recall": 0.0196078431372549,
+    "precision": 0.2857142857142857,
+    "radius_ratio_median": 0.84612894701881
+   },
+   "admission": {
+    "atoms": 18298,
+    "share_of_observed_matrix": 0.8971236071521119,
+    "precipitate_atoms": 988,
+    "bias_z": 0.6704626138135164,
+    "held_back_atoms": 3621,
+    "detection_atoms": 17196
+   },
+   "atoms": {
+    "train": 12854,
+    "early_stopping": 1823,
+    "acceptance": 3621,
+    "scored": 175240
+   },
+   "matrix_excess": {
+    "physics": 0.002598068577805146,
+    "network": 0.003034167375296437,
+    "b1": 0.011749723466769224,
+    "constant": 0.002868363088253112
+   },
+   "acceptance": {
+    "physics_loss": 0.432800428479227,
+    "network_loss": 0.4329125462773158,
+    "constant_loss": 0.43303515597885645,
+    "smoother_loss": 0.43303515597885645,
+    "smoother_bandwidth": null,
+    "difference_nats": 0.40597854687948837,
+    "beats_network": true,
+    "beats_constant": true,
+    "at_bound": [
+     "ell"
+    ],
+    "accepted": false
+   },
+   "physics": {
+    "constants": {
+     "c_eq": 0.140908788694971,
+     "ell": 0.0010000000000000002,
+     "xi": 130.81211949382092,
+     "c_inf": 0.17675273670367134
+    },
+    "seconds": 0.7,
+    "relative_error": {
+     "c_eq": 2.0308054654344256,
+     "ell": -0.9996646138806005,
+     "xi": 17.841843267173765,
+     "c_inf": -0.048052177144363606
+    },
+    "normalised_error": {
+     "ell": 3.9254262204362647,
+     "xi": 55.95018331491024
+    }
+   },
+   "network": {
+    "best_step": 110,
+    "seconds": 3.9
+   },
+   "bound": {
+    "ell": 0.25466396710660877,
+    "xi": 0.3188880216308258
+   },
+   "true_geometry": {
+    "constants": {
+     "c_eq": 0.02931338228585272,
+     "ell": 4.348839592206441,
+     "xi": 4.422260433313619,
+     "c_inf": 0.17413219396347782
+    },
+    "relative_error": {
+     "c_eq": -0.36949880795120427,
+     "ell": 0.458540434721183,
+     "xi": -0.3630289128137316,
+     "c_inf": -0.06216579146655443
+    },
+    "matrix_excess": 7.025278150424308e-05
+   },
+   "seconds": 25.5
+  },
+  {
+   "pattern": 2,
+   "efficiency": 0.1,
+   "kind": "diffusion",
+   "bandwidth": 2.0,
+   "detection": {
+    "found": 85,
+    "true": 152,
+    "recall": 0.5394736842105263,
+    "precision": 0.9647058823529412,
+    "radius_ratio_median": 1.0154187912215127
+   },
+   "admission": {
+    "atoms": 15882,
+    "share_of_observed_matrix": 0.8171366142961191,
+    "precipitate_atoms": 175,
+    "bias_z": 0.26412849734189653,
+    "held_back_atoms": 3142,
+    "detection_atoms": 17446
+   },
+   "atoms": {
+    "train": 11196,
+    "early_stopping": 1544,
+    "acceptance": 3142,
+    "scored": 171806
+   },
+   "matrix_excess": {
+    "physics": 0.001047107458331309,
+    "network": 0.0017673860395516772,
+    "b1": 0.045987283158814896,
+    "constant": 0.0014874145593159471
+   },
+   "acceptance": {
+    "physics_loss": 0.32135344435154767,
+    "network_loss": 0.32147566421904694,
+    "constant_loss": 0.3214496013442733,
+    "smoother_loss": 0.32183257183529373,
+    "smoother_bandwidth": 9.0,
+    "difference_nats": 0.38401482368271767,
+    "beats_network": true,
+    "beats_constant": true,
+    "at_bound": [],
+    "accepted": true
+   },
+   "physics": {
+    "constants": {
+     "c_eq": 0.06966578243225464,
+     "ell": 1.0291476489956182,
+     "xi": 11.648825780730723,
+     "c_inf": 0.10686864561528507
+    },
+    "seconds": 3.2,
+    "relative_error": {
+     "c_eq": 1.3389987730712631,
+     "ell": -0.6172423361139228,
+     "xi": 0.9685296399681114,
+     "c_inf": -0.10696787220953785
+    },
+    "normalised_error": {
+     "ell": 1.9347742913347965,
+     "xi": 2.653291772809812
+    }
+   },
+   "network": {
+    "best_step": 0,
+    "seconds": 3.0
+   },
+   "bound": {
+    "ell": 0.3190255002241572,
+    "xi": 0.36502945130020403
+   },
+   "true_geometry": {
+    "constants": {
+     "c_eq": 0.052189497678222445,
+     "ell": 1.0150735561417679,
+     "xi": 4.283325706989402,
+     "c_inf": 0.10483570306488577
+    },
+    "relative_error": {
+     "c_eq": 0.7522400061360675,
+     "ell": -0.6224767326626715,
+     "xi": -0.2761627849397643,
+     "c_inf": -0.1239558577969514
+    },
+    "matrix_excess": 0.0001901475659273344
+   },
+   "seconds": 32.8
+  },
+  {
+   "pattern": 3,
+   "efficiency": 0.1,
+   "kind": "diffusion",
+   "bandwidth": 3.0,
+   "detection": {
+    "found": 29,
+    "true": 86,
+    "recall": 0.3372093023255814,
+    "precision": 1.0,
+    "radius_ratio_median": 1.0194017583393618
+   },
+   "admission": {
+    "atoms": 16474,
+    "share_of_observed_matrix": 0.851000897903132,
+    "precipitate_atoms": 362,
+    "bias_z": 0.9052330505823022,
+    "held_back_atoms": 3273,
+    "detection_atoms": 17113
+   },
+   "atoms": {
+    "train": 11549,
+    "early_stopping": 1652,
+    "acceptance": 3273,
+    "scored": 172377
+   },
+   "matrix_excess": {
+    "physics": 0.0017229423266934552,
+    "network": 0.0025908143600042455,
+    "b1": 0.018858328058905527,
+    "constant": 0.002784290018240876
+   },
+   "acceptance": {
+    "physics_loss": 0.34065744109744783,
+    "network_loss": 0.340772648351533,
+    "constant_loss": 0.34072928802300784,
+    "smoother_loss": 0.34082725312335477,
+    "smoother_bandwidth": 18.0,
+    "difference_nats": 0.377073342620689,
+    "beats_network": true,
+    "beats_constant": true,
+    "at_bound": [],
+    "accepted": true
+   },
+   "physics": {
+    "constants": {
+     "c_eq": 0.058569344797453654,
+     "ell": 2.044500738070363,
+     "xi": 6.50118890904532,
+     "c_inf": 0.11993929563984222
+    },
+    "seconds": 1.7,
+    "relative_error": {
+     "c_eq": 1.2361725583283372,
+     "ell": -0.46599229140628706,
+     "xi": -0.10361428340961443,
+     "c_inf": -0.07926279188438845
+    },
+    "normalised_error": {
+     "ell": 2.2535343913346217,
+     "xi": 0.2984799033224752
+    }
+   },
+   "network": {
+    "best_step": 10,
+    "seconds": 2.8
+   },
+   "bound": {
+    "ell": 0.206782862155616,
+    "xi": 0.3471398987209883
+   },
+   "true_geometry": {
+    "constants": {
+     "c_eq": 0.023659331329666352,
+     "ell": 4.196136794315784,
+     "xi": 7.439914708662276,
+     "c_inf": 0.13990378299172032
+    },
+    "relative_error": {
+     "c_eq": -0.09668876012254923,
+     "ell": 0.09599832993614799,
+     "xi": 0.02581748827768049,
+     "c_inf": 0.07399845788170922
+    },
+    "matrix_excess": 0.00011009371846165683
+   },
+   "seconds": 29.4
+  },
+  {
+   "pattern": 0,
+   "efficiency": 0.37,
+   "kind": "smoothed_noise",
+   "bandwidth": 1.5,
+   "detection": {
+    "found": 134,
+    "true": 138,
+    "recall": 0.9710144927536232,
+    "precision": 1.0,
+    "radius_ratio_median": 1.0124441723626605
+   },
+   "admission": {
+    "atoms": 56275,
+    "share_of_observed_matrix": 0.7908200596611696,
+    "precipitate_atoms": 73,
+    "bias_z": 0.8226449726420766,
+    "held_back_atoms": 11148,
+    "detection_atoms": 64046
+   },
+   "atoms": {
+    "train": 39427,
+    "early_stopping": 5700,
+    "acceptance": 11148,
+    "scored": 120509
+   },
+   "matrix_excess": {
+    "physics": 0.004905998488919705,
+    "network": 0.0018272662900918335,
+    "b1": 0.020660755306314726,
+    "constant": 0.001473319810757212
+   },
+   "acceptance": {
+    "physics_loss": 0.24143953296865683,
+    "network_loss": 0.24195534135227403,
+    "constant_loss": 0.24136446565343872,
+    "smoother_loss": 0.24133858641059922,
+    "smoother_bandwidth": 9.0,
+    "difference_nats": 5.750231860564546,
+    "beats_network": true,
+    "beats_constant": false,
+    "at_bound": [
+     "xi"
+    ],
+    "accepted": false
+   },
+   "physics": {
+    "constants": {
+     "c_eq": 0.015374798625054028,
+     "ell": 8.176992380671122,
+     "xi": 0.5,
+     "c_inf": 0.06630361035033201
+    },
+    "seconds": 20.9
+   },
+   "network": {
+    "best_step": 180,
+    "seconds": 22.1
+   },
+   "seconds": 65.5
+  },
+  {
+   "pattern": 1,
+   "efficiency": 0.37,
+   "kind": "smoothed_noise",
+   "bandwidth": 2.0,
+   "detection": {
+    "found": 65,
+    "true": 102,
+    "recall": 0.5980392156862745,
+    "precision": 0.9384615384615385,
+    "radius_ratio_median": 0.9438212908301069
+   },
+   "admission": {
+    "atoms": 60911,
+    "share_of_observed_matrix": 0.8373781028368794,
+    "precipitate_atoms": 459,
+    "bias_z": -1.4843706470272282,
+    "held_back_atoms": 12061,
+    "detection_atoms": 64228
+   },
+   "atoms": {
+    "train": 42713,
+    "early_stopping": 6137,
+    "acceptance": 12061,
+    "scored": 122343
+   },
+   "matrix_excess": {
+    "physics": 0.0023788974941925667,
+    "network": 0.0027898879689655653,
+    "b1": 0.008486217143971964,
+    "constant": 0.0017761935992962052
+   },
+   "acceptance": {
+    "physics_loss": 0.3987351332119606,
+    "network_loss": 0.3994739640514833,
+    "constant_loss": 0.3986741318294705,
+    "smoother_loss": 0.3986365173275784,
+    "smoother_bandwidth": 18.0,
+    "difference_nats": 8.91103875548325,
+    "beats_network": true,
+    "beats_constant": false,
+    "at_bound": [],
+    "accepted": false
+   },
+   "physics": {
+    "constants": {
+     "c_eq": 0.15186829117173373,
+     "ell": 1.2058940613593272,
+     "xi": 1.083944209871158,
+     "c_inf": 0.13544388972280405
+    },
+    "seconds": 8.1
+   },
+   "network": {
+    "best_step": 280,
+    "seconds": 28.8
+   },
+   "seconds": 59.6
+  },
+  {
+   "pattern": 2,
+   "efficiency": 0.37,
+   "kind": "smoothed_noise",
+   "bandwidth": 1.5,
+   "detection": {
+    "found": 147,
+    "true": 152,
+    "recall": 0.9605263157894737,
+    "precision": 0.9931972789115646,
+    "radius_ratio_median": 1.0817672438565062
+   },
+   "admission": {
+    "atoms": 53882,
+    "share_of_observed_matrix": 0.7617438275969343,
+    "precipitate_atoms": 13,
+    "bias_z": 0.9539122365121577,
+    "held_back_atoms": 10697,
+    "detection_atoms": 63994
+   },
+   "atoms": {
+    "train": 37818,
+    "early_stopping": 5367,
+    "acceptance": 10697,
+    "scored": 120310
+   },
+   "matrix_excess": {
+    "physics": 0.006339786241896905,
+    "network": 0.0014074863899958268,
+    "b1": 0.030305944682340658,
+    "constant": 0.001279202002422597
+   },
+   "acceptance": {
+    "physics_loss": 0.30451502333190444,
+    "network_loss": 0.30466839156486375,
+    "constant_loss": 0.30439372604109666,
+    "smoother_loss": 0.30469691671552684,
+    "smoother_bandwidth": 6.0,
+    "difference_nats": 1.6405799879656917,
+    "beats_network": true,
+    "beats_constant": false,
+    "at_bound": [
+     "xi"
+    ],
+    "accepted": false
+   },
+   "physics": {
+    "constants": {
+     "c_eq": 0.16326339307829046,
+     "ell": 1.265873761759958,
+     "xi": 0.5,
+     "c_inf": 0.0847328244052138
+    },
+    "seconds": 25.1
+   },
+   "network": {
+    "best_step": 70,
+    "seconds": 19.1
+   },
+   "seconds": 66.8
+  },
+  {
+   "pattern": 3,
+   "efficiency": 0.37,
+   "kind": "smoothed_noise",
+   "bandwidth": 1.5,
+   "detection": {
+    "found": 84,
+    "true": 86,
+    "recall": 0.9651162790697675,
+    "precision": 0.9880952380952381,
+    "radius_ratio_median": 0.9905221118608369
+   },
+   "admission": {
+    "atoms": 58233,
+    "share_of_observed_matrix": 0.8249202184242252,
+    "precipitate_atoms": 72,
+    "bias_z": 1.407593323600288,
+    "held_back_atoms": 11571,
+    "detection_atoms": 63731
+   },
+   "atoms": {
+    "train": 40930,
+    "early_stopping": 5732,
+    "acceptance": 11571,
+    "scored": 120805
+   },
+   "matrix_excess": {
+    "physics": 0.002295146635184153,
+    "network": 0.008191669598203721,
+    "b1": 0.01771521024396938,
+    "constant": 0.0015096941611589254
+   },
+   "acceptance": {
+    "physics_loss": 0.3077657787883334,
+    "network_loss": 0.3116367336885508,
+    "constant_loss": 0.3077893419806092,
+    "smoother_loss": 0.3079548417661095,
+    "smoother_bandwidth": 9.0,
+    "difference_nats": 44.79081915041598,
+    "beats_network": true,
+    "beats_constant": true,
+    "at_bound": [],
+    "accepted": true
+   },
+   "physics": {
+    "constants": {
+     "c_eq": 0.06381022552915214,
+     "ell": 3.3155105499775717,
+     "xi": 1.1113083868120515,
+     "c_inf": 0.0942449152494842
+    },
+    "seconds": 11.1
+   },
+   "network": {
+    "best_step": 420,
+    "seconds": 32.4
+   },
+   "seconds": 66.9
+  },
+  {
+   "pattern": 4,
+   "efficiency": 0.37,
+   "kind": "smoothed_noise",
+   "bandwidth": 1.5,
+   "detection": {
+    "found": 93,
+    "true": 94,
+    "recall": 0.9787234042553191,
+    "precision": 0.989247311827957,
+    "radius_ratio_median": 1.0670261008435395
+   },
+   "admission": {
+    "atoms": 56318,
+    "share_of_observed_matrix": 0.7901731832598872,
+    "precipitate_atoms": 15,
+    "bias_z": 1.3022151769240788,
+    "held_back_atoms": 11173,
+    "detection_atoms": 64163
+   },
+   "atoms": {
+    "train": 39538,
+    "early_stopping": 5607,
+    "acceptance": 11173,
+    "scored": 120658
+   },
+   "matrix_excess": {
+    "physics": 0.009645880199108947,
+    "network": 0.0012043251178507353,
+    "b1": 0.023808909260646605,
+    "constant": 0.0011552616729481047
+   },
+   "acceptance": {
+    "physics_loss": 0.31353017312571235,
+    "network_loss": 0.3135344947938686,
+    "constant_loss": 0.31346590394786217,
+    "smoother_loss": 0.31346590394786217,
+    "smoother_bandwidth": null,
+    "difference_nats": 0.048285998309517186,
+    "beats_network": true,
+    "beats_constant": false,
+    "at_bound": [
+     "xi"
+    ],
+    "accepted": false
+   },
+   "physics": {
+    "constants": {
+     "c_eq": 0.006439350328876705,
+     "ell": 11.178525626894743,
+     "xi": 0.5,
+     "c_inf": 0.09369619520630461
+    },
+    "seconds": 13.7
+   },
+   "network": {
+    "best_step": 0,
+    "seconds": 15.1
+   },
+   "seconds": 49.1
+  },
+  {
+   "pattern": 5,
+   "efficiency": 0.37,
+   "kind": "smoothed_noise",
+   "bandwidth": 2.0,
+   "detection": {
+    "found": 66,
+    "true": 73,
+    "recall": 0.9041095890410958,
+    "precision": 1.0,
+    "radius_ratio_median": 1.0533710102819729
+   },
+   "admission": {
+    "atoms": 57235,
+    "share_of_observed_matrix": 0.794080079968901,
+    "precipitate_atoms": 39,
+    "bias_z": 0.12001026152787261,
+    "held_back_atoms": 11293,
+    "detection_atoms": 64425
+   },
+   "atoms": {
+    "train": 40244,
+    "early_stopping": 5698,
+    "acceptance": 11293,
+    "scored": 121350
+   },
+   "matrix_excess": {
+    "physics": 0.0024605496491258705,
+    "network": 0.001996753387189465,
+    "b1": 0.010877569446172158,
+    "constant": 0.0019552309364886666
+   },
+   "acceptance": {
+    "physics_loss": 0.24479078628496379,
+    "network_loss": 0.24481289581401988,
+    "constant_loss": 0.24475576329931856,
+    "smoother_loss": 0.24423206545627055,
+    "smoother_bandwidth": 6.0,
+    "difference_nats": 0.2496829116305019,
+    "beats_network": true,
+    "beats_constant": false,
+    "at_bound": [
+     "xi"
+    ],
+    "accepted": false
+   },
+   "physics": {
+    "constants": {
+     "c_eq": 0.11338232307445652,
+     "ell": 0.2743859511187759,
+     "xi": 0.5,
+     "c_inf": 0.06433068165046314
+    },
+    "seconds": 6.1
+   },
+   "network": {
+    "best_step": 10,
+    "seconds": 16.0
+   },
+   "seconds": 45.9
+  },
+  {
+   "pattern": 6,
+   "efficiency": 0.37,
+   "kind": "smoothed_noise",
+   "bandwidth": 1.5,
+   "detection": {
+    "found": 69,
+    "true": 70,
+    "recall": 0.9857142857142858,
+    "precision": 1.0,
+    "radius_ratio_median": 1.0303427568749366
+   },
+   "admission": {
+    "atoms": 59621,
+    "share_of_observed_matrix": 0.8152444529561435,
+    "precipitate_atoms": 25,
+    "bias_z": -0.1309503483163079,
+    "held_back_atoms": 11820,
+    "detection_atoms": 64124
+   },
+   "atoms": {
+    "train": 41780,
+    "early_stopping": 6021,
+    "acceptance": 11820,
+    "scored": 123861
+   },
+   "matrix_excess": {
+    "physics": 0.0022496754766550553,
+    "network": 0.002094364312744401,
+    "b1": 0.018762311353359706,
+    "constant": 0.002178854730588542
+   },
+   "acceptance": {
+    "physics_loss": 0.36664302637763585,
+    "network_loss": 0.36708408826824745,
+    "constant_loss": 0.36668941778837577,
+    "smoother_loss": 0.36686624366281784,
+    "smoother_bandwidth": 6.0,
+    "difference_nats": 5.213351547029169,
+    "beats_network": true,
+    "beats_constant": true,
+    "at_bound": [],
+    "accepted": true
+   },
+   "physics": {
+    "constants": {
+     "c_eq": 0.145851608536491,
+     "ell": 0.034725346234065715,
+     "xi": 1.1099719842935072,
+     "c_inf": 0.11874001742506775
+    },
+    "seconds": 6.1
+   },
+   "network": {
+    "best_step": 50,
+    "seconds": 18.3
+   },
+   "seconds": 48.4
+  },
+  {
+   "pattern": 7,
+   "efficiency": 0.37,
+   "kind": "smoothed_noise",
+   "bandwidth": 1.5,
+   "detection": {
+    "found": 62,
+    "true": 63,
+    "recall": 0.9841269841269841,
+    "precision": 1.0,
+    "radius_ratio_median": 1.0898200174976531
+   },
+   "admission": {
+    "atoms": 55188,
+    "share_of_observed_matrix": 0.7784925303652291,
+    "precipitate_atoms": 3,
+    "bias_z": -0.4977310595337674,
+    "held_back_atoms": 11002,
+    "detection_atoms": 63769
+   },
+   "atoms": {
+    "train": 38637,
+    "early_stopping": 5549,
+    "acceptance": 11002,
+    "scored": 120805
+   },
+   "matrix_excess": {
+    "physics": 0.0017076701508749181,
+    "network": 0.0014184584835776337,
+    "b1": 0.027313164048149596,
+    "constant": 0.0012197002583870797
+   },
+   "acceptance": {
+    "physics_loss": 0.3259055893033928,
+    "network_loss": 0.3266230017305937,
+    "constant_loss": 0.32627230618036224,
+    "smoother_loss": 0.32632339726726456,
+    "smoother_bandwidth": 12.0,
+    "difference_nats": 7.892971524064457,
+    "beats_network": true,
+    "beats_constant": true,
+    "at_bound": [],
+    "accepted": true
+   },
+   "physics": {
+    "constants": {
+     "c_eq": 0.049370379947282675,
+     "ell": 4.313177866249673,
+     "xi": 1.3636045700613275,
+     "c_inf": 0.09594063505056287
+    },
+    "seconds": 7.4
+   },
+   "network": {
+    "best_step": 80,
+    "seconds": 17.9
+   },
+   "seconds": 50.0
+  },
+  {
+   "pattern": 0,
+   "efficiency": 0.1,
+   "kind": "smoothed_noise",
+   "bandwidth": 2.0,
+   "detection": {
+    "found": 85,
+    "true": 138,
+    "recall": 0.5869565217391305,
+    "precision": 0.9529411764705882,
+    "radius_ratio_median": 1.0033371360990366
+   },
+   "admission": {
+    "atoms": 15638,
+    "share_of_observed_matrix": 0.8195816077306998,
+    "precipitate_atoms": 202,
+    "bias_z": -1.1630571302013364,
+    "held_back_atoms": 3187,
+    "detection_atoms": 16966
+   },
+   "atoms": {
+    "train": 10894,
+    "early_stopping": 1557,
+    "acceptance": 3187,
+    "scored": 172743
+   },
+   "matrix_excess": {
+    "physics": 0.004646998550626669,
+    "network": 0.0017282605904557768,
+    "b1": 0.03138986551386305,
+    "constant": 0.0016337864380996103
+   },
+   "acceptance": {
+    "physics_loss": 0.2502266662031769,
+    "network_loss": 0.24949922284075635,
+    "constant_loss": 0.2494910373917044,
+    "smoother_loss": 0.2494910373917044,
+    "smoother_bandwidth": null,
+    "difference_nats": -2.318361996034325,
+    "beats_network": false,
+    "beats_constant": false,
+    "at_bound": [],
+    "accepted": false
+   },
+   "physics": {
+    "constants": {
+     "c_eq": 0.01644994939016669,
+     "ell": 8.773269327309732,
+     "xi": 0.7940095236734681,
+     "c_inf": 0.06541028474442274
+    },
+    "seconds": 3.0
+   },
+   "network": {
+    "best_step": 0,
+    "seconds": 3.1
+   },
+   "seconds": 32.6
+  },
+  {
+   "pattern": 1,
+   "efficiency": 0.1,
+   "kind": "smoothed_noise",
+   "bandwidth": 3.0,
+   "detection": {
+    "found": 11,
+    "true": 102,
+    "recall": 0.058823529411764705,
+    "precision": 0.5454545454545454,
+    "radius_ratio_median": 1.0274356208620432
+   },
+   "admission": {
+    "atoms": 17831,
+    "share_of_observed_matrix": 0.8826120756672713,
+    "precipitate_atoms": 801,
+    "bias_z": 0.6273893665794411,
+    "held_back_atoms": 3570,
+    "detection_atoms": 17196
+   },
+   "atoms": {
+    "train": 12474,
+    "early_stopping": 1787,
+    "acceptance": 3570,
+    "scored": 175240
+   },
+   "matrix_excess": {
+    "physics": 0.003016658507094039,
+    "network": 0.0028196893079942553,
+    "b1": 0.01025677936278191,
+    "constant": 0.002406463586502261
+   },
+   "acceptance": {
+    "physics_loss": 0.42166845448043766,
+    "network_loss": 0.4215143959957272,
+    "constant_loss": 0.42152789922192735,
+    "smoother_loss": 0.42152789922192735,
+    "smoother_bandwidth": null,
+    "difference_nats": -0.5499887904163098,
+    "beats_network": false,
+    "beats_constant": false,
+    "at_bound": [
+     "xi"
+    ],
+    "accepted": false
+   },
+   "physics": {
+    "constants": {
+     "c_eq": 0.0029318641726195343,
+     "ell": 21.414202014193254,
+     "xi": 0.5,
+     "c_inf": 0.15228172649861407
+    },
+    "seconds": 1.4
+   },
+   "network": {
+    "best_step": 0,
+    "seconds": 4.6
+   },
+   "seconds": 31.0
+  },
+  {
+   "pattern": 2,
+   "efficiency": 0.1,
+   "kind": "smoothed_noise",
+   "bandwidth": 2.0,
+   "detection": {
+    "found": 92,
+    "true": 152,
+    "recall": 0.5855263157894737,
+    "precision": 0.967391304347826,
+    "radius_ratio_median": 1.0065097898201338
+   },
+   "admission": {
+    "atoms": 15528,
+    "share_of_observed_matrix": 0.7998127145978566,
+    "precipitate_atoms": 154,
+    "bias_z": 0.8932828799611376,
+    "held_back_atoms": 3068,
+    "detection_atoms": 17446
+   },
+   "atoms": {
+    "train": 10944,
+    "early_stopping": 1516,
+    "acceptance": 3068,
+    "scored": 171806
+   },
+   "matrix_excess": {
+    "physics": 0.004291077697901102,
+    "network": 0.0016751257321189206,
+    "b1": 0.040524574890029974,
+    "constant": 0.0014736630383711535
+   },
+   "acceptance": {
+    "physics_loss": 0.3114809419474378,
+    "network_loss": 0.3113766059755954,
+    "constant_loss": 0.31141191205757657,
+    "smoother_loss": 0.31188288061529007,
+    "smoother_bandwidth": 12.0,
+    "difference_nats": -0.32010276161246876,
+    "beats_network": false,
+    "beats_constant": false,
+    "at_bound": [],
+    "accepted": false
+   },
+   "physics": {
+    "constants": {
+     "c_eq": 0.005265404243392233,
+     "ell": 12.462131507060098,
+     "xi": 0.8141191733306866,
+     "c_inf": 0.09231958574877912
+    },
+    "seconds": 6.4
+   },
+   "network": {
+    "best_step": 0,
+    "seconds": 8.6
+   },
+   "seconds": 46.5
+  },
+  {
+   "pattern": 3,
+   "efficiency": 0.1,
+   "kind": "smoothed_noise",
+   "bandwidth": 3.0,
+   "detection": {
+    "found": 30,
+    "true": 86,
+    "recall": 0.3488372093023256,
+    "precision": 1.0,
+    "radius_ratio_median": 1.0123466751836132
+   },
+   "admission": {
+    "atoms": 16206,
+    "share_of_observed_matrix": 0.8408598742935615,
+    "precipitate_atoms": 286,
+    "bias_z": 2.1722541607362458,
+    "held_back_atoms": 3199,
+    "detection_atoms": 17113
+   },
+   "atoms": {
+    "train": 11365,
+    "early_stopping": 1642,
+    "acceptance": 3199,
+    "scored": 172377
+   },
+   "matrix_excess": {
+    "physics": 0.0023084271502527565,
+    "network": 0.0030008688058797417,
+    "b1": 0.015795400774521906,
+    "constant": 0.00220789711317132
+   },
+   "acceptance": {
+    "physics_loss": 0.3460343390831779,
+    "network_loss": 0.3459185219143347,
+    "constant_loss": 0.3459825977181058,
+    "smoother_loss": 0.3459825977181058,
+    "smoother_bandwidth": null,
+    "difference_nats": -0.3704991231293319,
+    "beats_network": false,
+    "beats_constant": false,
+    "at_bound": [
+     "ell"
+    ],
+    "accepted": false
+   },
+   "physics": {
+    "constants": {
+     "c_eq": 0.1162141146513333,
+     "ell": 0.0010000000000000002,
+     "xi": 2.001486286620302,
+     "c_inf": 0.10591037954001739
+    },
+    "seconds": 3.0
+   },
+   "network": {
+    "best_step": 80,
+    "seconds": 8.4
+   },
+   "seconds": 40.9
+  },
+  {
+   "pattern": 0,
+   "efficiency": 0.37,
+   "kind": "shuffled_surface",
+   "bandwidth": 1.5,
+   "detection": {
+    "found": 132,
+    "true": 138,
+    "recall": 0.9347826086956522,
+    "precision": 0.9772727272727273,
+    "radius_ratio_median": 1.0089659403186355
+   },
+   "admission": {
+    "atoms": 57098,
+    "share_of_observed_matrix": 0.802259807508302,
+    "precipitate_atoms": 83,
+    "bias_z": -0.5462395170268202,
+    "held_back_atoms": 11335,
+    "detection_atoms": 64046
+   },
+   "atoms": {
+    "train": 40024,
+    "early_stopping": 5739,
+    "acceptance": 11335,
+    "scored": 120509
+   },
+   "matrix_excess": {
+    "physics": 0.0006396400177711148,
+    "network": 0.0016910915032209983,
+    "b1": 0.02332519061523261,
+    "constant": 0.0016025267088683182
+   },
+   "acceptance": {
+    "physics_loss": 0.24164658909309633,
+    "network_loss": 0.24293404921661593,
+    "constant_loss": 0.2425087567502259,
+    "smoother_loss": 0.24221425630900356,
+    "smoother_bandwidth": 9.0,
+    "difference_nats": 14.593360500094683,
+    "beats_network": true,
+    "beats_constant": true,
+    "at_bound": [
+     "ell"
+    ],
+    "accepted": false
+   },
+   "physics": {
+    "constants": {
+     "c_eq": 0.05804330960795837,
+     "ell": 0.0010000000000000002,
+     "xi": 17.25197075940919,
+     "c_inf": 0.11398798094450056
+    },
+    "seconds": 22.1
+   },
+   "network": {
+    "best_step": 480,
+    "seconds": 46.6
+   },
+   "seconds": 97.6
+  },
+  {
+   "pattern": 1,
+   "efficiency": 0.37,
+   "kind": "shuffled_surface",
+   "bandwidth": 2.0,
+   "detection": {
+    "found": 62,
+    "true": 102,
+    "recall": 0.5784313725490197,
+    "precision": 0.9516129032258065,
+    "radius_ratio_median": 0.926682453386551
+   },
+   "admission": {
+    "atoms": 63333,
+    "share_of_observed_matrix": 0.8684757313829787,
+    "precipitate_atoms": 636,
+    "bias_z": 1.7062786848370224,
+    "held_back_atoms": 12487,
+    "detection_atoms": 64228
+   },
+   "atoms": {
+    "train": 44497,
+    "early_stopping": 6349,
+    "acceptance": 12487,
+    "scored": 122343
+   },
+   "matrix_excess": {
+    "physics": 0.000807020850075113,
+    "network": 0.0010139888438786548,
+    "b1": 0.008746193255461276,
+    "constant": 0.0015544406863575722
+   },
+   "acceptance": {
+    "physics_loss": 0.40959758042163075,
+    "network_loss": 0.4098544726075453,
+    "constant_loss": 0.4098781482410106,
+    "smoother_loss": 0.40957249395396494,
+    "smoother_bandwidth": 9.0,
+    "difference_nats": 3.2078127255152364,
+    "beats_network": true,
+    "beats_constant": true,
+    "at_bound": [
+     "ell"
+    ],
+    "accepted": false
+   },
+   "physics": {
+    "constants": {
+     "c_eq": 0.12759682171309197,
+     "ell": 0.0010000000000000002,
+     "xi": 20.509858853086357,
+     "c_inf": 0.19312065360072037
+    },
+    "seconds": 17.3
+   },
+   "network": {
+    "best_step": 200,
+    "seconds": 38.3
+   },
+   "seconds": 89.2
+  },
+  {
+   "pattern": 2,
+   "efficiency": 0.37,
+   "kind": "shuffled_surface",
+   "bandwidth": 1.5,
+   "detection": {
+    "found": 147,
+    "true": 152,
+    "recall": 0.9671052631578947,
+    "precision": 1.0,
+    "radius_ratio_median": 1.0712998915421632
+   },
+   "admission": {
+    "atoms": 54647,
+    "share_of_observed_matrix": 0.7725048785316326,
+    "precipitate_atoms": 17,
+    "bias_z": 1.3938184722502869,
+    "held_back_atoms": 10902,
+    "detection_atoms": 63994
+   },
+   "atoms": {
+    "train": 38331,
+    "early_stopping": 5414,
+    "acceptance": 10902,
+    "scored": 120310
+   },
+   "matrix_excess": {
+    "physics": 0.0006147386891197648,
+    "network": 0.0010497586846766604,
+    "b1": 0.03231166386438916,
+    "constant": 0.0011727019368510394
+   },
+   "acceptance": {
+    "physics_loss": 0.31068454575304794,
+    "network_loss": 0.31101574568424667,
+    "constant_loss": 0.31138997246657196,
+    "smoother_loss": 0.31115033492467764,
+    "smoother_bandwidth": 9.0,
+    "difference_nats": 3.6107416499285923,
+    "beats_network": true,
+    "beats_constant": true,
+    "at_bound": [],
+    "accepted": true
+   },
+   "physics": {
+    "constants": {
+     "c_eq": 0.07449281852240751,
+     "ell": 0.3504270648796759,
+     "xi": 27.723974861267774,
+     "c_inf": 0.14872076863291853
+    },
+    "seconds": 16.1
+   },
+   "network": {
+    "best_step": 110,
+    "seconds": 23.1
+   },
+   "seconds": 68.4
+  },
+  {
+   "pattern": 3,
+   "efficiency": 0.37,
+   "kind": "shuffled_surface",
+   "bandwidth": 1.5,
+   "detection": {
+    "found": 84,
+    "true": 86,
+    "recall": 0.9534883720930233,
+    "precision": 0.9761904761904762,
+    "radius_ratio_median": 0.9687893803091536
+   },
+   "admission": {
+    "atoms": 58896,
+    "share_of_observed_matrix": 0.8340685057797319,
+    "precipitate_atoms": 90,
+    "bias_z": 0.27624986214686814,
+    "held_back_atoms": 11635,
+    "detection_atoms": 63731
+   },
+   "atoms": {
+    "train": 41479,
+    "early_stopping": 5782,
+    "acceptance": 11635,
+    "scored": 120805
+   },
+   "matrix_excess": {
+    "physics": 0.0014256146277376036,
+    "network": 0.0013087011882670363,
+    "b1": 0.01892120742820863,
+    "constant": 0.0022264163148169036
+   },
+   "acceptance": {
+    "physics_loss": 0.30897359252970796,
+    "network_loss": 0.30922758523495414,
+    "constant_loss": 0.30953774814238416,
+    "smoother_loss": 0.3089405663321105,
+    "smoother_bandwidth": 9.0,
+    "difference_nats": 2.9552051255392513,
+    "beats_network": true,
+    "beats_constant": true,
+    "at_bound": [
+     "ell"
+    ],
+    "accepted": false
+   },
+   "physics": {
+    "constants": {
+     "c_eq": 0.07660312412078654,
+     "ell": 0.0010000000000000002,
+     "xi": 7.744477463274512,
+     "c_inf": 0.1251892022162993
+    },
+    "seconds": 12.5
+   },
+   "network": {
+    "best_step": 270,
+    "seconds": 30.0
+   },
+   "seconds": 71.4
+  },
+  {
+   "pattern": 4,
+   "efficiency": 0.37,
+   "kind": "shuffled_surface",
+   "bandwidth": 1.5,
+   "detection": {
+    "found": 92,
+    "true": 94,
+    "recall": 0.9787234042553191,
+    "precision": 1.0,
+    "radius_ratio_median": 1.0481521047465114
+   },
+   "admission": {
+    "atoms": 57066,
+    "share_of_observed_matrix": 0.8007269767311309,
+    "precipitate_atoms": 11,
+    "bias_z": 1.1747988818640935,
+    "held_back_atoms": 11315,
+    "detection_atoms": 64163
+   },
+   "atoms": {
+    "train": 40039,
+    "early_stopping": 5712,
+    "acceptance": 11315,
+    "scored": 120658
+   },
+   "matrix_excess": {
+    "physics": 0.0006942327619239852,
+    "network": 0.0008629222786014634,
+    "b1": 0.02430930529643177,
+    "constant": 0.0007755266455207188
+   },
+   "acceptance": {
+    "physics_loss": 0.32048454997841935,
+    "network_loss": 0.32046463416576954,
+    "constant_loss": 0.320530420606679,
+    "smoother_loss": 0.3206253154341564,
+    "smoother_bandwidth": 12.0,
+    "difference_nats": -0.22534742013268827,
+    "beats_network": false,
+    "beats_constant": true,
+    "at_bound": [],
+    "accepted": false
+   },
+   "physics": {
+    "constants": {
+     "c_eq": 0.07223109536239743,
+     "ell": 0.8091007834185452,
+     "xi": 2.569835225423607,
+     "c_inf": 0.09734637825657917
+    },
+    "seconds": 5.4
+   },
+   "network": {
+    "best_step": 0,
+    "seconds": 12.9
+   },
+   "seconds": 52.4
+  },
+  {
+   "pattern": 5,
+   "efficiency": 0.37,
+   "kind": "shuffled_surface",
+   "bandwidth": 2.0,
+   "detection": {
+    "found": 67,
+    "true": 73,
+    "recall": 0.9041095890410958,
+    "precision": 0.9850746268656716,
+    "radius_ratio_median": 0.9998031349175178
+   },
+   "admission": {
+    "atoms": 58258,
+    "share_of_observed_matrix": 0.8082273560282113,
+    "precipitate_atoms": 43,
+    "bias_z": 0.1028468793585038,
+    "held_back_atoms": 11491,
+    "detection_atoms": 64425
+   },
+   "atoms": {
+    "train": 40952,
+    "early_stopping": 5815,
+    "acceptance": 11491,
+    "scored": 121350
+   },
+   "matrix_excess": {
+    "physics": 0.000876313402831258,
+    "network": 0.0010376542524290766,
+    "b1": 0.012891148330429342,
+    "constant": 0.0017828518647969305
+   },
+   "acceptance": {
+    "physics_loss": 0.24870383961490558,
+    "network_loss": 0.2485347101362004,
+    "constant_loss": 0.24857739871086756,
+    "smoother_loss": 0.2484428048147924,
+    "smoother_bandwidth": 9.0,
+    "difference_nats": -1.9434668398011854,
+    "beats_network": false,
+    "beats_constant": false,
+    "at_bound": [
+     "ell"
+    ],
+    "accepted": false
+   },
+   "physics": {
+    "constants": {
+     "c_eq": 0.051764047562722695,
+     "ell": 0.0010000000000000002,
+     "xi": 17.43188873379275,
+     "c_inf": 0.1050256490435998
+    },
+    "seconds": 13.2
+   },
+   "network": {
+    "best_step": 70,
+    "seconds": 14.3
+   },
+   "seconds": 59.2
+  },
+  {
+   "pattern": 6,
+   "efficiency": 0.37,
+   "kind": "shuffled_surface",
+   "bandwidth": 1.5,
+   "detection": {
+    "found": 70,
+    "true": 70,
+    "recall": 0.9714285714285714,
+    "precision": 0.9714285714285714,
+    "radius_ratio_median": 1.0138759685404706
+   },
+   "admission": {
+    "atoms": 60706,
+    "share_of_observed_matrix": 0.8300046510355393,
+    "precipitate_atoms": 31,
+    "bias_z": -1.4038683627815123,
+    "held_back_atoms": 12031,
+    "detection_atoms": 64124
+   },
+   "atoms": {
+    "train": 42560,
+    "early_stopping": 6115,
+    "acceptance": 12031,
+    "scored": 123861
+   },
+   "matrix_excess": {
+    "physics": 0.0013716728309087212,
+    "network": 0.0017171337667301056,
+    "b1": 0.018521675105000468,
+    "constant": 0.0022666705292141986
+   },
+   "acceptance": {
+    "physics_loss": 0.36823409355344844,
+    "network_loss": 0.3689441640836249,
+    "constant_loss": 0.3691191105821778,
+    "smoother_loss": 0.3685234836485957,
+    "smoother_bandwidth": 9.0,
+    "difference_nats": 8.542858548553054,
+    "beats_network": true,
+    "beats_constant": true,
+    "at_bound": [],
+    "accepted": true
+   },
+   "physics": {
+    "constants": {
+     "c_eq": 0.09263497278653722,
+     "ell": 0.5018605029378876,
+     "xi": 25.322906436613504,
+     "c_inf": 0.17401827234953685
+    },
+    "seconds": 7.5
+   },
+   "network": {
+    "best_step": 220,
+    "seconds": 24.2
+   },
+   "seconds": 64.9
+  },
+  {
+   "pattern": 7,
+   "efficiency": 0.37,
+   "kind": "shuffled_surface",
+   "bandwidth": 1.5,
+   "detection": {
+    "found": 63,
+    "true": 63,
+    "recall": 1.0,
+    "precision": 1.0,
+    "radius_ratio_median": 1.0832106683033111
+   },
+   "admission": {
+    "atoms": 55292,
+    "share_of_observed_matrix": 0.7800019749742548,
+    "precipitate_atoms": 0,
+    "bias_z": -0.05911027819261357,
+    "held_back_atoms": 11041,
+    "detection_atoms": 63769
+   },
+   "atoms": {
+    "train": 38677,
+    "early_stopping": 5574,
+    "acceptance": 11041,
+    "scored": 120805
+   },
+   "matrix_excess": {
+    "physics": 0.002219287350335941,
+    "network": 0.0013980926776800962,
+    "b1": 0.027635088284547027,
+    "constant": 0.0020618489773890913
+   },
+   "acceptance": {
+    "physics_loss": 0.3417243863233274,
+    "network_loss": 0.3416083406303538,
+    "constant_loss": 0.34169133223597403,
+    "smoother_loss": 0.34144396826258455,
+    "smoother_bandwidth": 9.0,
+    "difference_nats": -1.2812604961218708,
+    "beats_network": false,
+    "beats_constant": false,
+    "at_bound": [
+     "ell"
+    ],
+    "accepted": false
+   },
+   "physics": {
+    "constants": {
+     "c_eq": 0.0811809003355086,
+     "ell": 0.0010000000000000002,
+     "xi": 1.1503848986290186,
+     "c_inf": 0.09770722677740752
+    },
+    "seconds": 12.9
+   },
+   "network": {
+    "best_step": 120,
+    "seconds": 16.5
+   },
+   "seconds": 64.5
+  },
+  {
+   "pattern": 0,
+   "efficiency": 0.1,
+   "kind": "shuffled_surface",
+   "bandwidth": 2.0,
+   "detection": {
+    "found": 80,
+    "true": 138,
+    "recall": 0.5362318840579711,
+    "precision": 0.925,
+    "radius_ratio_median": 0.9618665445471506
+   },
+   "admission": {
+    "atoms": 16113,
+    "share_of_observed_matrix": 0.8415631305086546,
+    "precipitate_atoms": 263,
+    "bias_z": 0.47233744430294045,
+    "held_back_atoms": 3271,
+    "detection_atoms": 16966
+   },
+   "atoms": {
+    "train": 11251,
+    "early_stopping": 1591,
+    "acceptance": 3271,
+    "scored": 172743
+   },
+   "matrix_excess": {
+    "physics": 0.0011844607926880246,
+    "network": 0.0016581393912215858,
+    "b1": 0.031752110752469864,
+    "constant": 0.0019585785098150954
+   },
+   "acceptance": {
+    "physics_loss": 0.2754577887989547,
+    "network_loss": 0.2762045940427575,
+    "constant_loss": 0.2768975804398113,
+    "smoother_loss": 0.27633101302025076,
+    "smoother_bandwidth": 18.0,
+    "difference_nats": 2.44279995247887,
+    "beats_network": true,
+    "beats_constant": true,
+    "at_bound": [
+     "ell",
+     "xi"
+    ],
+    "accepted": false
+   },
+   "physics": {
+    "constants": {
+     "c_eq": 0.0631478831441893,
+     "ell": 0.0010000000000000002,
+     "xi": 199.99999999999991,
+     "c_inf": 0.16608283553998496
+    },
+    "seconds": 3.5
+   },
+   "network": {
+    "best_step": 20,
+    "seconds": 3.0
+   },
+   "seconds": 66.0
+  },
+  {
+   "pattern": 1,
+   "efficiency": 0.1,
+   "kind": "shuffled_surface",
+   "bandwidth": 3.0,
+   "detection": {
+    "found": 9,
+    "true": 102,
+    "recall": 0.029411764705882353,
+    "precision": 0.3333333333333333,
+    "radius_ratio_median": 1.0000142601741744
+   },
+   "admission": {
+    "atoms": 17902,
+    "share_of_observed_matrix": 0.8839077481212749,
+    "precipitate_atoms": 847,
+    "bias_z": 0.72518790593376,
+    "held_back_atoms": 3562,
+    "detection_atoms": 17196
+   },
+   "atoms": {
+    "train": 12554,
+    "early_stopping": 1786,
+    "acceptance": 3562,
+    "scored": 175240
+   },
+   "matrix_excess": {
+    "physics": 0.0020087982873417953,
+    "network": 0.002226169332490535,
+    "b1": 0.011822065757299105,
+    "constant": 0.0022966955143411405
+   },
+   "acceptance": {
+    "physics_loss": 0.4209358162993009,
+    "network_loss": 0.42120082053059793,
+    "constant_loss": 0.4207102606495505,
+    "smoother_loss": 0.4210843824281014,
+    "smoother_bandwidth": 18.0,
+    "difference_nats": 0.9439450718800928,
+    "beats_network": true,
+    "beats_constant": false,
+    "at_bound": [
+     "xi"
+    ],
+    "accepted": false
+   },
+   "physics": {
+    "constants": {
+     "c_eq": 0.07158600083473043,
+     "ell": 3.559442511979854,
+     "xi": 199.99999999999991,
+     "c_inf": 0.1782466930503404
+    },
+    "seconds": 1.0
+   },
+   "network": {
+    "best_step": 10,
+    "seconds": 6.7
+   },
+   "seconds": 63.2
+  },
+  {
+   "pattern": 2,
+   "efficiency": 0.1,
+   "kind": "shuffled_surface",
+   "bandwidth": 2.0,
+   "detection": {
+    "found": 91,
+    "true": 152,
+    "recall": 0.5921052631578947,
+    "precision": 0.989010989010989,
+    "radius_ratio_median": 0.9941913089248762
+   },
+   "admission": {
+    "atoms": 15697,
+    "share_of_observed_matrix": 0.8076162730204973,
+    "precipitate_atoms": 173,
+    "bias_z": 0.28479061605342193,
+    "held_back_atoms": 3099,
+    "detection_atoms": 17446
+   },
+   "atoms": {
+    "train": 11071,
+    "early_stopping": 1527,
+    "acceptance": 3099,
+    "scored": 171806
+   },
+   "matrix_excess": {
+    "physics": 0.0007437047718047984,
+    "network": 0.0015758417021208282,
+    "b1": 0.04145019081872997,
+    "constant": 0.0013037690741254382
+   },
+   "acceptance": {
+    "physics_loss": 0.32147385000564127,
+    "network_loss": 0.321676783955034,
+    "constant_loss": 0.32166854195039957,
+    "smoother_loss": 0.32166854195039957,
+    "smoother_bandwidth": null,
+    "difference_nats": 0.628892309168124,
+    "beats_network": true,
+    "beats_constant": true,
+    "at_bound": [],
+    "accepted": true
+   },
+   "physics": {
+    "constants": {
+     "c_eq": 0.073541165421648,
+     "ell": 0.4395580242802036,
+     "xi": 11.983751868869314,
+     "c_inf": 0.12202164564939161
+    },
+    "seconds": 3.4
+   },
+   "network": {
+    "best_step": 0,
+    "seconds": 3.0
+   },
+   "seconds": 29.5
+  },
+  {
+   "pattern": 3,
+   "efficiency": 0.1,
+   "kind": "shuffled_surface",
+   "bandwidth": 3.0,
+   "detection": {
+    "found": 30,
+    "true": 86,
+    "recall": 0.3372093023255814,
+    "precision": 0.9666666666666667,
+    "radius_ratio_median": 1.0344336495079092
+   },
+   "admission": {
+    "atoms": 16331,
+    "share_of_observed_matrix": 0.842761316220356,
+    "precipitate_atoms": 375,
+    "bias_z": 0.1640021448079154,
+    "held_back_atoms": 3225,
+    "detection_atoms": 17113
+   },
+   "atoms": {
+    "train": 11454,
+    "early_stopping": 1652,
+    "acceptance": 3225,
+    "scored": 172377
+   },
+   "matrix_excess": {
+    "physics": 0.0030223317921914683,
+    "network": 0.0021861052768683553,
+    "b1": 0.01668813998014279,
+    "constant": 0.002597965785009315
+   },
+   "acceptance": {
+    "physics_loss": 0.34040333888132995,
+    "network_loss": 0.33971248263281134,
+    "constant_loss": 0.34015169389714334,
+    "smoother_loss": 0.34015169389714334,
+    "smoother_bandwidth": null,
+    "difference_nats": -2.228011401472524,
+    "beats_network": false,
+    "beats_constant": false,
+    "at_bound": [
+     "ell"
+    ],
+    "accepted": false
+   },
+   "physics": {
+    "constants": {
+     "c_eq": 0.1268230840637343,
+     "ell": 0.0010000000000000002,
+     "xi": 2.2378579556114717,
+     "c_inf": 0.10414120749251962
+    },
+    "seconds": 2.0
+   },
+   "network": {
+    "best_step": 40,
+    "seconds": 3.3
+   },
+   "seconds": 25.9
+  }
+ ],
+ "design": {
+  "protocol": "split-first",
+  "scope": {
+   "development": {
+    "0.37": [
+     0,
+     1,
+     2,
+     3,
+     4,
+     5,
+     6,
+     7
+    ],
+    "0.1": [
+     0,
+     1,
+     2,
+     3
+    ]
+   },
+   "test": {
+    "0.37": [
+     50,
+     51,
+     52,
+     53,
+     54,
+     55,
+     56,
+     57,
+     58,
+     59,
+     60,
+     61,
+     62,
+     63,
+     64,
+     65,
+     66,
+     67,
+     68,
+     69,
+     70,
+     71,
+     72,
+     73
+    ],
+    "0.1": [
+     50,
+     51,
+     52,
+     53,
+     54,
+     55,
+     56,
+     57,
+     58,
+     59,
+     60,
+     61
+    ]
+   }
+  },
+  "kinds": [
+   "diffusion",
+   "smoothed_noise",
+   "shuffled_surface"
+  ],
+  "split": {
+   "acceptance": 0.2,
+   "early_stopping": 0.1
+  },
+  "resolve_gap": 0.5,
+  "physics_starts": [
+   [
+    null,
+    null
+   ],
+   [
+    1.0,
+    3.0
+   ],
+   [
+    6.0,
+    12.0
+   ]
+  ],
+  "network": {
+   "w0": 3.0,
+   "width": 128,
+   "depth": 3,
+   "lr": 0.0001,
+   "steps": 3000,
+   "eval_every": 10,
+   "patience": 300
+  },
+  "acceptance_rule": "no worse than the network and the constant on acceptance atoms, no constant at a bound",
+  "bounds": {
+   "c_eq": [
+    1e-06,
+    1.0
+   ],
+   "ell": [
+    0.001,
+    50.0
+   ],
+   "xi": [
+    0.5,
+    200.0
+   ],
+   "c_inf": [
+    1e-06,
+    1.0
+   ]
+  },
+  "bound_tolerance": 1.01,
+  "gate": {
+   "fraction": 0.6666666666666666,
+   "normalised_error": 2.0
+  },
+  "detection": {
+   "method": "significance",
+   "region_z": 3.0,
+   "seed_z": 5.0,
+   "exclusion_z": 1.5,
+   "footprint": 7,
+   "min_volume": 14.0,
+   "exclusion_dilation": 1
+  },
+  "entropy": {
+   "thinning": 20260920,
+   "split": 20260927
+  }
+ },
+ "design_hash": "be9b002dc5518e29",
+ "environment": {
+  "torch": "2.10.0",
+  "device": "mps"
+ },
+ "gate": {
+  "split": "development",
+  "complete": true,
+  "missing_cells": 0,
+  "missing": [],
+  "errored_cells": 0,
+  "cells": {
+   "correct": 12,
+   "misspecified": 24
+  },
+  "conditions": {
+   "i_physics_beats_network": {
+    "measured": 1.0,
+    "required": 0.6666666666666666,
+    "passed": true
+   },
+   "ii_median_normalised_error": {
+    "measured": {
+     "ell": 2.094154341334709,
+     "xi": 2.9384392189658417
+    },
+    "required_below": 2.0,
+    "passed": false
+   },
+   "iii_acceptance_rule": {
+    "accepted_correct": 0.8333333333333334,
+    "rejected_misspecified": 0.75,
+    "required": 0.6666666666666666,
+    "passed": true
+   }
+  },
+  "rejected_by_kind": {
+   "smoothed_noise": 0.75,
+   "shuffled_surface": 0.75
+  },
+  "verdict": "failed",
+  "passed": false,
+  "physics_claim_permitted": true
+ },
+ "seconds": 993
+}
