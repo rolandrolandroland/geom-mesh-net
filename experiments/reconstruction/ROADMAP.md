@@ -685,6 +685,22 @@ Each entry is the share of cells with headroom, then B1's median gap closed.
   test scores, and then reporting the improved scores here, is what the protocol
   forbids.
 
+**Closed, 2026-09-18: the grid was binding, and it was not worth much**
+(`pilot/check_b2_grid.py`, `pilot/results/b2_grid.json`). Sixteen development cells,
+patterns 0–7 at both efficiencies, with the grid widened at both ends.
+
+- **The edge stops being chosen.** Under Stage 1's grid, 11 of the 16 cells sat on an
+  edge (5 at k = 64, 9 at c = 0.25). Under k in (1, 2, 4, …, 512) and c in (0.05, …,
+  1.0), none do. The choices spread from (k 4, c 0.35) to (k 256, c 0.15).
+- **It buys almost nothing.** Only 3 of the 16 cells change their choice at all, and
+  the cross-validated log loss improves by 0.00015 to 0.00069 nats where they do. B2
+  beats B1 by a median 0.0097 nats on the same cells, so the widening is worth at most
+  7% of B2's own margin. The loss surface near the old corner was flat, not cut off.
+- **Gate 2's bar therefore stands where it was.** The grid fixed for Stage 2 onward is
+  `baselines.ADAPTIVE_K_WIDE` and `ADAPTIVE_C_WIDE`; `ADAPTIVE_K` and `ADAPTIVE_C` keep
+  the Stage 1 values so Stage 1 stays reproducible, and its numbers above are
+  unrevised.
+
 ### Stage 2 — A field fitted to one pattern (1 week)
 
 *Question: fitted only to one pattern's observed atoms, does a coordinate network

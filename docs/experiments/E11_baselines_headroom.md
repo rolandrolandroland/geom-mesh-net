@@ -394,6 +394,15 @@ until cross-validation stops choosing its edge. B2 will then be recomputed with 
 fixed grid for the Stage 2 comparison. A stronger B2 can only make Gate 2 harder to
 pass.
 
+**Resolved, 2026-09-18** (`pilot/check_b2_grid.py`). Widened to k in (1, 2, 4, …, 512)
+and c in (0.05, …, 1.0), cross-validation chooses an edge in none of the 16 development
+cells, against 11 of 16 under the grid used here. But the widening is nearly worthless:
+3 cells change their choice, by 0.00015 to 0.00069 nats, against B2's median margin of
+0.0097 nats over B1. The corner was chosen because the loss surface is flat there, not
+because the optimum lay outside it, so Gate 2's bar does not move. The wider grid is
+fixed for Stage 2 onward; the numbers in this walkthrough keep the grid they were
+measured with.
+
 ---
 
 ## 6. Conclusion

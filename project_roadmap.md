@@ -40,7 +40,7 @@ Where this page and a track roadmap disagree, the track roadmap governs.
 | Track | Status | Headline | Next |
 | --- | --- | --- | --- |
 | Inference | Stages 0–4 **passed** | 90% credible intervals cover the truth 88–92% of the time for all four parameters | Check whether the result survives random cluster centres |
-| Reconstruction | Stages 0–1 and 5.1 **passed**; 5.2 **failed** | Standard smoothing leaves room for a better estimator in 48% of test cells; a diffusion law imposed exactly predicts the matrix, but its capillary length is lost to precipitate detection | Widen the B2 grid, then Stage 2; better precipitate detection (Stage 4) would reopen the capillary length |
+| Reconstruction | Stages 0–1 and 5.1 **passed**; 5.2 **failed** | Standard smoothing leaves room for a better estimator in 48% of test cells; a diffusion law imposed exactly predicts the matrix, and fitting the precipitates with it recovers the capillary length that detect-then-fit loses (E18) | Decide whether the joint fit becomes Stage 5.3 with a gate; then Stage 2; Stage 4's detection is now the binding constraint |
 
 ---
 
@@ -265,7 +265,10 @@ by how much it changes what the project can claim.
 8. **Reconstruction Stage 5.** Done. Stage 5.1, the diffusion-field simulator, passed on
    2026-09-16 (E15). Stage 5.2 failed on 2026-09-17 (E16, E17): the law, imposed exactly,
    predicts the matrix and exposes violations, but detected radii bias the capillary length.
-   Recovering it waits on better precipitate detection (Stage 4).
+   The work after the gate (E18) found that the information was there all along — an unknown
+   geometry costs 7 to 29 per cent of the bound — and that fitting the precipitates with the
+   law, centres included, reaches it. What it cannot repair is a precipitate detection never
+   found, which puts **Stage 4 on the critical path** rather than beside it.
 
 ### Later, or separate
 

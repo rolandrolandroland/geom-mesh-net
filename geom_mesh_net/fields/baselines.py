@@ -13,6 +13,9 @@ compared with:
   clusters, where guests are dense, and wide in the matrix. Because atom
   positions are uniform, the distance to the k-th nearest atom of any kind would
   not vary at all (``experiments/reconstruction/ROADMAP.md``, Stage 1 correction).
+  Its (k, c) grid comes in two versions: the one Stage 1 was measured with, and
+  the wider one used from Stage 2 onward, because cross-validation kept choosing
+  Stage 1's edge.
 
 Kernel sums are computed on a grid. Atom and guest counts are binned, both are
 Gaussian-filtered at every bandwidth, and the fields are trilinearly
@@ -32,6 +35,11 @@ from scipy.spatial import cKDTree
 BANDWIDTHS = (0.75, 1.0, 1.5, 2.0, 3.0, 4.5, 6.0)
 ADAPTIVE_K = (4, 8, 16, 32, 64)
 ADAPTIVE_C = (0.25, 0.35, 0.5, 0.7, 1.0)
+# Stage 1 chose an edge of that grid in 11 of 16 development cells, so it was widened for Stage 2
+# onward (``pilot/check_b2_grid.py``, and the Stage 1 correction in the reconstruction roadmap).
+# Stage 1's own numbers keep the grid they were measured with, which is why both exist.
+ADAPTIVE_K_WIDE = (1, 2, 4, 8, 16, 32, 64, 128, 256, 512)
+ADAPTIVE_C_WIDE = (0.05, 0.1, 0.15, 0.25, 0.35, 0.5, 0.7, 1.0)
 GRID = 0.5
 EPS = 1e-6
 
@@ -120,22 +128,29 @@ class BaselineFit:
     constant: float
 
 
-def fit_baselines(coords, guest, folds=5, seed=0, lower=0.0, upper=60.0):
-    """Choose B1's bandwidth and B2's (k, c) by k-fold cross-validated log loss on observed atoms."""
+def fit_baselines(coords, guest, folds=5, seed=0, lower=0.0, upper=60.0,
+                  adaptive_k=ADAPTIVE_K, adaptive_c=ADAPTIVE_C):
+    """Choose B1's bandwidth and B2's (k, c) by k-fold cross-validated log loss on observed atoms.
+
+    ``adaptive_k`` and ``adaptive_c`` are B2's grid. They are arguments because a grid whose edge
+    cross-validation keeps choosing is a grid that is too small, which is measured rather than
+    assumed (``experiments/reconstruction/pilot/check_b2_grid.py``).
+    """
     coords = np.asarray(coords, dtype=float)
     guest = np.asarray(guest, dtype=bool)
     fold_of = np.random.default_rng(seed).integers(0, folds, size=len(coords))
     fixed_loss = np.zeros(len(BANDWIDTHS))
-    adaptive_loss = {(k, c): 0.0 for k in ADAPTIVE_K for c in ADAPTIVE_C}
+    adaptive_loss = {(k, c): 0.0 for k in adaptive_k for c in adaptive_c}
     for fold in range(folds):
         train, valid = fold_of != fold, fold_of == fold
         counts = SmoothedCounts(coords[train], guest[train], lower=lower, upper=upper)
         weight = valid.sum() / len(coords)
         for i in range(len(BANDWIDTHS)):
             fixed_loss[i] += weight * log_loss(guest[valid], counts.fixed(coords[valid], i))
-        distances = guest_neighbour_distances(coords[train][guest[train]], coords[valid])
-        for k in ADAPTIVE_K:
-            for c in ADAPTIVE_C:
+        distances = guest_neighbour_distances(coords[train][guest[train]], coords[valid],
+                                              k_max=max(adaptive_k))
+        for k in adaptive_k:
+            for c in adaptive_c:
                 q = counts.adaptive(coords[valid], c * distances[:, k - 1])
                 adaptive_loss[(k, c)] += weight * log_loss(guest[valid], q)
     best_fixed = int(np.argmin(fixed_loss))
