@@ -1,0 +1,1112 @@
+[
+ {
+  "pattern": 0,
+  "kind": "shuffled_surface",
+  "matrix_atoms": 191577,
+  "matrix_guest_fraction": 0.06672512879938615,
+  "field_mean": 0.06687239241716424,
+  "field_sd": 0.013229557465300718,
+  "diffusion_field_sd": 0.014384956108388438,
+  "field_range": [
+   0.019838588630434643,
+   0.1016939647982788
+  ],
+  "clipped_fraction": 0.0,
+  "signal_nats_all_atoms": 277.80474447389275
+ },
+ {
+  "pattern": 1,
+  "kind": "shuffled_surface",
+  "matrix_atoms": 194535,
+  "matrix_guest_fraction": 0.13967152440434882,
+  "field_mean": 0.14007965894046134,
+  "field_sd": 0.018448714279906717,
+  "diffusion_field_sd": 0.020317901502541126,
+  "field_range": [
+   0.0642348004927177,
+   0.20272006942295062
+  ],
+  "clipped_fraction": 0.0,
+  "signal_nats_all_atoms": 280.17849022010824
+ },
+ {
+  "pattern": 2,
+  "kind": "shuffled_surface",
+  "matrix_atoms": 191028,
+  "matrix_guest_fraction": 0.08837447913394895,
+  "field_mean": 0.08747586635402552,
+  "field_sd": 0.012168156357521073,
+  "diffusion_field_sd": 0.013451852241975306,
+  "field_range": [
+   0.043143767012858186,
+   0.12087694521762994
+  ],
+  "clipped_fraction": 0.0,
+  "signal_nats_all_atoms": 181.0648684407633
+ },
+ {
+  "pattern": 3,
+  "kind": "shuffled_surface",
+  "matrix_atoms": 191310,
+  "matrix_guest_fraction": 0.09527991218441273,
+  "field_mean": 0.09527957618519302,
+  "field_sd": 0.017553521568263643,
+  "diffusion_field_sd": 0.016671699325092562,
+  "field_range": [
+   0.03474869810241328,
+   0.16553799050381035
+  ],
+  "clipped_fraction": 0.0,
+  "signal_nats_all_atoms": 348.15443114745494
+ },
+ {
+  "pattern": 4,
+  "kind": "shuffled_surface",
+  "matrix_atoms": 191912,
+  "matrix_guest_fraction": 0.09423589978740256,
+  "field_mean": 0.09373939653523085,
+  "field_sd": 0.012222801186352767,
+  "diffusion_field_sd": 0.014326013929538304,
+  "field_range": [
+   0.04425021618226259,
+   0.15713381977460508
+  ],
+  "clipped_fraction": 0.0,
+  "signal_nats_all_atoms": 172.53812257428385
+ },
+ {
+  "pattern": 5,
+  "kind": "shuffled_surface",
+  "matrix_atoms": 193378,
+  "matrix_guest_fraction": 0.06523492848204035,
+  "field_mean": 0.06582730602361754,
+  "field_sd": 0.01364127437361982,
+  "diffusion_field_sd": 0.014827918102229056,
+  "field_range": [
+   0.01817771702462308,
+   0.12433631325054781
+  ],
+  "clipped_fraction": 0.0,
+  "signal_nats_all_atoms": 304.409812602796
+ },
+ {
+  "pattern": 6,
+  "kind": "shuffled_surface",
+  "matrix_atoms": 196963,
+  "matrix_guest_fraction": 0.1207028731284556,
+  "field_mean": 0.12180787069631392,
+  "field_sd": 0.02114404214765429,
+  "diffusion_field_sd": 0.020390570156134165,
+  "field_range": [
+   0.03683654150838069,
+   0.232539001369214
+  ],
+  "clipped_fraction": 0.0,
+  "signal_nats_all_atoms": 418.3061744435565
+ },
+ {
+  "pattern": 7,
+  "kind": "shuffled_surface",
+  "matrix_atoms": 191692,
+  "matrix_guest_fraction": 0.10005634037935855,
+  "field_mean": 0.10032854258842436,
+  "field_sd": 0.018690496425985446,
+  "diffusion_field_sd": 0.01632006307554676,
+  "field_range": [
+   0.03752219936619717,
+   0.2098444178088107
+  ],
+  "clipped_fraction": 0.0,
+  "signal_nats_all_atoms": 355.43526944480334
+ },
+ {
+  "pattern": 8,
+  "kind": "shuffled_surface",
+  "matrix_atoms": 185691,
+  "matrix_guest_fraction": 0.05405754721553549,
+  "field_mean": 0.05487662191756442,
+  "field_sd": 0.008208149494975642,
+  "diffusion_field_sd": 0.009331206426628288,
+  "field_range": [
+   0.021566130589179666,
+   0.0960000585332072
+  ],
+  "clipped_fraction": 0.0,
+  "signal_nats_all_atoms": 123.5360487753202
+ },
+ {
+  "pattern": 9,
+  "kind": "shuffled_surface",
+  "matrix_atoms": 194295,
+  "matrix_guest_fraction": 0.0693430093414653,
+  "field_mean": 0.06925396028903286,
+  "field_sd": 0.014323484850176793,
+  "diffusion_field_sd": 0.014216224068029094,
+  "field_range": [
+   0.023663049279458486,
+   0.12438622146490816
+  ],
+  "clipped_fraction": 0.0,
+  "signal_nats_all_atoms": 315.4329338373395
+ },
+ {
+  "pattern": 10,
+  "kind": "shuffled_surface",
+  "matrix_atoms": 195857,
+  "matrix_guest_fraction": 0.06376591084311513,
+  "field_mean": 0.06421330433619649,
+  "field_sd": 0.004898520476314881,
+  "diffusion_field_sd": 0.004754623775285361,
+  "field_range": [
+   0.04261229202424889,
+   0.10170416272968319
+  ],
+  "clipped_fraction": 0.0,
+  "signal_nats_all_atoms": 38.79751966640191
+ },
+ {
+  "pattern": 11,
+  "kind": "shuffled_surface",
+  "matrix_atoms": 191964,
+  "matrix_guest_fraction": 0.14107332624867164,
+  "field_mean": 0.14022288770688654,
+  "field_sd": 0.027783012195934313,
+  "diffusion_field_sd": 0.027105774653591135,
+  "field_range": [
+   0.046067774264494724,
+   0.3008042280451444
+  ],
+  "clipped_fraction": 0.0,
+  "signal_nats_all_atoms": 622.9351397429353
+ },
+ {
+  "pattern": 12,
+  "kind": "shuffled_surface",
+  "matrix_atoms": 190228,
+  "matrix_guest_fraction": 0.13859158483504005,
+  "field_mean": 0.13878913752656422,
+  "field_sd": 0.023086783266989177,
+  "diffusion_field_sd": 0.02598887914737534,
+  "field_range": [
+   0.05108384146040212,
+   0.21393289439822447
+  ],
+  "clipped_fraction": 0.0,
+  "signal_nats_all_atoms": 436.88833947304744
+ },
+ {
+  "pattern": 13,
+  "kind": "shuffled_surface",
+  "matrix_atoms": 191353,
+  "matrix_guest_fraction": 0.07863477447440072,
+  "field_mean": 0.0786380777958133,
+  "field_sd": 0.00946660855798856,
+  "diffusion_field_sd": 0.008877871234464737,
+  "field_range": [
+   0.04198609110241268,
+   0.15708699590364744
+  ],
+  "clipped_fraction": 0.0,
+  "signal_nats_all_atoms": 117.73920620175781
+ },
+ {
+  "pattern": 14,
+  "kind": "shuffled_surface",
+  "matrix_atoms": 195455,
+  "matrix_guest_fraction": 0.14216571589368396,
+  "field_mean": 0.14305776999399009,
+  "field_sd": 0.030056834283419657,
+  "diffusion_field_sd": 0.03341345475479153,
+  "field_range": [
+   0.027727647284549774,
+   0.25143878330935
+  ],
+  "clipped_fraction": 0.0,
+  "signal_nats_all_atoms": 755.4407229370623
+ },
+ {
+  "pattern": 15,
+  "kind": "shuffled_surface",
+  "matrix_atoms": 195183,
+  "matrix_guest_fraction": 0.13688179810741713,
+  "field_mean": 0.13705643499414785,
+  "field_sd": 0.019194252568676143,
+  "diffusion_field_sd": 0.020727170542761842,
+  "field_range": [
+   0.058737262959080105,
+   0.22153064768945108
+  ],
+  "clipped_fraction": 0.0,
+  "signal_nats_all_atoms": 312.88851937530205
+ },
+ {
+  "pattern": 16,
+  "kind": "shuffled_surface",
+  "matrix_atoms": 193357,
+  "matrix_guest_fraction": 0.10169789560243488,
+  "field_mean": 0.10237482950941561,
+  "field_sd": 0.016545132628917256,
+  "diffusion_field_sd": 0.018280641686326288,
+  "field_range": [
+   0.03644309265171324,
+   0.1917259017662774
+  ],
+  "clipped_fraction": 0.0,
+  "signal_nats_all_atoms": 295.37657097016785
+ },
+ {
+  "pattern": 17,
+  "kind": "shuffled_surface",
+  "matrix_atoms": 191850,
+  "matrix_guest_fraction": 0.14455043002345583,
+  "field_mean": 0.1441455668916383,
+  "field_sd": 0.019402787876821474,
+  "diffusion_field_sd": 0.020234841073132868,
+  "field_range": [
+   0.05934963108027908,
+   0.2536601449632046
+  ],
+  "clipped_fraction": 0.0,
+  "signal_nats_all_atoms": 299.4022437853226
+ },
+ {
+  "pattern": 18,
+  "kind": "shuffled_surface",
+  "matrix_atoms": 196760,
+  "matrix_guest_fraction": 0.1002642813579996,
+  "field_mean": 0.10026291177680038,
+  "field_sd": 0.01659787761344388,
+  "diffusion_field_sd": 0.01728599369089903,
+  "field_range": [
+   0.035200628540804885,
+   0.1402282623467227
+  ],
+  "clipped_fraction": 0.0,
+  "signal_nats_all_atoms": 310.7575948073894
+ },
+ {
+  "pattern": 19,
+  "kind": "shuffled_surface",
+  "matrix_atoms": 197354,
+  "matrix_guest_fraction": 0.12163928777729359,
+  "field_mean": 0.1210038238675338,
+  "field_sd": 0.012184381455601957,
+  "diffusion_field_sd": 0.011685304391754964,
+  "field_range": [
+   0.07129006568841398,
+   0.1866892230736008
+  ],
+  "clipped_fraction": 0.0,
+  "signal_nats_all_atoms": 139.1163011624929
+ },
+ {
+  "pattern": 20,
+  "kind": "shuffled_surface",
+  "matrix_atoms": 191231,
+  "matrix_guest_fraction": 0.07373804456390438,
+  "field_mean": 0.07352020030458407,
+  "field_sd": 0.013888832876047058,
+  "diffusion_field_sd": 0.015385488430580543,
+  "field_range": [
+   0.021767540530634486,
+   0.1304960817717362
+  ],
+  "clipped_fraction": 0.0,
+  "signal_nats_all_atoms": 281.38752047508274
+ },
+ {
+  "pattern": 21,
+  "kind": "shuffled_surface",
+  "matrix_atoms": 193459,
+  "matrix_guest_fraction": 0.11326430923348099,
+  "field_mean": 0.11422018001358494,
+  "field_sd": 0.01714405052290376,
+  "diffusion_field_sd": 0.017000283356249358,
+  "field_range": [
+   0.04064433512357262,
+   0.19118541215453375
+  ],
+  "clipped_fraction": 0.0,
+  "signal_nats_all_atoms": 284.13640263942466
+ },
+ {
+  "pattern": 22,
+  "kind": "shuffled_surface",
+  "matrix_atoms": 191225,
+  "matrix_guest_fraction": 0.12825728853444895,
+  "field_mean": 0.12859469407234572,
+  "field_sd": 0.02020278840120675,
+  "diffusion_field_sd": 0.021729408269034543,
+  "field_range": [
+   0.040810955997946916,
+   0.26102733295118896
+  ],
+  "clipped_fraction": 0.0,
+  "signal_nats_all_atoms": 359.4629993523703
+ },
+ {
+  "pattern": 23,
+  "kind": "shuffled_surface",
+  "matrix_atoms": 192609,
+  "matrix_guest_fraction": 0.15058486363565565,
+  "field_mean": 0.14985237715451324,
+  "field_sd": 0.016358160330025212,
+  "diffusion_field_sd": 0.016066886515328182,
+  "field_range": [
+   0.07508069710982192,
+   0.2635012087472369
+  ],
+  "clipped_fraction": 0.0,
+  "signal_nats_all_atoms": 203.76686657131208
+ },
+ {
+  "pattern": 24,
+  "kind": "shuffled_surface",
+  "matrix_atoms": 190805,
+  "matrix_guest_fraction": 0.10058436623778202,
+  "field_mean": 0.09970383578172858,
+  "field_sd": 0.012493206594362781,
+  "diffusion_field_sd": 0.011383938965261166,
+  "field_range": [
+   0.05290178342579222,
+   0.20399733910983683
+  ],
+  "clipped_fraction": 0.0,
+  "signal_nats_all_atoms": 164.84915189746988
+ },
+ {
+  "pattern": 25,
+  "kind": "shuffled_surface",
+  "matrix_atoms": 186361,
+  "matrix_guest_fraction": 0.10275218527481608,
+  "field_mean": 0.10143316219935616,
+  "field_sd": 0.018436680257792694,
+  "diffusion_field_sd": 0.0183046386446609,
+  "field_range": [
+   0.03713538598268533,
+   0.18937245512558348
+  ],
+  "clipped_fraction": 0.0,
+  "signal_nats_all_atoms": 353.1316434624213
+ },
+ {
+  "pattern": 26,
+  "kind": "shuffled_surface",
+  "matrix_atoms": 196618,
+  "matrix_guest_fraction": 0.1404144076330753,
+  "field_mean": 0.14064512551154204,
+  "field_sd": 0.01867976301516452,
+  "diffusion_field_sd": 0.020719770302356628,
+  "field_range": [
+   0.05838388042873823,
+   0.20672349007610685
+  ],
+  "clipped_fraction": 0.0,
+  "signal_nats_all_atoms": 292.05683459575033
+ },
+ {
+  "pattern": 27,
+  "kind": "shuffled_surface",
+  "matrix_atoms": 190539,
+  "matrix_guest_fraction": 0.11460121025091977,
+  "field_mean": 0.11379392501146443,
+  "field_sd": 0.01227273316441552,
+  "diffusion_field_sd": 0.01322370698560558,
+  "field_range": [
+   0.0611542303015663,
+   0.14463196277349202
+  ],
+  "clipped_fraction": 0.0,
+  "signal_nats_all_atoms": 144.94366536490955
+ },
+ {
+  "pattern": 28,
+  "kind": "shuffled_surface",
+  "matrix_atoms": 188698,
+  "matrix_guest_fraction": 0.09799255953958176,
+  "field_mean": 0.09672776830815982,
+  "field_sd": 0.011406452537624194,
+  "diffusion_field_sd": 0.0122134294404386,
+  "field_range": [
+   0.050065589495320126,
+   0.1385906004904439
+  ],
+  "clipped_fraction": 0.0,
+  "signal_nats_all_atoms": 143.794556434136
+ },
+ {
+  "pattern": 29,
+  "kind": "shuffled_surface",
+  "matrix_atoms": 188990,
+  "matrix_guest_fraction": 0.13995449494682258,
+  "field_mean": 0.140798484975072,
+  "field_sd": 0.024172650649136,
+  "diffusion_field_sd": 0.02535613225712444,
+  "field_range": [
+   0.030383014857952338,
+   0.27791521292667054
+  ],
+  "clipped_fraction": 0.0,
+  "signal_nats_all_atoms": 464.899196755493
+ },
+ {
+  "pattern": 30,
+  "kind": "shuffled_surface",
+  "matrix_atoms": 186332,
+  "matrix_guest_fraction": 0.07278406285554816,
+  "field_mean": 0.07172531549038853,
+  "field_sd": 0.006918519686073096,
+  "diffusion_field_sd": 0.007876594205260557,
+  "field_range": [
+   0.040754748798728854,
+   0.0983296965863356
+  ],
+  "clipped_fraction": 0.0,
+  "signal_nats_all_atoms": 68.23593402968446
+ },
+ {
+  "pattern": 31,
+  "kind": "shuffled_surface",
+  "matrix_atoms": 192139,
+  "matrix_guest_fraction": 0.11094572158697609,
+  "field_mean": 0.11122916008067396,
+  "field_sd": 0.010936250766354818,
+  "diffusion_field_sd": 0.011066180106059436,
+  "field_range": [
+   0.067022236156417,
+   0.16442548043241423
+  ],
+  "clipped_fraction": 0.0,
+  "signal_nats_all_atoms": 118.34627464086074
+ },
+ {
+  "pattern": 32,
+  "kind": "shuffled_surface",
+  "matrix_atoms": 192009,
+  "matrix_guest_fraction": 0.08947497252732944,
+  "field_mean": 0.08913813313754539,
+  "field_sd": 0.013834280624096541,
+  "diffusion_field_sd": 0.01430529295856844,
+  "field_range": [
+   0.029149673405035038,
+   0.1892696139160479
+  ],
+  "clipped_fraction": 0.0,
+  "signal_nats_all_atoms": 230.9485119013067
+ },
+ {
+  "pattern": 33,
+  "kind": "shuffled_surface",
+  "matrix_atoms": 197982,
+  "matrix_guest_fraction": 0.1418058207311776,
+  "field_mean": 0.14330867742876988,
+  "field_sd": 0.009379506900727566,
+  "diffusion_field_sd": 0.008985690757145504,
+  "field_range": [
+   0.09712918790840132,
+   0.20726704707922622
+  ],
+  "clipped_fraction": 0.0,
+  "signal_nats_all_atoms": 71.20570510577346
+ },
+ {
+  "pattern": 34,
+  "kind": "shuffled_surface",
+  "matrix_atoms": 189231,
+  "matrix_guest_fraction": 0.07361373136536825,
+  "field_mean": 0.0736493767340894,
+  "field_sd": 0.007395857450039737,
+  "diffusion_field_sd": 0.0077945696704034215,
+  "field_range": [
+   0.04200252265182664,
+   0.12018366054681202
+  ],
+  "clipped_fraction": 0.0,
+  "signal_nats_all_atoms": 76.63292750555779
+ },
+ {
+  "pattern": 35,
+  "kind": "shuffled_surface",
+  "matrix_atoms": 195057,
+  "matrix_guest_fraction": 0.14458337819201567,
+  "field_mean": 0.14371669309550675,
+  "field_sd": 0.018273276702100275,
+  "diffusion_field_sd": 0.021646017747698646,
+  "field_range": [
+   0.05774634737201512,
+   0.20117344176992458
+  ],
+  "clipped_fraction": 0.0,
+  "signal_nats_all_atoms": 272.660549647297
+ },
+ {
+  "pattern": 36,
+  "kind": "shuffled_surface",
+  "matrix_atoms": 195876,
+  "matrix_guest_fraction": 0.09317629520717188,
+  "field_mean": 0.09273667763324753,
+  "field_sd": 0.019670874954195373,
+  "diffusion_field_sd": 0.020692149241090516,
+  "field_range": [
+   0.01668612801781782,
+   0.13661643242722632
+  ],
+  "clipped_fraction": 0.0,
+  "signal_nats_all_atoms": 465.16949181202233
+ },
+ {
+  "pattern": 37,
+  "kind": "shuffled_surface",
+  "matrix_atoms": 191400,
+  "matrix_guest_fraction": 0.059435736677115984,
+  "field_mean": 0.05920107689164542,
+  "field_sd": 0.007567928157437079,
+  "diffusion_field_sd": 0.00752140109151805,
+  "field_range": [
+   0.027107352496035242,
+   0.10869265806537141
+  ],
+  "clipped_fraction": 0.0,
+  "signal_nats_all_atoms": 99.70266375399383
+ },
+ {
+  "pattern": 38,
+  "kind": "shuffled_surface",
+  "matrix_atoms": 187017,
+  "matrix_guest_fraction": 0.11324104225819043,
+  "field_mean": 0.11164057390347518,
+  "field_sd": 0.02476353133480242,
+  "diffusion_field_sd": 0.02433815870650558,
+  "field_range": [
+   0.02278833197215389,
+   0.23818093368076085
+  ],
+  "clipped_fraction": 0.0,
+  "signal_nats_all_atoms": 587.8669831641279
+ },
+ {
+  "pattern": 39,
+  "kind": "shuffled_surface",
+  "matrix_atoms": 190452,
+  "matrix_guest_fraction": 0.06622666078591981,
+  "field_mean": 0.06611583547809363,
+  "field_sd": 0.007758538072357297,
+  "diffusion_field_sd": 0.008206280009353008,
+  "field_range": [
+   0.03294701429499204,
+   0.10238099801175395
+  ],
+  "clipped_fraction": 0.0,
+  "signal_nats_all_atoms": 95.06440478788662
+ },
+ {
+  "pattern": 40,
+  "kind": "shuffled_surface",
+  "matrix_atoms": 194838,
+  "matrix_guest_fraction": 0.12963590264732752,
+  "field_mean": 0.1298842180976058,
+  "field_sd": 0.011853252098626945,
+  "diffusion_field_sd": 0.011666114355047986,
+  "field_range": [
+   0.08617609666901956,
+   0.18377462000852493
+  ],
+  "clipped_fraction": 0.0,
+  "signal_nats_all_atoms": 122.50720387343964
+ },
+ {
+  "pattern": 41,
+  "kind": "shuffled_surface",
+  "matrix_atoms": 195763,
+  "matrix_guest_fraction": 0.0902417719385175,
+  "field_mean": 0.08979792576322608,
+  "field_sd": 0.010932434944774853,
+  "diffusion_field_sd": 0.011861022057217252,
+  "field_range": [
+   0.04460771250688501,
+   0.14179416933652222
+  ],
+  "clipped_fraction": 0.0,
+  "signal_nats_all_atoms": 146.10059897914368
+ },
+ {
+  "pattern": 42,
+  "kind": "shuffled_surface",
+  "matrix_atoms": 188438,
+  "matrix_guest_fraction": 0.07892251032169732,
+  "field_mean": 0.0776313592302047,
+  "field_sd": 0.0075264959915530205,
+  "diffusion_field_sd": 0.006828520024890389,
+  "field_range": [
+   0.043663103727085005,
+   0.13417480691054812
+  ],
+  "clipped_fraction": 0.0,
+  "signal_nats_all_atoms": 73.81049186585109
+ },
+ {
+  "pattern": 43,
+  "kind": "shuffled_surface",
+  "matrix_atoms": 188757,
+  "matrix_guest_fraction": 0.1397193216675408,
+  "field_mean": 0.1404134864254865,
+  "field_sd": 0.024544808520220493,
+  "diffusion_field_sd": 0.021649749643730492,
+  "field_range": [
+   0.05366071927296172,
+   0.30162175665421626
+  ],
+  "clipped_fraction": 0.0,
+  "signal_nats_all_atoms": 465.60552068044166
+ },
+ {
+  "pattern": 44,
+  "kind": "shuffled_surface",
+  "matrix_atoms": 191033,
+  "matrix_guest_fraction": 0.06685232394403061,
+  "field_mean": 0.06800110540192365,
+  "field_sd": 0.010430281340289059,
+  "diffusion_field_sd": 0.010892169708111585,
+  "field_range": [
+   0.02793270539649917,
+   0.10626192512461852
+  ],
+  "clipped_fraction": 0.0,
+  "signal_nats_all_atoms": 168.81876003191996
+ },
+ {
+  "pattern": 45,
+  "kind": "shuffled_surface",
+  "matrix_atoms": 189813,
+  "matrix_guest_fraction": 0.11300069015294,
+  "field_mean": 0.11309078841402662,
+  "field_sd": 0.024323939107574567,
+  "diffusion_field_sd": 0.02587549078000699,
+  "field_range": [
+   0.03298031610121727,
+   0.1648017195049059
+  ],
+  "clipped_fraction": 0.0,
+  "signal_nats_all_atoms": 573.7138319322345
+ },
+ {
+  "pattern": 46,
+  "kind": "shuffled_surface",
+  "matrix_atoms": 194666,
+  "matrix_guest_fraction": 0.05812006205500704,
+  "field_mean": 0.05762032577531974,
+  "field_sd": 0.006345745525575126,
+  "diffusion_field_sd": 0.005915168435007816,
+  "field_range": [
+   0.03223847283697024,
+   0.0965949152571628
+  ],
+  "clipped_fraction": 0.0,
+  "signal_nats_all_atoms": 72.55480788297989
+ },
+ {
+  "pattern": 47,
+  "kind": "shuffled_surface",
+  "matrix_atoms": 191652,
+  "matrix_guest_fraction": 0.0716350468557594,
+  "field_mean": 0.07106550385095331,
+  "field_sd": 0.007243911772124605,
+  "diffusion_field_sd": 0.006960646666841212,
+  "field_range": [
+   0.04435683013395759,
+   0.1149777537635125
+  ],
+  "clipped_fraction": 0.0,
+  "signal_nats_all_atoms": 76.01044545239392
+ },
+ {
+  "pattern": 48,
+  "kind": "shuffled_surface",
+  "matrix_atoms": 193714,
+  "matrix_guest_fraction": 0.10977007340718792,
+  "field_mean": 0.10974642859132437,
+  "field_sd": 0.016595421531908197,
+  "diffusion_field_sd": 0.01856930737083076,
+  "field_range": [
+   0.04579843756403889,
+   0.14905807522596337
+  ],
+  "clipped_fraction": 0.0,
+  "signal_nats_all_atoms": 281.69961275883753
+ },
+ {
+  "pattern": 49,
+  "kind": "shuffled_surface",
+  "matrix_atoms": 191531,
+  "matrix_guest_fraction": 0.12596916426061577,
+  "field_mean": 0.12587585269667184,
+  "field_sd": 0.013710291540374243,
+  "diffusion_field_sd": 0.014383379948082711,
+  "field_range": [
+   0.06798460750640074,
+   0.1760808101885706
+  ],
+  "clipped_fraction": 0.0,
+  "signal_nats_all_atoms": 166.8724776388971
+ },
+ {
+  "pattern": 50,
+  "kind": "shuffled_surface",
+  "matrix_atoms": 188440,
+  "matrix_guest_fraction": 0.08088516238590533,
+  "field_mean": 0.08065647087623998,
+  "field_sd": 0.008628635927077527,
+  "diffusion_field_sd": 0.008210446589347907,
+  "field_range": [
+   0.05175706800657712,
+   0.11105025134145849
+  ],
+  "clipped_fraction": 0.0,
+  "signal_nats_all_atoms": 95.62064486369432
+ },
+ {
+  "pattern": 51,
+  "kind": "shuffled_surface",
+  "matrix_atoms": 194653,
+  "matrix_guest_fraction": 0.07303252454367516,
+  "field_mean": 0.07395288742602621,
+  "field_sd": 0.011359452886125072,
+  "diffusion_field_sd": 0.01208280692792565,
+  "field_range": [
+   0.028189109108286,
+   0.1395668445106119
+  ],
+  "clipped_fraction": 0.0,
+  "signal_nats_all_atoms": 186.9660622541204
+ },
+ {
+  "pattern": 52,
+  "kind": "shuffled_surface",
+  "matrix_atoms": 190994,
+  "matrix_guest_fraction": 0.13487858257327456,
+  "field_mean": 0.1346681665268609,
+  "field_sd": 0.022643080982830306,
+  "diffusion_field_sd": 0.023750102080543702,
+  "field_range": [
+   0.04265298834159362,
+   0.24962554964179318
+  ],
+  "clipped_fraction": 0.0,
+  "signal_nats_all_atoms": 427.9286581641676
+ },
+ {
+  "pattern": 53,
+  "kind": "shuffled_surface",
+  "matrix_atoms": 193076,
+  "matrix_guest_fraction": 0.06378317346537114,
+  "field_mean": 0.06481187091743817,
+  "field_sd": 0.00780365011009037,
+  "diffusion_field_sd": 0.007580466330695522,
+  "field_range": [
+   0.03476765696256119,
+   0.09489275260543974
+  ],
+  "clipped_fraction": 0.0,
+  "signal_nats_all_atoms": 98.32592688045507
+ },
+ {
+  "pattern": 54,
+  "kind": "shuffled_surface",
+  "matrix_atoms": 198664,
+  "matrix_guest_fraction": 0.08688036081021222,
+  "field_mean": 0.08726515695295671,
+  "field_sd": 0.007789874696407946,
+  "diffusion_field_sd": 0.008038478087652123,
+  "field_range": [
+   0.052815400237597815,
+   0.13503001034722217
+  ],
+  "clipped_fraction": 0.0,
+  "signal_nats_all_atoms": 76.21489130624153
+ },
+ {
+  "pattern": 55,
+  "kind": "shuffled_surface",
+  "matrix_atoms": 198627,
+  "matrix_guest_fraction": 0.12887975954930597,
+  "field_mean": 0.1279380145086536,
+  "field_sd": 0.022584003134320147,
+  "diffusion_field_sd": 0.022225852797008387,
+  "field_range": [
+   0.04180668850057333,
+   0.2502892096042057
+  ],
+  "clipped_fraction": 0.0,
+  "signal_nats_all_atoms": 460.773727505404
+ },
+ {
+  "pattern": 56,
+  "kind": "shuffled_surface",
+  "matrix_atoms": 194322,
+  "matrix_guest_fraction": 0.06761457786560451,
+  "field_mean": 0.06831298154687296,
+  "field_sd": 0.011020165578227133,
+  "diffusion_field_sd": 0.011504482459061716,
+  "field_range": [
+   0.023510443301589055,
+   0.12209985170569351
+  ],
+  "clipped_fraction": 0.0,
+  "signal_nats_all_atoms": 190.01060872364323
+ },
+ {
+  "pattern": 57,
+  "kind": "shuffled_surface",
+  "matrix_atoms": 194585,
+  "matrix_guest_fraction": 0.13406994372639205,
+  "field_mean": 0.13519121804397044,
+  "field_sd": 0.019242071950315232,
+  "diffusion_field_sd": 0.020855481760543224,
+  "field_range": [
+   0.059883210170097206,
+   0.21028806357334862
+  ],
+  "clipped_fraction": 0.0,
+  "signal_nats_all_atoms": 317.82469698983124
+ },
+ {
+  "pattern": 58,
+  "kind": "shuffled_surface",
+  "matrix_atoms": 194685,
+  "matrix_guest_fraction": 0.09232349693093972,
+  "field_mean": 0.09235189233448696,
+  "field_sd": 0.016440311407587813,
+  "diffusion_field_sd": 0.016554409918765493,
+  "field_range": [
+   0.03340943868680507,
+   0.1697337491343325
+  ],
+  "clipped_fraction": 0.0,
+  "signal_nats_all_atoms": 319.37499890517006
+ },
+ {
+  "pattern": 59,
+  "kind": "shuffled_surface",
+  "matrix_atoms": 190175,
+  "matrix_guest_fraction": 0.10929932956487445,
+  "field_mean": 0.10851866893065786,
+  "field_sd": 0.016820681916835133,
+  "diffusion_field_sd": 0.016685254275430477,
+  "field_range": [
+   0.051230996016876154,
+   0.18286325783566212
+  ],
+  "clipped_fraction": 0.0,
+  "signal_nats_all_atoms": 281.20821055115465
+ },
+ {
+  "pattern": 60,
+  "kind": "shuffled_surface",
+  "matrix_atoms": 188319,
+  "matrix_guest_fraction": 0.1348403506815563,
+  "field_mean": 0.13545922059818172,
+  "field_sd": 0.021860423093950334,
+  "diffusion_field_sd": 0.020411151727699015,
+  "field_range": [
+   0.055396721535950336,
+   0.2495815326410215
+  ],
+  "clipped_fraction": 0.0,
+  "signal_nats_all_atoms": 385.9430398802434
+ },
+ {
+  "pattern": 61,
+  "kind": "shuffled_surface",
+  "matrix_atoms": 192253,
+  "matrix_guest_fraction": 0.11079150910518952,
+  "field_mean": 0.11216636976877176,
+  "field_sd": 0.019929940534995357,
+  "diffusion_field_sd": 0.022153415698469205,
+  "field_range": [
+   0.03315563294359465,
+   0.2220103300304338
+  ],
+  "clipped_fraction": 0.0,
+  "signal_nats_all_atoms": 393.54548969959205
+ },
+ {
+  "pattern": 62,
+  "kind": "shuffled_surface",
+  "matrix_atoms": 189354,
+  "matrix_guest_fraction": 0.12218912724315303,
+  "field_mean": 0.12249396502514141,
+  "field_sd": 0.014491905595917186,
+  "diffusion_field_sd": 0.014187555495299993,
+  "field_range": [
+   0.05574705162624046,
+   0.18734029755823647
+  ],
+  "clipped_fraction": 0.0,
+  "signal_nats_all_atoms": 186.279651602382
+ },
+ {
+  "pattern": 63,
+  "kind": "shuffled_surface",
+  "matrix_atoms": 194696,
+  "matrix_guest_fraction": 0.11018716357809097,
+  "field_mean": 0.10958912545340727,
+  "field_sd": 0.020813839214020614,
+  "diffusion_field_sd": 0.02289371663680052,
+  "field_range": [
+   0.026002784329217914,
+   0.20225256836113414
+  ],
+  "clipped_fraction": 0.0,
+  "signal_nats_all_atoms": 449.0704208760491
+ },
+ {
+  "pattern": 64,
+  "kind": "shuffled_surface",
+  "matrix_atoms": 198005,
+  "matrix_guest_fraction": 0.1289058357112194,
+  "field_mean": 0.12881368181058186,
+  "field_sd": 0.025167879893495965,
+  "diffusion_field_sd": 0.026728324985523928,
+  "field_range": [
+   0.037302256323519536,
+   0.181550136375871
+  ],
+  "clipped_fraction": 0.0,
+  "signal_nats_all_atoms": 572.2900273118438
+ },
+ {
+  "pattern": 65,
+  "kind": "shuffled_surface",
+  "matrix_atoms": 195272,
+  "matrix_guest_fraction": 0.07030705887172764,
+  "field_mean": 0.07080432309507087,
+  "field_sd": 0.009069905283232628,
+  "diffusion_field_sd": 0.009197493202703258,
+  "field_range": [
+   0.03220602039143484,
+   0.12017471725054048
+  ],
+  "clipped_fraction": 0.0,
+  "signal_nats_all_atoms": 123.52029958955502
+ },
+ {
+  "pattern": 66,
+  "kind": "shuffled_surface",
+  "matrix_atoms": 197036,
+  "matrix_guest_fraction": 0.06380052376215514,
+  "field_mean": 0.06402838178525641,
+  "field_sd": 0.009368611796711975,
+  "diffusion_field_sd": 0.009495581862856973,
+  "field_range": [
+   0.026763044959435933,
+   0.11500122994309252
+  ],
+  "clipped_fraction": 0.0,
+  "signal_nats_all_atoms": 145.5392746369239
+ },
+ {
+  "pattern": 67,
+  "kind": "shuffled_surface",
+  "matrix_atoms": 193677,
+  "matrix_guest_fraction": 0.061179179768377244,
+  "field_mean": 0.061981275138635675,
+  "field_sd": 0.006478711354865184,
+  "diffusion_field_sd": 0.00759174570897128,
+  "field_range": [
+   0.03554032965305453,
+   0.08781989027162457
+  ],
+  "clipped_fraction": 0.0,
+  "signal_nats_all_atoms": 71.18146409937185
+ },
+ {
+  "pattern": 68,
+  "kind": "shuffled_surface",
+  "matrix_atoms": 189867,
+  "matrix_guest_fraction": 0.054959524298587956,
+  "field_mean": 0.05492962069348193,
+  "field_sd": 0.009195565944643987,
+  "diffusion_field_sd": 0.010717722181883226,
+  "field_range": [
+   0.01662090929822917,
+   0.08571274069483421
+  ],
+  "clipped_fraction": 0.0,
+  "signal_nats_all_atoms": 161.3569101689232
+ },
+ {
+  "pattern": 69,
+  "kind": "shuffled_surface",
+  "matrix_atoms": 194388,
+  "matrix_guest_fraction": 0.09509331851760397,
+  "field_mean": 0.09589358516240946,
+  "field_sd": 0.011581335675409919,
+  "diffusion_field_sd": 0.011979274288578501,
+  "field_range": [
+   0.04457840055957059,
+   0.15350604726834108
+  ],
+  "clipped_fraction": 0.0,
+  "signal_nats_all_atoms": 153.25107868300012
+ },
+ {
+  "pattern": 70,
+  "kind": "shuffled_surface",
+  "matrix_atoms": 196070,
+  "matrix_guest_fraction": 0.07631458152700567,
+  "field_mean": 0.07720636255171645,
+  "field_sd": 0.006651605841002231,
+  "diffusion_field_sd": 0.006760240507902267,
+  "field_range": [
+   0.049025467778117976,
+   0.10972749579778533
+  ],
+  "clipped_fraction": 0.0,
+  "signal_nats_all_atoms": 61.68965024362587
+ },
+ {
+  "pattern": 71,
+  "kind": "shuffled_surface",
+  "matrix_atoms": 195474,
+  "matrix_guest_fraction": 0.14352803953466958,
+  "field_mean": 0.1434852045683293,
+  "field_sd": 0.013445127208738623,
+  "diffusion_field_sd": 0.011466780341454525,
+  "field_range": [
+   0.08401973092060185,
+   0.232739963620648
+  ],
+  "clipped_fraction": 0.0,
+  "signal_nats_all_atoms": 142.7719368924776
+ },
+ {
+  "pattern": 72,
+  "kind": "shuffled_surface",
+  "matrix_atoms": 191633,
+  "matrix_guest_fraction": 0.05329457869991077,
+  "field_mean": 0.05325918021584798,
+  "field_sd": 0.007300577490803975,
+  "diffusion_field_sd": 0.0071525068828856885,
+  "field_range": [
+   0.02563942987506038,
+   0.10008476611480299
+  ],
+  "clipped_fraction": 0.0,
+  "signal_nats_all_atoms": 101.84617242282448
+ },
+ {
+  "pattern": 73,
+  "kind": "shuffled_surface",
+  "matrix_atoms": 195881,
+  "matrix_guest_fraction": 0.10182202459656628,
+  "field_mean": 0.10233324880878658,
+  "field_sd": 0.01855722743632582,
+  "diffusion_field_sd": 0.020864847091439553,
+  "field_range": [
+   0.03195871674753173,
+   0.18632493823486035
+  ],
+  "clipped_fraction": 0.0,
+  "signal_nats_all_atoms": 380.1512894042484
+ }
+]

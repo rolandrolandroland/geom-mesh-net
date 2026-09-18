@@ -75,6 +75,9 @@ R_MIN = 2.0
 MIN_GAP = 1.0
 OPP_OVERSAMPLE = 64
 ENTROPY = {"parameters": 20260916, "geometry": 20260917, "labels": 20260918}
+# Stage 5.2 observes these patterns through benchmark.thinning_mask with this entropy, so its
+# masks are independent of the benchmark's. Generation does not use it.
+THINNING_ENTROPY = 20260920
 FROZEN_DIR = paths.RECONSTRUCTION_DIR / "benchmark" / "diffusion"
 
 
