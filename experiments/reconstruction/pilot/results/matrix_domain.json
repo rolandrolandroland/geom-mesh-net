@@ -1,0 +1,2282 @@
+{
+ "design": {
+  "patterns": [
+   0,
+   1,
+   2,
+   3,
+   4,
+   5,
+   6,
+   7,
+   8,
+   9,
+   10,
+   11,
+   12,
+   13,
+   14,
+   15
+  ],
+  "efficiencies": [
+   0.37,
+   0.1
+  ],
+  "resolve_gap": 0.5,
+  "thinning_entropy": 20260920,
+  "significance": {
+   "region_z": 3.0,
+   "seed_z": 5.0,
+   "exclusion_z": 1.5
+  }
+ },
+ "summary": {
+  "0.37": {
+   "otsu": {
+    "precision": {
+     "median": 0.956980144682161,
+     "min": 0.458128078817734,
+     "max": 1.0
+    },
+    "recall": {
+     "median": 0.9765411893071467,
+     "min": 0.8773584905660378,
+     "max": 1.0
+    },
+    "radius_ratio": {
+     "median": 0.9881984602414288,
+     "min": 0.9035857715368947,
+     "max": 1.1102919634750217
+    },
+    "patterns_with_overlaps": 15,
+    "voxel_rule_bias_z": {
+     "median": -16.242313352986134,
+     "min": -27.557538087550697,
+     "max": -5.364576490533352
+    },
+    "own_label_left_out_bias_z": {
+     "median": -0.26419884920792513,
+     "min": -1.312475216327374,
+     "max": 1.9054631394159252,
+     "mean": 0.11437068959602119,
+     "sd": 0.9954911999315884
+    },
+    "admitted_share": {
+     "median": 0.8637454032235076,
+     "min": 0.6956172429078015,
+     "max": 0.8944553938902092
+    },
+    "precipitate_atoms_admitted": {
+     "median": 57.0,
+     "min": 0.0,
+     "max": 264.0
+    }
+   },
+   "significance": {
+    "precision": {
+     "median": 0.9847800925925926,
+     "min": 0.9242424242424242,
+     "max": 1.0
+    },
+    "recall": {
+     "median": 0.9746469833119384,
+     "min": 0.5754716981132075,
+     "max": 1.0
+    },
+    "radius_ratio": {
+     "median": 1.0542061981457924,
+     "min": 0.8865995421652555,
+     "max": 1.199412885850788
+    },
+    "patterns_with_overlaps": 14,
+    "voxel_rule_bias_z": {
+     "median": -19.036171660474714,
+     "min": -24.674652511241955,
+     "max": -12.200880434831245
+    },
+    "own_label_left_out_bias_z": {
+     "median": -0.21006183280876867,
+     "min": -1.7358040568540622,
+     "max": 2.44245631117053,
+     "mean": 0.058584650724427895,
+     "sd": 1.1293927184044716
+    },
+    "admitted_share": {
+     "median": 0.8109374538057468,
+     "min": 0.7687434599394779,
+     "max": 0.8584544758990054
+    },
+    "precipitate_atoms_admitted": {
+     "median": 27.5,
+     "min": 0.0,
+     "max": 662.0
+    }
+   }
+  },
+  "0.1": {
+   "otsu": {
+    "precision": {
+     "median": 0.6105569688043915,
+     "min": 0.3333333333333333,
+     "max": 0.8484848484848485
+    },
+    "recall": {
+     "median": 0.8791952707856598,
+     "min": 0.4811320754716981,
+     "max": 0.926829268292683
+    },
+    "radius_ratio": {
+     "median": 1.1398583426251063,
+     "min": 1.005006003001794,
+     "max": 1.4723252911971105
+    },
+    "patterns_with_overlaps": 16,
+    "voxel_rule_bias_z": {
+     "median": -16.14388453960857,
+     "min": -25.683189779237125,
+     "max": -8.855051637046339
+    },
+    "own_label_left_out_bias_z": {
+     "median": -0.15194465402043567,
+     "min": -2.0461734973618944,
+     "max": 2.1915821310114283,
+     "mean": -0.18169722754940631,
+     "sd": 1.1997748426109325
+    },
+    "admitted_share": {
+     "median": 0.7076740978568488,
+     "min": 0.5268204197978751,
+     "max": 0.8250272034820457
+    },
+    "precipitate_atoms_admitted": {
+     "median": 56.0,
+     "min": 9.0,
+     "max": 320.0
+    }
+   },
+   "significance": {
+    "precision": {
+     "median": 0.9701426024955437,
+     "min": 0.5833333333333334,
+     "max": 1.0
+    },
+    "recall": {
+     "median": 0.6824591786244434,
+     "min": 0.0660377358490566,
+     "max": 0.8913043478260869
+    },
+    "radius_ratio": {
+     "median": 1.034116036286866,
+     "min": 0.8202476597757109,
+     "max": 1.1358076397635193
+    },
+    "patterns_with_overlaps": 11,
+    "voxel_rule_bias_z": {
+     "median": -11.464861707482306,
+     "min": -15.902845300300056,
+     "max": -5.7014671796325915
+    },
+    "own_label_left_out_bias_z": {
+     "median": -0.09802216061537858,
+     "min": -2.0198274664075173,
+     "max": 1.4609536800233323,
+     "mean": -0.21446484512439393,
+     "sd": 0.9638322822925446
+    },
+    "admitted_share": {
+     "median": 0.8296999758182482,
+     "min": 0.7874055671043959,
+     "max": 0.8968644726613112
+    },
+    "precipitate_atoms_admitted": {
+     "median": 152.0,
+     "min": 7.0,
+     "max": 927.0
+    }
+   }
+  }
+ },
+ "per_cell": [
+  {
+   "pattern": 0,
+   "efficiency": 0.37,
+   "bandwidth": 1.5,
+   "true_precipitates": 138,
+   "methods": {
+    "otsu": {
+     "detection": {
+      "found": 140,
+      "precision": 0.95,
+      "recall": 0.9637681159420289,
+      "radius_ratio_median": 0.9923546772451277,
+      "overlapping_pairs": 11
+     },
+     "detection_resolved": {
+      "found": 140,
+      "precision": 0.95,
+      "recall": 0.9637681159420289,
+      "radius_ratio_median": 0.9729999914304515,
+      "overlapping_pairs": 0
+     },
+     "voxel_rule": {
+      "bias_z": -16.739140170327754,
+      "share_of_observed_matrix": 0.836382056621827,
+      "precipitate_atoms": 79,
+      "precipitate_guests": 6
+     },
+     "own_label_left_out": {
+      "bias_z": -0.07753370924844973,
+      "share_of_observed_matrix": 0.8277283728260257,
+      "precipitate_atoms": 80,
+      "precipitate_guests": 21
+     }
+    },
+    "significance": {
+     "detection": {
+      "found": 135,
+      "precision": 0.9851851851851852,
+      "recall": 0.9637681159420289,
+      "radius_ratio_median": 1.0642267961388205,
+      "overlapping_pairs": 22
+     },
+     "detection_resolved": {
+      "found": 135,
+      "precision": 0.9851851851851852,
+      "recall": 0.9637681159420289,
+      "radius_ratio_median": 1.02756838856816,
+      "overlapping_pairs": 0
+     },
+     "voxel_rule": {
+      "bias_z": -19.042036143199574,
+      "share_of_observed_matrix": 0.8037935498395903,
+      "precipitate_atoms": 47,
+      "precipitate_guests": 1
+     },
+     "own_label_left_out": {
+      "bias_z": 0.043577185377216374,
+      "share_of_observed_matrix": 0.7950835819215399,
+      "precipitate_atoms": 48,
+      "precipitate_guests": 13
+     }
+    }
+   },
+   "seconds": 18.1
+  },
+  {
+   "pattern": 1,
+   "efficiency": 0.37,
+   "bandwidth": 2.0,
+   "true_precipitates": 102,
+   "methods": {
+    "otsu": {
+     "detection": {
+      "found": 195,
+      "precision": 0.4717948717948718,
+      "recall": 0.9019607843137255,
+      "radius_ratio_median": 1.1092748640400008,
+      "overlapping_pairs": 52
+     },
+     "detection_resolved": {
+      "found": 194,
+      "precision": 0.4742268041237113,
+      "recall": 0.9019607843137255,
+      "radius_ratio_median": 1.0378893415995916,
+      "overlapping_pairs": 0
+     },
+     "voxel_rule": {
+      "bias_z": -23.38101222393502,
+      "share_of_observed_matrix": 0.6995234929078015,
+      "precipitate_atoms": 71,
+      "precipitate_guests": 4
+     },
+     "own_label_left_out": {
+      "bias_z": -0.46209097263056087,
+      "share_of_observed_matrix": 0.6956172429078015,
+      "precipitate_atoms": 68,
+      "precipitate_guests": 16
+     }
+    },
+    "significance": {
+     "detection": {
+      "found": 72,
+      "precision": 0.9583333333333334,
+      "recall": 0.6764705882352942,
+      "radius_ratio_median": 0.9289333248221421,
+      "overlapping_pairs": 0
+     },
+     "detection_resolved": {
+      "found": 72,
+      "precision": 0.9583333333333334,
+      "recall": 0.6764705882352942,
+      "radius_ratio_median": 0.9289333248221421,
+      "overlapping_pairs": 0
+     },
+     "voxel_rule": {
+      "bias_z": -13.467976493262727,
+      "share_of_observed_matrix": 0.852629100177305,
+      "precipitate_atoms": 278,
+      "precipitate_guests": 22
+     },
+     "own_label_left_out": {
+      "bias_z": -1.1680880817647974,
+      "share_of_observed_matrix": 0.8497755984042553,
+      "precipitate_atoms": 269,
+      "precipitate_guests": 66
+     }
+    }
+   },
+   "seconds": 15.6
+  },
+  {
+   "pattern": 2,
+   "efficiency": 0.37,
+   "bandwidth": 1.5,
+   "true_precipitates": 152,
+   "methods": {
+    "otsu": {
+     "detection": {
+      "found": 149,
+      "precision": 0.9798657718120806,
+      "recall": 0.9605263157894737,
+      "radius_ratio_median": 1.0262360582325138,
+      "overlapping_pairs": 10
+     },
+     "detection_resolved": {
+      "found": 149,
+      "precision": 0.9798657718120806,
+      "recall": 0.9605263157894737,
+      "radius_ratio_median": 1.0087717447203501,
+      "overlapping_pairs": 0
+     },
+     "voxel_rule": {
+      "bias_z": -9.056828150731441,
+      "share_of_observed_matrix": 0.8272434175174638,
+      "precipitate_atoms": 18,
+      "precipitate_guests": 4
+     },
+     "own_label_left_out": {
+      "bias_z": 1.9054631394159252,
+      "share_of_observed_matrix": 0.8178540117084759,
+      "precipitate_atoms": 17,
+      "precipitate_guests": 8
+     }
+    },
+    "significance": {
+     "detection": {
+      "found": 148,
+      "precision": 1.0,
+      "recall": 0.9736842105263158,
+      "radius_ratio_median": 1.126446906097046,
+      "overlapping_pairs": 29
+     },
+     "detection_resolved": {
+      "found": 148,
+      "precision": 1.0,
+      "recall": 0.9736842105263158,
+      "radius_ratio_median": 1.0865628451933798,
+      "overlapping_pairs": 0
+     },
+     "voxel_rule": {
+      "bias_z": -13.293542966710397,
+      "share_of_observed_matrix": 0.7770581747221358,
+      "precipitate_atoms": 10,
+      "precipitate_guests": 2
+     },
+     "own_label_left_out": {
+      "bias_z": 2.44245631117053,
+      "share_of_observed_matrix": 0.7687434599394779,
+      "precipitate_atoms": 12,
+      "precipitate_guests": 6
+     }
+    }
+   },
+   "seconds": 18.3
+  },
+  {
+   "pattern": 3,
+   "efficiency": 0.37,
+   "bandwidth": 1.5,
+   "true_precipitates": 86,
+   "methods": {
+    "otsu": {
+     "detection": {
+      "found": 89,
+      "precision": 0.9550561797752809,
+      "recall": 0.9883720930232558,
+      "radius_ratio_median": 0.9225155051896877,
+      "overlapping_pairs": 2
+     },
+     "detection_resolved": {
+      "found": 89,
+      "precision": 0.9550561797752809,
+      "recall": 0.9883720930232558,
+      "radius_ratio_median": 0.9199792921350041,
+      "overlapping_pairs": 0
+     },
+     "voxel_rule": {
+      "bias_z": -15.745486535644515,
+      "share_of_observed_matrix": 0.8832565066307354,
+      "precipitate_atoms": 119,
+      "precipitate_guests": 2
+     },
+     "own_label_left_out": {
+      "bias_z": -0.10081511674431702,
+      "share_of_observed_matrix": 0.8766754130912702,
+      "precipitate_atoms": 104,
+      "precipitate_guests": 15
+     }
+    },
+    "significance": {
+     "detection": {
+      "found": 87,
+      "precision": 0.9770114942528736,
+      "recall": 0.9883720930232558,
+      "radius_ratio_median": 1.0049737771773166,
+      "overlapping_pairs": 3
+     },
+     "detection_resolved": {
+      "found": 87,
+      "precision": 0.9770114942528736,
+      "recall": 0.9883720930232558,
+      "radius_ratio_median": 0.9954905537408673,
+      "overlapping_pairs": 0
+     },
+     "voxel_rule": {
+      "bias_z": -20.87125715134699,
+      "share_of_observed_matrix": 0.83433799021346,
+      "precipitate_atoms": 57,
+      "precipitate_guests": 1
+     },
+     "own_label_left_out": {
+      "bias_z": -0.1365675430351608,
+      "share_of_observed_matrix": 0.8283384157151975,
+      "precipitate_atoms": 50,
+      "precipitate_guests": 10
+     }
+    }
+   },
+   "seconds": 15.1
+  },
+  {
+   "pattern": 4,
+   "efficiency": 0.37,
+   "bandwidth": 1.5,
+   "true_precipitates": 94,
+   "methods": {
+    "otsu": {
+     "detection": {
+      "found": 92,
+      "precision": 1.0,
+      "recall": 0.9787234042553191,
+      "radius_ratio_median": 0.9840422432377298,
+      "overlapping_pairs": 2
+     },
+     "detection_resolved": {
+      "found": 92,
+      "precision": 1.0,
+      "recall": 0.9787234042553191,
+      "radius_ratio_median": 0.9837090757165767,
+      "overlapping_pairs": 0
+     },
+     "voxel_rule": {
+      "bias_z": -9.623198194662065,
+      "share_of_observed_matrix": 0.8763016813091195,
+      "precipitate_atoms": 29,
+      "precipitate_guests": 2
+     },
+     "own_label_left_out": {
+      "bias_z": -0.5767251531314304,
+      "share_of_observed_matrix": 0.8701967608835995,
+      "precipitate_atoms": 24,
+      "precipitate_guests": 8
+     }
+    },
+    "significance": {
+     "detection": {
+      "found": 93,
+      "precision": 0.989247311827957,
+      "recall": 0.9787234042553191,
+      "radius_ratio_median": 1.1161513148797855,
+      "overlapping_pairs": 23
+     },
+     "detection_resolved": {
+      "found": 93,
+      "precision": 0.989247311827957,
+      "recall": 0.9787234042553191,
+      "radius_ratio_median": 1.0839352644226703,
+      "overlapping_pairs": 0
+     },
+     "voxel_rule": {
+      "bias_z": -18.484786114374312,
+      "share_of_observed_matrix": 0.8013164173239397,
+      "precipitate_atoms": 1,
+      "precipitate_guests": 0
+     },
+     "own_label_left_out": {
+      "bias_z": -0.5131741053364728,
+      "share_of_observed_matrix": 0.7945659191062958,
+      "precipitate_atoms": 3,
+      "precipitate_guests": 3
+     }
+    }
+   },
+   "seconds": 20.4
+  },
+  {
+   "pattern": 5,
+   "efficiency": 0.37,
+   "bandwidth": 1.5,
+   "true_precipitates": 73,
+   "methods": {
+    "otsu": {
+     "detection": {
+      "found": 78,
+      "precision": 0.9102564102564102,
+      "recall": 0.9726027397260274,
+      "radius_ratio_median": 0.9035857715368947,
+      "overlapping_pairs": 0
+     },
+     "detection_resolved": {
+      "found": 78,
+      "precision": 0.9102564102564102,
+      "recall": 0.9726027397260274,
+      "radius_ratio_median": 0.9001697397421232,
+      "overlapping_pairs": 0
+     },
+     "voxel_rule": {
+      "bias_z": -17.477956916791122,
+      "share_of_observed_matrix": 0.890362081412784,
+      "precipitate_atoms": 178,
+      "precipitate_guests": 0
+     },
+     "own_label_left_out": {
+      "bias_z": -0.2813623952047599,
+      "share_of_observed_matrix": 0.885836063752985,
+      "precipitate_atoms": 152,
+      "precipitate_guests": 18
+     }
+    },
+    "significance": {
+     "detection": {
+      "found": 75,
+      "precision": 0.9466666666666667,
+      "recall": 0.9726027397260274,
+      "radius_ratio_median": 1.0086353110205573,
+      "overlapping_pairs": 7
+     },
+     "detection_resolved": {
+      "found": 75,
+      "precision": 0.9466666666666667,
+      "recall": 0.9726027397260274,
+      "radius_ratio_median": 0.9943023026414439,
+      "overlapping_pairs": 0
+     },
+     "voxel_rule": {
+      "bias_z": -24.674652511241955,
+      "share_of_observed_matrix": 0.8279141444993614,
+      "precipitate_atoms": 66,
+      "precipitate_guests": 0
+     },
+     "own_label_left_out": {
+      "bias_z": -0.2672138361539872,
+      "share_of_observed_matrix": 0.8220275448436719,
+      "precipitate_atoms": 55,
+      "precipitate_guests": 5
+     }
+    }
+   },
+   "seconds": 16.1
+  },
+  {
+   "pattern": 6,
+   "efficiency": 0.37,
+   "bandwidth": 1.5,
+   "true_precipitates": 70,
+   "methods": {
+    "otsu": {
+     "detection": {
+      "found": 73,
+      "precision": 0.958904109589041,
+      "recall": 1.0,
+      "radius_ratio_median": 0.949528949287654,
+      "overlapping_pairs": 1
+     },
+     "detection_resolved": {
+      "found": 73,
+      "precision": 0.958904109589041,
+      "recall": 1.0,
+      "radius_ratio_median": 0.9472924093790455,
+      "overlapping_pairs": 0
+     },
+     "voxel_rule": {
+      "bias_z": -17.61920741045629,
+      "share_of_observed_matrix": 0.8769664304670187,
+      "precipitate_atoms": 41,
+      "precipitate_guests": 1
+     },
+     "own_label_left_out": {
+      "bias_z": -0.9438775413032549,
+      "share_of_observed_matrix": 0.8717682142759432,
+      "precipitate_atoms": 28,
+      "precipitate_guests": 6
+     }
+    },
+    "significance": {
+     "detection": {
+      "found": 70,
+      "precision": 1.0,
+      "recall": 1.0,
+      "radius_ratio_median": 1.0441856001527645,
+      "overlapping_pairs": 5
+     },
+     "detection_resolved": {
+      "found": 70,
+      "precision": 1.0,
+      "recall": 1.0,
+      "radius_ratio_median": 1.0320371155851606,
+      "overlapping_pairs": 0
+     },
+     "voxel_rule": {
+      "bias_z": -22.685373526050533,
+      "share_of_observed_matrix": 0.8319881808979235,
+      "precipitate_atoms": 11,
+      "precipitate_guests": 0
+     },
+     "own_label_left_out": {
+      "bias_z": -0.4058117456502574,
+      "share_of_observed_matrix": 0.8265984514787557,
+      "precipitate_atoms": 6,
+      "precipitate_guests": 1
+     }
+    }
+   },
+   "seconds": 20.2
+  },
+  {
+   "pattern": 7,
+   "efficiency": 0.37,
+   "bandwidth": 1.5,
+   "true_precipitates": 63,
+   "methods": {
+    "otsu": {
+     "detection": {
+      "found": 63,
+      "precision": 1.0,
+      "recall": 1.0,
+      "radius_ratio_median": 1.004553621983732,
+      "overlapping_pairs": 3
+     },
+     "detection_resolved": {
+      "found": 63,
+      "precision": 1.0,
+      "recall": 1.0,
+      "radius_ratio_median": 0.9904867696630513,
+      "overlapping_pairs": 0
+     },
+     "voxel_rule": {
+      "bias_z": -6.694056119399545,
+      "share_of_observed_matrix": 0.8833213424182149,
+      "precipitate_atoms": 1,
+      "precipitate_guests": 0
+     },
+     "own_label_left_out": {
+      "bias_z": -0.3171224867771815,
+      "share_of_observed_matrix": 0.8776926657920352,
+      "precipitate_atoms": 0,
+      "precipitate_guests": 0
+     }
+    },
+    "significance": {
+     "detection": {
+      "found": 64,
+      "precision": 0.984375,
+      "recall": 1.0,
+      "radius_ratio_median": 1.199412885850788,
+      "overlapping_pairs": 26
+     },
+     "detection_resolved": {
+      "found": 64,
+      "precision": 0.984375,
+      "recall": 1.0,
+      "radius_ratio_median": 1.0950520436745799,
+      "overlapping_pairs": 0
+     },
+     "voxel_rule": {
+      "bias_z": -17.875400393919325,
+      "share_of_observed_matrix": 0.7828092598078632,
+      "precipitate_atoms": 0,
+      "precipitate_guests": 0
+     },
+     "own_label_left_out": {
+      "bias_z": -0.3094159420724415,
+      "share_of_observed_matrix": 0.7779000380887892,
+      "precipitate_atoms": 0,
+      "precipitate_guests": 0
+     }
+    }
+   },
+   "seconds": 16.0
+  },
+  {
+   "pattern": 8,
+   "efficiency": 0.37,
+   "bandwidth": 1.5,
+   "true_precipitates": 66,
+   "methods": {
+    "otsu": {
+     "detection": {
+      "found": 65,
+      "precision": 0.9692307692307692,
+      "recall": 0.9545454545454546,
+      "radius_ratio_median": 0.9414461437190186,
+      "overlapping_pairs": 3
+     },
+     "detection_resolved": {
+      "found": 64,
+      "precision": 0.984375,
+      "recall": 0.9545454545454546,
+      "radius_ratio_median": 0.9414461437190186,
+      "overlapping_pairs": 0
+     },
+     "voxel_rule": {
+      "bias_z": -5.364576490533352,
+      "share_of_observed_matrix": 0.9010347226247754,
+      "precipitate_atoms": 16,
+      "precipitate_guests": 0
+     },
+     "own_label_left_out": {
+      "bias_z": -0.8895325041911301,
+      "share_of_observed_matrix": 0.8944553938902092,
+      "precipitate_atoms": 12,
+      "precipitate_guests": 2
+     }
+    },
+    "significance": {
+     "detection": {
+      "found": 68,
+      "precision": 0.9264705882352942,
+      "recall": 0.9545454545454546,
+      "radius_ratio_median": 1.1419583764267907,
+      "overlapping_pairs": 24
+     },
+     "detection_resolved": {
+      "found": 68,
+      "precision": 0.9264705882352942,
+      "recall": 0.9545454545454546,
+      "radius_ratio_median": 1.101585633726476,
+      "overlapping_pairs": 0
+     },
+     "voxel_rule": {
+      "bias_z": -18.212759530318674,
+      "share_of_observed_matrix": 0.7792301895542287,
+      "precipitate_atoms": 0,
+      "precipitate_guests": 0
+     },
+     "own_label_left_out": {
+      "bias_z": -1.7358040568540622,
+      "share_of_observed_matrix": 0.7737522462465944,
+      "precipitate_atoms": 0,
+      "precipitate_guests": 0
+     }
+    }
+   },
+   "seconds": 19.4
+  },
+  {
+   "pattern": 9,
+   "efficiency": 0.37,
+   "bandwidth": 1.5,
+   "true_precipitates": 92,
+   "methods": {
+    "otsu": {
+     "detection": {
+      "found": 92,
+      "precision": 1.0,
+      "recall": 1.0,
+      "radius_ratio_median": 1.028434534498685,
+      "overlapping_pairs": 5
+     },
+     "detection_resolved": {
+      "found": 92,
+      "precision": 1.0,
+      "recall": 1.0,
+      "radius_ratio_median": 1.0139293781418908,
+      "overlapping_pairs": 0
+     },
+     "voxel_rule": {
+      "bias_z": -8.929248062435581,
+      "share_of_observed_matrix": 0.8643819974377541,
+      "precipitate_atoms": 3,
+      "precipitate_guests": 0
+     },
+     "own_label_left_out": {
+      "bias_z": -0.3649646058426151,
+      "share_of_observed_matrix": 0.8572940455634156,
+      "precipitate_atoms": 4,
+      "precipitate_guests": 2
+     }
+    },
+    "significance": {
+     "detection": {
+      "found": 92,
+      "precision": 1.0,
+      "recall": 1.0,
+      "radius_ratio_median": 1.1842915569308774,
+      "overlapping_pairs": 36
+     },
+     "detection_resolved": {
+      "found": 92,
+      "precision": 1.0,
+      "recall": 1.0,
+      "radius_ratio_median": 1.1099043421570112,
+      "overlapping_pairs": 0
+     },
+     "voxel_rule": {
+      "bias_z": -19.03030717774985,
+      "share_of_observed_matrix": 0.7774048905475408,
+      "precipitate_atoms": 0,
+      "precipitate_guests": 0
+     },
+     "own_label_left_out": {
+      "bias_z": -0.35600986404942137,
+      "share_of_observed_matrix": 0.7715702111067788,
+      "precipitate_atoms": 0,
+      "precipitate_guests": 0
+     }
+    }
+   },
+   "seconds": 18.8
+  },
+  {
+   "pattern": 10,
+   "efficiency": 0.37,
+   "bandwidth": 1.5,
+   "true_precipitates": 82,
+   "methods": {
+    "otsu": {
+     "detection": {
+      "found": 82,
+      "precision": 0.9878048780487805,
+      "recall": 0.9878048780487805,
+      "radius_ratio_median": 0.9973640023050745,
+      "overlapping_pairs": 3
+     },
+     "detection_resolved": {
+      "found": 82,
+      "precision": 0.9878048780487805,
+      "recall": 0.9878048780487805,
+      "radius_ratio_median": 0.9955174946948878,
+      "overlapping_pairs": 0
+     },
+     "voxel_rule": {
+      "bias_z": -7.349743653212683,
+      "share_of_observed_matrix": 0.8848077826603654,
+      "precipitate_atoms": 8,
+      "precipitate_guests": 0
+     },
+     "own_label_left_out": {
+      "bias_z": 1.4994915380275422,
+      "share_of_observed_matrix": 0.8795566978968024,
+      "precipitate_atoms": 6,
+      "precipitate_guests": 0
+     }
+    },
+    "significance": {
+     "detection": {
+      "found": 82,
+      "precision": 1.0,
+      "recall": 1.0,
+      "radius_ratio_median": 1.1670401066550775,
+      "overlapping_pairs": 19
+     },
+     "detection_resolved": {
+      "found": 82,
+      "precision": 1.0,
+      "recall": 1.0,
+      "radius_ratio_median": 1.1178791604991853,
+      "overlapping_pairs": 0
+     },
+     "voxel_rule": {
+      "bias_z": -19.441000466685896,
+      "share_of_observed_matrix": 0.7884365586048697,
+      "precipitate_atoms": 2,
+      "precipitate_guests": 0
+     },
+     "own_label_left_out": {
+      "bias_z": 1.3214080510798634,
+      "share_of_observed_matrix": 0.78420805350579,
+      "precipitate_atoms": 2,
+      "precipitate_guests": 0
+     }
+    }
+   },
+   "seconds": 19.9
+  },
+  {
+   "pattern": 11,
+   "efficiency": 0.37,
+   "bandwidth": 1.5,
+   "true_precipitates": 82,
+   "methods": {
+    "otsu": {
+     "detection": {
+      "found": 91,
+      "precision": 0.9010989010989011,
+      "recall": 1.0,
+      "radius_ratio_median": 0.9442013602676662,
+      "overlapping_pairs": 5
+     },
+     "detection_resolved": {
+      "found": 90,
+      "precision": 0.9111111111111111,
+      "recall": 1.0,
+      "radius_ratio_median": 0.94212966235416,
+      "overlapping_pairs": 0
+     },
+     "voxel_rule": {
+      "bias_z": -18.238900338066607,
+      "share_of_observed_matrix": 0.8504211196829217,
+      "precipitate_atoms": 78,
+      "precipitate_guests": 2
+     },
+     "own_label_left_out": {
+      "bias_z": 1.8771688719772408,
+      "share_of_observed_matrix": 0.8439663104253663,
+      "precipitate_atoms": 62,
+      "precipitate_guests": 11
+     }
+    },
+    "significance": {
+     "detection": {
+      "found": 81,
+      "precision": 0.9876543209876543,
+      "recall": 0.975609756097561,
+      "radius_ratio_median": 0.9775513181869457,
+      "overlapping_pairs": 1
+     },
+     "detection_resolved": {
+      "found": 81,
+      "precision": 0.9876543209876543,
+      "recall": 0.975609756097561,
+      "radius_ratio_median": 0.9648347624590309,
+      "overlapping_pairs": 0
+     },
+     "voxel_rule": {
+      "bias_z": -19.265162896510255,
+      "share_of_observed_matrix": 0.8376105881520277,
+      "precipitate_atoms": 65,
+      "precipitate_guests": 1
+     },
+     "own_label_left_out": {
+      "bias_z": 1.886697599396268,
+      "share_of_observed_matrix": 0.8319626300516668,
+      "precipitate_atoms": 41,
+      "precipitate_guests": 7
+     }
+    }
+   },
+   "seconds": 18.6
+  },
+  {
+   "pattern": 12,
+   "efficiency": 0.37,
+   "bandwidth": 2.0,
+   "true_precipitates": 106,
+   "methods": {
+    "otsu": {
+     "detection": {
+      "found": 203,
+      "precision": 0.458128078817734,
+      "recall": 0.8773584905660378,
+      "radius_ratio_median": 1.0280166669783317,
+      "overlapping_pairs": 49
+     },
+     "detection_resolved": {
+      "found": 203,
+      "precision": 0.458128078817734,
+      "recall": 0.8773584905660378,
+      "radius_ratio_median": 0.9712879343492014,
+      "overlapping_pairs": 0
+     },
+     "voxel_rule": {
+      "bias_z": -22.639793735921785,
+      "share_of_observed_matrix": 0.724049987248151,
+      "precipitate_atoms": 269,
+      "precipitate_guests": 18
+     },
+     "own_label_left_out": {
+      "bias_z": -1.312475216327374,
+      "share_of_observed_matrix": 0.7206353254555243,
+      "precipitate_atoms": 264,
+      "precipitate_guests": 54
+     }
+    },
+    "significance": {
+     "detection": {
+      "found": 66,
+      "precision": 0.9242424242424242,
+      "recall": 0.5754716981132075,
+      "radius_ratio_median": 0.8865995421652555,
+      "overlapping_pairs": 0
+     },
+     "detection_resolved": {
+      "found": 66,
+      "precision": 0.9242424242424242,
+      "recall": 0.5754716981132075,
+      "radius_ratio_median": 0.8865995421652555,
+      "overlapping_pairs": 0
+     },
+     "voxel_rule": {
+      "bias_z": -14.294825922291183,
+      "share_of_observed_matrix": 0.8608064836067897,
+      "precipitate_atoms": 660,
+      "precipitate_guests": 60
+     },
+     "own_label_left_out": {
+      "bias_z": -1.5356562818263726,
+      "share_of_observed_matrix": 0.8584544758990054,
+      "precipitate_atoms": 662,
+      "precipitate_guests": 140
+     }
+    }
+   },
+   "seconds": 20.6
+  },
+  {
+   "pattern": 13,
+   "efficiency": 0.37,
+   "bandwidth": 1.5,
+   "true_precipitates": 78,
+   "methods": {
+    "otsu": {
+     "detection": {
+      "found": 77,
+      "precision": 0.987012987012987,
+      "recall": 0.9743589743589743,
+      "radius_ratio_median": 0.9449585863918389,
+      "overlapping_pairs": 1
+     },
+     "detection_resolved": {
+      "found": 77,
+      "precision": 0.987012987012987,
+      "recall": 0.9743589743589743,
+      "radius_ratio_median": 0.9449585863918389,
+      "overlapping_pairs": 0
+     },
+     "voxel_rule": {
+      "bias_z": -9.618761417340242,
+      "share_of_observed_matrix": 0.8924331505455367,
+      "precipitate_atoms": 61,
+      "precipitate_guests": 2
+     },
+     "own_label_left_out": {
+      "bias_z": 0.8719608155519928,
+      "share_of_observed_matrix": 0.8862852620272486,
+      "precipitate_atoms": 52,
+      "precipitate_guests": 12
+     }
+    },
+    "significance": {
+     "detection": {
+      "found": 77,
+      "precision": 1.0,
+      "recall": 0.9871794871794872,
+      "radius_ratio_median": 1.0969421592883408,
+      "overlapping_pairs": 17
+     },
+     "detection_resolved": {
+      "found": 77,
+      "precision": 1.0,
+      "recall": 0.9871794871794872,
+      "radius_ratio_median": 1.073247306346886,
+      "overlapping_pairs": 0
+     },
+     "voxel_rule": {
+      "bias_z": -20.115942237747685,
+      "share_of_observed_matrix": 0.8039600881904008,
+      "precipitate_atoms": 14,
+      "precipitate_guests": 0
+     },
+     "own_label_left_out": {
+      "bias_z": 0.7952187195116461,
+      "share_of_observed_matrix": 0.7998473627678218,
+      "precipitate_atoms": 14,
+      "precipitate_guests": 4
+     }
+    }
+   },
+   "seconds": 23.3
+  },
+  {
+   "pattern": 14,
+   "efficiency": 0.37,
+   "bandwidth": 1.5,
+   "true_precipitates": 78,
+   "methods": {
+    "otsu": {
+     "detection": {
+      "found": 153,
+      "precision": 0.5032679738562091,
+      "recall": 0.9871794871794872,
+      "radius_ratio_median": 0.9222210156409596,
+      "overlapping_pairs": 14
+     },
+     "detection_resolved": {
+      "found": 153,
+      "precision": 0.5032679738562091,
+      "recall": 0.9871794871794872,
+      "radius_ratio_median": 0.910136647501269,
+      "overlapping_pairs": 0
+     },
+     "voxel_rule": {
+      "bias_z": -27.557538087550697,
+      "share_of_observed_matrix": 0.8071652337119278,
+      "precipitate_atoms": 225,
+      "precipitate_guests": 6
+     },
+     "own_label_left_out": {
+      "bias_z": -0.2470353032110903,
+      "share_of_observed_matrix": 0.801700224948593,
+      "precipitate_atoms": 178,
+      "precipitate_guests": 23
+     }
+    },
+    "significance": {
+     "detection": {
+      "found": 74,
+      "precision": 0.9324324324324325,
+      "recall": 0.8846153846153846,
+      "radius_ratio_median": 0.9210728383241621,
+      "overlapping_pairs": 2
+     },
+     "detection_resolved": {
+      "found": 74,
+      "precision": 0.9324324324324325,
+      "recall": 0.8846153846153846,
+      "radius_ratio_median": 0.9205596450599967,
+      "overlapping_pairs": 0
+     },
+     "voxel_rule": {
+      "bias_z": -23.966413177178346,
+      "share_of_observed_matrix": 0.8463449303763404,
+      "precipitate_atoms": 288,
+      "precipitate_guests": 9
+     },
+     "own_label_left_out": {
+      "bias_z": -0.15290982946355014,
+      "share_of_observed_matrix": 0.8422323732766591,
+      "precipitate_atoms": 233,
+      "precipitate_guests": 35
+     }
+    }
+   },
+   "seconds": 19.1
+  },
+  {
+   "pattern": 15,
+   "efficiency": 0.37,
+   "bandwidth": 2.0,
+   "true_precipitates": 101,
+   "methods": {
+    "otsu": {
+     "detection": {
+      "found": 190,
+      "precision": 0.5,
+      "recall": 0.9405940594059405,
+      "radius_ratio_median": 1.1102919634750217,
+      "overlapping_pairs": 44
+     },
+     "detection_resolved": {
+      "found": 189,
+      "precision": 0.5026455026455027,
+      "recall": 0.9405940594059405,
+      "radius_ratio_median": 1.0284988336922791,
+      "overlapping_pairs": 0
+     },
+     "voxel_rule": {
+      "bias_z": -21.515298658744793,
+      "share_of_observed_matrix": 0.7078983706158519,
+      "precipitate_atoms": 88,
+      "precipitate_guests": 5
+     },
+     "own_label_left_out": {
+      "bias_z": 1.2493816731758016,
+      "share_of_observed_matrix": 0.7049157691245512,
+      "precipitate_atoms": 87,
+      "precipitate_guests": 20
+     }
+    },
+    "significance": {
+     "detection": {
+      "found": 74,
+      "precision": 0.972972972972973,
+      "recall": 0.7128712871287128,
+      "radius_ratio_median": 0.9439548458127318,
+      "overlapping_pairs": 3
+     },
+     "detection_resolved": {
+      "found": 73,
+      "precision": 0.9863013698630136,
+      "recall": 0.7128712871287128,
+      "radius_ratio_median": 0.9323628353971772,
+      "overlapping_pairs": 0
+     },
+     "voxel_rule": {
+      "bias_z": -12.200880434831245,
+      "share_of_observed_matrix": 0.8536454018227009,
+      "precipitate_atoms": 288,
+      "precipitate_guests": 26
+     },
+     "own_label_left_out": {
+      "bias_z": 1.028647831261845,
+      "share_of_observed_matrix": 0.8505109085887876,
+      "precipitate_atoms": 286,
+      "precipitate_guests": 61
+     }
+    }
+   },
+   "seconds": 23.6
+  },
+  {
+   "pattern": 0,
+   "efficiency": 0.1,
+   "bandwidth": 2.0,
+   "true_precipitates": 138,
+   "methods": {
+    "otsu": {
+     "detection": {
+      "found": 194,
+      "precision": 0.6237113402061856,
+      "recall": 0.8768115942028986,
+      "radius_ratio_median": 1.1487001569218305,
+      "overlapping_pairs": 78
+     },
+     "detection_resolved": {
+      "found": 194,
+      "precision": 0.6237113402061856,
+      "recall": 0.8768115942028986,
+      "radius_ratio_median": 1.0303456267771607,
+      "overlapping_pairs": 0
+     },
+     "voxel_rule": {
+      "bias_z": -20.34446108712651,
+      "share_of_observed_matrix": 0.7136030582988213,
+      "precipitate_atoms": 40,
+      "precipitate_guests": 2
+     },
+     "own_label_left_out": {
+      "bias_z": -1.398404360376103,
+      "share_of_observed_matrix": 0.6940639269406392,
+      "precipitate_atoms": 64,
+      "precipitate_guests": 35
+     }
+    },
+    "significance": {
+     "detection": {
+      "found": 90,
+      "precision": 0.9666666666666667,
+      "recall": 0.6304347826086957,
+      "radius_ratio_median": 0.9843698032129607,
+      "overlapping_pairs": 7
+     },
+     "detection_resolved": {
+      "found": 90,
+      "precision": 0.9666666666666667,
+      "recall": 0.6304347826086957,
+      "radius_ratio_median": 0.9620923783326323,
+      "overlapping_pairs": 0
+     },
+     "voxel_rule": {
+      "bias_z": -13.353074820538223,
+      "share_of_observed_matrix": 0.842571944355952,
+      "precipitate_atoms": 149,
+      "precipitate_guests": 11
+     },
+     "own_label_left_out": {
+      "bias_z": -1.377060568308826,
+      "share_of_observed_matrix": 0.8256875862801317,
+      "precipitate_atoms": 174,
+      "precipitate_guests": 77
+     }
+    }
+   },
+   "seconds": 12.7
+  },
+  {
+   "pattern": 1,
+   "efficiency": 0.1,
+   "bandwidth": 3.0,
+   "true_precipitates": 102,
+   "methods": {
+    "otsu": {
+     "detection": {
+      "found": 143,
+      "precision": 0.3986013986013986,
+      "recall": 0.5588235294117647,
+      "radius_ratio_median": 1.4723252911971105,
+      "overlapping_pairs": 119
+     },
+     "detection_resolved": {
+      "found": 141,
+      "precision": 0.40425531914893614,
+      "recall": 0.5588235294117647,
+      "radius_ratio_median": 1.1627863815260404,
+      "overlapping_pairs": 0
+     },
+     "voxel_rule": {
+      "bias_z": -17.27087556896259,
+      "share_of_observed_matrix": 0.5329359937807722,
+      "precipitate_atoms": 169,
+      "precipitate_guests": 24
+     },
+     "own_label_left_out": {
+      "bias_z": 1.656956998011271,
+      "share_of_observed_matrix": 0.5268204197978751,
+      "precipitate_atoms": 194,
+      "precipitate_guests": 73
+     }
+    },
+    "significance": {
+     "detection": {
+      "found": 9,
+      "precision": 0.7777777777777778,
+      "recall": 0.06862745098039216,
+      "radius_ratio_median": 1.0727182847307446,
+      "overlapping_pairs": 0
+     },
+     "detection_resolved": {
+      "found": 9,
+      "precision": 0.7777777777777778,
+      "recall": 0.06862745098039216,
+      "radius_ratio_median": 1.0727182847307446,
+      "overlapping_pairs": 0
+     },
+     "voxel_rule": {
+      "bias_z": -5.7014671796325915,
+      "share_of_observed_matrix": 0.902150816273646,
+      "precipitate_atoms": 843,
+      "precipitate_guests": 220
+     },
+     "own_label_left_out": {
+      "bias_z": 0.7485353782434961,
+      "share_of_observed_matrix": 0.8968644726613112,
+      "precipitate_atoms": 894,
+      "precipitate_guests": 329
+     }
+    }
+   },
+   "seconds": 13.4
+  },
+  {
+   "pattern": 2,
+   "efficiency": 0.1,
+   "bandwidth": 2.0,
+   "true_precipitates": 152,
+   "methods": {
+    "otsu": {
+     "detection": {
+      "found": 162,
+      "precision": 0.8271604938271605,
+      "recall": 0.881578947368421,
+      "radius_ratio_median": 1.163021536905565,
+      "overlapping_pairs": 58
+     },
+     "detection_resolved": {
+      "found": 162,
+      "precision": 0.8271604938271605,
+      "recall": 0.881578947368421,
+      "radius_ratio_median": 1.0513071164890913,
+      "overlapping_pairs": 0
+     },
+     "voxel_rule": {
+      "bias_z": -16.289001024128805,
+      "share_of_observed_matrix": 0.7252627198002289,
+      "precipitate_atoms": 32,
+      "precipitate_guests": 8
+     },
+     "own_label_left_out": {
+      "bias_z": -0.17612855870054753,
+      "share_of_observed_matrix": 0.7077307252106961,
+      "precipitate_atoms": 60,
+      "precipitate_guests": 46
+     }
+    },
+    "significance": {
+     "detection": {
+      "found": 98,
+      "precision": 0.9795918367346939,
+      "recall": 0.631578947368421,
+      "radius_ratio_median": 1.0469640027669318,
+      "overlapping_pairs": 15
+     },
+     "detection_resolved": {
+      "found": 98,
+      "precision": 0.9795918367346939,
+      "recall": 0.631578947368421,
+      "radius_ratio_median": 0.9964661246532969,
+      "overlapping_pairs": 0
+     },
+     "voxel_rule": {
+      "bias_z": -10.021739450355646,
+      "share_of_observed_matrix": 0.8263968369576526,
+      "precipitate_atoms": 75,
+      "precipitate_guests": 18
+     },
+     "own_label_left_out": {
+      "bias_z": 0.21057990657275688,
+      "share_of_observed_matrix": 0.8073561544064093,
+      "precipitate_atoms": 130,
+      "precipitate_guests": 96
+     }
+    }
+   },
+   "seconds": 13.3
+  },
+  {
+   "pattern": 3,
+   "efficiency": 0.1,
+   "bandwidth": 2.0,
+   "true_precipitates": 86,
+   "methods": {
+    "otsu": {
+     "detection": {
+      "found": 157,
+      "precision": 0.4713375796178344,
+      "recall": 0.8604651162790697,
+      "radius_ratio_median": 1.0479043696741277,
+      "overlapping_pairs": 34
+     },
+     "detection_resolved": {
+      "found": 157,
+      "precision": 0.4713375796178344,
+      "recall": 0.8604651162790697,
+      "radius_ratio_median": 1.017175341283515,
+      "overlapping_pairs": 0
+     },
+     "voxel_rule": {
+      "bias_z": -20.480460284185984,
+      "share_of_observed_matrix": 0.7532879099984154,
+      "precipitate_atoms": 99,
+      "precipitate_guests": 3
+     },
+     "own_label_left_out": {
+      "bias_z": 2.1915821310114283,
+      "share_of_observed_matrix": 0.7421961654254476,
+      "precipitate_atoms": 96,
+      "precipitate_guests": 24
+     }
+    },
+    "significance": {
+     "detection": {
+      "found": 60,
+      "precision": 0.95,
+      "recall": 0.6627906976744186,
+      "radius_ratio_median": 0.9340624743792652,
+      "overlapping_pairs": 1
+     },
+     "detection_resolved": {
+      "found": 60,
+      "precision": 0.95,
+      "recall": 0.6627906976744186,
+      "radius_ratio_median": 0.9308967654553081,
+      "overlapping_pairs": 0
+     },
+     "voxel_rule": {
+      "bias_z": -11.889303244563479,
+      "share_of_observed_matrix": 0.8707547668092748,
+      "precipitate_atoms": 182,
+      "precipitate_guests": 8
+     },
+     "own_label_left_out": {
+      "bias_z": 1.1400769626196343,
+      "share_of_observed_matrix": 0.8593989330798077,
+      "precipitate_atoms": 183,
+      "precipitate_guests": 48
+     }
+    }
+   },
+   "seconds": 13.3
+  },
+  {
+   "pattern": 4,
+   "efficiency": 0.1,
+   "bandwidth": 2.0,
+   "true_precipitates": 94,
+   "methods": {
+    "otsu": {
+     "detection": {
+      "found": 106,
+      "precision": 0.7830188679245284,
+      "recall": 0.8829787234042553,
+      "radius_ratio_median": 1.0913419584932111,
+      "overlapping_pairs": 30
+     },
+     "detection_resolved": {
+      "found": 105,
+      "precision": 0.7904761904761904,
+      "recall": 0.8829787234042553,
+      "radius_ratio_median": 1.0073575897966003,
+      "overlapping_pairs": 0
+     },
+     "voxel_rule": {
+      "bias_z": -13.851943106636815,
+      "share_of_observed_matrix": 0.7855208333333333,
+      "precipitate_atoms": 36,
+      "precipitate_guests": 5
+     },
+     "own_label_left_out": {
+      "bias_z": 1.436290466572135,
+      "share_of_observed_matrix": 0.7704166666666666,
+      "precipitate_atoms": 49,
+      "precipitate_guests": 29
+     }
+    },
+    "significance": {
+     "detection": {
+      "found": 68,
+      "precision": 0.9705882352941176,
+      "recall": 0.7021276595744681,
+      "radius_ratio_median": 1.0437293189463546,
+      "overlapping_pairs": 10
+     },
+     "detection_resolved": {
+      "found": 68,
+      "precision": 0.9705882352941176,
+      "recall": 0.7021276595744681,
+      "radius_ratio_median": 1.0058393096016767,
+      "overlapping_pairs": 0
+     },
+     "voxel_rule": {
+      "bias_z": -10.143386022416417,
+      "share_of_observed_matrix": 0.8380729166666666,
+      "precipitate_atoms": 47,
+      "precipitate_guests": 8
+     },
+     "own_label_left_out": {
+      "bias_z": 1.4609536800233323,
+      "share_of_observed_matrix": 0.823125,
+      "precipitate_atoms": 70,
+      "precipitate_guests": 40
+     }
+    }
+   },
+   "seconds": 11.9
+  },
+  {
+   "pattern": 5,
+   "efficiency": 0.1,
+   "bandwidth": 3.0,
+   "true_precipitates": 73,
+   "methods": {
+    "otsu": {
+     "detection": {
+      "found": 77,
+      "precision": 0.5974025974025974,
+      "recall": 0.6301369863013698,
+      "radius_ratio_median": 1.2082202556150907,
+      "overlapping_pairs": 26
+     },
+     "detection_resolved": {
+      "found": 77,
+      "precision": 0.5974025974025974,
+      "recall": 0.6301369863013698,
+      "radius_ratio_median": 1.066731524340247,
+      "overlapping_pairs": 0
+     },
+     "voxel_rule": {
+      "bias_z": -10.396583464852348,
+      "share_of_observed_matrix": 0.7149658455806251,
+      "precipitate_atoms": 79,
+      "precipitate_guests": 9
+     },
+     "own_label_left_out": {
+      "bias_z": -0.12776074934032383,
+      "share_of_observed_matrix": 0.7076174705030015,
+      "precipitate_atoms": 99,
+      "precipitate_guests": 32
+     }
+    },
+    "significance": {
+     "detection": {
+      "found": 33,
+      "precision": 0.9696969696969697,
+      "recall": 0.4383561643835616,
+      "radius_ratio_median": 1.058849775803996,
+      "overlapping_pairs": 5
+     },
+     "detection_resolved": {
+      "found": 33,
+      "precision": 0.9696969696969697,
+      "recall": 0.4383561643835616,
+      "radius_ratio_median": 0.9996584890160749,
+      "overlapping_pairs": 0
+     },
+     "voxel_rule": {
+      "bias_z": -6.387593805759616,
+      "share_of_observed_matrix": 0.8368867729248602,
+      "precipitate_atoms": 172,
+      "precipitate_guests": 27
+     },
+     "own_label_left_out": {
+      "bias_z": 0.18486184573544653,
+      "share_of_observed_matrix": 0.8316083626578348,
+      "precipitate_atoms": 195,
+      "precipitate_guests": 69
+     }
+    }
+   },
+   "seconds": 13.8
+  },
+  {
+   "pattern": 6,
+   "efficiency": 0.1,
+   "bandwidth": 2.0,
+   "true_precipitates": 70,
+   "methods": {
+    "otsu": {
+     "detection": {
+      "found": 189,
+      "precision": 0.3333333333333333,
+      "recall": 0.9,
+      "radius_ratio_median": 1.1285350977193414,
+      "overlapping_pairs": 42
+     },
+     "detection_resolved": {
+      "found": 189,
+      "precision": 0.3333333333333333,
+      "recall": 0.9,
+      "radius_ratio_median": 1.0433426238855283,
+      "overlapping_pairs": 0
+     },
+     "voxel_rule": {
+      "bias_z": -25.683189779237125,
+      "share_of_observed_matrix": 0.702031026740151,
+      "precipitate_atoms": 33,
+      "precipitate_guests": 1
+     },
+     "own_label_left_out": {
+      "bias_z": -1.0610451652561161,
+      "share_of_observed_matrix": 0.692896509491733,
+      "precipitate_atoms": 34,
+      "precipitate_guests": 11
+     }
+    },
+    "significance": {
+     "detection": {
+      "found": 53,
+      "precision": 0.9811320754716981,
+      "recall": 0.7428571428571429,
+      "radius_ratio_median": 0.9613232079381259,
+      "overlapping_pairs": 2
+     },
+     "detection_resolved": {
+      "found": 53,
+      "precision": 0.9811320754716981,
+      "recall": 0.7428571428571429,
+      "radius_ratio_median": 0.9429840403058882,
+      "overlapping_pairs": 0
+     },
+     "voxel_rule": {
+      "bias_z": -15.902845300300056,
+      "share_of_observed_matrix": 0.866401306389059,
+      "precipitate_atoms": 101,
+      "precipitate_guests": 6
+     },
+     "own_label_left_out": {
+      "bias_z": -1.0025028000802105,
+      "share_of_observed_matrix": 0.8586956521739131,
+      "precipitate_atoms": 106,
+      "precipitate_guests": 41
+     }
+    }
+   },
+   "seconds": 12.2
+  },
+  {
+   "pattern": 7,
+   "efficiency": 0.1,
+   "bandwidth": 2.0,
+   "true_precipitates": 63,
+   "methods": {
+    "otsu": {
+     "detection": {
+      "found": 66,
+      "precision": 0.8484848484848485,
+      "recall": 0.8888888888888888,
+      "radius_ratio_median": 1.065747184943741,
+      "overlapping_pairs": 22
+     },
+     "detection_resolved": {
+      "found": 65,
+      "precision": 0.8615384615384616,
+      "recall": 0.8888888888888888,
+      "radius_ratio_median": 0.9899667252588865,
+      "overlapping_pairs": 0
+     },
+     "voxel_rule": {
+      "bias_z": -12.328398474158119,
+      "share_of_observed_matrix": 0.817491296550269,
+      "precipitate_atoms": 6,
+      "precipitate_guests": 1
+     },
+     "own_label_left_out": {
+      "bias_z": -1.0781737993781073,
+      "share_of_observed_matrix": 0.80557020782783,
+      "precipitate_atoms": 10,
+      "precipitate_guests": 7
+     }
+    },
+    "significance": {
+     "detection": {
+      "found": 56,
+      "precision": 0.9821428571428571,
+      "recall": 0.873015873015873,
+      "radius_ratio_median": 1.1358076397635193,
+      "overlapping_pairs": 22
+     },
+     "detection_resolved": {
+      "found": 56,
+      "precision": 0.9821428571428571,
+      "recall": 0.873015873015873,
+      "radius_ratio_median": 1.0471036492557027,
+      "overlapping_pairs": 0
+     },
+     "voxel_rule": {
+      "bias_z": -11.874800748668237,
+      "share_of_observed_matrix": 0.8070999050532757,
+      "precipitate_atoms": 5,
+      "precipitate_guests": 0
+     },
+     "own_label_left_out": {
+      "bias_z": -1.1569076236864007,
+      "share_of_observed_matrix": 0.7928578964025741,
+      "precipitate_atoms": 7,
+      "precipitate_guests": 5
+     }
+    }
+   },
+   "seconds": 13.2
+  },
+  {
+   "pattern": 8,
+   "efficiency": 0.1,
+   "bandwidth": 2.0,
+   "true_precipitates": 66,
+   "methods": {
+    "otsu": {
+     "detection": {
+      "found": 69,
+      "precision": 0.8260869565217391,
+      "recall": 0.8636363636363636,
+      "radius_ratio_median": 1.005006003001794,
+      "overlapping_pairs": 13
+     },
+     "detection_resolved": {
+      "found": 68,
+      "precision": 0.8382352941176471,
+      "recall": 0.8636363636363636,
+      "radius_ratio_median": 0.983329677653857,
+      "overlapping_pairs": 0
+     },
+     "voxel_rule": {
+      "bias_z": -8.855051637046339,
+      "share_of_observed_matrix": 0.8380848748639826,
+      "precipitate_atoms": 35,
+      "precipitate_guests": 1
+     },
+     "own_label_left_out": {
+      "bias_z": 0.4580289315090489,
+      "share_of_observed_matrix": 0.8250272034820457,
+      "precipitate_atoms": 47,
+      "precipitate_guests": 23
+     }
+    },
+    "significance": {
+     "detection": {
+      "found": 57,
+      "precision": 1.0,
+      "recall": 0.8636363636363636,
+      "radius_ratio_median": 1.0808921785819856,
+      "overlapping_pairs": 14
+     },
+     "detection_resolved": {
+      "found": 57,
+      "precision": 1.0,
+      "recall": 0.8636363636363636,
+      "radius_ratio_median": 1.0362682779955867,
+      "overlapping_pairs": 0
+     },
+     "voxel_rule": {
+      "bias_z": -11.054922666296374,
+      "share_of_observed_matrix": 0.8014145810663765,
+      "precipitate_atoms": 20,
+      "precipitate_guests": 1
+     },
+     "own_label_left_out": {
+      "bias_z": 0.1368653316734831,
+      "share_of_observed_matrix": 0.7880848748639826,
+      "precipitate_atoms": 20,
+      "precipitate_guests": 10
+     }
+    }
+   },
+   "seconds": 12.8
+  },
+  {
+   "pattern": 9,
+   "efficiency": 0.1,
+   "bandwidth": 2.0,
+   "true_precipitates": 92,
+   "methods": {
+    "otsu": {
+     "detection": {
+      "found": 110,
+      "precision": 0.7727272727272727,
+      "recall": 0.9239130434782609,
+      "radius_ratio_median": 1.1492489329683053,
+      "overlapping_pairs": 42
+     },
+     "detection_resolved": {
+      "found": 110,
+      "precision": 0.7727272727272727,
+      "recall": 0.9239130434782609,
+      "radius_ratio_median": 1.0491077782333715,
+      "overlapping_pairs": 0
+     },
+     "voxel_rule": {
+      "bias_z": -15.861254436708757,
+      "share_of_observed_matrix": 0.76862623442428,
+      "precipitate_atoms": 5,
+      "precipitate_guests": 0
+     },
+     "own_label_left_out": {
+      "bias_z": -0.9267286914996322,
+      "share_of_observed_matrix": 0.7561656584457888,
+      "precipitate_atoms": 9,
+      "precipitate_guests": 7
+     }
+    },
+    "significance": {
+     "detection": {
+      "found": 84,
+      "precision": 0.9761904761904762,
+      "recall": 0.8913043478260869,
+      "radius_ratio_median": 1.1166400147823594,
+      "overlapping_pairs": 33
+     },
+     "detection_resolved": {
+      "found": 84,
+      "precision": 0.9761904761904762,
+      "recall": 0.8913043478260869,
+      "radius_ratio_median": 1.033119410399998,
+      "overlapping_pairs": 0
+     },
+     "voxel_rule": {
+      "bias_z": -12.711448764280792,
+      "share_of_observed_matrix": 0.8046636678558503,
+      "precipitate_atoms": 9,
+      "precipitate_guests": 0
+     },
+     "own_label_left_out": {
+      "bias_z": -0.7233620560036587,
+      "share_of_observed_matrix": 0.7911690191820485,
+      "precipitate_atoms": 14,
+      "precipitate_guests": 9
+     }
+    }
+   },
+   "seconds": 14.9
+  },
+  {
+   "pattern": 10,
+   "efficiency": 0.1,
+   "bandwidth": 2.0,
+   "true_precipitates": 82,
+   "methods": {
+    "otsu": {
+     "detection": {
+      "found": 97,
+      "precision": 0.7835051546391752,
+      "recall": 0.926829268292683,
+      "radius_ratio_median": 1.1310165283283822,
+      "overlapping_pairs": 23
+     },
+     "detection_resolved": {
+      "found": 96,
+      "precision": 0.7916666666666666,
+      "recall": 0.926829268292683,
+      "radius_ratio_median": 1.0816962350827963,
+      "overlapping_pairs": 0
+     },
+     "voxel_rule": {
+      "bias_z": -15.99876805508834,
+      "share_of_observed_matrix": 0.7746793084216397,
+      "precipitate_atoms": 13,
+      "precipitate_guests": 0
+     },
+     "own_label_left_out": {
+      "bias_z": -2.0461734973618944,
+      "share_of_observed_matrix": 0.7597221518024642,
+      "precipitate_atoms": 27,
+      "precipitate_guests": 19
+     }
+    },
+    "significance": {
+     "detection": {
+      "found": 76,
+      "precision": 0.9605263157894737,
+      "recall": 0.8902439024390244,
+      "radius_ratio_median": 1.1154229223129457,
+      "overlapping_pairs": 17
+     },
+     "detection_resolved": {
+      "found": 75,
+      "precision": 0.9733333333333334,
+      "recall": 0.8902439024390244,
+      "radius_ratio_median": 1.0786912729110962,
+      "overlapping_pairs": 0
+     },
+     "voxel_rule": {
+      "bias_z": -14.18579074162164,
+      "share_of_observed_matrix": 0.7995233990772195,
+      "precipitate_atoms": 20,
+      "precipitate_guests": 0
+     },
+     "own_label_left_out": {
+      "bias_z": -2.0198274664075173,
+      "share_of_observed_matrix": 0.7874055671043959,
+      "precipitate_atoms": 35,
+      "precipitate_guests": 23
+     }
+    }
+   },
+   "seconds": 13.8
+  },
+  {
+   "pattern": 11,
+   "efficiency": 0.1,
+   "bandwidth": 2.0,
+   "true_precipitates": 82,
+   "methods": {
+    "otsu": {
+     "detection": {
+      "found": 212,
+      "precision": 0.35377358490566035,
+      "recall": 0.9146341463414634,
+      "radius_ratio_median": 1.1007121193115947,
+      "overlapping_pairs": 70
+     },
+     "detection_resolved": {
+      "found": 212,
+      "precision": 0.35377358490566035,
+      "recall": 0.9146341463414634,
+      "radius_ratio_median": 1.0236734004801868,
+      "overlapping_pairs": 0
+     },
+     "voxel_rule": {
+      "bias_z": -24.567401444417516,
+      "share_of_observed_matrix": 0.689549286978245,
+      "precipitate_atoms": 52,
+      "precipitate_guests": 8
+     },
+     "own_label_left_out": {
+      "bias_z": -0.9032919208354654,
+      "share_of_observed_matrix": 0.6740918080566254,
+      "precipitate_atoms": 52,
+      "precipitate_guests": 27
+     }
+    },
+    "significance": {
+     "detection": {
+      "found": 59,
+      "precision": 1.0,
+      "recall": 0.7195121951219512,
+      "radius_ratio_median": 0.8967355452484692,
+      "overlapping_pairs": 0
+     },
+     "detection_resolved": {
+      "found": 59,
+      "precision": 1.0,
+      "recall": 0.7195121951219512,
+      "radius_ratio_median": 0.8967355452484692,
+      "overlapping_pairs": 0
+     },
+     "voxel_rule": {
+      "bias_z": -13.502917881391035,
+      "share_of_observed_matrix": 0.8696783595295098,
+      "precipitate_atoms": 173,
+      "precipitate_guests": 24
+     },
+     "own_label_left_out": {
+      "bias_z": -0.5926724430557638,
+      "share_of_observed_matrix": 0.8605183720204018,
+      "precipitate_atoms": 181,
+      "precipitate_guests": 73
+     }
+    }
+   },
+   "seconds": 14.5
+  },
+  {
+   "pattern": 12,
+   "efficiency": 0.1,
+   "bandwidth": 3.0,
+   "true_precipitates": 106,
+   "methods": {
+    "otsu": {
+     "detection": {
+      "found": 127,
+      "precision": 0.4015748031496063,
+      "recall": 0.4811320754716981,
+      "radius_ratio_median": 1.3385755185548027,
+      "overlapping_pairs": 104
+     },
+     "detection_resolved": {
+      "found": 125,
+      "precision": 0.408,
+      "recall": 0.4811320754716981,
+      "radius_ratio_median": 1.0886383036952758,
+      "overlapping_pairs": 0
+     },
+     "voxel_rule": {
+      "bias_z": -17.81424444921519,
+      "share_of_observed_matrix": 0.5504611056114208,
+      "precipitate_atoms": 305,
+      "precipitate_guests": 63
+     },
+     "own_label_left_out": {
+      "bias_z": -1.7466898384306095,
+      "share_of_observed_matrix": 0.5442088261345283,
+      "precipitate_atoms": 320,
+      "precipitate_guests": 109
+     }
+    },
+    "significance": {
+     "detection": {
+      "found": 12,
+      "precision": 0.5833333333333334,
+      "recall": 0.0660377358490566,
+      "radius_ratio_median": 0.8202476597757109,
+      "overlapping_pairs": 0
+     },
+     "detection_resolved": {
+      "found": 12,
+      "precision": 0.5833333333333334,
+      "recall": 0.0660377358490566,
+      "radius_ratio_median": 0.8202476597757109,
+      "overlapping_pairs": 0
+     },
+     "voxel_rule": {
+      "bias_z": -8.62557140757925,
+      "share_of_observed_matrix": 0.8863648205074767,
+      "precipitate_atoms": 898,
+      "precipitate_guests": 202
+     },
+     "own_label_left_out": {
+      "bias_z": -1.1862161722268971,
+      "share_of_observed_matrix": 0.8828739644662117,
+      "precipitate_atoms": 927,
+      "precipitate_guests": 301
+     }
+    }
+   },
+   "seconds": 15.0
+  },
+  {
+   "pattern": 13,
+   "efficiency": 0.1,
+   "bandwidth": 2.0,
+   "true_precipitates": 78,
+   "methods": {
+    "otsu": {
+     "detection": {
+      "found": 98,
+      "precision": 0.7142857142857143,
+      "recall": 0.8974358974358975,
+      "radius_ratio_median": 1.0467251164009108,
+      "overlapping_pairs": 24
+     },
+     "detection_resolved": {
+      "found": 97,
+      "precision": 0.7216494845360825,
+      "recall": 0.8974358974358975,
+      "radius_ratio_median": 0.97298972881652,
+      "overlapping_pairs": 0
+     },
+     "voxel_rule": {
+      "bias_z": -15.739998130697462,
+      "share_of_observed_matrix": 0.7966645949865341,
+      "precipitate_atoms": 50,
+      "precipitate_guests": 4
+     },
+     "own_label_left_out": {
+      "bias_z": 0.682988838587931,
+      "share_of_observed_matrix": 0.7867723223534286,
+      "precipitate_atoms": 48,
+      "precipitate_guests": 19
+     }
+    },
+    "significance": {
+     "detection": {
+      "found": 64,
+      "precision": 1.0,
+      "recall": 0.8205128205128205,
+      "radius_ratio_median": 1.0245027536273774,
+      "overlapping_pairs": 14
+     },
+     "detection_resolved": {
+      "found": 64,
+      "precision": 1.0,
+      "recall": 0.8205128205128205,
+      "radius_ratio_median": 0.9709005324196917,
+      "overlapping_pairs": 0
+     },
+     "voxel_rule": {
+      "bias_z": -12.42020403654659,
+      "share_of_observed_matrix": 0.8368551895587322,
+      "precipitate_atoms": 71,
+      "precipitate_guests": 5
+     },
+     "own_label_left_out": {
+      "bias_z": 0.9412828241415789,
+      "share_of_observed_matrix": 0.8277915889786617,
+      "precipitate_atoms": 71,
+      "precipitate_guests": 27
+     }
+    }
+   },
+   "seconds": 14.5
+  },
+  {
+   "pattern": 14,
+   "efficiency": 0.1,
+   "bandwidth": 3.0,
+   "true_precipitates": 78,
+   "methods": {
+    "otsu": {
+     "detection": {
+      "found": 126,
+      "precision": 0.373015873015873,
+      "recall": 0.6025641025641025,
+      "radius_ratio_median": 1.284537336982223,
+      "overlapping_pairs": 80
+     },
+     "detection_resolved": {
+      "found": 126,
+      "precision": 0.373015873015873,
+      "recall": 0.6025641025641025,
+      "radius_ratio_median": 1.1146623317713074,
+      "overlapping_pairs": 0
+     },
+     "voxel_rule": {
+      "bias_z": -15.322003773748136,
+      "share_of_observed_matrix": 0.5936563694596549,
+      "precipitate_atoms": 117,
+      "precipitate_guests": 27
+     },
+     "own_label_left_out": {
+      "bias_z": -0.1068478571324424,
+      "share_of_observed_matrix": 0.5883872300857527,
+      "precipitate_atoms": 147,
+      "precipitate_guests": 70
+     }
+    },
+    "significance": {
+     "detection": {
+      "found": 19,
+      "precision": 0.8421052631578947,
+      "recall": 0.20512820512820512,
+      "radius_ratio_median": 0.9274264520130566,
+      "overlapping_pairs": 0
+     },
+     "detection_resolved": {
+      "found": 19,
+      "precision": 0.8421052631578947,
+      "recall": 0.20512820512820512,
+      "radius_ratio_median": 0.9274264520130566,
+      "overlapping_pairs": 0
+     },
+     "voxel_rule": {
+      "bias_z": -6.918936172270835,
+      "share_of_observed_matrix": 0.8777766298171299,
+      "precipitate_atoms": 466,
+      "precipitate_guests": 144
+     },
+     "own_label_left_out": {
+      "bias_z": -0.12514308157847048,
+      "share_of_observed_matrix": 0.8725591486723835,
+      "precipitate_atoms": 497,
+      "precipitate_guests": 212
+     }
+    }
+   },
+   "seconds": 15.1
+  },
+  {
+   "pattern": 15,
+   "efficiency": 0.1,
+   "bandwidth": 3.0,
+   "true_precipitates": 101,
+   "methods": {
+    "otsu": {
+     "detection": {
+      "found": 137,
+      "precision": 0.44525547445255476,
+      "recall": 0.6039603960396039,
+      "radius_ratio_median": 1.4642856101134194,
+      "overlapping_pairs": 117
+     },
+     "detection_resolved": {
+      "found": 136,
+      "precision": 0.4485294117647059,
+      "recall": 0.6039603960396039,
+      "radius_ratio_median": 1.1934589508798161,
+      "overlapping_pairs": 0
+     },
+     "voxel_rule": {
+      "bias_z": -17.22844634653459,
+      "share_of_observed_matrix": 0.5432965218288781,
+      "precipitate_atoms": 118,
+      "precipitate_guests": 16
+     },
+     "own_label_left_out": {
+      "bias_z": 0.2382414318289268,
+      "share_of_observed_matrix": 0.5364330684281143,
+      "precipitate_atoms": 147,
+      "precipitate_guests": 63
+     }
+    },
+    "significance": {
+     "detection": {
+      "found": 11,
+      "precision": 0.7272727272727273,
+      "recall": 0.07920792079207921,
+      "radius_ratio_median": 0.9264630877898246,
+      "overlapping_pairs": 0
+     },
+     "detection_resolved": {
+      "found": 11,
+      "precision": 0.7272727272727273,
+      "recall": 0.07920792079207921,
+      "radius_ratio_median": 0.9264630877898246,
+      "overlapping_pairs": 0
+     },
+     "voxel_rule": {
+      "bias_z": -6.655219085020401,
+      "share_of_observed_matrix": 0.8938486943957065,
+      "precipitate_atoms": 605,
+      "precipitate_guests": 159
+     },
+     "own_label_left_out": {
+      "bias_z": -0.07090123965228666,
+      "share_of_observed_matrix": 0.8885333883785737,
+      "precipitate_atoms": 663,
+      "precipitate_guests": 272
+     }
+    }
+   },
+   "seconds": 14.9
+  }
+ ],
+ "seconds": 265
+}
