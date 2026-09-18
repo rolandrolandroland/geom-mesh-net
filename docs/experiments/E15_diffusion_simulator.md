@@ -12,7 +12,8 @@ Implemented by [`fields/physics.py`](../../geom_mesh_net/fields/physics.py),
 Runtime: 45 s to generate the development patterns, 68 s the test patterns, 53 s for the gate
 
 *Stages 2–4 will be walkthroughs E12–E14. This walkthrough covers the first half of
-Stage 5; the physics-informed network itself, Stage 5.2, will be reported separately.*
+Stage 5. Stage 5.2 is reported in [E16](E16_soft_pinn.md), the physics-informed network that
+failed, and [E17](E17_physics_fit.md), the law imposed exactly and Gate 5.2.*
 
 ---
 
