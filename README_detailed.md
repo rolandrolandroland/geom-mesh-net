@@ -666,6 +666,24 @@ background, questions and methods.
     lengths can be recovered at all.
   - Gate 5.1 passed. Stages 2–4 will be E12–E14.
 
+- **[E16 — A physics-informed network that prefers the wrong physics](docs/experiments/E16_soft_pinn.md)**
+  Stage 5.2 as first designed: a neural field with the diffusion equation and the
+  Gibbs–Thomson condition as penalties, on development patterns.
+  - Given the true geometry, it still could not recover the constants: the screening
+    length ended at 0.005–18 times its true value.
+  - The loss itself preferred flat constants, by 3 to 144 times the data margin, because
+    the evidence is 0.001–0.002 nats per atom and the penalties cost a finite network far more.
+  - The same law imposed exactly recovered the capillary length within 5%.
+
+- **[E17 — The diffusion law as a hard constraint: Gate 5.2](docs/experiments/E17_physics_fit.md)**
+  Stage 5.2 as corrected: the exact diffusion field around precipitates detected in the data.
+  - Choosing matrix atoms from their own labels had biased them by 11–19 standard errors;
+    leaving each atom's label out removed it.
+  - The law predicted the matrix far better than an unconstrained network, and a rule based on
+    identifiability rejected 61 of 72 misspecified matrices.
+  - Gate 5.2 failed on the capillary length (median error 3.5 times its bound): errors in the
+    detected radii pull it toward zero.
+
 ---
 
 ## 8. Package reference
@@ -683,8 +701,11 @@ geom_mesh_net/                      the library (installed with pip install -e .
   fields/point_cloud.py             voxel guest-probability fields
   fields/density_grid.py            density grids from simulation parameters (deprecated)
   fields/physics.py                 screened diffusion field around precipitates (Stage 5)
+  fields/misspecified.py            matrix fields that break that law (Stage 5.2 controls)
+  fields/cluster_extraction.py      precipitates and matrix atoms from a smoothed field (Stage 5.2)
   neural/datasets.py                torch Dataset and collate function
   neural/models.py                  neural field models
+  neural/implicit.py                SIREN field with physics penalties; the analytic diffusion family
   inference/flow.py                 conditional autoregressive normalising flow
   inference/calibration.py          SBC ranks, ECDF bands, coverage, width ratio
   viz/                              3D plotting and benchmark figures
@@ -750,7 +771,7 @@ pip install -e ".[dev,notebooks]"
 ### Pipeline
 
 ```bash
-python -m pytest                                                    # 217 tests, ~100 s
+python -m pytest                                                    # 228 tests, ~100 s
 
 PYTHONPATH=. python scripts/generate_data.py                        # ~8 min, 5 GB
 python -m experiments.inference.recover_ground_truth                # E1, 6 s

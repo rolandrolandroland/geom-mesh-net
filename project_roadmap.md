@@ -40,7 +40,7 @@ Where this page and a track roadmap disagree, the track roadmap governs.
 | Track | Status | Headline | Next |
 | --- | --- | --- | --- |
 | Inference | Stages 0–4 **passed** | 90% credible intervals cover the truth 88–92% of the time for all four parameters | Check whether the result survives random cluster centres |
-| Reconstruction | Stages 0–1 and 5.1 **passed** | Standard smoothing leaves room for a better estimator in 48% of test cells | Stage 5.2, the physics-informed network; separately, widen the B2 grid, then Stage 2 |
+| Reconstruction | Stages 0–1 and 5.1 **passed**; 5.2 **failed** | Standard smoothing leaves room for a better estimator in 48% of test cells; a diffusion law imposed exactly predicts the matrix, but its capillary length is lost to precipitate detection | Widen the B2 grid, then Stage 2; better precipitate detection (Stage 4) would reopen the capillary length |
 
 ---
 
@@ -158,6 +158,15 @@ exact oracle.* Roadmap:
 - **The bar to beat is B2**, a smoother that adapts its width to local solute
   density. It beats B1 in 94% of cells. Where there is headroom, it closes a median
   41% of the gap B1 leaves, and it still leaves headroom in 19% of cells.
+- **A physical law helps the matrix, not yet its constants** (Stage 5). In simulated
+  data whose matrix obeys a screened diffusion law, a physics-informed network could not
+  recover the law's constants even given the true geometry (E16). Imposed exactly around
+  precipitates detected in the data, the law cut the matrix's excess loss to a median 26%
+  of a constant's at realistic efficiency, against 79% for an unconstrained network. A rule
+  that requires identified constants rejected 61 of 72 matrices that break the law. Gate 5.2
+  failed on the capillary length, which errors in the detected radii pull toward zero (E17).
+  A bound recomputed without assuming the geometry shows the missing accuracy is the method's,
+  not the data's: leaving every radius unknown widens it by only 7% to 29%.
 
 ### Stages
 
@@ -168,7 +177,7 @@ exact oracle.* Roadmap:
 | 2 — A field fitted to one pattern | does a Fourier-feature network beat B1 and B2? | beat both in ⅔ of headroom cells; close ≥ 20% of B1's gap | **next**, blocked by the B2 grid |
 | 3 — A field trained across simulations | does a learned prior beat any per-pattern estimator? | on test headroom cells | planned (extension) |
 | 4 — Fields to precipitates | do fields find precipitates better than current practice? | beat maximum separation and DBSCAN on F1 and radius error | planned (extension) |
-| 5 — Physics-informed field | does a governing equation help? | Gates 5.1 and 5.2 | 5.1 passed (2026-09-16, after a design correction); 5.2 next |
+| 5 — Physics-informed field | does a governing equation help? | Gates 5.1 and 5.2 | 5.1 passed (2026-09-16); 5.2 **failed** (2026-09-17) on the capillary length, after the physics-informed network was replaced by the exact law |
 | 6 — Position blur in the loss | does modelling the blur recover the sharp field? | Gate 6 | optional |
 | 7 — Rendering and write-up | — | — | planned (core) |
 
@@ -253,9 +262,10 @@ by how much it changes what the project can claim.
 7. **Recheck the `cr` learning-curve drift** with the robust width ratio. The
    reported drift from 1.03 to 1.24 used the estimator later shown to be dominated
    by two patterns. About 10 minutes.
-8. **Reconstruction Stage 5.** Stage 5.1, the diffusion-field simulator, passed on
-   2026-09-16 (walkthrough E15). Stage 5.2, the physics-informed network, is next;
-   then Stage 7.
+8. **Reconstruction Stage 5.** Done. Stage 5.1, the diffusion-field simulator, passed on
+   2026-09-16 (E15). Stage 5.2 failed on 2026-09-17 (E16, E17): the law, imposed exactly,
+   predicts the matrix and exposes violations, but detected radii bias the capillary length.
+   Recovering it waits on better precipitate detection (Stage 4).
 
 ### Later, or separate
 
@@ -303,6 +313,9 @@ is recorded in the relevant roadmap rather than overwritten.
 | `rb` is nearly unidentifiable | True with independent points; reaches 0.44 for small clusters with a shared point pattern | inference §8.10 |
 | `generate_density_grid` is a ground-truth field | Wrong inside clusters: where it says 0.87, 77% of atoms are solute | E10 |
 | The July global barcode informs the network | Computed on all atoms, it carries no information | reconstruction §3.2 |
+| A physics-informed network with the diffusion law as penalties can recover the law's constants | With the true geometry its loss preferred flat constants by 3–144 data margins; replaced by the exact law | E16 |
+| (R/r)² matrices can test whether the physics is rejected | They lie within 2.5–4.7 nats of the best diffusion fit over a whole pattern; no rule could reject them | E17 |
+| Comparing held-out loss with an unconstrained network tells when the law fails | It rejected 26 of 72 misspecified test cells; requiring identified constants and a win over a constant rejected 60 | E17 |
 
 ---
 
@@ -311,7 +324,7 @@ is recorded in the relevant roadmap rather than overwritten.
 Run from the repository root.
 
 ```bash
-python -m pytest                                                    # 198 tests
+python -m pytest                                                    # 228 tests
 
 # Inference track
 PYTHONPATH=. python scripts/generate_data.py                        # data/, ~8 min
@@ -330,6 +343,10 @@ python -m experiments.reconstruction.generate_random_centres        # benchmark,
 python -m experiments.reconstruction.freeze_benchmark               # splits and checksums
 python -m experiments.reconstruction.stage0_oracle                  # Stage 0, ~2 min
 python -m experiments.reconstruction.stage1_baselines               # Stage 1, ~30 min
+python -m experiments.reconstruction.generate_diffusion_patterns --split development   # Stage 5 data
+python -m experiments.reconstruction.generate_diffusion_patterns --split test
+python -m experiments.reconstruction.stage5_simulator               # Gate 5.1, ~1 min
+python -m experiments.reconstruction.stage5_physics_fit --split test  # Gate 5.2, ~50 min (see E17 for the controls)
 ```
 
 The data folders are gitignored and regenerable, about 5 GB each.

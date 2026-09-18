@@ -25,7 +25,8 @@ The project has two purposes:
 | Replay oracle for the guest-probability field | **done, gate passed** (reconstruction Stage 0) |
 | Random-centre benchmark dataset | generated; 1,000 patterns |
 | Classical baselines and headroom map | **done, gate passed** (reconstruction Stage 1): 48% of test cells have headroom |
-| Diffusion-field simulator for a physics-informed network | **done, gate passed** (reconstruction Stage 5.1); the network, Stage 5.2, is next |
+| Diffusion-field simulator with a physical law | **done, gate passed** (reconstruction Stage 5.1) |
+| The diffusion law as a constraint on the reconstruction | **done, gate failed** (reconstruction Stage 5.2): the law predicts the matrix and exposes violations, but the capillary length cannot be recovered from detected precipitates; a physics-informed network failed first (E16) |
 
 The first line of work is **amortized Bayesian inference of the physical
 cluster parameters**, specified in
@@ -37,8 +38,8 @@ The second is **implicit neural reconstruction of the solute field**: estimating
 where the solute sits from a thinned point cloud, scored against an exact
 oracle. It is specified in
 [`experiments/reconstruction/ROADMAP.md`](experiments/reconstruction/ROADMAP.md).
-Stages 0 and 1 are complete, and so is the first half of Stage 5, the simulator a
-physics-informed network needs. Each stage has a walkthrough in `docs/experiments/`
+Stages 0, 1 and 5 are complete. Stage 5's gate failed on its capillary length, and
+its physics-informed network was replaced by the law imposed exactly. Each stage has a walkthrough in `docs/experiments/`
 (E10 onward).
 
 **For where both tracks stand and what comes next**, see
@@ -67,9 +68,12 @@ geom_mesh_net/                    the library (installed with pip install -e .)
     point_cloud.py                voxel guest-probability fields
     density_grid.py               density grids from simulation parameters (deprecated as ground truth)
     physics.py                    screened diffusion field around precipitates (Stage 5)
+    misspecified.py               matrix fields that break that law (Stage 5.2 controls)
+    cluster_extraction.py         precipitates and matrix atoms from a smoothed field (Stage 5.2)
   neural/
     datasets.py                   torch Dataset and collate function
     models.py                     neural field models
+    implicit.py                   SIREN field with physics penalties; the analytic diffusion family (Stage 5.2)
   inference/
     flow.py                       conditional normalizing flow
     calibration.py                simulation-based calibration and coverage
@@ -115,7 +119,7 @@ pip install -e ".[dev,notebooks]"
 python -m pytest -q
 ```
 
-217 tests, about 90 seconds. They need no data: the fixtures build synthetic
+228 tests, about 90 seconds. They need no data: the fixtures build synthetic
 patterns, and the tests that do want `data/` skip when it is absent.
 
 Where a closed form exists the tests compare against it rather than against a
