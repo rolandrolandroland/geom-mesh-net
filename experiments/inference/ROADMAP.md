@@ -1423,7 +1423,7 @@ classical spatial-summary features with calibrated uncertainty.
 | 4 — sufficiency | each parameter carried by one summary family; K indispensable for `cr`; `sqrt` and `cube_root` indistinguishable |
 
 Supporting work: feature-library corrections (Section 8), a repaired data
-generator (8.5), and 117 regression tests including a flow checked against a
+generator (8.5), and a regression suite of 252 tests including a flow checked against a
 closed-form posterior and calibration diagnostics checked against deliberately
 miscalibrated inputs.
 
@@ -1437,9 +1437,9 @@ Open, in rough priority order:
    item 1 may be a sample-size artifact; and Stage 4 left 11 of 14 features
    unresolved for want of statistical power. `scripts/generate_data.py` runs again
    (Section 8.5) and writes all four parameters, so this is unattended compute.
-3. **Observation augmentation** (Section 7). Free, and it teaches the flow about
-   observation noise rather than only parameter variation. Replicates must stay
-   on one side of the split.
+3. ~~**Observation augmentation** (Section 7).~~ Done, and it did not help: the
+   replicates are near-duplicates, so they add overfitting rather than
+   information (E6, Section 8.7).
 4. **`Rddm`** (Stage 4). No evidence it contributes, some evidence it is
    unstable, not resolved either way. Worth revisiting once item 2 provides the
    power to settle it, rather than dropping it on a point estimate.

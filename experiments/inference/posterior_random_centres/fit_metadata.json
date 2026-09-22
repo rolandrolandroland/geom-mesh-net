@@ -1,0 +1,80 @@
+{
+  "stage": 2,
+  "seed": 0,
+  "ensemble": 5,
+  "member_validation_log_prob": [
+    6.590519905090332,
+    6.317242622375488,
+    6.469056606292725,
+    6.709494590759277,
+    6.482376575469971
+  ],
+  "n_patterns": 1000,
+  "n_train": 800,
+  "n_validation": 100,
+  "n_test": 100,
+  "n_layers": 6,
+  "hidden": 64,
+  "epochs_run": [
+    76,
+    65,
+    65,
+    86,
+    68
+  ],
+  "train_seconds": 28.59,
+  "prior_log_prob": 1.4271163940429688,
+  "validation_log_prob": 6.897039890289307,
+  "test_log_prob_mean": 7.020048141479492,
+  "test_log_prob_median": 7.398290634155273,
+  "test_below_prior": 2,
+  "validation_gain_over_prior_nats": 5.469923496246338,
+  "gate_passed": true,
+  "gate_criterion": "validation log-likelihood > uniform prior",
+  "marginals": {
+    "rho_c": {
+      "prior_sd": 0.23094010767585033,
+      "posterior_sd_mean": 0.039148230105638504,
+      "contraction": 0.8304831910765915,
+      "bias": -0.0012007613678191337,
+      "abs_z_mean": 0.6849171444926454
+    },
+    "rho_b": {
+      "prior_sd": 0.014433756729740645,
+      "posterior_sd_mean": 0.0013622887199744582,
+      "contraction": 0.9056178688970506,
+      "bias": 3.3907876645847717e-05,
+      "abs_z_mean": 0.6608884740079596
+    },
+    "cr": {
+      "prior_sd": 3.464101615137755,
+      "posterior_sd_mean": 1.3397648334503174,
+      "contraction": 0.6132432063783326,
+      "bias": 0.16932682104494923,
+      "abs_z_mean": 0.7540857637137894
+    },
+    "rb": {
+      "prior_sd": 0.14433756729740646,
+      "posterior_sd_mean": 0.13748711347579956,
+      "contraction": 0.047461336295710144,
+      "bias": 0.0003368156247571263,
+      "abs_z_mean": 0.9175121153457105
+    }
+  },
+  "feature_names": [
+    "G_max_diff",
+    "G_max_diff_r",
+    "G_min_diff",
+    "G_zero_diff_r",
+    "F_min_diff",
+    "F_min_diff_F",
+    "Tm",
+    "Rm",
+    "Rdm",
+    "Rddm",
+    "Tdm",
+    "GXGH_min_diff",
+    "GXGH_95diff_r",
+    "GXGH_FWHM"
+  ]
+}

@@ -80,3 +80,12 @@ experiments/reconstruction/results/oracle_diffusion/
 # Editor and tool droppings
 .idea/
 .Rhistory
+
+# Stage 2's per-cell predictions on removed atoms, regenerable by
+#   python -m experiments.reconstruction.stage2_field --split test
+experiments/reconstruction/results/stage2_predictions/
+
+# The paired random-centre check's flow and samples, regenerable in minutes:
+#   python -m experiments.inference.fit_posterior --features experiments/inference/features/random_centres_features.npz --output-dir experiments/inference/posterior_random_centres
+experiments/inference/posterior_random_centres/*.pt
+experiments/inference/posterior_random_centres/*.npz

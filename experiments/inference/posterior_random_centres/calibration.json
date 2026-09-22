@@ -1,0 +1,159 @@
+{
+  "stage": 3,
+  "folds": 10,
+  "posterior_samples": 999,
+  "ensemble": 5,
+  "width_ratio_tolerance": [
+    0.85,
+    1.15
+  ],
+  "seed": 0,
+  "coverage_levels": [
+    0.5,
+    0.8,
+    0.9,
+    0.95
+  ],
+  "gated_parameters": [
+    "rho_c",
+    "cr"
+  ],
+  "all_patterns": {
+    "n": 1000,
+    "kolmogorov_band": 0.04294694083467376,
+    "parameters": {
+      "rho_c": {
+        "max_ecdf_deviation": 0.026500000000000024,
+        "within_band": true,
+        "mean_normalized_rank": 0.5026280000000001,
+        "width_ratio": 0.9907737085677076,
+        "width_ratio_sd_based": 1.0924178364578485
+      },
+      "rho_b": {
+        "max_ecdf_deviation": 0.045499999999999985,
+        "within_band": false,
+        "mean_normalized_rank": 0.48343600000000003,
+        "width_ratio": 1.032135691949221,
+        "width_ratio_sd_based": 1.4236893750800246
+      },
+      "cr": {
+        "max_ecdf_deviation": 0.02850000000000008,
+        "within_band": true,
+        "mean_normalized_rank": 0.495549,
+        "width_ratio": 0.9501757905426506,
+        "width_ratio_sd_based": 1.0189538129347164
+      },
+      "rb": {
+        "max_ecdf_deviation": 0.024499999999999966,
+        "within_band": true,
+        "mean_normalized_rank": 0.498101,
+        "width_ratio": 0.9651572867910938,
+        "width_ratio_sd_based": 1.001809200882601
+      }
+    },
+    "coverage": {
+      "0.50": {
+        "rho_c": 0.5,
+        "rho_b": 0.489,
+        "cr": 0.495,
+        "rb": 0.521
+      },
+      "0.80": {
+        "rho_c": 0.82,
+        "rho_b": 0.792,
+        "cr": 0.8,
+        "rb": 0.794
+      },
+      "0.90": {
+        "rho_c": 0.904,
+        "rho_b": 0.894,
+        "cr": 0.89,
+        "rb": 0.879
+      },
+      "0.95": {
+        "rho_c": 0.945,
+        "rho_b": 0.942,
+        "cr": 0.927,
+        "rb": 0.938
+      }
+    }
+  },
+  "excluding_degenerate": {
+    "n": 998,
+    "kolmogorov_band": 0.042989952303475264,
+    "parameters": {
+      "rho_c": {
+        "max_ecdf_deviation": 0.02722945891783568,
+        "within_band": true,
+        "mean_normalized_rank": 0.5026963927855712,
+        "width_ratio": 0.9899065914757824,
+        "width_ratio_sd_based": 1.0917073287199504
+      },
+      "rho_b": {
+        "max_ecdf_deviation": 0.04636773547094186,
+        "within_band": false,
+        "mean_normalized_rank": 0.4831823647294589,
+        "width_ratio": 1.0315742042702198,
+        "width_ratio_sd_based": 1.4248665870148158
+      },
+      "cr": {
+        "max_ecdf_deviation": 0.027622244488977987,
+        "within_band": true,
+        "mean_normalized_rank": 0.4959699398797595,
+        "width_ratio": 0.9497813618189759,
+        "width_ratio_sd_based": 1.018674864169767
+      },
+      "rb": {
+        "max_ecdf_deviation": 0.024940881763527045,
+        "within_band": true,
+        "mean_normalized_rank": 0.49790180360721437,
+        "width_ratio": 0.965533441255498,
+        "width_ratio_sd_based": 1.001582401272588
+      }
+    },
+    "coverage": {
+      "0.50": {
+        "rho_c": 0.501002004008016,
+        "rho_b": 0.4879759519038076,
+        "cr": 0.49498997995991983,
+        "rb": 0.5210420841683366
+      },
+      "0.80": {
+        "rho_c": 0.8206412825651302,
+        "rho_b": 0.7915831663326653,
+        "cr": 0.8006012024048096,
+        "rb": 0.7945891783567134
+      },
+      "0.90": {
+        "rho_c": 0.9038076152304609,
+        "rho_b": 0.8937875751503006,
+        "cr": 0.8897795591182365,
+        "rb": 0.8787575150300602
+      },
+      "0.95": {
+        "rho_c": 0.9448897795591182,
+        "rho_b": 0.9418837675350702,
+        "cr": 0.9268537074148296,
+        "rb": 0.9378757515030061
+      }
+    }
+  },
+  "gate": {
+    "parameters": {
+      "rho_c": {
+        "sbc_within_band": true,
+        "coverage_90": 0.904,
+        "coverage_within_tolerance": true,
+        "passed": true
+      },
+      "cr": {
+        "sbc_within_band": true,
+        "coverage_90": 0.89,
+        "coverage_within_tolerance": true,
+        "passed": true
+      }
+    },
+    "passed": true
+  },
+  "median_out_of_fold_log_prob": 7.806833982467651
+}

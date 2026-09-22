@@ -5,8 +5,12 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "geom-mesh-net"
 version = "0.1.0"
-description = "Spatial statistics and inference for 3D clustered point patterns"
+description = "Spatial statistics and simulation-based inference for 3D clustered point patterns, of the kind atom probe tomography produces"
 readme = "README.md"
+license = "MIT"
+license-files = ["LICENSE"]
+authors = [{ name = "Roland A. Bennett" }]
+keywords = ["atom probe tomography", "spatial statistics", "point patterns", "simulation-based inference", "normalizing flows"]
 requires-python = ">=3.10"
 dependencies = [
     "numpy",

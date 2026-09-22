@@ -1,6 +1,6 @@
 # Geom Mesh Net — project roadmap
 
-*Status as of 16 September 2026.*
+*Status as of 22 September 2026.*
 
 Geom Mesh Net asks two questions of a labelled 3D point pattern of the kind atom
 probe tomography produces:
@@ -30,8 +30,8 @@ Where this page and a track roadmap disagree, the track roadmap governs.
 | Pattern size | 216,000 atoms in a 60³ domain |
 | Spatial-summary features | 14 |
 | Physical parameters | 4 |
-| Experiment walkthroughs | 11 (E1–E11 in `docs/experiments/`) |
-| Tests | 198 |
+| Experiment walkthroughs | 16 (E1–E11 and E15–E19 in `docs/experiments/`) |
+| Tests | 252 |
 
 ---
 
@@ -39,8 +39,8 @@ Where this page and a track roadmap disagree, the track roadmap governs.
 
 | Track | Status | Headline | Next |
 | --- | --- | --- | --- |
-| Inference | Stages 0–4 **passed** | 90% credible intervals cover the truth 88–92% of the time for all four parameters | Check whether the result survives random cluster centres |
-| Reconstruction | Stages 0–1 and 5.1 **passed**; 5.2 **failed** | Standard smoothing leaves room for a better estimator in 48% of test cells; a diffusion law imposed exactly predicts the matrix, and fitting the precipitates with it recovers the capillary length that detect-then-fit loses (E18) | Decide whether the joint fit becomes Stage 5.3 with a gate; then Stage 2; Stage 4's detection is now the binding constraint |
+| Inference | Stages 0–4 **passed**, on both lattice and random centres | 90% credible intervals cover the truth 88–92% of the time for all four parameters | `rho_b`'s rank bias, the one open calibration issue |
+| Reconstruction | Stages 0–2 and 5.1 **passed**; 5.2 **failed** | A Fourier-feature field beats tuned smoothing in 48 of 52 headroom test cells, closing 68% of its gap (Gate 2); a diffusion law imposed exactly predicts the matrix, and fitting the precipitates with it recovers the capillary length that detect-then-fit loses (E18) | Write up Stage 2 as E19; decide whether the joint fit becomes Stage 5.3 with a gate; detection is the binding constraint for both |
 
 ---
 
@@ -174,7 +174,7 @@ exact oracle.* Roadmap:
 | --- | --- | --- | --- |
 | 0 — The yardstick | can the true field be computed exactly? | calibration slope and reliability on development patterns | passed |
 | 1 — Baselines and headroom | does classical smoothing leave room? | ≥ 25% of test cells with headroom | passed (48%) |
-| 2 — A field fitted to one pattern | does a Fourier-feature network beat B1 and B2? | beat both in ⅔ of headroom cells; close ≥ 20% of B1's gap | **next**, blocked by the B2 grid |
+| 2 — A field fitted to one pattern | does a Fourier-feature network beat B1 and B2? | beat both in ⅔ of headroom cells; close ≥ 20% of B1's gap | **passed** (2026-09-22): 48 of 52 cells, 68% of the gap closed, write-up pending |
 | 3 — A field trained across simulations | does a learned prior beat any per-pattern estimator? | on test headroom cells | planned (extension) |
 | 4 — Fields to precipitates | do fields find precipitates better than current practice? | beat maximum separation and DBSCAN on F1 and radius error | planned (extension) |
 | 5 — Physics-informed field | does a governing equation help? | Gates 5.1 and 5.2 | 5.1 passed (2026-09-16); 5.2 **failed** (2026-09-17) on the capillary length, after the physics-informed network was replaced by the exact law |
@@ -194,8 +194,15 @@ come from a subsampled cubic lattice. rapt used Poisson centres.
 
 - In 22 patterns of `data/` the lattice lost its outer shell, leaving far fewer
   clusters than the parameters imply.
-- The inference flow was trained on these patterns. Nobody has measured whether
-  its features encode the regularity.
+- **Measured on 22 September 2026: the inference result does not depend on the
+  lattice.** The whole pipeline was re-run on `data_random_centres/`, which holds
+  the same 1,000 parameter vectors with random centres. Gate 3 passes there too:
+  90% coverage 0.904, 0.894, 0.890, 0.879 against 0.919, 0.902, 0.885, 0.882 on
+  the lattice, and every SBC deviation is *smaller*. Results in
+  `experiments/inference/posterior_random_centres/`.
+- `rho_b`'s rank bias survives the change, at 0.0455 against a 0.0429 band
+  (0.0521 on the lattice), and its mean rank is 0.483 against 0.500. So the bias
+  is not an artefact of where the simulator puts its clusters.
 - `data_random_centres/` was generated for the reconstruction benchmark. It uses
   the same parameter vectors with random centres, so it allows a paired re-run of
   the inference track.
@@ -236,17 +243,20 @@ by how much it changes what the project can claim.
 
 ### Now
 
-1. **Widen B2's grid** (reconstruction). Cross-validation still chooses the
-   corner of its grid in 94 of 300 cells, so the Stage 2 bar may be set too low.
-   Tune it on development patterns only, then recompute B2 for the Stage 2 cells.
-   Leave the recorded Stage 1 numbers unchanged.
-2. **Re-run inference on random centres.** Extract features from
-   `data_random_centres/`, then fit and validate. Coverage and SBC on a paired
-   dataset show whether the headline result depends on the lattice. About 20
-   minutes of compute.
-3. **Reconstruction Stage 2.** A per-pattern Fourier-feature field on 36 test
-   patterns at three efficiencies, with the plain ReLU MLP as a control. Estimated
-   at 8 hours on MPS.
+1. **Write up Stage 2 and commit it.** Gate 2 passed on all 108 test cells, and
+   the result currently exists only as a results file: E19's results sections and
+   its test-split figures are unwritten, and the harness, its frozen design
+   contract and its tests are uncommitted.
+2. **Detection on the Stage 2 field** (both tracks). Precipitates are found by
+   segmenting a smoothed field; Stage 2 has now shown that the Fourier-feature
+   field beats that smoother. Missed precipitates are what ruins the capillary
+   length (E18), and detection is also what Stage 4 compares against practice, so
+   one substitution serves both. Pilot it on development patterns.
+3. **Stage 5.3: the joint geometry fit, with a gate.** E18's evidence is eight
+   development patterns at one efficiency with one degenerate fit among them.
+   Fixing thresholds first, keeping the at-a-bound check, and excluding η = 0.1,
+   where detection finds a median 44% of precipitates, would turn it into a
+   result.
 
 ### Then
 
@@ -286,13 +296,12 @@ by how much it changes what the project can claim.
 
 ### Housekeeping
 
-- The inference paragraph in `README.md` quotes single-flow coverage (88.8% and
-  86.7%). The ensemble figures are 91.9% and 88.5%.
-- `experiments/inference/ROADMAP.md` §13 still lists augmentation as open and
-  quotes 117 tests.
 - `experiments/neural_field/global_paper_feature_validation/` used
   `k_r_max = 70`, which is now refused. Its K features would change if it were
   regenerated.
+- Corrected on 22 September 2026: the single-flow coverage figures quoted in
+  `README.md`, the test counts in both READMEs, and §13 of the inference roadmap,
+  which listed augmentation as open. `LICENSE` (MIT) was added at the same time.
 
 ---
 

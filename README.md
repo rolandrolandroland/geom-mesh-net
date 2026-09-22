@@ -48,7 +48,7 @@ its physics-informed network was replaced by the law imposed exactly. Each stage
 **For a full account of the package**, see
 [`README_detailed.md`](README_detailed.md) — a paper-format description with an
 abstract, background, methods, results and discussion, linking to a standalone
-walkthrough for each of the nine experiments.
+walkthrough for each experiment.
 
 ## Layout
 
@@ -119,7 +119,7 @@ pip install -e ".[dev,notebooks]"
 python -m pytest -q
 ```
 
-228 tests, about 90 seconds. They need no data: the fixtures build synthetic
+252 tests, a few minutes. They need no data: the fixtures build synthetic
 patterns, and the tests that do want `data/` skip when it is absent.
 
 Where a closed form exists the tests compare against it rather than against a
@@ -165,9 +165,12 @@ python -m experiments.inference.validate_posterior               # Stage 3
 
 Given a measured point pattern, this returns a calibrated posterior over the
 four physical cluster parameters. Cross-validated over all 1,000 patterns, the
-90% credible intervals cover 88.8% of the time for the in-cluster concentration
-and 86.7% for the mean cluster radius, with uniform simulation-based calibration
-ranks.
+90% credible intervals of the five-flow ensemble cover 91.9% of the time for the
+in-cluster concentration, 90.2% for the matrix concentration, 88.5% for the mean
+cluster radius and 88.2% for the radius spread, with uniform simulation-based
+calibration ranks for all but the matrix concentration, which keeps a small rank
+bias. `--ensemble 1` reproduces the single flow, whose coverage is lower; the
+calibration claim belongs to the ensemble.
 
 The radius-spread parameter `rb` is barely identifiable from these features, and
 the posterior says so: it comes back 96% as wide as the prior, and is calibrated
@@ -219,6 +222,10 @@ gates, and the pilot measurements that set them.
   interpretation.
 - [`experiments/neural_field/PAPER_FEATURE_EXPERIMENTS.md`](experiments/neural_field/PAPER_FEATURE_EXPERIMENTS.md)
   — a six-stage staged comparison. Implemented; not yet run.
+
+## Licence
+
+MIT. See [`LICENSE`](LICENSE).
 
 ## Note on the K transform
 
