@@ -664,7 +664,7 @@ background, questions and methods.
     trained.
   - A prior was chosen by the Cramér–Rao bound, so that the capillary and screening
     lengths can be recovered at all.
-  - Gate 5.1 passed. Stages 2–4 will be E12–E14.
+  - Gate 5.1 passed. Stage 2's walkthrough is E19; Stages 3 and 4 follow it.
 
 - **[E16 — A physics-informed network that prefers the wrong physics](docs/experiments/E16_soft_pinn.md)**
   Stage 5.2 as first designed: a neural field with the diffusion equation and the
@@ -683,6 +683,15 @@ background, questions and methods.
     identifiability rejected 61 of 72 misspecified matrices.
   - Gate 5.2 failed on the capillary length (median error 3.5 times its bound): errors in the
     detected radii pull it toward zero.
+
+- **[E18 — Fitting the precipitates with the law](docs/experiments/E18_joint_geometry.md)**
+  After Gate 5.2: what the capillary length can be worth when the geometry is unknown, and which
+  fit reaches it. Development work, not a gate.
+  - Leaving every radius and the interior profile unknown widens the bound on ℓ by only 7–29%:
+    the gate's shortfall was the method's.
+  - The bound on ℓ times the radius spread is 0.03–0.045: without a spread of radii, ℓ is gone.
+  - Fitting the radii alone makes ℓ worse; freeing the centres as well brings it to 0.89 times
+    the bound, at the level of a fit handed the true geometry.
 
 ---
 
@@ -729,7 +738,7 @@ experiments/reconstruction/         solute-field reconstruction (E10 onward)
 scripts/generate_data.py            the data factory that wrote data/
 docs/experiments/                   one walkthrough per experiment
 docs/guides/                        introductory explanatory documents
-tests/                              217 regression tests
+tests/                              252 regression tests
 data/                               1,000 simulated patterns (gitignored, ~5 GB)
 ```
 
@@ -771,7 +780,7 @@ pip install -e ".[dev,notebooks]"
 ### Pipeline
 
 ```bash
-python -m pytest                                                    # 228 tests, ~100 s
+python -m pytest                                                    # 252 tests, a few minutes
 
 PYTHONPATH=. python scripts/generate_data.py                        # ~8 min, 5 GB
 python -m experiments.inference.recover_ground_truth                # E1, 6 s

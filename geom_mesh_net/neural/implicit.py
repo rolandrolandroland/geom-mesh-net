@@ -265,3 +265,276 @@ def fit_parametric(model, x, y, iterations=200):
     with torch.no_grad():
         loss = float(F.binary_cross_entropy(model(tx).clamp(1e-9, 1 - 1e-9), ty))
     return {"train_loss": loss, "constants": model.constants(), "seconds": round(time.perf_counter() - started, 1)}
+
+
+# ---------------------------------------------------------------------------------------------
+# Stage 2: a field fitted to one pattern, with Fourier features and its two controls
+# ---------------------------------------------------------------------------------------------
+
+BOX_LENGTH = 60.0     # the benchmark box, in the simulation's length unit
+RATE_CLIP = 1e-6      # a fitting guest fraction of exactly 0 or 1 is clipped to this before its log odds
+
+
+def base_frequencies(n_features, seed):
+    """B0: ``n_features`` frequency vectors with independent standard normal components.
+
+    Every σ candidate of one seed scales the same B0, so candidates differ only in σ and not
+    in an unrelated random draw.
+    """
+    return np.random.default_rng(seed).standard_normal((int(n_features), 3)).astype(np.float32)
+
+
+class CoordinateField(nn.Module):
+    """A guest-probability field over the box: an encoding of position, then a network to one logit.
+
+    ``hidden`` lists the hidden widths; an empty tuple makes the model linear in its encoding.
+    ``logits`` is the path for ``BCEWithLogitsLoss``; calling the model returns probabilities, so
+    the module works with ``predict``. Coordinates are divided by the known box length, never by
+    bounds estimated from a sample.
+    """
+
+    def __init__(self, in_features, hidden, box):
+        super().__init__()
+        self.register_buffer("box", torch.tensor(float(box)))
+        layers, width = [], int(in_features)
+        for size in hidden:
+            layers += [nn.Linear(width, int(size)), nn.ReLU()]
+            width = int(size)
+        self.body = nn.Sequential(*layers)
+        self.head = nn.Linear(width, 1)
+        self.hidden = tuple(int(h) for h in hidden)
+
+    def encode(self, x):
+        raise NotImplementedError
+
+    def logits(self, x):
+        return self.head(self.body(self.encode(x))).squeeze(-1)
+
+    def forward(self, x):
+        return torch.sigmoid(self.logits(x))
+
+    def initialise_constant(self, rate):
+        """Start exactly at the constant field ``rate``: the output weights are zeroed, so no
+        hidden unit contributes until training moves them."""
+        rate = min(max(float(rate), RATE_CLIP), 1 - RATE_CLIP)
+        with torch.no_grad():
+            self.head.weight.zero_()
+            self.head.bias.fill_(math.log(rate / (1 - rate)))
+        return self
+
+    def parameter_count(self):
+        return int(sum(p.numel() for p in self.parameters()))
+
+
+class FourierFeatureField(CoordinateField):
+    """γ(u) = [sin 2πBu, cos 2πBu] with u = x / L and B = σ·B0, then an MLP (Tancik et al., 2020).
+
+    ``hidden=()`` gives the linear Fourier control: a logistic regression on the same features.
+    B0 and σ are buffers, so they are saved and restored with every checkpoint.
+    """
+
+    def __init__(self, base, sigma, hidden=(256, 256, 256, 256), box=BOX_LENGTH):
+        base = torch.as_tensor(np.asarray(base), dtype=torch.float32)
+        super().__init__(2 * base.shape[0], hidden, box)
+        self.register_buffer("base_frequencies", base)
+        self.register_buffer("sigma", torch.tensor(float(sigma)))
+
+    def frequencies(self):
+        return self.sigma * self.base_frequencies
+
+    def encode(self, x):
+        z = 2 * math.pi * (x / self.box) @ self.frequencies().T
+        return torch.cat([torch.sin(z), torch.cos(z)], dim=-1)
+
+
+class RawCoordinateField(CoordinateField):
+    """The control without an encoding: an MLP on 2x/L − 1, which lies in [−1, 1]³."""
+
+    def __init__(self, hidden=(256, 256, 256, 256), box=BOX_LENGTH):
+        super().__init__(3, hidden, box)
+
+    def encode(self, x):
+        return 2 * x / self.box - 1
+
+
+def build_field(kind, init_seed, base=None, sigma=None, hidden=(256, 256, 256, 256), box=BOX_LENGTH):
+    """Construct a Stage 2 model with its weights drawn from ``init_seed`` alone.
+
+    ``kind`` is ``"fourier"`` (the MLP, or the linear control with ``hidden=()``) or ``"raw"``.
+    The global random state is left untouched.
+    """
+    with torch.random.fork_rng(devices=[]):
+        torch.manual_seed(int(init_seed))
+        if kind == "fourier":
+            return FourierFeatureField(base, sigma, hidden=hidden, box=box)
+        if kind == "raw":
+            return RawCoordinateField(hidden=hidden, box=box)
+    raise ValueError(f"unknown field kind {kind!r}")
+
+
+def _bce(model, x, y, chunk):
+    """Mean binary cross-entropy of ``model`` on (x, y), evaluated in chunks without gradients."""
+    total = 0.0
+    with torch.no_grad():
+        for start in range(0, len(x), chunk):
+            logits = model.logits(x[start:start + chunk])
+            total += float(F.binary_cross_entropy_with_logits(logits, y[start:start + chunk], reduction="sum"))
+    return total / len(x)
+
+
+def _mean_probability(model, x, chunk):
+    total = 0.0
+    with torch.no_grad():
+        for start in range(0, len(x), chunk):
+            total += float(model(x[start:start + chunk]).sum())
+    return total / len(x)
+
+
+class _BatchStream:
+    """Fixed-size minibatches drawn from successive random permutations of the fitting atoms.
+
+    Every update sees exactly ``min(batch_size, n)`` atoms: a batch that runs past the end of
+    one permutation continues into the next, so an update is always the same size and the
+    number of passes through the data is exactly updates × size / n. When the whole fitting
+    set fits in one batch, every update is full-batch.
+    """
+
+    def __init__(self, n, batch_size, seed):
+        self.n, self.size = int(n), int(min(batch_size, n))
+        self.full = self.size == self.n
+        self.generator = torch.Generator().manual_seed(int(seed))
+        self.order, self.position = torch.randperm(self.n, generator=self.generator), 0
+
+    def next(self):
+        if self.full:
+            return None
+        take = []
+        needed = self.size
+        while needed:
+            if self.position == self.n:
+                self.order, self.position = torch.randperm(self.n, generator=self.generator), 0
+            chunk = self.order[self.position:self.position + needed]
+            take.append(chunk)
+            self.position += len(chunk)
+            needed -= len(chunk)
+        return torch.cat(take)
+
+
+def fit_field(model, fit_x, fit_y, val_x=None, val_y=None, *, learning_rate=1e-3, batch_size=32768,
+              max_updates=2000, eval_every=25, patience=200, batch_seed=0, gradient_penalty=0.0,
+              device="cpu", chunk=65536):
+    """Adam on unweighted binary cross-entropy; one *update* is one optimiser step, always.
+
+    With validation data, the model at update 0 (the constant it was initialised to) is the
+    first candidate checkpoint; validation BCE is evaluated every ``eval_every`` updates, the
+    best checkpoint is kept, training stops after ``patience`` updates without improvement or
+    at ``max_updates``, and the best checkpoint is restored before returning. Without
+    validation data (a refit) the model trains for exactly ``max_updates`` updates and the
+    final state is returned.
+
+    ``gradient_penalty`` adds λ·mean‖∇ₓf‖² over each batch's atoms, where f is the logit and x
+    the physical coordinates, computed by automatic differentiation.
+
+    Returns a record with the history (update, passes through the data, full fitting-set BCE,
+    validation BCE), the selected update, elapsed time, how training stopped, whether a loss
+    went non-finite, and the mean fitted probability minus the fitted guest fraction, which is
+    reported and not enforced: an early-stopped fit is not at a stationary point.
+    """
+    if gradient_penalty > 0 and str(device).startswith("mps"):
+        # Measured 2026-09-18 on torch 2.10: through this network, gradients with respect to the
+        # input coordinates are unreliable on MPS (repeated computations on one model differed
+        # by up to 300% from the CPU, sometimes non-finite), although forward passes and weight
+        # gradients agree with the CPU to float32 precision. The penalty needs the former.
+        raise ValueError("the gradient penalty needs input gradients, which are unreliable on MPS; use the CPU")
+    started = time.perf_counter()
+    model = model.to(device)
+    fx = torch.as_tensor(np.asarray(fit_x), dtype=torch.float32, device=device)
+    fy = torch.as_tensor(np.asarray(fit_y), dtype=torch.float32, device=device)
+    validating = val_x is not None
+    if validating:
+        vx = torch.as_tensor(np.asarray(val_x), dtype=torch.float32, device=device)
+        vy = torch.as_tensor(np.asarray(val_y), dtype=torch.float32, device=device)
+    stream = _BatchStream(len(fx), batch_size, batch_seed)
+    optimiser = torch.optim.Adam(model.parameters(), lr=learning_rate)
+
+    def snapshot():
+        return {k: v.detach().to("cpu", copy=True) for k, v in model.state_dict().items()}
+
+    def evaluate(update):
+        row = {"update": update, "passes": update * stream.size / stream.n, "fit_bce": _bce(model, fx, fy, chunk)}
+        if validating:
+            row["validation_bce"] = _bce(model, vx, vy, chunk)
+        return row
+
+    model.eval()
+    history = [evaluate(0)]
+    best = {"update": 0, "validation_bce": history[0].get("validation_bce"), "state": snapshot()}
+    stopped, nonfinite, update = ("fixed" if not validating else "cap"), False, 0
+    model.train()
+    while update < max_updates:
+        index = stream.next()
+        xb, yb = (fx, fy) if index is None else (fx[index.to(device)], fy[index.to(device)])
+        if gradient_penalty > 0:
+            xb = xb.detach().clone().requires_grad_(True)
+        logits = model.logits(xb)
+        loss = F.binary_cross_entropy_with_logits(logits, yb)
+        if gradient_penalty > 0:
+            gradient = torch.autograd.grad(logits.sum(), xb, create_graph=True)[0]
+            loss = loss + gradient_penalty * (gradient ** 2).sum(dim=-1).mean()
+        if not torch.isfinite(loss):
+            nonfinite, stopped = True, "nonfinite"
+            break
+        optimiser.zero_grad(set_to_none=True)
+        loss.backward()
+        optimiser.step()
+        update += 1
+        if validating and (update % eval_every == 0 or update == max_updates):
+            model.eval()
+            row = evaluate(update)
+            model.train()
+            history.append(row)
+            if not math.isfinite(row["validation_bce"]):
+                nonfinite, stopped = True, "nonfinite"
+                break
+            if row["validation_bce"] < best["validation_bce"]:
+                best = {"update": update, "validation_bce": row["validation_bce"], "state": snapshot()}
+            elif update - best["update"] >= patience:
+                stopped = "patience"
+                break
+    model.eval()
+    if validating:
+        model.load_state_dict(best["state"])
+    else:
+        history.append(evaluate(update))
+        best = {"update": update, "validation_bce": None}
+    rate = float(fy.mean())
+    return {
+        "history": history,
+        "best_update": int(best["update"]),
+        "best_passes": best["update"] * stream.size / stream.n,
+        "best_validation_bce": best["validation_bce"],
+        "initial_validation_bce": history[0].get("validation_bce"),
+        "updates_run": int(update),
+        "passes_run": update * stream.size / stream.n,
+        "stopped": stopped,
+        "nonfinite": nonfinite,
+        "full_batch": stream.full,
+        "batch_size": stream.size,
+        "n_fit": int(len(fx)),
+        "n_validation": int(len(vx)) if validating else 0,
+        "fit_rate": rate,
+        "mean_residual": _mean_probability(model, fx, chunk) - rate,
+        "seconds": round(time.perf_counter() - started, 2),
+        "device": str(device),
+        "parameters": model.parameter_count() if hasattr(model, "parameter_count") else None,
+    }
+
+
+def predict_logits(model, points, device="cpu", chunk=65536):
+    """The model's logit at ``points`` as a float64 numpy array."""
+    out = []
+    with torch.no_grad():
+        for start in range(0, len(points), chunk):
+            x = torch.as_tensor(np.asarray(points[start:start + chunk]), dtype=torch.float32, device=device)
+            out.append(model.logits(x).detach().cpu().double().numpy())
+    return np.concatenate(out) if out else np.zeros(0)

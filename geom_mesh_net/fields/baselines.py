@@ -170,7 +170,8 @@ def predict_baselines(fit, coords, guest, points, lower=0.0, upper=60.0):
     coords = np.asarray(coords, dtype=float)
     guest = np.asarray(guest, dtype=bool)
     counts = SmoothedCounts(coords, guest, lower=lower, upper=upper)
-    distances = guest_neighbour_distances(coords[guest], points)
+    # only the chosen neighbour count is needed, and it may lie beyond Stage 1's grid (O12)
+    distances = guest_neighbour_distances(coords[guest], points, k_max=fit.adaptive_k)
     return {
         "B0": np.full(len(points), fit.constant),
         "B1": counts.fixed(points, BANDWIDTHS.index(fit.bandwidth)),

@@ -849,6 +849,140 @@ def figure_e18_methods():
     save(fig, "e18_methods.png")
 
 
+# --------------------------------------------------------------------------
+# E19 — a Fourier-feature field fitted to one pattern (Stage 2)
+# --------------------------------------------------------------------------
+
+E19_METHODS = (("B1", "B1", FAINT, "o"), ("B2", "B2", OPEN, "s"), ("linear", "linear Fourier", RULE, "v"),
+               ("raw", "raw-coordinate MLP", ACCENT, "^"), ("fourier", "Fourier MLP", PASS, "D"))
+
+
+def figure_e19_sigma():
+    """The exploration: removed-atom excess against sigma, with the planned grid shaded."""
+    data = load(PILOT / "fourier_field_explore.json")
+    if data is None:
+        return
+    fig, ax = plt.subplots(figsize=(6.2, 3.8))
+    ax.axvspan(2.6, 30, color=RULE, alpha=0.6, lw=0, label="the planned grid, 3 to 24")
+    for cell, colour in zip(data["cells"], (ACCENT, PASS, OPEN, FAINT)):
+        entry = cell["specs"]["fourier_lr0.0001"]
+        sigmas = [c["sigma"] for c in entry["candidates"]]
+        excess = [cell["score"]["excess"][f"fourier_lr0.0001#{i}"] for i in range(len(sigmas))]
+        ax.plot(sigmas, excess, "-o", color=colour, ms=4, lw=1.4,
+                label=f"pattern {cell['pattern']}, efficiency {cell['efficiency']}")
+        chosen = entry["selected"]
+        ax.plot(sigmas[chosen], excess[chosen], "o", ms=9, mfc="none", mec=colour, mew=1.6)
+    ax.set_xscale("log")
+    ax.set_yscale("log")
+    ax.set_xlabel("frequency scale sigma (per box length)")
+    ax.set_ylabel("excess log loss on removed atoms")
+    ax.set_title("E19 Figure 1: the planned grid sat above every useful sigma (circled: selected)", fontsize=10)
+    ax.set_xticks([0.75, 1.5, 3, 6, 12, 24])
+    ax.xaxis.set_major_formatter(matplotlib.ticker.FuncFormatter(lambda v, _: f"{v:g}"))
+    ax.xaxis.set_minor_formatter(matplotlib.ticker.NullFormatter())
+    ax.legend(frameon=False, fontsize=7.5, loc="upper left")
+    save(fig, "e19_sigma.png")
+
+
+def figure_e19_curves():
+    """Fitting against validation cross-entropy: the network memorises within a few hundred updates."""
+    data = load(PILOT / "fourier_field_explore.json")
+    if data is None:
+        return
+    cell = next(c for c in data["cells"] if c["pattern"] == 4 and c["efficiency"] == 0.37)
+    fig, axes = plt.subplots(1, 2, figsize=(7.6, 3.4), sharey=True)
+    for ax, sigma in zip(axes, (1.5, 6.0)):
+        entry = cell["specs"]["fourier_lr0.0001"]
+        candidate = next(c for c in entry["candidates"] if c["sigma"] == sigma)
+        history = np.array(candidate["history"])
+        ax.plot(history[:, 0], history[:, 1], color=ACCENT, lw=1.5, label="fitting atoms")
+        ax.plot(history[:, 0], history[:, 2], color=PASS, lw=1.5, label="validation atoms")
+        ax.axvline(candidate["best_update"], color=FAINT, ls="--", lw=1)
+        ax.set_title(f"sigma {sigma:g}: best checkpoint at update {candidate['best_update']}", fontsize=9.5)
+        ax.set_xlabel("optimiser update")
+    axes[0].set_ylabel("binary cross-entropy (nats per atom)")
+    axes[0].legend(frameon=False, fontsize=8)
+    fig.suptitle("E19 Figure 2: development pattern 4 at efficiency 0.37 — early stopping is the regulariser", fontsize=10)
+    save(fig, "e19_curves.png")
+
+
+def figure_e19_gate(split="test"):
+    """Each cell's Fourier-MLP excess against the better smoother's; filled markers are headroom cells."""
+    data = load(RESULTS / f"stage2_field_{split}.json")
+    if data is None:
+        return
+    cells = [c for c in data["cells"] if "error" not in c]
+    fig, ax = plt.subplots(figsize=(5.4, 4.6))
+    for eta, colour, marker in ((0.1, OPEN, "s"), (0.37, ACCENT, "o"), (0.8, PASS, "D")):
+        for headroom in (True, False):
+            sel = [c for c in cells if c["efficiency"] == eta and c["score"]["headroom"] == headroom]
+            x = [min(c["score"]["excess"]["B1"], c["score"]["excess"]["B2"]) for c in sel]
+            y = [c["score"]["excess"]["fourier"] for c in sel]
+            ax.plot(x, y, marker, color=colour, ms=5.5, ls="none", mfc=colour if headroom else "none", mew=1.2,
+                    label=f"efficiency {eta}" if headroom else None)
+    values = [v for c in cells for v in (c["score"]["excess"]["fourier"],
+                                          min(c["score"]["excess"]["B1"], c["score"]["excess"]["B2"])) if v > 0]
+    limits = [min(values) / 1.6, max(values) * 1.6]
+    ax.plot(limits, limits, color=FAINT, lw=1, ls="--")
+    ax.set_xscale("log")
+    ax.set_yscale("log")
+    ax.set_xlim(limits)
+    ax.set_ylim(limits)
+    ax.set_xlabel("excess of the better smoother, min(B1, B2)")
+    ax.set_ylabel("excess of the Fourier MLP")
+    ax.set_title(f"E19 Figure 3: below the line, the field wins ({split})\nfilled: headroom cells", fontsize=10)
+    ax.legend(frameon=False, fontsize=8, loc="upper left")
+    save(fig, f"e19_gate{'' if split == 'test' else '_' + split}.png")
+
+
+def figure_e19_methods(split="test"):
+    """Median excess of every method by efficiency."""
+    data = load(RESULTS / f"stage2_field_{split}.json")
+    if data is None:
+        return
+    cells = [c for c in data["cells"] if "error" not in c]
+    etas = (0.1, 0.37, 0.8)
+    fig, ax = plt.subplots(figsize=(6.6, 3.8))
+    width = 0.15
+    for position, (key, label, colour, _) in enumerate(E19_METHODS):
+        medians = [np.median([c["score"]["excess"][key] for c in cells if c["efficiency"] == eta]) for eta in etas]
+        ax.bar(np.arange(3) + (position - 2) * width, medians, width * 0.92, color=colour, label=label,
+               edgecolor=INK if key == "fourier" else "none", linewidth=0.8)
+    ax.set_xticks(np.arange(3))
+    ax.set_xticklabels([f"efficiency {eta}" for eta in etas])
+    ax.set_ylabel("median excess log loss (nats per atom)")
+    bottom, top = ax.get_ylim()
+    ax.set_ylim(bottom, top * 1.35)
+    ax.set_title(f"E19 Figure 4: the method, its two controls and the smoothers ({split})", fontsize=10)
+    ax.legend(frameon=False, fontsize=8, ncol=3, loc="upper right")
+    save(fig, f"e19_methods{'' if split == 'test' else '_' + split}.png")
+
+
+def figure_e19_regions(split="test"):
+    """Median excess by region: where the field gains."""
+    data = load(RESULTS / f"stage2_field_{split}.json")
+    if data is None:
+        return
+    cells = [c for c in data["cells"] if "error" not in c]
+    regions = ("rim", "core", "interior", "matrix")
+    fig, ax = plt.subplots(figsize=(6.6, 3.8))
+    width = 0.15
+    for position, (key, label, colour, _) in enumerate(E19_METHODS):
+        medians = [np.median([c["score"]["excess_by_region"][key][r] for c in cells
+                              if r in c["score"]["excess_by_region"][key]]) for r in regions]
+        ax.bar(np.arange(len(regions)) + (position - 2) * width, medians, width * 0.92, color=colour, label=label,
+               edgecolor=INK if key == "fourier" else "none", linewidth=0.8)
+    ax.set_xticks(np.arange(len(regions)))
+    ax.set_xticklabels(regions)
+    ax.set_yscale("log")
+    bottom, top = ax.get_ylim()
+    ax.set_ylim(bottom, top * 6)              # room for the legend above the tallest bars
+    ax.set_ylabel("median excess in the region (nats per atom)")
+    ax.set_title(f"E19 Figure 5: excess by region ({split})", fontsize=10)
+    ax.legend(frameon=False, fontsize=8, ncol=3, loc="upper center")
+    save(fig, f"e19_regions{'' if split == 'test' else '_' + split}.png")
+
+
 if __name__ == "__main__":
     print("E10")
     figure_e10_grid_profile()
@@ -882,3 +1016,9 @@ if __name__ == "__main__":
     figure_e18_bound()
     figure_e18_identifiability()
     figure_e18_methods()
+    print("E19")
+    figure_e19_sigma()
+    figure_e19_curves()
+    figure_e19_gate()
+    figure_e19_methods()
+    figure_e19_regions()

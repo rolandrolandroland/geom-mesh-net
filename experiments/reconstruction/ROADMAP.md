@@ -740,6 +740,178 @@ a different mechanism, and Stage 5 needs this stage's code either way.
 Rerunning E9's local-feature comparison with this baseline is out of scope unless
 Gate 2 passes.
 
+**The Stage 2 design, recorded 2026-09-18, before any Stage 2 fit.** The text above stands as
+first written. This records how it is implemented, what is fixed before a test cell is fitted,
+and two corrections. The machine-readable contract is `stage2_design.json`; the harness,
+`stage2_field.py`, hashes it into every result and refuses test cells until its status is
+`frozen`. Walkthrough and results follow when the gate has run.
+
+*What is fixed, and what is chosen inside a cell.*
+
+| Fixed before any test cell is fitted | Chosen within a cell, from its validation atoms only |
+| --- | --- |
+| architecture, σ grid, learning rate, batch policy, stopping policy, refit rule, seed policy, device | σ and the stopping checkpoint |
+| the two controls and their tuning procedures | the controls' σ and checkpoints, by the same rule |
+| B1 and B2 and their cross-validation | their bandwidth and (k, c), by Stage 1's procedure |
+| metrics, reporting and the gate's implementation | nothing is chosen from removed-atom scores |
+
+*Scope.* The 36 test patterns of `benchmark.json` (`stage2_subset`, six per `cr` band × `rho_c`
+band) at the three efficiencies: 108 cells. Design decisions are made on the twelve development
+patterns of the Stage 1 pilot (the two lowest-index patterns of each band), 36 cells. A second
+set of twelve development patterns, the next two of each band, is held back to validate the
+frozen harness once before the test run.
+
+*The data boundary.* Each cell's dataset file and thinning mask are checked against the frozen
+checksums. Observed atoms are split 80 / 20 into fitting and validation atoms by a dedicated
+random stream, before anything reads a label, and the split is hashed; every neural model of a
+cell uses the same split. Separate recorded streams draw the split, the Fourier frequencies,
+the initial weights, the minibatch order and the predictive-check relabelling. Removed labels,
+the oracle and the regions derived from the truth are held in a separate object that no
+fitting routine accepts. B1 and B2 keep Stage 1's procedure — five-fold cross-validation on all
+observed atoms, prediction from all of them, B2 on the grid widened by O12 — which differs from
+the neural models' single validation split; that difference is part of the comparison, not
+hidden inside it. Coordinates are divided by the known box length, 60, never by bounds
+estimated from a sample.
+
+*The model and its two controls.*
+
+| Model | Parameters | What it tests |
+| --- | ---: | --- |
+| Fourier MLP: 256 frequencies B = σ·B0, 4 × 256 ReLU, one logit | 328,961 | the Stage 2 method |
+| MLP of the same width and depth on 2x/60 − 1 | 198,657 | whether the encoding helps |
+| linear logit on the same Fourier features | 513 | whether the network helps beyond the representation |
+
+The raw-coordinate control matches width and depth, not capacity. Within a seed, every σ
+candidate scales the same B0 and starts from the same weights and batch order, so candidates
+differ only in σ. Every model starts exactly at the constant field of its fitting labels: the
+output weights are zeroed and the output bias is their log odds. Update 0 is therefore a
+candidate checkpoint, and a model that never beats the constant returns it. The mean fitted
+probability minus the fitted guest fraction is reported, not enforced: the conservation
+identity of F2 holds only at a stationary point, which an early-stopped fit is not.
+
+*Clarifications of the gate's implementation.* Headroom is Stage 1's, defined by B1. "The
+Fourier-feature field" is the Fourier MLP under the frozen σ selection, refit and seed
+policies; the controls are reported, not gated. The calibration condition is the median, over
+headroom cells, of the paired difference ECE(field) − ECE(B1), at most 0.005. The no-harm
+condition is the median, over the other cells, of the paired difference in excess loss, at most
+0.002 nats per atom. A cell whose training goes non-finite keeps its best finite checkpoint, is
+flagged, and stays in every denominator; a cell that errors makes the verdict `incomplete`.
+
+*Two corrections.*
+
+- **What a failure would show.** The text above says a failure would record that "a per-pattern
+  field is a reparameterised smoother". Gate 2 does not collect the evidence that claim needs. If
+  it fails, the defensible conclusion is that this model and selection procedure did not
+  demonstrate the required advantage at this sample size.
+- **The cost.** The estimate of 8 hours counted training steps only. The budget is fixed from
+  complete pilot cells — validation, refits, controls and prediction included — before the test
+  run.
+
+The pilot settles the rest before anything is frozen: the σ grid, the learning rate, the width,
+the refit rule, the seed and ensemble policy, and the device.
+
+**The Stage 2 pilot and the frozen design, recorded 2026-09-19, before any test cell was fitted.**
+All on the 36 development cells of the design (`pilot/check_fourier_field.py`; every table is
+regenerated by `--report` from `pilot/results/fourier_field_*.json`). Within a cell, σ and the
+checkpoint were always chosen on validation atoms; the development cells' removed atoms decided
+only the global settings below, which is what they are for.
+
+*The planned σ grid was wrong.* On four contrasting cells every selection landed at σ = 0.75 or
+1.5, below the planned {3, 6, 12, 24}; σ ≥ 12 never improved on the constant, and σ = 0.75 was
+chosen at the lower edge. The feature-kernel arithmetic that had placed the grid (σ = 6 ≈ B1's
+bandwidth) does not describe the trained network, whose resolution is not the width of its
+features' kernel. The pilot grid became {0.375, 0.75, 1.5, 3, 6}. σ = 0.375 was then chosen in 7
+of 36 cells, all large-cluster cells, so σ = 0.1875 was tried there: validation would select it in
+one cell of twelve, where it would worsen the removed-atom excess, and it scored worse than the
+grid's choice in nine. The grid stands. One limit shows in those cells: at η = 0.1 the 4,300
+validation atoms of pattern 0 cannot see that σ = 0.1875 would nearly halve its excess.
+
+*The grid pilot* (Fourier MLP at learning rate 1e-4, both controls at learning rates of their
+own):
+
+| | η = 0.1 | η = 0.37 | η = 0.8 |
+| --- | ---: | ---: | ---: |
+| B1, median excess | 0.0295 | 0.0174 | 0.0133 |
+| B2 | 0.0164 | 0.0098 | 0.0079 |
+| **Fourier MLP** | **0.0092** | **0.0043** | **0.0027** |
+| raw-coordinate MLP (learning rate 1e-3) | 0.0151 | 0.0054 | 0.0037 |
+| linear Fourier (learning rate 1e-2) | 0.0218 | 0.0157 | 0.0138 |
+| Fourier MLP beats both smoothers | 10 of 12 | 12 of 12 | 12 of 12 |
+
+On the 18 headroom cells the Fourier MLP beat the better smoother in 16, closed a median 61% of
+B1's remaining gap, and had a lower ECE than B1 (median difference −0.026); elsewhere its excess
+was 0.009 below B1's. Validation-based σ selection lost nothing: its median regret against the
+best σ on removed atoms was zero (at most 0.0035), and update 0 was never kept. These are
+development numbers: the design was chosen from them, so they are not the gate and do not predict
+it without bias.
+
+*The controls' learning rates.* Each got its own, so an optimisation failure could not pass as a
+limitation of the model. The linear model's three rates finished within 0.0003 of one another,
+including one that hit the update cap in 129 of 180 fits: its weakness is its representation.
+The rule, stated after the per-efficiency medians had been seen: the lowest median excess over
+the 36 cells. Linear Fourier 1e-2;
+raw-coordinate MLP 1e-3 (1e-4 hit the cap in 22 of 36 fits and was worse).
+
+*Refit.* Restarting the selected fit on all observed atoms improved 50 of 54 seed-fits when it
+repeats the selected number of updates (median −0.00060) and 49 of 54 when it repeats the passes
+through the data (−0.00049); at η = 0.1, where both fits are full-batch, the two rules coincide
+and improve 34 of 36. Refit by updates, for all three models. The rule was measured at η = 0.1
+and 0.37 only; at 0.8 the validation fifth is the smallest share of the information.
+
+*Seeds and device.* Over three seeds the spread of a cell's excess had median 0.0007, an order of
+magnitude below the margins under test; the seeds chose different σ in 8 of 18 cells. Averaging
+them gained 0.0003 (better in 14 of 18) at three times the cost. Single seed 0. Seed 0 rerun on
+MPS chose the same σ and update in 18 of 18 cells, and on the CPU in 6 of 6.
+
+*An MPS fault, and what it does not touch.* On torch 2.10 the gradients of the field with respect
+to its input coordinates are wrong on MPS — repeated computations on one model differed from the
+CPU by up to 300%, occasionally non-finite — although forward passes and weight gradients agree
+with the CPU to float32 precision over 20 repeats. Training on MPS is sound; the gradient penalty
+needs input gradients, so it ran on the CPU, and `fit_field` now refuses a penalty on MPS.
+
+*The gradient-penalty ablation* (24 cells, σ fixed at each cell's selection). λ ∈ {1e-4, 1e-3,
+1e-2} moved the median excess by at most 0.00004. λ = 1e-2 worsened rims in 15 of 24 cells, by
+a median 0.00023, consistent in direction with the stated prediction but hardly different from
+nothing, and validation would have picked λ = 0 in only 4 cells of 24. At these strengths the
+penalty is 1–3% of the loss (the mean squared logit gradient is 0.31 per unit squared), so the
+ablation shows only that weak smoothness regularisation neither helps nor harms. The unpenalised
+model stays the method.
+
+*Width.* Hidden width 128 was worse than 256 in 28 of 36 cells and only 21% faster; 256 stays.
+
+*B2, again.* On the pilot cells O12's grid chose its k = 512 edge in 4 of 36 cells, all without
+headroom; extending k to 2048 gained at most 0.00044 nats, in one pattern. O12's grid stands.
+
+*The frozen design* (`stage2_design.json`, status `frozen`, hash `f9a0085f62490e83`): 256 Fourier
+features, B = σ·B0, 4 × 256 ReLU; σ ∈ {0.375, 0.75, 1.5, 3, 6}; Adam at 1e-4 (linear control
+1e-2, raw control 1e-3); batches of 32,768 from successive permutations, full batch below that;
+validation every 25 updates, patience 200, at most 2,000; refit by updates on all observed atoms;
+seed 0; MPS. Budget from complete pilot cells: about 3, 9 and 11 minutes per cell at η = 0.1, 0.37
+and 0.8 — some 5 hours for the confirmation run on the twelve held-back development patterns, and
+14 to 16 hours for the 108 test cells. The confirmation run tests the harness, not the design: a
+bug it finds is fixed and versioned, and nothing else changes.
+
+**The confirmation run, recorded 2026-09-19, before any test cell was scored.** The frozen harness
+ran once on the twelve held-back development patterns (36 cells; `stage2_field.py --split
+development-confirmation`, `results/stage2_field_development-confirmation.json`). It completed
+without an error or a flag, in 4.2 hours (medians of 2.7, 7.7 and 10.5 minutes per cell at η = 0.1,
+0.37 and 0.8), so nothing was changed. None of these patterns informed any design decision, which
+makes them the fairest estimate available before the test of how the frozen design generalises:
+
+| | η = 0.1 | η = 0.37 | η = 0.8 |
+| --- | ---: | ---: | ---: |
+| B1, median excess | 0.0292 | 0.0192 | 0.0142 |
+| B2 | 0.0176 | 0.0112 | 0.0076 |
+| **Fourier MLP** | **0.0083** | **0.0040** | **0.0019** |
+| raw-coordinate MLP | 0.0142 | 0.0084 | 0.0050 |
+| linear Fourier | 0.0184 | 0.0124 | 0.0121 |
+| Fourier MLP beats both smoothers | 10 of 12 | 11 of 12 | 11 of 12 |
+
+Gate 2's statistics on these cells: 14 of 18 headroom cells beaten (required two thirds), a median
+70% of B1's gap closed (required 20%), ECE a median 0.030 below B1's (required at most 0.005 above),
+and elsewhere an excess 0.0067 below B1's (required at most 0.002 above). The pilot's 16 of 18 fell
+to 14 of 18 on patterns the design had not seen, as numbers the design was chosen from should.
+
 ### Stage 3 — A field trained across simulations: a learned prior (1.5–2 weeks)
 
 *Question: trained on simulated patterns, can a network reconstruct unseen
