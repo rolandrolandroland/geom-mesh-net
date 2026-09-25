@@ -744,7 +744,7 @@ Gate 2 passes.
 first written. This records how it is implemented, what is fixed before a test cell is fitted,
 and two corrections. The machine-readable contract is `stage2_design.json`; the harness,
 `stage2_field.py`, hashes it into every result and refuses test cells until its status is
-`frozen`. Walkthrough and results follow when the gate has run.
+`frozen`. The gate has since run; its outcome closes this section.
 
 *What is fixed, and what is chosen inside a cell.*
 
@@ -911,6 +911,37 @@ Gate 2's statistics on these cells: 14 of 18 headroom cells beaten (required two
 70% of B1's gap closed (required 20%), ECE a median 0.030 below B1's (required at most 0.005 above),
 and elsewhere an excess 0.0067 below B1's (required at most 0.002 above). The pilot's 16 of 18 fell
 to 14 of 18 on patterns the design had not seen, as numbers the design was chosen from should.
+
+**Gate 2 passed, 2026-09-22.** The frozen design ran once over the 108 test cells in 13.2 hours;
+all were present, none errored and none was flagged. Walkthrough [E19](../../docs/experiments/E19_fourier_field.md).
+
+| Condition | Required | Measured |
+| --- | --- | ---: |
+| beats the better of B1 and B2 on headroom cells | ≥ ⅔ | **0.923** (48 of 52) |
+| median share of B1's remaining gap closed | ≥ 0.20 | **0.685** |
+| median ECE(field) − ECE(B1) on headroom cells | ≤ 0.005 | **−0.026** |
+| median excess(field) − excess(B1) elsewhere | ≤ 0.002 | **−0.008** |
+
+The last two passed in the opposite direction to the harm the gate guards against: the field is
+better calibrated than B1, and on cells without headroom it helps rather than harms.
+
+It wins at every efficiency (0.889 of headroom cells at η = 0.1, 1.000 at 0.37 and 0.8) and in
+every band, and its gain is concentrated where Stage 1 found the room. For small clusters its
+median excess is 0.039 nats per atom at rims against B2's 0.077 and 0.013 in cores against 0.030.
+The two controls separate the parts: the Fourier encoding is worth a median −0.0049 nats per atom
+over raw coordinates (95% interval −0.0084 to −0.0029) and the network −0.0102 over a linear model
+on the same features; the linear model is the only method that loses to B2.
+
+The four losses are all small clusters at η = 0.1, by margins under 0.007 nats per atom.
+
+Consequences for the rest of the track:
+
+- Stage 3's bar is now a per-pattern field, not a smoother.
+- Detection currently segments a smoothed field. Since this field halves B2's rim error, whether
+  detection improves on it is the next thing to measure, for Stage 4 and for the joint fit E18
+  proposes as Stage 5.3.
+- Rerunning E9's local-feature comparison is now in scope, with the spectral-bias confound
+  measured rather than assumed.
 
 ### Stage 3 — A field trained across simulations: a learned prior (1.5–2 weeks)
 

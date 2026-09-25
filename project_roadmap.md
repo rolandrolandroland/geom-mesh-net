@@ -174,7 +174,7 @@ exact oracle.* Roadmap:
 | --- | --- | --- | --- |
 | 0 — The yardstick | can the true field be computed exactly? | calibration slope and reliability on development patterns | passed |
 | 1 — Baselines and headroom | does classical smoothing leave room? | ≥ 25% of test cells with headroom | passed (48%) |
-| 2 — A field fitted to one pattern | does a Fourier-feature network beat B1 and B2? | beat both in ⅔ of headroom cells; close ≥ 20% of B1's gap | **passed** (2026-09-22): 48 of 52 cells, 68% of the gap closed, write-up pending |
+| 2 — A field fitted to one pattern | does a Fourier-feature network beat B1 and B2? | beat both in ⅔ of headroom cells; close ≥ 20% of B1's gap | **passed** (2026-09-22): 48 of 52 cells, 68% of the gap closed (E19) |
 | 3 — A field trained across simulations | does a learned prior beat any per-pattern estimator? | on test headroom cells | planned (extension) |
 | 4 — Fields to precipitates | do fields find precipitates better than current practice? | beat maximum separation and DBSCAN on F1 and radius error | planned (extension) |
 | 5 — Physics-informed field | does a governing equation help? | Gates 5.1 and 5.2 | 5.1 passed (2026-09-16); 5.2 **failed** (2026-09-17) on the capillary length, after the physics-informed network was replaced by the exact law |
@@ -243,16 +243,12 @@ by how much it changes what the project can claim.
 
 ### Now
 
-1. **Write up Stage 2 and commit it.** Gate 2 passed on all 108 test cells, and
-   the result currently exists only as a results file: E19's results sections and
-   its test-split figures are unwritten, and the harness, its frozen design
-   contract and its tests are uncommitted.
-2. **Detection on the Stage 2 field** (both tracks). Precipitates are found by
+1. **Detection on the Stage 2 field** (both tracks). Precipitates are found by
    segmenting a smoothed field; Stage 2 has now shown that the Fourier-feature
    field beats that smoother. Missed precipitates are what ruins the capillary
    length (E18), and detection is also what Stage 4 compares against practice, so
    one substitution serves both. Pilot it on development patterns.
-3. **Stage 5.3: the joint geometry fit, with a gate.** E18's evidence is eight
+2. **Stage 5.3: the joint geometry fit, with a gate.** E18's evidence is eight
    development patterns at one efficiency with one degenerate fit among them.
    Fixing thresholds first, keeping the at-a-bound check, and excluding η = 0.1,
    where detection finds a median 44% of precipitates, would turn it into a
@@ -260,19 +256,19 @@ by how much it changes what the project can claim.
 
 ### Then
 
-4. **`rho_b` rank bias.** Mean normalised rank is 0.478 against 0.500, and it
+3. **`rho_b` rank bias.** Mean normalised rank is 0.478 against 0.500, and it
    correlates −0.137 with `rb`. Width, shrinkage, capacity and sample size have
    been ruled out; confounding with `rb` is the remaining hypothesis.
-5. **A posterior on rapt-faithful features.** Refit the flow with missing K
+4. **A posterior on rapt-faithful features.** Refit the flow with missing K
    features imputed and flagged, or with censoring encoded explicitly ("peak beyond
    r"). Dropping incomplete rows keeps only 35% of patterns, mostly small clusters.
-6. **Paper ranges or documented deviation.** Decide whether to regenerate data at
+5. **Paper ranges or documented deviation.** Decide whether to regenerate data at
    the paper's ranges (radius 2–6.5, background 0–0.035, guest fraction 0.051,
    with blur), or keep this dataset and document the difference.
-7. **Recheck the `cr` learning-curve drift** with the robust width ratio. The
+6. **Recheck the `cr` learning-curve drift** with the robust width ratio. The
    reported drift from 1.03 to 1.24 used the estimator later shown to be dominated
    by two patterns. About 10 minutes.
-8. **Reconstruction Stage 5.** Done. Stage 5.1, the diffusion-field simulator, passed on
+7. **Reconstruction Stage 5.** Done. Stage 5.1, the diffusion-field simulator, passed on
    2026-09-16 (E15). Stage 5.2 failed on 2026-09-17 (E16, E17): the law, imposed exactly,
    predicts the matrix and exposes violations, but detected radii bias the capillary length.
    The work after the gate (E18) found that the information was there all along — an unknown
@@ -282,17 +278,17 @@ by how much it changes what the project can claim.
 
 ### Later, or separate
 
-9. **`Rddm`.** Ablation gives +0.149 ± 0.144, which resolves nothing either way.
+8. **`Rddm`.** Ablation gives +0.149 ± 0.144, which resolves nothing either way.
    The real fix is a per-pattern K radius.
-10. **F estimator parity.** Needs spatstat's C source to close the last 0.014–0.028.
-11. **Reconstruction extension.** Stage 3 (learned prior), Stage 4 (precipitates
+9. **F estimator parity.** Needs spatstat's C source to close the last 0.014–0.028.
+10. **Reconstruction extension.** Stage 3 (learned prior), Stage 4 (precipitates
     against standard practice), and optionally Stage 6 (blur).
-12. **Ten thousand simulations.** No longer needed for `rho_b`. Still useful for
+11. **Ten thousand simulations.** No longer needed for `rho_b`. Still useful for
     rare structures and for the 11 features Stage 4 could not resolve. Features
     survive 90% thinning, so patterns can be stored at a tenth the size (E6).
-13. **Free `pcp`.** The overall solute fraction is fixed at 0.1, so it cannot be
+12. **Free `pcp`.** The overall solute fraction is fixed at 0.1, so it cannot be
     inferred. In a real measurement it is a primary unknown.
-14. **Real measured data.** Model-misspecification research, not a next step.
+13. **Real measured data.** Model-misspecification research, not a next step.
 
 ### Housekeeping
 

@@ -684,6 +684,18 @@ background, questions and methods.
   - Gate 5.2 failed on the capillary length (median error 3.5 times its bound): errors in the
     detected radii pull it toward zero.
 
+- **[E19 — A Fourier-feature field fitted to one pattern: Gate 2](docs/experiments/E19_fourier_field.md)**
+  Stage 2, run after Stage 5 because Stage 5.1's simulator was ready first: does a coordinate
+  network fitted to one pattern's observed atoms beat cross-validated kernel smoothing?
+  - **Gate 2 passed.** It beats the better smoother in 48 of 52 headroom test cells and closes a
+    median 68% of the gap the textbook smoother leaves.
+  - The gain is at cluster rims and cores, where Stage 1 found the room: 0.039 nats per atom at
+    rims for small clusters against the better smoother's 0.077.
+  - Two controls separate the parts: the Fourier encoding is worth −0.0049 nats per atom over raw
+    coordinates, the network −0.0102 over a linear model on the same features.
+  - It is also better calibrated than the smoothers, and a pattern relabelled from its field
+    reproduces the 14 summary features three to seven times better than one relabelled from B2's.
+
 - **[E18 — Fitting the precipitates with the law](docs/experiments/E18_joint_geometry.md)**
   After Gate 5.2: what the capillary length can be worth when the geometry is unknown, and which
   fit reaches it. Development work, not a gate.

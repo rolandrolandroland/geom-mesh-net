@@ -26,6 +26,7 @@ The project has two purposes:
 | Random-centre benchmark dataset | generated; 1,000 patterns |
 | Classical baselines and headroom map | **done, gate passed** (reconstruction Stage 1): 48% of test cells have headroom |
 | Diffusion-field simulator with a physical law | **done, gate passed** (reconstruction Stage 5.1) |
+| A field fitted to one pattern | **done, gate passed** (reconstruction Stage 2): a Fourier-feature network beats tuned smoothing in 48 of 52 headroom test cells, closing 68% of its gap |
 | The diffusion law as a constraint on the reconstruction | **done, gate failed** (reconstruction Stage 5.2): the law predicts the matrix and exposes violations, but the capillary length cannot be recovered from detected precipitates; a physics-informed network failed first (E16) |
 
 The first line of work is **amortized Bayesian inference of the physical
