@@ -27,6 +27,7 @@ The project has two purposes:
 | Classical baselines and headroom map | **done, gate passed** (reconstruction Stage 1): 48% of test cells have headroom |
 | Diffusion-field simulator with a physical law | **done, gate passed** (reconstruction Stage 5.1) |
 | A field fitted to one pattern | **done, gate passed** (reconstruction Stage 2): a Fourier-feature network beats tuned smoothing in 48 of 52 headroom test cells, closing 68% of its gap |
+| Fields to measured precipitates | **pilot complete, promotion failed** (E20): Fourier improves field prediction but misses 35 particles versus the Gaussian detector's 8 across four confirmation patterns; the reserved test remains unevaluated |
 | The diffusion law as a constraint on the reconstruction | **done, gate failed** (reconstruction Stage 5.2): the law predicts the matrix and exposes violations, but the capillary length cannot be recovered from detected precipitates; a physics-informed network failed first (E16) |
 
 The first line of work is **amortized Bayesian inference of the physical
@@ -39,8 +40,10 @@ The second is **implicit neural reconstruction of the solute field**: estimating
 where the solute sits from a thinned point cloud, scored against an exact
 oracle. It is specified in
 [`experiments/reconstruction/ROADMAP.md`](experiments/reconstruction/ROADMAP.md).
-Stages 0, 1 and 5 are complete. Stage 5's gate failed on its capillary length, and
-its physics-informed network was replaced by the law imposed exactly. Each stage has a walkthrough in `docs/experiments/`
+Stages 0–2 and 5.1 passed. Stage 5.2's gate failed on its capillary length, and
+its physics-informed network was replaced by the law imposed exactly. E20 now connects
+the Fourier field to particle measurement and that joint physics fit; its development
+pilot failed promotion. Each stage has a walkthrough in `docs/experiments/`
 (E10 onward).
 
 **For where both tracks stand and what comes next**, see
@@ -71,10 +74,13 @@ geom_mesh_net/                    the library (installed with pip install -e .)
     physics.py                    screened diffusion field around precipitates (Stage 5)
     misspecified.py               matrix fields that break that law (Stage 5.2 controls)
     cluster_extraction.py         precipitates and matrix atoms from a smoothed field (Stage 5.2)
+    particle_detection.py         common field extraction, point clustering, matching and measurements (E20)
+    particle_physics.py           joint-fit adapter with explicit physical-validity diagnostics (E20)
+    joint_fit.py                  fit precipitate geometry and physical constants together (E18)
   neural/
     datasets.py                   torch Dataset and collate function
     models.py                     neural field models
-    implicit.py                   SIREN field with physics penalties; the analytic diffusion family (Stage 5.2)
+    implicit.py                   Fourier and SIREN fields; physics penalties and the analytic diffusion family
   inference/
     flow.py                       conditional normalizing flow
     calibration.py                simulation-based calibration and coverage
@@ -120,7 +126,7 @@ pip install -e ".[dev,notebooks]"
 python -m pytest -q
 ```
 
-252 tests, a few minutes. They need no data: the fixtures build synthetic
+326 tests, a few minutes. They need no data: the fixtures build synthetic
 patterns, and the tests that do want `data/` skip when it is absent.
 
 Where a closed form exists the tests compare against it rather than against a
@@ -187,6 +193,7 @@ python -m experiments.reconstruction.generate_random_centres    # benchmark data
 python -m experiments.reconstruction.freeze_benchmark           # splits, strata, mask checksums
 python -m experiments.reconstruction.stage0_oracle              # Stage 0 oracle and Gate 0, ~2 min
 python -m experiments.reconstruction.stage1_baselines           # Stage 1 baselines and Gate 1, ~30 min
+python -m experiments.reconstruction.stage4_particles --phase run  # diffusion particle pilot; conditional test
 PYTHONPATH=. python docs/make_reconstruction_figures.py         # E10+ figures
 ```
 
@@ -212,6 +219,10 @@ gates, and the pilot measurements that set them.
 - [`load_data_train_network.md`](docs/guides/load_data_train_network.md) —
   loading patterns, voxelizing, and training a field
 - [`clustersim_todo.md`](docs/guides/clustersim_todo.md) — open ideas
+- [`field_to_particles_plan.md`](docs/guides/field_to_particles_plan.md) — detailed
+  implementation and experiment outline for the neural-field particle pipeline
+- [E20 — From a Fourier field to measured precipitates](docs/experiments/E20_field_to_particles.md)
+  — extraction, conventional controls, and the connection to the joint physics fit
 
 ## Experiments
 

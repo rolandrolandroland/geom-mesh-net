@@ -1,6 +1,6 @@
 # Geom Mesh Net — project roadmap
 
-*Status as of 22 September 2026.*
+*Status as of 15 October 2026.*
 
 Geom Mesh Net asks two questions of a labelled 3D point pattern of the kind atom
 probe tomography produces:
@@ -30,8 +30,8 @@ Where this page and a track roadmap disagree, the track roadmap governs.
 | Pattern size | 216,000 atoms in a 60³ domain |
 | Spatial-summary features | 14 |
 | Physical parameters | 4 |
-| Experiment walkthroughs | 16 (E1–E11 and E15–E19 in `docs/experiments/`) |
-| Tests | 252 |
+| Experiment walkthroughs | 17 (E1–E11 and E15–E20 in `docs/experiments/`) |
+| Tests | 326 |
 
 ---
 
@@ -40,7 +40,7 @@ Where this page and a track roadmap disagree, the track roadmap governs.
 | Track | Status | Headline | Next |
 | --- | --- | --- | --- |
 | Inference | Stages 0–4 **passed**, on both lattice and random centres | 90% credible intervals cover the truth 88–92% of the time for all four parameters | `rho_b`'s rank bias, the one open calibration issue |
-| Reconstruction | Stages 0–2 and 5.1 **passed**; 5.2 **failed** | A Fourier-feature field beats tuned smoothing in 48 of 52 headroom test cells, closing 68% of its gap (Gate 2); a diffusion law imposed exactly predicts the matrix, and fitting the precipitates with it recovers the capillary length that detect-then-fit loses (E18) | Write up Stage 2 as E19; decide whether the joint fit becomes Stage 5.3 with a gate; detection is the binding constraint for both |
+| Reconstruction | Stages 0–2 and 5.1 **passed**; 5.2 **failed**; Stage 4 pilot **failed promotion** | E19's Fourier field improves prediction; E20 connects it to particle detection and the joint physics fit, but its frozen detector misses more particles than the Gaussian reference | Compare Gaussian and Fourier boundary estimates using the same candidate particles on fresh development cases; specify Stage 5.3 separately |
 
 ---
 
@@ -176,7 +176,7 @@ exact oracle.* Roadmap:
 | 1 — Baselines and headroom | does classical smoothing leave room? | ≥ 25% of test cells with headroom | passed (48%) |
 | 2 — A field fitted to one pattern | does a Fourier-feature network beat B1 and B2? | beat both in ⅔ of headroom cells; close ≥ 20% of B1's gap | **passed** (2026-09-22): 48 of 52 cells, 68% of the gap closed (E19) |
 | 3 — A field trained across simulations | does a learned prior beat any per-pattern estimator? | on test headroom cells | planned (extension) |
-| 4 — Fields to precipitates | do fields find precipitates better than current practice? | beat maximum separation and DBSCAN on F1 and radius error | planned (extension) |
+| 4 — Fields to precipitates | do fields find precipitates better than current practice? | beat maximum separation and DBSCAN on F1 and radius error | E20 diffusion pilot implemented; **failed promotion** (2026-10-15); full Gate 4 remains untested |
 | 5 — Physics-informed field | does a governing equation help? | Gates 5.1 and 5.2 | 5.1 passed (2026-09-16); 5.2 **failed** (2026-09-17) on the capillary length, after the physics-informed network was replaced by the exact law |
 | 6 — Position blur in the loss | does modelling the blur recover the sharp field? | Gate 6 | optional |
 | 7 — Rendering and write-up | — | — | planned (core) |
@@ -243,16 +243,21 @@ by how much it changes what the project can claim.
 
 ### Now
 
-1. **Detection on the Stage 2 field** (both tracks). Precipitates are found by
-   segmenting a smoothed field; Stage 2 has now shown that the Fourier-feature
-   field beats that smoother. Missed precipitates are what ruins the capillary
-   length (E18), and detection is also what Stage 4 compares against practice, so
-   one substitution serves both. Pilot it on development patterns.
+1. **Separate particle detection from boundary estimation.** The E20 pilot now
+   connects the Fourier field to measured particles and the joint physics fit. Its
+   frozen detector loses particles despite improving field prediction. The next
+   controlled comparison should retain the Gaussian detector's candidate locations
+   and compare Gaussian and Fourier boundary/radius estimates on that same list,
+   followed by the same joint fitter. Specify low-signal fallback and failure rules
+   first, use fresh development cases, and keep E20's reserved test unopened. This
+   is a proposed experiment, not an established improvement.
 2. **Stage 5.3: the joint geometry fit, with a gate.** E18's evidence is eight
    development patterns at one efficiency with one degenerate fit among them.
-   Fixing thresholds first, keeping the at-a-bound check, and excluding η = 0.1,
-   where detection finds a median 44% of precipitates, would turn it into a
-   result.
+   E20 additionally exposes fitted sphere overlaps even from separated starting
+   geometries. A new fitter version should maintain feasible geometry throughout
+   optimization, retain bound checks, and define complete-case acceptance and
+   alternative-field controls before testing. It still needs parameter uncertainty
+   and recovery validation; E20's numerical validity flags do not supply them.
 
 ### Then
 
@@ -281,8 +286,8 @@ by how much it changes what the project can claim.
 8. **`Rddm`.** Ablation gives +0.149 ± 0.144, which resolves nothing either way.
    The real fix is a per-pattern K radius.
 9. **F estimator parity.** Needs spatstat's C source to close the last 0.014–0.028.
-10. **Reconstruction extension.** Stage 3 (learned prior), Stage 4 (precipitates
-    against standard practice), and optionally Stage 6 (blur).
+10. **Reconstruction extension.** Stage 3 (learned prior), the full Stage 4
+    comparison beyond E20's diffusion pilot, and optionally Stage 6 (blur).
 11. **Ten thousand simulations.** No longer needed for `rho_b`. Still useful for
     rare structures and for the 11 features Stage 4 could not resolve. Features
     survive 90% thinning, so patterns can be stored at a tenth the size (E6).
@@ -332,7 +337,7 @@ is recorded in the relevant roadmap rather than overwritten.
 Run from the repository root.
 
 ```bash
-python -m pytest                                                    # 228 tests
+python -m pytest                                                    # 326 tests
 
 # Inference track
 PYTHONPATH=. python scripts/generate_data.py                        # data/, ~8 min

@@ -664,7 +664,7 @@ background, questions and methods.
     trained.
   - A prior was chosen by the Cramér–Rao bound, so that the capillary and screening
     lengths can be recovered at all.
-  - Gate 5.1 passed. Stage 2's walkthrough is E19; Stages 3 and 4 follow it.
+  - Gate 5.1 passed. Stage 2's walkthrough is E19; E20 begins Stage 4 with a diffusion-data pilot.
 
 - **[E16 — A physics-informed network that prefers the wrong physics](docs/experiments/E16_soft_pinn.md)**
   Stage 5.2 as first designed: a neural field with the diffusion equation and the
@@ -705,6 +705,20 @@ background, questions and methods.
   - Fitting the radii alone makes ℓ worse; freeing the centres as well brings it to 0.89 times
     the bound, at the level of a fit handed the true geometry.
 
+- **[E20 — From a Fourier field to measured precipitates](docs/experiments/E20_field_to_particles.md)**
+  A reusable particle-extraction and measurement library, five-detector comparison,
+  and connection to E18's joint physics fitter. Four diffusion patterns select global
+  settings; four more assess the frozen method at 37% detection efficiency.
+  - Fourier reduces removed-atom field excess loss by 39–72%, but loses particle F1
+    to the calibration-selected Gaussian detector in all four confirmation cases:
+    median F1 0.924 versus 0.981, with 35 missed particles versus 8.
+  - Common-match radius error improves slightly by the prescribed paired median,
+    but capillary error and matrix prediction do not satisfy promotion. Both
+    initializations yield an invalid geometry on the last case; those fits remain
+    in the report, and the Fourier fit also reaches a parameter bound.
+  - **Pilot promotion failed; reserved test patterns were not evaluated.** The
+    full Stage 4 benchmark and Stage 5.3 law-rejection experiment remain separate.
+
 ---
 
 ## 8. Package reference
@@ -724,6 +738,9 @@ geom_mesh_net/                      the library (installed with pip install -e .
   fields/physics.py                 screened diffusion field around precipitates (Stage 5)
   fields/misspecified.py            matrix fields that break that law (Stage 5.2 controls)
   fields/cluster_extraction.py      precipitates and matrix atoms from a smoothed field (Stage 5.2)
+  fields/particle_detection.py      common field and point detectors, matching and measurements (E20)
+  fields/particle_physics.py        joint-fit adapter with physical-validity diagnostics (E20)
+  fields/joint_fit.py               joint geometry and physical-constant fitting (E18)
   neural/datasets.py                torch Dataset and collate function
   neural/models.py                  neural field models
   neural/implicit.py                SIREN field with physics penalties; the analytic diffusion family

@@ -1,0 +1,657 @@
+{
+  "phase": "confirmation",
+  "fingerprint": "f9a9126d3f0681ca7f5e05c2d64d89226b73348ec5951b17e95ed5f905ed0382",
+  "provenance": {
+    "design": {
+      "version": "diffusion-particle-pilot-v2",
+      "dataset": "diffusion",
+      "efficiency": 0.37,
+      "scope": {
+        "calibration": [
+          0,
+          1,
+          2,
+          3
+        ],
+        "confirmation": [
+          4,
+          5,
+          6,
+          7
+        ],
+        "test": [
+          74,
+          75,
+          76,
+          77,
+          78,
+          79,
+          80,
+          81
+        ]
+      },
+      "field_design": "stage2_design.json",
+      "device": "mps",
+      "execution_note": "Before any detector calibration or confirmation score was inspected, execution moved from CPU to MPS after GPU access was confirmed outside the sandbox. Unscored CPU preparation artifacts are not used in the scored run. Physics remains CPU float64 with three Torch threads.",
+      "threads": 3,
+      "grid": 0.5,
+      "box": 60.0,
+      "outer_split_entropy": 20260927,
+      "held_back_fraction": 0.2,
+      "field_thresholds": [
+        0.15,
+        0.2,
+        0.25,
+        0.3,
+        0.4,
+        0.5
+      ],
+      "field_peak_distances": [
+        2.0,
+        3.5
+      ],
+      "field_min_volume": 14.0,
+      "point_eps": [
+        1.5,
+        2.0,
+        2.5
+      ],
+      "point_min_cluster_size": [
+        5,
+        10,
+        20
+      ],
+      "dbscan_min_samples": [
+        3,
+        5,
+        8
+      ],
+      "selection": "mean F1, mean precision, mean relative radius MAE, candidate order",
+      "physics": {
+        "width": 0.3,
+        "knots": 6,
+        "iterations": 100,
+        "rounds": 2,
+        "starts": [
+          [
+            null,
+            null
+          ]
+        ],
+        "volume": 216000.0,
+        "bound_tolerance": 1.01
+      },
+      "initial_surface_gap": 0.5,
+      "promotion": {
+        "f1_win_fraction": 0.75,
+        "minimum_median_precision_difference": -0.02,
+        "require_common_radius_improvement": true,
+        "require_capillary_improvement": true,
+        "maximum_median_matrix_loss_difference": 0.0,
+        "require_all_fourier_fits_reliable": true
+      },
+      "scope_note": "Development pilot, not full Stage 4 or a physical-law rejection experiment. Test is conditional on complete successful confirmation."
+    },
+    "field_design": {
+      "stage": 2,
+      "status": "frozen",
+      "question": "Fitted only to one pattern's observed atoms, does a coordinate network with Fourier features estimate p* better than the tuned B1 and B2 smoothers?",
+      "data": {
+        "dataset_dir": "data_random_centres",
+        "dataset_checksums": "experiments/reconstruction/benchmark/dataset_checksums.json",
+        "mask_checksums": "experiments/reconstruction/benchmark/mask_checksums.json",
+        "thinning_entropy": 20260915,
+        "box_length": 60.0,
+        "atoms_per_pattern": 216000
+      },
+      "scope": {
+        "efficiencies": [
+          0.1,
+          0.37,
+          0.8
+        ],
+        "test": {
+          "patterns": [
+            900,
+            901,
+            902,
+            903,
+            904,
+            905,
+            906,
+            907,
+            908,
+            909,
+            910,
+            911,
+            912,
+            913,
+            914,
+            915,
+            916,
+            917,
+            918,
+            919,
+            920,
+            921,
+            922,
+            924,
+            925,
+            926,
+            928,
+            931,
+            932,
+            935,
+            938,
+            941,
+            945,
+            967,
+            970,
+            974
+          ],
+          "by_band": {
+            "cr0_rhoc0": [
+              902,
+              907,
+              916,
+              918,
+              924,
+              931
+            ],
+            "cr0_rhoc1": [
+              911,
+              915,
+              921,
+              922,
+              938,
+              941
+            ],
+            "cr1_rhoc0": [
+              909,
+              935,
+              945,
+              967,
+              970,
+              974
+            ],
+            "cr1_rhoc1": [
+              900,
+              904,
+              912,
+              914,
+              928,
+              932
+            ],
+            "cr2_rhoc0": [
+              901,
+              908,
+              917,
+              920,
+              925,
+              926
+            ],
+            "cr2_rhoc1": [
+              903,
+              905,
+              906,
+              910,
+              913,
+              919
+            ]
+          }
+        },
+        "development_pilot": {
+          "patterns": [
+            0,
+            1,
+            2,
+            4,
+            6,
+            7,
+            8,
+            12,
+            15,
+            25,
+            35,
+            36
+          ],
+          "rule": "the two lowest-index development patterns in each (cr band, rho_c band); the patterns of the Stage 1 pilot"
+        },
+        "development_confirmation": {
+          "patterns": [
+            3,
+            5,
+            10,
+            11,
+            13,
+            17,
+            22,
+            23,
+            27,
+            28,
+            38,
+            43
+          ],
+          "rule": "the next two development patterns in each band; used once, to validate the frozen harness"
+        }
+      },
+      "split": {
+        "entropy": 20261001,
+        "validation_fraction": 0.2,
+        "streams": {
+          "split": 0,
+          "frequencies": 1,
+          "initialisation": 2,
+          "minibatch": 3,
+          "relabel": 4
+        },
+        "rule": "one uniform number per observed atom from the split stream; below 0.2 is validation. Drawn before anything reads a label; shared by every neural model of the cell."
+      },
+      "architecture": {
+        "fourier_features": 256,
+        "hidden": [
+          256,
+          256,
+          256,
+          256
+        ],
+        "activation": "relu",
+        "output": "one logit; probability by sigmoid",
+        "coordinates": "u = x / 60, the known box length",
+        "frequencies": "B = sigma * B0, B0 standard normal from the frequency stream, shared across sigma within a seed, stored with the checkpoint",
+        "initialisation": "final-layer weights zero, bias the log odds of the fitting subset's guest fraction, clipped to [1e-6, 1 - 1e-6]; hidden weights from the initialisation stream"
+      },
+      "sigma_grid": [
+        0.375,
+        0.75,
+        1.5,
+        3,
+        6
+      ],
+      "training": {
+        "loss": "unweighted binary cross-entropy on fitting labels",
+        "optimiser": "adam",
+        "learning_rate": 0.0001,
+        "batch_size": 32768,
+        "batch_policy": "fixed-size batches of min(32768, n_fit) drawn from successive random permutations of the fitting atoms (minibatch stream); a batch crossing a permutation boundary continues into the next; full batch when n_fit <= 32768. One update is one optimiser step.",
+        "eval_every": 25,
+        "patience": 200,
+        "max_updates": 2000,
+        "checkpoint": "lowest validation BCE among update 0 and every evaluation; restored before prediction"
+      },
+      "selection": {
+        "within_cell": [
+          "sigma",
+          "checkpoint"
+        ],
+        "criterion": "validation BCE at the selected checkpoint; ties go to the smaller sigma",
+        "never_used": "removed atoms, the oracle, any test score"
+      },
+      "controls": {
+        "raw_mlp": {
+          "input": "2x/60 - 1",
+          "hidden": "as architecture.hidden",
+          "note": "matches width and depth, not parameter count",
+          "learning_rate": 0.001
+        },
+        "linear_fourier": {
+          "hidden": [],
+          "features": "the same B0 and sigma grid as the Fourier MLP, sigma selected separately",
+          "learning_rate": 0.01
+        },
+        "legacy_e8_mlp": "historical context only, not run"
+      },
+      "refit": {
+        "rule": "updates",
+        "definition": "restart on all observed atoms, from their constant, with the selected fit's frequencies, initial weights and batch stream, for exactly the selected number of updates; applied to all three models"
+      },
+      "seeds": {
+        "rule": "single",
+        "seeds": [
+          0
+        ],
+        "note": "development seed spread reported as the stability measure; no seed is chosen by any score"
+      },
+      "device": "mps",
+      "comparators": {
+        "B0": "observed guest fraction",
+        "B1": {
+          "bandwidths": [
+            0.75,
+            1.0,
+            1.5,
+            2.0,
+            3.0,
+            4.5,
+            6.0
+          ],
+          "procedure": "5-fold cross-validation on all observed atoms with Stage 1's seed, cell_seed(index, eta, 0); prediction from all observed atoms"
+        },
+        "B2": {
+          "k": [
+            1,
+            2,
+            4,
+            8,
+            16,
+            32,
+            64,
+            128,
+            256,
+            512
+          ],
+          "c": [
+            0.05,
+            0.1,
+            0.15,
+            0.25,
+            0.35,
+            0.5,
+            0.7,
+            1.0
+          ],
+          "procedure": "as B1, on the grid widened by O12"
+        },
+        "difference_from_neural_selection": "B1 and B2 choose by 5-fold cross-validation and predict from all observed atoms; the neural models choose on one 20% validation split"
+      },
+      "metrics": {
+        "primary": "excess log loss on removed atoms: mean BCE minus the oracle's, predictions clipped to [1e-6, 1 - 1e-6] as fields.baselines.log_loss",
+        "gap_closed": "(L_B0 - L_m) / (L_B0 - L_oracle)",
+        "share_of_B1_gap_closed": "(L_B1 - L_m) / (L_B1 - L_oracle)",
+        "regions": "Stage 1 O1: rim if |d - r| <= 2 for some sphere, core if d / r < 0.7, matrix outside every sphere, interior otherwise",
+        "brier_excess": "mean (q - p*)^2 on removed atoms",
+        "ece": "Stage 1 O2: 20 equal-width bins on q, weighted by the share of removed atoms",
+        "predictive_check": "Stage 1 O11, reported and not gated",
+        "mean_residual": "mean fitted probability minus fitted guest fraction, reported and not enforced"
+      },
+      "gate": {
+        "headroom": "benchmark.has_headroom(L_B0, L_B1, L_oracle): B1 leaves at least 15% of the constant-to-oracle gap open and at least 0.01 nats per atom (Stage 1's definition)",
+        "method": "the Fourier MLP under the frozen sigma selection, refit and seed policies",
+        "conditions": {
+          "beats_better_baseline": "on headroom cells, L_FF < min(L_B1, L_B2) in at least two thirds",
+          "closes_b1_gap": "median over headroom cells of (L_B1 - L_FF) / (L_B1 - L_oracle) >= 0.20",
+          "calibration": "median over headroom cells of (ECE_FF - ECE_B1) <= 0.005",
+          "no_harm": "median over the other cells of (excess_FF - excess_B1) <= 0.002 nats per atom"
+        },
+        "completeness": "every one of the 108 cells present without error, or the verdict is incomplete",
+        "failures": "a cell whose training went non-finite keeps its best finite checkpoint, is flagged, and stays in every denominator"
+      },
+      "reporting": {
+        "bootstrap": "2000 resamples of patterns, all efficiencies of a pattern kept together",
+        "strata": [
+          "cr_band",
+          "rho_c_band",
+          "efficiency"
+        ]
+      },
+      "pilot_log": [
+        "2026-09-18 explore (4 cells, pilot/results/fourier_field_explore.json): every selection was sigma 0.75 or 1.5, below the planned grid {3, 6, 12, 24}; sigma >= 12 never improved on the constant and sigma 0.75 was chosen at the lower edge, so the pilot grid became {0.375, 0.75, 1.5, 3, 6}. Learning rate 1e-4 gave the best removed-atom excess in all four cells (1e-3 and 3e-4 reached similar optima sooner and less resolved by 25-update checkpoints).",
+        "2026-09-18 B2 grid on the 36 Stage 2 pilot cells, k to 2048 (pilot/results/b2_grid_stage2_pilot.json): O12's grid chooses its k = 512 edge in 4 of 36 cells, all large-cluster cells without headroom; extending to 2048 improves the cross-validated loss in one pattern only, by at most 0.00044 nats against B2's median margin of 0.0072 over B1, and still binds there. The O12 grid stands for Stage 2's comparator.",
+        "2026-09-18 device: on MPS (torch 2.10) forward passes and weight gradients match the CPU to float32 precision over 20 repeats (7e-7 and 5e-7), but gradients with respect to the input coordinates through the full field do not (up to 300% deviation, occasionally non-finite), although each component operation is correct alone. Training on MPS is therefore sound; the gradient penalty and the gradient diagnostic run on the CPU, and fit_field refuses a penalty on MPS. The grid pilot's gradient diagnostic (computed on MPS) is discarded.",
+        "2026-09-18 grid (36 cells, pilot/results/fourier_field_grid.json): control learning rates chosen by the lowest median excess over all 36 cells. Linear Fourier: 1e-2 (0.01595; better than 3e-2 in 31/36; 1e-3 is no better and hits the update cap in 129/180 fits). All three rates leave the linear model far behind the Fourier MLP, so its weakness is the representation, not optimisation. Raw MLP: 1e-3 (0.00823 against 0.00998 for 1e-4, better in 27/36, 1e-4 capped in 22/36). Fourier MLP at lr 1e-4 beats the better smoother in 34/36 cells and 16/18 headroom cells; sigma chosen 0.375 x7 (the lower edge), 0.75 x17, 1.5 x11, 3 x1.",
+        "2026-09-18 edge (pilot/results/fourier_field_edge.json): sigma 0.1875 on the 12 large-cluster cells where 0.375 had been chosen at the lower edge. Validation would select it in 1/12 cells (gain 0.0007 nats), where it worsens the removed-atom excess (0.0032 -> 0.0041); it scores worse than the grid's choice in 9/12. The lower edge is not meaningfully binding: the grid stays {0.375, 0.75, 1.5, 3, 6}. Noted: at eta 0.1 the 4,300 validation atoms of pattern 0 cannot see that 0.1875 would halve its excess, a limit of validation-based selection at low efficiency.",
+        "2026-09-19 seeds and refit (18 cells: all 12 pilot patterns at eta 0.1, one per band at 0.37; pilot/results/fourier_field_seeds.json): refitting on all observed atoms improves 50/54 seed-fits by updates (median -0.00060) and 49/54 by passes (-0.00049); identical at eta 0.1, where both fits are full-batch (34/36, -0.00084). Rule: updates. Seed spread (max - min excess over three seeds) median 0.00067, an order of magnitude below the effect under test; the three-seed ensemble gains 0.0003 (better in 14/18) at three times the cost. Policy: single seed 0. Seed 0 rerun on MPS gave the same sigma and update in 18/18 cells, identical excess.",
+        "2026-09-19 width (36 cells, pilot/results/fourier_field_width.json): hidden width 128 is worse than 256 in 28/36 cells (medians +0.00046, +0.00022, +0.00014 at eta 0.1, 0.37, 0.8) and only 21% faster; width 256 kept.",
+        "2026-09-19 ablation (24 cells, CPU, sigma fixed at the grid selection; pilot/results/fourier_field_ablation.json): lambda in {1e-4, 1e-3, 1e-2} changes the overall excess by at most 0.00004 in median; lambda 1e-2 worsens rims in 15/24 cells by a median 0.00023. Validation would pick lambda 0 in 4/24 cells, 1e-4 in 3, 1e-3 in 8, 1e-2 in 9: at penalties this weak its choice is noise. Mean squared logit gradient at lambda 0 is 0.31 per unit squared (0.03 to 1.84), so the largest penalty is 1-3% of the loss: the ablation tests weak regularisation only. The unpenalised model stays primary."
+      ],
+      "device_note": "training on MPS; anything needing gradients with respect to input coordinates runs on the CPU (the gate needs none)",
+      "decisions": {
+        "sigma_grid": "settled by the pilot; see pilot_log",
+        "architecture.hidden": "settled by the pilot; see pilot_log",
+        "training.learning_rate": "settled by the pilot; see pilot_log",
+        "training.patience": "settled by the pilot; see pilot_log",
+        "training.max_updates": "settled by the pilot; see pilot_log",
+        "controls.linear_fourier.learning_rate": "settled by the pilot; see pilot_log",
+        "refit": "settled by the pilot; see pilot_log",
+        "seeds": "settled by the pilot; see pilot_log",
+        "device": "settled by the pilot; see pilot_log",
+        "controls.raw_mlp.learning_rate": "settled by the pilot; see pilot_log"
+      },
+      "budget": {
+        "per_cell_minutes_median": {
+          "0.1": 3,
+          "0.37": 9,
+          "0.8": 11
+        },
+        "confirmation_hours": 5,
+        "test_hours": "14 to 16",
+        "source": "complete pilot cells: fits, refits, both controls, baselines and prediction"
+      },
+      "frozen": "2026-09-19"
+    },
+    "sources": {
+      "experiments/reconstruction/stage4_particles.py": "a5c23aab4465bce88b7b51983161f146d33fa8f39cccfa4c8e12ad9bd95162fb",
+      "experiments/reconstruction/stage2_field.py": "307c1f606a4a80ad97cacf962ef59a57d2da69bd6a7507a0fcc71d09f92a14e6",
+      "experiments/reconstruction/stage5_physics_fit.py": "f56c0f0b378d3de45edc87eca006ed3f54f70879ca450bc1b85826c7278026e0",
+      "experiments/reconstruction/benchmark.py": "88601edbed91b1da05756071d1aeb9347ae0538e8de8f974f464c28270ae8700",
+      "geom_mesh_net/fields/particle_detection.py": "455d3b895dc8ad74c7829e1ccb058deaf89c7d0267463e3a150767fb599a24e3",
+      "geom_mesh_net/fields/particle_physics.py": "310e49ed30f3b3001f8dda60842882ed094cecd194120b189237c7a8001c51c2",
+      "geom_mesh_net/fields/cluster_extraction.py": "c42a4f4135173106bb5df467ff75ade71faeb832f998eafb42b2fdadfe7f2ecd",
+      "geom_mesh_net/fields/baselines.py": "e669d3fd7ab51980815845a5dfcb90c497463f0f78a3ed7e0a135f3948dbca89",
+      "geom_mesh_net/fields/joint_fit.py": "169aaef7b037744eba0367a757100a3ad1013de7835fc2fba1301db55520190e",
+      "geom_mesh_net/fields/physics.py": "5a30fde83e1e987e962f426aabdbd5b309fe84201e2b08149fcfbba633c76d74",
+      "geom_mesh_net/neural/implicit.py": "915171605916b885a3b4c00013cf71145b4f25f35a2366593e8034bc342cc918"
+    },
+    "inputs": {
+      "0": {
+        "dataset": "551d4742d5ceec75053449bd55a7a24de15f87f62e31f07ffbf88693c57f70ec",
+        "oracle": "227817111ee2da5a87aa5079d238315eadb71f6a5ab5844b53d4cff10e29226b"
+      },
+      "1": {
+        "dataset": "86200eb0ed2480ef52f861de655e468ce40df16cc2007f666296f196201bfec2",
+        "oracle": "9c8967d7dec552654d77f8c48cf823221aa059337d252cba635df9b5b79f54f6"
+      },
+      "2": {
+        "dataset": "1c45501140e9b694ee986384acc51f5b5460669db8782cc55cd11fe8b0c572f5",
+        "oracle": "8b6a26d9da6401b30bdf8c2fa537d954b3fb7f7a3e5f4a23944072e4e634955a"
+      },
+      "3": {
+        "dataset": "f05bf09ba1f4880dd254bc1d5a6b70d73f708fe9dcf44e8fac02b04d50467518",
+        "oracle": "f6db5fb5960d81a9a054a6a4a50f4974313e6fd47cd1ad1023aaa809cc26e5c7"
+      },
+      "4": {
+        "dataset": "40cd569baa8eb67fc051b6560cdba924d77e59cbbb6d7a640fed4a7fb060ba72",
+        "oracle": "4463e1c3a73e5a159c8082c3cd2640e9912384f99536a362e60ac7b040885d0d"
+      },
+      "5": {
+        "dataset": "89ebc2df72a951429203131a4986cfc2e45006b0ef7c76bfb1f0676604219552",
+        "oracle": "6fd76bd6db04837637d3582a480ca5d8a3b8a48d62be11d3841e59859b3fd58b"
+      },
+      "6": {
+        "dataset": "278eaddb20f60e6ded07b5c99606b295c2924af6916d65607bcc0e9109db6737",
+        "oracle": "d0e266709009634843a0370c8b9c9bb156c9f083865e12ad8bbbee0cf524b90c"
+      },
+      "7": {
+        "dataset": "b2739fe31965e42019d18b4b1c8ac006755f5e318dd7cc24224f7cc67db5efd4",
+        "oracle": "21b385aa91452e2eaf8521faffa51ec340394aad21a1193d306c8c5d9312417d"
+      },
+      "74": {
+        "dataset": "ca40faed8c1fcb158af051d28d4e0dfadb5c0f87f37bd9cbdafa93265b99cb40",
+        "oracle": "fb7ddae8351a26aeb310b9f07aa83e1890ef94e541c5fada4e64e2dfaf580b17"
+      },
+      "75": {
+        "dataset": "bdc5d84f2f3894112fe8459861f1ce28cc1f30519e8881a9ede85d5939954d7a",
+        "oracle": "60e4e2de6a70fa12cfa409f313e5f158407563a9f7ed55a814879dc8e8c9101d"
+      },
+      "76": {
+        "dataset": "8f67b35d986eaa9d7e53095bba143297cc8ea06bda113e3146b778584eb3afbc",
+        "oracle": "f0864122bf5c067a60da90f567ab8d3245eecb24c5f9be13821fa2ac24fe23eb"
+      },
+      "77": {
+        "dataset": "040f5c6dc61128ed1b041cb514971c8d90c1269f9a66495cd9e7948bbc5111fd",
+        "oracle": "98277a28f140ee64143fb3aa47d7147d119787c10261a3928ad51b3faf162726"
+      },
+      "78": {
+        "dataset": "b62eb8e52ebf6b5ce17112b10f8ec29624656437ad6d719006a40d74261e4890",
+        "oracle": "2181d4824d2de7e6f0ac609fda2567e44bdff144cce106a417e21aa375dea754"
+      },
+      "79": {
+        "dataset": "b5c88ecc2cc1269c594e343b99eed5e45c74aa49c089e1049a724e4ff9c5167e",
+        "oracle": "bbd3844c62b3ff28f4c9b79c283b13f174dab40e5cd149ee3412412bd205e5cd"
+      },
+      "80": {
+        "dataset": "367210d9af85b172332910ad19858f9baaeaa0f67529a919dbd0b902f1210720",
+        "oracle": "e42ed10f380bdf109b2c7ad093690744806cb7c7d45c5b82fcdb9c333497185f"
+      },
+      "81": {
+        "dataset": "3ad64374b3cd205413d642d65188c38949cda27629c81bd537fba734f8526668",
+        "oracle": "d7f3f779cfb40c7a25fac4461593b9d7fb698ee62a1e131ac99a85742a279f34"
+      }
+    },
+    "runtime": {
+      "python": "3.10.19",
+      "numpy": "2.2.6",
+      "scipy": "1.15.3",
+      "torch": "2.10.0",
+      "device": "mps",
+      "threads": 3
+    }
+  },
+  "cells": [
+    {
+      "pattern": 4,
+      "error": "RuntimeError: Tensor for argument #2 'mat2' is on CPU, but expected it to be on GPU (while checking arguments for mm)"
+    }
+  ],
+  "selection": {
+    "settings": {
+      "legacy_b1": {},
+      "b1": {
+        "threshold": 0.3,
+        "peak_distance": 2.0,
+        "min_volume": 14.0
+      },
+      "fourier": {
+        "threshold": 0.4,
+        "peak_distance": 2.0,
+        "min_volume": 14.0
+      },
+      "dbscan": {
+        "eps": 2.0,
+        "min_samples": 5,
+        "min_cluster_size": 10
+      },
+      "maximum_separation": {
+        "eps": 2.0,
+        "min_cluster_size": 10
+      }
+    },
+    "calibration_scores": {
+      "legacy_b1": {
+        "candidate": 0,
+        "mean_f1": 0.9189973065018452,
+        "mean_precision": 0.9793151824751896,
+        "mean_relative_radius_mae": 0.0977742730788855
+      },
+      "b1": {
+        "candidate": 6,
+        "mean_f1": 0.9119833773304735,
+        "mean_precision": 0.9545025176192939,
+        "mean_relative_radius_mae": 0.15248770750713272
+      },
+      "fourier": {
+        "candidate": 8,
+        "mean_f1": 0.854559007066823,
+        "mean_precision": 0.9255153597513197,
+        "mean_relative_radius_mae": 0.14939201121064752
+      },
+      "dbscan": {
+        "candidate": 13,
+        "mean_f1": 0.9026920961783576,
+        "mean_precision": 0.9355467064304706,
+        "mean_relative_radius_mae": 0.11538456316171458
+      },
+      "maximum_separation": {
+        "candidate": 4,
+        "mean_f1": 0.8309057211059471,
+        "mean_precision": 0.8071904527825566,
+        "mean_relative_radius_mae": 0.11812239494997057
+      }
+    },
+    "reference": "legacy_b1",
+    "physics_methods": [
+      "legacy_b1",
+      "fourier"
+    ],
+    "selection": "mean F1, mean precision, mean relative radius MAE, candidate order",
+    "frozen_after": "calibration"
+  },
+  "completeness": {
+    "complete": false,
+    "missing": [
+      5,
+      6,
+      7
+    ],
+    "unexpected": [],
+    "duplicates": [],
+    "errored": [
+      4
+    ],
+    "missing_methods": [],
+    "unexpected_methods": []
+  },
+  "decision": {
+    "complete": false,
+    "missing": [
+      5,
+      6,
+      7
+    ],
+    "unexpected": [],
+    "duplicates": [],
+    "errored": [
+      4
+    ],
+    "missing_methods": [],
+    "unexpected_methods": [],
+    "passed": false,
+    "verdict": "incomplete",
+    "conditions": {}
+  },
+  "summary": {
+    "patterns": 1,
+    "errors": 1,
+    "methods": {},
+    "paired_fourier_minus_reference": {
+      "reference": "legacy_b1",
+      "metrics": {
+        "f1": {
+          "median": null,
+          "interval95": null,
+          "patterns": 0
+        },
+        "precision": {
+          "median": null,
+          "interval95": null,
+          "patterns": 0
+        },
+        "recall": {
+          "median": null,
+          "interval95": null,
+          "patterns": 0
+        },
+        "relative_radius_mae": {
+          "median": null,
+          "interval95": null,
+          "patterns": 0
+        },
+        "common_matched_radius": {
+          "median": null,
+          "interval95": null,
+          "patterns": 0
+        },
+        "absolute_relative_ell_error": {
+          "median": null,
+          "interval95": null,
+          "patterns": 0
+        },
+        "absolute_relative_xi_error": {
+          "median": null,
+          "interval95": null,
+          "patterns": 0
+        }
+      }
+    }
+  }
+}

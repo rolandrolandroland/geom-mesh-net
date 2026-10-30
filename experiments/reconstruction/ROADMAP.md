@@ -1053,6 +1053,43 @@ method and DBSCAN:
 
 **If it fails,** record the regimes where cluster finding wins.
 
+**Development implementation, 15 October 2026.** The reusable library is
+[`particle_detection.py`](../../geom_mesh_net/fields/particle_detection.py): generic
+field extraction, DBSCAN, maximum-separation connectivity, spherical measurements,
+matching, and split/merge diagnostics. The maximum-separation baseline has no
+envelope or erosion step. [`particle_physics.py`](../../geom_mesh_net/fields/particle_physics.py)
+connects each geometry to the same joint fit and retains physically invalid results.
+
+The first bridge from E19 to E18 is the smaller **diffusion-data pilot**, specified
+before detector scores in [`stage4_particles_design.json`](stage4_particles_design.json).
+It uses four calibration patterns and four development-confirmation patterns at
+η = 0.37, with 20% of observed atoms held back from every fitting step. Five detectors
+share a selection objective; the Gaussian and neural fields share an extractor.
+The globally selected conventional reference and detector settings are frozen before
+confirmation. Geometry errors are compared on common matches as well as each method's
+own matches. Raw field losses, composition measurements, and physical-fit diagnostics
+are retained separately.
+
+Its six-condition promotion rule requires improvements in detection and common-match
+radius error, better capillary-length error, no deterioration in matrix-excess loss,
+and four physically valid Fourier-initialized fits. An incomplete run cannot pass.
+Reserved patterns 74–81 can be evaluated only after that rule passes. This pilot
+does not replace the original Gate 4 above or the proposed Stage 5.3 law-rejection
+experiment. Methods, results, limitations and reproduction are in
+[E20](../../docs/experiments/E20_field_to_particles.md); the detailed implementation
+outline is [here](../../docs/guides/field_to_particles_plan.md).
+
+**Pilot outcome, 15 October 2026.** All four calibration and four confirmation
+patterns completed. Legacy B1 was the globally selected reference. Fourier reduced
+removed-atom field excess loss by 39–72%, but lost detection F1 on all four
+confirmation patterns (median 0.924 versus 0.981; 35 misses versus 8). The paired
+common-match radius condition passed, but capillary error, matrix-excess loss and
+physical validity did not. Both methods produced overlapping fitted spheres on
+pattern 7; the Fourier fit also reached a physical-constant bound. Those estimates
+remain reported. The complete promotion decision is **failed**; reserved patterns
+74–81 were not evaluated. A better concentration field alone did not deliver a better
+particle inventory or physics fit in this configuration.
+
 ### Stage 5 — A physics-informed field with a governing equation (1.5–2 weeks)
 
 This is where "physics-informed" is earned. Section 8 explains why nothing before
