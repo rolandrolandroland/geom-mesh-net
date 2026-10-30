@@ -1,50 +1,64 @@
 {
   "stage": 2,
   "seed": 0,
+  "ensemble": 5,
+  "member_validation_log_prob": [
+    6.938744068145752,
+    7.058360576629639,
+    7.0343146324157715,
+    7.03626823425293,
+    6.761740684509277
+  ],
   "n_patterns": 1000,
   "n_train": 800,
   "n_validation": 100,
   "n_test": 100,
   "n_layers": 6,
   "hidden": 64,
-  "epochs_run": 75,
-  "train_seconds": 7.39,
+  "epochs_run": [
+    75,
+    97,
+    94,
+    71,
+    66
+  ],
+  "train_seconds": 35.78,
   "prior_log_prob": 1.4271163940429688,
-  "validation_log_prob": 6.938744068145752,
-  "test_log_prob_mean": -187.57632446289062,
-  "test_log_prob_median": 7.399829864501953,
-  "test_below_prior": 6,
-  "validation_gain_over_prior_nats": 5.511627674102783,
+  "validation_log_prob": 7.396327495574951,
+  "test_log_prob_mean": -187.01560974121094,
+  "test_log_prob_median": 8.082864761352539,
+  "test_below_prior": 4,
+  "validation_gain_over_prior_nats": 5.969211101531982,
   "gate_passed": true,
   "gate_criterion": "validation log-likelihood > uniform prior",
   "marginals": {
     "rho_c": {
       "prior_sd": 0.23094010767585033,
-      "posterior_sd_mean": 0.031114758923649788,
-      "contraction": 0.8652691416974536,
-      "bias": -0.00256961213543159,
-      "abs_z_mean": 1.1058852695843786
+      "posterior_sd_mean": 0.03172985091805458,
+      "contraction": 0.8626057152333587,
+      "bias": -0.0054896706540797395,
+      "abs_z_mean": 0.8043783834814282
     },
     "rho_b": {
       "prior_sd": 0.014433756729740645,
-      "posterior_sd_mean": 0.0014357018517330289,
-      "contraction": 0.900531657931107,
-      "bias": 0.00024160815985424395,
-      "abs_z_mean": 456.7874619692178
+      "posterior_sd_mean": 0.0014523097779601812,
+      "contraction": 0.8993810270497556,
+      "bias": 0.00033916560351399653,
+      "abs_z_mean": 0.8887603514454515
     },
     "cr": {
       "prior_sd": 3.464101615137755,
-      "posterior_sd_mean": 1.216538667678833,
-      "contraction": 0.6488155363680186,
-      "bias": 0.022280610279110612,
-      "abs_z_mean": 0.9222823589841974
+      "posterior_sd_mean": 1.2268218994140625,
+      "contraction": 0.6458470230627815,
+      "bias": 0.008229892925289813,
+      "abs_z_mean": 0.8912241296141117
     },
     "rb": {
       "prior_sd": 0.14433756729740646,
-      "posterior_sd_mean": 0.1387447714805603,
-      "contraction": 0.03874802604454486,
-      "bias": 0.002987833752556158,
-      "abs_z_mean": 0.9503027573077276
+      "posterior_sd_mean": 0.1379847675561905,
+      "contraction": 0.044013487688385866,
+      "bias": 0.0027321969562009107,
+      "abs_z_mean": 0.9080052660281536
     }
   },
   "feature_names": [

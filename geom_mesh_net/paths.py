@@ -11,6 +11,7 @@ variable:
 | ``GEOM_MESH_NET_DATA`` | ``<root>/data`` (lattice cluster centres) |
 | ``GEOM_MESH_NET_DATA_RANDOM_CENTRES`` | ``<root>/data_random_centres`` |
 | ``GEOM_MESH_NET_DATA_SHARED_UPP`` | ``<root>/data_shared_upp`` |
+| ``GEOM_MESH_NET_DATA_DIFFUSION`` | ``<root>/data_diffusion`` (Stage 5 diffusion-field patterns) |
 
 The package is meant to be installed in editable mode (``pip install -e .``), so
 the default root is the directory above this file.
@@ -31,6 +32,7 @@ REPO_ROOT = _env_path("GEOM_MESH_NET_ROOT", Path(__file__).resolve().parents[1])
 DATA_DIR = _env_path("GEOM_MESH_NET_DATA", REPO_ROOT / "data")
 RANDOM_CENTRES_DIR = _env_path("GEOM_MESH_NET_DATA_RANDOM_CENTRES", REPO_ROOT / "data_random_centres")
 SHARED_UPP_DIR = _env_path("GEOM_MESH_NET_DATA_SHARED_UPP", REPO_ROOT / "data_shared_upp")
+DIFFUSION_DIR = _env_path("GEOM_MESH_NET_DATA_DIFFUSION", REPO_ROOT / "data_diffusion")
 
 # Experiment tracks.
 EXPERIMENTS_DIR = REPO_ROOT / "experiments"

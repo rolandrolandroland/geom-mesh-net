@@ -972,6 +972,51 @@ Report posteriors from an ensemble rather than a single flow. It costs five
 training runs instead of one, a few seconds each, and it is what makes the
 coverage claim correct.
 
+### The robust width ratio mixed two estimators, corrected 2026-09-17
+
+The ratio introduced above divided a median-based spread of the residuals by a
+standard-deviation-based spread of the posterior draws. Those two agree only for
+a Gaussian posterior; for a uniform one the mismatched ratio reads 1.28 where a
+calibrated posterior should read 1.0. `calibration.width_ratio` now uses the same
+estimator on both sides, with a test that pins it for a posterior of any shape,
+and Section 8.8 was recomputed at the same seed and design.
+
+| width ratio | `rho_c` | `rho_b` | `cr` | `rb` |
+| --- | ---: | ---: | ---: | ---: |
+| as reported above, all 1,000 patterns | 1.38 | 1.34 | 1.04 | 0.99 |
+| as reported above, excluding 2 zero-cluster patterns | 0.97 | 1.13 | 1.02 | 0.99 |
+| **corrected, all 1,000 patterns** | **0.89** | **0.85** | **0.97** | **0.95** |
+| **corrected, excluding those 2** | **0.89** | **0.85** | **0.97** | **0.95** |
+
+Nothing else in the re-run moved: coverage and SBC reproduce to the digit, and the
+gate still passes. The superseded file is kept as
+`posterior/calibration_mixed_width_ratio.json`. Two conclusions above change.
+
+- **The two zero-cluster patterns were never what made the ratio move.** With the
+  same estimator on both sides they take `rho_c` from 0.888 to 0.887. What made
+  the all-patterns column look different from the robust one was the mismatch
+  itself. Section 8.7's diagnosis — that a ratio of standard deviations is
+  dominated by its tails — stands; the fix for it introduced a second fault.
+- **The sign of the miscalibration reverses.** At 0.85 to 0.89, `rho_c` and
+  `rho_b` posteriors are 10 to 15 per cent *wider* than the spread of their own
+  errors, not narrower, and `rho_b` sits on the edge of the pre-registered
+  tolerance band of 0.85 to 1.15. The sentence "posteriors are well calibrated
+  for typical patterns, with robust width ratios between 0.97 and 1.13" should
+  read: slightly conservative, between 0.85 and 0.97, with the degenerate
+  patterns no longer moving them. The open issue named below — bias in `rho_b`,
+  not width — is unaffected.
+
+### The saved artefact is now the ensemble, 2026-09-17
+
+`fit_posterior.py` trained and saved a single flow while the coverage claim above
+comes from `validate_posterior --ensemble 5`, so anyone loading
+`posterior/flow.pt` got the configuration whose coverage was 0.847 to 0.888, not
+the one that was validated. Stage 2 now fits five independently seeded members by
+default and saves all of them, draws equally from each, and evaluates its gate on
+their equal mixture. Member 0 reproduces the single-flow run exactly, at a
+validation log-likelihood of 6.939 nats, and the mixture beats every member at
+7.396. `--ensemble 1` restores the old behaviour.
+
 
 
 ## 8.9 The port versus rapt: most of section 8.3 was a porting bug
@@ -1378,7 +1423,7 @@ classical spatial-summary features with calibrated uncertainty.
 | 4 — sufficiency | each parameter carried by one summary family; K indispensable for `cr`; `sqrt` and `cube_root` indistinguishable |
 
 Supporting work: feature-library corrections (Section 8), a repaired data
-generator (8.5), and 117 regression tests including a flow checked against a
+generator (8.5), and a regression suite of 252 tests including a flow checked against a
 closed-form posterior and calibration diagnostics checked against deliberately
 miscalibrated inputs.
 
@@ -1392,9 +1437,9 @@ Open, in rough priority order:
    item 1 may be a sample-size artifact; and Stage 4 left 11 of 14 features
    unresolved for want of statistical power. `scripts/generate_data.py` runs again
    (Section 8.5) and writes all four parameters, so this is unattended compute.
-3. **Observation augmentation** (Section 7). Free, and it teaches the flow about
-   observation noise rather than only parameter variation. Replicates must stay
-   on one side of the split.
+3. ~~**Observation augmentation** (Section 7).~~ Done, and it did not help: the
+   replicates are near-duplicates, so they add overfitting rather than
+   information (E6, Section 8.7).
 4. **`Rddm`** (Stage 4). No evidence it contributes, some evidence it is
    unstable, not resolved either way. Worth revisiting once item 2 provides the
    power to settle it, rather than dropping it on a point estimate.

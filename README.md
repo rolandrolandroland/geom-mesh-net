@@ -25,6 +25,10 @@ The project has two purposes:
 | Replay oracle for the guest-probability field | **done, gate passed** (reconstruction Stage 0) |
 | Random-centre benchmark dataset | generated; 1,000 patterns |
 | Classical baselines and headroom map | **done, gate passed** (reconstruction Stage 1): 48% of test cells have headroom |
+| Diffusion-field simulator with a physical law | **done, gate passed** (reconstruction Stage 5.1) |
+| A field fitted to one pattern | **done, gate passed** (reconstruction Stage 2): a Fourier-feature network beats tuned smoothing in 48 of 52 headroom test cells, closing 68% of its gap |
+| Fields to measured precipitates | **pilot complete, promotion failed** (E20): Fourier improves field prediction but misses 35 particles versus the Gaussian detector's 8 across four confirmation patterns; the reserved test remains unevaluated |
+| The diffusion law as a constraint on the reconstruction | **done, gate failed** (reconstruction Stage 5.2): the fitted law improves matrix prediction but misses its capillary-recovery criterion; a physics-informed network failed first (E16). The subsequent joint fitter remains experimental |
 
 The first line of work is **amortized Bayesian inference of the physical
 cluster parameters**, specified in
@@ -36,13 +40,27 @@ The second is **implicit neural reconstruction of the solute field**: estimating
 where the solute sits from a thinned point cloud, scored against an exact
 oracle. It is specified in
 [`experiments/reconstruction/ROADMAP.md`](experiments/reconstruction/ROADMAP.md).
-Stages 0 and 1 are complete. Each stage has a walkthrough in `docs/experiments/`
+Stages 0–2 and 5.1 passed. Stage 5.2's gate failed on its capillary length, and
+its physics-informed network was replaced by the law imposed exactly. E20 now connects
+the Fourier field to particle measurement and that joint physics fit; its development
+pilot failed promotion. Each stage has a walkthrough in `docs/experiments/`
 (E10 onward).
+
+**Physics-inference scope, corrected 29 October 2026.** E18's single-fit error-to-Fisher-scale
+ratios do not establish a precision floor or calibrated uncertainty. The current joint fitter
+can produce overlapping spheres and clips probabilities; E20 flags these failures after fitting.
+Its numerical diagnostics do not establish parameter identifiability. These are synthetic-data
+research baselines, with no validation yet on real APT measurements. The
+[physics-inference implementation plan](docs/guides/physics_inference_implementation_plan.md)
+sets out feasible fitting, controlled boundary comparisons, and uncertainty validation.
+
+**For where both tracks stand and what comes next**, see
+[`project_roadmap.md`](project_roadmap.md).
 
 **For a full account of the package**, see
 [`README_detailed.md`](README_detailed.md) — a paper-format description with an
 abstract, background, methods, results and discussion, linking to a standalone
-walkthrough for each of the nine experiments.
+walkthrough for each experiment.
 
 ## Layout
 
@@ -61,9 +79,16 @@ geom_mesh_net/                    the library (installed with pip install -e .)
     baselines.py                  kernel-smoothing baselines B0, B1, B2
     point_cloud.py                voxel guest-probability fields
     density_grid.py               density grids from simulation parameters (deprecated as ground truth)
+    physics.py                    screened diffusion field around precipitates (Stage 5)
+    misspecified.py               matrix fields that break that law (Stage 5.2 controls)
+    cluster_extraction.py         precipitates and matrix atoms from a smoothed field (Stage 5.2)
+    particle_detection.py         common field extraction, point clustering, matching and measurements (E20)
+    particle_physics.py           joint-fit adapter with explicit physical-validity diagnostics (E20)
+    joint_fit.py                  experimental joint geometry/constants fitter (E18)
   neural/
     datasets.py                   torch Dataset and collate function
     models.py                     neural field models
+    implicit.py                   Fourier and SIREN fields; physics penalties and the analytic diffusion family
   inference/
     flow.py                       conditional normalizing flow
     calibration.py                simulation-based calibration and coverage
@@ -84,6 +109,7 @@ docs/
 deprecated_code/                  superseded scripts, kept for reference
 data/                             1,000 simulated patterns (gitignored, ~5 GB)
 data_random_centres/              the same parameters with random cluster centres (gitignored, ~5 GB)
+data_diffusion/                   Stage 5 patterns: separated precipitates in a diffusion field (gitignored, ~0.8 GB)
 ```
 
 The old imports, such as `from geom_mesh_net.core_functions import clustersim`,
@@ -108,7 +134,7 @@ pip install -e ".[dev,notebooks]"
 python -m pytest -q
 ```
 
-198 tests, about 90 seconds. They need no data: the fixtures build synthetic
+395 tests, a few minutes. They need no data: the fixtures build synthetic
 patterns, and the tests that do want `data/` skip when it is absent.
 
 Where a closed form exists the tests compare against it rather than against a
@@ -154,9 +180,12 @@ python -m experiments.inference.validate_posterior               # Stage 3
 
 Given a measured point pattern, this returns a calibrated posterior over the
 four physical cluster parameters. Cross-validated over all 1,000 patterns, the
-90% credible intervals cover 88.8% of the time for the in-cluster concentration
-and 86.7% for the mean cluster radius, with uniform simulation-based calibration
-ranks.
+90% credible intervals of the five-flow ensemble cover 91.9% of the time for the
+in-cluster concentration, 90.2% for the matrix concentration, 88.5% for the mean
+cluster radius and 88.2% for the radius spread, with uniform simulation-based
+calibration ranks for all but the matrix concentration, which keeps a small rank
+bias. `--ensemble 1` reproduces the single flow, whose coverage is lower; the
+calibration claim belongs to the ensemble.
 
 The radius-spread parameter `rb` is barely identifiable from these features, and
 the posterior says so: it comes back 96% as wide as the prior, and is calibrated
@@ -172,6 +201,7 @@ python -m experiments.reconstruction.generate_random_centres    # benchmark data
 python -m experiments.reconstruction.freeze_benchmark           # splits, strata, mask checksums
 python -m experiments.reconstruction.stage0_oracle              # Stage 0 oracle and Gate 0, ~2 min
 python -m experiments.reconstruction.stage1_baselines           # Stage 1 baselines and Gate 1, ~30 min
+python -m experiments.reconstruction.stage4_particles --phase run  # diffusion particle pilot; conditional test
 PYTHONPATH=. python docs/make_reconstruction_figures.py         # E10+ figures
 ```
 
@@ -197,6 +227,12 @@ gates, and the pilot measurements that set them.
 - [`load_data_train_network.md`](docs/guides/load_data_train_network.md) —
   loading patterns, voxelizing, and training a field
 - [`clustersim_todo.md`](docs/guides/clustersim_todo.md) — open ideas
+- [`field_to_particles_plan.md`](docs/guides/field_to_particles_plan.md) — detailed
+  implementation and experiment outline for the neural-field particle pipeline
+- [`physics_inference_implementation_plan.md`](docs/guides/physics_inference_implementation_plan.md)
+  — proposed feasible fitter, fixed-candidate comparison, and calibrated uncertainty study
+- [E20 — From a Fourier field to measured precipitates](docs/experiments/E20_field_to_particles.md)
+  — extraction, conventional controls, and the connection to the joint physics fit
 
 ## Experiments
 
@@ -208,6 +244,10 @@ gates, and the pilot measurements that set them.
   interpretation.
 - [`experiments/neural_field/PAPER_FEATURE_EXPERIMENTS.md`](experiments/neural_field/PAPER_FEATURE_EXPERIMENTS.md)
   — a six-stage staged comparison. Implemented; not yet run.
+
+## Licence
+
+MIT. See [`LICENSE`](LICENSE).
 
 ## Note on the K transform
 

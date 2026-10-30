@@ -59,6 +59,11 @@ data_shared_upp/
 # which IS tracked.
 data_random_centres/
 
+# Stage 5 diffusion-field patterns (~0.8 GB), regenerable:
+#   python -m experiments.reconstruction.generate_diffusion_patterns --split development
+#   python -m experiments.reconstruction.generate_diffusion_patterns --split test
+data_diffusion/
+
 # Personal teaching worksheets (exercise and solution notebooks), regenerable with
 #   python worksheets/_build/build_worksheets.py
 worksheets/
@@ -67,3 +72,23 @@ worksheets/
 #   python -m experiments.reconstruction.stage0_oracle
 # The gate report and metadata beside them ARE tracked.
 experiments/reconstruction/results/oracle/
+
+# Stage 5 oracles (replay inside precipitates, the diffusion field in the matrix), regenerable by
+#   python -m experiments.reconstruction.stage5_simulator
+experiments/reconstruction/results/oracle_diffusion/
+
+# Editor and tool droppings
+.idea/
+.Rhistory
+
+# Stage 2's per-cell predictions on removed atoms, regenerable by
+#   python -m experiments.reconstruction.stage2_field --split test
+experiments/reconstruction/results/stage2_predictions/
+
+# Stage 4 reusable trained fields and voxel grids; compact JSON reports stay tracked.
+experiments/reconstruction/results/stage4_artifacts/
+
+# The paired random-centre check's flow and samples, regenerable in minutes:
+#   python -m experiments.inference.fit_posterior --features experiments/inference/features/random_centres_features.npz --output-dir experiments/inference/posterior_random_centres
+experiments/inference/posterior_random_centres/*.pt
+experiments/inference/posterior_random_centres/*.npz

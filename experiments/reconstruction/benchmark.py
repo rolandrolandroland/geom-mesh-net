@@ -76,16 +76,17 @@ def load_pattern(index, data_dir=DATA_DIR):
     }
 
 
-def thinning_mask(index, eta, n_atoms):
+def thinning_mask(index, eta, n_atoms, entropy=THINNING_ENTROPY):
     """True for the atoms kept at efficiency ``eta``; the rest are the scored atoms.
 
     Seeded by (entropy, pattern, efficiency in per mille), so a mask never depends
-    on which other patterns or efficiencies were drawn before it.
+    on which other patterns or efficiencies were drawn before it. Other datasets pass
+    their own ``entropy`` so their masks are independent of the benchmark's.
     """
     per_mille = int(round(eta * 1000))
     if not np.isclose(per_mille / 1000, eta):
         raise ValueError(f"efficiency {eta} is not a whole number of per mille")
-    rng = np.random.default_rng(np.random.SeedSequence([THINNING_ENTROPY, int(index), per_mille]))
+    rng = np.random.default_rng(np.random.SeedSequence([entropy, int(index), per_mille]))
     return rng.random(n_atoms) < eta
 
 

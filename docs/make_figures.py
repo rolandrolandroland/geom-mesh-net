@@ -157,16 +157,27 @@ def figure_training_history():
     if not path.exists():
         print("  skipping training history: run python -m experiments.inference.fit_posterior first")
         return
-    rows = [line.split(",") for line in path.read_text().splitlines()[1:]]
-    epoch = [int(r[0]) for r in rows]
-    train = [float(r[1]) for r in rows]
-    validation = [float(r[2]) for r in rows]
+    lines = path.read_text().splitlines()
+    header = lines[0].split(",")
+    rows = [line.split(",") for line in lines[1:]]
+    if header[0] != "member":     # the single-flow file this stage wrote before the ensemble
+        rows = [["0"] + r for r in rows]
+    members = sorted({int(r[0]) for r in rows})
+    first = [r for r in rows if int(r[0]) == members[0]]
+    epoch = [int(r[1]) for r in first]
+    train = [float(r[2]) for r in first]
+    validation = [float(r[3]) for r in first]
     metadata = json.load(open(INFERENCE / "posterior" / "fit_metadata.json"))
     prior = metadata["prior_log_prob"]
 
     fig, ax = plt.subplots(figsize=(6.4, 3.6))
+    for member in members[1:]:    # the other ensemble members, faint: they differ only by seed
+        other = [r for r in rows if int(r[0]) == member]
+        ax.plot([int(r[1]) for r in other], [float(r[3]) for r in other],
+                color=PASS, lw=0.8, alpha=0.35)
     ax.plot(epoch, train, color=ACCENT, lw=1.5, label="training")
-    ax.plot(epoch, validation, color=PASS, lw=1.5, label="validation")
+    ax.plot(epoch, validation, color=PASS, lw=1.5,
+            label="validation" + (f" ({len(members)} members)" if len(members) > 1 else ""))
     ax.axhline(prior, color=OPEN, ls="--", lw=1.3,
                label=f"uniform prior ({prior:.2f} nats)")
     best = int(np.argmax(validation))

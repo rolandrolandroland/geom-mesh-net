@@ -94,3 +94,14 @@ def test_expected_log_loss_is_entropy_plus_kl_divergence():
         kl = p * np.log(p / q) + (1 - p) * np.log((1 - p) / (1 - q))
         assert expected == pytest.approx(entropy + kl)
     assert fb.log_loss([1, 0], [0.5, 0.5]) == pytest.approx(np.log(2))
+
+
+def test_b2_predicts_with_a_neighbour_count_beyond_stage_1s_grid():
+    """O12 widened B2's grid to k = 512; prediction must query as far as the chosen k."""
+    rng = np.random.default_rng(12)
+    coords = rng.uniform(0, 20, size=(6000, 3))
+    guest = rng.random(6000) < 0.3
+    fit = fb.fit_baselines(coords, guest, folds=2, seed=0, upper=20.0, adaptive_k=(128,), adaptive_c=(0.5,))
+    assert fit.adaptive_k == 128
+    q = fb.predict_baselines(fit, coords, guest, coords[:50], upper=20.0)
+    assert np.all(np.isfinite(q["B2"])) and q["B2"].shape == (50,)

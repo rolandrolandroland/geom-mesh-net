@@ -281,3 +281,25 @@ def test_width_ratio_is_per_parameter():
     ratios = width_ratio(samples, truth)
     assert ratios[0] == pytest.approx(1.0, abs=0.15), ratios
     assert ratios[1] > 2.5, ratios
+
+
+def test_width_ratio_reads_one_for_a_calibrated_posterior_of_any_shape():
+    """Both sides of the ratio must use the same estimator of spread.
+
+    A correctly calibrated uniform posterior is as wide as its own errors, so the
+    ratio is one. Measuring the numerator with a scaled median absolute deviation
+    and the denominator with a standard deviation would read 1.4826 * MAD / sd,
+    about 1.28 for a uniform posterior, and call a correct posterior overconfident.
+    """
+    from geom_mesh_net.inference.calibration import robust_sd, width_ratio
+
+    rng = np.random.default_rng(31)
+    centre = rng.normal(0.0, 1.0, size=(N_PATTERNS, 1))
+    draws = centre[:, None, :] + rng.uniform(-1.0, 1.0, size=(N_PATTERNS, N_SAMPLES, 1))
+    truth = centre + rng.uniform(-1.0, 1.0, size=(N_PATTERNS, 1))   # the truth is a draw from the posterior
+
+    assert width_ratio(draws, truth, robust=True)[0] == pytest.approx(1.0, abs=0.08)
+    assert width_ratio(draws, truth, robust=False)[0] == pytest.approx(1.0, abs=0.08)
+
+    mismatched = robust_sd(draws.mean(axis=1) - truth, axis=0) / np.median(draws.std(axis=1), axis=0)
+    assert mismatched[0] > 1.2      # the form used until 2026-09-17

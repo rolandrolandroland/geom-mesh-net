@@ -292,7 +292,7 @@ is E4, and it is the gate that matters.
 
 | File | Contents |
 | --- | --- |
-| `experiments/inference/posterior/flow.pt` | fitted flow, scaler, architecture |
+| `experiments/inference/posterior/flow.pt` | the fitted flows, scaler, architecture — five ensemble members since 2026-09-17, because that is the configuration Stage 3 validated |
 | `experiments/inference/posterior/test_posterior.npz` | test-set posterior samples and split indices |
 | `experiments/inference/posterior/fit_metadata.json` | gate, marginals, timings |
 | `experiments/inference/posterior/training_history.csv` | per-epoch log-density |

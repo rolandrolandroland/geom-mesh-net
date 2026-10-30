@@ -656,6 +656,77 @@ background, questions and methods.
   - Guest-adaptive smoothing closes 41% of the remaining gap and is the baseline later
     stages must beat.
 
+- **[E15 — A simulator with a physical law](docs/experiments/E15_diffusion_simulator.md)**
+  Stage 5.1 gives the simulator's matrix a screened diffusion field with Gibbs–Thomson
+  interfaces, so that a physics-informed network has a law to enforce.
+  - The design as first written missed its own boundary condition, and the benchmark
+    geometry overlapped too much to hold one; both were fixed before any network was
+    trained.
+  - A prior was chosen using local Fisher precision references to select a promising
+    regime for capillary- and screening-length estimation; recovery still requires validation.
+  - Gate 5.1 passed. Stage 2's walkthrough is E19; E20 begins Stage 4 with a diffusion-data pilot.
+
+- **[E16 — A physics-informed network that prefers the wrong physics](docs/experiments/E16_soft_pinn.md)**
+  Stage 5.2 as first designed: a neural field with the diffusion equation and the
+  Gibbs–Thomson condition as penalties, on development patterns.
+  - Given the true geometry, it still could not recover the constants: the screening
+    length ended at 0.005–18 times its true value.
+  - The loss itself preferred flat constants, by 3 to 144 times the data margin, because
+    the evidence is 0.001–0.002 nats per atom and the penalties cost a finite network far more.
+  - The same law imposed exactly recovered the capillary length within 5%.
+
+- **[E17 — The diffusion law as a hard constraint: Gate 5.2](docs/experiments/E17_physics_fit.md)**
+  Stage 5.2 as corrected: the exact diffusion field around precipitates detected in the data.
+  - Choosing matrix atoms from their own labels had biased them by 11–19 standard errors;
+    leaving each atom's label out removed it.
+  - The law predicted the matrix far better than an unconstrained network, and a rule using
+    held-out prediction and search-bound checks rejected 61 of 72 misspecified matrices.
+  - Gate 5.2 failed on the capillary length (median error 3.5 times its bound): errors in the
+    detected radii pull it toward zero.
+
+- **[E19 — A Fourier-feature field fitted to one pattern: Gate 2](docs/experiments/E19_fourier_field.md)**
+  Stage 2, run after Stage 5 because Stage 5.1's simulator was ready first: does a coordinate
+  network fitted to one pattern's observed atoms beat cross-validated kernel smoothing?
+  - **Gate 2 passed.** It beats the better smoother in 48 of 52 headroom test cells and closes a
+    median 68% of the gap the textbook smoother leaves.
+  - The gain is at cluster rims and cores, where Stage 1 found the room: 0.039 nats per atom at
+    rims for small clusters against the better smoother's 0.077.
+  - Two controls separate the parts: the Fourier encoding is worth −0.0049 nats per atom over raw
+    coordinates, the network −0.0102 over a linear model on the same features.
+  - It is also better calibrated than the smoothers, and a pattern relabelled from its field
+    reproduces the 14 summary features three to seven times better than one relabelled from B2's.
+
+- **[E18 — Fitting the precipitates with the law](docs/experiments/E18_joint_geometry.md)**
+  After Gate 5.2: how geometry assumptions affect capillary-length estimates. Development
+  work on eight patterns, not a gate; interpretation corrected 29 October 2026.
+  - Leaving every radius and the interior profile unknown widens a local Fisher SD reference
+    by 7–29%. That calculation omits unknown centres and uses a smooth interface unlike the
+    generating simulator, so it does not establish the achievable precision of the full fit.
+  - The reference times radius spread is 0.03–0.045 in this design, not a universal floor.
+    Equal radii exactly confound ℓ with c_eq in this model.
+  - Fitting radii alone makes ℓ worse; freeing centres lowers the median error/reference ratio
+    to 0.89. Single-fit error ratios demonstrate neither statistical efficiency nor interval
+    coverage. The joint fitter remains experimental and does not enforce feasible geometry.
+
+- **[E20 — From a Fourier field to measured precipitates](docs/experiments/E20_field_to_particles.md)**
+  A reusable particle-extraction and measurement library, five-detector comparison,
+  and connection to E18's joint physics fitter. Four diffusion patterns select global
+  settings; four more assess the frozen method at 37% detection efficiency.
+  - Fourier reduces removed-atom field excess loss by 39–72%, but loses particle F1
+    to the calibration-selected Gaussian detector in all four confirmation cases:
+    median F1 0.924 versus 0.981, with 35 missed particles versus 8.
+  - Common-match radius error improves slightly by the prescribed paired median,
+    but capillary error and matrix prediction do not satisfy promotion. Both
+    initializations yield an invalid geometry on the last case; those fits remain
+    in the report, and the Fourier fit also reaches a parameter bound.
+  - **Pilot promotion failed; reserved test patterns were not evaluated.** The
+    full Stage 4 benchmark and Stage 5.3 law-rejection experiment remain separate.
+
+The [physics-inference implementation plan](docs/guides/physics_inference_implementation_plan.md)
+sets out the next controlled comparison and uncertainty study. Post-fit numerical validity
+flags are not tests of parameter identifiability; the physics results remain specific to the
+synthetic model, with no real-APT validation or calibrated interfacial-free-energy inference.
+
 ---
 
 ## 8. Package reference
@@ -672,8 +743,15 @@ geom_mesh_net/                      the library (installed with pip install -e .
   fields/baselines.py               kernel-smoothing baselines B0, B1, B2
   fields/point_cloud.py             voxel guest-probability fields
   fields/density_grid.py            density grids from simulation parameters (deprecated)
+  fields/physics.py                 screened diffusion field around precipitates (Stage 5)
+  fields/misspecified.py            matrix fields that break that law (Stage 5.2 controls)
+  fields/cluster_extraction.py      precipitates and matrix atoms from a smoothed field (Stage 5.2)
+  fields/particle_detection.py      common field and point detectors, matching and measurements (E20)
+  fields/particle_physics.py        joint-fit adapter with physical-validity diagnostics (E20)
+  fields/joint_fit.py               experimental joint geometry/constants fitter (E18)
   neural/datasets.py                torch Dataset and collate function
   neural/models.py                  neural field models
+  neural/implicit.py                SIREN field with physics penalties; the analytic diffusion family
   inference/flow.py                 conditional autoregressive normalising flow
   inference/calibration.py          SBC ranks, ECDF bands, coverage, width ratio
   viz/                              3D plotting and benchmark figures
@@ -697,7 +775,7 @@ experiments/reconstruction/         solute-field reconstruction (E10 onward)
 scripts/generate_data.py            the data factory that wrote data/
 docs/experiments/                   one walkthrough per experiment
 docs/guides/                        introductory explanatory documents
-tests/                              198 regression tests
+tests/                              252 regression tests
 data/                               1,000 simulated patterns (gitignored, ~5 GB)
 ```
 
@@ -739,7 +817,7 @@ pip install -e ".[dev,notebooks]"
 ### Pipeline
 
 ```bash
-python -m pytest                                                    # 198 tests, ~90 s
+python -m pytest                                                    # 252 tests, a few minutes
 
 PYTHONPATH=. python scripts/generate_data.py                        # ~8 min, 5 GB
 python -m experiments.inference.recover_ground_truth                # E1, 6 s

@@ -300,6 +300,68 @@ def estimate_cluster_volume(r, weights, exponents, r_max_weighted_ratio, n_sampl
 
     return estimated_volume
 
+def draw_radii(n, cr, sigma, r_min=None):
+    """Normal(cr, sigma) cluster radii.
+
+    Without ``r_min``, negative radii are set to zero, as clustersim always did. With
+    ``r_min``, every radius below it is redrawn until all are at least ``r_min``, so the
+    radii follow the normal distribution truncated at ``r_min``.
+    """
+    radii = rng.normal(loc = cr, scale = sigma, size = n)
+    if r_min is None:
+        radii[radii < 0] = 0
+        return radii
+    for _ in range(1000):
+        low = radii < r_min
+        if not low.any():
+            return radii
+        radii[low] = rng.normal(loc = cr, scale = sigma, size = int(low.sum()))
+    raise ValueError(f"radii below r_min={r_min} persist after 1000 redraws; "
+                     f"r_min is too far above cr={cr} for sigma={sigma}")
+
+
+def place_without_overlap(candidates, radii, min_gap, chunk=2048):
+    """A centre from ``candidates`` for every radius, with all spheres ``min_gap`` apart.
+
+    The gap is measured surface to surface. Positions are rejected, never radii, so the
+    radii keep the distribution they were drawn from; drawing a new radius after each
+    failed position would favour small clusters. Spheres are placed largest first,
+    each at the first free candidate, in random order, that clears every sphere already
+    placed. Raises ValueError when a sphere cannot be placed, rather than silently
+    returning fewer clusters than the guest fraction needs.
+
+    Returns an (len(radii), 3) array whose row i is the centre of the sphere of radius
+    radii[i].
+    """
+    radii = np.asarray(radii, dtype=float)
+    candidates = np.asarray(candidates, dtype=float)
+    candidates = candidates[rng.permutation(len(candidates))]
+    free = np.ones(len(candidates), dtype=bool)
+    centres = np.full((len(radii), 3), np.nan)
+    placed = np.zeros(len(radii), dtype=bool)
+    for i in np.argsort(radii, kind="stable")[::-1]:
+        options = np.flatnonzero(free)
+        for start in range(0, len(options), chunk):
+            block = options[start:start + chunk]
+            if placed.any():
+                distance = np.sqrt(((candidates[block, None, :] - centres[None, placed, :]) ** 2).sum(axis=-1))
+                clear = np.all(distance - radii[placed][None, :] - radii[i] >= min_gap, axis=1)
+                hits = np.flatnonzero(clear)
+            else:
+                hits = np.array([0])
+            if len(hits):
+                j = block[hits[0]]
+                centres[i], free[j], placed[i] = candidates[j], False, True
+                break
+        if not placed[i]:
+            raise ValueError(
+                f"could not place a cluster of radius {radii[i]:.2f} with min_gap={min_gap} after "
+                f"{int(placed.sum())} of {len(radii)} clusters; lower the cluster volume fraction "
+                "or raise opp_oversample"
+            )
+    return centres
+
+
 def clustersim(opp, # overlying point pattern
                upp, # underlying point pattern
                pcp,  # overall clustering type concentration
@@ -321,7 +383,14 @@ def clustersim(opp, # overlying point pattern
                prob_function="Gaussian_decay",
                prob_exp = -3,
                selection='sampled',
-               opp_oversample = 1):
+               opp_oversample = 1,
+               min_gap = None,
+               r_min = None):
+    # min_gap, when given, places clusters so that no two spheres come closer than
+    # min_gap, surface to surface; see place_without_overlap. Use a random overlying
+    # pattern with a large opp_oversample, since every point is a candidate centre.
+    # r_min, when given, redraws radii below it instead of setting negative radii to
+    # zero; see draw_radii. Left at None, neither changes a single draw.
     # opp_oversample scales the density the overlying pattern is shrunk to before
     # the random subset of n_clusts centres is kept. A lattice needs 1. A random
     # overlying pattern needs more, or the window is often short of centres.
@@ -402,24 +471,30 @@ def clustersim(opp, # overlying point pattern
     # chop opp to the window
     opp_chopped = opp_scaled_shifted.chop(buffed_window, chop_domain=True)
 
-    current_n = opp_chopped.n_points
-    if current_n > n_clusts:
-        print(f"Oversampling: reducing {current_n} grid points to {n_clusts}")
-        keep_inds = rng.choice(np.arange(current_n), size=n_clusts, replace=False)
+    if min_gap is None:
+        current_n = opp_chopped.n_points
+        if current_n > n_clusts:
+            print(f"Oversampling: reducing {current_n} grid points to {n_clusts}")
+            keep_inds = rng.choice(np.arange(current_n), size=n_clusts, replace=False)
 
-        opp_chopped.coords['x'] = opp_chopped.coords['x'][keep_inds]
-        opp_chopped.coords['y'] = opp_chopped.coords['y'][keep_inds]
-        opp_chopped.coords['z'] = opp_chopped.coords['z'][keep_inds]
-        opp_chopped.labels = opp_chopped.labels[keep_inds]
-        opp_chopped.n_points = n_clusts
-    elif current_n < n_clusts:
-        print(f"Warning: Still under-sampled ({current_n} < {n_clusts}). Check domain padding.")
+            opp_chopped.coords['x'] = opp_chopped.coords['x'][keep_inds]
+            opp_chopped.coords['y'] = opp_chopped.coords['y'][keep_inds]
+            opp_chopped.coords['z'] = opp_chopped.coords['z'][keep_inds]
+            opp_chopped.labels = opp_chopped.labels[keep_inds]
+            opp_chopped.n_points = n_clusts
+        elif current_n < n_clusts:
+            print(f"Warning: Still under-sampled ({current_n} < {n_clusts}). Check domain padding.")
 
-    cluster_centers = opp_chopped.coords
-    # now generate list of cluster center radii
-    cr_all = rng.normal(loc = cr, scale = sigma, size = len(cluster_centers['x']))
-    # set all numbers less than 0 to 0
-    cr_all[cr_all < 0] = 0
+        cluster_centers = opp_chopped.coords
+        # now generate list of cluster center radii
+        # set all numbers less than 0 to 0 (or redraw below r_min)
+        cr_all = draw_radii(len(cluster_centers['x']), cr, sigma, r_min)
+    else:
+        # Radii first, then positions, so a rejected position never changes a radius.
+        cr_all = draw_radii(n_clusts, cr, sigma, r_min)
+        candidates = np.column_stack([opp_chopped.coords[a] for a in ('x', 'y', 'z')])
+        placed_centres = place_without_overlap(candidates, cr_all, min_gap)
+        cluster_centers = {'x': placed_centres[:, 0], 'y': placed_centres[:, 1], 'z': placed_centres[:, 2]}
 
     # now lets generate some clusters!
     updated_upp_labels = np.zeros(upp.n_points, dtype=np.int8)

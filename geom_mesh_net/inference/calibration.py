@@ -82,10 +82,15 @@ def width_ratio(samples, theta, robust=True):
 
     The non-robust form is kept for comparison, since a large gap between the two
     is itself a signal that a few patterns carry enormous error.
+
+    Both sides of the ratio use the same estimator of spread, which is what makes
+    one the calibrated value. Written with a scaled median absolute deviation above
+    and an ordinary standard deviation below, the ratio would measure the shape of
+    the posterior as well as its width: for a correctly calibrated uniform
+    posterior it reads 1.4826 * MAD / sd = 1.28, which looks overconfident when
+    nothing is wrong. That form was used until 2026-09-17.
     """
     residual = samples.mean(axis=1) - theta
     if robust:
-        return robust_sd(residual, axis=0) / np.median(
-            samples.std(axis=1), axis=0
-        )
+        return robust_sd(residual, axis=0) / np.median(robust_sd(samples, axis=1), axis=0)
     return residual.std(axis=0) / samples.std(axis=1).mean(axis=0)

@@ -1,0 +1,752 @@
+[
+ {
+  "pattern": 0,
+  "kind": "inverse_square",
+  "matrix_atoms": 191577,
+  "matrix_guest_fraction": 0.06787871195394019,
+  "field_mean": 0.06687239241716424,
+  "field_sd": 0.012277634388338397,
+  "diffusion_field_sd": 0.014384956108388438,
+  "field_range": [
+   0.024342641617739674,
+   0.11237639837924047
+  ],
+  "clipped_fraction": 0.0,
+  "signal_nats_all_atoms": 236.5675937074931
+ },
+ {
+  "pattern": 1,
+  "kind": "inverse_square",
+  "matrix_atoms": 194535,
+  "matrix_guest_fraction": 0.14020099210938905,
+  "field_mean": 0.14007965894046137,
+  "field_sd": 0.017063006948004375,
+  "diffusion_field_sd": 0.020317901502541126,
+  "field_range": [
+   0.07181517072409875,
+   0.2175947871586761
+  ],
+  "clipped_fraction": 0.0,
+  "signal_nats_all_atoms": 239.44793013146756
+ },
+ {
+  "pattern": 2,
+  "kind": "inverse_square",
+  "matrix_atoms": 191028,
+  "matrix_guest_fraction": 0.0874269740561593,
+  "field_mean": 0.08747586635402553,
+  "field_sd": 0.01117352252701476,
+  "diffusion_field_sd": 0.013451852241975306,
+  "field_range": [
+   0.042207863329444456,
+   0.1275643515765298
+  ],
+  "clipped_fraction": 0.0,
+  "signal_nats_all_atoms": 151.16694299985838
+ },
+ {
+  "pattern": 3,
+  "kind": "inverse_square",
+  "matrix_atoms": 191310,
+  "matrix_guest_fraction": 0.0953321833673096,
+  "field_mean": 0.09527957618519306,
+  "field_sd": 0.01437146697512215,
+  "diffusion_field_sd": 0.016671699325092562,
+  "field_range": [
+   0.031079504480591262,
+   0.19149079538859987
+  ],
+  "clipped_fraction": 0.0,
+  "signal_nats_all_atoms": 235.26944454521265
+ },
+ {
+  "pattern": 4,
+  "kind": "inverse_square",
+  "matrix_atoms": 191912,
+  "matrix_guest_fraction": 0.09345429155029389,
+  "field_mean": 0.09373939653523079,
+  "field_sd": 0.012506737121438046,
+  "diffusion_field_sd": 0.014326013929538304,
+  "field_range": [
+   0.043780078683959674,
+   0.16937615910186038
+  ],
+  "clipped_fraction": 0.0,
+  "signal_nats_all_atoms": 179.18436187429123
+ },
+ {
+  "pattern": 5,
+  "kind": "inverse_square",
+  "matrix_atoms": 193378,
+  "matrix_guest_fraction": 0.06621228888498175,
+  "field_mean": 0.06582730602361758,
+  "field_sd": 0.013003843113672467,
+  "diffusion_field_sd": 0.014827918102229056,
+  "field_range": [
+   0.01430299258169189,
+   0.14502220911254993
+  ],
+  "clipped_fraction": 0.0,
+  "signal_nats_all_atoms": 274.90743744992204
+ },
+ {
+  "pattern": 6,
+  "kind": "inverse_square",
+  "matrix_atoms": 196963,
+  "matrix_guest_fraction": 0.12233769794326853,
+  "field_mean": 0.12180787069631395,
+  "field_sd": 0.017323723334212043,
+  "diffusion_field_sd": 0.020390570156134165,
+  "field_range": [
+   0.050765266023043314,
+   0.25124414587920046
+  ],
+  "clipped_fraction": 0.0,
+  "signal_nats_all_atoms": 284.3049232480944
+ },
+ {
+  "pattern": 7,
+  "kind": "inverse_square",
+  "matrix_atoms": 191692,
+  "matrix_guest_fraction": 0.10018675792417002,
+  "field_mean": 0.10032854258842432,
+  "field_sd": 0.014104038603910704,
+  "diffusion_field_sd": 0.01632006307554676,
+  "field_range": [
+   0.05034609288694757,
+   0.23838138705332612
+  ],
+  "clipped_fraction": 0.0,
+  "signal_nats_all_atoms": 209.47626419709744
+ },
+ {
+  "pattern": 8,
+  "kind": "inverse_square",
+  "matrix_atoms": 185691,
+  "matrix_guest_fraction": 0.05486534080811671,
+  "field_mean": 0.05487662191756439,
+  "field_sd": 0.007788642021749462,
+  "diffusion_field_sd": 0.009331206426628288,
+  "field_range": [
+   0.02557374111168571,
+   0.10545220513584495
+  ],
+  "clipped_fraction": 0.0,
+  "signal_nats_all_atoms": 111.1746464833887
+ },
+ {
+  "pattern": 9,
+  "kind": "inverse_square",
+  "matrix_atoms": 194295,
+  "matrix_guest_fraction": 0.06872539180112715,
+  "field_mean": 0.06925396028903286,
+  "field_sd": 0.012079521548725507,
+  "diffusion_field_sd": 0.014216224068029094,
+  "field_range": [
+   0.02354682421232541,
+   0.1387339660038548
+  ],
+  "clipped_fraction": 0.0,
+  "signal_nats_all_atoms": 224.17047896968674
+ },
+ {
+  "pattern": 10,
+  "kind": "inverse_square",
+  "matrix_atoms": 195857,
+  "matrix_guest_fraction": 0.06445518924521462,
+  "field_mean": 0.06421330433619647,
+  "field_sd": 0.00404061930899237,
+  "diffusion_field_sd": 0.004754623775285361,
+  "field_range": [
+   0.04512859886008451,
+   0.10367041174549033
+  ],
+  "clipped_fraction": 0.0,
+  "signal_nats_all_atoms": 26.849423716193836
+ },
+ {
+  "pattern": 11,
+  "kind": "inverse_square",
+  "matrix_atoms": 191964,
+  "matrix_guest_fraction": 0.1415265362255423,
+  "field_mean": 0.1402228877068866,
+  "field_sd": 0.022908874334599594,
+  "diffusion_field_sd": 0.027105774653591135,
+  "field_range": [
+   0.05878033416593854,
+   0.3197588477250939
+  ],
+  "clipped_fraction": 0.0,
+  "signal_nats_all_atoms": 423.43831400306664
+ },
+ {
+  "pattern": 12,
+  "kind": "inverse_square",
+  "matrix_atoms": 190228,
+  "matrix_guest_fraction": 0.14018441028660344,
+  "field_mean": 0.1387891375265641,
+  "field_sd": 0.02281636768757559,
+  "diffusion_field_sd": 0.02598887914737534,
+  "field_range": [
+   0.054699053414329,
+   0.2458695727905099
+  ],
+  "clipped_fraction": 0.0,
+  "signal_nats_all_atoms": 422.6304447401699
+ },
+ {
+  "pattern": 13,
+  "kind": "inverse_square",
+  "matrix_atoms": 191353,
+  "matrix_guest_fraction": 0.07755823007739622,
+  "field_mean": 0.0786380777958133,
+  "field_sd": 0.007574638200995755,
+  "diffusion_field_sd": 0.008877871234464737,
+  "field_range": [
+   0.042745534570404455,
+   0.16574311432003488
+  ],
+  "clipped_fraction": 0.0,
+  "signal_nats_all_atoms": 77.200450064415
+ },
+ {
+  "pattern": 14,
+  "kind": "inverse_square",
+  "matrix_atoms": 195455,
+  "matrix_guest_fraction": 0.14327594586989334,
+  "field_mean": 0.14305776999399009,
+  "field_sd": 0.029372790204678638,
+  "diffusion_field_sd": 0.03341345475479153,
+  "field_range": [
+   0.033156154049757615,
+   0.29487104472828835
+  ],
+  "clipped_fraction": 0.0,
+  "signal_nats_all_atoms": 711.6965022172751
+ },
+ {
+  "pattern": 15,
+  "kind": "inverse_square",
+  "matrix_atoms": 195183,
+  "matrix_guest_fraction": 0.13696889585670882,
+  "field_mean": 0.1370564349941479,
+  "field_sd": 0.017881515496294242,
+  "diffusion_field_sd": 0.020727170542761842,
+  "field_range": [
+   0.0641540968948752,
+   0.24384338692550844
+  ],
+  "clipped_fraction": 0.0,
+  "signal_nats_all_atoms": 270.2762440912557
+ },
+ {
+  "pattern": 16,
+  "kind": "inverse_square",
+  "matrix_atoms": 193357,
+  "matrix_guest_fraction": 0.1038028103456301,
+  "field_mean": 0.10237482950941561,
+  "field_sd": 0.01552218889884358,
+  "diffusion_field_sd": 0.018280641686326288,
+  "field_range": [
+   0.04341996886760931,
+   0.21363586975673343
+  ],
+  "clipped_fraction": 0.0,
+  "signal_nats_all_atoms": 257.6077503418228
+ },
+ {
+  "pattern": 17,
+  "kind": "inverse_square",
+  "matrix_atoms": 191850,
+  "matrix_guest_fraction": 0.1432421162366432,
+  "field_mean": 0.14414556689163835,
+  "field_sd": 0.01701426148782105,
+  "diffusion_field_sd": 0.020234841073132868,
+  "field_range": [
+   0.0774752867816888,
+   0.26808015269682245
+  ],
+  "clipped_fraction": 0.0,
+  "signal_nats_all_atoms": 227.7517006830643
+ },
+ {
+  "pattern": 18,
+  "kind": "inverse_square",
+  "matrix_atoms": 196760,
+  "matrix_guest_fraction": 0.10024903435657655,
+  "field_mean": 0.10026291177680036,
+  "field_sd": 0.014997172105285684,
+  "diffusion_field_sd": 0.01728599369089903,
+  "field_range": [
+   0.04160080767753563,
+   0.15385439159329342
+  ],
+  "clipped_fraction": 0.0,
+  "signal_nats_all_atoms": 250.51346945056574
+ },
+ {
+  "pattern": 19,
+  "kind": "inverse_square",
+  "matrix_atoms": 197354,
+  "matrix_guest_fraction": 0.12029652299928048,
+  "field_mean": 0.12100382386753386,
+  "field_sd": 0.009796119357649341,
+  "diffusion_field_sd": 0.011685304391754964,
+  "field_range": [
+   0.07537712403969998,
+   0.19628112299236927
+  ],
+  "clipped_fraction": 0.0,
+  "signal_nats_all_atoms": 90.0259857141171
+ },
+ {
+  "pattern": 20,
+  "kind": "inverse_square",
+  "matrix_atoms": 191231,
+  "matrix_guest_fraction": 0.07229999320193901,
+  "field_mean": 0.07352020030458405,
+  "field_sd": 0.013337041351350082,
+  "diffusion_field_sd": 0.015385488430580543,
+  "field_range": [
+   0.02871886467171354,
+   0.1403971042587326
+  ],
+  "clipped_fraction": 0.0,
+  "signal_nats_all_atoms": 254.91542642346653
+ },
+ {
+  "pattern": 21,
+  "kind": "inverse_square",
+  "matrix_atoms": 193459,
+  "matrix_guest_fraction": 0.11493908269969348,
+  "field_mean": 0.11422018001358497,
+  "field_sd": 0.01449812045698008,
+  "diffusion_field_sd": 0.017000283356249358,
+  "field_range": [
+   0.05661508597283517,
+   0.21384255886591308
+  ],
+  "clipped_fraction": 0.0,
+  "signal_nats_all_atoms": 204.17771140012962
+ },
+ {
+  "pattern": 22,
+  "kind": "inverse_square",
+  "matrix_atoms": 191225,
+  "matrix_guest_fraction": 0.12845600732121845,
+  "field_mean": 0.12859469407234575,
+  "field_sd": 0.019075950593743677,
+  "diffusion_field_sd": 0.021729408269034543,
+  "field_range": [
+   0.05245437763511402,
+   0.2930426756897183
+  ],
+  "clipped_fraction": 0.0,
+  "signal_nats_all_atoms": 317.94929383073276
+ },
+ {
+  "pattern": 23,
+  "kind": "inverse_square",
+  "matrix_atoms": 192609,
+  "matrix_guest_fraction": 0.14875732702002503,
+  "field_mean": 0.14985237715451324,
+  "field_sd": 0.013903963301574401,
+  "diffusion_field_sd": 0.016066886515328182,
+  "field_range": [
+   0.08179586597105457,
+   0.2859456247830732
+  ],
+  "clipped_fraction": 0.0,
+  "signal_nats_all_atoms": 148.22480785362993
+ },
+ {
+  "pattern": 24,
+  "kind": "inverse_square",
+  "matrix_atoms": 190805,
+  "matrix_guest_fraction": 0.0991850318387883,
+  "field_mean": 0.09970383578172853,
+  "field_sd": 0.00957625053223737,
+  "diffusion_field_sd": 0.011383938965261166,
+  "field_range": [
+   0.05619738500716708,
+   0.2175299502378792
+  ],
+  "clipped_fraction": 0.0,
+  "signal_nats_all_atoms": 97.90391041032159
+ },
+ {
+  "pattern": 25,
+  "kind": "inverse_square",
+  "matrix_atoms": 186361,
+  "matrix_guest_fraction": 0.10097606258820246,
+  "field_mean": 0.10143316219935612,
+  "field_sd": 0.015688794631746925,
+  "diffusion_field_sd": 0.0183046386446609,
+  "field_range": [
+   0.041461535228033454,
+   0.21331554967305
+  ],
+  "clipped_fraction": 0.0,
+  "signal_nats_all_atoms": 254.62903315451425
+ },
+ {
+  "pattern": 26,
+  "kind": "inverse_square",
+  "matrix_atoms": 196618,
+  "matrix_guest_fraction": 0.140999298131402,
+  "field_mean": 0.14064512551154207,
+  "field_sd": 0.017509829477124934,
+  "diffusion_field_sd": 0.020719770302356628,
+  "field_range": [
+   0.05654350143236311,
+   0.22239789086709136
+  ],
+  "clipped_fraction": 0.0,
+  "signal_nats_all_atoms": 256.26569086544424
+ },
+ {
+  "pattern": 27,
+  "kind": "inverse_square",
+  "matrix_atoms": 190539,
+  "matrix_guest_fraction": 0.11424432793286414,
+  "field_mean": 0.11379392501146444,
+  "field_sd": 0.010781923240884124,
+  "diffusion_field_sd": 0.01322370698560558,
+  "field_range": [
+   0.0712914068784552,
+   0.15649284745419412
+  ],
+  "clipped_fraction": 0.0,
+  "signal_nats_all_atoms": 110.78191716590788
+ },
+ {
+  "pattern": 28,
+  "kind": "inverse_square",
+  "matrix_atoms": 188698,
+  "matrix_guest_fraction": 0.09702805541129211,
+  "field_mean": 0.09672776830815986,
+  "field_sd": 0.010277093002341555,
+  "diffusion_field_sd": 0.0122134294404386,
+  "field_range": [
+   0.053125324894062034,
+   0.14604865587262061
+  ],
+  "clipped_fraction": 0.0,
+  "signal_nats_all_atoms": 115.71739649482895
+ },
+ {
+  "pattern": 29,
+  "kind": "inverse_square",
+  "matrix_atoms": 188990,
+  "matrix_guest_fraction": 0.14170061908037462,
+  "field_mean": 0.140798484975072,
+  "field_sd": 0.021522807101662943,
+  "diffusion_field_sd": 0.02535613225712444,
+  "field_range": [
+   0.05500576725093643,
+   0.29319509350402606
+  ],
+  "clipped_fraction": 0.0,
+  "signal_nats_all_atoms": 367.49943838981386
+ },
+ {
+  "pattern": 30,
+  "kind": "inverse_square",
+  "matrix_atoms": 186332,
+  "matrix_guest_fraction": 0.0721454178562995,
+  "field_mean": 0.0717253154903885,
+  "field_sd": 0.006515337213708888,
+  "diffusion_field_sd": 0.007876594205260557,
+  "field_range": [
+   0.04718719009825809,
+   0.10420948621774388
+  ],
+  "clipped_fraction": 0.0,
+  "signal_nats_all_atoms": 59.927749034356836
+ },
+ {
+  "pattern": 31,
+  "kind": "inverse_square",
+  "matrix_atoms": 192139,
+  "matrix_guest_fraction": 0.11147138269690172,
+  "field_mean": 0.11122916008067397,
+  "field_sd": 0.00934367919540484,
+  "diffusion_field_sd": 0.011066180106059436,
+  "field_range": [
+   0.07330986544156587,
+   0.17577976192461947
+  ],
+  "clipped_fraction": 0.0,
+  "signal_nats_all_atoms": 86.11702756737623
+ },
+ {
+  "pattern": 32,
+  "kind": "inverse_square",
+  "matrix_atoms": 192009,
+  "matrix_guest_fraction": 0.08890208271487274,
+  "field_mean": 0.08913813313754541,
+  "field_sd": 0.012446005857941454,
+  "diffusion_field_sd": 0.01430529295856844,
+  "field_range": [
+   0.03889465658279243,
+   0.21528820136207827
+  ],
+  "clipped_fraction": 0.0,
+  "signal_nats_all_atoms": 187.47901323624924
+ },
+ {
+  "pattern": 33,
+  "kind": "inverse_square",
+  "matrix_atoms": 197982,
+  "matrix_guest_fraction": 0.1420179612287986,
+  "field_mean": 0.14330867742876985,
+  "field_sd": 0.007510617639883808,
+  "diffusion_field_sd": 0.008985690757145504,
+  "field_range": [
+   0.10170639751238378,
+   0.21661381281125605
+  ],
+  "clipped_fraction": 0.0,
+  "signal_nats_all_atoms": 46.01995450202753
+ },
+ {
+  "pattern": 34,
+  "kind": "inverse_square",
+  "matrix_atoms": 189231,
+  "matrix_guest_fraction": 0.07487673795519761,
+  "field_mean": 0.07364937673408944,
+  "field_sd": 0.006538070244202543,
+  "diffusion_field_sd": 0.0077945696704034215,
+  "field_range": [
+   0.04645577512459291,
+   0.12761834904836913
+  ],
+  "clipped_fraction": 0.0,
+  "signal_nats_all_atoms": 59.91739570521579
+ },
+ {
+  "pattern": 35,
+  "kind": "inverse_square",
+  "matrix_atoms": 195057,
+  "matrix_guest_fraction": 0.14329144814079986,
+  "field_mean": 0.14371669309550675,
+  "field_sd": 0.018780121304874213,
+  "diffusion_field_sd": 0.021646017747698646,
+  "field_range": [
+   0.07503909219786492,
+   0.2262868357941874
+  ],
+  "clipped_fraction": 0.0,
+  "signal_nats_all_atoms": 285.1437265840348
+ },
+ {
+  "pattern": 36,
+  "kind": "inverse_square",
+  "matrix_atoms": 195876,
+  "matrix_guest_fraction": 0.09219097796565173,
+  "field_mean": 0.0927366776332475,
+  "field_sd": 0.017533406489286262,
+  "diffusion_field_sd": 0.020692149241090516,
+  "field_range": [
+   0.030039436022095342,
+   0.14941574924584863
+  ],
+  "clipped_fraction": 0.0,
+  "signal_nats_all_atoms": 363.6402597315912
+ },
+ {
+  "pattern": 37,
+  "kind": "inverse_square",
+  "matrix_atoms": 191400,
+  "matrix_guest_fraction": 0.05853709508881923,
+  "field_mean": 0.059201076891645436,
+  "field_sd": 0.006427239463928995,
+  "diffusion_field_sd": 0.00752140109151805,
+  "field_range": [
+   0.031975789867492325,
+   0.12247101932891054
+  ],
+  "clipped_fraction": 0.0,
+  "signal_nats_all_atoms": 72.43248122470011
+ },
+ {
+  "pattern": 38,
+  "kind": "inverse_square",
+  "matrix_atoms": 187017,
+  "matrix_guest_fraction": 0.11246036456578813,
+  "field_mean": 0.11164057390347516,
+  "field_sd": 0.021571420371266782,
+  "diffusion_field_sd": 0.02433815870650558,
+  "field_range": [
+   0.03659685300726606,
+   0.26955927011051584
+  ],
+  "clipped_fraction": 0.0,
+  "signal_nats_all_atoms": 452.46260494573903
+ },
+ {
+  "pattern": 39,
+  "kind": "inverse_square",
+  "matrix_atoms": 190452,
+  "matrix_guest_fraction": 0.06638418079096045,
+  "field_mean": 0.06611583547809359,
+  "field_sd": 0.006959085628557406,
+  "diffusion_field_sd": 0.008206280009353008,
+  "field_range": [
+   0.03708813208245936,
+   0.1095808682638467
+  ],
+  "clipped_fraction": 0.0,
+  "signal_nats_all_atoms": 76.18110739355271
+ },
+ {
+  "pattern": 40,
+  "kind": "inverse_square",
+  "matrix_atoms": 194838,
+  "matrix_guest_fraction": 0.12868126340857533,
+  "field_mean": 0.12988421809760584,
+  "field_sd": 0.009649559765172233,
+  "diffusion_field_sd": 0.011666114355047986,
+  "field_range": [
+   0.09035009672042764,
+   0.18823076618704732
+  ],
+  "clipped_fraction": 0.0,
+  "signal_nats_all_atoms": 81.16034042349574
+ },
+ {
+  "pattern": 41,
+  "kind": "inverse_square",
+  "matrix_atoms": 195763,
+  "matrix_guest_fraction": 0.08981268166098803,
+  "field_mean": 0.08979792576322608,
+  "field_sd": 0.009985630446055995,
+  "diffusion_field_sd": 0.011861022057217252,
+  "field_range": [
+   0.045978065487363065,
+   0.14298225672588002
+  ],
+  "clipped_fraction": 0.0,
+  "signal_nats_all_atoms": 121.37395978445642
+ },
+ {
+  "pattern": 42,
+  "kind": "inverse_square",
+  "matrix_atoms": 188438,
+  "matrix_guest_fraction": 0.07606215306891391,
+  "field_mean": 0.0776313592302047,
+  "field_sd": 0.005861915623376189,
+  "diffusion_field_sd": 0.006828520024890389,
+  "field_range": [
+   0.05203625416081299,
+   0.1360307439189062
+  ],
+  "clipped_fraction": 0.0,
+  "signal_nats_all_atoms": 45.60941799595904
+ },
+ {
+  "pattern": 43,
+  "kind": "inverse_square",
+  "matrix_atoms": 188757,
+  "matrix_guest_fraction": 0.13934847449366117,
+  "field_mean": 0.14041348642548648,
+  "field_sd": 0.018533056360559668,
+  "diffusion_field_sd": 0.021649749643730492,
+  "field_range": [
+   0.060349771364909405,
+   0.3377479206756221
+  ],
+  "clipped_fraction": 0.0,
+  "signal_nats_all_atoms": 269.4870878618728
+ },
+ {
+  "pattern": 44,
+  "kind": "inverse_square",
+  "matrix_atoms": 191033,
+  "matrix_guest_fraction": 0.06813482487318945,
+  "field_mean": 0.06800110540192365,
+  "field_sd": 0.009308312077590863,
+  "diffusion_field_sd": 0.010892169708111585,
+  "field_range": [
+   0.028566192517764957,
+   0.11902973924300327
+  ],
+  "clipped_fraction": 0.0,
+  "signal_nats_all_atoms": 133.71863535908997
+ },
+ {
+  "pattern": 45,
+  "kind": "inverse_square",
+  "matrix_atoms": 189813,
+  "matrix_guest_fraction": 0.11323776559034418,
+  "field_mean": 0.11309078841402663,
+  "field_sd": 0.022028224679542133,
+  "diffusion_field_sd": 0.02587549078000699,
+  "field_range": [
+   0.039611753661545915,
+   0.1858385247751704
+  ],
+  "clipped_fraction": 0.0,
+  "signal_nats_all_atoms": 462.7886185739305
+ },
+ {
+  "pattern": 46,
+  "kind": "inverse_square",
+  "matrix_atoms": 194666,
+  "matrix_guest_fraction": 0.05820225411730862,
+  "field_mean": 0.05762032577531974,
+  "field_sd": 0.004905776115420157,
+  "diffusion_field_sd": 0.005915168435007816,
+  "field_range": [
+   0.03513159937153253,
+   0.10085658941935716
+  ],
+  "clipped_fraction": 0.0,
+  "signal_nats_all_atoms": 43.72358015938626
+ },
+ {
+  "pattern": 47,
+  "kind": "inverse_square",
+  "matrix_atoms": 191652,
+  "matrix_guest_fraction": 0.07089933838415462,
+  "field_mean": 0.07106550385095331,
+  "field_sd": 0.005840860037816134,
+  "diffusion_field_sd": 0.006960646666841212,
+  "field_range": [
+   0.047187346658279575,
+   0.11862435692869958
+  ],
+  "clipped_fraction": 0.0,
+  "signal_nats_all_atoms": 50.3430639914577
+ },
+ {
+  "pattern": 48,
+  "kind": "inverse_square",
+  "matrix_atoms": 193714,
+  "matrix_guest_fraction": 0.1094551761875755,
+  "field_mean": 0.10974642859132432,
+  "field_sd": 0.015746366496565974,
+  "diffusion_field_sd": 0.01856930737083076,
+  "field_range": [
+   0.042332899780373114,
+   0.17276521805922324
+  ],
+  "clipped_fraction": 0.0,
+  "signal_nats_all_atoms": 250.2633679837306
+ },
+ {
+  "pattern": 49,
+  "kind": "inverse_square",
+  "matrix_atoms": 191531,
+  "matrix_guest_fraction": 0.12632941925850125,
+  "field_mean": 0.12587585269667187,
+  "field_sd": 0.01216089644323625,
+  "diffusion_field_sd": 0.014383379948082711,
+  "field_range": [
+   0.07161638143866525,
+   0.19103281021655907
+  ],
+  "clipped_fraction": 0.0,
+  "signal_nats_all_atoms": 131.20267047807403
+ }
+]
