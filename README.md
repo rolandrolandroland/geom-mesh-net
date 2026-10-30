@@ -28,7 +28,7 @@ The project has two purposes:
 | Diffusion-field simulator with a physical law | **done, gate passed** (reconstruction Stage 5.1) |
 | A field fitted to one pattern | **done, gate passed** (reconstruction Stage 2): a Fourier-feature network beats tuned smoothing in 48 of 52 headroom test cells, closing 68% of its gap |
 | Fields to measured precipitates | **pilot complete, promotion failed** (E20): Fourier improves field prediction but misses 35 particles versus the Gaussian detector's 8 across four confirmation patterns; the reserved test remains unevaluated |
-| The diffusion law as a constraint on the reconstruction | **done, gate failed** (reconstruction Stage 5.2): the law predicts the matrix and exposes violations, but the capillary length cannot be recovered from detected precipitates; a physics-informed network failed first (E16) |
+| The diffusion law as a constraint on the reconstruction | **done, gate failed** (reconstruction Stage 5.2): the fitted law improves matrix prediction but misses its capillary-recovery criterion; a physics-informed network failed first (E16). The subsequent joint fitter remains experimental |
 
 The first line of work is **amortized Bayesian inference of the physical
 cluster parameters**, specified in
@@ -45,6 +45,14 @@ its physics-informed network was replaced by the law imposed exactly. E20 now co
 the Fourier field to particle measurement and that joint physics fit; its development
 pilot failed promotion. Each stage has a walkthrough in `docs/experiments/`
 (E10 onward).
+
+**Physics-inference scope, corrected 29 October 2026.** E18's single-fit error-to-Fisher-scale
+ratios do not establish a precision floor or calibrated uncertainty. The current joint fitter
+can produce overlapping spheres and clips probabilities; E20 flags these failures after fitting.
+Its numerical diagnostics do not establish parameter identifiability. These are synthetic-data
+research baselines, with no validation yet on real APT measurements. The
+[physics-inference implementation plan](docs/guides/physics_inference_implementation_plan.md)
+sets out feasible fitting, controlled boundary comparisons, and uncertainty validation.
 
 **For where both tracks stand and what comes next**, see
 [`project_roadmap.md`](project_roadmap.md).
@@ -76,7 +84,7 @@ geom_mesh_net/                    the library (installed with pip install -e .)
     cluster_extraction.py         precipitates and matrix atoms from a smoothed field (Stage 5.2)
     particle_detection.py         common field extraction, point clustering, matching and measurements (E20)
     particle_physics.py           joint-fit adapter with explicit physical-validity diagnostics (E20)
-    joint_fit.py                  fit precipitate geometry and physical constants together (E18)
+    joint_fit.py                  experimental joint geometry/constants fitter (E18)
   neural/
     datasets.py                   torch Dataset and collate function
     models.py                     neural field models
@@ -126,7 +134,7 @@ pip install -e ".[dev,notebooks]"
 python -m pytest -q
 ```
 
-326 tests, a few minutes. They need no data: the fixtures build synthetic
+395 tests, a few minutes. They need no data: the fixtures build synthetic
 patterns, and the tests that do want `data/` skip when it is absent.
 
 Where a closed form exists the tests compare against it rather than against a
@@ -221,6 +229,8 @@ gates, and the pilot measurements that set them.
 - [`clustersim_todo.md`](docs/guides/clustersim_todo.md) — open ideas
 - [`field_to_particles_plan.md`](docs/guides/field_to_particles_plan.md) — detailed
   implementation and experiment outline for the neural-field particle pipeline
+- [`physics_inference_implementation_plan.md`](docs/guides/physics_inference_implementation_plan.md)
+  — proposed feasible fitter, fixed-candidate comparison, and calibrated uncertainty study
 - [E20 — From a Fourier field to measured precipitates](docs/experiments/E20_field_to_particles.md)
   — extraction, conventional controls, and the connection to the joint physics fit
 

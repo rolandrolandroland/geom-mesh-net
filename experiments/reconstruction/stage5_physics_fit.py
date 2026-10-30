@@ -42,7 +42,8 @@ all three hold:
 2. its log loss on the acceptance atoms is no greater than the constant matrix's, the mean of
    the training atoms: a law that predicts no better than no structure has no support;
 3. no fitted constant lies at a bound of its search range (``ParametricDiffusionField.BOUNDS``,
-   within 1%): an estimate at the edge of its range is not identified by the data.
+   within 1%): search-bound contact is a heuristic flag requiring further investigation.
+   Absence of bound contact does not establish parameter identifiability.
 
 The first condition is the rule as first designed. The second and third were added on
 development patterns, where the first alone accepted most misspecified cells (second Stage 5
@@ -59,9 +60,11 @@ end worse on its early-stopping atoms than a near-constant field.
   at least two-thirds of misspecified cells, pooled over both controls. If (iii) fails, no
   physics-informed claim is made, whatever (i) and (ii) show.
 
-Results are written after every cell, and a rerun skips the cells already in the output, but
-only if its design matches the one recorded in the file. The gate is reported only for a
-complete run: every cell of the split's scope, for every matrix kind, with no errors.
+Results are written after every cell, and a rerun skips the cells already in the output,
+including failed attempts, but only if its design matches the one recorded in the file.
+Use a fresh output for a new attempt; resuming never discards a recorded failure. The gate
+is recomputed from the records and reported only for a complete run: exactly one valid
+cell of the split's scope for every matrix kind, with no errors or unexpected records.
 
 Usage
 -----
@@ -75,6 +78,7 @@ import hashlib
 import json
 import multiprocessing
 import time
+from numbers import Integral, Real
 from pathlib import Path
 
 import numpy as np
@@ -297,21 +301,91 @@ def expected_cells(split):
     return {(kind, eta, index) for kind in KINDS for eta, indices in SCOPE[split].items() for index in indices}
 
 
-def gate(cells, split):
-    """The Gate 5.2 verdict, or a report of what is missing.
+def _cell_identity(cell):
+    """Read a case key without coercing malformed identities into valid cases."""
+    if not isinstance(cell, dict):
+        raise ValueError("cell must be an object")
+    kind, eta, index = cell["kind"], cell["efficiency"], cell["pattern"]
+    if not isinstance(kind, str):
+        raise ValueError("kind must be a string")
+    if isinstance(eta, bool) or not isinstance(eta, Real) or not np.isfinite(eta):
+        raise ValueError("efficiency must be a finite number")
+    if isinstance(index, bool) or not isinstance(index, Integral):
+        raise ValueError("pattern must be an integer")
+    return kind, float(eta), int(index)
 
-    A verdict is given only for a complete run: every cell of the scope, for every matrix
-    kind, fitted without error. A partial run cannot pass.
+
+def _validate_gate_metrics(cell):
+    """Validate every value consumed by the gate before any aggregation."""
+    if not isinstance(cell["acceptance"]["accepted"], (bool, np.bool_)):
+        raise ValueError("acceptance.accepted must be a boolean")
+    if cell["kind"] != "diffusion":
+        return
+    values = {f"matrix_excess.{k}": cell["matrix_excess"][k] for k in ("physics", "network")}
+    if not isinstance(cell["physics"], dict):
+        raise ValueError("physics must be an object")
+    if "normalised_error" in cell["physics"]:
+        values.update({f"normalised_error.{k}": cell["physics"]["normalised_error"][k] for k in ("ell", "xi")})
+    elif ("constants" not in cell["physics"] or cell["physics"]["constants"] is not None
+          or cell["acceptance"]["accepted"]):
+        raise ValueError("missing normalised_error requires explicit constants=None and accepted=False")
+    # A completed cell with no fitted constants has no normalised_error. Preserve the
+    # protocol's infinite-error treatment of that outcome instead of dropping the cell.
+    for name, value in values.items():
+        if isinstance(value, bool) or not isinstance(value, Real) or not np.isfinite(value):
+            raise ValueError(f"{name} must be a finite number")
+        if name.startswith("normalised_error.") and value < 0:
+            raise ValueError(f"{name} must be nonnegative")
+
+
+def gate(cells, split):
+    """Gate 5.2, requiring each expected identity exactly once and no failed records.
+
+    Invalid or incomplete input has no aggregate statistics: repeated favourable cells,
+    unexpected controls and failures cannot silently change a denominator.
     """
-    missing = sorted(expected_cells(split) - {(c["kind"], c["efficiency"], c["pattern"]) for c in cells if "error" not in c})
-    errors = [(c["kind"], c["efficiency"], c["pattern"]) for c in cells if "error" in c]
-    complete = not missing and not errors
-    cells = [c for c in cells if "error" not in c]
-    correct = [c for c in cells if c["kind"] == "diffusion"]
-    wrong = [c for c in cells if c["kind"] != "diffusion"]
-    if not correct:
-        return {"split": split, "complete": False, "missing_cells": len(missing), "errored_cells": len(errors),
-                "verdict": "incomplete", "passed": False, "physics_claim_permitted": False}
+    expected = expected_cells(split)
+    seen, usable = {}, {}
+    errors, unexpected, malformed = [], [], []
+    for record_index, cell in enumerate(cells):
+        try:
+            key = _cell_identity(cell)
+        except (KeyError, TypeError, ValueError) as exc:
+            malformed.append({"record_index": record_index, "reason": str(exc)})
+            continue
+        seen.setdefault(key, []).append(record_index)
+        if key not in expected:
+            unexpected.append({"record_index": record_index, "cell": list(key)})
+        if "error" in cell:
+            errors.append({"record_index": record_index, "cell": list(key), "error": str(cell["error"])})
+            continue
+        try:
+            _validate_gate_metrics(cell)
+        except (KeyError, TypeError, ValueError) as exc:
+            malformed.append({"record_index": record_index, "cell": list(key), "reason": str(exc)})
+            continue
+        if key in expected:
+            usable[key] = cell
+    missing = sorted(expected - usable.keys())
+    duplicates = [{"cell": list(key), "record_indices": indices}
+                  for key, indices in sorted(seen.items()) if len(indices) > 1]
+    complete = not (missing or errors or duplicates or unexpected or malformed)
+    correct = [c for key, c in usable.items() if key[0] == "diffusion"]
+    wrong = [c for key, c in usable.items() if key[0] != "diffusion"]
+    result = {
+        "split": split, "complete": complete, "expected_cells": len(expected), "recorded_cells": len(cells),
+        "missing_cells": len(missing), "missing": [list(key) for key in missing],
+        "errored_cells": len(errors), "errors": errors,
+        "duplicate_cells": sum(len(d["record_indices"]) - 1 for d in duplicates), "duplicates": duplicates,
+        "unexpected_cells": len(unexpected), "unexpected": unexpected,
+        "malformed_cells": len(malformed), "malformed": malformed,
+        "cells": {"correct": len(correct), "misspecified": len(wrong)},
+        "conditions": {}, "rejected_by_kind": {},
+        "verdict": "invalid" if duplicates or unexpected or malformed else "incomplete",
+        "passed": False, "physics_claim_permitted": False,
+    }
+    if not complete:
+        return result
     wins = np.mean([c["matrix_excess"]["physics"] < c["matrix_excess"]["network"] for c in correct])
     normalised = {k: float(np.median([c["physics"]["normalised_error"][k] if "normalised_error" in c["physics"] else np.inf
                                       for c in correct])) for k in ("ell", "xi")}
@@ -326,13 +400,11 @@ def gate(cells, split):
     }
     by_kind = {kind: float(np.mean([not c["acceptance"]["accepted"] for c in wrong if c["kind"] == kind]))
                for kind in KINDS[1:] if any(c["kind"] == kind for c in wrong)}
-    return {"split": split, "complete": complete,
-            "missing_cells": len(missing), "missing": [list(m) for m in missing[:20]], "errored_cells": len(errors),
-            "cells": {"correct": len(correct), "misspecified": len(wrong)}, "conditions": conditions,
-            "rejected_by_kind": by_kind,
-            "verdict": ("passed" if all(c["passed"] for c in conditions.values()) else "failed") if complete else "incomplete",
-            "passed": bool(complete and all(c["passed"] for c in conditions.values())),
-            "physics_claim_permitted": bool(complete and conditions["iii_acceptance_rule"]["passed"])}
+    passed = all(c["passed"] for c in conditions.values())
+    result.update(conditions=conditions, rejected_by_kind=by_kind,
+                  verdict="passed" if passed else "failed", passed=passed,
+                  physics_claim_permitted=conditions["iii_acceptance_rule"]["passed"])
+    return result
 
 
 def worker(task):
@@ -355,13 +427,20 @@ def main():
     args = parser.parse_args()
     output = args.output or paths.RECONSTRUCTION_DIR / "results" / f"stage5_physics_fit_{args.split}.json"
     kinds = args.kinds.split(",")
+    if len(set(kinds)) != len(kinds) or any(kind not in KINDS for kind in kinds):
+        parser.error("--kinds must contain distinct names from " + ",".join(KINDS))
 
     report = json.loads(output.read_text()) if output.exists() else {"cells": []}
-    done = {(c["pattern"], c["efficiency"], c["kind"]) for c in report["cells"] if "error" not in c}
-    report["cells"] = [c for c in report["cells"] if "error" not in c]
+    report["gate"] = gate(report["cells"], args.split)
+    if any(report["gate"][name] for name in ("duplicate_cells", "unexpected_cells", "malformed_cells")):
+        diagnostics = {name: report["gate"][name] for name in ("duplicates", "unexpected", "malformed")
+                       if report["gate"][name]}
+        raise SystemExit(f"{output} contains invalid case records; choose a fresh --output. "
+                         f"Diagnostics: {json.dumps(diagnostics)}")
+    done = {_cell_identity(c) for c in report["cells"]}
     tasks = [(index, eta, kind, args.device, max(1, 6 // args.workers))
              for kind in kinds for eta, indices in SCOPE[args.split].items() for index in indices[:args.limit]
-             if (index, eta, kind) not in done]
+             if (kind, eta, index) not in done]
     design = {"protocol": PROTOCOL, "scope": {k: {str(e): list(v) for e, v in s.items()} for k, s in SCOPE.items()}, "kinds": KINDS,
                         "split": SPLIT, "resolve_gap": RESOLVE_GAP, "physics_starts": PHYSICS_STARTS, "network": NETWORK,
                         "acceptance_rule": "no worse than the network and the constant on acceptance atoms, no constant at a bound",
@@ -377,13 +456,15 @@ def main():
     report["design"], report["design_hash"] = design, digest
     report["environment"] = {"torch": torch.__version__, "device": args.device}
     print(f"{len(tasks)} cells to run, {len(done)} already done", flush=True)
+    if report["gate"]["errored_cells"]:
+        print("Recorded failures are retained and prevent passing; use a fresh --output for a new attempt.", flush=True)
     started = time.perf_counter()
     context = multiprocessing.get_context("spawn")
     with context.Pool(args.workers) as pool:
         for n, cell in enumerate(pool.imap_unordered(worker, tasks), 1):
             report["cells"].append(cell)
             report["cells"].sort(key=lambda c: (KINDS.index(c["kind"]), -c["efficiency"], c["pattern"]))
-            report["gate"] = gate([c for c in report["cells"] if "error" not in c], args.split)
+            report["gate"] = gate(report["cells"], args.split)
             output.write_text(json.dumps(report, indent=1) + "\n")
             if "error" in cell:
                 print(f"  {n}/{len(tasks)} pattern {cell['pattern']} eta {cell['efficiency']} {cell['kind']}: {cell['error']}", flush=True)
@@ -397,6 +478,7 @@ def main():
                   + (f"; normalised error ell {constants['ell']:.2f} xi {constants['xi']:.2f}" if constants else "")
                   + f" ({cell['seconds']} s)", flush=True)
     report["seconds"] = round(time.perf_counter() - started)
+    report["gate"] = gate(report["cells"], args.split)
     output.write_text(json.dumps(report, indent=1) + "\n")
     print(json.dumps(report["gate"], indent=1))
 

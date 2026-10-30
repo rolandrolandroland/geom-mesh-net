@@ -1,8 +1,16 @@
 # Implementation plan for reliable physics inference
 
 29 October 2026. Proposed implementation and experiment sequence following the
-read-only project audit. This guide specifies future work; it does not change the
-existing models, experiment designs, or results.
+read-only project audit. The phases below retain the implementation design; the
+checkpoint note records the narrow repairs completed before the larger study.
+
+**Checkpoint update, 29 October 2026:** commit `0c08355` preserves the original
+E20 source, design and reports. Merge preparation adds the Phase 1 case-accounting
+and growth-penalty repairs, their regression tests, and corrections to E18's
+scientific interpretation. Historical results and their source hashes remain
+unchanged. The constrained fitter, new boundary comparison and uncertainty study
+remain future work. See [E20's reproduction note](../experiments/E20_field_to_particles.md#reproduction-and-saved-evidence)
+before attempting to resume the archived experiment from the changed source.
 
 ## Objective and first deliverable
 

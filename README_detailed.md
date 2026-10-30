@@ -662,8 +662,8 @@ background, questions and methods.
   - The design as first written missed its own boundary condition, and the benchmark
     geometry overlapped too much to hold one; both were fixed before any network was
     trained.
-  - A prior was chosen by the Cramér–Rao bound, so that the capillary and screening
-    lengths can be recovered at all.
+  - A prior was chosen using local Fisher precision references to select a promising
+    regime for capillary- and screening-length estimation; recovery still requires validation.
   - Gate 5.1 passed. Stage 2's walkthrough is E19; E20 begins Stage 4 with a diffusion-data pilot.
 
 - **[E16 — A physics-informed network that prefers the wrong physics](docs/experiments/E16_soft_pinn.md)**
@@ -679,8 +679,8 @@ background, questions and methods.
   Stage 5.2 as corrected: the exact diffusion field around precipitates detected in the data.
   - Choosing matrix atoms from their own labels had biased them by 11–19 standard errors;
     leaving each atom's label out removed it.
-  - The law predicted the matrix far better than an unconstrained network, and a rule based on
-    identifiability rejected 61 of 72 misspecified matrices.
+  - The law predicted the matrix far better than an unconstrained network, and a rule using
+    held-out prediction and search-bound checks rejected 61 of 72 misspecified matrices.
   - Gate 5.2 failed on the capillary length (median error 3.5 times its bound): errors in the
     detected radii pull it toward zero.
 
@@ -697,13 +697,16 @@ background, questions and methods.
     reproduces the 14 summary features three to seven times better than one relabelled from B2's.
 
 - **[E18 — Fitting the precipitates with the law](docs/experiments/E18_joint_geometry.md)**
-  After Gate 5.2: what the capillary length can be worth when the geometry is unknown, and which
-  fit reaches it. Development work, not a gate.
-  - Leaving every radius and the interior profile unknown widens the bound on ℓ by only 7–29%:
-    the gate's shortfall was the method's.
-  - The bound on ℓ times the radius spread is 0.03–0.045: without a spread of radii, ℓ is gone.
-  - Fitting the radii alone makes ℓ worse; freeing the centres as well brings it to 0.89 times
-    the bound, at the level of a fit handed the true geometry.
+  After Gate 5.2: how geometry assumptions affect capillary-length estimates. Development
+  work on eight patterns, not a gate; interpretation corrected 29 October 2026.
+  - Leaving every radius and the interior profile unknown widens a local Fisher SD reference
+    by 7–29%. That calculation omits unknown centres and uses a smooth interface unlike the
+    generating simulator, so it does not establish the achievable precision of the full fit.
+  - The reference times radius spread is 0.03–0.045 in this design, not a universal floor.
+    Equal radii exactly confound ℓ with c_eq in this model.
+  - Fitting radii alone makes ℓ worse; freeing centres lowers the median error/reference ratio
+    to 0.89. Single-fit error ratios demonstrate neither statistical efficiency nor interval
+    coverage. The joint fitter remains experimental and does not enforce feasible geometry.
 
 - **[E20 — From a Fourier field to measured precipitates](docs/experiments/E20_field_to_particles.md)**
   A reusable particle-extraction and measurement library, five-detector comparison,
@@ -718,6 +721,11 @@ background, questions and methods.
     in the report, and the Fourier fit also reaches a parameter bound.
   - **Pilot promotion failed; reserved test patterns were not evaluated.** The
     full Stage 4 benchmark and Stage 5.3 law-rejection experiment remain separate.
+
+The [physics-inference implementation plan](docs/guides/physics_inference_implementation_plan.md)
+sets out the next controlled comparison and uncertainty study. Post-fit numerical validity
+flags are not tests of parameter identifiability; the physics results remain specific to the
+synthetic model, with no real-APT validation or calibrated interfacial-free-energy inference.
 
 ---
 
@@ -740,7 +748,7 @@ geom_mesh_net/                      the library (installed with pip install -e .
   fields/cluster_extraction.py      precipitates and matrix atoms from a smoothed field (Stage 5.2)
   fields/particle_detection.py      common field and point detectors, matching and measurements (E20)
   fields/particle_physics.py        joint-fit adapter with physical-validity diagnostics (E20)
-  fields/joint_fit.py               joint geometry and physical-constant fitting (E18)
+  fields/joint_fit.py               experimental joint geometry/constants fitter (E18)
   neural/datasets.py                torch Dataset and collate function
   neural/models.py                  neural field models
   neural/implicit.py                SIREN field with physics penalties; the analytic diffusion family

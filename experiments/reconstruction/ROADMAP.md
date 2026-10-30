@@ -1156,7 +1156,7 @@ Controls, each with a stated prediction:
 | --- | --- |
 | Same network with λ_pde = λ_bc = 0 | worse matrix excess loss, most of all at low η |
 | B1 smoothing | worse still in the matrix |
-| Parametric oracle: the analytic family fitted with the true centres and radii | an upper bound that the PINN approaches |
+| Parametric oracle: the analytic family fitted with the true centres and radii | an oracle-geometry reference for the PINN |
 | **Misspecified data:** matrix fields that violate the PDE, namely 1/r² profiles and Gaussian-smoothed random fluctuations | the acceptance rule below rejects the physics |
 
 **Acceptance rule.** Physical constants are reported for a pattern only if the
@@ -1228,10 +1228,10 @@ With both off, clustersim reproduces benchmark pattern 0 exactly
 (`tests/test_clustersim.py`). Stage 5 uses a gap of 1 and a floor of 2. Precipitates
 keep clustersim's in-sphere labelling, so the replay oracle still holds inside them.
 
-*3. Under the first prior, no method could recover the capillary length.* The
-Cramér–Rao bound is the smallest relative error that any unbiased fit to the observed
-matrix labels can reach when it knows the true precipitate geometry. The network, which
-must segment the geometry, can only do worse.
+*3. Under the first prior, the local precision reference was poor.* The square root of
+the Cramér–Rao variance bound gives a local relative SD reference for unbiased estimation
+under the specified likelihood and known precipitate geometry. It is not a lower bound
+on an individual fitted error and does not include geometry uncertainty.
 
 - On the benchmark geometry at η = 0.37, the bound on ℓ was below 25% in at most 13 of
   47 patterns at the patterns' own matrix concentrations.
@@ -1243,8 +1243,8 @@ scales with c_eq and needs a spread of radii. The screening length is read from 
 depletion and enrichment zones, which partly cancel where growing and dissolving
 precipitates mix.
 
-Nine priors were compared on 12 patterns each. Two, F and I, identified both constants
-best, but by making every precipitate dissolve. That contradicts the physical picture of
+Nine priors were compared on 12 patterns each. Two, F and I, gave the smallest local SD
+references for both constants, but by making every precipitate dissolve. That contradicts the physical picture of
 5.1, in which large precipitates grow in depletion zones while small ones dissolve. The
 prior chosen keeps that picture. Its median bounds at η = 0.37 were 15% on ℓ and 32% on
 ξ over the 12 comparison patterns, and 13% and 20% over the 50 development patterns.
@@ -1420,7 +1420,8 @@ which come from a rerun with the final script. Each of its conditions has a reas
 depend on the counts:
 
 - a law that predicts no better than no structure has no support;
-- an estimate at the edge of its search range is not identified by the data.
+- an estimate at an artificial search bound needs further investigation before interpreting
+  the parameter. Absence of bound contact is not a test of identifiability.
 
 When the law does not describe the matrix, the fitted constants run to those edges (ℓ to 10⁻³ in 5
 of 8 shuffled cells at η = 0.37; ξ to 0.5 or 200 nm in 3 of 8 noise cells). The same condition
@@ -1438,15 +1439,16 @@ adopted rule meets Gate 5.2(iii) with no margin, so (iii) may fail on the test c
   stopping and 70% training, by one uniform number per atom shared by all matrix kinds. Fit the
   analytic family by L-BFGS from three starts.
 - *Controls.* The same SIREN with both penalties at zero; B1; the constant matrix; the analytic
-  family with the true geometry, fitted to observed atoms of the true matrix (the upper bound);
+  family with the true geometry, fitted to observed atoms of the true matrix (an oracle reference);
   and the misspecified matrices `smoothed_noise` and `shuffled_surface`, on the same patterns,
   masks and splits.
 - *Acceptance rule.* The third rule above; constants are reported only for accepted cells.
 - *Open definition O6, fixed.* For each of ℓ and ξ, the median over correctly specified test cells
   of |relative error| divided by that pattern's Cramér–Rao bound at its efficiency
-  (`pilot/check_diffusion_prior.py`) must be below 2. An unbiased estimator at the bound has a
-  median normalised error of 0.67, so 2 allows three times the error of an efficient fit. The
-  threshold was set before the development scope was run.
+  (`pilot/check_diffusion_prior.py`) must be below 2. A centred Gaussian error with SD equal to
+  that reference has a median absolute normalized error of about 0.67; this motivated the
+  historical threshold but is not a demonstrated error distribution for this estimator.
+  The threshold was set before the development scope was run and remains unchanged.
 - *Scope.* Test patterns 50–73 at η = 0.37 and 50–61 at η = 0.1, for each of the three matrix
   kinds: 36 correctly specified cells and 72 misspecified ones.
 
@@ -1484,11 +1486,12 @@ these rates. Because (ii) failed, it may not be said to recover the capillary le
   median 25% of the constant matrix's at η = 0.37 and 41% at 0.1, against 77% and 98% for the
   unconstrained network and 15 and 12 times for B1. With the true geometry it was 2.6% and 9.3%.
 - **The constants carry the detection error.** With the true geometry, the median normalised
-  errors were 0.80 for ℓ and 0.85 for ξ at η = 0.37, near an efficient estimator's 0.67. With
+  errors were 0.80 for ℓ and 0.85 for ξ at η = 0.37. A centred Gaussian error at the reference
+  SD would give 0.67, but this comparison does not measure the estimator's efficiency. With
   detected geometry they were 2.30 and 1.54. ℓ came out too small in 20 of 24 cells at η = 0.37 and
   9 of 12 at 0.1, as errors in the detected radii predict. At η = 0.1 detection found a median 64% of
   the precipitates.
-- **The acceptance rule works through identifiability.** Of the 60 rejected misspecified cells, 45
+- **Search-bound checks account for many rejections.** Of the 60 rejected misspecified cells, 45
   had a fitted constant at a bound. The rule did not select accurate constants: in accepted cells the
   median normalised error of ℓ was 2.41. The rule as first designed, comparing against the network
   alone, would have accepted 27 of 36 correctly specified cells but rejected only 26 of 72
@@ -1554,10 +1557,22 @@ change of protocol. On the development scope the same run gives (i) 12 of 12, (i
 2.94 for ξ, (iii) 10 of 12 accepted and 18 of 24 rejected
 (`results/stage5_physics_fit_development.json`).
 
+**Interpretation correction, 2026-10-29.** The historical E18 measurements below are preserved.
+Error-to-Fisher-SD ratios across individual datasets are diagnostics, not evidence of
+efficiency, interval coverage or a universal precision floor. `check_joint_fit.py` uses
+`radii_unknown` as the normalizer even for free-centre fits; that excludes centre nuisance
+parameters. Its smooth-interface Fisher model also differs from the generating simulator.
+The current joint fitter remains experimental: separation is not enforced throughout
+optimization, predicted probabilities are clipped, and E20 found invalid fitted geometry.
+Numerical convergence and parameter-bound checks do not establish identifiability or validate
+the model for real APT. The
+[implementation plan](../../docs/guides/physics_inference_implementation_plan.md) specifies the
+feasibility, controlled-comparison and uncertainty work needed next.
+
 **What Gate 5.2(ii) was measured against, recorded 2026-09-17.** Open definition O6 divides the
 error of ℓ by the Cramér–Rao bound of `pilot/check_diffusion_prior.py`, which assumes the true
-centres and radii. No method has them, so the threshold was set against an accuracy nobody could
-reach. `pilot/check_geometry_bound.py` recomputes it with the geometry unknown. Every atom's guest
+centres and radii. It therefore omits geometry uncertainty rather than proving an accuracy
+unreachable by every method. `pilot/check_geometry_bound.py` adds nuisance parameters. Every atom's guest
 probability is modelled as the screened field outside the precipitates and a profile inside,
 blended across an interface of width w:
 
@@ -1567,9 +1582,9 @@ with ρ fitted per pattern to the oracle. Two things had to be modelled rather t
 simulator fills a precipitate from the centre outward, so the oracle's profile saturates near 1
 inside and falls at the rim — a sphere of constant composition would have been the wrong model, and
 the fitted power law leaves about 0.03 in probability on every pattern. And the simulator's
-interface is a step, which carries unbounded information about a radius: a width has to be assumed
-for the bound to exist at all. It stands for the mixing a real instrument adds through local
-magnification and trajectory overlap, and the bound is reported across it. The information now runs
+interface is a step, which does not meet this smooth Fisher calculation's regularity assumptions.
+A logistic width is introduced as a sensitivity model motivated by instrumental mixing; it is
+not a calibrated APT response and differs from the generator. The information now runs
 over every atom, not the matrix alone, because the atoms inside a precipitate are what measure its
 radius, and the nuisance parameters are every radius and the interior shape — 69 to 158 of them per
 pattern.
@@ -1581,24 +1596,23 @@ pattern.
 | 1.0 nm | 0.141 | 0.174 (+23%) | 0.191 | 0.263 |
 | 2.0 nm | 0.168 | 0.217 (+29%) | 0.164 | 0.228 |
 
-Medians over the eight development patterns at η = 0.37, as relative errors; at η = 0.1 every entry
+Medians over the eight development patterns at η = 0.37, as relative SD references; at η = 0.1 every entry
 roughly doubles. The 2.0 nm row is two patterns rather than eight, which is why its ξ entries sit
 below the 1.0 nm row's: it is a different median, not a gain. Across patterns the ℓ bound at 0.5 nm
 spans 0.113 to 0.199.
 
-Two things follow, and the first is the answer to the question the gate raised.
+Two local sensitivity observations follow.
 
-- **Not knowing the geometry costs little.** Freeing every radius and the interior shape widens the
+- **Unknown radii and shape modestly change this reference.** Freeing every radius and the interior shape widens the
   bound on ℓ by 7% to 29%, depending on how far the interface is mixed. Reading Gate 5.2(ii)
-  against a bound that assumes no geometry therefore turns a measured 3.49 into about 3.1. The
-  verdict does not change: the gap between the fit and what the data allow is the method's, not
-  missing information.
-- **The interface costs more than the geometry.** Doubling the mixing width from 0.5 to 1.0 nm
-  costs more than freeing 100 radii does. It is the measurement model, not the unknown
-  precipitates, that decides what the capillary length can be worth — which is a reason to model
-  the measurement now rather than after a network is built.
+  against this reference turns a measured 3.49 into about 3.1. The gate verdict does not
+  change, but the calculation excludes unknown centres and does not assign the entire gap
+  to the method rather than the data or model mismatch.
+- **The interface assumption matters.** Doubling the mixing width from 0.5 to 1.0 nm changes
+  the reference more than freeing 100 radii does in this comparison. This motivates testing
+  the measurement model alongside geometry uncertainty.
 
-**Where the capillary length is recoverable at all, recorded 2026-09-17.** The capillary length
+**How radius spread affects the local reference, recorded 2026-09-17.** The capillary length
 enters only through the Gibbs–Thomson surface value c_eq·exp(ℓ/R). A population of equal
 precipitates fixes one surface value, and c_eq alone explains it; only a spread of radii separates
 the two. Radius spread is therefore the main axis of `pilot/check_identifiability_map.py`, which
@@ -1615,14 +1629,15 @@ applies the machinery above: separated spheres filling 10% of a 60 nm box, a mea
 | 0.32 | 136–142 | 0.10–0.11 | 0.12 | 0.15 | 0.23 |
 | 0.41–0.43 | 61–92 | 0.09 | 0.10–0.11 | 0.14 | 0.19–0.20 |
 
-Relative error bounds at η = 0.37 and w = 0.3 nm unless the column says otherwise; the spread is
+Relative SD references at η = 0.37 and w = 0.3 nm unless the column says otherwise; the spread is
 what the draw realised, which saturates near 0.4 because radii are held above 2 nm.
 
 - **One number describes the axis.** The bound on ℓ times the radius spread is 0.030 to 0.045 over
-  the whole range, and 0.030 to 0.034 below a spread of 0.3. As a rule of thumb, the best relative error available for the capillary length is
-  about 0.03 divided by the spread of the radii — for these patterns, this box, this efficiency.
-- **Below a spread of about 0.1, ℓ is not recoverable.** At 0.05 the bound is 60%, and at η = 0.1 it
-  is larger than ℓ itself. The Stage 5 patterns sit at 0.22 to 0.31, where the bound is 11–15%, which
+  the whole range, and 0.030 to 0.034 below a spread of 0.3. About 0.03 divided by radius spread
+  describes this local relative SD reference for these patterns, box, concentrations, interface
+  and efficiency; it is not a universal precision floor.
+- **Below a spread of about 0.1, the reference indicates weak precision.** At 0.05 it is 60%, and at η = 0.1 it
+  exceeds 100%. The Stage 5 patterns sit at 0.22 to 0.31, where the reference is 11–15%, which
   is where the per-pattern numbers above land.
 - **Fewer, larger precipitates do not help as much as the spread suggests.** The widest rows hold 61
   and 92 precipitates rather than about 130, because the volume fraction is fixed, and their bounds
@@ -1630,8 +1645,9 @@ what the draw realised, which saturates near 0.4 because radii are held above 2 
 - **Efficiency enters as its square root**, as independent Bernoulli labels must: every entry at
   η = 0.1 is 1.9 times its neighbour at 0.37.
 
-This is the answer to whether the question is worth asking at all. It is, at the radius spreads this
-simulator draws, and it would not be for a population of nearly equal precipitates.
+Equal radii exactly confound c_eq and ℓ in this model. The finite-spread calculations motivate
+a repeated-simulation study of when practically useful precision is possible; they do not
+define a universal threshold for recovery.
 
 **A joint fit of the law and the precipitates, recorded 2026-09-17.** Stage 5.2 detects the
 precipitates, then fits the law to the matrix atoms, and the capillary length is read from how
@@ -1639,18 +1655,21 @@ surface concentration varies with radius — so noise in the detected radii flat
 information the detection throws away is in the atoms *inside* the precipitates, which the Stage 5.2
 fit never sees: it admits matrix atoms only. `fields/joint_fit.py` stops treating the geometry as
 known. Every radius, the interior profile and the four constants are parameters of one likelihood,
-over every observed atom, in the same model the bound is computed from; the fit is L-BFGS on the
+over every observed atom, in the smooth-interface model family used for the Fisher calculation;
+the fitted interior and nuisance settings must still be matched before a precision comparison.
+The fit is L-BFGS on the
 Bernoulli log loss, with each atom's nearest precipitate held fixed within a round. Centres and the
 interface width can be freed too, and `grow_geometry` adds precipitates where the fit leaves
-unexplained guests, keeping them only when they earn their parameters under a Bayesian information
-criterion. `pilot/check_joint_fit.py` compares it with detect-then-fit and with the true geometry on
-the development patterns.
+unexplained guests using a Bayesian-information-style penalty. The October 29 correction counts
+one parameter per new fixed-centre sphere and four per new free-centre sphere; previously it
+counted one in both cases. `pilot/check_joint_fit.py` compares the joint fit with detect-then-fit
+and with the true geometry on the development patterns.
 
 Fitting the radii works. Fitting them *with the centres held where detection put them* does not.
-On the eight development patterns at η = 0.37, measured against the geometry-unknown bound at the
-same interface width the fit uses:
+On the eight development patterns at η = 0.37, measured against the radii-and-shape Fisher SD
+reference at the same interface width the fit uses:
 
-| | median ℓ / bound | median ξ / bound | within the bound | median radius error | matrix excess |
+| | median ℓ error / reference SD | median ξ error / reference SD | within reference SD | median radius error | matrix excess |
 | --- | --- | --- | --- | --- | --- |
 | detect then fit | 1.72 | 2.07 | 4 of 8 | 7.5% (detection's) | 0.00031 |
 | joint fit, centres fixed | 3.01 | 1.61 | 1 of 8 | 2.9% | 0.00061 |
@@ -1658,7 +1677,9 @@ same interface width the fit uses:
 | the true geometry | 0.41 | 0.49 | 5 of 8 | — | 0.00003 |
 
 Matrix excess is the loss on never-observed atoms of the true matrix, in nats per atom, scored from
-each model's matrix field alone.
+each model's matrix field alone. Each row summarizes single fits to different geometries,
+not repeated realizations measuring estimator variance or coverage. The free-centre row uses
+a reference that omits centre nuisance parameters.
 
 - **The radii and the screening length improve as soon as the geometry is fitted.** The radius error
   falls from detection's 7.5% to 2.9%, and the screening length from 2.07 times its bound to 1.61.
@@ -1672,53 +1693,56 @@ each model's matrix field alone.
   c_eq·exp(ℓ/R) is read, so an error parked there is paid for in ℓ.
 - **More freedom in the interior does not help.** A piecewise-linear profile of 6 or 12 segments
   leaves ℓ at +46% and +37%; fitting the interface width leaves it at +46% and doubles the radius
-  error. The bound says as much: a knotted interior costs only about 10% more than the power law,
-  so this is not where the information is.
-- **Freeing the centres does.** With the centres fitted too, ℓ falls to 0.89 times the bound, inside
-  it in five of eight patterns, and ξ to 0.81 — both at the level of the fit that is given the true
-  geometry, and without giving up the matrix: its excess loss is lower than detect-then-fit's. The
-  radius error rises slightly against the frozen-centre fit, from 2.9% to 4.0%, which is the price
-  of the extra freedom.
+  error. The local Fisher reference grows by about 10% for a knotted interior compared with the
+  power law; this alone does not establish which nuisance dominates estimation error.
+- **Freeing centres lowers these observed errors.** With centres fitted too, the ℓ error/reference
+  ratio falls to 0.89, below one in five of eight patterns, and ξ to 0.81. This is not an
+  efficiency result or an equivalence to the oracle-geometry estimator. Matrix excess loss is
+  lower than detect-then-fit's. The radius error rises slightly against the frozen-centre fit,
+  from 2.9% to 4.0%.
 - **That freedom also buys a way to fail.** On pattern 7 the free fit reached a lower loss than the
   frozen one (0.3077 against 0.3184) by driving ξ to its lower bound of 0.5 nm, against a true 8.1,
   and inflating ℓ to 7.2 against 4.3. Three parameters per precipitate open a degenerate direction
   the likelihood prefers. Stage 5.2's acceptance rule rejects exactly this — a fitted constant at a
   bound — so the failure is visible, but any gate on this method has to keep that check. Pattern 7
   is where it would be expected: it has the largest screening length of the eight (8.1 nm) and the
-  loosest bound on it, so ξ is the least identified constant there.
-- **The result is not an artefact of assuming a sharp interface.** Repeating patterns 0, 3 and 7
+  loosest local reference for ξ. Bound contact is a warning, not a full identifiability analysis.
+- **A limited width sensitivity check.** Repeating patterns 0, 3 and 7
   with the interface width set to 1.0 nm instead of 0.3, and scoring each against the bound at its
   own width, leaves ℓ at 0.72, 0.90 and 0.73 times the bound — a median of 0.73, against 0.44, 0.80
-  and 6.5 for the same three at 0.3 nm. The width matters to what is achievable, as the bound says,
-  but not to the finding. Pattern 7's ξ still runs to its floor at the wider interface, and its
+  and 6.5 for the same three at 0.3 nm. This does not resolve model mismatch or calibrate
+  uncertainty. Pattern 7's ξ still runs to its floor at the wider interface, and its
   radius error rises to 24%, which is what a degenerate fit looks like from the geometry's side.
 - **Missed precipitates remain the hard case.** On the pattern where detection found 64 of 102
   precipitates, freeing the geometry improved the radii (11.2% to 6.5%) and left ℓ at +65%. The
   atoms of a precipitate nobody found sit in the likelihood as guests the matrix cannot explain, and
-  the constants absorb them. The birth step does what it was built to do and not yet what is needed:
-  it added 12 precipitates and then 5, both rounds earning their parameters under the information
+  the constants absorb them. The historical birth step
+  added 12 precipitates and then 5, both rounds passing the recorded information
   criterion (119.6 nats against 66.4, then 39.5 against 27.7), and raised recall from 0.64 to 0.80,
   but ℓ moved from +137% to +147% and ξ from −49% to −93%. A fifth of the precipitates are still
-  missing, and the constants still pay for them.
+  missing, and the constants still pay for them. These saved penalties have not been recomputed:
+  the original birth caller is unavailable, so its active-centre setting and the effect of
+  the parameter-count correction on those decisions are unknown.
 - **The fit is not reproducible where recall is poor.** Two runs of that pattern differing only in
   the number of threads gave ℓ +65% and +137%. Where detection finds nearly everything the same
   comparison reproduces to the second decimal.
 
 At η = 0.1 none of this holds. Detection finds a median 44% of the precipitates, and over the four
 patterns run there ℓ stands at 1.83 times the bound for detect-then-fit, 2.29 with the centres
-fixed and 1.70 with them free, none of them usable; even the fit given the true geometry only
-reaches 0.98. Freeing the geometry there also costs the matrix, where the frozen fit already lost
-it: a median excess of 0.00566 nats per atom against detect-then-fit's 0.00139. Low efficiency is
-a detection problem first, and nothing downstream repairs it.
+fixed and 1.70 with them free; the true-geometry comparison gives 0.98. These ratios do not
+establish a usability threshold or estimator efficiency. Freeing the geometry there also costs
+the matrix, where the frozen fit already lost it: a median excess of 0.00566 nats per atom
+against detect-then-fit's 0.00139. Low efficiency is a detection problem in these runs, and
+the attempted downstream fits do not repair it.
 
 The reading is that detect-then-fit and the frozen-geometry joint fit fail for the same reason from
 opposite sides: neither can move a precipitate. Detection's errors then either flatten ℓ, when the
 law is fitted only outside, or pile into the interface, when it is fitted everywhere. A fit that
-frees the whole geometry reaches the bound on patterns where detection finds nearly everything,
-which is the first evidence in this track that the capillary length is recoverable at all — and it
-is evidence from eight development patterns at one efficiency, with one degenerate fit among them,
-not a result. What would make it one is a stage of its own, with thresholds fixed before any test
-cell is fitted, and a rule for the degenerate direction the free geometry opens.
+frees the whole geometry improves some estimates where detection finds nearly everything.
+That is evidence from eight development patterns at one efficiency, with one degenerate fit,
+not a demonstration of calibrated physical inference. The next stage needs a feasible
+optimizer, fixed thresholds, full case accounting, null controls and repeated-simulation
+uncertainty validation before evaluating reserved test data.
 
 
 ### Stage 6 — Measurement physics in the loss: position blur (1 week, optional)
@@ -2046,10 +2070,10 @@ Each claim below becomes available only once its gate passes.
 | After | Claim |
 | --- | --- |
 | Stages 0–1 (no gate needed) | "Built an exact oracle for the solute field of simulated atom probe data, and measured how close standard delocalisation gets to it: within X% for large precipitates and Y% for small ones." |
-| Gate 2 | "A Fourier-feature implicit field, fitted to a single thinned point cloud, recovers small precipitates better than tuned delocalisation." |
+| Gate 2 | "A Fourier-feature implicit field, fitted to a single thinned point cloud, improves solute-probability prediction over tuned delocalisation in the tested headroom conditions." Particle detection requires Gate 4; E20's pilot failed promotion. |
 | Gate 3 | "A conditional implicit field trained on simulations reconstructs unseen patterns closer to the truth than any per-pattern method, judged on held-out atoms with a proper scoring rule. Out-of-distribution tests show where its learned prior misleads." |
 | Gate 4 | "Reconstructed fields identify precipitates, and measure their radii, better than the maximum separation method." |
-| Gate 5.2 | "A physics-informed network that enforces a screened diffusion equation and the Gibbs–Thomson condition recovers solute depletion profiles and the capillary length from sparse, noisy labels, and rejects its physics when the data violate it." |
+| Gate 5.2 | The original network was replaced by exact-law fitting, and the corrected gate failed. No capillary-recovery or general law-validation claim is available; E18 and E20 remain development evidence. |
 
 **Accurate connections:**
 
@@ -2059,15 +2083,16 @@ Each claim below becomes available only once its gate passes.
   one. The soft-penalty network failed (E16); the method that replaced it solves the equation
   exactly and fits its constants by maximum likelihood, and the work after Gate 5.2 fits the
   geometry through the same differentiable forward model. **Call it differentiable physics with
-  amortised inference, not a PINN** — recorded 2026-09-17, following a project audit.
+  per-pattern maximum-likelihood fitting**; the conditional flow in the separate inference track
+  supplies amortised inference. Clarified 2026-10-29.
 - The inference track is simulation-based inference.
 
 **Claims to avoid:**
 
 - that a network "hallucinates" missing atoms;
-- that it "respects thermodynamics", unless Gate 5.2 passes;
-- that any of this is novel, until the literature has been checked; treat novelty as likely rather
-  than established;
+- that a synthetic gate validates thermodynamic consistency or real-APT physical parameters;
+- that any of this is novel, until the specific question and method have been checked against
+  the literature;
 - that it is "identical to NeRF";
 - that matching K(r) validates a reconstruction.
 

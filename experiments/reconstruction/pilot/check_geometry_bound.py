@@ -2,9 +2,10 @@
 
 Gate 5.2(ii) compares a fit that must find its own precipitates against the Cramer-Rao bound
 of ``pilot/check_diffusion_prior.py``, which assumes the true centres and radii
-(``experiments/reconstruction/ROADMAP.md``, Stage 5). That bound is unreachable in principle:
-nobody has the geometry. This pilot recomputes it with the geometry as unknown nuisance
-parameters, so the gate's threshold can be read against something a method could reach.
+(``experiments/reconstruction/ROADMAP.md``, Stage 5). That local variance reference omits
+geometry uncertainty. This pilot adds geometry nuisance parameters under an assumed smooth
+measurement model. It does not establish attainable estimator accuracy or interval coverage.
+Interpretation corrected 2026-10-29; historical results are retained.
 
 **The model.** Every atom is a guest with a probability that depends on where it sits:
 
@@ -19,16 +20,16 @@ for the nearest precipitate k, its distance r_k, the screened diffusion field c(
   drops at the rim. It is fitted per pattern as rho(u) = 1 - (1 - rho_edge) u^m.
 - ``w``, the width over which the interface is mixed. The simulator's own boundary is a step:
   a guest probability of about 0.5 just inside and the matrix value just outside. A step
-  carries unbounded information about a radius, so the bound is not defined without a
-  measurement model. Real atom probe data mix the interface over a nanometre or two through
-  local magnification and trajectory overlap. ``w`` stands for that, and the bound is reported
-  across a range of it.
+  does not satisfy this smooth Fisher calculation's regularity assumptions. ``w`` supplies
+  a sensitivity model motivated by instrumental mixing, not a calibrated APT response.
+  The reference is reported across widths and differs from the sharp-interface generator.
 
 **The bound.** The Fisher information of independent Bernoulli labels at detection efficiency
 eta is eta * sum_i grad p_i grad p_i^T / (p_i (1 - p_i)), over *all* atoms: the ones inside
 precipitates carry the information about the radii. Derivatives are taken by central
 differences in log parameters. The bound on a constant is the square root of the matching
-diagonal of the inverse, which in log space is a relative error. Three nuisance sets are
+diagonal of the inverse, which in log space is a local relative standard-deviation reference.
+It is not a lower bound on an individual error. Three nuisance sets are
 compared:
 
 - **geometry known**: only c_eq, ell, xi and c_inf are unknown (the Stage 5 bound);
@@ -36,6 +37,9 @@ compared:
   replaces the two-parameter profile with a piecewise-linear one through that many segments,
   which is what the joint fit of ``fields/joint_fit.py`` actually frees;
 - **radii and centres unknown**: plus every centre, three parameters each.
+
+The historical joint-fit scoring script selects ``radii_unknown`` even for free-centre
+fits. Those ratios therefore omit centre nuisance parameters and are diagnostic only.
 
 Usage
 -----

@@ -333,6 +333,17 @@ unused CPU preparations, the archived device failure, and reporting overhead.
 
 ## Reproduction and saved evidence
 
+**Historical source snapshot:** commit `0c08355235fb9b50b46432fccca0d06afc1568bc`
+preserves the complete E20 implementation, reports and design before the
+29 October 2026 merge preparation. All 11 source hashes in both version 3 reports
+match that commit. The later Stage 5 gate and particle-growth repairs change
+fingerprinted source files; they do not retroactively change this experiment or
+its failed verdict. The current runner therefore correctly refuses to resume these
+reports with the changed source. Use the preserved commit in a separate checkout
+for historical reproduction, with the recorded data, artifacts and environment.
+Do not rewrite the saved hashes to bypass that check. New experiments require
+their own output directory and provenance.
+
 Version 3 repairs a device-placement error in the diagnostic scorer: a reloaded
 checkpoint must move to MPS before prediction on MPS inputs. Version 2 recorded a
 confirmation error on pattern 4 at that step, before producing detector or physics
@@ -343,7 +354,8 @@ condition. Version 3 reuses the identical saved fields, recomputes calibration, 
 evaluates every required confirmation pattern. A regression test checks that device
 placement occurs before either prediction subset is scored.
 
-From the repository root, with the existing diffusion dataset and its oracle cache:
+From the preserved checkout's root, with the existing diffusion dataset and its
+oracle cache:
 
 ```bash
 python -m experiments.reconstruction.stage4_particles --phase calibration
@@ -376,10 +388,10 @@ Confirmation detector scores are not inspected until global settings are frozen.
 One runner writes each report, saving each completed case so a compatible run can
 resume.
 
-Verification after completion: **326 tests passed in 146.30 seconds**, including
+Historical verification after completion: **326 tests passed in 146.30 seconds**, including
 the held-label isolation, completeness, promotion, checkpoint, and diagnostic-device
 regressions. The six promotion conditions and five detector summaries were
-independently recomputed from individual results. Current recorded source, data,
+independently recomputed from individual results. At completion, the recorded source, data,
 oracle, runtime, design, and report fingerprints were checked; version 3 calibration
 exactly reproduces version 2's settings, scores, and field metadata.
 

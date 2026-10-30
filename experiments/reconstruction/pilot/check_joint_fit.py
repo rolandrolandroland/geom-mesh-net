@@ -16,13 +16,20 @@ This pilot compares, on development patterns:
   piecewise linear rather than a power law. Holding the centres fixed turned out to be what
   biased the capillary length: on development pattern 3 the error falls from +46% to +10% when
   they are freed;
-- **the true geometry**: the constants fitted with the simulator's own centres and radii, the
-  upper bound of E17.
+- **the true geometry**: the constants fitted with the simulator's own centres and radii,
+  an oracle-geometry comparison.
 
 Each is scored by the relative error of ell and xi, and by that error divided by the
-Cramer-Rao bound with the geometry unknown (``check_geometry_bound.py``) as well as the older
-bound that assumes it known (``check_diffusion_prior.py``). The joint fit is also scored on
-how far it moves the radii toward the truth.
+Cramer-Rao SD reference with radii and shape unknown (``check_geometry_bound.py``) as well
+as the older reference that assumes known geometry (``check_diffusion_prior.py``). The
+historical normalizer excludes unknown centres even for ``joint_free`` and assumes a smooth
+interface unlike the generator. Single-fit error ratios are diagnostics, not demonstrations
+of efficiency or coverage. The joint fit is also scored on how far it moves the radii toward
+the truth. Interpretation corrected 2026-10-29; no historical results are recomputed here.
+
+This is an experimental synthetic-data fitter: it does not enforce separation throughout
+optimization and clips probabilities. Convergence and bound checks alone do not establish
+physical validity or parameter identifiability; see the E20 diagnostics and implementation plan.
 
 The interface width ``WIDTH`` is an input, not a fitted quantity, and the fit is sensitive to
 it: on development pattern 7 at efficiency 0.37, widths of 0.2 and 0.3 nm recovered ell within

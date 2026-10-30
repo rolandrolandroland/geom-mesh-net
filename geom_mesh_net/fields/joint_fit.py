@@ -1,5 +1,10 @@
 """Fit the diffusion law and the precipitates together, from every observed atom.
 
+This is an experimental unconstrained fitter. It does not enforce separated spheres,
+and it clips raw predicted probabilities before evaluating the likelihood. A completed
+fit can therefore violate the screened-field model's assumptions; a finite loss does
+not establish physically valid geometry, identifiability, or calibrated inference.
+
 Stage 5.2 detects precipitates first and then fits the law to the matrix atoms
 (``experiments/reconstruction/stage5_physics_fit.py``). The capillary length is read from how
 surface concentration varies with radius, so errors in the detected radii flatten it
@@ -59,7 +64,11 @@ CHUNK = 20000
 
 
 class JointDiffusionModel(nn.Module):
-    """The diffusion field, its constants, the precipitate radii and the interior profile, fitted together."""
+    """Experimental joint field and geometry model with clipped output probabilities.
+
+    Radii and optional centre offsets are fitted without a separation constraint, so
+    the final geometry need not satisfy the assumptions of the screened-field coupling.
+    """
 
     def __init__(self, centres, radii, c_eq, ell, xi, c_inf, width, rho_edge=0.3, m=3.0, free_centres=False,
                  free_width=False, knots=None, levels=None):
@@ -179,10 +188,12 @@ class JointDiffusionModel(nn.Module):
 
 
 def fit_joint(model, x, y, iterations=150, rounds=3):
-    """Maximum likelihood by L-BFGS over the constants, the radii and the interior shape.
+    """Experimental L-BFGS fit of the constants, radii and interior shape.
 
     Each atom's nearest precipitate is held fixed within a round and recomputed between rounds,
-    so the assignment cannot oscillate inside the line search.
+    so the assignment cannot oscillate inside the line search. The loss uses clipped
+    probabilities, and sphere separation is not enforced. The returned fit is not a
+    certificate of raw probability validity, physical feasibility, or reliable inference.
     """
     tx = torch.as_tensor(np.asarray(x), dtype=torch.float64)
     ty = torch.as_tensor(np.asarray(y), dtype=torch.float64)
@@ -251,10 +262,12 @@ def grow_geometry(model, x, y, rounds=2, penalty=None, **peak_options):
 
     Each round refits with the candidates added. A round is kept only if the summed log loss
     falls by more than ``penalty`` per added parameter, which defaults to the Bayesian
-    information criterion's (log n) / 2. Returns the model and a record of what was added.
+    information criterion's (log n) / 2. Each new precipitate adds one radius, plus
+    three coordinates when centres are free. Shared constants, width and profile
+    parameters are already present and do not count again, including stored profile
+    tensors that are inactive in the selected profile. Returns the model and a record
+    of the additions and their parameter count.
     """
-    import copy as _copy
-
     n = len(x)
     penalty = 0.5 * math.log(n) if penalty is None else penalty
     record = {"rounds": []}
@@ -267,9 +280,12 @@ def grow_geometry(model, x, y, rounds=2, penalty=None, **peak_options):
                               np.concatenate([model.radii().detach().numpy(), np.maximum(radii, 1.0)]))
         candidate = fit_joint(grown, x, y)
         gain = (best["train_loss"] - candidate["train_loss"]) * n
-        kept = gain > penalty * len(radii)
-        record["rounds"].append({"added": int(len(radii)), "gain_nats": float(gain),
-                                 "penalty_nats": float(penalty * len(radii)), "kept": bool(kept)})
+        added_parameters = int(len(radii)) * (4 if model.offsets is not None else 1)
+        penalty_nats = penalty * added_parameters
+        kept = gain > penalty_nats
+        record["rounds"].append({"added": int(len(radii)), "added_parameters": added_parameters,
+                                 "gain_nats": float(gain), "penalty_nats": float(penalty_nats),
+                                 "kept": bool(kept)})
         if not kept:
             break
         model, best = grown, candidate

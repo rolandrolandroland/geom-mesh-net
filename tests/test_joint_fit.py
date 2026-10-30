@@ -5,6 +5,7 @@ radii and constants from labels it generated itself.
 """
 
 import numpy as np
+import pytest
 import torch
 
 from geom_mesh_net.fields import joint_fit, physics
@@ -117,3 +118,62 @@ def test_with_geometry_carries_the_fitted_profile_onto_new_precipitates():
     assert grown.constants() == model.constants()
     assert float(grown.width()) == 0.4 and grown.offsets is not None
     assert len(grown.radii()) == len(radii) + 1
+
+
+def _growth_with_known_gain(monkeypatch, *, free_centres, added, penalty, gain, knots=None):
+    """Separate the birth decision from optimization and peak-detection noise."""
+    model = joint_fit.JointDiffusionModel(
+        [[10.0, 10.0, 10.0]], [2.0], c_eq=0.02, ell=2.0, xi=5.0,
+        c_inf=0.1, width=0.3, free_centres=free_centres, free_width=True, knots=knots,
+    )
+    x, y = np.zeros((256, 3)), np.zeros(256)
+    losses = iter([1.0, 1.0 - gain / len(x)])
+    monkeypatch.setattr(joint_fit, "fit_joint", lambda *args, **kwargs: {"train_loss": next(losses)})
+    centres = np.column_stack([20.0 + 10.0 * np.arange(added), np.full(added, 10.0),
+                               np.full(added, 10.0)])
+    monkeypatch.setattr(joint_fit, "residual_peaks", lambda *args, **kwargs: (centres, np.full(added, 1.5)))
+    result, record = joint_fit.grow_geometry(model, x, y, rounds=1, penalty=penalty)
+    return model, result, record
+
+
+@pytest.mark.parametrize("free_centres", [False, True])
+@pytest.mark.parametrize("added", [1, 3])
+@pytest.mark.parametrize("penalty", [None, 2.0])
+@pytest.mark.parametrize("knots", [None, 6])
+@pytest.mark.parametrize("excess_gain", [-0.25, 0.25])
+def test_growth_charges_only_added_active_geometry_parameters(
+        monkeypatch, free_centres, added, penalty, knots, excess_gain):
+    """A free centre costs three extra coordinates; shared profile/width terms do not."""
+    added_parameters = added * (4 if free_centres else 1)
+    penalty_per_parameter = 0.5 * np.log(256) if penalty is None else penalty
+    required_gain = penalty_per_parameter * added_parameters
+    original, result, record = _growth_with_known_gain(
+        monkeypatch, free_centres=free_centres, added=added, penalty=penalty,
+        gain=required_gain + excess_gain, knots=knots,
+    )
+
+    decision = record["rounds"][0]
+    kept = excess_gain > 0
+    assert decision["added"] == added
+    assert decision["added_parameters"] == added_parameters
+    assert decision["penalty_nats"] == pytest.approx(required_gain)
+    assert decision["gain_nats"] == pytest.approx(required_gain + excess_gain)
+    assert decision["kept"] is kept
+    assert (result is original) is (not kept)
+    assert record["precipitates"] == 1 + (added if kept else 0)
+
+
+@pytest.mark.parametrize("free_centres", [False, True])
+@pytest.mark.parametrize("added", [1, 3])
+def test_growth_rejects_a_gain_exactly_equal_to_its_parameter_penalty(monkeypatch, free_centres, added):
+    """The criterion is strict; use binary-exact losses to exercise equality."""
+    penalty = 2.0
+    required_gain = penalty * added * (4 if free_centres else 1)
+    original, result, record = _growth_with_known_gain(
+        monkeypatch, free_centres=free_centres, added=added, penalty=penalty, gain=required_gain,
+    )
+    decision = record["rounds"][0]
+    assert decision["gain_nats"] == decision["penalty_nats"] == required_gain
+    assert decision["kept"] is False
+    assert result is original
+    assert record["precipitates"] == 1

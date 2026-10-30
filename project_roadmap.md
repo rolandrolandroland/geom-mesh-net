@@ -1,6 +1,6 @@
 # Geom Mesh Net — project roadmap
 
-*Status as of 15 October 2026.*
+*Status and scientific-claim review as of 29 October 2026.*
 
 Geom Mesh Net asks two questions of a labelled 3D point pattern of the kind atom
 probe tomography produces:
@@ -31,7 +31,7 @@ Where this page and a track roadmap disagree, the track roadmap governs.
 | Spatial-summary features | 14 |
 | Physical parameters | 4 |
 | Experiment walkthroughs | 17 (E1–E11 and E15–E20 in `docs/experiments/`) |
-| Tests | 326 |
+| Tests | 395 |
 
 ---
 
@@ -163,10 +163,11 @@ exact oracle.* Roadmap:
   recover the law's constants even given the true geometry (E16). Imposed exactly around
   precipitates detected in the data, the law cut the matrix's excess loss to a median 26%
   of a constant's at realistic efficiency, against 79% for an unconstrained network. A rule
-  that requires identified constants rejected 61 of 72 matrices that break the law. Gate 5.2
+  that rejects estimates at search bounds rejected 61 of 72 matrices that break the law. Gate 5.2
   failed on the capillary length, which errors in the detected radii pull toward zero (E17).
-  A bound recomputed without assuming the geometry shows the missing accuracy is the method's,
-  not the data's: leaving every radius unknown widens it by only 7% to 29%.
+  Leaving radii and interior shape unknown widens a local Fisher SD reference by 7% to 29%
+  (E18), but that reference omits unknown centres and differs from the generating interface
+  model. It does not establish full-fit precision or distinguish every source of error.
 
 ### Stages
 
@@ -258,6 +259,10 @@ by how much it changes what the project can claim.
    optimization, retain bound checks, and define complete-case acceptance and
    alternative-field controls before testing. It still needs parameter uncertainty
    and recovery validation; E20's numerical validity flags do not supply them.
+   The current fitter remains an experimental synthetic-data baseline, with probability
+   clipping and no separation constraint during optimization. Follow the
+   [detailed implementation plan](docs/guides/physics_inference_implementation_plan.md)
+   for the correctness, feasibility, controlled-comparison and uncertainty stages.
 
 ### Then
 
@@ -276,10 +281,11 @@ by how much it changes what the project can claim.
 7. **Reconstruction Stage 5.** Done. Stage 5.1, the diffusion-field simulator, passed on
    2026-09-16 (E15). Stage 5.2 failed on 2026-09-17 (E16, E17): the law, imposed exactly,
    predicts the matrix and exposes violations, but detected radii bias the capillary length.
-   The work after the gate (E18) found that the information was there all along — an unknown
-   geometry costs 7 to 29 per cent of the bound — and that fitting the precipitates with the
-   law, centres included, reaches it. What it cannot repair is a precipitate detection never
-   found, which puts **Stage 4 on the critical path** rather than beside it.
+   Development work after the gate (E18) improves some estimates by fitting centres, but its
+   error-to-Fisher-scale ratios are not demonstrations of estimator efficiency or calibrated
+   recovery. E20 also exposes infeasible fitted geometry. Missed particles remain a limitation,
+   putting **Stage 4 on the critical path** alongside fitter and uncertainty validation.
+   These results do not yet support physical-parameter claims from real APT measurements.
 
 ### Later, or separate
 
@@ -328,7 +334,7 @@ is recorded in the relevant roadmap rather than overwritten.
 | The July global barcode informs the network | Computed on all atoms, it carries no information | reconstruction §3.2 |
 | A physics-informed network with the diffusion law as penalties can recover the law's constants | With the true geometry its loss preferred flat constants by 3–144 data margins; replaced by the exact law | E16 |
 | (R/r)² matrices can test whether the physics is rejected | They lie within 2.5–4.7 nats of the best diffusion fit over a whole pattern; no rule could reject them | E17 |
-| Comparing held-out loss with an unconstrained network tells when the law fails | It rejected 26 of 72 misspecified test cells; requiring identified constants and a win over a constant rejected 60 | E17 |
+| Comparing held-out loss with an unconstrained network tells when the law fails | It rejected 26 of 72 misspecified test cells; rejecting search-bound estimates and requiring a win over a constant rejected 60 | E17 |
 
 ---
 
@@ -337,7 +343,7 @@ is recorded in the relevant roadmap rather than overwritten.
 Run from the repository root.
 
 ```bash
-python -m pytest                                                    # 326 tests
+python -m pytest                                                    # 395 tests
 
 # Inference track
 PYTHONPATH=. python scripts/generate_data.py                        # data/, ~8 min
