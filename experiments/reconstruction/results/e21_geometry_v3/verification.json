@@ -1,0 +1,16 @@
+{
+  "date": "2026-10-30",
+  "test_command": "python -B -m pytest tests -q",
+  "tests_passed": 558,
+  "tests_failed": 0,
+  "elapsed_seconds": 96.31,
+  "source_archives_verified": {
+    "e21_geometry_v1": 98,
+    "e21_geometry_v2": 98,
+    "e21_geometry_v3": 98
+  },
+  "current_executable_source_matches_v3_archive": true,
+  "documentation_links_verified": true,
+  "only_development_cases_generated": true,
+  "scope_note": "Software verification does not override the failed numerical preflight or establish physical parameter identifiability."
+}

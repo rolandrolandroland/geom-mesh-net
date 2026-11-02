@@ -1,0 +1,229 @@
+{
+  "study_version": "e21-geometry-v2",
+  "fingerprint": "bd0cc98c78d48694c720ae33d0a3eed3892ea3d3886e23cb9485d0f311dee99f",
+  "stage": "four-case development B preflight",
+  "canonical_attempt": 1,
+  "ready": false,
+  "cases_requested": 4,
+  "cases_attempted": 4,
+  "cases_converged": 0,
+  "neural_comparison_run": false,
+  "confirmation_generated": false,
+  "reserved_test_generated": false,
+  "fit_seconds_total": 1248.1797842921223,
+  "limitation": "Version 2 stops at a safe per-round iteration cap instead of continuing remaining declared rounds. Version 3 corrects that control flow without increasing budgets or relaxing convergence requirements.",
+  "cases": [
+    {
+      "case_index": 0,
+      "candidates": 95,
+      "fitting_atoms": 64064,
+      "elapsed_seconds": 478.82134504208807,
+      "status": "no_converged_start",
+      "evaluations": 475,
+      "invalid_trials_scored": 0,
+      "unsafe_trials_rejected": 18,
+      "starts": [
+        {
+          "start": 0,
+          "status": "not_converged",
+          "error": null,
+          "evaluations": 152,
+          "rounds": [
+            {
+              "round": 0,
+              "iterations": 150,
+              "optimality": 0.00017813890711700973,
+              "termination": "maximum accepted iterations reached",
+              "assignment_changes": 2910,
+              "assignment_stable": false,
+              "numerically_converged": false
+            }
+          ]
+        },
+        {
+          "start": 1,
+          "status": "not_converged",
+          "error": null,
+          "evaluations": 169,
+          "rounds": [
+            {
+              "round": 0,
+              "iterations": 150,
+              "optimality": 0.00023586776159422853,
+              "termination": "maximum accepted iterations reached",
+              "assignment_changes": 2959,
+              "assignment_stable": false,
+              "numerically_converged": false
+            }
+          ]
+        },
+        {
+          "start": 2,
+          "status": "not_converged",
+          "error": null,
+          "evaluations": 154,
+          "rounds": [
+            {
+              "round": 0,
+              "iterations": 150,
+              "optimality": 0.00015438496352911842,
+              "termination": "maximum accepted iterations reached",
+              "assignment_changes": 2989,
+              "assignment_stable": false,
+              "numerically_converged": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "case_index": 1,
+      "candidates": 87,
+      "fitting_atoms": 63682,
+      "elapsed_seconds": 343.5471850420581,
+      "status": "no_converged_start",
+      "evaluations": 942,
+      "invalid_trials_scored": 0,
+      "unsafe_trials_rejected": 520,
+      "starts": [
+        {
+          "start": 0,
+          "status": "not_converged",
+          "error": null,
+          "evaluations": 175,
+          "rounds": [
+            {
+              "round": 0,
+              "iterations": 150,
+              "optimality": 0.00034719783946677186,
+              "termination": "maximum accepted iterations reached",
+              "assignment_changes": 3574,
+              "assignment_stable": false,
+              "numerically_converged": false
+            }
+          ]
+        },
+        {
+          "start": 1,
+          "status": "not_converged",
+          "error": null,
+          "evaluations": 167,
+          "rounds": [
+            {
+              "round": 0,
+              "iterations": 150,
+              "optimality": 0.00044219453198250815,
+              "termination": "maximum accepted iterations reached",
+              "assignment_changes": 3504,
+              "assignment_stable": false,
+              "numerically_converged": false
+            }
+          ]
+        },
+        {
+          "start": 2,
+          "status": "evaluation_budget",
+          "error": "EvaluationBudgetExceeded: maximum total evaluations reached for this start",
+          "evaluations": 600,
+          "rounds": []
+        }
+      ]
+    },
+    {
+      "case_index": 2,
+      "candidates": 91,
+      "fitting_atoms": 64134,
+      "elapsed_seconds": 338.600613040966,
+      "status": "no_converged_start",
+      "evaluations": 1534,
+      "invalid_trials_scored": 0,
+      "unsafe_trials_rejected": 1184,
+      "starts": [
+        {
+          "start": 0,
+          "status": "not_converged",
+          "error": null,
+          "evaluations": 581,
+          "rounds": [
+            {
+              "round": 0,
+              "iterations": 150,
+              "optimality": 0.00012207011511649911,
+              "termination": "maximum accepted iterations reached",
+              "assignment_changes": 3087,
+              "assignment_stable": false,
+              "numerically_converged": false
+            }
+          ]
+        },
+        {
+          "start": 1,
+          "status": "not_converged",
+          "error": null,
+          "evaluations": 353,
+          "rounds": [
+            {
+              "round": 0,
+              "iterations": 150,
+              "optimality": 0.0001864312363932321,
+              "termination": "maximum accepted iterations reached",
+              "assignment_changes": 3116,
+              "assignment_stable": false,
+              "numerically_converged": false
+            }
+          ]
+        },
+        {
+          "start": 2,
+          "status": "evaluation_budget",
+          "error": "EvaluationBudgetExceeded: maximum total evaluations reached for this start",
+          "evaluations": 600,
+          "rounds": []
+        }
+      ]
+    },
+    {
+      "case_index": 3,
+      "candidates": 57,
+      "fitting_atoms": 63973,
+      "elapsed_seconds": 87.21064116701018,
+      "status": "no_converged_start",
+      "evaluations": 163,
+      "invalid_trials_scored": 0,
+      "unsafe_trials_rejected": 2,
+      "starts": [
+        {
+          "start": 0,
+          "status": "domain_or_backend_failure",
+          "error": "DomainError: prescribed physical start has no sampled feasible chemistry: The problem is infeasible. (HiGHS Status 8: model_status is Infeasible; primal_status is None)",
+          "evaluations": 0,
+          "rounds": []
+        },
+        {
+          "start": 1,
+          "status": "not_converged",
+          "error": null,
+          "evaluations": 163,
+          "rounds": [
+            {
+              "round": 0,
+              "iterations": 150,
+              "optimality": 0.00013119940653561388,
+              "termination": "maximum accepted iterations reached",
+              "assignment_changes": 3646,
+              "assignment_stable": false,
+              "numerically_converged": false
+            }
+          ]
+        },
+        {
+          "start": 2,
+          "status": "domain_or_backend_failure",
+          "error": "DomainError: prescribed physical start has no sampled feasible chemistry: The problem is infeasible. (HiGHS Status 8: model_status is Infeasible; primal_status is None)",
+          "evaluations": 0,
+          "rounds": []
+        }
+      ]
+    }
+  ]
+}

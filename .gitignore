@@ -92,3 +92,7 @@ experiments/reconstruction/results/stage4_artifacts/
 #   python -m experiments.inference.fit_posterior --features experiments/inference/features/random_centres_features.npz --output-dir experiments/inference/posterior_random_centres
 experiments/inference/posterior_random_centres/*.pt
 experiments/inference/posterior_random_centres/*.npz
+
+# E21 fresh datasets, neural checkpoints and per-evaluation fit traces.
+# Compact manifests, study reports and preserved executable sources stay tracked.
+experiments/reconstruction/results/e21_artifacts/

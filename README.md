@@ -28,6 +28,7 @@ The project has two purposes:
 | Diffusion-field simulator with a physical law | **done, gate passed** (reconstruction Stage 5.1) |
 | A field fitted to one pattern | **done, gate passed** (reconstruction Stage 2): a Fourier-feature network beats tuned smoothing in 48 of 52 headroom test cells, closing 68% of its gap |
 | Fields to measured precipitates | **pilot complete, promotion failed** (E20): Fourier improves field prediction but misses 35 particles versus the Gaussian detector's 8 across four confirmation patterns; the reserved test remains unevaluated |
+| Constrained fitting and shared-particle boundary comparison | **implemented; numerical prerequisite not passed** (E21): completed preflights reject invalid likelihood evaluations but do not produce converged baseline fits; the neural comparison remains unrun |
 | The diffusion law as a constraint on the reconstruction | **done, gate failed** (reconstruction Stage 5.2): the fitted law improves matrix prediction but misses its capillary-recovery criterion; a physics-informed network failed first (E16). The subsequent joint fitter remains experimental |
 
 The first line of work is **amortized Bayesian inference of the physical
@@ -47,12 +48,15 @@ pilot failed promotion. Each stage has a walkthrough in `docs/experiments/`
 (E10 onward).
 
 **Physics-inference scope, corrected 29 October 2026.** E18's single-fit error-to-Fisher-scale
-ratios do not establish a precision floor or calibrated uncertainty. The current joint fitter
+ratios do not establish a precision floor or calibrated uncertainty. The historical joint fitter
 can produce overlapping spheres and clips probabilities; E20 flags these failures after fitting.
 Its numerical diagnostics do not establish parameter identifiability. These are synthetic-data
 research baselines, with no validation yet on real APT measurements. The
 [physics-inference implementation plan](docs/guides/physics_inference_implementation_plan.md)
 sets out feasible fitting, controlled boundary comparisons, and uncertainty validation.
+The separate [E21 implementation and execution report](docs/experiments/E21_constrained_geometry.md)
+records the new constrained fitter, preserved failures, and the numerical prerequisite
+that must pass before the comparison or uncertainty study can advance.
 
 **For where both tracks stand and what comes next**, see
 [`project_roadmap.md`](project_roadmap.md).
@@ -233,6 +237,8 @@ gates, and the pilot measurements that set them.
   — proposed feasible fitter, fixed-candidate comparison, and calibrated uncertainty study
 - [E20 — From a Fourier field to measured precipitates](docs/experiments/E20_field_to_particles.md)
   — extraction, conventional controls, and the connection to the joint physics fit
+- [E21 — Constrained geometry and physical inference](docs/experiments/E21_constrained_geometry.md)
+  — versioned feasible fitting, shared-candidate boundary proposals, and numerical preflight outcomes
 
 ## Experiments
 

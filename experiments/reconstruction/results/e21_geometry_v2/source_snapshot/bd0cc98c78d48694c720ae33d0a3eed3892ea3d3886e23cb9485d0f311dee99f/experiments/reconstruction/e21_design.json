@@ -1,0 +1,67 @@
+{
+  "version": "e21-geometry-v2",
+  "revision": {
+    "previous_report": "experiments/reconstruction/results/e21_geometry_v1/development.json",
+    "reason": "trust-constr preflight failed; replace unsafe trial handling with explicit feasible line search",
+    "development_reuse": "The same four development cases are reused to diagnose the revised numerical backend. They are not independent confirmation evidence. Failed v1 results are preserved.",
+    "confirmation_and_test_opened": false
+  },
+  "dataset_id": "e21-fresh-spheres-20261030-v1",
+  "status": "development",
+  "scope": {
+    "development": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11],
+    "confirmation": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23],
+    "test": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23]
+  },
+  "smoke_cases": [0, 1, 2, 3],
+  "efficiency": 0.37,
+  "held_back_fraction": 0.2,
+  "seed_namespace": "geom-mesh-net/e21/fresh/2026-10-30/v1",
+  "seed_streams": ["parameters", "positions", "geometry", "labels", "thinning", "split", "network", "resampling"],
+  "arms": {
+    "A": "original Gaussian radii and historical fitter",
+    "B": "original Gaussian radii and constrained fitter",
+    "C": "Gaussian boundary proposals with original-radius fallback and constrained fitter",
+    "D": "Fourier boundary proposals with C fallback and constrained fitter"
+  },
+  "runtime": {"fit_device": "cpu", "fit_dtype": "float64", "neural_device": "cpu", "neural_dtype": "float32", "threads": 3},
+  "simulation": {
+    "version": "e21-full-sphere-fixed-count-v1",
+    "box": 60.0,
+    "atom_count": 216000,
+    "cr": [3.0, 4.0],
+    "rb": [0.2, 0.4],
+    "volume_fraction": [0.08, 0.12],
+    "rho_c": [0.4, 0.9],
+    "matrix_mean": [0.05, 0.15],
+    "ell": [2.0, 5.0],
+    "critical_radius_fraction": [0.6, 0.8],
+    "min_radius": 2.0,
+    "min_gap": 1.0,
+    "placement_attempts": 100000,
+    "scope_note": "New fully contained sphere geometry distribution, not an exact replication of the older generator. Position, geometry and label streams are independent."
+  },
+  "physics": {
+    "backend": "feasible_lbfgs",
+    "width": 0.3,
+    "knots": 6,
+    "maxiter": 150,
+    "max_evaluations": 600,
+    "rounds": 3,
+    "starts": [[null, null], [1.0, 3.0], [6.0, 12.0]],
+    "births": false,
+    "deletions": false
+  },
+  "promotion": {
+    "minimum_radius_wins": 18,
+    "minimum_median_radius_reduction": 0.01,
+    "minimum_capillary_wins": 18,
+    "minimum_median_capillary_reduction": 0.02,
+    "maximum_median_full_heldback_loss_change": 0.0,
+    "require_all_C_D_feasible_converged": true,
+    "require_no_higher_bound_frequency": true,
+    "require_no_higher_ambiguity_frequency": true
+  },
+  "canonical_attempt": 1,
+  "scope_note": "Fresh phase-specific simulation streams. Development cannot promote. Failed confirmation retains B and leaves test unopened. C-versus-B remains descriptive. All four identities share one catalogue and split. The criteria are engineering utilities, not significance tests."
+}

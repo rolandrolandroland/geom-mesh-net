@@ -1,0 +1,1539 @@
+{
+  "case_manifest": [
+    {
+      "case_id": "e21-fresh-spheres-20261030-v1:development:000:0e9af7a99101",
+      "case_index": 0,
+      "phase": "development",
+      "seeds": {
+        "geometry": 351482208,
+        "labels": 3581457612,
+        "network": 4142669790,
+        "parameters": 3972211656,
+        "positions": 2596148221,
+        "resampling": 3563813554,
+        "split": 1751549090,
+        "thinning": 928592398
+      }
+    },
+    {
+      "case_id": "e21-fresh-spheres-20261030-v1:development:001:a78898db9760",
+      "case_index": 1,
+      "phase": "development",
+      "seeds": {
+        "geometry": 1045890521,
+        "labels": 3749070951,
+        "network": 1382901121,
+        "parameters": 896637932,
+        "positions": 942290457,
+        "resampling": 1711027014,
+        "split": 1060697819,
+        "thinning": 1306709221
+      }
+    },
+    {
+      "case_id": "e21-fresh-spheres-20261030-v1:development:002:88644f9fb79e",
+      "case_index": 2,
+      "phase": "development",
+      "seeds": {
+        "geometry": 2219047366,
+        "labels": 971941810,
+        "network": 3814213162,
+        "parameters": 149792879,
+        "positions": 134366230,
+        "resampling": 828593530,
+        "split": 70343120,
+        "thinning": 2829401567
+      }
+    },
+    {
+      "case_id": "e21-fresh-spheres-20261030-v1:development:003:eff8ac5fea5e",
+      "case_index": 3,
+      "phase": "development",
+      "seeds": {
+        "geometry": 105329722,
+        "labels": 967457578,
+        "network": 1914012309,
+        "parameters": 574689445,
+        "positions": 3900028464,
+        "resampling": 2674320426,
+        "split": 533740738,
+        "thinning": 2973269825
+      }
+    },
+    {
+      "case_id": "e21-fresh-spheres-20261030-v1:development:004:637eaf433d7d",
+      "case_index": 4,
+      "phase": "development",
+      "seeds": {
+        "geometry": 3475795720,
+        "labels": 3822840713,
+        "network": 1030546680,
+        "parameters": 107008889,
+        "positions": 1481974356,
+        "resampling": 2084868814,
+        "split": 292810009,
+        "thinning": 177842490
+      }
+    },
+    {
+      "case_id": "e21-fresh-spheres-20261030-v1:development:005:de602d49383c",
+      "case_index": 5,
+      "phase": "development",
+      "seeds": {
+        "geometry": 3579984938,
+        "labels": 2811146139,
+        "network": 4106606444,
+        "parameters": 894958251,
+        "positions": 3557801845,
+        "resampling": 3006505733,
+        "split": 886458166,
+        "thinning": 1972965036
+      }
+    },
+    {
+      "case_id": "e21-fresh-spheres-20261030-v1:development:006:f2db6ec56d58",
+      "case_index": 6,
+      "phase": "development",
+      "seeds": {
+        "geometry": 2197945356,
+        "labels": 2019979714,
+        "network": 2280086747,
+        "parameters": 2069366724,
+        "positions": 2595873061,
+        "resampling": 1777521507,
+        "split": 1755434687,
+        "thinning": 745745935
+      }
+    },
+    {
+      "case_id": "e21-fresh-spheres-20261030-v1:development:007:8ddd3dfd347f",
+      "case_index": 7,
+      "phase": "development",
+      "seeds": {
+        "geometry": 2286350303,
+        "labels": 2966822452,
+        "network": 2611762828,
+        "parameters": 59381336,
+        "positions": 1781049851,
+        "resampling": 3561628628,
+        "split": 1342213245,
+        "thinning": 4126260792
+      }
+    },
+    {
+      "case_id": "e21-fresh-spheres-20261030-v1:development:008:7a0625fbabd4",
+      "case_index": 8,
+      "phase": "development",
+      "seeds": {
+        "geometry": 594894991,
+        "labels": 949106874,
+        "network": 3991373101,
+        "parameters": 259929499,
+        "positions": 3958900876,
+        "resampling": 2134274337,
+        "split": 1121493094,
+        "thinning": 2929527759
+      }
+    },
+    {
+      "case_id": "e21-fresh-spheres-20261030-v1:development:009:785a3fddf1ea",
+      "case_index": 9,
+      "phase": "development",
+      "seeds": {
+        "geometry": 1170558709,
+        "labels": 316234993,
+        "network": 3471700560,
+        "parameters": 512425925,
+        "positions": 3278959435,
+        "resampling": 2487626729,
+        "split": 3917013988,
+        "thinning": 1384046035
+      }
+    },
+    {
+      "case_id": "e21-fresh-spheres-20261030-v1:development:010:389f881917fb",
+      "case_index": 10,
+      "phase": "development",
+      "seeds": {
+        "geometry": 2164233484,
+        "labels": 4122407575,
+        "network": 3739985615,
+        "parameters": 793434299,
+        "positions": 261340494,
+        "resampling": 3859977451,
+        "split": 3576573369,
+        "thinning": 2526706824
+      }
+    },
+    {
+      "case_id": "e21-fresh-spheres-20261030-v1:development:011:11c3a5f497f0",
+      "case_index": 11,
+      "phase": "development",
+      "seeds": {
+        "geometry": 1453164921,
+        "labels": 3202801345,
+        "network": 2082563508,
+        "parameters": 3687460413,
+        "positions": 4193696777,
+        "resampling": 2984948386,
+        "split": 2722330952,
+        "thinning": 4159043708
+      }
+    },
+    {
+      "case_id": "e21-fresh-spheres-20261030-v1:confirmation:000:a4376c67d644",
+      "case_index": 0,
+      "phase": "confirmation",
+      "seeds": {
+        "geometry": 4096536379,
+        "labels": 442951564,
+        "network": 3879522856,
+        "parameters": 1371940754,
+        "positions": 1060764288,
+        "resampling": 2247659096,
+        "split": 519467388,
+        "thinning": 2564324501
+      }
+    },
+    {
+      "case_id": "e21-fresh-spheres-20261030-v1:confirmation:001:44a6f2e8eba1",
+      "case_index": 1,
+      "phase": "confirmation",
+      "seeds": {
+        "geometry": 1501630803,
+        "labels": 1059746772,
+        "network": 2526284330,
+        "parameters": 3448778040,
+        "positions": 2507812800,
+        "resampling": 620017377,
+        "split": 1282682527,
+        "thinning": 2942640566
+      }
+    },
+    {
+      "case_id": "e21-fresh-spheres-20261030-v1:confirmation:002:0ad44f86bb33",
+      "case_index": 2,
+      "phase": "confirmation",
+      "seeds": {
+        "geometry": 2809734390,
+        "labels": 989011796,
+        "network": 2613985624,
+        "parameters": 495812448,
+        "positions": 2712244195,
+        "resampling": 3093509651,
+        "split": 143298612,
+        "thinning": 2225747121
+      }
+    },
+    {
+      "case_id": "e21-fresh-spheres-20261030-v1:confirmation:003:95e5dabc8344",
+      "case_index": 3,
+      "phase": "confirmation",
+      "seeds": {
+        "geometry": 3765746896,
+        "labels": 861465840,
+        "network": 3053051506,
+        "parameters": 1628736027,
+        "positions": 3791682323,
+        "resampling": 3054021803,
+        "split": 4094369983,
+        "thinning": 3669008025
+      }
+    },
+    {
+      "case_id": "e21-fresh-spheres-20261030-v1:confirmation:004:4998d916e6e0",
+      "case_index": 4,
+      "phase": "confirmation",
+      "seeds": {
+        "geometry": 3957743620,
+        "labels": 3344748302,
+        "network": 1384118366,
+        "parameters": 1430774502,
+        "positions": 1194803395,
+        "resampling": 942453887,
+        "split": 3243044296,
+        "thinning": 3798586876
+      }
+    },
+    {
+      "case_id": "e21-fresh-spheres-20261030-v1:confirmation:005:627f429d9edf",
+      "case_index": 5,
+      "phase": "confirmation",
+      "seeds": {
+        "geometry": 3561709842,
+        "labels": 1722018354,
+        "network": 1373474151,
+        "parameters": 3739505272,
+        "positions": 3442133028,
+        "resampling": 449768537,
+        "split": 2367460382,
+        "thinning": 1331007325
+      }
+    },
+    {
+      "case_id": "e21-fresh-spheres-20261030-v1:confirmation:006:b25673faa46a",
+      "case_index": 6,
+      "phase": "confirmation",
+      "seeds": {
+        "geometry": 2236403,
+        "labels": 1344252916,
+        "network": 60311888,
+        "parameters": 743616846,
+        "positions": 3854850935,
+        "resampling": 478328226,
+        "split": 3625986972,
+        "thinning": 3925996200
+      }
+    },
+    {
+      "case_id": "e21-fresh-spheres-20261030-v1:confirmation:007:3af1142b7611",
+      "case_index": 7,
+      "phase": "confirmation",
+      "seeds": {
+        "geometry": 3006596387,
+        "labels": 2455481347,
+        "network": 1900139071,
+        "parameters": 3739859843,
+        "positions": 1978493235,
+        "resampling": 2363088702,
+        "split": 234273465,
+        "thinning": 270265584
+      }
+    },
+    {
+      "case_id": "e21-fresh-spheres-20261030-v1:confirmation:008:25e56e27f31d",
+      "case_index": 8,
+      "phase": "confirmation",
+      "seeds": {
+        "geometry": 1595414084,
+        "labels": 3944807948,
+        "network": 1553018697,
+        "parameters": 1767409264,
+        "positions": 1631427985,
+        "resampling": 3701479399,
+        "split": 2221809515,
+        "thinning": 2283142601
+      }
+    },
+    {
+      "case_id": "e21-fresh-spheres-20261030-v1:confirmation:009:64751e46baf3",
+      "case_index": 9,
+      "phase": "confirmation",
+      "seeds": {
+        "geometry": 3049626506,
+        "labels": 3201403806,
+        "network": 4244490472,
+        "parameters": 3311728364,
+        "positions": 2586223072,
+        "resampling": 1118134488,
+        "split": 2242826011,
+        "thinning": 4053026678
+      }
+    },
+    {
+      "case_id": "e21-fresh-spheres-20261030-v1:confirmation:010:a2cf0955f845",
+      "case_index": 10,
+      "phase": "confirmation",
+      "seeds": {
+        "geometry": 1542243957,
+        "labels": 2286993786,
+        "network": 3415461270,
+        "parameters": 4063468817,
+        "positions": 2679522549,
+        "resampling": 3661702265,
+        "split": 680134528,
+        "thinning": 1656729659
+      }
+    },
+    {
+      "case_id": "e21-fresh-spheres-20261030-v1:confirmation:011:9a82f0c1f817",
+      "case_index": 11,
+      "phase": "confirmation",
+      "seeds": {
+        "geometry": 3587541038,
+        "labels": 3503050717,
+        "network": 2116812619,
+        "parameters": 1135668266,
+        "positions": 1298413817,
+        "resampling": 1054263717,
+        "split": 1445580061,
+        "thinning": 1229264164
+      }
+    },
+    {
+      "case_id": "e21-fresh-spheres-20261030-v1:confirmation:012:03ec4ed0d768",
+      "case_index": 12,
+      "phase": "confirmation",
+      "seeds": {
+        "geometry": 3678016141,
+        "labels": 4062954239,
+        "network": 2639972443,
+        "parameters": 2503278695,
+        "positions": 434210667,
+        "resampling": 2641892057,
+        "split": 3124595201,
+        "thinning": 3110063009
+      }
+    },
+    {
+      "case_id": "e21-fresh-spheres-20261030-v1:confirmation:013:d001e6d47e03",
+      "case_index": 13,
+      "phase": "confirmation",
+      "seeds": {
+        "geometry": 3245555008,
+        "labels": 3392875684,
+        "network": 349846121,
+        "parameters": 2615765245,
+        "positions": 4086998639,
+        "resampling": 495361440,
+        "split": 3523602950,
+        "thinning": 4161910253
+      }
+    },
+    {
+      "case_id": "e21-fresh-spheres-20261030-v1:confirmation:014:38dbafbeaee8",
+      "case_index": 14,
+      "phase": "confirmation",
+      "seeds": {
+        "geometry": 1183530462,
+        "labels": 3183175401,
+        "network": 3402291449,
+        "parameters": 2545450816,
+        "positions": 3756799637,
+        "resampling": 1574245210,
+        "split": 3020061396,
+        "thinning": 1823924698
+      }
+    },
+    {
+      "case_id": "e21-fresh-spheres-20261030-v1:confirmation:015:88d17107cc75",
+      "case_index": 15,
+      "phase": "confirmation",
+      "seeds": {
+        "geometry": 903497193,
+        "labels": 3376797996,
+        "network": 3606577864,
+        "parameters": 3411315643,
+        "positions": 1946380123,
+        "resampling": 4223354229,
+        "split": 1018773566,
+        "thinning": 230260729
+      }
+    },
+    {
+      "case_id": "e21-fresh-spheres-20261030-v1:confirmation:016:5ed5d4f5b2d1",
+      "case_index": 16,
+      "phase": "confirmation",
+      "seeds": {
+        "geometry": 2680726182,
+        "labels": 779208567,
+        "network": 2590801779,
+        "parameters": 560894598,
+        "positions": 3299679225,
+        "resampling": 3128067850,
+        "split": 531297074,
+        "thinning": 1133323103
+      }
+    },
+    {
+      "case_id": "e21-fresh-spheres-20261030-v1:confirmation:017:e536750709dd",
+      "case_index": 17,
+      "phase": "confirmation",
+      "seeds": {
+        "geometry": 3642995758,
+        "labels": 1893714881,
+        "network": 602471276,
+        "parameters": 3522855314,
+        "positions": 804602928,
+        "resampling": 3425375102,
+        "split": 277548617,
+        "thinning": 260336758
+      }
+    },
+    {
+      "case_id": "e21-fresh-spheres-20261030-v1:confirmation:018:5c40c5092956",
+      "case_index": 18,
+      "phase": "confirmation",
+      "seeds": {
+        "geometry": 1870906578,
+        "labels": 3767744641,
+        "network": 3781580550,
+        "parameters": 2413593752,
+        "positions": 2324250214,
+        "resampling": 826184983,
+        "split": 1062562424,
+        "thinning": 4025670983
+      }
+    },
+    {
+      "case_id": "e21-fresh-spheres-20261030-v1:confirmation:019:2a6baec38559",
+      "case_index": 19,
+      "phase": "confirmation",
+      "seeds": {
+        "geometry": 4196378879,
+        "labels": 164758104,
+        "network": 1493969029,
+        "parameters": 860404077,
+        "positions": 2990220278,
+        "resampling": 3063275223,
+        "split": 1225370251,
+        "thinning": 3958250842
+      }
+    },
+    {
+      "case_id": "e21-fresh-spheres-20261030-v1:confirmation:020:c172df5f274e",
+      "case_index": 20,
+      "phase": "confirmation",
+      "seeds": {
+        "geometry": 3832685589,
+        "labels": 8792900,
+        "network": 2968316687,
+        "parameters": 4041802717,
+        "positions": 1173815094,
+        "resampling": 2413778235,
+        "split": 1179822171,
+        "thinning": 3085483183
+      }
+    },
+    {
+      "case_id": "e21-fresh-spheres-20261030-v1:confirmation:021:36d0a24e1135",
+      "case_index": 21,
+      "phase": "confirmation",
+      "seeds": {
+        "geometry": 1012634933,
+        "labels": 4187443550,
+        "network": 1326716701,
+        "parameters": 3988501849,
+        "positions": 1474359225,
+        "resampling": 989713351,
+        "split": 1824939823,
+        "thinning": 405187062
+      }
+    },
+    {
+      "case_id": "e21-fresh-spheres-20261030-v1:confirmation:022:bf9f1f320e7e",
+      "case_index": 22,
+      "phase": "confirmation",
+      "seeds": {
+        "geometry": 3458304431,
+        "labels": 1343869699,
+        "network": 2974423806,
+        "parameters": 3120708314,
+        "positions": 4116893353,
+        "resampling": 1521418223,
+        "split": 674843625,
+        "thinning": 36525147
+      }
+    },
+    {
+      "case_id": "e21-fresh-spheres-20261030-v1:confirmation:023:fab7e7f5504b",
+      "case_index": 23,
+      "phase": "confirmation",
+      "seeds": {
+        "geometry": 2670337668,
+        "labels": 3728181797,
+        "network": 39788959,
+        "parameters": 4256066321,
+        "positions": 1558229453,
+        "resampling": 4280122424,
+        "split": 1666538607,
+        "thinning": 2556597385
+      }
+    },
+    {
+      "case_id": "e21-fresh-spheres-20261030-v1:test:000:1dc421fc7037",
+      "case_index": 0,
+      "phase": "test",
+      "seeds": {
+        "geometry": 1281293248,
+        "labels": 3635289497,
+        "network": 2648992262,
+        "parameters": 3106566479,
+        "positions": 17107815,
+        "resampling": 2360757946,
+        "split": 1867145546,
+        "thinning": 962790207
+      }
+    },
+    {
+      "case_id": "e21-fresh-spheres-20261030-v1:test:001:d3720eaac9a1",
+      "case_index": 1,
+      "phase": "test",
+      "seeds": {
+        "geometry": 889100607,
+        "labels": 933855973,
+        "network": 4122275137,
+        "parameters": 3684909362,
+        "positions": 2094818488,
+        "resampling": 220904525,
+        "split": 2984714639,
+        "thinning": 4189192996
+      }
+    },
+    {
+      "case_id": "e21-fresh-spheres-20261030-v1:test:002:bccfd9c2daea",
+      "case_index": 2,
+      "phase": "test",
+      "seeds": {
+        "geometry": 1082409135,
+        "labels": 3550129194,
+        "network": 3544091825,
+        "parameters": 3888859047,
+        "positions": 1951834854,
+        "resampling": 2320643827,
+        "split": 1018787143,
+        "thinning": 628950954
+      }
+    },
+    {
+      "case_id": "e21-fresh-spheres-20261030-v1:test:003:cbd9d0b2362d",
+      "case_index": 3,
+      "phase": "test",
+      "seeds": {
+        "geometry": 765300202,
+        "labels": 3077750594,
+        "network": 86847892,
+        "parameters": 2523672923,
+        "positions": 3781953423,
+        "resampling": 1484424113,
+        "split": 1954044075,
+        "thinning": 826301220
+      }
+    },
+    {
+      "case_id": "e21-fresh-spheres-20261030-v1:test:004:821485575484",
+      "case_index": 4,
+      "phase": "test",
+      "seeds": {
+        "geometry": 3038618396,
+        "labels": 4023201882,
+        "network": 364701651,
+        "parameters": 1661612961,
+        "positions": 617035305,
+        "resampling": 3672815287,
+        "split": 1646927367,
+        "thinning": 1990465432
+      }
+    },
+    {
+      "case_id": "e21-fresh-spheres-20261030-v1:test:005:c616b9d01904",
+      "case_index": 5,
+      "phase": "test",
+      "seeds": {
+        "geometry": 815954512,
+        "labels": 1232704515,
+        "network": 443018974,
+        "parameters": 315265907,
+        "positions": 458637645,
+        "resampling": 1794306124,
+        "split": 1218053692,
+        "thinning": 2104008232
+      }
+    },
+    {
+      "case_id": "e21-fresh-spheres-20261030-v1:test:006:0f8ced0f1089",
+      "case_index": 6,
+      "phase": "test",
+      "seeds": {
+        "geometry": 2089294698,
+        "labels": 943101304,
+        "network": 4251096678,
+        "parameters": 1668391483,
+        "positions": 4050364920,
+        "resampling": 933990113,
+        "split": 183439869,
+        "thinning": 760145831
+      }
+    },
+    {
+      "case_id": "e21-fresh-spheres-20261030-v1:test:007:68f8adfb4ede",
+      "case_index": 7,
+      "phase": "test",
+      "seeds": {
+        "geometry": 1030157178,
+        "labels": 1641215094,
+        "network": 498427431,
+        "parameters": 1373324854,
+        "positions": 230231588,
+        "resampling": 3342791715,
+        "split": 1808688984,
+        "thinning": 949398350
+      }
+    },
+    {
+      "case_id": "e21-fresh-spheres-20261030-v1:test:008:5daaea991038",
+      "case_index": 8,
+      "phase": "test",
+      "seeds": {
+        "geometry": 2304265782,
+        "labels": 1846594315,
+        "network": 805276384,
+        "parameters": 936838348,
+        "positions": 464930386,
+        "resampling": 3569882675,
+        "split": 1371197466,
+        "thinning": 2436429933
+      }
+    },
+    {
+      "case_id": "e21-fresh-spheres-20261030-v1:test:009:27b5b32b9796",
+      "case_index": 9,
+      "phase": "test",
+      "seeds": {
+        "geometry": 451972389,
+        "labels": 2015271433,
+        "network": 961720513,
+        "parameters": 1010601967,
+        "positions": 3092062453,
+        "resampling": 1276789668,
+        "split": 3497033198,
+        "thinning": 3627832267
+      }
+    },
+    {
+      "case_id": "e21-fresh-spheres-20261030-v1:test:010:e290c2ba74b6",
+      "case_index": 10,
+      "phase": "test",
+      "seeds": {
+        "geometry": 1055174345,
+        "labels": 3024979585,
+        "network": 308672105,
+        "parameters": 1322321220,
+        "positions": 2502238218,
+        "resampling": 2765215157,
+        "split": 3642981914,
+        "thinning": 4166278596
+      }
+    },
+    {
+      "case_id": "e21-fresh-spheres-20261030-v1:test:011:633b45413075",
+      "case_index": 11,
+      "phase": "test",
+      "seeds": {
+        "geometry": 2117592265,
+        "labels": 3302276654,
+        "network": 2477383722,
+        "parameters": 3425610599,
+        "positions": 2234263254,
+        "resampling": 2086317513,
+        "split": 3249716920,
+        "thinning": 3058031809
+      }
+    },
+    {
+      "case_id": "e21-fresh-spheres-20261030-v1:test:012:623120dbee5b",
+      "case_index": 12,
+      "phase": "test",
+      "seeds": {
+        "geometry": 2535071367,
+        "labels": 2690089528,
+        "network": 1301905687,
+        "parameters": 1220258586,
+        "positions": 283882636,
+        "resampling": 2463485426,
+        "split": 507849690,
+        "thinning": 3879705993
+      }
+    },
+    {
+      "case_id": "e21-fresh-spheres-20261030-v1:test:013:b44fab6d220f",
+      "case_index": 13,
+      "phase": "test",
+      "seeds": {
+        "geometry": 1395017137,
+        "labels": 4237860928,
+        "network": 2835493712,
+        "parameters": 2626654258,
+        "positions": 1631338926,
+        "resampling": 1132426939,
+        "split": 857447813,
+        "thinning": 3383087616
+      }
+    },
+    {
+      "case_id": "e21-fresh-spheres-20261030-v1:test:014:4e58ae84ae5d",
+      "case_index": 14,
+      "phase": "test",
+      "seeds": {
+        "geometry": 2911601342,
+        "labels": 641202630,
+        "network": 3242770248,
+        "parameters": 4002861339,
+        "positions": 51225572,
+        "resampling": 3249638959,
+        "split": 3522691014,
+        "thinning": 2432855583
+      }
+    },
+    {
+      "case_id": "e21-fresh-spheres-20261030-v1:test:015:74ebdec47479",
+      "case_index": 15,
+      "phase": "test",
+      "seeds": {
+        "geometry": 2739067573,
+        "labels": 1396918518,
+        "network": 2699238629,
+        "parameters": 975308028,
+        "positions": 658260517,
+        "resampling": 213266812,
+        "split": 1694157711,
+        "thinning": 2492193669
+      }
+    },
+    {
+      "case_id": "e21-fresh-spheres-20261030-v1:test:016:0266b251d97d",
+      "case_index": 16,
+      "phase": "test",
+      "seeds": {
+        "geometry": 1612359581,
+        "labels": 1946980197,
+        "network": 2846719815,
+        "parameters": 2623853443,
+        "positions": 3361227243,
+        "resampling": 707940457,
+        "split": 2307217899,
+        "thinning": 307710105
+      }
+    },
+    {
+      "case_id": "e21-fresh-spheres-20261030-v1:test:017:667792c7d54f",
+      "case_index": 17,
+      "phase": "test",
+      "seeds": {
+        "geometry": 1467858011,
+        "labels": 671258342,
+        "network": 667371579,
+        "parameters": 691897984,
+        "positions": 2938451364,
+        "resampling": 4050070374,
+        "split": 1553329029,
+        "thinning": 3312647987
+      }
+    },
+    {
+      "case_id": "e21-fresh-spheres-20261030-v1:test:018:ce988f18ee6d",
+      "case_index": 18,
+      "phase": "test",
+      "seeds": {
+        "geometry": 2151159118,
+        "labels": 1419283175,
+        "network": 3423113741,
+        "parameters": 682274861,
+        "positions": 1127415668,
+        "resampling": 800996998,
+        "split": 3655070272,
+        "thinning": 1451110082
+      }
+    },
+    {
+      "case_id": "e21-fresh-spheres-20261030-v1:test:019:061253bf46f1",
+      "case_index": 19,
+      "phase": "test",
+      "seeds": {
+        "geometry": 2801355047,
+        "labels": 4187092641,
+        "network": 2249396518,
+        "parameters": 3938252674,
+        "positions": 192245101,
+        "resampling": 2200243405,
+        "split": 3469756676,
+        "thinning": 2459151730
+      }
+    },
+    {
+      "case_id": "e21-fresh-spheres-20261030-v1:test:020:8cd21c7d955a",
+      "case_index": 20,
+      "phase": "test",
+      "seeds": {
+        "geometry": 4243673863,
+        "labels": 2969463124,
+        "network": 887348155,
+        "parameters": 2673256282,
+        "positions": 433370691,
+        "resampling": 1368531591,
+        "split": 642866659,
+        "thinning": 3925204214
+      }
+    },
+    {
+      "case_id": "e21-fresh-spheres-20261030-v1:test:021:de1ca9e6f8f3",
+      "case_index": 21,
+      "phase": "test",
+      "seeds": {
+        "geometry": 2439197100,
+        "labels": 788093777,
+        "network": 3268116355,
+        "parameters": 406528046,
+        "positions": 782184522,
+        "resampling": 1826721750,
+        "split": 3095011833,
+        "thinning": 4114818439
+      }
+    },
+    {
+      "case_id": "e21-fresh-spheres-20261030-v1:test:022:bfcda8c2f79f",
+      "case_index": 22,
+      "phase": "test",
+      "seeds": {
+        "geometry": 1708129151,
+        "labels": 715976212,
+        "network": 799782145,
+        "parameters": 3864206853,
+        "positions": 3245772052,
+        "resampling": 1087155984,
+        "split": 352110104,
+        "thinning": 1705652934
+      }
+    },
+    {
+      "case_id": "e21-fresh-spheres-20261030-v1:test:023:1cb9416d3797",
+      "case_index": 23,
+      "phase": "test",
+      "seeds": {
+        "geometry": 1059254548,
+        "labels": 3081865305,
+        "network": 1486478504,
+        "parameters": 1803295023,
+        "positions": 2138974636,
+        "resampling": 4041614471,
+        "split": 2006543659,
+        "thinning": 2692439764
+      }
+    }
+  ],
+  "design": {
+    "arms": {
+      "A": "original Gaussian radii and historical fitter",
+      "B": "original Gaussian radii and constrained fitter",
+      "C": "Gaussian boundary proposals with original-radius fallback and constrained fitter",
+      "D": "Fourier boundary proposals with C fallback and constrained fitter"
+    },
+    "canonical_attempt": 1,
+    "dataset_id": "e21-fresh-spheres-20261030-v1",
+    "efficiency": 0.37,
+    "held_back_fraction": 0.2,
+    "physics": {
+      "backend": "feasible_lbfgs",
+      "births": false,
+      "deletions": false,
+      "knots": 6,
+      "max_evaluations": 600,
+      "maxiter": 150,
+      "rounds": 3,
+      "starts": [
+        [
+          null,
+          null
+        ],
+        [
+          1.0,
+          3.0
+        ],
+        [
+          6.0,
+          12.0
+        ]
+      ],
+      "width": 0.3
+    },
+    "promotion": {
+      "maximum_median_full_heldback_loss_change": 0.0,
+      "minimum_capillary_wins": 18,
+      "minimum_median_capillary_reduction": 0.02,
+      "minimum_median_radius_reduction": 0.01,
+      "minimum_radius_wins": 18,
+      "require_all_C_D_feasible_converged": true,
+      "require_no_higher_ambiguity_frequency": true,
+      "require_no_higher_bound_frequency": true
+    },
+    "revision": {
+      "confirmation_and_test_opened": false,
+      "development_reuse": "The same four development cases are reused to diagnose the revised numerical backend. They are not independent confirmation evidence. Failed v1 results are preserved.",
+      "previous_report": "experiments/reconstruction/results/e21_geometry_v1/development.json",
+      "reason": "trust-constr preflight failed; replace unsafe trial handling with explicit feasible line search"
+    },
+    "runtime": {
+      "fit_device": "cpu",
+      "fit_dtype": "float64",
+      "neural_device": "cpu",
+      "neural_dtype": "float32",
+      "threads": 3
+    },
+    "scope": {
+      "confirmation": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23
+      ],
+      "development": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11
+      ],
+      "test": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23
+      ]
+    },
+    "scope_note": "Fresh phase-specific simulation streams. Development cannot promote. Failed confirmation retains B and leaves test unopened. C-versus-B remains descriptive. All four identities share one catalogue and split. The criteria are engineering utilities, not significance tests.",
+    "seed_namespace": "geom-mesh-net/e21/fresh/2026-10-30/v1",
+    "seed_streams": [
+      "parameters",
+      "positions",
+      "geometry",
+      "labels",
+      "thinning",
+      "split",
+      "network",
+      "resampling"
+    ],
+    "simulation": {
+      "atom_count": 216000,
+      "box": 60.0,
+      "cr": [
+        3.0,
+        4.0
+      ],
+      "critical_radius_fraction": [
+        0.6,
+        0.8
+      ],
+      "ell": [
+        2.0,
+        5.0
+      ],
+      "matrix_mean": [
+        0.05,
+        0.15
+      ],
+      "min_gap": 1.0,
+      "min_radius": 2.0,
+      "placement_attempts": 100000,
+      "rb": [
+        0.2,
+        0.4
+      ],
+      "rho_c": [
+        0.4,
+        0.9
+      ],
+      "scope_note": "New fully contained sphere geometry distribution, not an exact replication of the older generator. Position, geometry and label streams are independent.",
+      "version": "e21-full-sphere-fixed-count-v1",
+      "volume_fraction": [
+        0.08,
+        0.12
+      ]
+    },
+    "smoke_cases": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "status": "development",
+    "version": "e21-geometry-v2"
+  },
+  "design_id": "c0742e46ec9fcadbe6c0e1878835fda87fc9ebd11687a1bca773d029a35c9d5e",
+  "inputs": {
+    "field_design": {
+      "architecture": {
+        "activation": "relu",
+        "coordinates": "u = x / 60, the known box length",
+        "fourier_features": 256,
+        "frequencies": "B = sigma * B0, B0 standard normal from the frequency stream, shared across sigma within a seed, stored with the checkpoint",
+        "hidden": [
+          256,
+          256,
+          256,
+          256
+        ],
+        "initialisation": "final-layer weights zero, bias the log odds of the fitting subset's guest fraction, clipped to [1e-6, 1 - 1e-6]; hidden weights from the initialisation stream",
+        "output": "one logit; probability by sigmoid"
+      },
+      "budget": {
+        "confirmation_hours": 5,
+        "per_cell_minutes_median": {
+          "0.1": 3,
+          "0.37": 9,
+          "0.8": 11
+        },
+        "source": "complete pilot cells: fits, refits, both controls, baselines and prediction",
+        "test_hours": "14 to 16"
+      },
+      "comparators": {
+        "B0": "observed guest fraction",
+        "B1": {
+          "bandwidths": [
+            0.75,
+            1.0,
+            1.5,
+            2.0,
+            3.0,
+            4.5,
+            6.0
+          ],
+          "procedure": "5-fold cross-validation on all observed atoms with Stage 1's seed, cell_seed(index, eta, 0); prediction from all observed atoms"
+        },
+        "B2": {
+          "c": [
+            0.05,
+            0.1,
+            0.15,
+            0.25,
+            0.35,
+            0.5,
+            0.7,
+            1.0
+          ],
+          "k": [
+            1,
+            2,
+            4,
+            8,
+            16,
+            32,
+            64,
+            128,
+            256,
+            512
+          ],
+          "procedure": "as B1, on the grid widened by O12"
+        },
+        "difference_from_neural_selection": "B1 and B2 choose by 5-fold cross-validation and predict from all observed atoms; the neural models choose on one 20% validation split"
+      },
+      "controls": {
+        "legacy_e8_mlp": "historical context only, not run",
+        "linear_fourier": {
+          "features": "the same B0 and sigma grid as the Fourier MLP, sigma selected separately",
+          "hidden": [],
+          "learning_rate": 0.01
+        },
+        "raw_mlp": {
+          "hidden": "as architecture.hidden",
+          "input": "2x/60 - 1",
+          "learning_rate": 0.001,
+          "note": "matches width and depth, not parameter count"
+        }
+      },
+      "data": {
+        "atoms_per_pattern": 216000,
+        "box_length": 60.0,
+        "dataset_checksums": "experiments/reconstruction/benchmark/dataset_checksums.json",
+        "dataset_dir": "data_random_centres",
+        "mask_checksums": "experiments/reconstruction/benchmark/mask_checksums.json",
+        "thinning_entropy": 20260915
+      },
+      "decisions": {
+        "architecture.hidden": "settled by the pilot; see pilot_log",
+        "controls.linear_fourier.learning_rate": "settled by the pilot; see pilot_log",
+        "controls.raw_mlp.learning_rate": "settled by the pilot; see pilot_log",
+        "device": "settled by the pilot; see pilot_log",
+        "refit": "settled by the pilot; see pilot_log",
+        "seeds": "settled by the pilot; see pilot_log",
+        "sigma_grid": "settled by the pilot; see pilot_log",
+        "training.learning_rate": "settled by the pilot; see pilot_log",
+        "training.max_updates": "settled by the pilot; see pilot_log",
+        "training.patience": "settled by the pilot; see pilot_log"
+      },
+      "device": "mps",
+      "device_note": "training on MPS; anything needing gradients with respect to input coordinates runs on the CPU (the gate needs none)",
+      "frozen": "2026-09-19",
+      "gate": {
+        "completeness": "every one of the 108 cells present without error, or the verdict is incomplete",
+        "conditions": {
+          "beats_better_baseline": "on headroom cells, L_FF < min(L_B1, L_B2) in at least two thirds",
+          "calibration": "median over headroom cells of (ECE_FF - ECE_B1) <= 0.005",
+          "closes_b1_gap": "median over headroom cells of (L_B1 - L_FF) / (L_B1 - L_oracle) >= 0.20",
+          "no_harm": "median over the other cells of (excess_FF - excess_B1) <= 0.002 nats per atom"
+        },
+        "failures": "a cell whose training went non-finite keeps its best finite checkpoint, is flagged, and stays in every denominator",
+        "headroom": "benchmark.has_headroom(L_B0, L_B1, L_oracle): B1 leaves at least 15% of the constant-to-oracle gap open and at least 0.01 nats per atom (Stage 1's definition)",
+        "method": "the Fourier MLP under the frozen sigma selection, refit and seed policies"
+      },
+      "metrics": {
+        "brier_excess": "mean (q - p*)^2 on removed atoms",
+        "ece": "Stage 1 O2: 20 equal-width bins on q, weighted by the share of removed atoms",
+        "gap_closed": "(L_B0 - L_m) / (L_B0 - L_oracle)",
+        "mean_residual": "mean fitted probability minus fitted guest fraction, reported and not enforced",
+        "predictive_check": "Stage 1 O11, reported and not gated",
+        "primary": "excess log loss on removed atoms: mean BCE minus the oracle's, predictions clipped to [1e-6, 1 - 1e-6] as fields.baselines.log_loss",
+        "regions": "Stage 1 O1: rim if |d - r| <= 2 for some sphere, core if d / r < 0.7, matrix outside every sphere, interior otherwise",
+        "share_of_B1_gap_closed": "(L_B1 - L_m) / (L_B1 - L_oracle)"
+      },
+      "pilot_log": [
+        "2026-09-18 explore (4 cells, pilot/results/fourier_field_explore.json): every selection was sigma 0.75 or 1.5, below the planned grid {3, 6, 12, 24}; sigma >= 12 never improved on the constant and sigma 0.75 was chosen at the lower edge, so the pilot grid became {0.375, 0.75, 1.5, 3, 6}. Learning rate 1e-4 gave the best removed-atom excess in all four cells (1e-3 and 3e-4 reached similar optima sooner and less resolved by 25-update checkpoints).",
+        "2026-09-18 B2 grid on the 36 Stage 2 pilot cells, k to 2048 (pilot/results/b2_grid_stage2_pilot.json): O12's grid chooses its k = 512 edge in 4 of 36 cells, all large-cluster cells without headroom; extending to 2048 improves the cross-validated loss in one pattern only, by at most 0.00044 nats against B2's median margin of 0.0072 over B1, and still binds there. The O12 grid stands for Stage 2's comparator.",
+        "2026-09-18 device: on MPS (torch 2.10) forward passes and weight gradients match the CPU to float32 precision over 20 repeats (7e-7 and 5e-7), but gradients with respect to the input coordinates through the full field do not (up to 300% deviation, occasionally non-finite), although each component operation is correct alone. Training on MPS is therefore sound; the gradient penalty and the gradient diagnostic run on the CPU, and fit_field refuses a penalty on MPS. The grid pilot's gradient diagnostic (computed on MPS) is discarded.",
+        "2026-09-18 grid (36 cells, pilot/results/fourier_field_grid.json): control learning rates chosen by the lowest median excess over all 36 cells. Linear Fourier: 1e-2 (0.01595; better than 3e-2 in 31/36; 1e-3 is no better and hits the update cap in 129/180 fits). All three rates leave the linear model far behind the Fourier MLP, so its weakness is the representation, not optimisation. Raw MLP: 1e-3 (0.00823 against 0.00998 for 1e-4, better in 27/36, 1e-4 capped in 22/36). Fourier MLP at lr 1e-4 beats the better smoother in 34/36 cells and 16/18 headroom cells; sigma chosen 0.375 x7 (the lower edge), 0.75 x17, 1.5 x11, 3 x1.",
+        "2026-09-18 edge (pilot/results/fourier_field_edge.json): sigma 0.1875 on the 12 large-cluster cells where 0.375 had been chosen at the lower edge. Validation would select it in 1/12 cells (gain 0.0007 nats), where it worsens the removed-atom excess (0.0032 -> 0.0041); it scores worse than the grid's choice in 9/12. The lower edge is not meaningfully binding: the grid stays {0.375, 0.75, 1.5, 3, 6}. Noted: at eta 0.1 the 4,300 validation atoms of pattern 0 cannot see that 0.1875 would halve its excess, a limit of validation-based selection at low efficiency.",
+        "2026-09-19 seeds and refit (18 cells: all 12 pilot patterns at eta 0.1, one per band at 0.37; pilot/results/fourier_field_seeds.json): refitting on all observed atoms improves 50/54 seed-fits by updates (median -0.00060) and 49/54 by passes (-0.00049); identical at eta 0.1, where both fits are full-batch (34/36, -0.00084). Rule: updates. Seed spread (max - min excess over three seeds) median 0.00067, an order of magnitude below the effect under test; the three-seed ensemble gains 0.0003 (better in 14/18) at three times the cost. Policy: single seed 0. Seed 0 rerun on MPS gave the same sigma and update in 18/18 cells, identical excess.",
+        "2026-09-19 width (36 cells, pilot/results/fourier_field_width.json): hidden width 128 is worse than 256 in 28/36 cells (medians +0.00046, +0.00022, +0.00014 at eta 0.1, 0.37, 0.8) and only 21% faster; width 256 kept.",
+        "2026-09-19 ablation (24 cells, CPU, sigma fixed at the grid selection; pilot/results/fourier_field_ablation.json): lambda in {1e-4, 1e-3, 1e-2} changes the overall excess by at most 0.00004 in median; lambda 1e-2 worsens rims in 15/24 cells by a median 0.00023. Validation would pick lambda 0 in 4/24 cells, 1e-4 in 3, 1e-3 in 8, 1e-2 in 9: at penalties this weak its choice is noise. Mean squared logit gradient at lambda 0 is 0.31 per unit squared (0.03 to 1.84), so the largest penalty is 1-3% of the loss: the ablation tests weak regularisation only. The unpenalised model stays primary."
+      ],
+      "question": "Fitted only to one pattern's observed atoms, does a coordinate network with Fourier features estimate p* better than the tuned B1 and B2 smoothers?",
+      "refit": {
+        "definition": "restart on all observed atoms, from their constant, with the selected fit's frequencies, initial weights and batch stream, for exactly the selected number of updates; applied to all three models",
+        "rule": "updates"
+      },
+      "reporting": {
+        "bootstrap": "2000 resamples of patterns, all efficiencies of a pattern kept together",
+        "strata": [
+          "cr_band",
+          "rho_c_band",
+          "efficiency"
+        ]
+      },
+      "scope": {
+        "development_confirmation": {
+          "patterns": [
+            3,
+            5,
+            10,
+            11,
+            13,
+            17,
+            22,
+            23,
+            27,
+            28,
+            38,
+            43
+          ],
+          "rule": "the next two development patterns in each band; used once, to validate the frozen harness"
+        },
+        "development_pilot": {
+          "patterns": [
+            0,
+            1,
+            2,
+            4,
+            6,
+            7,
+            8,
+            12,
+            15,
+            25,
+            35,
+            36
+          ],
+          "rule": "the two lowest-index development patterns in each (cr band, rho_c band); the patterns of the Stage 1 pilot"
+        },
+        "efficiencies": [
+          0.1,
+          0.37,
+          0.8
+        ],
+        "test": {
+          "by_band": {
+            "cr0_rhoc0": [
+              902,
+              907,
+              916,
+              918,
+              924,
+              931
+            ],
+            "cr0_rhoc1": [
+              911,
+              915,
+              921,
+              922,
+              938,
+              941
+            ],
+            "cr1_rhoc0": [
+              909,
+              935,
+              945,
+              967,
+              970,
+              974
+            ],
+            "cr1_rhoc1": [
+              900,
+              904,
+              912,
+              914,
+              928,
+              932
+            ],
+            "cr2_rhoc0": [
+              901,
+              908,
+              917,
+              920,
+              925,
+              926
+            ],
+            "cr2_rhoc1": [
+              903,
+              905,
+              906,
+              910,
+              913,
+              919
+            ]
+          },
+          "patterns": [
+            900,
+            901,
+            902,
+            903,
+            904,
+            905,
+            906,
+            907,
+            908,
+            909,
+            910,
+            911,
+            912,
+            913,
+            914,
+            915,
+            916,
+            917,
+            918,
+            919,
+            920,
+            921,
+            922,
+            924,
+            925,
+            926,
+            928,
+            931,
+            932,
+            935,
+            938,
+            941,
+            945,
+            967,
+            970,
+            974
+          ]
+        }
+      },
+      "seeds": {
+        "note": "development seed spread reported as the stability measure; no seed is chosen by any score",
+        "rule": "single",
+        "seeds": [
+          0
+        ]
+      },
+      "selection": {
+        "criterion": "validation BCE at the selected checkpoint; ties go to the smaller sigma",
+        "never_used": "removed atoms, the oracle, any test score",
+        "within_cell": [
+          "sigma",
+          "checkpoint"
+        ]
+      },
+      "sigma_grid": [
+        0.375,
+        0.75,
+        1.5,
+        3,
+        6
+      ],
+      "split": {
+        "entropy": 20261001,
+        "rule": "one uniform number per observed atom from the split stream; below 0.2 is validation. Drawn before anything reads a label; shared by every neural model of the cell.",
+        "streams": {
+          "frequencies": 1,
+          "initialisation": 2,
+          "minibatch": 3,
+          "relabel": 4,
+          "split": 0
+        },
+        "validation_fraction": 0.2
+      },
+      "stage": 2,
+      "status": "frozen",
+      "training": {
+        "batch_policy": "fixed-size batches of min(32768, n_fit) drawn from successive random permutations of the fitting atoms (minibatch stream); a batch crossing a permutation boundary continues into the next; full batch when n_fit <= 32768. One update is one optimiser step.",
+        "batch_size": 32768,
+        "checkpoint": "lowest validation BCE among update 0 and every evaluation; restored before prediction",
+        "eval_every": 25,
+        "learning_rate": 0.0001,
+        "loss": "unweighted binary cross-entropy on fitting labels",
+        "max_updates": 2000,
+        "optimiser": "adam",
+        "patience": 200
+      }
+    }
+  },
+  "runtime": {
+    "actual_torch_interop_threads": 8,
+    "actual_torch_threads": 3,
+    "fit_device": "cpu",
+    "fit_dtype": "float64",
+    "neural_device": "cpu",
+    "neural_dtype": "float32",
+    "numpy": "2.2.6",
+    "platform": "macOS-26.6.2-arm64-arm-64bit",
+    "python": "3.10.19",
+    "scipy": "1.15.3",
+    "thread_environment": {
+      "MKL_NUM_THREADS": null,
+      "OMP_NUM_THREADS": "3",
+      "OPENBLAS_NUM_THREADS": "3",
+      "VECLIB_MAXIMUM_THREADS": "3"
+    },
+    "threads": 3,
+    "torch": "2.10.0"
+  },
+  "schema": "e21-provenance-v1",
+  "sources": {
+    "experiments/reconstruction/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "experiments/reconstruction/benchmark.py": "88601edbed91b1da05756071d1aeb9347ae0538e8de8f974f464c28270ae8700",
+    "experiments/reconstruction/benchmark/benchmark.json": "7b4d02d90ba05801d493dc840b1bede20c84dccf225a69facdd6d7aa049503b3",
+    "experiments/reconstruction/benchmark/dataset_checksums.json": "478217bb5385873aa0c43d5299070d8f32eded47a773280b5e5feac5bc139af0",
+    "experiments/reconstruction/benchmark/dataset_provenance.json": "9899e8d171ce1501dd03da58419b3daf223ab73f2e2954a29a32706fa8d7d330",
+    "experiments/reconstruction/benchmark/diffusion/dataset_checksums.json": "9085536abf6ec459b45919264296ef2a8687e25211f6c6869c8bb5695a5de05e",
+    "experiments/reconstruction/benchmark/diffusion/dataset_patterns.json": "5cd28a7b321bde79685d3243d1a8e31acf73fccacf077ab7c6cebe385627c21d",
+    "experiments/reconstruction/benchmark/diffusion/dataset_provenance.json": "adcf51f1a5c3b10bac267a3491d41ab2961b3819741666320cccd6513132f3b7",
+    "experiments/reconstruction/benchmark/diffusion/misspecified_inverse_square_checksums.json": "2bb175d13afe8424d35c079eb40bab9c031c2508c17b2c625bf7a36b0b8ff5cb",
+    "experiments/reconstruction/benchmark/diffusion/misspecified_inverse_square_patterns.json": "26a85a1e239f08c18a386ab37c8d4d752ab0594aaf1a33ab87fb20b42e79100f",
+    "experiments/reconstruction/benchmark/diffusion/misspecified_inverse_square_provenance.json": "5cb35127190c592217cd5651b34a1808fdc401bc3cfb5dbf4918723c807965d4",
+    "experiments/reconstruction/benchmark/diffusion/misspecified_shuffled_surface_checksums.json": "cd227db0e6e52d42b6532ac499e99186907e67d81843fe94a127b62b47b1f9cd",
+    "experiments/reconstruction/benchmark/diffusion/misspecified_shuffled_surface_patterns.json": "d577f26f5d32788b632591fd55747501ed868f56fbe1a55d7165cbae4f77942b",
+    "experiments/reconstruction/benchmark/diffusion/misspecified_shuffled_surface_provenance.json": "b196c7d6908420705e4c2c4402408fbbe663bebc248a6446243620c745ba94d4",
+    "experiments/reconstruction/benchmark/diffusion/misspecified_smoothed_noise_checksums.json": "f3cc8467436376037ac33c72e353ed52e7a57c735822402066dee1ae6f6a7739",
+    "experiments/reconstruction/benchmark/diffusion/misspecified_smoothed_noise_patterns.json": "5116bf41f459d80a22bd616e4fdd4005061e8c50793d6b7b4a8812b66922e0da",
+    "experiments/reconstruction/benchmark/diffusion/misspecified_smoothed_noise_provenance.json": "bd267ee48b16c6204fa44161f83fe136f6c1cc636573202438c8a96c87fc2c3c",
+    "experiments/reconstruction/benchmark/mask_checksums.json": "c29e1c800ee598b628bbcb64cd6c161c2e6f94677da0857922edb89017181599",
+    "experiments/reconstruction/e21_design.json": "13154b5b7a032925cf9964cc281923d8de4e6e8937f435e8c7f9196813a439c4",
+    "experiments/reconstruction/e21_geometry.py": "404da28409dbb493874d2e2b6cc81baf1f5d66d426683a6c39b4f88bfd4193d9",
+    "experiments/reconstruction/e21_protocol.py": "6fe4a9c8c57ca07ef683bc2669a958c23d30d7145d7c37f86b7c89c1f2094298",
+    "experiments/reconstruction/e21_simulation.py": "4daaca96125be43bcbe086056584b049a34f89d32b526dddbf249cdf92efa3bd",
+    "experiments/reconstruction/freeze_benchmark.py": "b7a59e9163f551046f17e280b197b8fee9b394fcbf2a33e422eb2f5d4bc0ad2f",
+    "experiments/reconstruction/generate_diffusion_patterns.py": "1cee00db5faf8f1a82f42c970e50142ce4b2c9b7a2d2ccbfe9a1e5f95551618b",
+    "experiments/reconstruction/generate_misspecified_patterns.py": "984fc0b05f3ffd5f1e4b04205d3b077af84281cf30e6cc5d80192a14f172aec4",
+    "experiments/reconstruction/generate_random_centres.py": "efd7046dbefd27d7a7439b48702029a030fa3dceeb0c3ed795d3728b6926201f",
+    "experiments/reconstruction/pilot/check_b2_grid.py": "9ff601dec6a0b4c587de507fda206a7a1cdc8d614eaf7593c142dd865f41f495",
+    "experiments/reconstruction/pilot/check_density_grid.py": "b867b2f796b43967cae923a8cbb99b4e79de86b316045fbe1e0f0e17215e4a29",
+    "experiments/reconstruction/pilot/check_diffusion_field.py": "a37f581aa8c264b9c33374c940ec50f02a5c2262b0fc9886fc3bf1073ff6f911",
+    "experiments/reconstruction/pilot/check_diffusion_prior.py": "76a4848d3c7e2d85d1ebba6f573c111d1baeee3a8db401f70125e2c23d1db1f4",
+    "experiments/reconstruction/pilot/check_fourier_field.py": "f88cf22dbb2bf522c0846178f04a44f6ec65f2ead61432d73d75b38ce2ef5a27",
+    "experiments/reconstruction/pilot/check_geometry_bound.py": "019302abbda95b93d4d47338a541af3a6ef698dc3a614b429975eb24af5338e8",
+    "experiments/reconstruction/pilot/check_global_barcode.py": "bdfeaafea8fd4b6474695a1b8229aacd5bb6a7696fc64f60c31ba6ca0ab5fbac",
+    "experiments/reconstruction/pilot/check_identifiability_map.py": "f6ea29882c0674e3fc69fbdd27ab78f5c49c685c9aa4817f0b5106984152f594",
+    "experiments/reconstruction/pilot/check_joint_fit.py": "1994b03f3127db78d6cfca3e80d02adea37caaa9006b98a13db664e2b341f7ee",
+    "experiments/reconstruction/pilot/check_lattice.py": "7ef748cdef22f419f623403bf874c90f20fdf26886b6f9775500f7f668c65400",
+    "experiments/reconstruction/pilot/check_matrix_domain.py": "bc50b65045e0149ad9f4d6cbb67fc53330d5fc110e7f04b2006c0aed17c2aef6",
+    "experiments/reconstruction/pilot/check_misspecification.py": "296484d942b253f1d85c21638865202a80df2b127ed8670fba8522af2268ff25",
+    "experiments/reconstruction/pilot/check_soft_pinn.py": "bfab61e4e5b176d53893c7ea2720f33c1a3dea17416b5fce20ce8f6aa8ee9e4f",
+    "experiments/reconstruction/pilot/compare_diffusion_priors.py": "08c96609524160fdf09b9ebe84d80336dfccbdae9de5793f112220097a76160e",
+    "experiments/reconstruction/pilot/headroom.py": "f234fb2d8e82a65e95c8665dd4347b3521e1bbccf500f2cf9b2be0cdc2b42ba8",
+    "experiments/reconstruction/pilot/timing.py": "d69d474a919b96b357cb1ccd662a1c46342cb62950fd8bd9614477620cd6b780",
+    "experiments/reconstruction/plot_stage4_particles.py": "906c027ad372a73b3d6bfe3b079ddd446b2b73a86774d625cdfabb1b8c3d3315",
+    "experiments/reconstruction/stage0_oracle.py": "d9ccb457c06e3148a8e0b7cf12272c41b4b0bff1beb5a5b4677082bb1d70ba0b",
+    "experiments/reconstruction/stage1_baselines.py": "e91da28a22d379a81a5271883a4ff2d428a97e6df8f3ed273ef3573c3108b606",
+    "experiments/reconstruction/stage2_design.json": "7eb21a7bfaaeefb16c482794e8ba750fcf658fa3d6bc2edcea030688587f38f4",
+    "experiments/reconstruction/stage2_field.py": "307c1f606a4a80ad97cacf962ef59a57d2da69bd6a7507a0fcc71d09f92a14e6",
+    "experiments/reconstruction/stage4_particles.py": "6d72fcdc379fdfe7e3ef569888c9d181fb3c5a513dff21246416a82d3889cc4f",
+    "experiments/reconstruction/stage4_particles_design.json": "706c5cc254e524671f886792857a6b49dcb26861b49518e149d538d7a9d7e2d9",
+    "experiments/reconstruction/stage5_physics_fit.py": "470a58c10d1e9d5e41f6c2a9154ea3264c3ededfb28c60f16fcd8133c967589c",
+    "experiments/reconstruction/stage5_simulator.py": "4c9677364c979cd5c2656286de68d435ef95aff51963a45cf5df36ac12639576",
+    "geom_mesh_net/__init__.py": "db520f2e958956e8789791da0d299efd8181ab36077e70727f0c4e6a7f9680cf",
+    "geom_mesh_net/core_functions/__init__.py": "835065b344cce3273feb6bd0843ee0be39bce58230e5c0704188491186ed398f",
+    "geom_mesh_net/core_functions/cluster_visualizer.py": "792a5ea06393fd9ca42c2adae97900859e0cf4267f1cc06eb7d315166f34572b",
+    "geom_mesh_net/core_functions/clustersim.py": "a3dafb5b9e0211dc2adc4dcfc676d4ca18943d1ab1d5b77bf69f1b6cb33c1255",
+    "geom_mesh_net/core_functions/compare_benchmarks.py": "eaca0d0cc43ebf9ec2a78c62e8103ce831765b21b8be7beedd35aabe4f64a904",
+    "geom_mesh_net/core_functions/data_loader.py": "4a09b166abef1ae0e0ecbc0f2f4a71f07cad0d61a5f93a64a4003246a0928e52",
+    "geom_mesh_net/core_functions/field_baselines.py": "a6d01190ccf6b7d15f0e2defca57a6eb0a2719e9e93f4eaaea921fea88b3b0b1",
+    "geom_mesh_net/core_functions/field_oracle.py": "701ae8b9092f4f7d62dec124cee4af3c3156deae9f4de095b2e9c1b2af770a24",
+    "geom_mesh_net/core_functions/paper_feature_experiments.py": "af2b325c797b0bd0c77321d56d9a6c6cecd88016b00ac8251362d257eeedb40f",
+    "geom_mesh_net/core_functions/paper_spatial_features.py": "5e5f603c0008c9a12395a3a06d8e70a3587eb7c7fd0853b04eb50c15e6b2e8bd",
+    "geom_mesh_net/core_functions/point_cloud_fields.py": "645e2752c6cfc32fcf8018d8fb8aa303f1a47a904575913684851284475c55cd",
+    "geom_mesh_net/core_functions/spatial_stats_01.py": "7163d87e31e2b27cf24b4fb0f532769e4d76fc8d8468ffae25cc069f5bd70ba8",
+    "geom_mesh_net/core_functions/voxelize_clusters.py": "f8369db1c14ccbc89a67751f2c7a02f4d46e140ac0a58745b1fdcd9ef4200e8a",
+    "geom_mesh_net/fields/__init__.py": "75a47f46afab27078f51da3d6636de5a270f21d60a1ef1614c74ab622d2c3476",
+    "geom_mesh_net/fields/baselines.py": "e669d3fd7ab51980815845a5dfcb90c497463f0f78a3ed7e0a135f3948dbca89",
+    "geom_mesh_net/fields/boundary_refinement.py": "d51d25638561c158bb0eac877e14282fc8a27defe05e8755eda156cc4adb2e10",
+    "geom_mesh_net/fields/cluster_extraction.py": "c42a4f4135173106bb5df467ff75ade71faeb832f998eafb42b2fdadfe7f2ecd",
+    "geom_mesh_net/fields/constrained_joint_fit.py": "b2abb254136618d7e4dd19673023ae4aba34fd149c6314df42f59a34c7800f81",
+    "geom_mesh_net/fields/density_grid.py": "b34534da497398dcf3873659a029c96050bf2756269a78229caf6920ad9b8546",
+    "geom_mesh_net/fields/joint_fit.py": "df5ba778d4117942ec147405c87be65d560681a701bdb4f4600576caf714fa37",
+    "geom_mesh_net/fields/misspecified.py": "ae505906eca81b549d87646e0d28463e47ddacfb6edb8f6db5313c888b5e72ea",
+    "geom_mesh_net/fields/oracle.py": "f15d9850746ad65c471245f4206ec1a3ba935ecae6bc52a7d10d4dc7ce00e34d",
+    "geom_mesh_net/fields/particle_detection.py": "455d3b895dc8ad74c7829e1ccb058deaf89c7d0267463e3a150767fb599a24e3",
+    "geom_mesh_net/fields/particle_physics.py": "310e49ed30f3b3001f8dda60842882ed094cecd194120b189237c7a8001c51c2",
+    "geom_mesh_net/fields/physics.py": "5a30fde83e1e987e962f426aabdbd5b309fe84201e2b08149fcfbba633c76d74",
+    "geom_mesh_net/fields/point_cloud.py": "47a8b84213faa953779815dbef3b6ee13acb71fdf444945535bb22f97aa2c7f5",
+    "geom_mesh_net/inference/__init__.py": "6607980f2d8640feb9c575c0c3eae84738d95b813859fbd502e4ab69c8ce2e5d",
+    "geom_mesh_net/inference/calibration.py": "54d85c9f49c9559f7c101466e71809ff26b01686556522f7c04edc7b89b5cb2b",
+    "geom_mesh_net/inference/flow.py": "e963cb8ae5d3e18f95b2b96b2c7199ffd3c8edc1fbb5e1ea9732d16189b2737d",
+    "geom_mesh_net/neural/__init__.py": "7702fe663ea94d67589f09489e26e01338b17c1d6f6629fac149480bc457f357",
+    "geom_mesh_net/neural/datasets.py": "3a988df0c6e28af88fb44a4b00a9f10fc93f0357e782f6a678beeeb000ddda01",
+    "geom_mesh_net/neural/field_diagnostics.py": "33dfc7976da301f2cc8cd81280b8d5a23d0661f19d3f2e8ff2234f46ab51ace8",
+    "geom_mesh_net/neural/implicit.py": "915171605916b885a3b4c00013cf71145b4f25f35a2366593e8034bc342cc918",
+    "geom_mesh_net/neural/models.py": "67430a19e6240e63b7c50f10b7974ccd98d9dee17546ae86d6d5ec2984a96f61",
+    "geom_mesh_net/paths.py": "67f9a3b2a39b6f88e509af5e7a527ef5960962db7f209792be8f2298fe484d06",
+    "geom_mesh_net/simulation/__init__.py": "d91c37bd2d32985622ccd116bf6317532a122e63441a582f08918cb0dcabeb56",
+    "geom_mesh_net/simulation/clustersim.py": "dca4492192491e6caca03fbb978af08a52bf5d040b3bdc6a5aea4d264aac00b1",
+    "geom_mesh_net/simulation/parameters.py": "9a203b26caecc3fd1d621bb36fbb578ba090348a04dc2fa486659f2c56ee7e22",
+    "geom_mesh_net/statistics/__init__.py": "88f46e828b0ad3f8a860489b069653329c65d3d02e38903849e4367ab5f388b5",
+    "geom_mesh_net/statistics/barcode.py": "d2db0734cf006df5dc32ee2670be4502619fed9cab3f85bc1f4fea3c0f4cd86a",
+    "geom_mesh_net/statistics/feature_cache.py": "edae18c050ec35da0de6788db74c67463d2cc6f3c8310f10fd8cd66fa90d72c8",
+    "geom_mesh_net/statistics/paper_spatial_features.py": "97bc50d19d293c6eb7ff475cf3a911b48193808da59d443089f75b425a879adf",
+    "geom_mesh_net/statistics/presets.py": "95318eea46b9f2984ce43e8bd92ec1304ae0ca8f577333264b14cc6a740fb08e",
+    "geom_mesh_net/viz/__init__.py": "be729412d3414c6e202a13985dbfc30a1dce88e1c37df61bf8fa825d414a0db3",
+    "geom_mesh_net/viz/benchmarks.py": "cf01eaccb6bf4627fbc3d3f950aea8b3ea83e652d3c4f47dc701de6b457a2359",
+    "geom_mesh_net/viz/clusters.py": "8e0a749d94d4a8cfb00030446f8b9c65bb0f5f66b12972103897c5c4df23f808",
+    "pyproject.toml": "bbf55583d111a4c2ce392058f454e0371baf14c509b4f4b0a784ce7f2ef5d67c"
+  }
+}

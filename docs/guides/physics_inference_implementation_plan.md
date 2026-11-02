@@ -4,13 +4,21 @@
 read-only project audit. The phases below retain the implementation design; the
 checkpoint note records the narrow repairs completed before the larger study.
 
-**Checkpoint update, 29 October 2026:** commit `0c08355` preserves the original
-E20 source, design and reports. Merge preparation adds the Phase 1 case-accounting
-and growth-penalty repairs, their regression tests, and corrections to E18's
-scientific interpretation. Historical results and their source hashes remain
-unchanged. The constrained fitter, new boundary comparison and uncertainty study
-remain future work. See [E20's reproduction note](../experiments/E20_field_to_particles.md#reproduction-and-saved-evidence)
-before attempting to resume the archived experiment from the changed source.
+**Checkpoint update, 30 October 2026:** commit `0c08355` preserves the original
+E20 source, design and reports; the Phase 1 accounting and growth-penalty repairs
+and narrower E18 interpretation are complete. The constrained-fitter prototype,
+shared-catalogue boundary comparison, training diagnostics and E21 protocol are now
+implemented. Both version 1 and version 2 B preflights attempted all four cases with zero
+converged fits; their validity guards prevented invalid likelihood evaluation.
+Version 3 corrected a per-round budget-continuation defect without increasing budgets
+or relaxing thresholds. Its bounded case 0 check also failed: all three starts used
+all three rounds without numerical convergence. Expansion stopped at this
+prerequisite. This does not complete the E21 comparison or validate physical inference. See
+[E21's procedure and execution status](../experiments/E21_constrained_geometry.md).
+Capillary profiles and the uncertainty-validation study remain future work.
+Historical results and hashes remain unchanged; follow
+[E20's reproduction note](../experiments/E20_field_to_particles.md#reproduction-and-saved-evidence)
+when resuming that archived experiment.
 
 ## Objective and first deliverable
 

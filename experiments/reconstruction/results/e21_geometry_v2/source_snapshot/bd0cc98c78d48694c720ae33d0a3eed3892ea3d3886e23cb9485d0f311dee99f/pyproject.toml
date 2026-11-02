@@ -1,0 +1,49 @@
+[build-system]
+requires = ["setuptools>=77.0.3"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "geom-mesh-net"
+version = "0.1.0"
+description = "Spatial statistics and simulation-based inference for 3D clustered point patterns, of the kind atom probe tomography produces"
+readme = "README.md"
+license = "MIT"
+license-files = ["LICENSE"]
+authors = [{ name = "Roland A. Bennett" }]
+keywords = ["atom probe tomography", "spatial statistics", "point patterns", "simulation-based inference", "normalizing flows"]
+requires-python = ">=3.10"
+dependencies = [
+    "numpy",
+    "scipy",
+    "matplotlib",
+    "torch",
+    # geom_mesh_net.viz.clusters only; importing geom_mesh_net.viz does not load them.
+    "pyvista",
+    "plotly",
+]
+
+[project.optional-dependencies]
+dev = ["pytest"]
+# The guide notebook in docs/guides/ and the teaching worksheets, which are built
+# and executed with nbformat and nbclient.
+notebooks = ["jupyter", "pandas", "nbformat", "nbclient"]
+
+[tool.setuptools.packages.find]
+where = ["."]
+# Only the library is installed. experiments/, scripts/ and docs/ are run from the
+# repository root: experiment tracks as modules (python -m experiments.inference.fit_posterior),
+# the rest with PYTHONPATH=. set.
+include = ["geom_mesh_net*"]
+exclude = [
+    "data*",
+    "docs*",
+    "experiments*",
+    "scripts*",
+    "tests*",
+    "deprecated_code*",
+]
+
+[tool.pytest.ini_options]
+# So `pytest` works from the repository root without PYTHONPATH=. being set.
+pythonpath = ["."]
+testpaths = ["tests"]

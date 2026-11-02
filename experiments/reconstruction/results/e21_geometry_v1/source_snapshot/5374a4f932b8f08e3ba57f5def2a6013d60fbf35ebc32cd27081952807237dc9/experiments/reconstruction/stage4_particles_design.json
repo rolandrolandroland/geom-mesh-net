@@ -1,0 +1,45 @@
+{
+  "version": "diffusion-particle-pilot-v3",
+  "dataset": "diffusion",
+  "efficiency": 0.37,
+  "scope": {
+    "calibration": [0, 1, 2, 3],
+    "confirmation": [4, 5, 6, 7],
+    "test": [74, 75, 76, 77, 78, 79, 80, 81]
+  },
+  "field_design": "stage2_design.json",
+  "device": "mps",
+  "execution_note": "Before any detector calibration or confirmation score was inspected, execution moved from CPU to MPS after GPU access was confirmed outside the sandbox. Unscored CPU preparation artifacts are not used in the scored run. Physics remains CPU float64 with three Torch threads.",
+  "revision_note": "v3 corrects diagnostic checkpoint placement: move the reloaded neural model to the prediction device. The v2 confirmation error and calibration report are preserved under results/stage4_particles_v2_device_failure. No detector or physical-fit settings changed; identical cached neural fields are reused.",
+  "threads": 3,
+  "grid": 0.5,
+  "box": 60.0,
+  "outer_split_entropy": 20260927,
+  "held_back_fraction": 0.2,
+  "field_thresholds": [0.15, 0.2, 0.25, 0.3, 0.4, 0.5],
+  "field_peak_distances": [2.0, 3.5],
+  "field_min_volume": 14.0,
+  "point_eps": [1.5, 2.0, 2.5],
+  "point_min_cluster_size": [5, 10, 20],
+  "dbscan_min_samples": [3, 5, 8],
+  "selection": "mean F1, mean precision, mean relative radius MAE, candidate order",
+  "physics": {
+    "width": 0.3,
+    "knots": 6,
+    "iterations": 100,
+    "rounds": 2,
+    "starts": [[null, null]],
+    "volume": 216000.0,
+    "bound_tolerance": 1.01
+  },
+  "initial_surface_gap": 0.5,
+  "promotion": {
+    "f1_win_fraction": 0.75,
+    "minimum_median_precision_difference": -0.02,
+    "require_common_radius_improvement": true,
+    "require_capillary_improvement": true,
+    "maximum_median_matrix_loss_difference": 0.0,
+    "require_all_fourier_fits_reliable": true
+  },
+  "scope_note": "Development pilot, not full Stage 4 or a physical-law rejection experiment. Test is conditional on complete successful confirmation."
+}

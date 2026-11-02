@@ -1,0 +1,170 @@
+{
+  "study_version": "e21-geometry-v3",
+  "fingerprint": "3ac7cc2a0e738f40d7eaf3a1d20cff0cfdf9584e4da8a08ae212b55bf67c20ad",
+  "stage": "bounded single-case development B preflight",
+  "canonical_attempt": 1,
+  "ready": false,
+  "cases_requested": [
+    0
+  ],
+  "cases_attempted": 1,
+  "cases_converged": 0,
+  "full_preflight_cases_required": [
+    0,
+    1,
+    2,
+    3
+  ],
+  "full_preflight_complete": false,
+  "neural_comparison_run": false,
+  "confirmation_generated": false,
+  "reserved_test_generated": false,
+  "fit_seconds_total": 348.8130011250032,
+  "stopping_decision": "Stop expansion: all three prescribed starts used all three declared rounds without reaching gtol=1e-5. Do not run neural comparison, profiles or uncertainty calibration on a numerically unready fitter.",
+  "cases": [
+    {
+      "case_index": 0,
+      "candidates": 95,
+      "fitting_atoms": 64064,
+      "elapsed_seconds": 348.8130011250032,
+      "status": "no_converged_start",
+      "evaluations": 1417,
+      "invalid_trials_scored": 0,
+      "unsafe_trials_rejected": 18,
+      "starts": [
+        {
+          "start": 0,
+          "status": "not_converged",
+          "termination_reason": "round_budget_exhausted",
+          "error": null,
+          "evaluations": 465,
+          "rounds": [
+            {
+              "round": 0,
+              "iterations": 150,
+              "optimality": 0.00017813890711700973,
+              "termination": "maximum accepted iterations reached",
+              "assignment_changes": 2910,
+              "assignment_stable": false,
+              "numerically_converged": false,
+              "continuation_decision": "continue_safe_iteration_cap",
+              "remaining_evaluations": 448
+            },
+            {
+              "round": 1,
+              "iterations": 150,
+              "optimality": 0.00012126069022816277,
+              "termination": "maximum accepted iterations reached",
+              "assignment_changes": 51,
+              "assignment_stable": false,
+              "numerically_converged": false,
+              "continuation_decision": "continue_safe_iteration_cap",
+              "remaining_evaluations": 291
+            },
+            {
+              "round": 2,
+              "iterations": 150,
+              "optimality": 9.807201280130726e-05,
+              "termination": "maximum accepted iterations reached",
+              "assignment_changes": 17,
+              "assignment_stable": true,
+              "numerically_converged": false,
+              "continuation_decision": "round_budget_exhausted",
+              "remaining_evaluations": 135
+            }
+          ],
+          "final_geometry_feasible": true,
+          "final_probability_valid": true
+        },
+        {
+          "start": 1,
+          "status": "not_converged",
+          "termination_reason": "round_budget_exhausted",
+          "error": null,
+          "evaluations": 480,
+          "rounds": [
+            {
+              "round": 0,
+              "iterations": 150,
+              "optimality": 0.00023586776159332796,
+              "termination": "maximum accepted iterations reached",
+              "assignment_changes": 2959,
+              "assignment_stable": false,
+              "numerically_converged": false,
+              "continuation_decision": "continue_safe_iteration_cap",
+              "remaining_evaluations": 431
+            },
+            {
+              "round": 1,
+              "iterations": 150,
+              "optimality": 0.00011996591884824831,
+              "termination": "maximum accepted iterations reached",
+              "assignment_changes": 51,
+              "assignment_stable": false,
+              "numerically_converged": false,
+              "continuation_decision": "continue_safe_iteration_cap",
+              "remaining_evaluations": 277
+            },
+            {
+              "round": 2,
+              "iterations": 150,
+              "optimality": 0.00018602021068632194,
+              "termination": "maximum accepted iterations reached",
+              "assignment_changes": 22,
+              "assignment_stable": false,
+              "numerically_converged": false,
+              "continuation_decision": "round_budget_exhausted",
+              "remaining_evaluations": 120
+            }
+          ],
+          "final_geometry_feasible": true,
+          "final_probability_valid": true
+        },
+        {
+          "start": 2,
+          "status": "not_converged",
+          "termination_reason": "round_budget_exhausted",
+          "error": null,
+          "evaluations": 472,
+          "rounds": [
+            {
+              "round": 0,
+              "iterations": 150,
+              "optimality": 0.00015438496352911842,
+              "termination": "maximum accepted iterations reached",
+              "assignment_changes": 2989,
+              "assignment_stable": false,
+              "numerically_converged": false,
+              "continuation_decision": "continue_safe_iteration_cap",
+              "remaining_evaluations": 446
+            },
+            {
+              "round": 1,
+              "iterations": 150,
+              "optimality": 0.00010626401323721978,
+              "termination": "maximum accepted iterations reached",
+              "assignment_changes": 44,
+              "assignment_stable": false,
+              "numerically_converged": false,
+              "continuation_decision": "continue_safe_iteration_cap",
+              "remaining_evaluations": 291
+            },
+            {
+              "round": 2,
+              "iterations": 150,
+              "optimality": 0.00013889249323167347,
+              "termination": "maximum accepted iterations reached",
+              "assignment_changes": 16,
+              "assignment_stable": true,
+              "numerically_converged": false,
+              "continuation_decision": "round_budget_exhausted",
+              "remaining_evaluations": 128
+            }
+          ],
+          "final_geometry_feasible": true,
+          "final_probability_valid": true
+        }
+      ]
+    }
+  ]
+}
