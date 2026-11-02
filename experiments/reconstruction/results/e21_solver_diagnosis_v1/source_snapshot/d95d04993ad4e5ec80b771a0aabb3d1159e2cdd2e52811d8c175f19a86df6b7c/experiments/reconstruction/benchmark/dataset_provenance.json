@@ -1,0 +1,118 @@
+{
+  "generated_by": "reconstruction/generate_random_centres.py",
+  "design": "same parameter vectors and settings as data/; overlying pattern uniform random, not a lattice",
+  "theta_source": "inference/ground_truth/theta.npy",
+  "opp_oversample": 8,
+  "global_numpy_seed": "np.random.seed(index) before each pattern",
+  "n_patterns": 1000,
+  "n_failed": 0,
+  "failures": [],
+  "patterns_with_lattice_centres": 0,
+  "cluster_count_differences_from_reference": {
+    "reference_dir": "data",
+    "n_different": 187,
+    "examples_index_reference_new": [
+      [
+        4,
+        170,
+        172
+      ],
+      [
+        8,
+        109,
+        108
+      ],
+      [
+        10,
+        155,
+        154
+      ],
+      [
+        17,
+        364,
+        363
+      ],
+      [
+        21,
+        65,
+        64
+      ],
+      [
+        30,
+        94,
+        95
+      ],
+      [
+        33,
+        12,
+        11
+      ],
+      [
+        34,
+        58,
+        57
+      ],
+      [
+        37,
+        210,
+        209
+      ],
+      [
+        49,
+        42,
+        41
+      ],
+      [
+        51,
+        735,
+        738
+      ],
+      [
+        58,
+        133,
+        134
+      ],
+      [
+        74,
+        20,
+        21
+      ],
+      [
+        78,
+        15,
+        16
+      ],
+      [
+        80,
+        8,
+        13
+      ],
+      [
+        90,
+        23,
+        24
+      ],
+      [
+        96,
+        228,
+        230
+      ],
+      [
+        98,
+        124,
+        123
+      ],
+      [
+        99,
+        8,
+        24
+      ],
+      [
+        109,
+        8,
+        25
+      ]
+    ]
+  },
+  "seconds": 94.7
+}

@@ -1,0 +1,286 @@
+{
+  "design": {
+    "baseline_commit": "b54591bb41b6ccd540eb5e2540fbf218cd66849c",
+    "control": {
+      "box": 32.0,
+      "centres": [
+        [
+          7.0,
+          8.0,
+          8.0
+        ],
+        [
+          17.0,
+          10.0,
+          12.0
+        ],
+        [
+          12.0,
+          21.0,
+          20.0
+        ]
+      ],
+      "count": 6000,
+      "initial": {
+        "c_eq": 0.032,
+        "c_inf": 0.09,
+        "ell": 1.5,
+        "xi": 6.0
+      },
+      "initial_levels": [
+        0.93,
+        0.89,
+        0.8,
+        0.64,
+        0.44,
+        0.23,
+        0.05
+      ],
+      "kind": "model_matched_expected_likelihood",
+      "levels": [
+        0.92,
+        0.88,
+        0.79,
+        0.63,
+        0.43,
+        0.22,
+        0.04
+      ],
+      "radii": [
+        2.0,
+        3.0,
+        4.0
+      ],
+      "scope_note": "One prescribed start; true geometry and probability targets isolate numerical behavior. This is not noisy-data recovery or identifiability evidence.",
+      "seed": 2026110201,
+      "truth": {
+        "c_eq": 0.03,
+        "c_inf": 0.1,
+        "ell": 2.0,
+        "xi": 5.0
+      }
+    },
+    "date": "2026-11-02",
+    "endpoint_knots": {
+      "max_crossings": 2,
+      "nearby_radius_window": 0.001,
+      "side_offset": 1e-06,
+      "top_n": 4
+    },
+    "observed": {
+      "case_folder": "experiments/reconstruction/results/e21_artifacts/v3/cases/57babaa91366f5b10dd88bb3",
+      "case_index": 0,
+      "catalogue_identity": "cb9acc419f35a0d68be869ea7e250b429c70309f898a2b583f353f4272ea57fe",
+      "data_identity": "8e65ea46c78febde49f4781bc0676f55807ebeb400a86876141b5e21c592a250",
+      "initialization": "Exact archived prepared geometry and recorded feasible initial chemistry; original default profile. Identical full states across independent stages.",
+      "phase": "development",
+      "preparation_sha256": "7c17d0c177d31994578b616fc0ded01f6d9074f5b76158063458e96afde87185",
+      "report": "experiments/reconstruction/results/e21_geometry_v3/development.json",
+      "report_sha256": "f7a86e19a42d94b46f8bc813d98834d69c1a4216e8e683e85485207f6aea1e60",
+      "starts": [
+        [
+          null,
+          null
+        ],
+        [
+          1.0,
+          3.0
+        ],
+        [
+          6.0,
+          12.0
+        ]
+      ]
+    },
+    "physics": {
+      "backend": "feasible_lbfgs",
+      "gtol": 1e-05,
+      "knots": 6,
+      "max_evaluations": 600,
+      "maxiter": 150,
+      "min_gap": 1e-05,
+      "radius_bounds": [
+        0.5,
+        20.0
+      ],
+      "rounds": 3,
+      "width": 0.3
+    },
+    "promotion": false,
+    "purpose": "Attribute numerical nonconvergence through exact frozen-coordinate ablations and separately labelled sequential warm starts. No promotion or inference validation.",
+    "reserved_data_access": false,
+    "runtime": {
+      "device": "cpu",
+      "dtype": "float64",
+      "threads": 3
+    },
+    "stages": [
+      {
+        "fit_centres": false,
+        "fit_radii": false,
+        "id": "chemistry",
+        "parent": null
+      },
+      {
+        "fit_centres": false,
+        "fit_radii": true,
+        "id": "radii",
+        "parent": null
+      },
+      {
+        "fit_centres": true,
+        "fit_radii": false,
+        "id": "centres",
+        "parent": null
+      },
+      {
+        "fit_centres": true,
+        "fit_radii": true,
+        "id": "joint",
+        "parent": null
+      },
+      {
+        "fit_centres": false,
+        "fit_radii": true,
+        "id": "warm_radii",
+        "parent": "chemistry"
+      },
+      {
+        "fit_centres": true,
+        "fit_radii": true,
+        "id": "warm_joint",
+        "parent": "warm_radii"
+      }
+    ],
+    "version": "e21-solver-diagnosis-v1",
+    "warm_scope": [
+      "observed"
+    ],
+    "warm_start_rule": "Each prescribed start inherits its own last accepted state, including profile logits, even when nonconverged; missing accepted states remain explicit dependency failures. Extra cumulative budgets are reported. No cross-start selection."
+  },
+  "design_id": "edf22f84ca67a5b7db52c666e4b32106a0c7f8fc0a57b38311d86752bd012fc4",
+  "runtime": {
+    "actual_torch_interop_threads": 8,
+    "actual_torch_threads": 3,
+    "fit_device": "cpu",
+    "fit_dtype": "float64",
+    "neural_device": "cpu",
+    "neural_dtype": "float32",
+    "numpy": "2.2.6",
+    "platform": "macOS-26.6.2-arm64-arm-64bit",
+    "python": "3.10.19",
+    "scipy": "1.15.3",
+    "thread_environment": {
+      "MKL_NUM_THREADS": null,
+      "OMP_NUM_THREADS": "3",
+      "OPENBLAS_NUM_THREADS": "3",
+      "VECLIB_MAXIMUM_THREADS": "3"
+    },
+    "threads": 3,
+    "torch": "2.10.0"
+  },
+  "schema": "e21-solver-diagnosis-provenance-v1",
+  "sources": {
+    "experiments/reconstruction/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "experiments/reconstruction/benchmark.py": "88601edbed91b1da05756071d1aeb9347ae0538e8de8f974f464c28270ae8700",
+    "experiments/reconstruction/benchmark/benchmark.json": "7b4d02d90ba05801d493dc840b1bede20c84dccf225a69facdd6d7aa049503b3",
+    "experiments/reconstruction/benchmark/dataset_checksums.json": "478217bb5385873aa0c43d5299070d8f32eded47a773280b5e5feac5bc139af0",
+    "experiments/reconstruction/benchmark/dataset_provenance.json": "9899e8d171ce1501dd03da58419b3daf223ab73f2e2954a29a32706fa8d7d330",
+    "experiments/reconstruction/benchmark/diffusion/dataset_checksums.json": "9085536abf6ec459b45919264296ef2a8687e25211f6c6869c8bb5695a5de05e",
+    "experiments/reconstruction/benchmark/diffusion/dataset_patterns.json": "5cd28a7b321bde79685d3243d1a8e31acf73fccacf077ab7c6cebe385627c21d",
+    "experiments/reconstruction/benchmark/diffusion/dataset_provenance.json": "adcf51f1a5c3b10bac267a3491d41ab2961b3819741666320cccd6513132f3b7",
+    "experiments/reconstruction/benchmark/diffusion/misspecified_inverse_square_checksums.json": "2bb175d13afe8424d35c079eb40bab9c031c2508c17b2c625bf7a36b0b8ff5cb",
+    "experiments/reconstruction/benchmark/diffusion/misspecified_inverse_square_patterns.json": "26a85a1e239f08c18a386ab37c8d4d752ab0594aaf1a33ab87fb20b42e79100f",
+    "experiments/reconstruction/benchmark/diffusion/misspecified_inverse_square_provenance.json": "5cb35127190c592217cd5651b34a1808fdc401bc3cfb5dbf4918723c807965d4",
+    "experiments/reconstruction/benchmark/diffusion/misspecified_shuffled_surface_checksums.json": "cd227db0e6e52d42b6532ac499e99186907e67d81843fe94a127b62b47b1f9cd",
+    "experiments/reconstruction/benchmark/diffusion/misspecified_shuffled_surface_patterns.json": "d577f26f5d32788b632591fd55747501ed868f56fbe1a55d7165cbae4f77942b",
+    "experiments/reconstruction/benchmark/diffusion/misspecified_shuffled_surface_provenance.json": "b196c7d6908420705e4c2c4402408fbbe663bebc248a6446243620c745ba94d4",
+    "experiments/reconstruction/benchmark/diffusion/misspecified_smoothed_noise_checksums.json": "f3cc8467436376037ac33c72e353ed52e7a57c735822402066dee1ae6f6a7739",
+    "experiments/reconstruction/benchmark/diffusion/misspecified_smoothed_noise_patterns.json": "5116bf41f459d80a22bd616e4fdd4005061e8c50793d6b7b4a8812b66922e0da",
+    "experiments/reconstruction/benchmark/diffusion/misspecified_smoothed_noise_provenance.json": "bd267ee48b16c6204fa44161f83fe136f6c1cc636573202438c8a96c87fc2c3c",
+    "experiments/reconstruction/benchmark/mask_checksums.json": "c29e1c800ee598b628bbcb64cd6c161c2e6f94677da0857922edb89017181599",
+    "experiments/reconstruction/e21_design.json": "bfaae99ef2b8fd0a37d852a1e911f2de96119fb63bd8102c7e04f6b2c9486eea",
+    "experiments/reconstruction/e21_geometry.py": "edc1ca36f959c7a9e999865f76146b27c98aa5acd24022ebaa652f5f3579972e",
+    "experiments/reconstruction/e21_protocol.py": "6fe4a9c8c57ca07ef683bc2669a958c23d30d7145d7c37f86b7c89c1f2094298",
+    "experiments/reconstruction/e21_simulation.py": "4daaca96125be43bcbe086056584b049a34f89d32b526dddbf249cdf92efa3bd",
+    "experiments/reconstruction/e21_solver_diagnosis.py": "7fa1b176799dba52a42a5f64ebc2da92e6d54f57fb84cfb52679a5424667cc67",
+    "experiments/reconstruction/e21_solver_diagnosis_design.json": "331813d6a6a72216d95a48da5a0350bc11b3151d2638e681ea2181dd8cc0c788",
+    "experiments/reconstruction/freeze_benchmark.py": "b7a59e9163f551046f17e280b197b8fee9b394fcbf2a33e422eb2f5d4bc0ad2f",
+    "experiments/reconstruction/generate_diffusion_patterns.py": "1cee00db5faf8f1a82f42c970e50142ce4b2c9b7a2d2ccbfe9a1e5f95551618b",
+    "experiments/reconstruction/generate_misspecified_patterns.py": "984fc0b05f3ffd5f1e4b04205d3b077af84281cf30e6cc5d80192a14f172aec4",
+    "experiments/reconstruction/generate_random_centres.py": "efd7046dbefd27d7a7439b48702029a030fa3dceeb0c3ed795d3728b6926201f",
+    "experiments/reconstruction/pilot/check_b2_grid.py": "9ff601dec6a0b4c587de507fda206a7a1cdc8d614eaf7593c142dd865f41f495",
+    "experiments/reconstruction/pilot/check_density_grid.py": "b867b2f796b43967cae923a8cbb99b4e79de86b316045fbe1e0f0e17215e4a29",
+    "experiments/reconstruction/pilot/check_diffusion_field.py": "a37f581aa8c264b9c33374c940ec50f02a5c2262b0fc9886fc3bf1073ff6f911",
+    "experiments/reconstruction/pilot/check_diffusion_prior.py": "76a4848d3c7e2d85d1ebba6f573c111d1baeee3a8db401f70125e2c23d1db1f4",
+    "experiments/reconstruction/pilot/check_fourier_field.py": "f88cf22dbb2bf522c0846178f04a44f6ec65f2ead61432d73d75b38ce2ef5a27",
+    "experiments/reconstruction/pilot/check_geometry_bound.py": "019302abbda95b93d4d47338a541af3a6ef698dc3a614b429975eb24af5338e8",
+    "experiments/reconstruction/pilot/check_global_barcode.py": "bdfeaafea8fd4b6474695a1b8229aacd5bb6a7696fc64f60c31ba6ca0ab5fbac",
+    "experiments/reconstruction/pilot/check_identifiability_map.py": "f6ea29882c0674e3fc69fbdd27ab78f5c49c685c9aa4817f0b5106984152f594",
+    "experiments/reconstruction/pilot/check_joint_fit.py": "1994b03f3127db78d6cfca3e80d02adea37caaa9006b98a13db664e2b341f7ee",
+    "experiments/reconstruction/pilot/check_lattice.py": "7ef748cdef22f419f623403bf874c90f20fdf26886b6f9775500f7f668c65400",
+    "experiments/reconstruction/pilot/check_matrix_domain.py": "bc50b65045e0149ad9f4d6cbb67fc53330d5fc110e7f04b2006c0aed17c2aef6",
+    "experiments/reconstruction/pilot/check_misspecification.py": "296484d942b253f1d85c21638865202a80df2b127ed8670fba8522af2268ff25",
+    "experiments/reconstruction/pilot/check_soft_pinn.py": "bfab61e4e5b176d53893c7ea2720f33c1a3dea17416b5fce20ce8f6aa8ee9e4f",
+    "experiments/reconstruction/pilot/compare_diffusion_priors.py": "08c96609524160fdf09b9ebe84d80336dfccbdae9de5793f112220097a76160e",
+    "experiments/reconstruction/pilot/headroom.py": "f234fb2d8e82a65e95c8665dd4347b3521e1bbccf500f2cf9b2be0cdc2b42ba8",
+    "experiments/reconstruction/pilot/timing.py": "d69d474a919b96b357cb1ccd662a1c46342cb62950fd8bd9614477620cd6b780",
+    "experiments/reconstruction/plot_stage4_particles.py": "906c027ad372a73b3d6bfe3b079ddd446b2b73a86774d625cdfabb1b8c3d3315",
+    "experiments/reconstruction/stage0_oracle.py": "d9ccb457c06e3148a8e0b7cf12272c41b4b0bff1beb5a5b4677082bb1d70ba0b",
+    "experiments/reconstruction/stage1_baselines.py": "e91da28a22d379a81a5271883a4ff2d428a97e6df8f3ed273ef3573c3108b606",
+    "experiments/reconstruction/stage2_design.json": "7eb21a7bfaaeefb16c482794e8ba750fcf658fa3d6bc2edcea030688587f38f4",
+    "experiments/reconstruction/stage2_field.py": "307c1f606a4a80ad97cacf962ef59a57d2da69bd6a7507a0fcc71d09f92a14e6",
+    "experiments/reconstruction/stage4_particles.py": "6d72fcdc379fdfe7e3ef569888c9d181fb3c5a513dff21246416a82d3889cc4f",
+    "experiments/reconstruction/stage4_particles_design.json": "706c5cc254e524671f886792857a6b49dcb26861b49518e149d538d7a9d7e2d9",
+    "experiments/reconstruction/stage5_physics_fit.py": "470a58c10d1e9d5e41f6c2a9154ea3264c3ededfb28c60f16fcd8133c967589c",
+    "experiments/reconstruction/stage5_simulator.py": "4c9677364c979cd5c2656286de68d435ef95aff51963a45cf5df36ac12639576",
+    "geom_mesh_net/__init__.py": "db520f2e958956e8789791da0d299efd8181ab36077e70727f0c4e6a7f9680cf",
+    "geom_mesh_net/core_functions/__init__.py": "835065b344cce3273feb6bd0843ee0be39bce58230e5c0704188491186ed398f",
+    "geom_mesh_net/core_functions/cluster_visualizer.py": "792a5ea06393fd9ca42c2adae97900859e0cf4267f1cc06eb7d315166f34572b",
+    "geom_mesh_net/core_functions/clustersim.py": "a3dafb5b9e0211dc2adc4dcfc676d4ca18943d1ab1d5b77bf69f1b6cb33c1255",
+    "geom_mesh_net/core_functions/compare_benchmarks.py": "eaca0d0cc43ebf9ec2a78c62e8103ce831765b21b8be7beedd35aabe4f64a904",
+    "geom_mesh_net/core_functions/data_loader.py": "4a09b166abef1ae0e0ecbc0f2f4a71f07cad0d61a5f93a64a4003246a0928e52",
+    "geom_mesh_net/core_functions/field_baselines.py": "a6d01190ccf6b7d15f0e2defca57a6eb0a2719e9e93f4eaaea921fea88b3b0b1",
+    "geom_mesh_net/core_functions/field_oracle.py": "701ae8b9092f4f7d62dec124cee4af3c3156deae9f4de095b2e9c1b2af770a24",
+    "geom_mesh_net/core_functions/paper_feature_experiments.py": "af2b325c797b0bd0c77321d56d9a6c6cecd88016b00ac8251362d257eeedb40f",
+    "geom_mesh_net/core_functions/paper_spatial_features.py": "5e5f603c0008c9a12395a3a06d8e70a3587eb7c7fd0853b04eb50c15e6b2e8bd",
+    "geom_mesh_net/core_functions/point_cloud_fields.py": "645e2752c6cfc32fcf8018d8fb8aa303f1a47a904575913684851284475c55cd",
+    "geom_mesh_net/core_functions/spatial_stats_01.py": "7163d87e31e2b27cf24b4fb0f532769e4d76fc8d8468ffae25cc069f5bd70ba8",
+    "geom_mesh_net/core_functions/voxelize_clusters.py": "f8369db1c14ccbc89a67751f2c7a02f4d46e140ac0a58745b1fdcd9ef4200e8a",
+    "geom_mesh_net/fields/__init__.py": "75a47f46afab27078f51da3d6636de5a270f21d60a1ef1614c74ab622d2c3476",
+    "geom_mesh_net/fields/baselines.py": "e669d3fd7ab51980815845a5dfcb90c497463f0f78a3ed7e0a135f3948dbca89",
+    "geom_mesh_net/fields/boundary_refinement.py": "d51d25638561c158bb0eac877e14282fc8a27defe05e8755eda156cc4adb2e10",
+    "geom_mesh_net/fields/cluster_extraction.py": "c42a4f4135173106bb5df467ff75ade71faeb832f998eafb42b2fdadfe7f2ecd",
+    "geom_mesh_net/fields/constrained_joint_fit.py": "cab5933d979026adc895ac6a988f4b1157fa14a754a1a160983f99c9869fad53",
+    "geom_mesh_net/fields/density_grid.py": "b34534da497398dcf3873659a029c96050bf2756269a78229caf6920ad9b8546",
+    "geom_mesh_net/fields/joint_fit.py": "df5ba778d4117942ec147405c87be65d560681a701bdb4f4600576caf714fa37",
+    "geom_mesh_net/fields/misspecified.py": "ae505906eca81b549d87646e0d28463e47ddacfb6edb8f6db5313c888b5e72ea",
+    "geom_mesh_net/fields/oracle.py": "f15d9850746ad65c471245f4206ec1a3ba935ecae6bc52a7d10d4dc7ce00e34d",
+    "geom_mesh_net/fields/particle_detection.py": "455d3b895dc8ad74c7829e1ccb058deaf89c7d0267463e3a150767fb599a24e3",
+    "geom_mesh_net/fields/particle_physics.py": "310e49ed30f3b3001f8dda60842882ed094cecd194120b189237c7a8001c51c2",
+    "geom_mesh_net/fields/physics.py": "5a30fde83e1e987e962f426aabdbd5b309fe84201e2b08149fcfbba633c76d74",
+    "geom_mesh_net/fields/point_cloud.py": "47a8b84213faa953779815dbef3b6ee13acb71fdf444945535bb22f97aa2c7f5",
+    "geom_mesh_net/fields/solver_diagnostics.py": "e8c9289486eb0f8ce3df911cf0fa1805dae5271b60d6028e00318d09761cd15a",
+    "geom_mesh_net/inference/__init__.py": "6607980f2d8640feb9c575c0c3eae84738d95b813859fbd502e4ab69c8ce2e5d",
+    "geom_mesh_net/inference/calibration.py": "54d85c9f49c9559f7c101466e71809ff26b01686556522f7c04edc7b89b5cb2b",
+    "geom_mesh_net/inference/flow.py": "e963cb8ae5d3e18f95b2b96b2c7199ffd3c8edc1fbb5e1ea9732d16189b2737d",
+    "geom_mesh_net/neural/__init__.py": "7702fe663ea94d67589f09489e26e01338b17c1d6f6629fac149480bc457f357",
+    "geom_mesh_net/neural/datasets.py": "3a988df0c6e28af88fb44a4b00a9f10fc93f0357e782f6a678beeeb000ddda01",
+    "geom_mesh_net/neural/field_diagnostics.py": "33dfc7976da301f2cc8cd81280b8d5a23d0661f19d3f2e8ff2234f46ab51ace8",
+    "geom_mesh_net/neural/implicit.py": "915171605916b885a3b4c00013cf71145b4f25f35a2366593e8034bc342cc918",
+    "geom_mesh_net/neural/models.py": "67430a19e6240e63b7c50f10b7974ccd98d9dee17546ae86d6d5ec2984a96f61",
+    "geom_mesh_net/paths.py": "67f9a3b2a39b6f88e509af5e7a527ef5960962db7f209792be8f2298fe484d06",
+    "geom_mesh_net/simulation/__init__.py": "d91c37bd2d32985622ccd116bf6317532a122e63441a582f08918cb0dcabeb56",
+    "geom_mesh_net/simulation/clustersim.py": "dca4492192491e6caca03fbb978af08a52bf5d040b3bdc6a5aea4d264aac00b1",
+    "geom_mesh_net/simulation/parameters.py": "9a203b26caecc3fd1d621bb36fbb578ba090348a04dc2fa486659f2c56ee7e22",
+    "geom_mesh_net/statistics/__init__.py": "88f46e828b0ad3f8a860489b069653329c65d3d02e38903849e4367ab5f388b5",
+    "geom_mesh_net/statistics/barcode.py": "d2db0734cf006df5dc32ee2670be4502619fed9cab3f85bc1f4fea3c0f4cd86a",
+    "geom_mesh_net/statistics/feature_cache.py": "edae18c050ec35da0de6788db74c67463d2cc6f3c8310f10fd8cd66fa90d72c8",
+    "geom_mesh_net/statistics/paper_spatial_features.py": "97bc50d19d293c6eb7ff475cf3a911b48193808da59d443089f75b425a879adf",
+    "geom_mesh_net/statistics/presets.py": "95318eea46b9f2984ce43e8bd92ec1304ae0ca8f577333264b14cc6a740fb08e",
+    "geom_mesh_net/viz/__init__.py": "be729412d3414c6e202a13985dbfc30a1dce88e1c37df61bf8fa825d414a0db3",
+    "geom_mesh_net/viz/benchmarks.py": "cf01eaccb6bf4627fbc3d3f950aea8b3ea83e652d3c4f47dc701de6b457a2359",
+    "geom_mesh_net/viz/clusters.py": "8e0a749d94d4a8cfb00030446f8b9c65bb0f5f66b12972103897c5c4df23f808",
+    "pyproject.toml": "bbf55583d111a4c2ce392058f454e0371baf14c509b4f4b0a784ce7f2ef5d67c"
+  }
+}

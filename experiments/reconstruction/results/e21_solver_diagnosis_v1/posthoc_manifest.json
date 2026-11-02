@@ -1,0 +1,336 @@
+{
+  "schema": "e21-separate-posthoc-endpoint-manifest-v1",
+  "scope": "Separate posthoc numerical diagnostics of saved terminal states; no fitting, no change to recorded outcomes, no convergence or inference certificate.",
+  "main_report": {
+    "path": "experiments/reconstruction/results/e21_solver_diagnosis_v1/diagnosis.json",
+    "sha256": "54c61f456dbe3ac148448d1d1fbc031301c2d3dde5b30cddd2787b7dfd6d6304"
+  },
+  "main_execution_fingerprint": "d95d04993ad4e5ec80b771a0aabb3d1159e2cdd2e52811d8c175f19a86df6b7c",
+  "script_preserved_before_first_successful_execution": true,
+  "script_modified_after_preservation": false,
+  "script": {
+    "path": "experiments/reconstruction/results/e21_solver_diagnosis_v1/analyze_active_endpoints.py",
+    "sha256": "78a2ab317369491e36ffd96f0d8412eb31ac5bcb554cc37e988fd51061ce32e6"
+  },
+  "artifacts": [
+    {
+      "path": "experiments/reconstruction/results/e21_solver_diagnosis_v1/posthoc_blocks_centres_start_00.json",
+      "sha256": "c630665d8f06c9c2dea0647fa7475075befc1242514ab9b616b7877eab664344",
+      "bytes": 20881,
+      "schema": "actual-assignment-postrun-blocks-v1",
+      "stage": "centres",
+      "start": 0
+    },
+    {
+      "path": "experiments/reconstruction/results/e21_solver_diagnosis_v1/posthoc_blocks_centres_start_01.json",
+      "sha256": "002337209d9c9d7aa6ad3d229e3f39c13e5e0ce9179ae7280357f66aa0c82f13",
+      "bytes": 20883,
+      "schema": "actual-assignment-postrun-blocks-v1",
+      "stage": "centres",
+      "start": 1
+    },
+    {
+      "path": "experiments/reconstruction/results/e21_solver_diagnosis_v1/posthoc_blocks_warm_radii_start_00.json",
+      "sha256": "8343f20d6ccfa58309442c388f231ae74fd3d141917d1c68a1fe37a99de5ae59",
+      "bytes": 20820,
+      "schema": "actual-assignment-postrun-blocks-v1",
+      "stage": "warm_radii",
+      "start": 0
+    },
+    {
+      "path": "experiments/reconstruction/results/e21_solver_diagnosis_v1/posthoc_blocks_warm_radii_start_01.json",
+      "sha256": "1b48df56bac68fdf5db8e3d0c3e0b3e4f684dbc178b3e8229c1330ce96087af0",
+      "bytes": 20849,
+      "schema": "actual-assignment-postrun-blocks-v1",
+      "stage": "warm_radii",
+      "start": 1
+    },
+    {
+      "path": "experiments/reconstruction/results/e21_solver_diagnosis_v1/posthoc_blocks_warm_radii_start_02.json",
+      "sha256": "da684084dde1ee277de51b9cd9fef5cfd1261cb490538812fcc34728a9b2e112",
+      "bytes": 20833,
+      "schema": "actual-assignment-postrun-blocks-v1",
+      "stage": "warm_radii",
+      "start": 2
+    },
+    {
+      "path": "experiments/reconstruction/results/e21_solver_diagnosis_v1/posthoc_radii_start_00.json",
+      "sha256": "dcf707ecd8b20ee4186230284a3cdf9fb50feffa15ee77c2278a5bfdc8a82306",
+      "bytes": 105011,
+      "schema": "active-radius-postrun-probes-v1",
+      "stage": "radii",
+      "start": 0
+    },
+    {
+      "path": "experiments/reconstruction/results/e21_solver_diagnosis_v1/posthoc_radii_start_01.json",
+      "sha256": "8e65786c4cc95b6c30c61c597e8af9f147020e0132beb026056948db99461b9e",
+      "bytes": 105490,
+      "schema": "active-radius-postrun-probes-v1",
+      "stage": "radii",
+      "start": 1
+    },
+    {
+      "path": "experiments/reconstruction/results/e21_solver_diagnosis_v1/posthoc_radii_start_02.json",
+      "sha256": "6f2ecac1e535b6bb6754882f20d5d88022b5a5159e55a3f1019b1dc6287193da",
+      "bytes": 105038,
+      "schema": "active-radius-postrun-probes-v1",
+      "stage": "radii",
+      "start": 2
+    }
+  ],
+  "verified_source_hashes": {
+    "geom_mesh_net/fields/constrained_joint_fit.py": "cab5933d979026adc895ac6a988f4b1157fa14a754a1a160983f99c9869fad53",
+    "geom_mesh_net/fields/solver_diagnostics.py": "e8c9289486eb0f8ce3df911cf0fa1805dae5271b60d6028e00318d09761cd15a"
+  },
+  "analysis_counts": {
+    "radius_endpoints": 3,
+    "radius_coordinates": 9,
+    "blocks_only_endpoints": 5,
+    "radius_diagnostic_evaluations": 39,
+    "blocks_only_diagnostic_evaluations": 10,
+    "total_diagnostic_evaluations": 49,
+    "fitting_runs": 0
+  },
+  "radius_settings": {
+    "top_n": 3,
+    "nearby_radius_window": 0.001,
+    "side_offset_scaled": 1e-06,
+    "max_diagnostic_evaluations": 32
+  },
+  "radius_summary": {
+    "verified_feasible_sign_changing_coordinate_cusps": 9,
+    "fresh_and_frozen_assignments_agree": true,
+    "assignment_changes_at_sampled_points": 0,
+    "surface_clamp_and_constant_source_continuation_events": 6,
+    "interior_interpolation_events": 3,
+    "both_one_sided_slope_magnitudes_above_1e_5": 5,
+    "absolute_physical_distance_range": [
+      3.536852233310128e-07,
+      3.295299860006651e-05
+    ],
+    "coupled_direction_fallbacks_exercised": 0,
+    "baseline_nll_equals_saved_nll_all_endpoints": true,
+    "active_projected_residuals": [
+      {
+        "start": 0,
+        "value": 3.888005146996042e-05
+      },
+      {
+        "start": 1,
+        "value": 5.466146174989015e-05
+      },
+      {
+        "start": 2,
+        "value": 3.598859245133832e-05
+      }
+    ]
+  },
+  "radius_coordinate_evidence": [
+    {
+      "stage": "radii",
+      "start": 0,
+      "particle_index": 31,
+      "candidate_id": "candidate-00031",
+      "active_radius_component": 3.888005146996042e-05,
+      "signed_physical_distance_from_endpoint": 3.295299860006651e-05,
+      "possible_nonsmooth_terms": [
+        "interior_clamp",
+        "constant_source_continuation"
+      ],
+      "left_derivative_scaled_radius": -3.854187080015493e-05,
+      "right_derivative_scaled_radius": 1.3739413000331783e-06,
+      "left_finite_difference_scaled_radius": -3.855582519918248e-05,
+      "right_finite_difference_scaled_radius": 1.3878898030839097e-06,
+      "both_slope_magnitudes_above_1e_5": false
+    },
+    {
+      "stage": "radii",
+      "start": 0,
+      "particle_index": 65,
+      "candidate_id": "candidate-00065",
+      "active_radius_component": 3.4040311865746965e-05,
+      "signed_physical_distance_from_endpoint": 2.5273838204498134e-06,
+      "possible_nonsmooth_terms": [
+        "interior_knot"
+      ],
+      "left_derivative_scaled_radius": -3.4039970136324455e-05,
+      "right_derivative_scaled_radius": 1.9379473408757584e-05,
+      "left_finite_difference_scaled_radius": -3.405564719116683e-05,
+      "right_finite_difference_scaled_radius": 1.9394930106386706e-05,
+      "both_slope_magnitudes_above_1e_5": true
+    },
+    {
+      "stage": "radii",
+      "start": 0,
+      "particle_index": 49,
+      "candidate_id": "candidate-00049",
+      "active_radius_component": -3.336497391279397e-05,
+      "signed_physical_distance_from_endpoint": -1.3542457404369657e-06,
+      "possible_nonsmooth_terms": [
+        "interior_clamp",
+        "constant_source_continuation"
+      ],
+      "left_derivative_scaled_radius": -2.5992475780674303e-05,
+      "right_derivative_scaled_radius": 3.337017073151279e-05,
+      "left_finite_difference_scaled_radius": -2.5997870523042362e-05,
+      "right_finite_difference_scaled_radius": 3.3375857633188843e-05,
+      "both_slope_magnitudes_above_1e_5": true
+    },
+    {
+      "stage": "radii",
+      "start": 1,
+      "particle_index": 92,
+      "candidate_id": "candidate-00092",
+      "active_radius_component": -5.466146174989015e-05,
+      "signed_physical_distance_from_endpoint": -2.4579983758155066e-05,
+      "possible_nonsmooth_terms": [
+        "interior_knot"
+      ],
+      "left_derivative_scaled_radius": -9.520298860663526e-06,
+      "right_derivative_scaled_radius": 5.4492489646041696e-05,
+      "left_finite_difference_scaled_radius": -9.530154443382354e-06,
+      "right_finite_difference_scaled_radius": 5.4502180546478546e-05,
+      "both_slope_magnitudes_above_1e_5": false
+    },
+    {
+      "stage": "radii",
+      "start": 1,
+      "particle_index": 49,
+      "candidate_id": "candidate-00049",
+      "active_radius_component": -3.5179848401639384e-05,
+      "signed_physical_distance_from_endpoint": -3.763577699267273e-06,
+      "possible_nonsmooth_terms": [
+        "interior_clamp",
+        "constant_source_continuation"
+      ],
+      "left_derivative_scaled_radius": -2.4236268943513215e-05,
+      "right_derivative_scaled_radius": 3.517410277171018e-05,
+      "left_finite_difference_scaled_radius": -2.4241830764992762e-05,
+      "right_finite_difference_scaled_radius": 3.51797480035998e-05,
+      "both_slope_magnitudes_above_1e_5": true
+    },
+    {
+      "stage": "radii",
+      "start": 1,
+      "particle_index": 78,
+      "candidate_id": "candidate-00078",
+      "active_radius_component": 3.317050327412163e-05,
+      "signed_physical_distance_from_endpoint": 1.7777000089758133e-06,
+      "possible_nonsmooth_terms": [
+        "interior_knot"
+      ],
+      "left_derivative_scaled_radius": -3.3176374028871875e-05,
+      "right_derivative_scaled_radius": 3.304568700639378e-05,
+      "left_finite_difference_scaled_radius": -3.3186564607490254e-05,
+      "right_finite_difference_scaled_radius": 3.3055669312886955e-05,
+      "both_slope_magnitudes_above_1e_5": true
+    },
+    {
+      "stage": "radii",
+      "start": 2,
+      "particle_index": 17,
+      "candidate_id": "candidate-00017",
+      "active_radius_component": 3.598859245133832e-05,
+      "signed_physical_distance_from_endpoint": 7.010640579174776e-07,
+      "possible_nonsmooth_terms": [
+        "interior_clamp",
+        "constant_source_continuation"
+      ],
+      "left_derivative_scaled_radius": -3.600870783420037e-05,
+      "right_derivative_scaled_radius": 9.453499359621398e-06,
+      "left_finite_difference_scaled_radius": -3.602274034619768e-05,
+      "right_finite_difference_scaled_radius": 9.467648887095947e-06,
+      "both_slope_magnitudes_above_1e_5": false
+    },
+    {
+      "stage": "radii",
+      "start": 2,
+      "particle_index": 1,
+      "candidate_id": "candidate-00001",
+      "active_radius_component": -3.591270965421189e-05,
+      "signed_physical_distance_from_endpoint": -3.536852233310128e-07,
+      "possible_nonsmooth_terms": [
+        "interior_clamp",
+        "constant_source_continuation"
+      ],
+      "left_derivative_scaled_radius": -2.6463578081504927e-05,
+      "right_derivative_scaled_radius": 3.5927647438484054e-05,
+      "left_finite_difference_scaled_radius": -2.6471935754557308e-05,
+      "right_finite_difference_scaled_radius": 3.593636499488184e-05,
+      "both_slope_magnitudes_above_1e_5": true
+    },
+    {
+      "stage": "radii",
+      "start": 2,
+      "particle_index": 13,
+      "candidate_id": "candidate-00013",
+      "active_radius_component": -3.3616856860809016e-05,
+      "signed_physical_distance_from_endpoint": -3.977583471481694e-07,
+      "possible_nonsmooth_terms": [
+        "interior_clamp",
+        "constant_source_continuation"
+      ],
+      "left_derivative_scaled_radius": -5.913811016305543e-06,
+      "right_derivative_scaled_radius": 3.363719869377393e-05,
+      "left_finite_difference_scaled_radius": -5.9257043716343105e-06,
+      "right_finite_difference_scaled_radius": 3.3649194541851564e-05,
+      "both_slope_magnitudes_above_1e_5": false
+    }
+  ],
+  "fresh_actual_endpoint_evidence": [
+    {
+      "stage": "centres",
+      "start": 0,
+      "saved_status": "evaluation_budget",
+      "fresh_actual_active_projected_residual": 5.001145419090814e-05,
+      "saved_assignment_changes": 18,
+      "fresh_mean_nll_minus_saved": -1.027714857659845e-09,
+      "value_guards_passed": true
+    },
+    {
+      "stage": "centres",
+      "start": 1,
+      "saved_status": "evaluation_budget",
+      "fresh_actual_active_projected_residual": 0.0004578978850343595,
+      "saved_assignment_changes": 2239,
+      "fresh_mean_nll_minus_saved": -1.340691005824457e-06,
+      "value_guards_passed": true
+    },
+    {
+      "stage": "warm_radii",
+      "start": 0,
+      "saved_status": "evaluation_budget",
+      "fresh_actual_active_projected_residual": 7.161123570984071e-05,
+      "saved_assignment_changes": 34,
+      "fresh_mean_nll_minus_saved": -1.3703356727123861e-08,
+      "value_guards_passed": true
+    },
+    {
+      "stage": "warm_radii",
+      "start": 1,
+      "saved_status": "evaluation_budget",
+      "fresh_actual_active_projected_residual": 4.3079308461860796e-05,
+      "saved_assignment_changes": 4,
+      "fresh_mean_nll_minus_saved": 1.5765166949677223e-13,
+      "value_guards_passed": true
+    },
+    {
+      "stage": "warm_radii",
+      "start": 2,
+      "saved_status": "evaluation_budget",
+      "fresh_actual_active_projected_residual": 6.422407277171235e-05,
+      "saved_assignment_changes": 9,
+      "fresh_mean_nll_minus_saved": 4.268807529683727e-14,
+      "value_guards_passed": true
+    }
+  ],
+  "limitations": [
+    "These local coordinate-section cusps do not certify joint nonsmooth or Clarke stationarity, a local optimum, global optimality, or physical identifiability.",
+    "At surface events the interior clamp and constant source continuation change branch together; this analysis does not separate their contributions.",
+    "Only selected nearby radius events were probed. Zero sampled assignment changes does not rule out other switches elsewhere.",
+    "Raw probability validation applies to the checked sampled positions, not a continuum guarantee.",
+    "The coupled-direction fallback was not required by these nine selected coordinates; this run provides no empirical validation of that path.",
+    "All evaluations are explicitly outside fitting budgets. Existing fitting statuses and thresholds remain unchanged.",
+    "Other tests ran concurrently, so diagnostic elapsed times are not performance benchmarks."
+  ]
+}

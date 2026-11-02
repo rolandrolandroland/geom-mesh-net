@@ -1,0 +1,3405 @@
+{
+  "baseline_guard": {
+    "evaluation": 0,
+    "geometry_feasible": true,
+    "likelihood_evaluated": true,
+    "mean_nll": 0.2821009475897827,
+    "minimum_box_clearance": -8.881784197001252e-16,
+    "minimum_probability_constraint": 0.0007164233247956009,
+    "minimum_surface_gap": 0.5933162943155814,
+    "probability": {
+      "domain_tolerance": 1e-10,
+      "full": {
+        "maximum": 0.9992835666752043,
+        "minimum": 0.027341325447909896,
+        "nonfinite": 0,
+        "outside_probability_range": 0,
+        "passed": true,
+        "points": 67799
+      },
+      "matrix": {
+        "maximum": 0.13388032162907323,
+        "minimum": 0.038650903477234086,
+        "nonfinite": 0,
+        "outside_probability_range": 0,
+        "passed": true,
+        "points": 60182
+      },
+      "passed": true,
+      "scope": "sampled_positions_only"
+    },
+    "probability_valid": true,
+    "solve": {
+      "condition_number": 7.717795927277546,
+      "maximum_absolute_amplitude": 0.05596917907140439,
+      "relative_residual": 3.457321384809884e-16
+    }
+  },
+  "diagnostic_evaluations": {
+    "likelihood_evaluated": 33,
+    "outside_fitting_budget": true,
+    "probe_cache_hits": 32,
+    "total": 33
+  },
+  "fitting_atoms": 64064,
+  "fitting_identity": "79a126bc680370ab9d6303b4f4862dd5da3b5fd607ed46f469a0b8771eeb369b",
+  "frozen_assignment_identity": "fb7e472b33d0ba75c470389139ab7d17446bae9e0fb87435b9019cea7329788e",
+  "full_projected_gradient_inf": 9.807201280130726e-05,
+  "joint_convergence_assessed": false,
+  "mean_nll": 0.2821009475897827,
+  "model_configuration": {
+    "box": 60.0,
+    "count": 95,
+    "fixed_ell": null,
+    "knots": 6,
+    "min_gap": 1e-05,
+    "radius_bounds": [
+      0.5,
+      20.0
+    ],
+    "width": 0.3
+  },
+  "model_version": "screened_spheres_constant_interior_v1",
+  "parameter_identity": "ba6385de6a82a3b46b45f6791133ba5363500104cdf440267dfde03821573fb7",
+  "particles": [
+    {
+      "candidate_id": "candidate-00081",
+      "crossings": [
+        {
+          "actual_offset_scaled": 4.4605047002654883e-07,
+          "assignment_modes": {
+            "fresh": {
+              "coordinate_cusp_minimum": true,
+              "derivative_jump": 0.00012258264985920935,
+              "left_derivative": -2.4542927624643917e-05,
+              "left_error_allowance": 4.209790756776402e-08,
+              "left_finite_difference": -2.4547837781033814e-05,
+              "nearby_coordinate_cusp": true,
+              "points": [
+                {
+                  "assignment_changes": 0,
+                  "guard": {
+                    "evaluation": 0,
+                    "geometry_feasible": true,
+                    "likelihood_evaluated": true,
+                    "mean_nll": 0.2821009475073779,
+                    "minimum_box_clearance": -8.881784197001252e-16,
+                    "minimum_probability_constraint": 0.0007164233247957119,
+                    "minimum_surface_gap": 0.5933162943155814,
+                    "probability": {
+                      "domain_tolerance": 1e-10,
+                      "full": {
+                        "maximum": 0.9992835666752042,
+                        "minimum": 0.02734132544776805,
+                        "nonfinite": 0,
+                        "outside_probability_range": 0,
+                        "passed": true,
+                        "points": 67799
+                      },
+                      "matrix": {
+                        "maximum": 0.13388032163140756,
+                        "minimum": 0.038650903476950396,
+                        "nonfinite": 0,
+                        "outside_probability_range": 0,
+                        "passed": true,
+                        "points": 60182
+                      },
+                      "passed": true,
+                      "scope": "sampled_positions_only"
+                    },
+                    "probability_valid": true,
+                    "solve": {
+                      "condition_number": 7.717795892736344,
+                      "maximum_absolute_amplitude": 0.05596917890870361,
+                      "relative_residual": 3.216572520993707e-16
+                    }
+                  },
+                  "mean_nll": 0.2821009475073779,
+                  "physical_radius_derivative": -4.910633246901708e-06,
+                  "radius": 2.628124189198621,
+                  "scaled_radius": 0.5256248378397241,
+                  "scaled_radius_derivative": -2.455316623450854e-05,
+                  "valid": true
+                },
+                {
+                  "assignment_changes": 0,
+                  "guard": {
+                    "evaluation": 0,
+                    "geometry_feasible": true,
+                    "likelihood_evaluated": true,
+                    "mean_nll": 0.2821009475019031,
+                    "minimum_box_clearance": -8.881784197001252e-16,
+                    "minimum_probability_constraint": 0.0007164233247956009,
+                    "minimum_surface_gap": 0.5933162943155814,
+                    "probability": {
+                      "domain_tolerance": 1e-10,
+                      "full": {
+                        "maximum": 0.9992835666752043,
+                        "minimum": 0.027341325447790665,
+                        "nonfinite": 0,
+                        "outside_probability_range": 0,
+                        "passed": true,
+                        "points": 67799
+                      },
+                      "matrix": {
+                        "maximum": 0.13388032163103522,
+                        "minimum": 0.038650903476995624,
+                        "nonfinite": 0,
+                        "outside_probability_range": 0,
+                        "passed": true,
+                        "points": 60182
+                      },
+                      "passed": true,
+                      "scope": "sampled_positions_only"
+                    },
+                    "probability_valid": true,
+                    "solve": {
+                      "condition_number": 7.717795898246244,
+                      "maximum_absolute_amplitude": 0.055969178934657166,
+                      "relative_residual": 3.527142599933421e-16
+                    }
+                  },
+                  "mean_nll": 0.2821009475019031,
+                  "physical_radius_derivative": -4.908585524928784e-06,
+                  "radius": 2.6281253043247963,
+                  "scaled_radius": 0.5256250608649593,
+                  "scaled_radius_derivative": -2.4542927624643917e-05,
+                  "valid": true
+                },
+                {
+                  "assignment_changes": 0,
+                  "guard": {
+                    "evaluation": 0,
+                    "geometry_feasible": true,
+                    "likelihood_evaluated": true,
+                    "mean_nll": 0.2821009475182948,
+                    "minimum_box_clearance": -8.881784197001252e-16,
+                    "minimum_probability_constraint": 0.0007164233247956009,
+                    "minimum_surface_gap": 0.5933162943155814,
+                    "probability": {
+                      "domain_tolerance": 1e-10,
+                      "full": {
+                        "maximum": 0.9992835666752043,
+                        "minimum": 0.027341325447835928,
+                        "nonfinite": 0,
+                        "outside_probability_range": 0,
+                        "passed": true,
+                        "points": 67799
+                      },
+                      "matrix": {
+                        "maximum": 0.13388032163029048,
+                        "minimum": 0.03865090347708615,
+                        "nonfinite": 0,
+                        "outside_probability_range": 0,
+                        "passed": true,
+                        "points": 60182
+                      },
+                      "passed": true,
+                      "scope": "sampled_positions_only"
+                    },
+                    "probability_valid": true,
+                    "solve": {
+                      "condition_number": 7.7177959092660595,
+                      "maximum_absolute_amplitude": 0.05596917898656427,
+                      "relative_residual": 3.3054255094636855e-16
+                    }
+                  },
+                  "mean_nll": 0.2821009475182948,
+                  "physical_radius_derivative": 1.9607944446913085e-05,
+                  "radius": 2.628127534577146,
+                  "scaled_radius": 0.5256255069154292,
+                  "scaled_radius_derivative": 9.803972223456542e-05,
+                  "valid": true
+                },
+                {
+                  "assignment_changes": 0,
+                  "guard": {
+                    "evaluation": 0,
+                    "geometry_feasible": true,
+                    "likelihood_evaluated": true,
+                    "mean_nll": 0.2821009475401612,
+                    "minimum_box_clearance": -8.881784197001252e-16,
+                    "minimum_probability_constraint": 0.0007164233247956009,
+                    "minimum_surface_gap": 0.5933162943155814,
+                    "probability": {
+                      "domain_tolerance": 1e-10,
+                      "full": {
+                        "maximum": 0.9992835666752043,
+                        "minimum": 0.02734132544785855,
+                        "nonfinite": 0,
+                        "outside_probability_range": 0,
+                        "passed": true,
+                        "points": 67799
+                      },
+                      "matrix": {
+                        "maximum": 0.13388032162991811,
+                        "minimum": 0.03865090347713139,
+                        "nonfinite": 0,
+                        "outside_probability_range": 0,
+                        "passed": true,
+                        "points": 60182
+                      },
+                      "passed": true,
+                      "scope": "sampled_positions_only"
+                    },
+                    "probability_valid": true,
+                    "solve": {
+                      "condition_number": 7.717795914775961,
+                      "maximum_absolute_amplitude": 0.0559691790125178,
+                      "relative_residual": 2.921364681517536e-16
+                    }
+                  },
+                  "mean_nll": 0.2821009475401612,
+                  "physical_radius_derivative": 1.9609920059181604e-05,
+                  "radius": 2.6281286497033216,
+                  "scaled_radius": 0.5256257299406644,
+                  "scaled_radius_derivative": 9.804960029590802e-05,
+                  "valid": true
+                }
+              ],
+              "resolved_jump": true,
+              "right_derivative": 9.803972223456542e-05,
+              "right_error_allowance": 4.1737359045736276e-08,
+              "right_finite_difference": 9.804449967378484e-05,
+              "verified": true
+            },
+            "frozen": {
+              "coordinate_cusp_minimum": true,
+              "derivative_jump": 0.00012258264985920935,
+              "left_derivative": -2.4542927624643917e-05,
+              "left_error_allowance": 4.209790756776402e-08,
+              "left_finite_difference": -2.4547837781033814e-05,
+              "nearby_coordinate_cusp": true,
+              "points": [
+                {
+                  "assignment_changes": 0,
+                  "guard": {
+                    "evaluation": 0,
+                    "geometry_feasible": true,
+                    "likelihood_evaluated": true,
+                    "mean_nll": 0.2821009475073779,
+                    "minimum_box_clearance": -8.881784197001252e-16,
+                    "minimum_probability_constraint": 0.0007164233247957119,
+                    "minimum_surface_gap": 0.5933162943155814,
+                    "probability": {
+                      "domain_tolerance": 1e-10,
+                      "full": {
+                        "maximum": 0.9992835666752042,
+                        "minimum": 0.02734132544776805,
+                        "nonfinite": 0,
+                        "outside_probability_range": 0,
+                        "passed": true,
+                        "points": 67799
+                      },
+                      "matrix": {
+                        "maximum": 0.13388032163140756,
+                        "minimum": 0.038650903476950396,
+                        "nonfinite": 0,
+                        "outside_probability_range": 0,
+                        "passed": true,
+                        "points": 60182
+                      },
+                      "passed": true,
+                      "scope": "sampled_positions_only"
+                    },
+                    "probability_valid": true,
+                    "solve": {
+                      "condition_number": 7.717795892736344,
+                      "maximum_absolute_amplitude": 0.05596917890870361,
+                      "relative_residual": 3.216572520993707e-16
+                    }
+                  },
+                  "mean_nll": 0.2821009475073779,
+                  "physical_radius_derivative": -4.910633246901708e-06,
+                  "radius": 2.628124189198621,
+                  "scaled_radius": 0.5256248378397241,
+                  "scaled_radius_derivative": -2.455316623450854e-05,
+                  "valid": true
+                },
+                {
+                  "assignment_changes": 0,
+                  "guard": {
+                    "evaluation": 0,
+                    "geometry_feasible": true,
+                    "likelihood_evaluated": true,
+                    "mean_nll": 0.2821009475019031,
+                    "minimum_box_clearance": -8.881784197001252e-16,
+                    "minimum_probability_constraint": 0.0007164233247956009,
+                    "minimum_surface_gap": 0.5933162943155814,
+                    "probability": {
+                      "domain_tolerance": 1e-10,
+                      "full": {
+                        "maximum": 0.9992835666752043,
+                        "minimum": 0.027341325447790665,
+                        "nonfinite": 0,
+                        "outside_probability_range": 0,
+                        "passed": true,
+                        "points": 67799
+                      },
+                      "matrix": {
+                        "maximum": 0.13388032163103522,
+                        "minimum": 0.038650903476995624,
+                        "nonfinite": 0,
+                        "outside_probability_range": 0,
+                        "passed": true,
+                        "points": 60182
+                      },
+                      "passed": true,
+                      "scope": "sampled_positions_only"
+                    },
+                    "probability_valid": true,
+                    "solve": {
+                      "condition_number": 7.717795898246244,
+                      "maximum_absolute_amplitude": 0.055969178934657166,
+                      "relative_residual": 3.527142599933421e-16
+                    }
+                  },
+                  "mean_nll": 0.2821009475019031,
+                  "physical_radius_derivative": -4.908585524928784e-06,
+                  "radius": 2.6281253043247963,
+                  "scaled_radius": 0.5256250608649593,
+                  "scaled_radius_derivative": -2.4542927624643917e-05,
+                  "valid": true
+                },
+                {
+                  "assignment_changes": 0,
+                  "guard": {
+                    "evaluation": 0,
+                    "geometry_feasible": true,
+                    "likelihood_evaluated": true,
+                    "mean_nll": 0.2821009475182948,
+                    "minimum_box_clearance": -8.881784197001252e-16,
+                    "minimum_probability_constraint": 0.0007164233247956009,
+                    "minimum_surface_gap": 0.5933162943155814,
+                    "probability": {
+                      "domain_tolerance": 1e-10,
+                      "full": {
+                        "maximum": 0.9992835666752043,
+                        "minimum": 0.027341325447835928,
+                        "nonfinite": 0,
+                        "outside_probability_range": 0,
+                        "passed": true,
+                        "points": 67799
+                      },
+                      "matrix": {
+                        "maximum": 0.13388032163029048,
+                        "minimum": 0.03865090347708615,
+                        "nonfinite": 0,
+                        "outside_probability_range": 0,
+                        "passed": true,
+                        "points": 60182
+                      },
+                      "passed": true,
+                      "scope": "sampled_positions_only"
+                    },
+                    "probability_valid": true,
+                    "solve": {
+                      "condition_number": 7.7177959092660595,
+                      "maximum_absolute_amplitude": 0.05596917898656427,
+                      "relative_residual": 3.3054255094636855e-16
+                    }
+                  },
+                  "mean_nll": 0.2821009475182948,
+                  "physical_radius_derivative": 1.9607944446913085e-05,
+                  "radius": 2.628127534577146,
+                  "scaled_radius": 0.5256255069154292,
+                  "scaled_radius_derivative": 9.803972223456542e-05,
+                  "valid": true
+                },
+                {
+                  "assignment_changes": 0,
+                  "guard": {
+                    "evaluation": 0,
+                    "geometry_feasible": true,
+                    "likelihood_evaluated": true,
+                    "mean_nll": 0.2821009475401612,
+                    "minimum_box_clearance": -8.881784197001252e-16,
+                    "minimum_probability_constraint": 0.0007164233247956009,
+                    "minimum_surface_gap": 0.5933162943155814,
+                    "probability": {
+                      "domain_tolerance": 1e-10,
+                      "full": {
+                        "maximum": 0.9992835666752043,
+                        "minimum": 0.02734132544785855,
+                        "nonfinite": 0,
+                        "outside_probability_range": 0,
+                        "passed": true,
+                        "points": 67799
+                      },
+                      "matrix": {
+                        "maximum": 0.13388032162991811,
+                        "minimum": 0.03865090347713139,
+                        "nonfinite": 0,
+                        "outside_probability_range": 0,
+                        "passed": true,
+                        "points": 60182
+                      },
+                      "passed": true,
+                      "scope": "sampled_positions_only"
+                    },
+                    "probability_valid": true,
+                    "solve": {
+                      "condition_number": 7.717795914775961,
+                      "maximum_absolute_amplitude": 0.0559691790125178,
+                      "relative_residual": 2.921364681517536e-16
+                    }
+                  },
+                  "mean_nll": 0.2821009475401612,
+                  "physical_radius_derivative": 1.9609920059181604e-05,
+                  "radius": 2.6281286497033216,
+                  "scaled_radius": 0.5256257299406644,
+                  "scaled_radius_derivative": 9.804960029590802e-05,
+                  "valid": true
+                }
+              ],
+              "resolved_jump": true,
+              "right_derivative": 9.803972223456542e-05,
+              "right_error_allowance": 4.1737359045736276e-08,
+              "right_finite_difference": 9.804449967378484e-05,
+              "verified": true
+            }
+          },
+          "distance_from_endpoint": -4.760390026170569e-06,
+          "near_endpoint": true,
+          "nearest_other_crossing_distance": 8.921009400530977e-06,
+          "origins": [
+            {
+              "fitting_position": 56266,
+              "knot_index": 5,
+              "sample_index": 56266,
+              "u": 0.8333333333333334
+            }
+          ],
+          "possible_nonsmooth_terms": [
+            "interior_knot"
+          ],
+          "radius": 2.6281264194509713
+        },
+        {
+          "actual_offset_scaled": 4.4605047002654883e-07,
+          "assignment_modes": {
+            "fresh": {
+              "coordinate_cusp_minimum": false,
+              "derivative_jump": 0.00012217250674896281,
+              "left_derivative": -0.00014677686636117396,
+              "left_error_allowance": 4.245334750161092e-08,
+              "left_finite_difference": -0.00014678200703745542,
+              "nearby_coordinate_cusp": false,
+              "points": [
+                {
+                  "assignment_changes": 0,
+                  "guard": {
+                    "evaluation": 0,
+                    "geometry_feasible": true,
+                    "likelihood_evaluated": true,
+                    "mean_nll": 0.2821009476057447,
+                    "minimum_box_clearance": -8.881784197001252e-16,
+                    "minimum_probability_constraint": 0.0007164233247958229,
+                    "minimum_surface_gap": 0.5933162943155814,
+                    "probability": {
+                      "domain_tolerance": 1e-10,
+                      "full": {
+                        "maximum": 0.9992835666752041,
+                        "minimum": 0.027341325447587016,
+                        "nonfinite": 0,
+                        "outside_probability_range": 0,
+                        "passed": true,
+                        "points": 67799
+                      },
+                      "matrix": {
+                        "maximum": 0.1338803216343865,
+                        "minimum": 0.038650903476588325,
+                        "nonfinite": 0,
+                        "outside_probability_range": 0,
+                        "passed": true,
+                        "points": 60182
+                      },
+                      "passed": true,
+                      "scope": "sampled_positions_only"
+                    },
+                    "probability_valid": true,
+                    "solve": {
+                      "condition_number": 7.7177958486572384,
+                      "maximum_absolute_amplitude": 0.055969178701074686,
+                      "relative_residual": 3.366231584835974e-16
+                    }
+                  },
+                  "mean_nll": 0.2821009476057447,
+                  "physical_radius_derivative": -2.9357492082194484e-05,
+                  "radius": 2.6281152681892204,
+                  "scaled_radius": 0.5256230536378441,
+                  "scaled_radius_derivative": -0.00014678746041097242,
+                  "valid": true
+                },
+                {
+                  "assignment_changes": 0,
+                  "guard": {
+                    "evaluation": 0,
+                    "geometry_feasible": true,
+                    "likelihood_evaluated": true,
+                    "mean_nll": 0.28210094757300863,
+                    "minimum_box_clearance": -8.881784197001252e-16,
+                    "minimum_probability_constraint": 0.0007164233247958229,
+                    "minimum_surface_gap": 0.5933162943155814,
+                    "probability": {
+                      "domain_tolerance": 1e-10,
+                      "full": {
+                        "maximum": 0.9992835666752041,
+                        "minimum": 0.027341325447609643,
+                        "nonfinite": 0,
+                        "outside_probability_range": 0,
+                        "passed": true,
+                        "points": 67799
+                      },
+                      "matrix": {
+                        "maximum": 0.13388032163401414,
+                        "minimum": 0.03865090347663358,
+                        "nonfinite": 0,
+                        "outside_probability_range": 0,
+                        "passed": true,
+                        "points": 60182
+                      },
+                      "passed": true,
+                      "scope": "sampled_positions_only"
+                    },
+                    "probability_valid": true,
+                    "solve": {
+                      "condition_number": 7.717795854167116,
+                      "maximum_absolute_amplitude": 0.05596917872702835,
+                      "relative_residual": 3.2860412029624947e-16
+                    }
+                  },
+                  "mean_nll": 0.28210094757300863,
+                  "physical_radius_derivative": -2.935537327223479e-05,
+                  "radius": 2.6281163833153958,
+                  "scaled_radius": 0.5256232766630792,
+                  "scaled_radius_derivative": -0.00014677686636117396,
+                  "valid": true
+                },
+                {
+                  "assignment_changes": 0,
+                  "guard": {
+                    "evaluation": 0,
+                    "geometry_feasible": true,
+                    "likelihood_evaluated": true,
+                    "mean_nll": 0.2821009475347863,
+                    "minimum_box_clearance": -8.881784197001252e-16,
+                    "minimum_probability_constraint": 0.0007164233247957119,
+                    "minimum_surface_gap": 0.5933162943155814,
+                    "probability": {
+                      "domain_tolerance": 1e-10,
+                      "full": {
+                        "maximum": 0.9992835666752042,
+                        "minimum": 0.02734132544765492,
+                        "nonfinite": 0,
+                        "outside_probability_range": 0,
+                        "passed": true,
+                        "points": 67799
+                      },
+                      "matrix": {
+                        "maximum": 0.1338803216332694,
+                        "minimum": 0.03865090347672413,
+                        "nonfinite": 0,
+                        "outside_probability_range": 0,
+                        "passed": true,
+                        "points": 60182
+                      },
+                      "passed": true,
+                      "scope": "sampled_positions_only"
+                    },
+                    "probability_valid": true,
+                    "solve": {
+                      "condition_number": 7.717795865186882,
+                      "maximum_absolute_amplitude": 0.05596917877893562,
+                      "relative_residual": 3.2134677349084605e-16
+                    }
+                  },
+                  "mean_nll": 0.2821009475347863,
+                  "physical_radius_derivative": -4.920871922442225e-06,
+                  "radius": 2.6281186135677457,
+                  "scaled_radius": 0.5256237227135492,
+                  "scaled_radius_derivative": -2.4604359612211127e-05,
+                  "valid": true
+                },
+                {
+                  "assignment_changes": 0,
+                  "guard": {
+                    "evaluation": 0,
+                    "geometry_feasible": true,
+                    "likelihood_evaluated": true,
+                    "mean_nll": 0.2821009475293001,
+                    "minimum_box_clearance": -8.881784197001252e-16,
+                    "minimum_probability_constraint": 0.0007164233247957119,
+                    "minimum_surface_gap": 0.5933162943155814,
+                    "probability": {
+                      "domain_tolerance": 1e-10,
+                      "full": {
+                        "maximum": 0.9992835666752042,
+                        "minimum": 0.027341325447677547,
+                        "nonfinite": 0,
+                        "outside_probability_range": 0,
+                        "passed": true,
+                        "points": 67799
+                      },
+                      "matrix": {
+                        "maximum": 0.13388032163289704,
+                        "minimum": 0.03865090347676939,
+                        "nonfinite": 0,
+                        "outside_probability_range": 0,
+                        "passed": true,
+                        "points": 60182
+                      },
+                      "passed": true,
+                      "scope": "sampled_positions_only"
+                    },
+                    "probability_valid": true,
+                    "solve": {
+                      "condition_number": 7.71779587069676,
+                      "maximum_absolute_amplitude": 0.05596917880488923,
+                      "relative_residual": 3.2114790340235446e-16
+                    }
+                  },
+                  "mean_nll": 0.2821009475293001,
+                  "physical_radius_derivative": -4.918824178575617e-06,
+                  "radius": 2.628119728693921,
+                  "scaled_radius": 0.5256239457387842,
+                  "scaled_radius_derivative": -2.4594120892878084e-05,
+                  "valid": true
+                }
+              ],
+              "resolved_jump": true,
+              "right_derivative": -2.4604359612211127e-05,
+              "right_error_allowance": 4.209801703618454e-08,
+              "right_finite_difference": -2.4599111338274808e-05,
+              "verified": true
+            },
+            "frozen": {
+              "coordinate_cusp_minimum": false,
+              "derivative_jump": 0.00012217250674896281,
+              "left_derivative": -0.00014677686636117396,
+              "left_error_allowance": 4.245334750161092e-08,
+              "left_finite_difference": -0.00014678200703745542,
+              "nearby_coordinate_cusp": false,
+              "points": [
+                {
+                  "assignment_changes": 0,
+                  "guard": {
+                    "evaluation": 0,
+                    "geometry_feasible": true,
+                    "likelihood_evaluated": true,
+                    "mean_nll": 0.2821009476057447,
+                    "minimum_box_clearance": -8.881784197001252e-16,
+                    "minimum_probability_constraint": 0.0007164233247958229,
+                    "minimum_surface_gap": 0.5933162943155814,
+                    "probability": {
+                      "domain_tolerance": 1e-10,
+                      "full": {
+                        "maximum": 0.9992835666752041,
+                        "minimum": 0.027341325447587016,
+                        "nonfinite": 0,
+                        "outside_probability_range": 0,
+                        "passed": true,
+                        "points": 67799
+                      },
+                      "matrix": {
+                        "maximum": 0.1338803216343865,
+                        "minimum": 0.038650903476588325,
+                        "nonfinite": 0,
+                        "outside_probability_range": 0,
+                        "passed": true,
+                        "points": 60182
+                      },
+                      "passed": true,
+                      "scope": "sampled_positions_only"
+                    },
+                    "probability_valid": true,
+                    "solve": {
+                      "condition_number": 7.7177958486572384,
+                      "maximum_absolute_amplitude": 0.055969178701074686,
+                      "relative_residual": 3.366231584835974e-16
+                    }
+                  },
+                  "mean_nll": 0.2821009476057447,
+                  "physical_radius_derivative": -2.9357492082194484e-05,
+                  "radius": 2.6281152681892204,
+                  "scaled_radius": 0.5256230536378441,
+                  "scaled_radius_derivative": -0.00014678746041097242,
+                  "valid": true
+                },
+                {
+                  "assignment_changes": 0,
+                  "guard": {
+                    "evaluation": 0,
+                    "geometry_feasible": true,
+                    "likelihood_evaluated": true,
+                    "mean_nll": 0.28210094757300863,
+                    "minimum_box_clearance": -8.881784197001252e-16,
+                    "minimum_probability_constraint": 0.0007164233247958229,
+                    "minimum_surface_gap": 0.5933162943155814,
+                    "probability": {
+                      "domain_tolerance": 1e-10,
+                      "full": {
+                        "maximum": 0.9992835666752041,
+                        "minimum": 0.027341325447609643,
+                        "nonfinite": 0,
+                        "outside_probability_range": 0,
+                        "passed": true,
+                        "points": 67799
+                      },
+                      "matrix": {
+                        "maximum": 0.13388032163401414,
+                        "minimum": 0.03865090347663358,
+                        "nonfinite": 0,
+                        "outside_probability_range": 0,
+                        "passed": true,
+                        "points": 60182
+                      },
+                      "passed": true,
+                      "scope": "sampled_positions_only"
+                    },
+                    "probability_valid": true,
+                    "solve": {
+                      "condition_number": 7.717795854167116,
+                      "maximum_absolute_amplitude": 0.05596917872702835,
+                      "relative_residual": 3.2860412029624947e-16
+                    }
+                  },
+                  "mean_nll": 0.28210094757300863,
+                  "physical_radius_derivative": -2.935537327223479e-05,
+                  "radius": 2.6281163833153958,
+                  "scaled_radius": 0.5256232766630792,
+                  "scaled_radius_derivative": -0.00014677686636117396,
+                  "valid": true
+                },
+                {
+                  "assignment_changes": 0,
+                  "guard": {
+                    "evaluation": 0,
+                    "geometry_feasible": true,
+                    "likelihood_evaluated": true,
+                    "mean_nll": 0.2821009475347863,
+                    "minimum_box_clearance": -8.881784197001252e-16,
+                    "minimum_probability_constraint": 0.0007164233247957119,
+                    "minimum_surface_gap": 0.5933162943155814,
+                    "probability": {
+                      "domain_tolerance": 1e-10,
+                      "full": {
+                        "maximum": 0.9992835666752042,
+                        "minimum": 0.02734132544765492,
+                        "nonfinite": 0,
+                        "outside_probability_range": 0,
+                        "passed": true,
+                        "points": 67799
+                      },
+                      "matrix": {
+                        "maximum": 0.1338803216332694,
+                        "minimum": 0.03865090347672413,
+                        "nonfinite": 0,
+                        "outside_probability_range": 0,
+                        "passed": true,
+                        "points": 60182
+                      },
+                      "passed": true,
+                      "scope": "sampled_positions_only"
+                    },
+                    "probability_valid": true,
+                    "solve": {
+                      "condition_number": 7.717795865186882,
+                      "maximum_absolute_amplitude": 0.05596917877893562,
+                      "relative_residual": 3.2134677349084605e-16
+                    }
+                  },
+                  "mean_nll": 0.2821009475347863,
+                  "physical_radius_derivative": -4.920871922442225e-06,
+                  "radius": 2.6281186135677457,
+                  "scaled_radius": 0.5256237227135492,
+                  "scaled_radius_derivative": -2.4604359612211127e-05,
+                  "valid": true
+                },
+                {
+                  "assignment_changes": 0,
+                  "guard": {
+                    "evaluation": 0,
+                    "geometry_feasible": true,
+                    "likelihood_evaluated": true,
+                    "mean_nll": 0.2821009475293001,
+                    "minimum_box_clearance": -8.881784197001252e-16,
+                    "minimum_probability_constraint": 0.0007164233247957119,
+                    "minimum_surface_gap": 0.5933162943155814,
+                    "probability": {
+                      "domain_tolerance": 1e-10,
+                      "full": {
+                        "maximum": 0.9992835666752042,
+                        "minimum": 0.027341325447677547,
+                        "nonfinite": 0,
+                        "outside_probability_range": 0,
+                        "passed": true,
+                        "points": 67799
+                      },
+                      "matrix": {
+                        "maximum": 0.13388032163289704,
+                        "minimum": 0.03865090347676939,
+                        "nonfinite": 0,
+                        "outside_probability_range": 0,
+                        "passed": true,
+                        "points": 60182
+                      },
+                      "passed": true,
+                      "scope": "sampled_positions_only"
+                    },
+                    "probability_valid": true,
+                    "solve": {
+                      "condition_number": 7.71779587069676,
+                      "maximum_absolute_amplitude": 0.05596917880488923,
+                      "relative_residual": 3.2114790340235446e-16
+                    }
+                  },
+                  "mean_nll": 0.2821009475293001,
+                  "physical_radius_derivative": -4.918824178575617e-06,
+                  "radius": 2.628119728693921,
+                  "scaled_radius": 0.5256239457387842,
+                  "scaled_radius_derivative": -2.4594120892878084e-05,
+                  "valid": true
+                }
+              ],
+              "resolved_jump": true,
+              "right_derivative": -2.4604359612211127e-05,
+              "right_error_allowance": 4.209801703618454e-08,
+              "right_finite_difference": -2.4599111338274808e-05,
+              "verified": true
+            }
+          },
+          "distance_from_endpoint": -1.3681399426701546e-05,
+          "near_endpoint": true,
+          "nearest_other_crossing_distance": 8.921009400530977e-06,
+          "origins": [
+            {
+              "fitting_position": 30542,
+              "knot_index": 5,
+              "sample_index": 30542,
+              "u": 0.8333333333333334
+            }
+          ],
+          "possible_nonsmooth_terms": [
+            "interior_knot"
+          ],
+          "radius": 2.6281174984415707
+        }
+      ],
+      "endpoint_radius": 2.6281311798409974,
+      "joint_projected_radius_component": -9.807201280130726e-05,
+      "particle_index": 81,
+      "raw_radius_gradient": 9.807201280130726e-05
+    },
+    {
+      "candidate_id": "candidate-00094",
+      "crossings": [
+        {
+          "actual_offset_scaled": 1e-06,
+          "assignment_modes": {
+            "fresh": {
+              "coordinate_cusp_minimum": true,
+              "derivative_jump": 0.0001209767951582136,
+              "left_derivative": -2.8258368922803195e-05,
+              "left_error_allowance": 3.8329061515302216e-08,
+              "left_finite_difference": -2.82703860321476e-05,
+              "nearby_coordinate_cusp": true,
+              "points": [
+                {
+                  "assignment_changes": 0,
+                  "guard": {
+                    "evaluation": 0,
+                    "geometry_feasible": true,
+                    "likelihood_evaluated": true,
+                    "mean_nll": 0.28210094759390936,
+                    "minimum_box_clearance": -8.881784197001252e-16,
+                    "minimum_probability_constraint": 0.0007164233247956009,
+                    "minimum_surface_gap": 0.5933162943155814,
+                    "probability": {
+                      "domain_tolerance": 1e-10,
+                      "full": {
+                        "maximum": 0.9992835666752043,
+                        "minimum": 0.027341325507592024,
+                        "nonfinite": 0,
+                        "outside_probability_range": 0,
+                        "passed": true,
+                        "points": 67799
+                      },
+                      "matrix": {
+                        "maximum": 0.13388032167225117,
+                        "minimum": 0.03865090359659834,
+                        "nonfinite": 0,
+                        "outside_probability_range": 0,
+                        "passed": true,
+                        "points": 60182
+                      },
+                      "passed": true,
+                      "scope": "sampled_positions_only"
+                    },
+                    "probability_valid": true,
+                    "solve": {
+                      "condition_number": 7.717795770199318,
+                      "maximum_absolute_amplitude": 0.05596917908842489,
+                      "relative_residual": 3.315838008024837e-16
+                    }
+                  },
+                  "mean_nll": 0.28210094759390936,
+                  "physical_radius_derivative": -5.656497425920659e-06,
+                  "radius": 2.65909642484274,
+                  "scaled_radius": 0.531819284968548,
+                  "scaled_radius_derivative": -2.8282487129603295e-05,
+                  "valid": true
+                },
+                {
+                  "assignment_changes": 0,
+                  "guard": {
+                    "evaluation": 0,
+                    "geometry_feasible": true,
+                    "likelihood_evaluated": true,
+                    "mean_nll": 0.28210094757977416,
+                    "minimum_box_clearance": -8.881784197001252e-16,
+                    "minimum_probability_constraint": 0.0007164233247957119,
+                    "minimum_surface_gap": 0.5933162943155814,
+                    "probability": {
+                      "domain_tolerance": 1e-10,
+                      "full": {
+                        "maximum": 0.9992835666752042,
+                        "minimum": 0.02734132548391459,
+                        "nonfinite": 0,
+                        "outside_probability_range": 0,
+                        "passed": true,
+                        "points": 67799
+                      },
+                      "matrix": {
+                        "maximum": 0.13388032165512137,
+                        "minimum": 0.03865090354924347,
+                        "nonfinite": 0,
+                        "outside_probability_range": 0,
+                        "passed": true,
+                        "points": 60182
+                      },
+                      "passed": true,
+                      "scope": "sampled_positions_only"
+                    },
+                    "probability_valid": true,
+                    "solve": {
+                      "condition_number": 7.717795832516118,
+                      "maximum_absolute_amplitude": 0.05596917908167241,
+                      "relative_residual": 3.2800410725389833e-16
+                    }
+                  },
+                  "mean_nll": 0.28210094757977416,
+                  "physical_radius_derivative": -5.651673784560639e-06,
+                  "radius": 2.65909892484274,
+                  "scaled_radius": 0.531819784968548,
+                  "scaled_radius_derivative": -2.8258368922803195e-05,
+                  "valid": true
+                },
+                {
+                  "assignment_changes": 0,
+                  "guard": {
+                    "evaluation": 0,
+                    "geometry_feasible": true,
+                    "likelihood_evaluated": true,
+                    "mean_nll": 0.2821009476120044,
+                    "minimum_box_clearance": -8.881784197001252e-16,
+                    "minimum_probability_constraint": 0.0007164233247956009,
+                    "minimum_surface_gap": 0.5933162943155814,
+                    "probability": {
+                      "domain_tolerance": 1e-10,
+                      "full": {
+                        "maximum": 0.9992835666752043,
+                        "minimum": 0.02734132543655972,
+                        "nonfinite": 0,
+                        "outside_probability_range": 0,
+                        "passed": true,
+                        "points": 67799
+                      },
+                      "matrix": {
+                        "maximum": 0.1338803216208618,
+                        "minimum": 0.03865090345453373,
+                        "nonfinite": 0,
+                        "outside_probability_range": 0,
+                        "passed": true,
+                        "points": 60182
+                      },
+                      "passed": true,
+                      "scope": "sampled_positions_only"
+                    },
+                    "probability_valid": true,
+                    "solve": {
+                      "condition_number": 7.71779595715041,
+                      "maximum_absolute_amplitude": 0.05596917906816747,
+                      "relative_residual": 2.920954572097809e-16
+                    }
+                  },
+                  "mean_nll": 0.2821009476120044,
+                  "physical_radius_derivative": 1.854368524708208e-05,
+                  "radius": 2.6591039248427397,
+                  "scaled_radius": 0.5318207849685479,
+                  "scaled_radius_derivative": 9.27184262354104e-05,
+                  "valid": true
+                },
+                {
+                  "assignment_changes": 0,
+                  "guard": {
+                    "evaluation": 0,
+                    "geometry_feasible": true,
+                    "likelihood_evaluated": true,
+                    "mean_nll": 0.28210094765836946,
+                    "minimum_box_clearance": -8.881784197001252e-16,
+                    "minimum_probability_constraint": 0.0007164233247956009,
+                    "minimum_surface_gap": 0.5933162943155814,
+                    "probability": {
+                      "domain_tolerance": 1e-10,
+                      "full": {
+                        "maximum": 0.9992835666752043,
+                        "minimum": 0.027341325412882325,
+                        "nonfinite": 0,
+                        "outside_probability_range": 0,
+                        "passed": true,
+                        "points": 67799
+                      },
+                      "matrix": {
+                        "maximum": 0.13388032160373203,
+                        "minimum": 0.038650903407178944,
+                        "nonfinite": 0,
+                        "outside_probability_range": 0,
+                        "passed": true,
+                        "points": 60182
+                      },
+                      "passed": true,
+                      "scope": "sampled_positions_only"
+                    },
+                    "probability_valid": true,
+                    "solve": {
+                      "condition_number": 7.717796019467909,
+                      "maximum_absolute_amplitude": 0.055969179061415,
+                      "relative_residual": 3.054072059624997e-16
+                    }
+                  },
+                  "mean_nll": 0.28210094765836946,
+                  "physical_radius_derivative": 1.8548352224598164e-05,
+                  "radius": 2.6591064248427396,
+                  "scaled_radius": 0.531821284968548,
+                  "scaled_radius_derivative": 9.274176112299082e-05,
+                  "valid": true
+                }
+              ],
+              "resolved_jump": true,
+              "right_derivative": 9.27184262354104e-05,
+              "right_error_allowance": 3.754574229561977e-08,
+              "right_finite_difference": 9.273015688648911e-05,
+              "verified": true
+            },
+            "frozen": {
+              "coordinate_cusp_minimum": true,
+              "derivative_jump": 0.0001209767951582136,
+              "left_derivative": -2.8258368922803195e-05,
+              "left_error_allowance": 3.8329061515302216e-08,
+              "left_finite_difference": -2.82703860321476e-05,
+              "nearby_coordinate_cusp": true,
+              "points": [
+                {
+                  "assignment_changes": 0,
+                  "guard": {
+                    "evaluation": 0,
+                    "geometry_feasible": true,
+                    "likelihood_evaluated": true,
+                    "mean_nll": 0.28210094759390936,
+                    "minimum_box_clearance": -8.881784197001252e-16,
+                    "minimum_probability_constraint": 0.0007164233247956009,
+                    "minimum_surface_gap": 0.5933162943155814,
+                    "probability": {
+                      "domain_tolerance": 1e-10,
+                      "full": {
+                        "maximum": 0.9992835666752043,
+                        "minimum": 0.027341325507592024,
+                        "nonfinite": 0,
+                        "outside_probability_range": 0,
+                        "passed": true,
+                        "points": 67799
+                      },
+                      "matrix": {
+                        "maximum": 0.13388032167225117,
+                        "minimum": 0.03865090359659834,
+                        "nonfinite": 0,
+                        "outside_probability_range": 0,
+                        "passed": true,
+                        "points": 60182
+                      },
+                      "passed": true,
+                      "scope": "sampled_positions_only"
+                    },
+                    "probability_valid": true,
+                    "solve": {
+                      "condition_number": 7.717795770199318,
+                      "maximum_absolute_amplitude": 0.05596917908842489,
+                      "relative_residual": 3.315838008024837e-16
+                    }
+                  },
+                  "mean_nll": 0.28210094759390936,
+                  "physical_radius_derivative": -5.656497425920659e-06,
+                  "radius": 2.65909642484274,
+                  "scaled_radius": 0.531819284968548,
+                  "scaled_radius_derivative": -2.8282487129603295e-05,
+                  "valid": true
+                },
+                {
+                  "assignment_changes": 0,
+                  "guard": {
+                    "evaluation": 0,
+                    "geometry_feasible": true,
+                    "likelihood_evaluated": true,
+                    "mean_nll": 0.28210094757977416,
+                    "minimum_box_clearance": -8.881784197001252e-16,
+                    "minimum_probability_constraint": 0.0007164233247957119,
+                    "minimum_surface_gap": 0.5933162943155814,
+                    "probability": {
+                      "domain_tolerance": 1e-10,
+                      "full": {
+                        "maximum": 0.9992835666752042,
+                        "minimum": 0.02734132548391459,
+                        "nonfinite": 0,
+                        "outside_probability_range": 0,
+                        "passed": true,
+                        "points": 67799
+                      },
+                      "matrix": {
+                        "maximum": 0.13388032165512137,
+                        "minimum": 0.03865090354924347,
+                        "nonfinite": 0,
+                        "outside_probability_range": 0,
+                        "passed": true,
+                        "points": 60182
+                      },
+                      "passed": true,
+                      "scope": "sampled_positions_only"
+                    },
+                    "probability_valid": true,
+                    "solve": {
+                      "condition_number": 7.717795832516118,
+                      "maximum_absolute_amplitude": 0.05596917908167241,
+                      "relative_residual": 3.2800410725389833e-16
+                    }
+                  },
+                  "mean_nll": 0.28210094757977416,
+                  "physical_radius_derivative": -5.651673784560639e-06,
+                  "radius": 2.65909892484274,
+                  "scaled_radius": 0.531819784968548,
+                  "scaled_radius_derivative": -2.8258368922803195e-05,
+                  "valid": true
+                },
+                {
+                  "assignment_changes": 0,
+                  "guard": {
+                    "evaluation": 0,
+                    "geometry_feasible": true,
+                    "likelihood_evaluated": true,
+                    "mean_nll": 0.2821009476120044,
+                    "minimum_box_clearance": -8.881784197001252e-16,
+                    "minimum_probability_constraint": 0.0007164233247956009,
+                    "minimum_surface_gap": 0.5933162943155814,
+                    "probability": {
+                      "domain_tolerance": 1e-10,
+                      "full": {
+                        "maximum": 0.9992835666752043,
+                        "minimum": 0.02734132543655972,
+                        "nonfinite": 0,
+                        "outside_probability_range": 0,
+                        "passed": true,
+                        "points": 67799
+                      },
+                      "matrix": {
+                        "maximum": 0.1338803216208618,
+                        "minimum": 0.03865090345453373,
+                        "nonfinite": 0,
+                        "outside_probability_range": 0,
+                        "passed": true,
+                        "points": 60182
+                      },
+                      "passed": true,
+                      "scope": "sampled_positions_only"
+                    },
+                    "probability_valid": true,
+                    "solve": {
+                      "condition_number": 7.71779595715041,
+                      "maximum_absolute_amplitude": 0.05596917906816747,
+                      "relative_residual": 2.920954572097809e-16
+                    }
+                  },
+                  "mean_nll": 0.2821009476120044,
+                  "physical_radius_derivative": 1.854368524708208e-05,
+                  "radius": 2.6591039248427397,
+                  "scaled_radius": 0.5318207849685479,
+                  "scaled_radius_derivative": 9.27184262354104e-05,
+                  "valid": true
+                },
+                {
+                  "assignment_changes": 0,
+                  "guard": {
+                    "evaluation": 0,
+                    "geometry_feasible": true,
+                    "likelihood_evaluated": true,
+                    "mean_nll": 0.28210094765836946,
+                    "minimum_box_clearance": -8.881784197001252e-16,
+                    "minimum_probability_constraint": 0.0007164233247956009,
+                    "minimum_surface_gap": 0.5933162943155814,
+                    "probability": {
+                      "domain_tolerance": 1e-10,
+                      "full": {
+                        "maximum": 0.9992835666752043,
+                        "minimum": 0.027341325412882325,
+                        "nonfinite": 0,
+                        "outside_probability_range": 0,
+                        "passed": true,
+                        "points": 67799
+                      },
+                      "matrix": {
+                        "maximum": 0.13388032160373203,
+                        "minimum": 0.038650903407178944,
+                        "nonfinite": 0,
+                        "outside_probability_range": 0,
+                        "passed": true,
+                        "points": 60182
+                      },
+                      "passed": true,
+                      "scope": "sampled_positions_only"
+                    },
+                    "probability_valid": true,
+                    "solve": {
+                      "condition_number": 7.717796019467909,
+                      "maximum_absolute_amplitude": 0.055969179061415,
+                      "relative_residual": 3.054072059624997e-16
+                    }
+                  },
+                  "mean_nll": 0.28210094765836946,
+                  "physical_radius_derivative": 1.8548352224598164e-05,
+                  "radius": 2.6591064248427396,
+                  "scaled_radius": 0.531821284968548,
+                  "scaled_radius_derivative": 9.274176112299082e-05,
+                  "valid": true
+                }
+              ],
+              "resolved_jump": true,
+              "right_derivative": 9.27184262354104e-05,
+              "right_error_allowance": 3.754574229561977e-08,
+              "right_finite_difference": 9.273015688648911e-05,
+              "verified": true
+            }
+          },
+          "distance_from_endpoint": -1.3015826243467643e-06,
+          "near_endpoint": true,
+          "nearest_other_crossing_distance": 0.006163236937631655,
+          "origins": [
+            {
+              "fitting_position": 573,
+              "knot_index": 5,
+              "sample_index": 573,
+              "u": 0.8333333333333334
+            }
+          ],
+          "possible_nonsmooth_terms": [
+            "interior_knot"
+          ],
+          "radius": 2.65910142484274
+        },
+        {
+          "actual_offset_scaled": 1e-06,
+          "assignment_modes": {
+            "fresh": {
+              "coordinate_cusp_minimum": false,
+              "derivative_jump": 7.714827749853999e-05,
+              "left_derivative": 0.0001501396257481366,
+              "left_error_allowance": 3.7502858459285884e-08,
+              "left_finite_difference": 0.00015012824317039986,
+              "nearby_coordinate_cusp": false,
+              "points": [
+                {
+                  "assignment_changes": 0,
+                  "guard": {
+                    "evaluation": 0,
+                    "geometry_feasible": true,
+                    "likelihood_evaluated": true,
+                    "mean_nll": 0.28210109710552567,
+                    "minimum_box_clearance": -8.881784197001252e-16,
+                    "minimum_probability_constraint": 0.0007164233247956009,
+                    "minimum_surface_gap": 0.5933162943155814,
+                    "probability": {
+                      "domain_tolerance": 1e-10,
+                      "full": {
+                        "maximum": 0.9992835666752043,
+                        "minimum": 0.027341267165548272,
+                        "nonfinite": 0,
+                        "outside_probability_range": 0,
+                        "passed": true,
+                        "points": 67799
+                      },
+                      "matrix": {
+                        "maximum": 0.13388027946382514,
+                        "minimum": 0.03865078691251084,
+                        "nonfinite": 0,
+                        "outside_probability_range": 0,
+                        "passed": true,
+                        "points": 60182
+                      },
+                      "passed": true,
+                      "scope": "sampled_positions_only"
+                    },
+                    "probability_valid": true,
+                    "solve": {
+                      "condition_number": 7.717950112201077,
+                      "maximum_absolute_amplitude": 0.05596916245008905,
+                      "relative_residual": 2.93999908415578e-16
+                    }
+                  },
+                  "mean_nll": 0.28210109710552567,
+                  "physical_radius_derivative": 3.0023266748878506e-05,
+                  "radius": 2.6652596617803717,
+                  "scaled_radius": 0.5330519323560743,
+                  "scaled_radius_derivative": 0.00015011633374439253,
+                  "valid": true
+                },
+                {
+                  "assignment_changes": 0,
+                  "guard": {
+                    "evaluation": 0,
+                    "geometry_feasible": true,
+                    "likelihood_evaluated": true,
+                    "mean_nll": 0.2821010971805898,
+                    "minimum_box_clearance": -8.881784197001252e-16,
+                    "minimum_probability_constraint": 0.0007164233247954899,
+                    "minimum_surface_gap": 0.5933162943155814,
+                    "probability": {
+                      "domain_tolerance": 1e-10,
+                      "full": {
+                        "maximum": 0.9992835666752045,
+                        "minimum": 0.02734126714189493,
+                        "nonfinite": 0,
+                        "outside_probability_range": 0,
+                        "passed": true,
+                        "points": 67799
+                      },
+                      "matrix": {
+                        "maximum": 0.13388027944671277,
+                        "minimum": 0.03865078686520415,
+                        "nonfinite": 0,
+                        "outside_probability_range": 0,
+                        "passed": true,
+                        "points": 60182
+                      },
+                      "passed": true,
+                      "scope": "sampled_positions_only"
+                    },
+                    "probability_valid": true,
+                    "solve": {
+                      "condition_number": 7.717950175097801,
+                      "maximum_absolute_amplitude": 0.05596916244334346,
+                      "relative_residual": 3.133194303945484e-16
+                    }
+                  },
+                  "mean_nll": 0.2821010971805898,
+                  "physical_radius_derivative": 3.0027925149627323e-05,
+                  "radius": 2.6652621617803716,
+                  "scaled_radius": 0.5330524323560744,
+                  "scaled_radius_derivative": 0.0001501396257481366,
+                  "valid": true
+                },
+                {
+                  "assignment_changes": 0,
+                  "guard": {
+                    "evaluation": 0,
+                    "geometry_feasible": true,
+                    "likelihood_evaluated": true,
+                    "mean_nll": 0.28210109736930333,
+                    "minimum_box_clearance": -8.881784197001252e-16,
+                    "minimum_probability_constraint": 0.0007164233247957119,
+                    "minimum_surface_gap": 0.5933162943155814,
+                    "probability": {
+                      "domain_tolerance": 1e-10,
+                      "full": {
+                        "maximum": 0.9992835666752042,
+                        "minimum": 0.027341267094588305,
+                        "nonfinite": 0,
+                        "outside_probability_range": 0,
+                        "passed": true,
+                        "points": 67799
+                      },
+                      "matrix": {
+                        "maximum": 0.1338802794124881,
+                        "minimum": 0.0386507867705909,
+                        "nonfinite": 0,
+                        "outside_probability_range": 0,
+                        "passed": true,
+                        "points": 60181
+                      },
+                      "passed": true,
+                      "scope": "sampled_positions_only"
+                    },
+                    "probability_valid": true,
+                    "solve": {
+                      "condition_number": 7.717950300891941,
+                      "maximum_absolute_amplitude": 0.05596916242985227,
+                      "relative_residual": 3.286927697076538e-16
+                    }
+                  },
+                  "mean_nll": 0.28210109736930333,
+                  "physical_radius_derivative": 4.545758064933532e-05,
+                  "radius": 2.6652671617803714,
+                  "scaled_radius": 0.5330534323560743,
+                  "scaled_radius_derivative": 0.0002272879032466766,
+                  "valid": true
+                },
+                {
+                  "assignment_changes": 0,
+                  "guard": {
+                    "evaluation": 0,
+                    "geometry_feasible": true,
+                    "likelihood_evaluated": true,
+                    "mean_nll": 0.28210109748295326,
+                    "minimum_box_clearance": -8.881784197001252e-16,
+                    "minimum_probability_constraint": 0.0007164233247956009,
+                    "minimum_surface_gap": 0.5933162943155814,
+                    "probability": {
+                      "domain_tolerance": 1e-10,
+                      "full": {
+                        "maximum": 0.9992835666752043,
+                        "minimum": 0.027341267070935017,
+                        "nonfinite": 0,
+                        "outside_probability_range": 0,
+                        "passed": true,
+                        "points": 67799
+                      },
+                      "matrix": {
+                        "maximum": 0.13388027939537575,
+                        "minimum": 0.03865078672328433,
+                        "nonfinite": 0,
+                        "outside_probability_range": 0,
+                        "passed": true,
+                        "points": 60181
+                      },
+                      "passed": true,
+                      "scope": "sampled_positions_only"
+                    },
+                    "probability_valid": true,
+                    "solve": {
+                      "condition_number": 7.717950363789365,
+                      "maximum_absolute_amplitude": 0.05596916242310668,
+                      "relative_residual": 3.2988506982258126e-16
+                    }
+                  },
+                  "mean_nll": 0.28210109748295326,
+                  "physical_radius_derivative": 4.5462370127885134e-05,
+                  "radius": 2.6652696617803713,
+                  "scaled_radius": 0.5330539323560742,
+                  "scaled_radius_derivative": 0.00022731185063942568,
+                  "valid": true
+                }
+              ],
+              "resolved_jump": true,
+              "right_derivative": 0.0002272879032466766,
+              "right_error_allowance": 3.815824746428815e-08,
+              "right_finite_difference": 0.0002272998456120945,
+              "verified": true
+            },
+            "frozen": {
+              "coordinate_cusp_minimum": false,
+              "derivative_jump": 7.714827749853999e-05,
+              "left_derivative": 0.0001501396257481366,
+              "left_error_allowance": 3.7502858459285884e-08,
+              "left_finite_difference": 0.00015012824317039986,
+              "nearby_coordinate_cusp": false,
+              "points": [
+                {
+                  "assignment_changes": 0,
+                  "guard": {
+                    "evaluation": 0,
+                    "geometry_feasible": true,
+                    "likelihood_evaluated": true,
+                    "mean_nll": 0.28210109710552567,
+                    "minimum_box_clearance": -8.881784197001252e-16,
+                    "minimum_probability_constraint": 0.0007164233247956009,
+                    "minimum_surface_gap": 0.5933162943155814,
+                    "probability": {
+                      "domain_tolerance": 1e-10,
+                      "full": {
+                        "maximum": 0.9992835666752043,
+                        "minimum": 0.027341267165548272,
+                        "nonfinite": 0,
+                        "outside_probability_range": 0,
+                        "passed": true,
+                        "points": 67799
+                      },
+                      "matrix": {
+                        "maximum": 0.13388027946382514,
+                        "minimum": 0.03865078691251084,
+                        "nonfinite": 0,
+                        "outside_probability_range": 0,
+                        "passed": true,
+                        "points": 60182
+                      },
+                      "passed": true,
+                      "scope": "sampled_positions_only"
+                    },
+                    "probability_valid": true,
+                    "solve": {
+                      "condition_number": 7.717950112201077,
+                      "maximum_absolute_amplitude": 0.05596916245008905,
+                      "relative_residual": 2.93999908415578e-16
+                    }
+                  },
+                  "mean_nll": 0.28210109710552567,
+                  "physical_radius_derivative": 3.0023266748878506e-05,
+                  "radius": 2.6652596617803717,
+                  "scaled_radius": 0.5330519323560743,
+                  "scaled_radius_derivative": 0.00015011633374439253,
+                  "valid": true
+                },
+                {
+                  "assignment_changes": 0,
+                  "guard": {
+                    "evaluation": 0,
+                    "geometry_feasible": true,
+                    "likelihood_evaluated": true,
+                    "mean_nll": 0.2821010971805898,
+                    "minimum_box_clearance": -8.881784197001252e-16,
+                    "minimum_probability_constraint": 0.0007164233247954899,
+                    "minimum_surface_gap": 0.5933162943155814,
+                    "probability": {
+                      "domain_tolerance": 1e-10,
+                      "full": {
+                        "maximum": 0.9992835666752045,
+                        "minimum": 0.02734126714189493,
+                        "nonfinite": 0,
+                        "outside_probability_range": 0,
+                        "passed": true,
+                        "points": 67799
+                      },
+                      "matrix": {
+                        "maximum": 0.13388027944671277,
+                        "minimum": 0.03865078686520415,
+                        "nonfinite": 0,
+                        "outside_probability_range": 0,
+                        "passed": true,
+                        "points": 60182
+                      },
+                      "passed": true,
+                      "scope": "sampled_positions_only"
+                    },
+                    "probability_valid": true,
+                    "solve": {
+                      "condition_number": 7.717950175097801,
+                      "maximum_absolute_amplitude": 0.05596916244334346,
+                      "relative_residual": 3.133194303945484e-16
+                    }
+                  },
+                  "mean_nll": 0.2821010971805898,
+                  "physical_radius_derivative": 3.0027925149627323e-05,
+                  "radius": 2.6652621617803716,
+                  "scaled_radius": 0.5330524323560744,
+                  "scaled_radius_derivative": 0.0001501396257481366,
+                  "valid": true
+                },
+                {
+                  "assignment_changes": 0,
+                  "guard": {
+                    "evaluation": 0,
+                    "geometry_feasible": true,
+                    "likelihood_evaluated": true,
+                    "mean_nll": 0.28210109736930333,
+                    "minimum_box_clearance": -8.881784197001252e-16,
+                    "minimum_probability_constraint": 0.0007164233247957119,
+                    "minimum_surface_gap": 0.5933162943155814,
+                    "probability": {
+                      "domain_tolerance": 1e-10,
+                      "full": {
+                        "maximum": 0.9992835666752042,
+                        "minimum": 0.027341267094588305,
+                        "nonfinite": 0,
+                        "outside_probability_range": 0,
+                        "passed": true,
+                        "points": 67799
+                      },
+                      "matrix": {
+                        "maximum": 0.1338802794124881,
+                        "minimum": 0.0386507867705909,
+                        "nonfinite": 0,
+                        "outside_probability_range": 0,
+                        "passed": true,
+                        "points": 60181
+                      },
+                      "passed": true,
+                      "scope": "sampled_positions_only"
+                    },
+                    "probability_valid": true,
+                    "solve": {
+                      "condition_number": 7.717950300891941,
+                      "maximum_absolute_amplitude": 0.05596916242985227,
+                      "relative_residual": 3.286927697076538e-16
+                    }
+                  },
+                  "mean_nll": 0.28210109736930333,
+                  "physical_radius_derivative": 4.545758064933532e-05,
+                  "radius": 2.6652671617803714,
+                  "scaled_radius": 0.5330534323560743,
+                  "scaled_radius_derivative": 0.0002272879032466766,
+                  "valid": true
+                },
+                {
+                  "assignment_changes": 0,
+                  "guard": {
+                    "evaluation": 0,
+                    "geometry_feasible": true,
+                    "likelihood_evaluated": true,
+                    "mean_nll": 0.28210109748295326,
+                    "minimum_box_clearance": -8.881784197001252e-16,
+                    "minimum_probability_constraint": 0.0007164233247956009,
+                    "minimum_surface_gap": 0.5933162943155814,
+                    "probability": {
+                      "domain_tolerance": 1e-10,
+                      "full": {
+                        "maximum": 0.9992835666752043,
+                        "minimum": 0.027341267070935017,
+                        "nonfinite": 0,
+                        "outside_probability_range": 0,
+                        "passed": true,
+                        "points": 67799
+                      },
+                      "matrix": {
+                        "maximum": 0.13388027939537575,
+                        "minimum": 0.03865078672328433,
+                        "nonfinite": 0,
+                        "outside_probability_range": 0,
+                        "passed": true,
+                        "points": 60181
+                      },
+                      "passed": true,
+                      "scope": "sampled_positions_only"
+                    },
+                    "probability_valid": true,
+                    "solve": {
+                      "condition_number": 7.717950363789365,
+                      "maximum_absolute_amplitude": 0.05596916242310668,
+                      "relative_residual": 3.2988506982258126e-16
+                    }
+                  },
+                  "mean_nll": 0.28210109748295326,
+                  "physical_radius_derivative": 4.5462370127885134e-05,
+                  "radius": 2.6652696617803713,
+                  "scaled_radius": 0.5330539323560742,
+                  "scaled_radius_derivative": 0.00022731185063942568,
+                  "valid": true
+                }
+              ],
+              "resolved_jump": true,
+              "right_derivative": 0.0002272879032466766,
+              "right_error_allowance": 3.815824746428815e-08,
+              "right_finite_difference": 0.0002272998456120945,
+              "verified": true
+            }
+          },
+          "distance_from_endpoint": 0.006161935355007309,
+          "near_endpoint": false,
+          "nearest_other_crossing_distance": 0.0003788211186619428,
+          "origins": [
+            {
+              "fitting_position": 51299,
+              "knot_index": 6,
+              "sample_index": 51299,
+              "u": 1.0
+            }
+          ],
+          "possible_nonsmooth_terms": [
+            "interior_clamp",
+            "constant_source_continuation"
+          ],
+          "radius": 2.6652646617803715
+        }
+      ],
+      "endpoint_radius": 2.659102726425364,
+      "joint_projected_radius_component": -9.270724025299136e-05,
+      "particle_index": 94,
+      "raw_radius_gradient": 9.270724025299136e-05
+    },
+    {
+      "candidate_id": "candidate-00045",
+      "crossings": [
+        {
+          "actual_offset_scaled": 1e-06,
+          "assignment_modes": {
+            "fresh": {
+              "coordinate_cusp_minimum": true,
+              "derivative_jump": 0.00012010600183346867,
+              "left_derivative": -5.290919021353926e-05,
+              "left_error_allowance": 2.991119594302166e-08,
+              "left_finite_difference": -5.2917004111918686e-05,
+              "nearby_coordinate_cusp": true,
+              "points": [
+                {
+                  "assignment_changes": 0,
+                  "guard": {
+                    "evaluation": 0,
+                    "geometry_feasible": true,
+                    "likelihood_evaluated": true,
+                    "mean_nll": 0.28210094634296107,
+                    "minimum_box_clearance": -8.881784197001252e-16,
+                    "minimum_probability_constraint": 0.0007164233247956009,
+                    "minimum_surface_gap": 0.5933162943155814,
+                    "probability": {
+                      "domain_tolerance": 1e-10,
+                      "full": {
+                        "maximum": 0.9992835666752043,
+                        "minimum": 0.02734132541245725,
+                        "nonfinite": 0,
+                        "outside_probability_range": 0,
+                        "passed": true,
+                        "points": 67799
+                      },
+                      "matrix": {
+                        "maximum": 0.13388032159324265,
+                        "minimum": 0.03865090340632879,
+                        "nonfinite": 0,
+                        "outside_probability_range": 0,
+                        "passed": true,
+                        "points": 60182
+                      },
+                      "passed": true,
+                      "scope": "sampled_positions_only"
+                    },
+                    "probability_valid": true,
+                    "solve": {
+                      "condition_number": 7.717798991377606,
+                      "maximum_absolute_amplitude": 0.055969298577365614,
+                      "relative_residual": 3.3892022581758023e-16
+                    }
+                  },
+                  "mean_nll": 0.28210094634296107,
+                  "physical_radius_derivative": -1.0584978110953416e-05,
+                  "radius": 2.685701842530276,
+                  "scaled_radius": 0.5371403685060552,
+                  "scaled_radius_derivative": -5.292489055476708e-05,
+                  "valid": true
+                },
+                {
+                  "assignment_changes": 0,
+                  "guard": {
+                    "evaluation": 0,
+                    "geometry_feasible": true,
+                    "likelihood_evaluated": true,
+                    "mean_nll": 0.28210094631650257,
+                    "minimum_box_clearance": -8.881784197001252e-16,
+                    "minimum_probability_constraint": 0.0007164233247956009,
+                    "minimum_surface_gap": 0.5933162943155814,
+                    "probability": {
+                      "domain_tolerance": 1e-10,
+                      "full": {
+                        "maximum": 0.9992835666752043,
+                        "minimum": 0.027341325411699605,
+                        "nonfinite": 0,
+                        "outside_probability_range": 0,
+                        "passed": true,
+                        "points": 67799
+                      },
+                      "matrix": {
+                        "maximum": 0.13388032159247693,
+                        "minimum": 0.0386509034048135,
+                        "nonfinite": 0,
+                        "outside_probability_range": 0,
+                        "passed": true,
+                        "points": 60182
+                      },
+                      "passed": true,
+                      "scope": "sampled_positions_only"
+                    },
+                    "probability_valid": true,
+                    "solve": {
+                      "condition_number": 7.717799056862977,
+                      "maximum_absolute_amplitude": 0.05596930113129577,
+                      "relative_residual": 3.5455074563403505e-16
+                    }
+                  },
+                  "mean_nll": 0.28210094631650257,
+                  "physical_radius_derivative": -1.0581838042707852e-05,
+                  "radius": 2.685704342530276,
+                  "scaled_radius": 0.5371408685060552,
+                  "scaled_radius_derivative": -5.290919021353926e-05,
+                  "valid": true
+                },
+                {
+                  "assignment_changes": 0,
+                  "guard": {
+                    "evaluation": 0,
+                    "geometry_feasible": true,
+                    "likelihood_evaluated": true,
+                    "mean_nll": 0.2821009463236466,
+                    "minimum_box_clearance": -8.881784197001252e-16,
+                    "minimum_probability_constraint": 0.0007164233247956009,
+                    "minimum_surface_gap": 0.5933162943155814,
+                    "probability": {
+                      "domain_tolerance": 1e-10,
+                      "full": {
+                        "maximum": 0.9992835666752043,
+                        "minimum": 0.027341325410184296,
+                        "nonfinite": 0,
+                        "outside_probability_range": 0,
+                        "passed": true,
+                        "points": 67799
+                      },
+                      "matrix": {
+                        "maximum": 0.13388032159094548,
+                        "minimum": 0.038650903401782885,
+                        "nonfinite": 0,
+                        "outside_probability_range": 0,
+                        "passed": true,
+                        "points": 60182
+                      },
+                      "passed": true,
+                      "scope": "sampled_positions_only"
+                    },
+                    "probability_valid": true,
+                    "solve": {
+                      "condition_number": 7.717799187833932,
+                      "maximum_absolute_amplitude": 0.0559693062391486,
+                      "relative_residual": 3.2483575889986877e-16
+                    }
+                  },
+                  "mean_nll": 0.2821009463236466,
+                  "physical_radius_derivative": 1.3439362323985882e-05,
+                  "radius": 2.685709342530276,
+                  "scaled_radius": 0.5371418685060552,
+                  "scaled_radius_derivative": 6.719681161992941e-05,
+                  "valid": true
+                },
+                {
+                  "assignment_changes": 0,
+                  "guard": {
+                    "evaluation": 0,
+                    "geometry_feasible": true,
+                    "likelihood_evaluated": true,
+                    "mean_nll": 0.28210094635724864,
+                    "minimum_box_clearance": -8.881784197001252e-16,
+                    "minimum_probability_constraint": 0.0007164233247956009,
+                    "minimum_surface_gap": 0.5933162943155814,
+                    "probability": {
+                      "domain_tolerance": 1e-10,
+                      "full": {
+                        "maximum": 0.9992835666752043,
+                        "minimum": 0.027341325409426652,
+                        "nonfinite": 0,
+                        "outside_probability_range": 0,
+                        "passed": true,
+                        "points": 67799
+                      },
+                      "matrix": {
+                        "maximum": 0.13388032159017973,
+                        "minimum": 0.0386509034002676,
+                        "nonfinite": 0,
+                        "outside_probability_range": 0,
+                        "passed": true,
+                        "points": 60182
+                      },
+                      "passed": true,
+                      "scope": "sampled_positions_only"
+                    },
+                    "probability_valid": true,
+                    "solve": {
+                      "condition_number": 7.717799253319528,
+                      "maximum_absolute_amplitude": 0.05596930879307134,
+                      "relative_residual": 3.1025387906641123e-16
+                    }
+                  },
+                  "mean_nll": 0.28210094635724864,
+                  "physical_radius_derivative": 1.3442346952249946e-05,
+                  "radius": 2.6857118425302757,
+                  "scaled_radius": 0.5371423685060551,
+                  "scaled_radius_derivative": 6.721173476124973e-05,
+                  "valid": true
+                }
+              ],
+              "resolved_jump": true,
+              "right_derivative": 6.719681161992941e-05,
+              "right_error_allowance": 2.9133996035522378e-08,
+              "right_finite_difference": 6.720413114891244e-05,
+              "verified": true
+            },
+            "frozen": {
+              "coordinate_cusp_minimum": true,
+              "derivative_jump": 0.00012010600183346867,
+              "left_derivative": -5.290919021353926e-05,
+              "left_error_allowance": 2.991119594302166e-08,
+              "left_finite_difference": -5.2917004111918686e-05,
+              "nearby_coordinate_cusp": true,
+              "points": [
+                {
+                  "assignment_changes": 0,
+                  "guard": {
+                    "evaluation": 0,
+                    "geometry_feasible": true,
+                    "likelihood_evaluated": true,
+                    "mean_nll": 0.28210094634296107,
+                    "minimum_box_clearance": -8.881784197001252e-16,
+                    "minimum_probability_constraint": 0.0007164233247956009,
+                    "minimum_surface_gap": 0.5933162943155814,
+                    "probability": {
+                      "domain_tolerance": 1e-10,
+                      "full": {
+                        "maximum": 0.9992835666752043,
+                        "minimum": 0.02734132541245725,
+                        "nonfinite": 0,
+                        "outside_probability_range": 0,
+                        "passed": true,
+                        "points": 67799
+                      },
+                      "matrix": {
+                        "maximum": 0.13388032159324265,
+                        "minimum": 0.03865090340632879,
+                        "nonfinite": 0,
+                        "outside_probability_range": 0,
+                        "passed": true,
+                        "points": 60182
+                      },
+                      "passed": true,
+                      "scope": "sampled_positions_only"
+                    },
+                    "probability_valid": true,
+                    "solve": {
+                      "condition_number": 7.717798991377606,
+                      "maximum_absolute_amplitude": 0.055969298577365614,
+                      "relative_residual": 3.3892022581758023e-16
+                    }
+                  },
+                  "mean_nll": 0.28210094634296107,
+                  "physical_radius_derivative": -1.0584978110953416e-05,
+                  "radius": 2.685701842530276,
+                  "scaled_radius": 0.5371403685060552,
+                  "scaled_radius_derivative": -5.292489055476708e-05,
+                  "valid": true
+                },
+                {
+                  "assignment_changes": 0,
+                  "guard": {
+                    "evaluation": 0,
+                    "geometry_feasible": true,
+                    "likelihood_evaluated": true,
+                    "mean_nll": 0.28210094631650257,
+                    "minimum_box_clearance": -8.881784197001252e-16,
+                    "minimum_probability_constraint": 0.0007164233247956009,
+                    "minimum_surface_gap": 0.5933162943155814,
+                    "probability": {
+                      "domain_tolerance": 1e-10,
+                      "full": {
+                        "maximum": 0.9992835666752043,
+                        "minimum": 0.027341325411699605,
+                        "nonfinite": 0,
+                        "outside_probability_range": 0,
+                        "passed": true,
+                        "points": 67799
+                      },
+                      "matrix": {
+                        "maximum": 0.13388032159247693,
+                        "minimum": 0.0386509034048135,
+                        "nonfinite": 0,
+                        "outside_probability_range": 0,
+                        "passed": true,
+                        "points": 60182
+                      },
+                      "passed": true,
+                      "scope": "sampled_positions_only"
+                    },
+                    "probability_valid": true,
+                    "solve": {
+                      "condition_number": 7.717799056862977,
+                      "maximum_absolute_amplitude": 0.05596930113129577,
+                      "relative_residual": 3.5455074563403505e-16
+                    }
+                  },
+                  "mean_nll": 0.28210094631650257,
+                  "physical_radius_derivative": -1.0581838042707852e-05,
+                  "radius": 2.685704342530276,
+                  "scaled_radius": 0.5371408685060552,
+                  "scaled_radius_derivative": -5.290919021353926e-05,
+                  "valid": true
+                },
+                {
+                  "assignment_changes": 0,
+                  "guard": {
+                    "evaluation": 0,
+                    "geometry_feasible": true,
+                    "likelihood_evaluated": true,
+                    "mean_nll": 0.2821009463236466,
+                    "minimum_box_clearance": -8.881784197001252e-16,
+                    "minimum_probability_constraint": 0.0007164233247956009,
+                    "minimum_surface_gap": 0.5933162943155814,
+                    "probability": {
+                      "domain_tolerance": 1e-10,
+                      "full": {
+                        "maximum": 0.9992835666752043,
+                        "minimum": 0.027341325410184296,
+                        "nonfinite": 0,
+                        "outside_probability_range": 0,
+                        "passed": true,
+                        "points": 67799
+                      },
+                      "matrix": {
+                        "maximum": 0.13388032159094548,
+                        "minimum": 0.038650903401782885,
+                        "nonfinite": 0,
+                        "outside_probability_range": 0,
+                        "passed": true,
+                        "points": 60182
+                      },
+                      "passed": true,
+                      "scope": "sampled_positions_only"
+                    },
+                    "probability_valid": true,
+                    "solve": {
+                      "condition_number": 7.717799187833932,
+                      "maximum_absolute_amplitude": 0.0559693062391486,
+                      "relative_residual": 3.2483575889986877e-16
+                    }
+                  },
+                  "mean_nll": 0.2821009463236466,
+                  "physical_radius_derivative": 1.3439362323985882e-05,
+                  "radius": 2.685709342530276,
+                  "scaled_radius": 0.5371418685060552,
+                  "scaled_radius_derivative": 6.719681161992941e-05,
+                  "valid": true
+                },
+                {
+                  "assignment_changes": 0,
+                  "guard": {
+                    "evaluation": 0,
+                    "geometry_feasible": true,
+                    "likelihood_evaluated": true,
+                    "mean_nll": 0.28210094635724864,
+                    "minimum_box_clearance": -8.881784197001252e-16,
+                    "minimum_probability_constraint": 0.0007164233247956009,
+                    "minimum_surface_gap": 0.5933162943155814,
+                    "probability": {
+                      "domain_tolerance": 1e-10,
+                      "full": {
+                        "maximum": 0.9992835666752043,
+                        "minimum": 0.027341325409426652,
+                        "nonfinite": 0,
+                        "outside_probability_range": 0,
+                        "passed": true,
+                        "points": 67799
+                      },
+                      "matrix": {
+                        "maximum": 0.13388032159017973,
+                        "minimum": 0.0386509034002676,
+                        "nonfinite": 0,
+                        "outside_probability_range": 0,
+                        "passed": true,
+                        "points": 60182
+                      },
+                      "passed": true,
+                      "scope": "sampled_positions_only"
+                    },
+                    "probability_valid": true,
+                    "solve": {
+                      "condition_number": 7.717799253319528,
+                      "maximum_absolute_amplitude": 0.05596930879307134,
+                      "relative_residual": 3.1025387906641123e-16
+                    }
+                  },
+                  "mean_nll": 0.28210094635724864,
+                  "physical_radius_derivative": 1.3442346952249946e-05,
+                  "radius": 2.6857118425302757,
+                  "scaled_radius": 0.5371423685060551,
+                  "scaled_radius_derivative": 6.721173476124973e-05,
+                  "valid": true
+                }
+              ],
+              "resolved_jump": true,
+              "right_derivative": 6.719681161992941e-05,
+              "right_error_allowance": 2.9133996035522378e-08,
+              "right_finite_difference": 6.720413114891244e-05,
+              "verified": true
+            }
+          },
+          "distance_from_endpoint": 0.00012197970535554603,
+          "near_endpoint": true,
+          "nearest_other_crossing_distance": 0.0004265941749057589,
+          "origins": [
+            {
+              "fitting_position": 12916,
+              "knot_index": 5,
+              "sample_index": 12916,
+              "u": 0.8333333333333334
+            }
+          ],
+          "possible_nonsmooth_terms": [
+            "interior_knot"
+          ],
+          "radius": 2.685706842530276
+        },
+        {
+          "actual_offset_scaled": 1e-06,
+          "assignment_modes": {
+            "fresh": {
+              "coordinate_cusp_minimum": false,
+              "derivative_jump": 7.561689116039478e-05,
+              "left_derivative": -0.00013117385066219848,
+              "left_error_allowance": 2.9258304222760587e-08,
+              "left_finite_difference": -0.00013118139907675186,
+              "nearby_coordinate_cusp": false,
+              "points": [
+                {
+                  "assignment_changes": 0,
+                  "guard": {
+                    "evaluation": 0,
+                    "geometry_feasible": true,
+                    "likelihood_evaluated": true,
+                    "mean_nll": 0.28210095104832705,
+                    "minimum_box_clearance": -8.881784197001252e-16,
+                    "minimum_probability_constraint": 0.0007164233247956009,
+                    "minimum_surface_gap": 0.5933162943155814,
+                    "probability": {
+                      "domain_tolerance": 1e-10,
+                      "full": {
+                        "maximum": 0.9992835666752043,
+                        "minimum": 0.027341325541751477,
+                        "nonfinite": 0,
+                        "outside_probability_range": 0,
+                        "passed": true,
+                        "points": 67799
+                      },
+                      "matrix": {
+                        "maximum": 0.13388032172391526,
+                        "minimum": 0.03865090366491725,
+                        "nonfinite": 0,
+                        "outside_probability_range": 0,
+                        "passed": true,
+                        "points": 60183
+                      },
+                      "passed": true,
+                      "scope": "sampled_positions_only"
+                    },
+                    "probability_valid": true,
+                    "solve": {
+                      "condition_number": 7.717787818200789,
+                      "maximum_absolute_amplitude": 0.055968862744476156,
+                      "relative_residual": 3.0775625075590736e-16
+                    }
+                  },
+                  "mean_nll": 0.28210095104832705,
+                  "physical_radius_derivative": -2.6237779622341206e-05,
+                  "radius": 2.6852752483553703,
+                  "scaled_radius": 0.5370550496710741,
+                  "scaled_radius_derivative": -0.00013118889811170604,
+                  "valid": true
+                },
+                {
+                  "assignment_changes": 0,
+                  "guard": {
+                    "evaluation": 0,
+                    "geometry_feasible": true,
+                    "likelihood_evaluated": true,
+                    "mean_nll": 0.28210095098273635,
+                    "minimum_box_clearance": -8.881784197001252e-16,
+                    "minimum_probability_constraint": 0.0007164233247956009,
+                    "minimum_surface_gap": 0.5933162943155814,
+                    "probability": {
+                      "domain_tolerance": 1e-10,
+                      "full": {
+                        "maximum": 0.9992835666752043,
+                        "minimum": 0.027341325540993715,
+                        "nonfinite": 0,
+                        "outside_probability_range": 0,
+                        "passed": true,
+                        "points": 67799
+                      },
+                      "matrix": {
+                        "maximum": 0.1338803217231494,
+                        "minimum": 0.03865090366340172,
+                        "nonfinite": 0,
+                        "outside_probability_range": 0,
+                        "passed": true,
+                        "points": 60183
+                      },
+                      "passed": true,
+                      "scope": "sampled_positions_only"
+                    },
+                    "probability_valid": true,
+                    "solve": {
+                      "condition_number": 7.717787883673413,
+                      "maximum_absolute_amplitude": 0.055968865298828205,
+                      "relative_residual": 3.2954286822017e-16
+                    }
+                  },
+                  "mean_nll": 0.28210095098273635,
+                  "physical_radius_derivative": -2.6234770132439696e-05,
+                  "radius": 2.6852777483553703,
+                  "scaled_radius": 0.537055549671074,
+                  "scaled_radius_derivative": -0.00013117385066219848,
+                  "valid": true
+                },
+                {
+                  "assignment_changes": 0,
+                  "guard": {
+                    "evaluation": 0,
+                    "geometry_feasible": true,
+                    "likelihood_evaluated": true,
+                    "mean_nll": 0.28210095088937087,
+                    "minimum_box_clearance": -8.881784197001252e-16,
+                    "minimum_probability_constraint": 0.0007164233247956009,
+                    "minimum_surface_gap": 0.5933162943155814,
+                    "probability": {
+                      "domain_tolerance": 1e-10,
+                      "full": {
+                        "maximum": 0.9992835666752043,
+                        "minimum": 0.027341325539478163,
+                        "nonfinite": 0,
+                        "outside_probability_range": 0,
+                        "passed": true,
+                        "points": 67799
+                      },
+                      "matrix": {
+                        "maximum": 0.1338803217216177,
+                        "minimum": 0.03865090366037062,
+                        "nonfinite": 0,
+                        "outside_probability_range": 0,
+                        "passed": true,
+                        "points": 60182
+                      },
+                      "passed": true,
+                      "scope": "sampled_positions_only"
+                    },
+                    "probability_valid": true,
+                    "solve": {
+                      "condition_number": 7.717788014618894,
+                      "maximum_absolute_amplitude": 0.055968870407524886,
+                      "relative_residual": 3.588238884810507e-16
+                    }
+                  },
+                  "mean_nll": 0.28210095088937087,
+                  "physical_radius_derivative": -1.111139190036074e-05,
+                  "radius": 2.68528274835537,
+                  "scaled_radius": 0.537056549671074,
+                  "scaled_radius_derivative": -5.5556959501803695e-05,
+                  "valid": true
+                },
+                {
+                  "assignment_changes": 0,
+                  "guard": {
+                    "evaluation": 0,
+                    "geometry_feasible": true,
+                    "likelihood_evaluated": true,
+                    "mean_nll": 0.28210095086159626,
+                    "minimum_box_clearance": -8.881784197001252e-16,
+                    "minimum_probability_constraint": 0.0007164233247956009,
+                    "minimum_surface_gap": 0.5933162943155814,
+                    "probability": {
+                      "domain_tolerance": 1e-10,
+                      "full": {
+                        "maximum": 0.9992835666752043,
+                        "minimum": 0.02734132553872038,
+                        "nonfinite": 0,
+                        "outside_probability_range": 0,
+                        "passed": true,
+                        "points": 67799
+                      },
+                      "matrix": {
+                        "maximum": 0.13388032172085187,
+                        "minimum": 0.038650903658855054,
+                        "nonfinite": 0,
+                        "outside_probability_range": 0,
+                        "passed": true,
+                        "points": 60182
+                      },
+                      "passed": true,
+                      "scope": "sampled_positions_only"
+                    },
+                    "probability_valid": true,
+                    "solve": {
+                      "condition_number": 7.717788080091738,
+                      "maximum_absolute_amplitude": 0.055968872961869504,
+                      "relative_residual": 3.263610684934844e-16
+                    }
+                  },
+                  "mean_nll": 0.28210095086159626,
+                  "physical_radius_derivative": -1.1108251591337349e-05,
+                  "radius": 2.68528524835537,
+                  "scaled_radius": 0.537057049671074,
+                  "scaled_radius_derivative": -5.554125795668675e-05,
+                  "valid": true
+                }
+              ],
+              "resolved_jump": true,
+              "right_derivative": -5.5556959501803695e-05,
+              "right_error_allowance": 2.991239983214899e-08,
+              "right_finite_difference": -5.554923188100247e-05,
+              "verified": true
+            },
+            "frozen": {
+              "coordinate_cusp_minimum": false,
+              "derivative_jump": 7.561689116039478e-05,
+              "left_derivative": -0.00013117385066219848,
+              "left_error_allowance": 2.9258304222760587e-08,
+              "left_finite_difference": -0.00013118139907675186,
+              "nearby_coordinate_cusp": false,
+              "points": [
+                {
+                  "assignment_changes": 0,
+                  "guard": {
+                    "evaluation": 0,
+                    "geometry_feasible": true,
+                    "likelihood_evaluated": true,
+                    "mean_nll": 0.28210095104832705,
+                    "minimum_box_clearance": -8.881784197001252e-16,
+                    "minimum_probability_constraint": 0.0007164233247956009,
+                    "minimum_surface_gap": 0.5933162943155814,
+                    "probability": {
+                      "domain_tolerance": 1e-10,
+                      "full": {
+                        "maximum": 0.9992835666752043,
+                        "minimum": 0.027341325541751477,
+                        "nonfinite": 0,
+                        "outside_probability_range": 0,
+                        "passed": true,
+                        "points": 67799
+                      },
+                      "matrix": {
+                        "maximum": 0.13388032172391526,
+                        "minimum": 0.03865090366491725,
+                        "nonfinite": 0,
+                        "outside_probability_range": 0,
+                        "passed": true,
+                        "points": 60183
+                      },
+                      "passed": true,
+                      "scope": "sampled_positions_only"
+                    },
+                    "probability_valid": true,
+                    "solve": {
+                      "condition_number": 7.717787818200789,
+                      "maximum_absolute_amplitude": 0.055968862744476156,
+                      "relative_residual": 3.0775625075590736e-16
+                    }
+                  },
+                  "mean_nll": 0.28210095104832705,
+                  "physical_radius_derivative": -2.6237779622341206e-05,
+                  "radius": 2.6852752483553703,
+                  "scaled_radius": 0.5370550496710741,
+                  "scaled_radius_derivative": -0.00013118889811170604,
+                  "valid": true
+                },
+                {
+                  "assignment_changes": 0,
+                  "guard": {
+                    "evaluation": 0,
+                    "geometry_feasible": true,
+                    "likelihood_evaluated": true,
+                    "mean_nll": 0.28210095098273635,
+                    "minimum_box_clearance": -8.881784197001252e-16,
+                    "minimum_probability_constraint": 0.0007164233247956009,
+                    "minimum_surface_gap": 0.5933162943155814,
+                    "probability": {
+                      "domain_tolerance": 1e-10,
+                      "full": {
+                        "maximum": 0.9992835666752043,
+                        "minimum": 0.027341325540993715,
+                        "nonfinite": 0,
+                        "outside_probability_range": 0,
+                        "passed": true,
+                        "points": 67799
+                      },
+                      "matrix": {
+                        "maximum": 0.1338803217231494,
+                        "minimum": 0.03865090366340172,
+                        "nonfinite": 0,
+                        "outside_probability_range": 0,
+                        "passed": true,
+                        "points": 60183
+                      },
+                      "passed": true,
+                      "scope": "sampled_positions_only"
+                    },
+                    "probability_valid": true,
+                    "solve": {
+                      "condition_number": 7.717787883673413,
+                      "maximum_absolute_amplitude": 0.055968865298828205,
+                      "relative_residual": 3.2954286822017e-16
+                    }
+                  },
+                  "mean_nll": 0.28210095098273635,
+                  "physical_radius_derivative": -2.6234770132439696e-05,
+                  "radius": 2.6852777483553703,
+                  "scaled_radius": 0.537055549671074,
+                  "scaled_radius_derivative": -0.00013117385066219848,
+                  "valid": true
+                },
+                {
+                  "assignment_changes": 0,
+                  "guard": {
+                    "evaluation": 0,
+                    "geometry_feasible": true,
+                    "likelihood_evaluated": true,
+                    "mean_nll": 0.28210095088937087,
+                    "minimum_box_clearance": -8.881784197001252e-16,
+                    "minimum_probability_constraint": 0.0007164233247956009,
+                    "minimum_surface_gap": 0.5933162943155814,
+                    "probability": {
+                      "domain_tolerance": 1e-10,
+                      "full": {
+                        "maximum": 0.9992835666752043,
+                        "minimum": 0.027341325539478163,
+                        "nonfinite": 0,
+                        "outside_probability_range": 0,
+                        "passed": true,
+                        "points": 67799
+                      },
+                      "matrix": {
+                        "maximum": 0.1338803217216177,
+                        "minimum": 0.03865090366037062,
+                        "nonfinite": 0,
+                        "outside_probability_range": 0,
+                        "passed": true,
+                        "points": 60182
+                      },
+                      "passed": true,
+                      "scope": "sampled_positions_only"
+                    },
+                    "probability_valid": true,
+                    "solve": {
+                      "condition_number": 7.717788014618894,
+                      "maximum_absolute_amplitude": 0.055968870407524886,
+                      "relative_residual": 3.588238884810507e-16
+                    }
+                  },
+                  "mean_nll": 0.28210095088937087,
+                  "physical_radius_derivative": -1.111139190036074e-05,
+                  "radius": 2.68528274835537,
+                  "scaled_radius": 0.537056549671074,
+                  "scaled_radius_derivative": -5.5556959501803695e-05,
+                  "valid": true
+                },
+                {
+                  "assignment_changes": 0,
+                  "guard": {
+                    "evaluation": 0,
+                    "geometry_feasible": true,
+                    "likelihood_evaluated": true,
+                    "mean_nll": 0.28210095086159626,
+                    "minimum_box_clearance": -8.881784197001252e-16,
+                    "minimum_probability_constraint": 0.0007164233247956009,
+                    "minimum_surface_gap": 0.5933162943155814,
+                    "probability": {
+                      "domain_tolerance": 1e-10,
+                      "full": {
+                        "maximum": 0.9992835666752043,
+                        "minimum": 0.02734132553872038,
+                        "nonfinite": 0,
+                        "outside_probability_range": 0,
+                        "passed": true,
+                        "points": 67799
+                      },
+                      "matrix": {
+                        "maximum": 0.13388032172085187,
+                        "minimum": 0.038650903658855054,
+                        "nonfinite": 0,
+                        "outside_probability_range": 0,
+                        "passed": true,
+                        "points": 60182
+                      },
+                      "passed": true,
+                      "scope": "sampled_positions_only"
+                    },
+                    "probability_valid": true,
+                    "solve": {
+                      "condition_number": 7.717788080091738,
+                      "maximum_absolute_amplitude": 0.055968872961869504,
+                      "relative_residual": 3.263610684934844e-16
+                    }
+                  },
+                  "mean_nll": 0.28210095086159626,
+                  "physical_radius_derivative": -1.1108251591337349e-05,
+                  "radius": 2.68528524835537,
+                  "scaled_radius": 0.537057049671074,
+                  "scaled_radius_derivative": -5.554125795668675e-05,
+                  "valid": true
+                }
+              ],
+              "resolved_jump": true,
+              "right_derivative": -5.5556959501803695e-05,
+              "right_error_allowance": 2.991239983214899e-08,
+              "right_finite_difference": -5.554923188100247e-05,
+              "verified": true
+            }
+          },
+          "distance_from_endpoint": -0.0003046144695502129,
+          "near_endpoint": true,
+          "nearest_other_crossing_distance": 0.0004265941749057589,
+          "origins": [
+            {
+              "fitting_position": 38942,
+              "knot_index": 6,
+              "sample_index": 38942,
+              "u": 1.0
+            }
+          ],
+          "possible_nonsmooth_terms": [
+            "interior_clamp",
+            "constant_source_continuation"
+          ],
+          "radius": 2.68528024835537
+        }
+      ],
+      "endpoint_radius": 2.6855848628249204,
+      "joint_projected_radius_component": 5.365954687133407e-05,
+      "particle_index": 45,
+      "raw_radius_gradient": -5.365954687133407e-05
+    },
+    {
+      "candidate_id": "candidate-00022",
+      "crossings": [
+        {
+          "actual_offset_scaled": 1e-06,
+          "assignment_modes": {
+            "fresh": {
+              "coordinate_cusp_minimum": true,
+              "derivative_jump": 6.693115701677884e-05,
+              "left_derivative": -5.270167933264426e-05,
+              "left_error_allowance": 4.696716532489806e-08,
+              "left_finite_difference": -5.271805214590586e-05,
+              "nearby_coordinate_cusp": true,
+              "points": [
+                {
+                  "assignment_changes": 0,
+                  "guard": {
+                    "evaluation": 0,
+                    "geometry_feasible": true,
+                    "likelihood_evaluated": true,
+                    "mean_nll": 0.28210094749067594,
+                    "minimum_box_clearance": -8.881784197001252e-16,
+                    "minimum_probability_constraint": 0.0007164233247956009,
+                    "minimum_surface_gap": 0.5933162943155814,
+                    "probability": {
+                      "domain_tolerance": 1e-10,
+                      "full": {
+                        "maximum": 0.9992835666752043,
+                        "minimum": 0.027341325445903848,
+                        "nonfinite": 0,
+                        "outside_probability_range": 0,
+                        "passed": true,
+                        "points": 67799
+                      },
+                      "matrix": {
+                        "maximum": 0.13388032162562807,
+                        "minimum": 0.03865090347322199,
+                        "nonfinite": 0,
+                        "outside_probability_range": 0,
+                        "passed": true,
+                        "points": 60182
+                      },
+                      "passed": true,
+                      "scope": "sampled_positions_only"
+                    },
+                    "probability_valid": true,
+                    "solve": {
+                      "condition_number": 7.717795982226112,
+                      "maximum_absolute_amplitude": 0.05596917993512029,
+                      "relative_residual": 2.60821663718119e-16
+                    }
+                  },
+                  "mean_nll": 0.28210094749067594,
+                  "physical_radius_derivative": -1.0546887128650791e-05,
+                  "radius": 3.042741187366786,
+                  "scaled_radius": 0.6085482374733572,
+                  "scaled_radius_derivative": -5.2734435643253954e-05,
+                  "valid": true
+                },
+                {
+                  "assignment_changes": 0,
+                  "guard": {
+                    "evaluation": 0,
+                    "geometry_feasible": true,
+                    "likelihood_evaluated": true,
+                    "mean_nll": 0.2821009474643169,
+                    "minimum_box_clearance": -8.881784197001252e-16,
+                    "minimum_probability_constraint": 0.0007164233247957119,
+                    "minimum_surface_gap": 0.5933162943155814,
+                    "probability": {
+                      "domain_tolerance": 1e-10,
+                      "full": {
+                        "maximum": 0.9992835666752042,
+                        "minimum": 0.027341325445369526,
+                        "nonfinite": 0,
+                        "outside_probability_range": 0,
+                        "passed": true,
+                        "points": 67799
+                      },
+                      "matrix": {
+                        "maximum": 0.13388032162471045,
+                        "minimum": 0.038650903472153345,
+                        "nonfinite": 0,
+                        "outside_probability_range": 0,
+                        "passed": true,
+                        "points": 60182
+                      },
+                      "passed": true,
+                      "scope": "sampled_positions_only"
+                    },
+                    "probability_valid": true,
+                    "solve": {
+                      "condition_number": 7.717795996862183,
+                      "maximum_absolute_amplitude": 0.0559691801651785,
+                      "relative_residual": 3.2798785460762776e-16
+                    }
+                  },
+                  "mean_nll": 0.2821009474643169,
+                  "physical_radius_derivative": -1.0540335866528851e-05,
+                  "radius": 3.042743687366786,
+                  "scaled_radius": 0.6085487374733571,
+                  "scaled_radius_derivative": -5.270167933264426e-05,
+                  "valid": true
+                },
+                {
+                  "assignment_changes": 0,
+                  "guard": {
+                    "evaluation": 0,
+                    "geometry_feasible": true,
+                    "likelihood_evaluated": true,
+                    "mean_nll": 0.28210094744508063,
+                    "minimum_box_clearance": -8.881784197001252e-16,
+                    "minimum_probability_constraint": 0.0007164233247956009,
+                    "minimum_surface_gap": 0.5933162943155814,
+                    "probability": {
+                      "domain_tolerance": 1e-10,
+                      "full": {
+                        "maximum": 0.9992835666752043,
+                        "minimum": 0.027341325444300887,
+                        "nonfinite": 0,
+                        "outside_probability_range": 0,
+                        "passed": true,
+                        "points": 67799
+                      },
+                      "matrix": {
+                        "maximum": 0.13388032162287516,
+                        "minimum": 0.03865090347001607,
+                        "nonfinite": 0,
+                        "outside_probability_range": 0,
+                        "passed": true,
+                        "points": 60181
+                      },
+                      "passed": true,
+                      "scope": "sampled_positions_only"
+                    },
+                    "probability_valid": true,
+                    "solve": {
+                      "condition_number": 7.717796026134389,
+                      "maximum_absolute_amplitude": 0.05596918062529471,
+                      "relative_residual": 3.2679670567690853e-16
+                    }
+                  },
+                  "mean_nll": 0.28210094744508063,
+                  "physical_radius_derivative": 2.845895536826917e-06,
+                  "radius": 3.0427486873667857,
+                  "scaled_radius": 0.6085497374733572,
+                  "scaled_radius_derivative": 1.4229477684134583e-05,
+                  "valid": true
+                },
+                {
+                  "assignment_changes": 0,
+                  "guard": {
+                    "evaluation": 0,
+                    "geometry_feasible": true,
+                    "likelihood_evaluated": true,
+                    "mean_nll": 0.28210094745220365,
+                    "minimum_box_clearance": -8.881784197001252e-16,
+                    "minimum_probability_constraint": 0.0007164233247956009,
+                    "minimum_surface_gap": 0.5933162943155814,
+                    "probability": {
+                      "domain_tolerance": 1e-10,
+                      "full": {
+                        "maximum": 0.9992835666752043,
+                        "minimum": 0.027341325443766572,
+                        "nonfinite": 0,
+                        "outside_probability_range": 0,
+                        "passed": true,
+                        "points": 67799
+                      },
+                      "matrix": {
+                        "maximum": 0.1338803216219575,
+                        "minimum": 0.03865090346894744,
+                        "nonfinite": 0,
+                        "outside_probability_range": 0,
+                        "passed": true,
+                        "points": 60181
+                      },
+                      "passed": true,
+                      "scope": "sampled_positions_only"
+                    },
+                    "probability_valid": true,
+                    "solve": {
+                      "condition_number": 7.717796040770509,
+                      "maximum_absolute_amplitude": 0.0559691808553527,
+                      "relative_residual": 3.314432478637672e-16
+                    }
+                  },
+                  "mean_nll": 0.28210094745220365,
+                  "physical_radius_derivative": 2.852560616559893e-06,
+                  "radius": 3.0427511873667856,
+                  "scaled_radius": 0.6085502374733571,
+                  "scaled_radius_derivative": 1.4262803082799464e-05,
+                  "valid": true
+                }
+              ],
+              "resolved_jump": true,
+              "right_derivative": 1.4229477684134583e-05,
+              "right_error_allowance": 4.7536253380083245e-08,
+              "right_finite_difference": 1.4246048785082621e-05,
+              "verified": true
+            },
+            "frozen": {
+              "coordinate_cusp_minimum": true,
+              "derivative_jump": 6.693115701677884e-05,
+              "left_derivative": -5.270167933264426e-05,
+              "left_error_allowance": 4.696716532489806e-08,
+              "left_finite_difference": -5.271805214590586e-05,
+              "nearby_coordinate_cusp": true,
+              "points": [
+                {
+                  "assignment_changes": 0,
+                  "guard": {
+                    "evaluation": 0,
+                    "geometry_feasible": true,
+                    "likelihood_evaluated": true,
+                    "mean_nll": 0.28210094749067594,
+                    "minimum_box_clearance": -8.881784197001252e-16,
+                    "minimum_probability_constraint": 0.0007164233247956009,
+                    "minimum_surface_gap": 0.5933162943155814,
+                    "probability": {
+                      "domain_tolerance": 1e-10,
+                      "full": {
+                        "maximum": 0.9992835666752043,
+                        "minimum": 0.027341325445903848,
+                        "nonfinite": 0,
+                        "outside_probability_range": 0,
+                        "passed": true,
+                        "points": 67799
+                      },
+                      "matrix": {
+                        "maximum": 0.13388032162562807,
+                        "minimum": 0.03865090347322199,
+                        "nonfinite": 0,
+                        "outside_probability_range": 0,
+                        "passed": true,
+                        "points": 60182
+                      },
+                      "passed": true,
+                      "scope": "sampled_positions_only"
+                    },
+                    "probability_valid": true,
+                    "solve": {
+                      "condition_number": 7.717795982226112,
+                      "maximum_absolute_amplitude": 0.05596917993512029,
+                      "relative_residual": 2.60821663718119e-16
+                    }
+                  },
+                  "mean_nll": 0.28210094749067594,
+                  "physical_radius_derivative": -1.0546887128650791e-05,
+                  "radius": 3.042741187366786,
+                  "scaled_radius": 0.6085482374733572,
+                  "scaled_radius_derivative": -5.2734435643253954e-05,
+                  "valid": true
+                },
+                {
+                  "assignment_changes": 0,
+                  "guard": {
+                    "evaluation": 0,
+                    "geometry_feasible": true,
+                    "likelihood_evaluated": true,
+                    "mean_nll": 0.2821009474643169,
+                    "minimum_box_clearance": -8.881784197001252e-16,
+                    "minimum_probability_constraint": 0.0007164233247957119,
+                    "minimum_surface_gap": 0.5933162943155814,
+                    "probability": {
+                      "domain_tolerance": 1e-10,
+                      "full": {
+                        "maximum": 0.9992835666752042,
+                        "minimum": 0.027341325445369526,
+                        "nonfinite": 0,
+                        "outside_probability_range": 0,
+                        "passed": true,
+                        "points": 67799
+                      },
+                      "matrix": {
+                        "maximum": 0.13388032162471045,
+                        "minimum": 0.038650903472153345,
+                        "nonfinite": 0,
+                        "outside_probability_range": 0,
+                        "passed": true,
+                        "points": 60182
+                      },
+                      "passed": true,
+                      "scope": "sampled_positions_only"
+                    },
+                    "probability_valid": true,
+                    "solve": {
+                      "condition_number": 7.717795996862183,
+                      "maximum_absolute_amplitude": 0.0559691801651785,
+                      "relative_residual": 3.2798785460762776e-16
+                    }
+                  },
+                  "mean_nll": 0.2821009474643169,
+                  "physical_radius_derivative": -1.0540335866528851e-05,
+                  "radius": 3.042743687366786,
+                  "scaled_radius": 0.6085487374733571,
+                  "scaled_radius_derivative": -5.270167933264426e-05,
+                  "valid": true
+                },
+                {
+                  "assignment_changes": 0,
+                  "guard": {
+                    "evaluation": 0,
+                    "geometry_feasible": true,
+                    "likelihood_evaluated": true,
+                    "mean_nll": 0.28210094744508063,
+                    "minimum_box_clearance": -8.881784197001252e-16,
+                    "minimum_probability_constraint": 0.0007164233247956009,
+                    "minimum_surface_gap": 0.5933162943155814,
+                    "probability": {
+                      "domain_tolerance": 1e-10,
+                      "full": {
+                        "maximum": 0.9992835666752043,
+                        "minimum": 0.027341325444300887,
+                        "nonfinite": 0,
+                        "outside_probability_range": 0,
+                        "passed": true,
+                        "points": 67799
+                      },
+                      "matrix": {
+                        "maximum": 0.13388032162287516,
+                        "minimum": 0.03865090347001607,
+                        "nonfinite": 0,
+                        "outside_probability_range": 0,
+                        "passed": true,
+                        "points": 60181
+                      },
+                      "passed": true,
+                      "scope": "sampled_positions_only"
+                    },
+                    "probability_valid": true,
+                    "solve": {
+                      "condition_number": 7.717796026134389,
+                      "maximum_absolute_amplitude": 0.05596918062529471,
+                      "relative_residual": 3.2679670567690853e-16
+                    }
+                  },
+                  "mean_nll": 0.28210094744508063,
+                  "physical_radius_derivative": 2.845895536826917e-06,
+                  "radius": 3.0427486873667857,
+                  "scaled_radius": 0.6085497374733572,
+                  "scaled_radius_derivative": 1.4229477684134583e-05,
+                  "valid": true
+                },
+                {
+                  "assignment_changes": 0,
+                  "guard": {
+                    "evaluation": 0,
+                    "geometry_feasible": true,
+                    "likelihood_evaluated": true,
+                    "mean_nll": 0.28210094745220365,
+                    "minimum_box_clearance": -8.881784197001252e-16,
+                    "minimum_probability_constraint": 0.0007164233247956009,
+                    "minimum_surface_gap": 0.5933162943155814,
+                    "probability": {
+                      "domain_tolerance": 1e-10,
+                      "full": {
+                        "maximum": 0.9992835666752043,
+                        "minimum": 0.027341325443766572,
+                        "nonfinite": 0,
+                        "outside_probability_range": 0,
+                        "passed": true,
+                        "points": 67799
+                      },
+                      "matrix": {
+                        "maximum": 0.1338803216219575,
+                        "minimum": 0.03865090346894744,
+                        "nonfinite": 0,
+                        "outside_probability_range": 0,
+                        "passed": true,
+                        "points": 60181
+                      },
+                      "passed": true,
+                      "scope": "sampled_positions_only"
+                    },
+                    "probability_valid": true,
+                    "solve": {
+                      "condition_number": 7.717796040770509,
+                      "maximum_absolute_amplitude": 0.0559691808553527,
+                      "relative_residual": 3.314432478637672e-16
+                    }
+                  },
+                  "mean_nll": 0.28210094745220365,
+                  "physical_radius_derivative": 2.852560616559893e-06,
+                  "radius": 3.0427511873667856,
+                  "scaled_radius": 0.6085502374733571,
+                  "scaled_radius_derivative": 1.4262803082799464e-05,
+                  "valid": true
+                }
+              ],
+              "resolved_jump": true,
+              "right_derivative": 1.4229477684134583e-05,
+              "right_error_allowance": 4.7536253380083245e-08,
+              "right_finite_difference": 1.4246048785082621e-05,
+              "verified": true
+            }
+          },
+          "distance_from_endpoint": 1.4385833753127741e-05,
+          "near_endpoint": true,
+          "nearest_other_crossing_distance": 3.188898200123802e-05,
+          "origins": [
+            {
+              "fitting_position": 3539,
+              "knot_index": 6,
+              "sample_index": 3539,
+              "u": 1.0
+            }
+          ],
+          "possible_nonsmooth_terms": [
+            "interior_clamp",
+            "constant_source_continuation"
+          ],
+          "radius": 3.042746187366786
+        },
+        {
+          "actual_offset_scaled": 1e-06,
+          "assignment_modes": {
+            "fresh": {
+              "coordinate_cusp_minimum": false,
+              "derivative_jump": 6.688671262153799e-05,
+              "left_derivative": 1.4587908078954399e-05,
+              "left_error_allowance": 4.753550543730057e-08,
+              "left_finite_difference": 1.457123310899533e-05,
+              "nearby_coordinate_cusp": false,
+              "points": [
+                {
+                  "assignment_changes": 0,
+                  "guard": {
+                    "evaluation": 0,
+                    "geometry_feasible": true,
+                    "likelihood_evaluated": true,
+                    "mean_nll": 0.28210094751528203,
+                    "minimum_box_clearance": -8.881784197001252e-16,
+                    "minimum_probability_constraint": 0.0007164233247956009,
+                    "minimum_surface_gap": 0.5933162943155814,
+                    "probability": {
+                      "domain_tolerance": 1e-10,
+                      "full": {
+                        "maximum": 0.9992835666752043,
+                        "minimum": 0.027341325439088272,
+                        "nonfinite": 0,
+                        "outside_probability_range": 0,
+                        "passed": true,
+                        "points": 67799
+                      },
+                      "matrix": {
+                        "maximum": 0.13388032161392296,
+                        "minimum": 0.03865090345959084,
+                        "nonfinite": 0,
+                        "outside_probability_range": 0,
+                        "passed": true,
+                        "points": 60181
+                      },
+                      "passed": true,
+                      "scope": "sampled_positions_only"
+                    },
+                    "probability_valid": true,
+                    "solve": {
+                      "condition_number": 7.717796168919123,
+                      "maximum_absolute_amplitude": 0.05596918286964344,
+                      "relative_residual": 3.2904119033567935e-16
+                    }
+                  },
+                  "mean_nll": 0.28210094751528203,
+                  "physical_radius_derivative": 2.91091668564646e-06,
+                  "radius": 3.0427730763487872,
+                  "scaled_radius": 0.6085546152697574,
+                  "scaled_radius_derivative": 1.45545834282323e-05,
+                  "valid": true
+                },
+                {
+                  "assignment_changes": 0,
+                  "guard": {
+                    "evaluation": 0,
+                    "geometry_feasible": true,
+                    "likelihood_evaluated": true,
+                    "mean_nll": 0.28210094752256765,
+                    "minimum_box_clearance": -8.881784197001252e-16,
+                    "minimum_probability_constraint": 0.0007164233247956009,
+                    "minimum_surface_gap": 0.5933162943155814,
+                    "probability": {
+                      "domain_tolerance": 1e-10,
+                      "full": {
+                        "maximum": 0.9992835666752043,
+                        "minimum": 0.027341325438553936,
+                        "nonfinite": 0,
+                        "outside_probability_range": 0,
+                        "passed": true,
+                        "points": 67799
+                      },
+                      "matrix": {
+                        "maximum": 0.1338803216130053,
+                        "minimum": 0.038650903458522165,
+                        "nonfinite": 0,
+                        "outside_probability_range": 0,
+                        "passed": true,
+                        "points": 60181
+                      },
+                      "passed": true,
+                      "scope": "sampled_positions_only"
+                    },
+                    "probability_valid": true,
+                    "solve": {
+                      "condition_number": 7.7177961835554045,
+                      "maximum_absolute_amplitude": 0.05596918309970068,
+                      "relative_residual": 3.0908493551940227e-16
+                    }
+                  },
+                  "mean_nll": 0.28210094752256765,
+                  "physical_radius_derivative": 2.91758161579088e-06,
+                  "radius": 3.042775576348787,
+                  "scaled_radius": 0.6085551152697575,
+                  "scaled_radius_derivative": 1.4587908078954399e-05,
+                  "valid": true
+                },
+                {
+                  "assignment_changes": 0,
+                  "guard": {
+                    "evaluation": 0,
+                    "geometry_feasible": true,
+                    "likelihood_evaluated": true,
+                    "mean_nll": 0.2821009475705988,
+                    "minimum_box_clearance": -8.881784197001252e-16,
+                    "minimum_probability_constraint": 0.0007164233247956009,
+                    "minimum_surface_gap": 0.5933162943155814,
+                    "probability": {
+                      "domain_tolerance": 1e-10,
+                      "full": {
+                        "maximum": 0.9992835666752043,
+                        "minimum": 0.027341325437485284,
+                        "nonfinite": 0,
+                        "outside_probability_range": 0,
+                        "passed": true,
+                        "points": 67799
+                      },
+                      "matrix": {
+                        "maximum": 0.13388032161117006,
+                        "minimum": 0.03865090345638486,
+                        "nonfinite": 0,
+                        "outside_probability_range": 0,
+                        "passed": true,
+                        "points": 60180
+                      },
+                      "passed": true,
+                      "scope": "sampled_positions_only"
+                    },
+                    "probability_valid": true,
+                    "solve": {
+                      "condition_number": 7.717796212828006,
+                      "maximum_absolute_amplitude": 0.05596918355981495,
+                      "relative_residual": 2.8484239727895183e-16
+                    }
+                  },
+                  "mean_nll": 0.2821009475705988,
+                  "physical_radius_derivative": 1.6294924140098478e-05,
+                  "radius": 3.042780576348787,
+                  "scaled_radius": 0.6085561152697574,
+                  "scaled_radius_derivative": 8.147462070049239e-05,
+                  "valid": true
+                },
+                {
+                  "assignment_changes": 0,
+                  "guard": {
+                    "evaluation": 0,
+                    "geometry_feasible": true,
+                    "likelihood_evaluated": true,
+                    "mean_nll": 0.2821009476113446,
+                    "minimum_box_clearance": -8.881784197001252e-16,
+                    "minimum_probability_constraint": 0.0007164233247956009,
+                    "minimum_surface_gap": 0.5933162943155814,
+                    "probability": {
+                      "domain_tolerance": 1e-10,
+                      "full": {
+                        "maximum": 0.9992835666752043,
+                        "minimum": 0.02734132543695101,
+                        "nonfinite": 0,
+                        "outside_probability_range": 0,
+                        "passed": true,
+                        "points": 67799
+                      },
+                      "matrix": {
+                        "maximum": 0.1338803216102524,
+                        "minimum": 0.03865090345531631,
+                        "nonfinite": 0,
+                        "outside_probability_range": 0,
+                        "passed": true,
+                        "points": 60180
+                      },
+                      "passed": true,
+                      "scope": "sampled_positions_only"
+                    },
+                    "probability_valid": true,
+                    "solve": {
+                      "condition_number": 7.717796227464333,
+                      "maximum_absolute_amplitude": 0.055969183789871965,
+                      "relative_residual": 2.986249099806646e-16
+                    }
+                  },
+                  "mean_nll": 0.2821009476113446,
+                  "physical_radius_derivative": 1.6301702915389765e-05,
+                  "radius": 3.042783076348787,
+                  "scaled_radius": 0.6085566152697574,
+                  "scaled_radius_derivative": 8.150851457694883e-05,
+                  "valid": true
+                }
+              ],
+              "resolved_jump": true,
+              "right_derivative": 8.147462070049239e-05,
+              "right_error_allowance": 4.81047311716486e-08,
+              "right_finite_difference": 8.149159125281358e-05,
+              "verified": true
+            },
+            "frozen": {
+              "coordinate_cusp_minimum": false,
+              "derivative_jump": 6.688671262153799e-05,
+              "left_derivative": 1.4587908078954399e-05,
+              "left_error_allowance": 4.753550543730057e-08,
+              "left_finite_difference": 1.457123310899533e-05,
+              "nearby_coordinate_cusp": false,
+              "points": [
+                {
+                  "assignment_changes": 0,
+                  "guard": {
+                    "evaluation": 0,
+                    "geometry_feasible": true,
+                    "likelihood_evaluated": true,
+                    "mean_nll": 0.28210094751528203,
+                    "minimum_box_clearance": -8.881784197001252e-16,
+                    "minimum_probability_constraint": 0.0007164233247956009,
+                    "minimum_surface_gap": 0.5933162943155814,
+                    "probability": {
+                      "domain_tolerance": 1e-10,
+                      "full": {
+                        "maximum": 0.9992835666752043,
+                        "minimum": 0.027341325439088272,
+                        "nonfinite": 0,
+                        "outside_probability_range": 0,
+                        "passed": true,
+                        "points": 67799
+                      },
+                      "matrix": {
+                        "maximum": 0.13388032161392296,
+                        "minimum": 0.03865090345959084,
+                        "nonfinite": 0,
+                        "outside_probability_range": 0,
+                        "passed": true,
+                        "points": 60181
+                      },
+                      "passed": true,
+                      "scope": "sampled_positions_only"
+                    },
+                    "probability_valid": true,
+                    "solve": {
+                      "condition_number": 7.717796168919123,
+                      "maximum_absolute_amplitude": 0.05596918286964344,
+                      "relative_residual": 3.2904119033567935e-16
+                    }
+                  },
+                  "mean_nll": 0.28210094751528203,
+                  "physical_radius_derivative": 2.91091668564646e-06,
+                  "radius": 3.0427730763487872,
+                  "scaled_radius": 0.6085546152697574,
+                  "scaled_radius_derivative": 1.45545834282323e-05,
+                  "valid": true
+                },
+                {
+                  "assignment_changes": 0,
+                  "guard": {
+                    "evaluation": 0,
+                    "geometry_feasible": true,
+                    "likelihood_evaluated": true,
+                    "mean_nll": 0.28210094752256765,
+                    "minimum_box_clearance": -8.881784197001252e-16,
+                    "minimum_probability_constraint": 0.0007164233247956009,
+                    "minimum_surface_gap": 0.5933162943155814,
+                    "probability": {
+                      "domain_tolerance": 1e-10,
+                      "full": {
+                        "maximum": 0.9992835666752043,
+                        "minimum": 0.027341325438553936,
+                        "nonfinite": 0,
+                        "outside_probability_range": 0,
+                        "passed": true,
+                        "points": 67799
+                      },
+                      "matrix": {
+                        "maximum": 0.1338803216130053,
+                        "minimum": 0.038650903458522165,
+                        "nonfinite": 0,
+                        "outside_probability_range": 0,
+                        "passed": true,
+                        "points": 60181
+                      },
+                      "passed": true,
+                      "scope": "sampled_positions_only"
+                    },
+                    "probability_valid": true,
+                    "solve": {
+                      "condition_number": 7.7177961835554045,
+                      "maximum_absolute_amplitude": 0.05596918309970068,
+                      "relative_residual": 3.0908493551940227e-16
+                    }
+                  },
+                  "mean_nll": 0.28210094752256765,
+                  "physical_radius_derivative": 2.91758161579088e-06,
+                  "radius": 3.042775576348787,
+                  "scaled_radius": 0.6085551152697575,
+                  "scaled_radius_derivative": 1.4587908078954399e-05,
+                  "valid": true
+                },
+                {
+                  "assignment_changes": 0,
+                  "guard": {
+                    "evaluation": 0,
+                    "geometry_feasible": true,
+                    "likelihood_evaluated": true,
+                    "mean_nll": 0.2821009475705988,
+                    "minimum_box_clearance": -8.881784197001252e-16,
+                    "minimum_probability_constraint": 0.0007164233247956009,
+                    "minimum_surface_gap": 0.5933162943155814,
+                    "probability": {
+                      "domain_tolerance": 1e-10,
+                      "full": {
+                        "maximum": 0.9992835666752043,
+                        "minimum": 0.027341325437485284,
+                        "nonfinite": 0,
+                        "outside_probability_range": 0,
+                        "passed": true,
+                        "points": 67799
+                      },
+                      "matrix": {
+                        "maximum": 0.13388032161117006,
+                        "minimum": 0.03865090345638486,
+                        "nonfinite": 0,
+                        "outside_probability_range": 0,
+                        "passed": true,
+                        "points": 60180
+                      },
+                      "passed": true,
+                      "scope": "sampled_positions_only"
+                    },
+                    "probability_valid": true,
+                    "solve": {
+                      "condition_number": 7.717796212828006,
+                      "maximum_absolute_amplitude": 0.05596918355981495,
+                      "relative_residual": 2.8484239727895183e-16
+                    }
+                  },
+                  "mean_nll": 0.2821009475705988,
+                  "physical_radius_derivative": 1.6294924140098478e-05,
+                  "radius": 3.042780576348787,
+                  "scaled_radius": 0.6085561152697574,
+                  "scaled_radius_derivative": 8.147462070049239e-05,
+                  "valid": true
+                },
+                {
+                  "assignment_changes": 0,
+                  "guard": {
+                    "evaluation": 0,
+                    "geometry_feasible": true,
+                    "likelihood_evaluated": true,
+                    "mean_nll": 0.2821009476113446,
+                    "minimum_box_clearance": -8.881784197001252e-16,
+                    "minimum_probability_constraint": 0.0007164233247956009,
+                    "minimum_surface_gap": 0.5933162943155814,
+                    "probability": {
+                      "domain_tolerance": 1e-10,
+                      "full": {
+                        "maximum": 0.9992835666752043,
+                        "minimum": 0.02734132543695101,
+                        "nonfinite": 0,
+                        "outside_probability_range": 0,
+                        "passed": true,
+                        "points": 67799
+                      },
+                      "matrix": {
+                        "maximum": 0.1338803216102524,
+                        "minimum": 0.03865090345531631,
+                        "nonfinite": 0,
+                        "outside_probability_range": 0,
+                        "passed": true,
+                        "points": 60180
+                      },
+                      "passed": true,
+                      "scope": "sampled_positions_only"
+                    },
+                    "probability_valid": true,
+                    "solve": {
+                      "condition_number": 7.717796227464333,
+                      "maximum_absolute_amplitude": 0.055969183789871965,
+                      "relative_residual": 2.986249099806646e-16
+                    }
+                  },
+                  "mean_nll": 0.2821009476113446,
+                  "physical_radius_derivative": 1.6301702915389765e-05,
+                  "radius": 3.042783076348787,
+                  "scaled_radius": 0.6085566152697574,
+                  "scaled_radius_derivative": 8.150851457694883e-05,
+                  "valid": true
+                }
+              ],
+              "resolved_jump": true,
+              "right_derivative": 8.147462070049239e-05,
+              "right_error_allowance": 4.81047311716486e-08,
+              "right_finite_difference": 8.149159125281358e-05,
+              "verified": true
+            }
+          },
+          "distance_from_endpoint": 4.627481575436576e-05,
+          "near_endpoint": true,
+          "nearest_other_crossing_distance": 3.188898200123802e-05,
+          "origins": [
+            {
+              "fitting_position": 30970,
+              "knot_index": 6,
+              "sample_index": 30970,
+              "u": 1.0
+            }
+          ],
+          "possible_nonsmooth_terms": [
+            "interior_clamp",
+            "constant_source_continuation"
+          ],
+          "radius": 3.042778076348787
+        }
+      ],
+      "endpoint_radius": 3.0427318015330327,
+      "joint_projected_radius_component": 5.285741446092831e-05,
+      "particle_index": 22,
+      "raw_radius_gradient": -5.285741446092831e-05
+    }
+  ],
+  "projection_certificate": {
+    "active_set_iterations": 0,
+    "complementarity": 2.6500629970338876e-23,
+    "converged": true,
+    "dual_projected_gradient": 7.666504695868234e-20,
+    "iterations": 1,
+    "primal_violation": 7.666504695868234e-20,
+    "stationarity": 0.0,
+    "termination": "CONVERGENCE: NORM OF PROJECTED GRADIENT <= PGTOL"
+  },
+  "schema": "radius-knot-diagnostics-v1",
+  "scope": "fitting observations; one-coordinate sections; not joint convergence",
+  "seconds": 10.692520958999921,
+  "settings": {
+    "max_crossings": 2,
+    "nearby_radius_window": 0.001,
+    "side_offset_scaled": 1e-06,
+    "top_n": 4
+  }
+}

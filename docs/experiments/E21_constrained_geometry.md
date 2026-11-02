@@ -10,6 +10,14 @@ round-budget handling and tested development case 0 through all three prescribed
 starts and rounds; it also obtained zero converged fits, in 348.813 seconds. The
 four-arm comparison has not run. Capillary profiles and calibrated uncertainty
 remain unimplemented, and confirmation and reserved-test data remain unopened.
+The separate [staged solver diagnosis](E21_solver_diagnosis.md) has completed all
+22 attempts on the same observed development case and a small exact-model control.
+The four control fits and three observed fixed-geometry chemistry/profile fits
+converge; all 15 observed geometry-released fits fail, including sequential warm
+starts. Independent joint fits reproduce the archived version 3 failures exactly.
+Boundary-tolerance inconsistencies and nonsmooth radius sections now have concrete
+diagnostic evidence; neither establishes a joint optimum or changes the archived
+preflight decisions.
 
 The implemented study compares Gaussian and Fourier boundary initializations on one
 fixed list of detected precipitates. Its immediate prerequisite is a fitter that
@@ -120,10 +128,13 @@ large-case convergence problem before further neural training:
    failures and version any changed settings. Recheck all four baseline cases before
    resuming the four-arm comparison.
 
-This is a proposed diagnostic sequence, not a fitted method already validated by
-E21. The current evidence does not establish whether the difficulty primarily comes
-from parameter scaling, constrained directions, assignment changes, or the mismatch
-between the generating and fitted observation models.
+This diagnostic sequence is now implemented in a separate
+[versioned solver diagnostic](E21_solver_diagnosis.md), with independent radius-only,
+centre-only and joint ablations plus separately labeled sequential warm starts.
+It is not a fitted method already validated by E21. The completed diagnostic
+documents boundary-precision inconsistencies and derivative jumps at interior
+profile knots and particle surfaces. Their relative contributions to the failed
+fits and the endpoints' joint nonsmooth optimality remain unresolved.
 
 ## Research question
 

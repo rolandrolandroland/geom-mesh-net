@@ -16,6 +16,16 @@ all three rounds without numerical convergence. Expansion stopped at this
 prerequisite. This does not complete the E21 comparison or validate physical inference. See
 [E21's procedure and execution status](../experiments/E21_constrained_geometry.md).
 Capillary profiles and the uncertainty-validation study remain future work.
+The numerical implementation and failed preflights were committed and pushed at
+`b54591b` before the **2 November 2026**
+[staged solver diagnosis](../experiments/E21_solver_diagnosis.md). That separate
+diagnostic completed all 22 prescribed attempts with frozen source and budgets.
+Four small exact-model controls and three fixed-geometry chemistry/profile fits
+converge; all 15 observed fits that release geometry fail, including sequential
+warm starts. Independent joint fits reproduce the archived failures. The next
+development work is a feasibility-tolerance repair followed by explicit handling
+of the nonsmooth objective. These are development findings, with no change to the
+E21 readiness gate or permission to access confirmation or reserved-test data.
 Historical results and hashes remain unchanged; follow
 [E20's reproduction note](../experiments/E20_field_to_particles.md#reproduction-and-saved-evidence)
 when resuming that archived experiment.

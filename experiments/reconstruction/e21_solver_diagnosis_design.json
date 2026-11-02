@@ -1,0 +1,56 @@
+{
+  "version": "e21-solver-diagnosis-v1",
+  "date": "2026-11-02",
+  "baseline_commit": "b54591bb41b6ccd540eb5e2540fbf218cd66849c",
+  "purpose": "Attribute numerical nonconvergence through exact frozen-coordinate ablations and separately labelled sequential warm starts. No promotion or inference validation.",
+  "observed": {
+    "phase": "development",
+    "case_index": 0,
+    "report": "experiments/reconstruction/results/e21_geometry_v3/development.json",
+    "report_sha256": "f7a86e19a42d94b46f8bc813d98834d69c1a4216e8e683e85485207f6aea1e60",
+    "case_folder": "experiments/reconstruction/results/e21_artifacts/v3/cases/57babaa91366f5b10dd88bb3",
+    "preparation_sha256": "7c17d0c177d31994578b616fc0ded01f6d9074f5b76158063458e96afde87185",
+    "data_identity": "8e65ea46c78febde49f4781bc0676f55807ebeb400a86876141b5e21c592a250",
+    "catalogue_identity": "cb9acc419f35a0d68be869ea7e250b429c70309f898a2b583f353f4272ea57fe",
+    "starts": [[null, null], [1.0, 3.0], [6.0, 12.0]],
+    "initialization": "Exact archived prepared geometry and recorded feasible initial chemistry; original default profile. Identical full states across independent stages."
+  },
+  "control": {
+    "kind": "model_matched_expected_likelihood",
+    "seed": 2026110201,
+    "count": 6000,
+    "box": 32.0,
+    "centres": [[7.0, 8.0, 8.0], [17.0, 10.0, 12.0], [12.0, 21.0, 20.0]],
+    "radii": [2.0, 3.0, 4.0],
+    "truth": {"c_eq": 0.03, "ell": 2.0, "xi": 5.0, "c_inf": 0.1},
+    "levels": [0.92, 0.88, 0.79, 0.63, 0.43, 0.22, 0.04],
+    "initial": {"c_eq": 0.032, "ell": 1.5, "xi": 6.0, "c_inf": 0.09},
+    "initial_levels": [0.93, 0.89, 0.8, 0.64, 0.44, 0.23, 0.05],
+    "scope_note": "One prescribed start; true geometry and probability targets isolate numerical behavior. This is not noisy-data recovery or identifiability evidence."
+  },
+  "physics": {
+    "backend": "feasible_lbfgs",
+    "width": 0.3,
+    "knots": 6,
+    "maxiter": 150,
+    "max_evaluations": 600,
+    "rounds": 3,
+    "gtol": 0.00001,
+    "min_gap": 0.00001,
+    "radius_bounds": [0.5, 20.0]
+  },
+  "runtime": {"threads": 3, "device": "cpu", "dtype": "float64"},
+  "stages": [
+    {"id": "chemistry", "fit_centres": false, "fit_radii": false, "parent": null},
+    {"id": "radii", "fit_centres": false, "fit_radii": true, "parent": null},
+    {"id": "centres", "fit_centres": true, "fit_radii": false, "parent": null},
+    {"id": "joint", "fit_centres": true, "fit_radii": true, "parent": null},
+    {"id": "warm_radii", "fit_centres": false, "fit_radii": true, "parent": "chemistry"},
+    {"id": "warm_joint", "fit_centres": true, "fit_radii": true, "parent": "warm_radii"}
+  ],
+  "warm_scope": ["observed"],
+  "warm_start_rule": "Each prescribed start inherits its own last accepted state, including profile logits, even when nonconverged; missing accepted states remain explicit dependency failures. Extra cumulative budgets are reported. No cross-start selection.",
+  "endpoint_knots": {"top_n": 4, "side_offset": 0.000001, "max_crossings": 2, "nearby_radius_window": 0.001},
+  "promotion": false,
+  "reserved_data_access": false
+}

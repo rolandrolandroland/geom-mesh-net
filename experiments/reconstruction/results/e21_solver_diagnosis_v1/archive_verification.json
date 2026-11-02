@@ -1,0 +1,255 @@
+{
+  "schema": "e21-diagnostic-archive-verification-v1",
+  "passed": true,
+  "scope": "Artifact integrity and experiment accounting only; no scientific-readiness claim",
+  "promotion": false,
+  "inference_validated": false,
+  "attempts_verified": 22,
+  "source_files_verified_in_working_tree_and_snapshot": 101,
+  "report_sha256": "54c61f456dbe3ac148448d1d1fbc031301c2d3dde5b30cddd2787b7dfd6d6304",
+  "script_sha256": "a2db564eb7080d3910c45f405a42986649d3f462ae8436d8350c5706b09c99bf",
+  "checks": [
+    {
+      "key": [
+        "control",
+        "chemistry",
+        0
+      ],
+      "fit_sha256": "7378b08d68fe49a833ae848e891fcd1dc3afba673840ffd03e6ff6f599b8429a",
+      "state_and_lineage_verified": true,
+      "frozen_coordinates_verified": true,
+      "joint_endpoint_identical_to_archived_v3": null
+    },
+    {
+      "key": [
+        "control",
+        "radii",
+        0
+      ],
+      "fit_sha256": "a0666e7a8cf3b5881351a93d0248d114a144dd8edf2f5b03647a912f08e564d4",
+      "state_and_lineage_verified": true,
+      "frozen_coordinates_verified": true,
+      "joint_endpoint_identical_to_archived_v3": null
+    },
+    {
+      "key": [
+        "control",
+        "centres",
+        0
+      ],
+      "fit_sha256": "9bad9a1f77954135c4292f086ca918e6f314162cb9fd055c95fda3823d313118",
+      "state_and_lineage_verified": true,
+      "frozen_coordinates_verified": true,
+      "joint_endpoint_identical_to_archived_v3": null
+    },
+    {
+      "key": [
+        "control",
+        "joint",
+        0
+      ],
+      "fit_sha256": "92ebd9acd9ce9ecbf351ca3b5ad345a2a5cb70afb91afd11cabaa152632ee590",
+      "state_and_lineage_verified": true,
+      "frozen_coordinates_verified": true,
+      "joint_endpoint_identical_to_archived_v3": null
+    },
+    {
+      "key": [
+        "observed",
+        "chemistry",
+        0
+      ],
+      "fit_sha256": "ad78336ca4c1582387d81468acb299ec2c5773af1182beae34d2eceefa6d2766",
+      "state_and_lineage_verified": true,
+      "frozen_coordinates_verified": true,
+      "joint_endpoint_identical_to_archived_v3": null
+    },
+    {
+      "key": [
+        "observed",
+        "chemistry",
+        1
+      ],
+      "fit_sha256": "fbc34a92c0adc1134f54f8cde4c0046942770b6c9b7e40c62b8be59eaad59fc9",
+      "state_and_lineage_verified": true,
+      "frozen_coordinates_verified": true,
+      "joint_endpoint_identical_to_archived_v3": null
+    },
+    {
+      "key": [
+        "observed",
+        "chemistry",
+        2
+      ],
+      "fit_sha256": "d7cb7bd1d19c5cd0cdef39a0cc717bfc0c41468c00877491d411354d9dd914fc",
+      "state_and_lineage_verified": true,
+      "frozen_coordinates_verified": true,
+      "joint_endpoint_identical_to_archived_v3": null
+    },
+    {
+      "key": [
+        "observed",
+        "radii",
+        0
+      ],
+      "fit_sha256": "4abfd971e7a8934dcdb8cba56a27160bd954adcbd9abb7c4a039c9eaf5a47028",
+      "state_and_lineage_verified": true,
+      "frozen_coordinates_verified": true,
+      "joint_endpoint_identical_to_archived_v3": null
+    },
+    {
+      "key": [
+        "observed",
+        "radii",
+        1
+      ],
+      "fit_sha256": "0e1811088b778f3bf32bdcee01bec49155386da535f1be508c65dbb03f5aa0bf",
+      "state_and_lineage_verified": true,
+      "frozen_coordinates_verified": true,
+      "joint_endpoint_identical_to_archived_v3": null
+    },
+    {
+      "key": [
+        "observed",
+        "radii",
+        2
+      ],
+      "fit_sha256": "129886776794ff8f3fb4dae53876c01ef6eae8ce5479a1d43e06a45f39c89d49",
+      "state_and_lineage_verified": true,
+      "frozen_coordinates_verified": true,
+      "joint_endpoint_identical_to_archived_v3": null
+    },
+    {
+      "key": [
+        "observed",
+        "centres",
+        0
+      ],
+      "fit_sha256": "32c9b8fa943ac6e4fa4e79f82c41ba7c6baddbfa4d7c6f4ee2a94c8395c42283",
+      "state_and_lineage_verified": true,
+      "frozen_coordinates_verified": true,
+      "joint_endpoint_identical_to_archived_v3": null
+    },
+    {
+      "key": [
+        "observed",
+        "centres",
+        1
+      ],
+      "fit_sha256": "9245bfd687f9cb279988c44aa91e6b366f74832ee5f54afa8686dd8a1bae697d",
+      "state_and_lineage_verified": true,
+      "frozen_coordinates_verified": true,
+      "joint_endpoint_identical_to_archived_v3": null
+    },
+    {
+      "key": [
+        "observed",
+        "centres",
+        2
+      ],
+      "fit_sha256": "d23d9541203c7322c8812fe4c22bf3871fe6453ad548ce86948d59195ee3abe4",
+      "state_and_lineage_verified": true,
+      "frozen_coordinates_verified": true,
+      "joint_endpoint_identical_to_archived_v3": null
+    },
+    {
+      "key": [
+        "observed",
+        "joint",
+        0
+      ],
+      "fit_sha256": "5031313cc69b19566e72eb914612704673414db1effa78d3df3ce165d49a6a77",
+      "state_and_lineage_verified": true,
+      "frozen_coordinates_verified": true,
+      "joint_endpoint_identical_to_archived_v3": true
+    },
+    {
+      "key": [
+        "observed",
+        "joint",
+        1
+      ],
+      "fit_sha256": "9b72030292f8c0c7f3a408df77a777570c12bcde9c020793549ae3081212e66c",
+      "state_and_lineage_verified": true,
+      "frozen_coordinates_verified": true,
+      "joint_endpoint_identical_to_archived_v3": true
+    },
+    {
+      "key": [
+        "observed",
+        "joint",
+        2
+      ],
+      "fit_sha256": "27ebf7d083032403bf84686fac75c7aa4221b2fa6ff481d9cf03009c642b2f5b",
+      "state_and_lineage_verified": true,
+      "frozen_coordinates_verified": true,
+      "joint_endpoint_identical_to_archived_v3": true
+    },
+    {
+      "key": [
+        "observed",
+        "warm_radii",
+        0
+      ],
+      "fit_sha256": "b247530d7e67853e57422fae4559cd4b2c45ce639fa62e5c91d5c0d0feb808f3",
+      "state_and_lineage_verified": true,
+      "frozen_coordinates_verified": true,
+      "joint_endpoint_identical_to_archived_v3": null
+    },
+    {
+      "key": [
+        "observed",
+        "warm_radii",
+        1
+      ],
+      "fit_sha256": "7386a8f8a06cca1a76d172c568445f7ee4d9aa62e94e2fc634083cd46ee4eac2",
+      "state_and_lineage_verified": true,
+      "frozen_coordinates_verified": true,
+      "joint_endpoint_identical_to_archived_v3": null
+    },
+    {
+      "key": [
+        "observed",
+        "warm_radii",
+        2
+      ],
+      "fit_sha256": "c6646badb96110b905c17921a84b5bfd223f51ebc11882093068b1f5af48be78",
+      "state_and_lineage_verified": true,
+      "frozen_coordinates_verified": true,
+      "joint_endpoint_identical_to_archived_v3": null
+    },
+    {
+      "key": [
+        "observed",
+        "warm_joint",
+        0
+      ],
+      "fit_sha256": "8e4c4fbcb65a7e80213d1791e9bd007895254659217690bbb9e8eacb577eea2c",
+      "state_and_lineage_verified": true,
+      "frozen_coordinates_verified": true,
+      "joint_endpoint_identical_to_archived_v3": null
+    },
+    {
+      "key": [
+        "observed",
+        "warm_joint",
+        1
+      ],
+      "fit_sha256": "c31e616044994db311b949cd86e24cc90c860a06709e5e2ac905d6115d1fd6e7",
+      "state_and_lineage_verified": true,
+      "frozen_coordinates_verified": true,
+      "joint_endpoint_identical_to_archived_v3": null
+    },
+    {
+      "key": [
+        "observed",
+        "warm_joint",
+        2
+      ],
+      "fit_sha256": "b260cdfaa790f37dfc57bd13b13fafdec86a67d3181008e5c0c03ee9295105da",
+      "state_and_lineage_verified": true,
+      "frozen_coordinates_verified": true,
+      "joint_endpoint_identical_to_archived_v3": null
+    }
+  ]
+}

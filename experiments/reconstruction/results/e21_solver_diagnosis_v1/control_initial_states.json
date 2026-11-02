@@ -1,0 +1,114 @@
+{
+  "identity": {
+    "configuration": {
+      "box": 32.0,
+      "centres": [
+        [
+          7.0,
+          8.0,
+          8.0
+        ],
+        [
+          17.0,
+          10.0,
+          12.0
+        ],
+        [
+          12.0,
+          21.0,
+          20.0
+        ]
+      ],
+      "count": 6000,
+      "initial": {
+        "c_eq": 0.032,
+        "c_inf": 0.09,
+        "ell": 1.5,
+        "xi": 6.0
+      },
+      "initial_levels": [
+        0.93,
+        0.89,
+        0.8,
+        0.64,
+        0.44,
+        0.23,
+        0.05
+      ],
+      "kind": "model_matched_expected_likelihood",
+      "levels": [
+        0.92,
+        0.88,
+        0.79,
+        0.63,
+        0.43,
+        0.22,
+        0.04
+      ],
+      "radii": [
+        2.0,
+        3.0,
+        4.0
+      ],
+      "scope_note": "One prescribed start; true geometry and probability targets isolate numerical behavior. This is not noisy-data recovery or identifiability evidence.",
+      "seed": 2026110201,
+      "truth": {
+        "c_eq": 0.03,
+        "c_inf": 0.1,
+        "ell": 2.0,
+        "xi": 5.0
+      }
+    },
+    "fitting_identity": "88411dab5524b0d71caa0ef5dc59049485ffac646d45e1a01a1a7f73dc6b8417",
+    "prepared_geometry_identity": "b75c3f65518b1f25cad72737bc6276a94a554c1dc913f1427f6d51e1fc962c2e"
+  },
+  "states": [
+    {
+      "candidate_ids": [
+        "control-0",
+        "control-1",
+        "control-2"
+      ],
+      "configuration": {
+        "box": 32.0,
+        "count": 3,
+        "fixed_ell": null,
+        "knots": 6,
+        "min_gap": 1e-05,
+        "radius_bounds": [
+          0.5,
+          20.0
+        ],
+        "width": 0.3
+      },
+      "coordinates_version": "scaled_geometry_log_chemistry_monotone_profile_v1",
+      "model_version": "screened_spheres_constant_interior_v1",
+      "state_version": "constrained_diffusion_state_v1",
+      "vector": [
+        1.4,
+        1.6,
+        1.6,
+        3.4,
+        2.0,
+        2.4,
+        2.4,
+        4.2,
+        4.0,
+        0.4,
+        0.6,
+        0.8,
+        -3.4420193761824103,
+        1.791759469228055,
+        -2.4079456086518722,
+        0.3,
+        2.5866893440979433,
+        3.1023420086122475,
+        2.1848020573376634,
+        1.3862943611198901,
+        0.7884573603642703,
+        0.09097177820572659,
+        -1.2809338454620645
+      ]
+    }
+  ]
+}

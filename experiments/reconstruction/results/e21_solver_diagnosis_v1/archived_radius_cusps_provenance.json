@@ -1,0 +1,8 @@
+{
+  "scope": "Rendering existing probes only; no new evaluations",
+  "source": "archived_v3_knots.json",
+  "source_sha256": "b8eccb43fd3f90d65d9ea3d12e831f6da98ecf4b1e1b1461924df1ca7758c691",
+  "script_sha256": "6a796a750dd3096fde31a475e62ad0d88123ef7069cae0a6af51c0bd0d64e7aa",
+  "output": "archived_radius_cusps.png",
+  "output_sha256": "931f3a7cacfd650e403236d56bfe08a61d86d19207ffa5b6284d38328b8e3afb"
+}

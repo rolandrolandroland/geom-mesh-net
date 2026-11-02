@@ -350,6 +350,12 @@ def test_direction_projection_handles_redundant_nearly_duplicate_active_rows():
 
 
 class _CurvedDomainEvaluator:
+    def mark_accepted(self, vector, evaluated, **options):
+        self.accepted_vector = vector.copy()
+
+    def block_norms(self, vector):
+        return {"test": {"infinity": float(np.max(np.abs(vector))), "l2": float(np.linalg.norm(vector))}}
+
     """A nonlinear feasible domain whose tangent permits prohibited trial steps."""
     def __init__(self, stuck=False):
         self.trace = []
@@ -495,7 +501,7 @@ def test_live_progress_omits_history_but_saved_report_keeps_it(monkeypatch):
     assert [event["continuation_decision"] for event in events if event["event"] == "round_completed"] == [
         "continue_safe_iteration_cap", "converged"]
     json.dumps(events, allow_nan=False)
-    assert record["configuration"]["backend_version"] == "feasible_lbfgs_v3"
+    assert record["configuration"]["backend_version"] == "feasible_lbfgs_v4"
 
 
 def _compact_fixture(kind, count):
@@ -601,3 +607,270 @@ def test_compact_jacobians_preserve_successful_multiple_iteration_fit(monkeypatc
     np.testing.assert_allclose(compact.vector.detach().numpy(), full.vector.detach().numpy(),
                                atol=2e-9, rtol=1e-8)
     assert abs(compact_record['summed_nll'] - full_record['summed_nll']) < 1e-8
+
+
+@pytest.mark.parametrize("fixed_ell", [None, 0.0])
+def test_complete_state_round_trip_is_bitwise_and_preserves_profile(fixed_ell):
+    original = model(fixed_ell=fixed_ell, levels=np.linspace(.85, .2, 7))
+    vector = original.vector.numpy().copy()
+    vector[original.layout.shape_start:] += np.linspace(-.013, .017, 7)
+    original.set_vector(vector)
+    state = json.loads(json.dumps(original.export_state(), allow_nan=False))
+    restored = cj.restore_constrained_state(state)
+    np.testing.assert_array_equal(restored.vector.numpy(), vector)
+    np.testing.assert_array_equal(restored.levels().numpy(), original.levels().numpy())
+    points = np.random.default_rng(302).uniform(0, 35, (100, 3))
+    np.testing.assert_array_equal(restored.raw_predict(points), original.raw_predict(points))
+    assert restored.candidate_ids == original.candidate_ids
+
+
+@pytest.mark.parametrize("damage", ["state_version", "model_version", "coordinates_version", "configuration", "vector", "candidate_ids"])
+def test_incomplete_or_incompatible_warm_state_fails_closed(damage):
+    state = model().export_state()
+    state.pop(damage)
+    with pytest.raises((ValueError, TypeError)):
+        cj.restore_constrained_state(state)
+
+
+@pytest.mark.parametrize("damage", ["nan", "wrong_size", "geometry", "bounds"])
+def test_invalid_warm_vector_is_never_repaired(damage):
+    state = model().export_state()
+    if damage == "nan":
+        state["vector"][0] = float("nan")
+    elif damage == "wrong_size":
+        state["vector"].pop()
+    elif damage == "geometry":
+        state["vector"][6:8] = [1.4, 1.4]
+    else:
+        state["vector"][-1] = 13.
+    with pytest.raises(ValueError):
+        cj.restore_constrained_state(state)
+
+
+def _warm_problem():
+    truth = model(levels=np.linspace(.85, .2, 7))
+    start = model(levels=np.linspace(.8, .15, 7))
+    vector = start.vector.numpy().copy()
+    vector[:3] += np.array([.02, -.01, .015])
+    vector[6:8] += [.02, -.03]
+    start.set_vector(vector)
+    points = np.random.default_rng(123).uniform(0, 35, (400, 3))
+    labels = truth.raw_predict(points)
+    return start, points, labels
+
+
+@pytest.mark.parametrize("fit_centres,fit_radii", [(False, False), (False, True), (True, False)])
+def test_frozen_coordinates_remain_exact_in_every_trial(monkeypatch, fit_centres, fit_radii):
+    start, points, labels = _warm_problem()
+    initial = start.vector.numpy().copy()
+    observed = []
+    set_vector = cj.ConstrainedDiffusionModel.set_vector
+    def observe(self, vector):
+        observed.append(np.asarray(vector.detach() if isinstance(vector, torch.Tensor) else vector).copy())
+        return set_vector(self, vector)
+    monkeypatch.setattr(cj.ConstrainedDiffusionModel, "set_vector", observe)
+    _, record = cj.fit_constrained(start.centres().numpy(), start.radii().numpy(), points, labels,
+                                   candidate_ids=start.candidate_ids, box=35., starts=((2., 5.),),
+                                   initial_states=[start.export_state()], fit_centres=fit_centres,
+                                   fit_radii=fit_radii, maxiter=4, rounds=1, max_evaluations=30)
+    frozen = np.r_[[] if fit_centres else np.arange(6), [] if fit_radii else np.arange(6, 8)].astype(int)
+    assert len(observed) > 3
+    for vector in observed:
+        np.testing.assert_array_equal(vector[frozen], initial[frozen])
+    attempt = record["starts"][0]
+    assert attempt["last_accepted_state"] is not None
+    np.testing.assert_array_equal(np.asarray(attempt["last_accepted_state"]["vector"])[frozen], initial[frozen])
+    assert record["configuration"]["active_parameter_count"] == len(initial) - len(frozen)
+    assert sum(item["iterations"] for item in attempt["rounds"]) > 0
+    rows = [item for round_ in attempt["rounds"] for item in round_["iteration_history"] if item.get("accepted")]
+    assert rows and all("secant_curvature" in row and "desired_infinity_norm" in row for row in rows)
+
+
+def test_warm_state_skips_all_projections_and_preserves_profile(monkeypatch):
+    truth = model(levels=np.linspace(.85, .2, 7))
+    points = np.random.default_rng(502).uniform(0, 35, (80, 3))
+    def forbidden(*args, **kwargs):
+        pytest.fail("an exact warm state must not be reprojected")
+    monkeypatch.setattr(cj, "prepare_feasible_geometry", forbidden)
+    monkeypatch.setattr(cj, "_initial_probability_projection", forbidden)
+    fitted, record = cj.fit_constrained(truth.centres().numpy(), truth.radii().numpy(), points, truth.raw_predict(points),
+                                        box=35., starts=((6., 12.),), initial_states=[truth.export_state()],
+                                        fit_centres=False, fit_radii=False, diagnose_blocks=True)
+    assert fitted is not None and record["converged"]
+    np.testing.assert_array_equal(fitted.vector.numpy(), truth.vector.numpy())
+    attempt = record["starts"][0]
+    assert attempt["initial_state"] == attempt["optimization_initial_state"] == truth.export_state()
+    assert attempt["last_accepted_metadata"]["eligible"]
+    assert record["selected_state"] == truth.export_state()
+    assert attempt["block_stationarity"]["joint_active"]["optimality"] <= 1e-5
+
+
+@pytest.mark.parametrize("change", ["ids", "width", "geometry"])
+def test_warm_fit_rejects_identity_mismatch(change):
+    start, points, labels = _warm_problem()
+    state = start.export_state()
+    kwargs = dict(candidate_ids=start.candidate_ids, box=35., starts=((2., 5.),), initial_states=[state])
+    centres = start.centres().numpy()
+    if change == "ids":
+        kwargs["candidate_ids"] = start.candidate_ids[::-1]
+    elif change == "width":
+        kwargs["width"] = .31
+    else:
+        centres[0, 0] += .01
+    with pytest.raises(ValueError, match="identity|geometry"):
+        cj.fit_constrained(centres, start.radii().numpy(), points, labels, **kwargs)
+
+
+@pytest.mark.parametrize("options", [{"fit_radii": False}, {"prepare_geometry": False}])
+def test_fixed_or_externally_prepared_radii_are_not_silently_repaired(monkeypatch, options):
+    monkeypatch.setattr(cj, "prepare_feasible_geometry", lambda *args, **kwargs: pytest.fail("unexpected geometry projection"))
+    fitted, record = cj.fit_constrained([[5., 5., 5.], [9., 5., 5.]], [3., 3.], [[7., 7., 7.]], [.2],
+                                        box=15., starts=((2., 5.),), **options)
+    assert fitted is None and record["status"] == "invalid_geometry"
+    assert record["preparation"]["changes"] == []
+
+
+def test_budget_failure_retains_initial_accepted_state_without_promoting_it():
+    start, points, labels = _warm_problem()
+    fitted, record = cj.fit_constrained(start.centres().numpy(), start.radii().numpy(), points, labels,
+                                        box=35., starts=((2., 5.),), initial_states=[start.export_state()],
+                                        fit_centres=False, fit_radii=False, max_evaluations=1)
+    attempt = record["starts"][0]
+    assert fitted is None and not record["converged"] and record["selected_state"] is None
+    assert attempt["status"] == "evaluation_budget"
+    assert attempt["last_accepted_state"] == start.export_state()
+    assert not attempt["last_accepted_metadata"]["eligible"]
+    assert len(attempt["evaluations"]) == 1
+
+
+def test_terminal_checkpoint_is_not_last_finite_rejected_trial(monkeypatch):
+    start, points, labels = _warm_problem()
+    rejected = []
+    def terminal(evaluator, vector, *args, **kwargs):
+        initial = evaluator.evaluate(vector)
+        evaluator.mark_accepted(vector, initial, iteration=0)
+        trial = vector.copy()
+        trial[-1] += .01
+        evaluator.evaluate(trial)
+        rejected.append(trial)
+        raise cj.DomainError("controlled line-search termination after a finite rejected trial")
+    monkeypatch.setattr(cj, "_minimize_feasible", terminal)
+    fitted, record = cj.fit_constrained(start.centres().numpy(), start.radii().numpy(), points, labels,
+                                        box=35., starts=((2., 5.),), initial_states=[start.export_state()])
+    attempt = record["starts"][0]
+    assert fitted is None and not attempt["converged"]
+    assert attempt["status"] == "domain_or_backend_failure"
+    assert attempt["last_accepted_state"] == start.export_state()
+    assert attempt["last_accepted_state"]["vector"] != rejected[0].tolist()
+    assert not attempt["last_accepted_metadata"]["eligible"]
+
+
+def test_reduced_gradients_and_constraint_jacobians_match_finite_differences():
+    start, points, labels = _warm_problem()
+    points, labels = torch.tensor(points), torch.tensor(labels)
+    full = cj._Evaluation(start, points, labels, start.assign(points), 100, [], cj._fixed_probes(start.box))
+    subspace = cj._ParameterSubspace(start.vector.numpy(), start.layout, fit_centres=False, fit_radii=True)
+    reduced = cj._ReducedEvaluation(full, subspace)
+    vector = subspace.reduce(start.vector.numpy())
+    evaluated = reduced.evaluate(vector)
+    numeric = approx_derivative(lambda value: np.r_[reduced.fun(value), reduced.constraints(value)], vector)
+    np.testing.assert_allclose(np.vstack([evaluated[1], evaluated[3].toarray()]), numeric, atol=2e-7, rtol=2e-4)
+    full_constraints = cj.geometry_constraints(start.layout, box=start.box, min_gap=start.min_gap)
+    for original, constraint in zip(full_constraints, subspace.constraints(full_constraints)):
+        if isinstance(constraint, cj.LinearConstraint):
+            np.testing.assert_allclose(constraint.A @ vector - constraint.lb,
+                                       original.A @ subspace.expand(vector) - original.lb, atol=1e-14)
+        else:
+            np.testing.assert_allclose(constraint.jac(vector).toarray(), np.atleast_2d(approx_derivative(constraint.fun, vector)), atol=1e-8)
+
+
+def test_blockwise_conditional_stationarity_does_not_certify_joint_stationarity(monkeypatch):
+    from scipy import sparse
+    instance = model()
+    size = instance.layout.size
+    gradient = np.zeros(size)
+    gradient[0] = gradient[instance.layout.chemistry] = -1.
+    row = np.zeros(size)
+    row[0], row[instance.layout.chemistry] = 1., -1.
+    matrix = sparse.csr_matrix(np.vstack([row, -row]))
+    monkeypatch.setattr(cj, "_linearized_constraints", lambda *args: (matrix, np.zeros(2)))
+    report = cj._stationarity_from_evaluation(instance, instance.vector.numpy(), (0., gradient, None, None),
+                                              fit_centres=False, fit_radii=False)
+    assert report["blocks"]["centres"]["conditional"]["optimality"] < 1e-8
+    assert report["blocks"]["chemistry"]["conditional"]["optimality"] < 1e-8
+    assert report["joint_active"]["optimality"] < 1e-8
+    assert report["joint_all_variables"]["optimality"] == pytest.approx(1.)
+
+
+def test_later_budget_failure_pairs_terminal_loss_with_accepted_state(monkeypatch):
+    start, points, labels = _warm_problem()
+    calls = []
+    def controlled(evaluator, vector, constraints, lower, upper, *, maxiter, **kwargs):
+        calls.append(True)
+        evaluated = evaluator.evaluate(vector)
+        evaluator.mark_accepted(vector, evaluated, iteration=0)
+        if len(calls) == 2:
+            vector = vector.copy()
+            vector[-1] += .03
+            evaluated = evaluator.evaluate(vector)
+            evaluator.mark_accepted(vector, evaluated, iteration=1)
+            raise cj.EvaluationBudgetExceeded("controlled budget exhaustion in second round")
+        return OptimizeResult(x=vector.copy(), fun=evaluated[0], jac=evaluated[1], success=False,
+                              status=0, message="controlled cap", nit=maxiter, optimality=.01,
+                              constr_violation=0., history=[])
+    monkeypatch.setattr(cj, "_minimize_feasible", controlled)
+    fitted, record = cj.fit_constrained(start.centres().numpy(), start.radii().numpy(), points, labels,
+                                        box=35., starts=((2., 5.),), initial_states=[start.export_state()],
+                                        fit_centres=False, fit_radii=False, maxiter=2, rounds=3)
+    attempt = record["starts"][0]
+    assert fitted is None and len(calls) == 2 and not attempt["last_accepted_metadata"]["eligible"]
+    assert attempt["train_loss"] == attempt["last_accepted_metadata"]["mean_nll"]
+    assert attempt["summed_nll"] == attempt["last_accepted_metadata"]["summed_nll"]
+    assert attempt["train_loss"] != attempt["rounds"][0]["train_loss"]
+    assert attempt["objective_assignment_context"] == "actual_assignments"
+
+
+def test_reduced_radius_overlap_is_guarded_before_any_coupling_solve(monkeypatch):
+    instance = model()
+    points = torch.tensor([[8., 8., 8.]])
+    full = cj._Evaluation(instance, points, torch.tensor([.1]), instance.assign(points), 10, [], cj._fixed_probes(instance.box))
+    subspace = cj._ParameterSubspace(instance.vector.numpy(), instance.layout, fit_centres=False, fit_radii=True)
+    evaluator = cj._ReducedEvaluation(full, subspace)
+    vector = subspace.reduce(instance.vector.numpy())
+    vector[:2] = 1.4
+    solves = []
+    monkeypatch.setattr(torch.linalg, "solve", lambda *args, **kwargs: solves.append(True))
+    with pytest.raises(cj.DomainError, match="before coupling solve"):
+        evaluator.evaluate(vector)
+    assert not solves and not full.trace[0]["likelihood_evaluated"]
+
+
+def test_default_all_free_trajectory_matches_preserved_v3():
+    import importlib.util
+    from pathlib import Path
+    import sys
+
+    snapshot = (Path(__file__).resolve().parents[1] / "experiments/reconstruction/results/e21_geometry_v3/source_snapshot"
+                / "3ac7cc2a0e738f40d7eaf3a1d20cff0cfdf9584e4da8a08ae212b55bf67c20ad"
+                / "geom_mesh_net/fields/constrained_joint_fit.py")
+    spec = importlib.util.spec_from_file_location("_preserved_constrained_v3_regression", snapshot)
+    previous = importlib.util.module_from_spec(spec)
+    sys.modules[spec.name] = previous
+    try:
+        spec.loader.exec_module(previous)
+        centres, radii = np.array([[10., 10., 10.], [22., 10., 10.]]), np.array([2., 3.])
+        truth = model()
+        points = np.random.default_rng(12).uniform(0., 35., (1400, 3))
+        labels = truth.raw_predict(points)
+        options = dict(candidate_ids=['a', 'b'], box=35., starts=((2., 5.),),
+                       maxiter=120, max_evaluations=250, gtol=1e-4)
+        old, old_record = previous.fit_constrained(centres, [2.1, 2.85], points, labels, **options)
+        new, new_record = cj.fit_constrained(centres, [2.1, 2.85], points, labels, **options)
+        assert old is not None and new is not None
+        np.testing.assert_array_equal(new.vector.numpy(), old.vector.numpy())
+        assert new_record["summed_nll"] == old_record["summed_nll"]
+        assert new_record["starts"][0]["evaluations"] == old_record["starts"][0]["evaluations"]
+        assert [item["iterations"] for item in new_record["starts"][0]["rounds"]] == [
+            item["iterations"] for item in old_record["starts"][0]["rounds"]]
+    finally:
+        sys.modules.pop(spec.name, None)

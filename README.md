@@ -29,6 +29,7 @@ The project has two purposes:
 | A field fitted to one pattern | **done, gate passed** (reconstruction Stage 2): a Fourier-feature network beats tuned smoothing in 48 of 52 headroom test cells, closing 68% of its gap |
 | Fields to measured precipitates | **pilot complete, promotion failed** (E20): Fourier improves field prediction but misses 35 particles versus the Gaussian detector's 8 across four confirmation patterns; the reserved test remains unevaluated |
 | Constrained fitting and shared-particle boundary comparison | **implemented; numerical prerequisite not passed** (E21): completed preflights reject invalid likelihood evaluations but do not produce converged baseline fits; the neural comparison remains unrun |
+| Staged solver diagnosis | **complete, geometry fitting still fails**: 22/22 attempts retained; four small-control and three fixed-geometry chemistry/profile fits converge, but all 15 observed fits that release geometry fail, including sequential warm starts |
 | The diffusion law as a constraint on the reconstruction | **done, gate failed** (reconstruction Stage 5.2): the fitted law improves matrix prediction but misses its capillary-recovery criterion; a physics-informed network failed first (E16). The subsequent joint fitter remains experimental |
 
 The first line of work is **amortized Bayesian inference of the physical
@@ -57,6 +58,11 @@ sets out feasible fitting, controlled boundary comparisons, and uncertainty vali
 The separate [E21 implementation and execution report](docs/experiments/E21_constrained_geometry.md)
 records the new constrained fitter, preserved failures, and the numerical prerequisite
 that must pass before the comparison or uncertainty study can advance.
+The [staged solver diagnosis](docs/experiments/E21_solver_diagnosis.md) now isolates
+chemistry, radii and centres on the existing development case and an exact-model
+control. Its results identify separate boundary-tolerance and nonsmooth-objective
+issues to investigate; they concern numerical optimization, not validated
+physical inference.
 
 **For where both tracks stand and what comes next**, see
 [`project_roadmap.md`](project_roadmap.md).
@@ -138,7 +144,7 @@ pip install -e ".[dev,notebooks]"
 python -m pytest -q
 ```
 
-395 tests, a few minutes. They need no data: the fixtures build synthetic
+The suite runs in a few minutes. The fixtures build synthetic
 patterns, and the tests that do want `data/` skip when it is absent.
 
 Where a closed form exists the tests compare against it rather than against a

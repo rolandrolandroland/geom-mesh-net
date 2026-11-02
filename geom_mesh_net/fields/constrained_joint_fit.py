@@ -11,7 +11,7 @@ same version. The old-to-new comparison therefore changes both model and solver.
 Geometry is checked before every coupling solve. Raw probabilities are checked
 before a likelihood is evaluated; invalid values never receive a clipped finite
 loss. SciPy trust-constr receives analytic geometry Jacobians and autograd
-likelihood/probability derivatives. The default v3 backend projects search
+likelihood/probability derivatives. The default v4 backend projects search
 directions onto linearized feasible constraints, and backtracks prohibited trials
 before evaluating their likelihood. The original trust-constr prototype remains
 selectable and terminates an attempt on a prohibited trial. Constraints are finite-sample checks, not a
@@ -32,7 +32,9 @@ from geom_mesh_net.fields.physics import screening_length
 
 
 MODEL_VERSION = "screened_spheres_constant_interior_v1"
-BACKEND_VERSION = "feasible_lbfgs_v3"
+BACKEND_VERSION = "feasible_lbfgs_v4"
+STATE_VERSION = "constrained_diffusion_state_v1"
+COORDINATES_VERSION = "scaled_geometry_log_chemistry_monotone_profile_v1"
 DEFAULT_STARTS = ((None, None), (1.0, 3.0), (6.0, 12.0))
 PHYSICAL_BOUNDS = {"c_eq": (1e-6, 0.999), "ell": (0.0, 50.0),
                    "xi": (0.5, 200.0), "c_inf": (1e-6, 0.999)}
@@ -206,6 +208,12 @@ class ParameterLayout:
     def size(self):
         return self.shape_start + self.knots + 1
 
+    def blocks(self):
+        return {"centres": np.arange(3 * self.count),
+                "radii": np.arange(3 * self.count, self.chemistry),
+                "chemistry": np.arange(self.chemistry, self.shape_start),
+                "interior_profile": np.arange(self.shape_start, self.size)}
+
     def bounds(self, box, radius_bounds):
         low = [0.0] * (3 * self.count) + [radius_bounds[0] / GEOMETRY_SCALE] * self.count
         high = [box / GEOMETRY_SCALE] * (3 * self.count) + [radius_bounds[1] / GEOMETRY_SCALE] * self.count
@@ -253,6 +261,20 @@ class ConstrainedDiffusionModel:
             raise ValueError("incorrect parameter vector size")
         self.vector = vector if isinstance(vector, torch.Tensor) else torch.tensor(vector, dtype=torch.float64)
         return self
+
+    def export_state(self):
+        """Export exact coordinates, including every interior-profile logit.
+
+        A state is a reproducible initialization, not a convergence certificate.
+        Geometry and sampled probabilities are checked again before fitting.
+        """
+        return {"state_version": STATE_VERSION, "model_version": self.model_version,
+                "coordinates_version": COORDINATES_VERSION, "candidate_ids": list(self.candidate_ids),
+                "configuration": {"count": self.layout.count, "knots": self.layout.knots,
+                                  "fixed_ell": self.layout.fixed_ell, "box": self.box,
+                                  "width": self.fixed_width, "min_gap": self.min_gap,
+                                  "radius_bounds": list(self.radius_bounds)},
+                "vector": self.vector.detach().numpy().tolist()}
 
     def centres(self):
         return self.vector[:3 * self.layout.count].reshape(-1, 3) * GEOMETRY_SCALE
@@ -374,6 +396,48 @@ class ConstrainedDiffusionModel:
     predict = raw_predict
 
 
+def restore_constrained_state(state):
+    """Restore a versioned state without a profile/logit round trip or repair.
+
+    This checks parameter bounds and geometry. Probability feasibility depends
+    on the fitting/probe positions and is deliberately rechecked by the fitter.
+    """
+    if not isinstance(state, dict) or state.get("state_version") != STATE_VERSION:
+        raise ValueError("unsupported constrained state version")
+    if state.get("model_version") != MODEL_VERSION or state.get("coordinates_version") != COORDINATES_VERSION:
+        raise ValueError("incompatible constrained model or coordinate version")
+    required = {"count", "knots", "fixed_ell", "box", "width", "min_gap", "radius_bounds"}
+    configuration = state.get("configuration", {})
+    if not isinstance(configuration, dict) or set(configuration) != required:
+        raise ValueError("state configuration identity is incomplete")
+    count, knots = configuration["count"], configuration["knots"]
+    if isinstance(count, bool) or int(count) != count or count < 1:
+        raise ValueError("state must contain a positive integer candidate count")
+    if isinstance(knots, bool) or int(knots) != knots or knots < 1:
+        raise ValueError("state knot count must be a positive integer")
+    count = int(count)
+    layout = ParameterLayout(count, int(knots), configuration["fixed_ell"])
+    vector = np.asarray(state.get("vector"), dtype=float)
+    if vector.shape != (layout.size,) or not np.isfinite(vector).all():
+        raise ValueError("state requires a finite complete parameter vector")
+    domain = [configuration[key] for key in ("box", "width", "min_gap")]
+    bounds = np.asarray(configuration["radius_bounds"], dtype=float)
+    if not np.isfinite(domain).all() or min(domain) <= 0 or bounds.shape != (2,) or not np.isfinite(bounds).all() or not 0 < bounds[0] < bounds[1]:
+        raise ValueError("invalid state physical domain configuration")
+    model = ConstrainedDiffusionModel(vector[:3 * count].reshape(count, 3) * GEOMETRY_SCALE,
+                                      vector[3 * count:4 * count] * GEOMETRY_SCALE,
+                                      candidate_ids=state.get("candidate_ids"),
+                                      **{key: value for key, value in configuration.items() if key != "count"})
+    if "candidate_ids" not in state:
+        raise ValueError("state candidate identity is missing")
+    model.set_vector(vector.copy())
+    low, high = layout.bounds(model.box, model.radius_bounds)
+    if np.any(vector < low - DOMAIN_TOLERANCE) or np.any(vector > high + DOMAIN_TOLERANCE):
+        raise ValueError("state parameter outside declared bounds")
+    model.guard_geometry()
+    return model
+
+
 def raw_probability_diagnostics(full, matrix, outside):
     """Validate the actual blend and the matrix only at exterior sample points."""
     full = np.asarray(full, dtype=float)
@@ -407,11 +471,31 @@ def _fixed_probes(box):
 class _Evaluation:
     """Cache a value, gradient and sampled-domain Jacobian at one parameter vector."""
 
-    def __init__(self, model, x, y, assignment, budget, trace, fixed_probes):
+    def __init__(self, model, x, y, assignment, budget, trace, fixed_probes, checkpoint=None):
         self.model, self.x, self.y, self.assignment = model, x, y, assignment
         self.budget, self.trace, self.fixed_probes = budget, trace, fixed_probes
+        self.checkpoint = {} if checkpoint is None else checkpoint
         self.cached_vector = None
         self.lower, self.upper = model.layout.bounds(model.box, model.radius_bounds)
+
+    def set_vector(self, vector):
+        self.model.set_vector(vector)
+
+    def mark_accepted(self, vector, evaluated, *, iteration=None, origin="accepted_step"):
+        """Record an accepted point, never an arbitrary finite line-search trial."""
+        if self.cached_vector is None or not np.array_equal(np.asarray(vector), self.cached_vector):
+            raise ValueError("accepted checkpoint must match the guarded evaluation cache")
+        if np.min(evaluated[2]) < -DOMAIN_TOLERANCE:
+            raise DomainError("cannot checkpoint a point outside the probability safety margin")
+        self.checkpoint.update(vector=np.asarray(vector, dtype=float).copy(), evaluated=evaluated,
+                               assignment=self.assignment.detach().clone(),
+                               metadata={"mean_nll": evaluated[0], "summed_nll": evaluated[0] * len(self.y),
+                                         "evaluation": self.cached_evaluation, "iteration": iteration,
+                                         "origin": origin, "eligible": False,
+                                         "assignment_certificate": "not_assessed"})
+
+    def block_norms(self, vector):
+        return _block_norms(vector, self.model.layout)
 
     def _differentiate(self):
         value, gradient, constraint_values, jacobian = self.cached
@@ -525,6 +609,7 @@ class _Evaluation:
                 target = detached.min() if minimum else detached.max()
                 self.cached_extrema_origins.append(origins[detached == target])
             self.cached_vector = vector.copy()
+            self.cached_evaluation = row["evaluation"]
             return self._differentiate() if derivatives else self.cached
         except (DomainError, RuntimeError) as error:
             row["error"] = str(error)
@@ -541,6 +626,95 @@ class _Evaluation:
 
     def constraint_jac(self, vector):
         return self.evaluate(vector)[3]
+
+
+class _ParameterSubspace:
+    """Eliminate frozen coordinates; expanding a trial copies them exactly."""
+
+    def __init__(self, vector, layout, *, fit_centres, fit_radii):
+        self.frozen = np.asarray(vector, dtype=float).copy()
+        active = np.ones(layout.size, dtype=bool)
+        blocks = layout.blocks()
+        if not fit_centres:
+            active[blocks["centres"]] = False
+        if not fit_radii:
+            active[blocks["radii"]] = False
+        self.active = np.flatnonzero(active)
+        self.is_full = bool(active.all())
+
+    def reduce(self, vector):
+        return np.asarray(vector)[self.active].copy()
+
+    def expand(self, vector):
+        vector = np.asarray(vector, dtype=float)
+        if vector.shape != self.active.shape:
+            raise ValueError("incorrect reduced parameter vector size")
+        full = self.frozen.copy()
+        full[self.active] = vector
+        return full
+
+    def lift_direction(self, direction):
+        full = np.zeros_like(self.frozen)
+        full[self.active] = direction
+        return full
+
+    def constraints(self, constraints):
+        reduced = []
+        offset = self.frozen.copy()
+        offset[self.active] = 0.0
+        for constraint in constraints:
+            if isinstance(constraint, LinearConstraint):
+                shift = constraint.A @ offset
+                reduced.append(LinearConstraint(constraint.A[:, self.active], constraint.lb - shift,
+                                                 constraint.ub - shift, keep_feasible=True))
+            else:
+                reduced.append(NonlinearConstraint(
+                    lambda vector, original=constraint: original.fun(self.expand(vector)),
+                    constraint.lb, constraint.ub,
+                    jac=lambda vector, original=constraint: original.jac(self.expand(vector))[:, self.active],
+                    hess=BFGS(), keep_feasible=True))
+        return reduced
+
+
+class _ReducedEvaluation:
+    """Keep the full guarded model and project only derivative coordinates."""
+
+    def __init__(self, full, subspace):
+        self.full, self.subspace = full, subspace
+
+    def evaluate(self, vector, *, derivatives=True):
+        value, gradient, constraints, jacobian = self.full.evaluate(self.subspace.expand(vector), derivatives=derivatives)
+        return (value, None if gradient is None else gradient[self.subspace.active], constraints,
+                None if jacobian is None else jacobian[:, self.subspace.active])
+
+    def set_vector(self, vector):
+        self.full.set_vector(self.subspace.expand(vector))
+
+    def mark_accepted(self, vector, evaluated, **options):
+        # The full evaluation is already cached, so no likelihood work is added.
+        self.full.mark_accepted(self.subspace.expand(vector), self.full.cached, **options)
+
+    def block_norms(self, vector):
+        return self.full.block_norms(self.subspace.lift_direction(vector))
+
+    def fun(self, vector):
+        return self.evaluate(vector)[0]
+
+    def jac(self, vector):
+        return self.evaluate(vector)[1]
+
+    def constraints(self, vector):
+        return self.evaluate(vector)[2]
+
+    def constraint_jac(self, vector):
+        return self.evaluate(vector)[3]
+
+
+def _block_norms(vector, layout):
+    vector = np.asarray(vector, dtype=float)
+    return {name: {"infinity": float(np.max(np.abs(vector[indices]))),
+                   "l2": float(np.linalg.norm(vector[indices]))}
+            for name, indices in layout.blocks().items()}
 
 
 def geometry_constraints(layout, *, box=60.0, min_gap=1e-5):
@@ -729,6 +903,68 @@ def _lbfgs_direction(gradient, memory):
     return -working
 
 
+def _stationarity_from_evaluation(model, vector, evaluated, *, fit_centres=True, fit_radii=True):
+    """Conditional block diagnostics from an existing actual-assignment gradient.
+
+    Conditional block stationarity does not imply joint stationarity when a
+    feasible direction requires simultaneous changes in coupled blocks. These
+    are derivatives of the current smooth branch; they do not certify a Clarke
+    stationary point at an interpolation/assignment kink.
+    """
+    lower, upper = model.layout.bounds(model.box, model.radius_bounds)
+    constraints = geometry_constraints(model.layout, box=model.box, min_gap=model.min_gap)
+    matrix, slack = _linearized_constraints(vector, evaluated, constraints, lower, upper)
+    active = _ParameterSubspace(vector, model.layout, fit_centres=fit_centres, fit_radii=fit_radii).active
+    all_indices = np.arange(model.layout.size)
+
+    def project(indices):
+        try:
+            direction, multipliers, certificate = _project_direction(-evaluated[1][indices], matrix[:, indices], slack)
+            complementarity = float(np.max(np.abs(multipliers * slack)))
+            residual = float(np.max(np.abs(direction)))
+            return {"status": "ok", "projected_gradient": residual, "complementarity": complementarity,
+                    "optimality": max(residual, complementarity), "projection_certificate": certificate}, direction
+        except DomainError as error:
+            return {"status": "projection_failed", "error": str(error), "optimality": None}, None
+
+    joint_all, full_direction = project(all_indices)
+    joint_active, active_direction = (joint_all.copy(), full_direction) if len(active) == len(all_indices) else project(active)
+    active_full = None
+    if active_direction is not None:
+        active_full = np.zeros(model.layout.size)
+        active_full[active] = active_direction
+    blocks = {}
+    for name, indices in model.layout.blocks().items():
+        conditional, _ = project(indices)
+        blocks[name] = {"active": bool(np.isin(indices, active).all()), "parameter_count": len(indices),
+                        "raw_gradient_infinity": float(np.max(np.abs(evaluated[1][indices]))),
+                        "conditional": conditional,
+                        "joint_all_component_infinity": (None if full_direction is None else
+                                                         float(np.max(np.abs(full_direction[indices])))),
+                        "joint_active_component_infinity": (None if active_full is None else
+                                                            float(np.max(np.abs(active_full[indices]))))}
+    return _json_safe({"coordinates": COORDINATES_VERSION, "joint_active": joint_active,
+                       "joint_all_variables": joint_all, "blocks": blocks,
+                       "interpretation": "active joint residual certifies only the declared reduced smooth-branch problem; conditional block residuals do not certify joint convergence",
+                       "smooth_branch_only": True})
+
+
+def projected_stationarity_diagnostics(model, x, y, *, fit_centres=True, fit_radii=True):
+    """Fresh, guarded actual-assignment endpoint diagnostic; does not fit data."""
+    points, labels = torch.as_tensor(x, dtype=torch.float64), torch.as_tensor(y, dtype=torch.float64)
+    if points.ndim != 2 or points.shape[1] != 3 or labels.shape != (len(points),) or not len(points):
+        raise ValueError("nonempty x (N, 3) and y (N,) required")
+    if not bool(torch.isfinite(points).all() and torch.isfinite(labels).all()) or bool(((labels < 0) | (labels > 1)).any()):
+        raise ValueError("finite observations and probability labels required")
+    vector = model.vector.detach().numpy().copy()
+    try:
+        evaluator = _Evaluation(model, points, labels, model.assign(points), 1, [], _fixed_probes(model.box))
+        evaluated = evaluator.evaluate(vector)
+        return _stationarity_from_evaluation(model, vector, evaluated, fit_centres=fit_centres, fit_radii=fit_radii)
+    finally:
+        model.set_vector(vector)
+
+
 def _minimize_feasible(evaluator, vector, constraints, lower, upper, *, maxiter, gtol,
                        progress_callback=None):
     """Projected quasi-Newton steps with exact physical-domain backtracking.
@@ -746,6 +982,8 @@ def _minimize_feasible(evaluator, vector, constraints, lower, upper, *, maxiter,
     for iteration in range(maxiter + 1):
         value, gradient = evaluated[:2]
         matrix, slack = _linearized_constraints(vector, evaluated, constraints, lower, upper)
+        if iteration == 0:
+            evaluator.mark_accepted(vector, evaluated, iteration=0, origin="round_initial_point")
         projected_gradient, multipliers, certificate = _project_direction(-gradient, matrix, slack)
         optimality = float(np.max(np.abs(projected_gradient)))
         complementarity = float(np.max(np.abs(multipliers * slack)))
@@ -764,7 +1002,11 @@ def _minimize_feasible(evaluator, vector, constraints, lower, upper, *, maxiter,
         desired = _lbfgs_direction(gradient, memory)
         # This finite trust radius limits physical moves, without defining
         # convergence or preventing exact feasible backtracking.
-        desired /= max(1.0, np.max(np.abs(desired)))
+        trust_cap = max(1.0, np.max(np.abs(desired)))
+        row.update(desired_infinity_norm=float(np.max(np.abs(desired))),
+                   desired_l2_norm=float(np.linalg.norm(desired)), trust_cap_divisor=float(trust_cap),
+                   memory_size_before=len(memory))
+        desired /= trust_cap
         direction, _, direction_certificate = _project_direction(desired, matrix, slack)
         directional_derivative = float(np.dot(gradient, direction))
         if directional_derivative >= -1e-12 * max(1., np.linalg.norm(gradient)):
@@ -774,6 +1016,7 @@ def _minimize_feasible(evaluator, vector, constraints, lower, upper, *, maxiter,
         else:
             row["direction"] = "projected_lbfgs"
         row["direction_projection"] = direction_certificate
+        row["directional_derivative"] = directional_derivative
         if directional_derivative >= 0:
             message, status = "no feasible descent direction despite nonzero KKT residual", 3
             break
@@ -797,11 +1040,20 @@ def _minimize_feasible(evaluator, vector, constraints, lower, upper, *, maxiter,
             message, status = "feasible Armijo line search stalled with nonzero KKT residual", 2
             break
         step, change = trial - vector, trial_evaluated[1] - gradient
-        if np.dot(step, change) > 1e-10 * max(1e-20, np.linalg.norm(step) * np.linalg.norm(change)):
+        curvature = float(np.dot(step, change))
+        curvature_threshold = 1e-10 * max(1e-20, np.linalg.norm(step) * np.linalg.norm(change))
+        memory_updated = curvature > curvature_threshold
+        if memory_updated:
             memory.append((step, change))
             memory = memory[-10:]
+        row.update(accepted_step_blocks=evaluator.block_norms(step),
+                   gradient_change_blocks=evaluator.block_norms(change),
+                   secant_curvature=curvature, secant_threshold=float(curvature_threshold),
+                   memory_updated=bool(memory_updated), memory_size_after=len(memory),
+                   actual_objective_change=float(trial_evaluated[0] - value))
         vector, evaluated = trial, trial_evaluated
-    evaluator.model.set_vector(vector)
+        evaluator.mark_accepted(vector, evaluated, iteration=iteration + 1)
+    evaluator.set_vector(vector)
     return OptimizeResult(x=vector, fun=evaluated[0], jac=evaluated[1], success=success,
                           status=status, message=message, nit=len(history) - 1,
                           optimality=max(optimality, complementarity),
@@ -894,10 +1146,13 @@ def fit_constrained(centres, radii, x, y, *, candidate_ids=None, box=60.0,
                     width=0.3, knots=6, starts=DEFAULT_STARTS, maxiter=150,
                     max_evaluations=600, rounds=3, fixed_ell=None, validation_points=None,
                     min_gap=1e-5, radius_bounds=(0.5, 20.0), gtol=1e-5,
-                    initial_constants=None, backend="feasible_lbfgs", progress_callback=None):
+                    initial_constants=None, backend="feasible_lbfgs", progress_callback=None,
+                    fit_centres=True, fit_radii=True, initial_states=None,
+                    diagnose_blocks=False, prepare_geometry=True):
     """Fit from fixed starts, returning ``(model_or_None, JSON_record)``.
 
-    Centres and radii are optimized, preserving candidate order/IDs. Only feasible,
+    Centres and radii are optimized unless their fit flags are false, preserving
+    the frozen canonical coordinates exactly. Only feasible,
     converged, assignment-stable attempts compete by *fitting* likelihood. Optional
     validation positions are inspected after that selection; they never select a
     start. A failed attempt and its full evaluation trace remain in the record.
@@ -907,6 +1162,12 @@ def fit_constrained(centres, radii, x, y, *, candidate_ids=None, box=60.0,
     the remaining declared rounds and total evaluation budget. A cap remains a
     nonconverged round; stalled searches and domain/projection failures terminate
     that start. Only the final actual-objective certificate permits convergence.
+    ``initial_states`` supplies one complete exported state per start and is
+    mutually exclusive with ``initial_constants``. Warm states are never repaired
+    or reprojected. Fixed radii also bypass radius preparation; callers can set
+    ``prepare_geometry=False`` after an explicit external preparation step.
+    Block diagnostics describe smooth-branch derivatives, not nonsmooth KKT
+    certificates, and do not replace the active joint convergence criterion.
     """
     started = time.perf_counter()
     centres, radii = _geometry_arrays(centres, radii)
@@ -921,6 +1182,8 @@ def fit_constrained(centres, radii, x, y, *, candidate_ids=None, box=60.0,
         raise ValueError("width and gtol must be positive and finite")
     if backend not in ("feasible_lbfgs", "trust_constr"):
         raise ValueError("backend must be feasible_lbfgs or trust_constr")
+    if any(not isinstance(flag, (bool, np.bool_)) for flag in (fit_centres, fit_radii, diagnose_blocks, prepare_geometry)):
+        raise ValueError("geometry fit, preparation and diagnostic flags must be boolean")
     check_points = x if validation_points is None else np.asarray(validation_points, dtype=float)
     if check_points.ndim != 2 or check_points.shape[1] != 3 or not np.isfinite(check_points).all():
         raise ValueError("validation_points must be finite and (N, 3)")
@@ -932,12 +1195,39 @@ def fit_constrained(centres, radii, x, y, *, candidate_ids=None, box=60.0,
         raise ValueError("ell starts must be nonnegative; xi starts positive")
     if initial_constants is not None and len(initial_constants) != len(starts):
         raise ValueError("initial_constants must have one dictionary per start")
+    if initial_states is not None and (initial_constants is not None or len(initial_states) != len(starts)):
+        raise ValueError("initial_states requires one full state per start and excludes initial_constants")
     ids = _candidate_ids(candidate_ids, len(radii))
-    prepared, preparation = prepare_feasible_geometry(centres, radii, candidate_ids=ids, box=box,
-                                                       min_gap=min_gap, radius_bounds=radius_bounds)
+    restored = []
+    if initial_states is not None:
+        expected = {"count": len(radii), "knots": knots, "fixed_ell": fixed_ell, "box": box,
+                    "width": width, "min_gap": min_gap, "radius_bounds": list(radius_bounds)}
+        for state in initial_states:
+            warm = restore_constrained_state(state)
+            if state["candidate_ids"] != ids or state["configuration"] != expected:
+                raise ValueError("warm state candidate IDs or configuration identity differ from this fit")
+            if (not np.allclose(warm.centres().numpy(), centres, atol=1e-12, rtol=0)
+                    or not np.allclose(warm.radii().numpy(), radii, atol=1e-12, rtol=0)):
+                raise ValueError("warm state geometry differs from supplied geometry")
+            restored.append(warm)
+    if prepare_geometry and fit_radii and initial_states is None:
+        prepared, preparation = prepare_feasible_geometry(centres, radii, candidate_ids=ids, box=box,
+                                                           min_gap=min_gap, radius_bounds=radius_bounds)
+    else:
+        checked = geometry_diagnostics(centres, radii, box=box, min_gap=min_gap, radius_bounds=radius_bounds)
+        prepared = radii.copy() if checked["feasible"] else None
+        preparation = {"status": "validated_without_projection" if prepared is not None else "failed",
+                       "candidate_ids": ids, "centres_unchanged": True, "candidate_count_unchanged": True,
+                       "before": checked, "after": checked, "original_radii": radii.tolist(),
+                       "radii": None if prepared is None else radii.tolist(), "changes": [],
+                       "reason": ("warm_state" if initial_states is not None else
+                                  "fixed_radii" if not fit_radii else "external_preparation")}
+    layout = ParameterLayout(len(radii), knots, fixed_ell)
+    active_blocks = [name for name in layout.blocks() if name not in
+                     ({"centres"} if not fit_centres else set()) | ({"radii"} if not fit_radii else set())]
     record = {"model_version": MODEL_VERSION, "status": "fit_failed", "reliable": False,
               "candidate_ids": ids, "particles": len(radii), "fitting_atoms": len(x),
-              "preparation": preparation, "starts": [], "selected_start": None,
+              "preparation": preparation, "starts": [], "selected_start": None, "selected_state": None,
               "geometry_feasible": False, "sampled_probability_valid": False,
               "converged": False, "assignment_stable": False, "identified": None,
               "identifiability": "not_assessed", "ambiguous": False, "at_bounds": [],
@@ -948,6 +1238,12 @@ def fit_constrained(centres, radii, x, y, *, candidate_ids=None, box=60.0,
                                 "maxiter_per_round": maxiter, "max_evaluations_per_start": max_evaluations,
                                 "rounds": rounds, "fixed_ell": fixed_ell, "gtol": gtol,
                                 "backend": backend,
+                                "fit_centres": fit_centres, "fit_radii": fit_radii,
+                                "prepare_geometry": prepare_geometry, "diagnose_blocks": diagnose_blocks,
+                                "active_blocks": active_blocks,
+                                "active_parameter_count": sum(len(layout.blocks()[name]) for name in active_blocks),
+                                "state_version": STATE_VERSION, "warm_state_geometry_match_tolerance": 1e-12,
+                                "initialization": "complete_states" if initial_states is not None else "declared_constants_and_default_profile",
                                 "backend_version": BACKEND_VERSION if backend == "feasible_lbfgs" else "trust_constr_v1",
                                 "numerical_interior_slack": NUMERICAL_INTERIOR_SLACK,
                                 "probability_margin": PROBABILITY_MARGIN,
@@ -974,9 +1270,13 @@ def fit_constrained(centres, radii, x, y, *, candidate_ids=None, box=60.0,
             initial.update(initial_constants[number])
         if fixed_ell is not None:
             initial["ell"] = fixed_ell
+        if restored:
+            initial = restored[number].constants()
         attempt = {"start": number, "status": "failed", "initial_constants": dict(initial),
                    "evaluations": [], "rounds": [], "converged": False, "assignment_stable": False,
-                   "train_loss": None, "summed_nll": None}
+                   "train_loss": None, "summed_nll": None, "initial_state": None,
+                   "last_accepted_state": None, "last_accepted_metadata": None}
+        model, checkpoint = None, {}
         record["starts"].append(attempt)
         if progress_callback is not None:
             progress_callback(_json_safe({"event": "start_started", "start": number, "initial_constants": dict(initial)}))
@@ -984,57 +1284,86 @@ def fit_constrained(centres, radii, x, y, *, candidate_ids=None, box=60.0,
             if any(not np.isfinite(value) or value < PHYSICAL_BOUNDS[name][0] or value > PHYSICAL_BOUNDS[name][1]
                    for name, value in initial.items()):
                 raise DomainError("physical starting value outside declared search bounds")
-            model = ConstrainedDiffusionModel(centres, radii, **initial, width=width, knots=knots,
-                                              candidate_ids=ids, box=box, min_gap=min_gap,
-                                              radius_bounds=radius_bounds, fixed_ell=fixed_ell)
-            initial_points = torch.cat([tx, _probe_points(model, fixed_probes)])
-            attempt["initial_feasibility_projection"] = _initial_probability_projection(model, initial_points)
+            model = (restored[number] if restored else
+                     ConstrainedDiffusionModel(centres, radii, **initial, width=width, knots=knots,
+                                               candidate_ids=ids, box=box, min_gap=min_gap,
+                                               radius_bounds=radius_bounds, fixed_ell=fixed_ell))
+            attempt["initial_state"] = model.export_state()
+            if restored:
+                attempt["initial_feasibility_projection"] = {"status": "skipped_exact_warm_state"}
+            else:
+                initial_points = torch.cat([tx, _probe_points(model, fixed_probes)])
+                attempt["initial_feasibility_projection"] = _initial_probability_projection(model, initial_points)
+            attempt["optimization_initial_state"] = model.export_state()
             vector = model.vector.detach().numpy().copy()
-            lower, upper = model.layout.bounds(box, radius_bounds)
-            constraints = geometry_constraints(model.layout, box=box, min_gap=min_gap)
+            subspace = _ParameterSubspace(vector, model.layout, fit_centres=fit_centres, fit_radii=fit_radii)
+            full_lower, full_upper = model.layout.bounds(box, radius_bounds)
+            lower, upper = full_lower[subspace.active], full_upper[subspace.active]
+            full_constraints = geometry_constraints(model.layout, box=box, min_gap=min_gap)
+            constraints = full_constraints if subspace.is_full else subspace.constraints(full_constraints)
             for round_number in range(rounds):
                 model.set_vector(vector)
                 assignment = model.assign(tx)
-                evaluator = _Evaluation(model, tx, ty, assignment, max_evaluations,
-                                        attempt["evaluations"], fixed_probes)
+                full_evaluator = _Evaluation(model, tx, ty, assignment, max_evaluations,
+                                             attempt["evaluations"], fixed_probes, checkpoint)
+                evaluator = full_evaluator if subspace.is_full else _ReducedEvaluation(full_evaluator, subspace)
+                optimizer_vector = subspace.reduce(vector)
                 if backend == "trust_constr":
+                    initial_evaluated = evaluator.evaluate(optimizer_vector)
+                    _linearized_constraints(optimizer_vector, initial_evaluated, constraints, lower, upper)
+                    evaluator.mark_accepted(optimizer_vector, initial_evaluated, iteration=0, origin="round_initial_point")
+                    def trust_checkpoint(current, state):
+                        full_current = subspace.expand(current)
+                        if (full_evaluator.cached_vector is not None
+                                and np.array_equal(full_current, full_evaluator.cached_vector)
+                                and np.min(full_evaluator.cached[2]) >= -DOMAIN_TOLERANCE):
+                            evaluator.mark_accepted(current, full_evaluator.cached, iteration=int(state.nit),
+                                                    origin="trust_constr_accepted_iterate")
                     sampled = NonlinearConstraint(evaluator.constraints, 0.0, np.inf, jac=evaluator.constraint_jac,
                                                    hess=BFGS(), keep_feasible=True)
                     with warnings.catch_warnings():
                         warnings.filterwarnings("ignore", message="delta_grad == 0.0.*", category=UserWarning)
-                        result = minimize(evaluator.fun, vector, jac=evaluator.jac, hess=BFGS(),
+                        result = minimize(evaluator.fun, optimizer_vector, jac=evaluator.jac, hess=BFGS(),
                                           method="trust-constr", bounds=Bounds(lower, upper, keep_feasible=True),
                                           constraints=[*constraints, sampled],
+                                          callback=trust_checkpoint,
                                           options={"maxiter": maxiter, "gtol": gtol, "xtol": 1e-10,
                                                    "barrier_tol": 1e-8, "sparse_jacobian": True,
                                                    "factorization_method": "AugmentedSystem"})
                 else:
                     callback = (None if progress_callback is None else
                                 lambda event: progress_callback({"start": number, "round": round_number, **event}))
-                    result = _minimize_feasible(evaluator, vector, constraints, lower, upper,
+                    result = _minimize_feasible(evaluator, optimizer_vector, constraints, lower, upper,
                                                 maxiter=maxiter, gtol=gtol, progress_callback=callback)
-                vector = result.x.copy()
-                old = evaluator.evaluate(vector)
+                optimizer_vector = result.x.copy()
+                vector = subspace.expand(optimizer_vector)
+                old = evaluator.evaluate(optimizer_vector)
+                evaluator.mark_accepted(optimizer_vector, old, iteration=int(result.nit), origin="optimizer_return")
                 model.set_vector(vector)
                 reassigned = model.assign(tx)
                 changed = int((reassigned != assignment).sum())
                 # Re-evaluate the full likelihood and derivative with current
                 # assignments. Far-away assignment changes may be numerically
                 # immaterial, but this must be demonstrated, not assumed.
-                refreshed = _Evaluation(model, tx, ty, reassigned, max_evaluations,
-                                         attempt["evaluations"], fixed_probes)
-                new = refreshed.evaluate(vector)
+                refreshed_full = _Evaluation(model, tx, ty, reassigned, max_evaluations,
+                                              attempt["evaluations"], fixed_probes, checkpoint)
+                refreshed = refreshed_full if subspace.is_full else _ReducedEvaluation(refreshed_full, subspace)
+                new = refreshed.evaluate(optimizer_vector)
                 loss_change = abs(new[0] - old[0])
                 gradient_change = float(np.max(np.abs(new[1] - old[1])))
                 stable = changed == 0 or (loss_change <= 1e-10 and gradient_change <= gtol * 0.1)
                 optimizer_converged = bool(result.success and result.optimality <= gtol
                                            and result.constr_violation <= 1e-8)
-                final_matrix, final_slack = _linearized_constraints(vector, new, constraints, lower, upper)
+                final_matrix, final_slack = _linearized_constraints(optimizer_vector, new, constraints, lower, upper)
                 final_direction, final_multipliers, final_projection = _project_direction(-new[1], final_matrix, final_slack)
                 reassigned_stationarity = float(np.max(np.abs(final_direction)))
                 reassigned_complementarity = float(np.max(np.abs(final_multipliers * final_slack)))
                 final_optimality = max(reassigned_stationarity, reassigned_complementarity)
                 numerical = optimizer_converged and final_optimality <= gtol
+                refreshed.mark_accepted(optimizer_vector, new, iteration=int(result.nit), origin="actual_assignment_refresh")
+                checkpoint["metadata"].update(assignment_certificate="stable" if stable else "unstable",
+                                              actual_assignments=True, active_optimality=final_optimality,
+                                              round=round_number)
                 round_record = {"round": round_number, "iterations": int(result.nit),
                                 "optimizer_status": int(result.status), "termination": str(result.message),
                                 "optimizer_optimality": float(result.optimality), "optimality": final_optimality,
@@ -1047,6 +1376,9 @@ def fit_constrained(centres, radii, x, y, *, candidate_ids=None, box=60.0,
                                 "assignment_stable": stable, "train_loss": new[0], "summed_nll": new[0] * len(y)}
                 if backend == "feasible_lbfgs":
                     round_record["iteration_history"] = result.history
+                if diagnose_blocks:
+                    round_record["block_stationarity"] = _stationarity_from_evaluation(
+                        model, vector, refreshed_full.cached, fit_centres=fit_centres, fit_radii=fit_radii)
                 # A per-round iteration cap is not convergence, but a valid
                 # last point can use the remaining declared rounds/evaluations.
                 # Projection/domain failures and stalled searches stay terminal.
@@ -1089,13 +1421,46 @@ def fit_constrained(centres, radii, x, y, *, candidate_ids=None, box=60.0,
                            status=("converged" if attempt["converged"] else
                                    "evaluation_budget" if attempt.get("termination_reason") == "evaluation_budget_exhausted"
                                    else "not_converged"))
-            if attempt["converged"] and diagnostics["geometry"]["feasible"] and diagnostics["probability"]["passed"]:
+            final_valid = diagnostics["geometry"]["feasible"] and diagnostics["probability"]["passed"]
+            if not final_valid:
+                attempt.update(converged=False, status="invalid_final_diagnostics",
+                               termination_reason="terminal_invalid_final_domain")
+            if attempt["converged"] and final_valid:
                 converged.append((number, model, attempt["summed_nll"]))
         except (DomainError, EvaluationBudgetExceeded, ValueError, RuntimeError, np.linalg.LinAlgError) as error:
-            attempt.update(status="evaluation_budget" if isinstance(error, EvaluationBudgetExceeded) else "domain_or_backend_failure",
+            attempt.update(converged=False,
+                           status="evaluation_budget" if isinstance(error, EvaluationBudgetExceeded) else "domain_or_backend_failure",
                            termination_reason=("evaluation_budget_exhausted" if isinstance(error, EvaluationBudgetExceeded)
                                                else "terminal_domain_or_backend_failure"),
                            error=f"{type(error).__name__}: {error}")
+        if model is not None and checkpoint:
+            # The last evaluator cache can be a rejected trial. Restore only
+            # the explicit accepted checkpoint, including on budget exceptions.
+            model.set_vector(checkpoint["vector"])
+            metadata = dict(checkpoint["metadata"])
+            metadata.update(eligible=bool(attempt["converged"] and attempt["status"] == "converged"),
+                            terminal_status=attempt["status"], termination_reason=attempt.get("termination_reason"))
+            actual = model.assign(tx)
+            metadata["assignment_changes_at_saved_state"] = int((actual != checkpoint["assignment"]).sum())
+            metadata["actual_assignments"] = metadata["assignment_changes_at_saved_state"] == 0
+            metadata["objective_assignment_context"] = ("actual_assignments" if metadata["actual_assignments"]
+                                                        else "frozen_round_assignments")
+            attempt.update(last_accepted_state=model.export_state(), last_accepted_metadata=metadata,
+                           constants=model.constants(), centres=model.centres().detach().numpy(),
+                           radii=model.radii().detach().numpy(), shape=model.shape(),
+                           train_loss=metadata["mean_nll"], summed_nll=metadata["summed_nll"],
+                           objective_assignment_context=metadata["objective_assignment_context"])
+            if diagnose_blocks:
+                if metadata["actual_assignments"]:
+                    try:
+                        attempt["block_stationarity"] = _stationarity_from_evaluation(
+                            model, checkpoint["vector"], checkpoint["evaluated"],
+                            fit_centres=fit_centres, fit_radii=fit_radii)
+                    except DomainError as error:
+                        attempt["block_stationarity"] = {"status": "diagnostic_failed", "error": str(error)}
+                else:
+                    attempt["block_stationarity"] = {"status": "unavailable_without_fresh_actual_assignment_evaluation",
+                                                     "assignment_changes": metadata["assignment_changes_at_saved_state"]}
         if progress_callback is not None:
             last_round = attempt["rounds"][-1] if attempt["rounds"] else {}
             progress_callback(_json_safe({"event": "start_completed", "start": number, "status": attempt["status"],
@@ -1129,7 +1494,7 @@ def fit_constrained(centres, radii, x, y, *, candidate_ids=None, box=60.0,
         flags.append("invalid_probability_at_final_check_positions")
     if np.ptp(selected.radii().detach().numpy()) <= 1e-5 and fixed_ell is None:
         flags.append("equal_radius_ell_ceq_confounding")
-    record.update(selected_start=number, constants=selected.constants(),
+    record.update(selected_start=number, selected_state=selected.export_state(), constants=selected.constants(),
                   centres=selected.centres().detach().numpy(), radii=selected.radii().detach().numpy(),
                   shape=selected.shape(), train_loss=nll / len(y), summed_nll=nll,
                   geometry_feasible=True, sampled_probability_valid=diagnostics["probability"]["passed"],
